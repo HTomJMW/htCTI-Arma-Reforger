@@ -1,0 +1,1434 @@
+$grp SCR_CTI_Town {
+ Town0 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408CE2E6D14E}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F0D7C923BBA717}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    CollisionVelocityThreshold 5
+    "Heavy damage threshold" 70
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{59FF3E19F8D4ECC7}" {
+    ActionContexts {
+     UserActionContext "{59FF3E192EA6E6A3}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{59FF3E194EFC0EC6}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{59FF3E1BD8B391A6}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{59FF3E1B35234451}" {
+      }
+      VisibilityRange 5
+      Duration 0
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 9696.289 13.559 1546.774
+  m_townName "ST. Pierre"
+  {
+   SCR_AIWaypoint WayPoint0_1 {
+    coords 14.025 -1.187 7.073
+    Type "Defend"
+    Title "WayPoint0_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea0 {
+    components {
+     Hierarchy "{59DF6D0E29AF4576}" {
+     }
+     SCR_CTI_CreateTeamComponent "{59C701EF12D49AFC}" {
+      m_SpawnPos 9700.854 13.559 1546.774
+      m_Waypoints {
+       "WayPoint0_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    coords 0 0 0
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea0 {
+    components {
+     Hierarchy "{59D3408D8AB35F77}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint0 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords -9.329 0.035 2.634
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town2 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DE5497657}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB7ACA7E4A}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F7A50913B2}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616A8D904FF}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF616C3C930E6}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629BFDE68CB}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF629D6F0D84D}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 4928.005 36.157 9125.537
+  m_townName "Tyrone"
+  {
+   SCR_AIWaypoint WayPoint2_1 {
+    coords 14.025 -0.075 7.073
+    Type "Defend"
+    Title "WayPoint2_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea2 {
+    components {
+     Hierarchy "{59DF6D0E14FA0087}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 4933.47 36.434 9125.537
+      m_Waypoints {
+       "WayPoint2_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea2 {
+    components {
+     Hierarchy "{59D3408D3185DF19}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint2 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords -4.945 -0.031 -1.664
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town3 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DE1358421}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB753F7A9A}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F7A1F602F9}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616AB5B9436}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF6163B162331}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629B90FADF4}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF629CDECD47D}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 4132.306 36.308 7833.822
+  m_townName "Gravette"
+  {
+   SCR_AIWaypoint WayPoint3_1 {
+    coords 14.025 1.832 7.073
+    Type "Defend"
+    Title "WayPoint3_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea3 {
+    components {
+     Hierarchy "{59DF6D0E10E513EA}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 4137.475 36.428 7829.371
+      m_Waypoints {
+       "WayPoint3_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea3 {
+    components {
+     Hierarchy "{59D3408D2D153EE2}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint3 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords 3.078 0.1 -4.41
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town4 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DDEFC2F27}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB6D8D9DF6}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F79EBCA1E1}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616AF8CD54B}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF616344B0850}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629B4915E26}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF629C53232A7}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 4713.431 161.677 6978.969
+  m_townName "Montignac"
+  {
+   SCR_AIWaypoint WayPoint4_1 {
+    coords 14.025 0.367 7.073
+    Type "Defend"
+    Title "WayPoint4_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea4 {
+    components {
+     Hierarchy "{59DF6D0E0DC8D24A}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 4713.43 161.824 6983.895
+      m_Waypoints {
+       "WayPoint4_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea4 {
+    components {
+     Hierarchy "{59D3408D2AAC7D0C}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint4 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords 0.022 0.15 -6.219
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town5 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DDB41E69D}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB6872DDBD}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F79B1BA5D3}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616B2A3E98E}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF6162E4EBFE3}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629AD752364}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF6293DF0B1C3}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 1299.932 38.09 6033.668
+  m_townName "Lamentin"
+  {
+   SCR_AIWaypoint WayPoint5_1 {
+    coords 14.025 1.084 7.073
+    Type "Defend"
+    Title "WayPoint5_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea5 {
+    components {
+     Hierarchy "{59DF6D0E09EA34E0}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 1304.288 38.197 6033.668
+      m_Waypoints {
+       "WayPoint5_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea5 {
+    components {
+     Hierarchy "{59D3408D257A38B5}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint5 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords -2.816 -0.25 -6.407
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town6 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DD717357B}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB656A2451}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F794E4492E}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616B5F56981}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF6162783FC42}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629A8EC2E91}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF6296A73F819}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 2605.381 94.163 5415.463
+  m_townName "Le Moule"
+  {
+   SCR_AIWaypoint WayPoint6_1 {
+    coords -13.578 0.991 7.073
+    Type "Defend"
+    Title "WayPoint6_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea6 {
+    components {
+     Hierarchy "{59DF6D0E068F1873}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 2605.381 94.266 5409.833
+      m_Waypoints {
+       "WayPoint6_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea6 {
+    components {
+     Hierarchy "{59D3408D2224E95E}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint6 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords 5.551 0.152 1.468
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town7 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DD4F22559}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB62FC9DFF}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F78FB3DF93}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616B841EA6C}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF6161FF3FFA3}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629A3BF78B5}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF6296253446C}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 5477.503 95.806 6087.412
+  m_townName "Provins"
+  {
+   SCR_AIWaypoint WayPoint7_1 {
+    coords 14.025 0.155 7.073
+    Type "Defend"
+    Title "WayPoint7_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea7 {
+    components {
+     Hierarchy "{59DF6D0E0259C0D0}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 5482.085 96.13 6087.41
+      m_Waypoints {
+       "WayPoint7_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea7 {
+    components {
+     Hierarchy "{59D3408D1FB0E9F3}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint7 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords 3.468 -0.251 -6.082
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town8 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DD1A60C20}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB5F359BFD}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F78C9D4C98}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616BC95FCF0}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF61617F77EFB}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF6299E7C4C96}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF6295A60A28D}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 7082.966 118.979 6020.249
+  m_townName "Chotain"
+  {
+   SCR_AIWaypoint WayPoint8_1 {
+    coords 12.079 0.024 7.073
+    Type "Defend"
+    Title "WayPoint8_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea8 {
+    components {
+     Hierarchy "{59DF6D0E7E17E628}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 7082.966 119.508 6028.094
+      m_Waypoints {
+       "WayPoint8_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea8 {
+    components {
+     Hierarchy "{59D3408D1BE37569}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint8 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords 2.111 -0.242 -3.624
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town9 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DCD6ADF00}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB5DADDCD2}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F78602E5CB}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616BFD6B242}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF6161121C093}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF6299AE38F8A}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF62952C279E1}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 5123.634 15.628 3992.189
+  m_townName "Morton"
+  {
+   SCR_AIWaypoint WayPoint9_1 {
+    coords 14.025 -1.523 7.073
+    Type "Defend"
+    Title "WayPoint9_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea9 {
+    components {
+     Hierarchy "{59DF6D0E7BE31E9E}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 5123.634 15.628 3998.239
+      m_Waypoints {
+       "WayPoint9_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea9 {
+    components {
+     Hierarchy "{59D3408D18F084A4}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint9 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords 0.312 -0.935 -6.357
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town10 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DF05074D1}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB057BA792}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F7B7C3650A}" {
+    ActionContexts {
+     UserActionContext "{5A0EF61749B6543C}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF616D3ADDFAA}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF6164CAFD894}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF629E7B52145}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 7460.326 136.995 4737.408
+  m_townName "Levie"
+  {
+   SCR_AIWaypoint WayPoint10_1 {
+    coords 14.025 -0.113 7.073
+    Type "Defend"
+    Title "WayPoint10_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea10 {
+    components {
+     Hierarchy "{59DF6D0E1D18CBDE}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 7460.325 137.207 4746.033
+      m_Waypoints {
+       "WayPoint10_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea10 {
+    components {
+     Hierarchy "{59D3408DFEE891CB}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint10 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords 7.098 0.342 -0.329
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town11 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DEA23A735}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB4219D1BD}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F7A9127CB3}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616A5B998D1}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF616CA4C7B92}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF61645C7BF2E}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF629DE7E0AA7}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 7193.561 136.957 2333.68
+  m_townName "Regina"
+  {
+   SCR_AIWaypoint WayPoint11_1 {
+    coords 14.025 -0.041 7.073
+    Type "Defend"
+    Title "WayPoint11_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea11 {
+    components {
+     Hierarchy "{59DF6D0E18883409}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 7198.713 137.051 2338.676
+      m_Waypoints {
+       "WayPoint11_'"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea11 {
+    components {
+     Hierarchy "{59D3408D34A336CC}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint11 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords 6.965 -0.158 0.725
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+ Town1 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408CD56922D0}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_MapDescriptorComponent "{59F137AB0EF5D596}" {
+   }
+   SCR_DestructionBaseComponent "{599D1844D050049D}" {
+    EnableDamage 0
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F44064BAFC}" {
+    ActionContexts {
+     UserActionContext "{5A0EF617D2626586}" {
+      ContextName "PurchaseVehicle"
+      Position PointInfo "{5A0EF616EF5E9E2B}" {
+       Offset 0 0.7 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF6165297DDAE}" {
+      ParentContextList {
+       "PurchaseVehicle"
+      }
+      UIInfo UIInfo "{5A0EF629FA423EF9}" {
+      }
+      VisibilityRange 5
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+   }
+  }
+  coords 4517.271 13.726 10892.203
+  m_townName "ST. Philippe"
+  {
+   SCR_AIWaypoint WayPoint1_1 {
+    coords 14.025 1.231 7.073
+    Type "Defend"
+    Title "WayPoint1_1"
+    CompletionRadius 5
+    Autocomplete 0
+    CompletionType Any
+   }
+   SCR_CTI_ActivationArea ActivationArea1 {
+    components {
+     Hierarchy "{59DF6D0E21DE917E}" {
+     }
+     SCR_CTI_CreateTeamComponent "{59C701EF03F208D9}" {
+      m_SpawnPos 4523.813 14.489 10892.203
+      m_Waypoints {
+       "WayPoint1_1"
+      }
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_CTI_CaptureArea CaptureArea1 {
+    components {
+     Hierarchy "{59D3408D86373888}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 75
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+    ClassFilter "ChimeraCharacter"
+   }
+   SCR_SpawnPoint SpawnPoint1 {
+    components {
+     Hierarchy "{59B72B6E75E966E1}" {
+     }
+     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{59B72B6E62E6AB24}" {
+     }
+    }
+    coords -5.935 -0.527 -1.374
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+}

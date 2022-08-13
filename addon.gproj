@@ -1,0 +1,8 @@
+GameProject {
+ ID "htCTI"
+ GUID "599D1730B8DC8B51"
+ TITLE "htCTI"
+ Dependencies {
+  "58D0FB3206B6F859"
+ }
+}
