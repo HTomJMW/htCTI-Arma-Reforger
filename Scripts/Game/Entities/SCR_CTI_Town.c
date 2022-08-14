@@ -19,21 +19,27 @@ class SCR_CTI_Town : BaseGameEntity
 	protected const float timeStep = 60;
 	
 	protected bool m_isActive = false;
-	protected float m_activationTime = -1.0;
+	protected float m_activeTime = -1.0;
+	protected const float activeTimeMax = 30;
 	
 	// Spawned AI groups
 	ref array<AIGroup> m_groups = {};
 	
-	// Characters in capture area (75m)
+	// Characters in town area
 	ref array<SCR_ChimeraCharacter> m_FIA_Occupants = {};
 	ref array<SCR_ChimeraCharacter> m_USSR_Occupants = {};
 	ref array<SCR_ChimeraCharacter> m_US_Occupants = {};
+	
+	// Characters in capture area (75m)
+	ref array<SCR_ChimeraCharacter> m_FIA_CapArea_Occ = {};
+	ref array<SCR_ChimeraCharacter> m_USSR_CapArea_Occ = {};
+	ref array<SCR_ChimeraCharacter> m_US_CapArea_Occ = {};
 	
 	protected SCR_FlagComponent m_flagComponent;
 	protected SCR_SpawnPoint m_sPoint;
 	protected SCR_CTI_MapDescriptorComponent m_mapComponent;
 	protected SCR_CTI_GameMode m_gameMode;
-	protected SCR_CTI_ActivationArea m_activationArea;
+	protected RplComponent m_rplComponent;
 
 	string getTownName()
 	{
@@ -82,12 +88,22 @@ class SCR_CTI_Town : BaseGameEntity
 	{
 		m_isActive = value;
 	}
+	
+	void setActiveTime(float newTime)
+	{
+		m_activeTime = newTime;
+	}
+	
+	float getActiveTime()
+	{
+		return m_activeTime;
+	}
 		
 	void checkCapture()
 	{
-		int fia = m_FIA_Occupants.Count();
-		int ussr = m_USSR_Occupants.Count();
-		int us = m_US_Occupants.Count();
+		int fia = m_FIA_CapArea_Occ.Count();
+		int ussr = m_USSR_CapArea_Occ.Count();
+		int us = m_US_CapArea_Occ.Count();
 		
 		if (fia < 1 && ussr < 1 && us < 1) return;
 		
@@ -98,7 +114,7 @@ class SCR_CTI_Town : BaseGameEntity
 			changeFlag("USSR");
 			m_sPoint.SetFactionKey("USSR");
 			PrintFormat("CTI :: Town %1 captured by %2", m_townName, m_factionKey);
-			foreach(SCR_ChimeraCharacter charactersInside : m_USSR_Occupants)
+			foreach(SCR_ChimeraCharacter charactersInside : m_USSR_CapArea_Occ)
 			{
 				int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(charactersInside);
 				if (m_gameMode.ClientDataArray)
@@ -117,7 +133,7 @@ class SCR_CTI_Town : BaseGameEntity
 			changeFlag("US");
 			m_sPoint.SetFactionKey("US");
 			PrintFormat("CTI :: Town %1 captured by %2", m_townName, m_factionKey);
-			foreach(SCR_ChimeraCharacter charactersInside : m_US_Occupants)
+			foreach(SCR_ChimeraCharacter charactersInside : m_US_CapArea_Occ)
 			{
 				int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(charactersInside);
 				if (m_gameMode.ClientDataArray)
@@ -139,7 +155,7 @@ class SCR_CTI_Town : BaseGameEntity
 		}
 	}
 	
-	void changeFlag(FactionKey key)
+	protected void changeFlag(FactionKey key)
 	{
 		switch (key)
   		{
@@ -162,6 +178,10 @@ class SCR_CTI_Town : BaseGameEntity
 
 	override void EOnInit(IEntity owner)
 	{
+		m_FIA_CapArea_Occ.Clear();
+		m_USSR_CapArea_Occ.Clear();
+		m_US_CapArea_Occ.Clear();
+		
 		m_FIA_Occupants.Clear();
 		m_USSR_Occupants.Clear();
 		m_US_Occupants.Clear();
@@ -169,6 +189,7 @@ class SCR_CTI_Town : BaseGameEntity
 		m_groups.Clear();
 		
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_rplComponent = RplComponent.Cast(owner.FindComponent(RplComponent));
 		m_faction = GetGame().GetFactionManager().GetFactionByKey(m_factionKey);
 		
 		m_flagComponent = SCR_FlagComponent.Cast(owner.FindComponent(SCR_FlagComponent));
@@ -178,25 +199,12 @@ class SCR_CTI_Town : BaseGameEntity
 		{
 			SCR_SpawnPoint spawnPoint = SCR_SpawnPoint.Cast(child);
 			if (spawnPoint)
-				{
-					m_sPoint = spawnPoint;
-					break;
-				} else {
-					child = child.GetSibling();
-				}
-		}
-		
-		child = owner.GetChildren();
-		while (child)
-		{
-			SCR_CTI_ActivationArea activationArea = SCR_CTI_ActivationArea.Cast(child);
-			if (activationArea)
-				{
-					m_activationArea = activationArea;
-					break;
-				} else {
-					child = child.GetSibling();
-				}
+			{
+				m_sPoint = spawnPoint;
+				break;
+			} else {
+				child = child.GetSibling();
+			}
 		}
 
 		m_mapComponent = SCR_CTI_MapDescriptorComponent.Cast(owner.FindComponent(SCR_CTI_MapDescriptorComponent));
@@ -214,21 +222,51 @@ class SCR_CTI_Town : BaseGameEntity
 				m_timeDelta = 0;
 			}
 	}
-	
+
 	protected void timeOutCheck()
 	{
-		if (m_isActive && m_gameMode.GetElapsedTime() - m_activationTime >= 240)
+		if (m_isActive && m_gameMode.GetElapsedTime() - m_activeTime >= activeTimeMax)
 		{
-			FactionManager fm = GetGame().GetFactionManager();
-			int ussr = m_activationArea.GetOccupantsCount(fm.GetFactionByKey("USSR"));
-			int us = m_activationArea.GetOccupantsCount(fm.GetFactionByKey("US"));
-			int fia = m_activationArea.GetOccupantsCount(fm.GetFactionByKey("FIA"));
 			switch (m_factionKey)
 			{
-				case "FIA": if (ussr + us == 0) {m_isActive = false; PrintFormat("CTI :: Town %1 is Inactive", m_townName);} break;
-				case "US": if (fia + ussr == 0) {m_isActive = false; PrintFormat("CTI :: Town %1 is Inactive", m_townName);} break;
-				case "USSR": if (fia + us == 0) {m_isActive = false; PrintFormat("CTI :: Town %1 is Inactive", m_townName);} break;
+				case "FIA": if (m_USSR_Occupants.Count() + m_US_Occupants.Count() == 0)
+							{
+								removeTownGroups();
+								m_isActive = false;
+								PrintFormat("CTI :: Town %1 is Inactive", m_townName);
+							}
+							break;
+				case "US": if (m_FIA_Occupants.Count() + m_USSR_Occupants.Count() == 0)
+							{
+								removeTownGroups();
+								m_isActive = false;
+								PrintFormat("CTI :: Town %1 is Inactive", m_townName);
+							}
+							break;
+				case "USSR": if (m_FIA_Occupants.Count() + m_US_Occupants.Count() == 0)
+							{
+								removeTownGroups();
+								m_isActive = false;
+								PrintFormat("CTI :: Town %1 is Inactive", m_townName);
+							}
+							break;
 			}
 		}
+	}
+	
+	protected void removeTownGroups()
+	{
+		foreach (AIGroup group : m_groups)
+		{
+			array<AIAgent> outAgents = {};
+			group.GetAgents(outAgents);
+			foreach (AIAgent agent : outAgents)
+			{
+				IEntity ent = agent.GetControlledEntity();
+				m_rplComponent.DeleteRplEntity(ent, false);
+			}
+		}
+		m_groups.Clear();
+		PrintFormat("CTI :: Town %1 groups: %2", m_townName, m_groups);
 	}
 };

@@ -35,35 +35,45 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		
 		// Additional items for vehicles
 		ResourceName ussr_bandage = "{C3F1FA1E2EC2B345}Prefabs/Items/Medicine/FieldDressing_USSR_01.et";
+		ResourceName ussr_ak_mag = "{0A84AA5A3884176F}Prefabs/Weapons/Magazines/Magazine_545x39_AK_30rnd_Last_5Tracer.et";
 		ResourceName ussr_rpg7 = "{7A82FE978603F137}Prefabs/Weapons/Launchers/RPG7/Launcher_RPG7.et";
 		ResourceName ussr_rpg_ammo = "{32E12D322E107F1C}Prefabs/Weapons/Ammo/Ammo_Rocket_PG7VM.et";
 		ResourceName ussr_grenade = "{645C73791ECA1698}Prefabs/Weapons/Grenades/Grenade_RGD5.et";
 		
 		ResourceName us_bandage = "{A81F501D3EF6F38E}Prefabs/Items/Medicine/FieldDressing_US_01.et";
+		ResourceName us_m16_mag = "{D8F2CA92583B23D3}Prefabs/Weapons/Magazines/Magazine_556x45_STANAG_30rnd_Last_5Tracer.et";
 		ResourceName us_m72 = "{9C5C20FB0E01E64F}Prefabs/Weapons/Launchers/M72/Launcher_M72A3.et";
 		ResourceName us_m72_ammo = "{79FA751EEBE25DDE}Prefabs/Weapons/Ammo/Ammo_Rocket_M72A3.et";
 		ResourceName us_grenade = "{E8F00BF730225B00}Prefabs/Weapons/Grenades/Grenade_M67.et";
 		
+		// UAZ items
 		map<ResourceName, int> itemMapUaz = new map<ResourceName, int>();
 		itemMapUaz.Set(ussr_bandage, 5);
+		itemMapUaz.Set(ussr_ak_mag, 10);
 		itemMapUaz.Set(ussr_rpg7, 3);
 		itemMapUaz.Set(ussr_rpg_ammo, 6);
 		itemMapUaz.Set(ussr_grenade, 4);
-		
+
+		// Ural items
 		map<ResourceName, int> itemMapUral = new map<ResourceName, int>();
 		itemMapUral.Set(ussr_bandage, 5);
+		itemMapUral.Set(ussr_ak_mag, 10);
 		itemMapUral.Set(ussr_rpg7, 3);
 		itemMapUral.Set(ussr_rpg_ammo, 6);
 		itemMapUral.Set(ussr_grenade, 4);
 		
+		// Jeep items
 		map<ResourceName, int> itemMapM151 = new map<ResourceName, int>();
 		itemMapM151.Set(us_bandage, 5);
+		itemMapM151.Set(us_m16_mag, 10);
 		itemMapM151.Set(us_m72, 3);
 		itemMapM151.Set(us_m72_ammo, 6);
 		itemMapM151.Set(us_grenade, 4);
 		
+		// M923 Items
 		map<ResourceName, int> itemMapM923 = new map<ResourceName, int>();
 		itemMapM923.Set(us_bandage, 5);
+		itemMapM923.Set(us_m16_mag, 10);
 		itemMapM923.Set(us_m72, 3);
 		itemMapM923.Set(us_m72_ammo, 6);
 		itemMapM923.Set(us_grenade, 4);

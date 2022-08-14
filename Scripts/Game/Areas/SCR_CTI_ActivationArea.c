@@ -19,7 +19,6 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 	// Parent Town
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
-	protected float activationTime;
 	
 	// component
 	SCR_CTI_CreateTeamComponent m_createTeamComponent;
@@ -143,11 +142,11 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 			OnCharacterEntered(faction, character);
 		}
 		
-		if (!m_town.isActive())
+		if (!m_town.isActive() && m_town.getFaction() != faction)
 		{
-			activationTime = m_gameMode.GetElapsedTime();
-			m_createTeamComponent.OnTriggerActivate();
+			m_town.setActiveTime(m_gameMode.GetElapsedTime());
 			m_town.setActive(true);
+			m_createTeamComponent.OnTriggerActivate();
 			PrintFormat("CTI :: Town %1 is Active", m_town.getTownName());
 		}
 	}
@@ -157,7 +156,14 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 	{
 		m_pOnCharacterEnter.Invoke(this, faction, character);
 		
-		if (m_town.getFaction() != faction) activationTime = m_gameMode.GetElapsedTime();
+		if (m_town.getFaction() != faction) m_town.setActiveTime(m_gameMode.GetElapsedTime());
+		
+		switch (faction.GetFactionKey())
+		{
+			case "FIA": if (m_town.m_FIA_Occupants.Find(character) == -1) m_town.m_FIA_Occupants.Insert(character); break;
+			case "USSR": if (m_town.m_USSR_Occupants.Find(character) == -1) m_town.m_USSR_Occupants.Insert(character); break;
+			case "US": if (m_town.m_US_Occupants.Find(character) == -1) m_town.m_US_Occupants.Insert(character); break;
+		}
 	}
 
 	//! callback - deactivation - occurs when and entity which was activated (OnActivate) leaves the Trigger
@@ -177,6 +183,15 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 	protected event void OnCharacterExit(Faction faction, SCR_ChimeraCharacter character)
 	{
 		m_pOnCharacterExit.Invoke(this, faction, character);
+		
+		if (m_town.getFaction() != faction) m_town.setActiveTime(m_gameMode.GetElapsedTime());
+		
+		switch (faction.GetFactionKey())
+		{
+			case "FIA": m_town.m_FIA_Occupants.RemoveItem(character); break;
+			case "USSR": m_town.m_USSR_Occupants.RemoveItem(character); break;
+			case "US": m_town.m_US_Occupants.RemoveItem(character); break;
+		}
 	}
 
 	/*!

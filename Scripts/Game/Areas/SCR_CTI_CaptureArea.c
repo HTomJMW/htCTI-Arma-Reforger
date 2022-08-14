@@ -135,9 +135,9 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		
 		switch (faction.GetFactionKey())
 		{
-			case "FIA": if (m_town.m_FIA_Occupants.Find(character) == -1) m_town.m_FIA_Occupants.Insert(character); break;
-			case "USSR": if (m_town.m_USSR_Occupants.Find(character) == -1) m_town.m_USSR_Occupants.Insert(character); break;
-			case "US": if (m_town.m_US_Occupants.Find(character) == -1) m_town.m_US_Occupants.Insert(character); break;
+			case "FIA": if (m_town.m_FIA_CapArea_Occ.Find(character) == -1) m_town.m_FIA_CapArea_Occ.Insert(character); break;
+			case "USSR": if (m_town.m_USSR_CapArea_Occ.Find(character) == -1) m_town.m_USSR_CapArea_Occ.Insert(character); break;
+			case "US": if (m_town.m_US_CapArea_Occ.Find(character) == -1) m_town.m_US_CapArea_Occ.Insert(character); break;
 		}
 
 		m_town.checkCapture();
@@ -163,9 +163,9 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		
 		switch (faction.GetFactionKey())
 		{
-			case "FIA": m_town.m_FIA_Occupants.RemoveItem(character); break;
-			case "USSR": m_town.m_USSR_Occupants.RemoveItem(character); break;
-			case "US": m_town.m_US_Occupants.RemoveItem(character); break;
+			case "FIA": m_town.m_FIA_CapArea_Occ.RemoveItem(character); break;
+			case "USSR": m_town.m_USSR_CapArea_Occ.RemoveItem(character); break;
+			case "US": m_town.m_US_CapArea_Occ.RemoveItem(character); break;
 		}
 		
 		m_town.checkCapture();

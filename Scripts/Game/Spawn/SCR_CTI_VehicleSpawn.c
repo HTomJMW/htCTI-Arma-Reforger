@@ -39,9 +39,9 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		foreach (ResourceName prefab, int piece : prefabMap)
 		{
 			Resource res = Resource.Load(prefab);
-			IEntity item = GetGame().SpawnEntityPrefab(res, GetWorld());
 			for (int i = 0; i < piece; i++)
 			{
+				IEntity item = GetGame().SpawnEntityPrefab(res, GetWorld());
 				m_items.Insert(item);
 			}
 		}
@@ -56,8 +56,8 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 			ismc.TryInsertItem(item);
 		}
 	}
-}
+};
 
 class SCR_CTI_VehicleSpawnClass : SCR_BasePrefabSpawnerClass
 {
-}
+};

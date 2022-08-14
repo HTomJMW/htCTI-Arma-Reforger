@@ -13,7 +13,7 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	
 	protected int m_ussrIndex;
 	protected int m_usIndex;
-	protected FactionManager m_fm;
+	protected FactionManager m_factionmanager;
 	protected SCR_CTI_GameMode m_gamemode;
 	
 	void update()
@@ -46,9 +46,9 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	
 	void init()
 	{
-		m_fm = GetGame().GetFactionManager();
-		m_ussrIndex = m_fm.GetFactionIndex(m_fm.GetFactionByKey("USSR"));
-		m_usIndex = m_fm.GetFactionIndex(m_fm.GetFactionByKey("US"));
+		m_factionmanager = GetGame().GetFactionManager();
+		m_ussrIndex = m_factionmanager.GetFactionIndex(m_factionmanager.GetFactionByKey("USSR"));
+		m_usIndex = m_factionmanager.GetFactionIndex(m_factionmanager.GetFactionByKey("US"));
 		m_gamemode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		m_timeDelta = 0;
 	}

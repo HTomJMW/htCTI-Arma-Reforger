@@ -9,21 +9,20 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 	protected const float timeStep = 45; // economy cycle
 	protected const float baseIncome = 10;
 	
-	protected FactionManager m_fm;
-	protected SCR_CTI_GameMode m_gm;
+	//protected FactionManager m_factionManager;
+	protected SCR_CTI_GameMode m_gameMode;
 	
 	void init()
 	{
-		m_fm = GetGame().GetFactionManager();
-		m_gm = SCR_CTI_GameMode.Cast(GetOwner());
+		//m_factionManager = GetGame().GetFactionManager();
+		m_gameMode = SCR_CTI_GameMode.Cast(GetOwner());
 		m_timeDelta = 0;
-		update(); // call first update
 	}
 	
-	void update()
+	protected void update()
 	{
-		if (!m_gm.ClientDataArray) return;
-		foreach (SCR_CTI_ClientData clientData : m_gm.ClientDataArray)
+		if (!m_gameMode.ClientDataArray) return;
+		foreach (SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
 		{
 			clientData.changeFunds(baseIncome);
 		}

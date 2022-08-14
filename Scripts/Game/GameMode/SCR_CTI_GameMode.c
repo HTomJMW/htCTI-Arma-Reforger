@@ -197,7 +197,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
     }
     
     [RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcAsk_RecieveHint(int playerId, string message,string messageTitle, int hintTime)
+    protected void RpcAsk_RecieveHint(int playerId, string message, string messageTitle, int hintTime)
     {
         int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
         if(playerId != localPlayerId) return;
@@ -205,7 +205,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
         SCR_HintManagerComponent.ShowCustomHint(message, messageTitle, hintTime);
     }
 	
-	void townsToArray()
+	protected void townsToArray()
 	{
 		for (int i = 0; i < CTI_TownList.Count(); i++)
 		{
@@ -215,7 +215,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		PrintFormat("CTI :: Number of Towns: %1", CTI_Towns.Count());
 	}
 	
-	void initMap()
+	protected void initMap()
 	{
 		foreach (SCR_CTI_Town town : CTI_Towns)
 		{

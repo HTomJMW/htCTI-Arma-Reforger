@@ -5,7 +5,7 @@ class SCR_CTI_WeatherAndTimeComponentClass : ScriptComponentClass
 
 class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 {
-	protected TimeAndWeatherManagerEntity manager;
+	protected TimeAndWeatherManagerEntity m_manager;
 	protected float lenghtofday = 24 * 60 * 60;
 	protected float daytimeduration = lenghtofday / 1;
 	protected float nightduration = lenghtofday / 4;
@@ -13,41 +13,45 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	protected float m_timeDelta;
 	protected const float timeStep = 60;
 	
-	void setStartTime()
+	protected void setStartTime()
 	{
-		if (!manager) return;
+		if (!m_manager) return;
 		
-		manager.SetDate(1985, 06, 01, true);
+		m_manager.SetDate(1985, 06, 01, true);
 		
 		int random_hour = Math.RandomIntInclusive(8, 16);
-		manager.SetHoursMinutesSeconds(random_hour, 0, 0, true);
+		m_manager.SetHoursMinutesSeconds(random_hour, 0, 0, true);
 	}
 	
-	void timeAcceleration()
+	protected void timeAcceleration()
 	{
-		float time = manager.GetTimeOfTheDay();
+		float time = m_manager.GetTimeOfTheDay();
 		
 		//Night 4x faster than Daytime
-		if (manager.IsNightHour(time))
+		if (m_manager.IsNightHour(time))
 		{
-			manager.SetDayDuration(nightduration);
+			m_manager.SetDayDuration(nightduration);
 		} else {
-			manager.SetDayDuration(daytimeduration);
+			m_manager.SetDayDuration(daytimeduration);
 		}
 	}
 	
-	void setFog()
+	protected void setFog()
 	{
 		//Fog not included yet, fog entity need
 	}
 	
-	void setWeather()
+	protected void setWeather()
 	{
 	}
-		
+	
+	protected void setRain()
+	{
+	}
+
 	void init()
 	{
-		manager = GetGame().GetTimeAndWeatherManager();
+		m_manager = GetGame().GetTimeAndWeatherManager();
 		
 		setStartTime();
 		

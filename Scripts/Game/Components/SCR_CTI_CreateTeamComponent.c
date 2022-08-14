@@ -182,24 +182,11 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 
 		return true;
 	}
-	
-	protected int cleanUpGroups()
-	{
-		if (m_town.m_groups.Count() > 0)
-		{
-			for (int i = 0; i < m_town.m_groups.Count(); i++)
-			{
-				if (m_town.m_groups[i] == null) m_town.m_groups.Remove(i);
-			}
-		}
-		
-		return m_town.m_groups.Count();
-	}
-	
+
 	void OnTriggerActivate()
 	{
-		cleanUpGroups();
-	
+		m_town.m_groups.Clear();	
+
 		PrintFormat("CTI :: Town %1 - %2 AIs spawning", m_town.getTownName(), m_town.getFactionKey());
 
 		int rnd = Math.RandomIntInclusive(0,2);
