@@ -16,6 +16,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_HintManagerComponent HintManagerComponent;
 	protected SCR_PopUpNotification popUpNotif;
 	
+	protected int playerGroupSize = 8;
+	
 	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>;
 	
 	ref SCR_CTI_UnitsFIA UnitsFIA = new SCR_CTI_UnitsFIA();
@@ -221,5 +223,10 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			town.initMapComponent();
 		}
+	}
+	
+	protected int getPlayerGroupSize()
+	{
+		return playerGroupSize;
 	}
 };

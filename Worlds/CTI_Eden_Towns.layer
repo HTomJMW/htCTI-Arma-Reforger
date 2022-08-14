@@ -35,7 +35,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{59FF3E19F8D4ECC7}" {
     ActionContexts {
      UserActionContext "{59FF3E192EA6E6A3}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{59FF3E194EFC0EC6}" {
        Offset 0 0.7 0
       }
@@ -45,12 +45,28 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{59FF3E1BD8B391A6}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{59FF3E1B35234451}" {
       }
       VisibilityRange 5
       Duration 0
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D15265700A395}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D152646C477EF}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346E67A21EDA}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346E623F4951}" {
+      }
+      VisibilityRange 5
      }
     }
    }
@@ -156,7 +172,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F7A50913B2}" {
     ActionContexts {
      UserActionContext "{5A0EF616A8D904FF}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616C3C930E6}" {
        Offset 0 0.7 0
       }
@@ -166,9 +182,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF629BFDE68CB}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF629D6F0D84D}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34680438A810}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D34687FA6286E}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FB5338428}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FB12F369F}" {
       }
       VisibilityRange 5
      }
@@ -275,7 +307,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F7A1F602F9}" {
     ActionContexts {
      UserActionContext "{5A0EF616AB5B9436}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6163B162331}" {
        Offset 0 0.7 0
       }
@@ -285,9 +317,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF629B90FADF4}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF629CDECD47D}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34687776E864}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346873F90FE0}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FA95E4365}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FA6BD2F21}" {
       }
       VisibilityRange 5
      }
@@ -394,7 +442,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F79EBCA1E1}" {
     ActionContexts {
      UserActionContext "{5A0EF616AF8CD54B}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616344B0850}" {
        Offset 0 0.7 0
       }
@@ -404,9 +452,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF629B4915E26}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF629C53232A7}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34686C555AD7}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D3468648B0357}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FA0999902}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346F9C8C86C6}" {
       }
       VisibilityRange 5
      }
@@ -513,7 +577,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F79B1BA5D3}" {
     ActionContexts {
      UserActionContext "{5A0EF616B2A3E98E}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6162E4EBFE3}" {
        Offset 0 0.7 0
       }
@@ -523,9 +587,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF629AD752364}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF6293DF0B1C3}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D346855375773}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346850456955}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346F94074304}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346F905804C0}" {
       }
       VisibilityRange 5
      }
@@ -632,7 +712,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F794E4492E}" {
     ActionContexts {
      UserActionContext "{5A0EF616B5F56981}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6162783FC42}" {
        Offset 0 0.7 0
       }
@@ -642,9 +722,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF629A8EC2E91}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF6296A73F819}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D346848C54032}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D3468437151AF}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346F8ABB3A7F}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346F865C2E51}" {
       }
       VisibilityRange 5
      }
@@ -751,7 +847,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F78FB3DF93}" {
     ActionContexts {
      UserActionContext "{5A0EF616B841EA6C}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6161FF3FFA3}" {
        Offset 0 0.7 0
       }
@@ -761,9 +857,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF629A3BF78B5}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF6296253446C}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D3469BBDB362C}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D3469B729B66F}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FFFFF0111}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FFB13CC0E}" {
       }
       VisibilityRange 5
      }
@@ -870,7 +982,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F78C9D4C98}" {
     ActionContexts {
      UserActionContext "{5A0EF616BC95FCF0}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF61617F77EFB}" {
        Offset 0 0.7 0
       }
@@ -880,9 +992,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF6299E7C4C96}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF6295A60A28D}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D3469B0B9E94B}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D3469AA7BB5E6}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FF4066FDC}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FEE5CD31E}" {
       }
       VisibilityRange 5
      }
@@ -989,7 +1117,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F78602E5CB}" {
     ActionContexts {
      UserActionContext "{5A0EF616BFD6B242}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6161121C093}" {
        Offset 0 0.7 0
       }
@@ -999,9 +1127,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF6299AE38F8A}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF62952C279E1}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34699F03171B}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D34699CA83A6B}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FE797E995}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FE317EFC4}" {
       }
       VisibilityRange 5
      }
@@ -1108,7 +1252,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F7B7C3650A}" {
     ActionContexts {
      UserActionContext "{5A0EF61749B6543C}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616D3ADDFAA}" {
        Offset 0 0.7 0
       }
@@ -1118,9 +1262,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF6164CAFD894}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF629E7B52145}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34682AFF1E20}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346827143B2E}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346E4FF154A8}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346E4BDF3BE4}" {
       }
       VisibilityRange 5
      }
@@ -1227,7 +1387,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F7A9127CB3}" {
     ActionContexts {
      UserActionContext "{5A0EF616A5B998D1}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616CA4C7B92}" {
        Offset 0 0.7 0
       }
@@ -1237,9 +1397,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF61645C7BF2E}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF629DE7E0AA7}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D346814B67909}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D34680F0ED902}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346E429B38A6}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FBD4BCFBF}" {
       }
       VisibilityRange 5
      }
@@ -1346,7 +1522,7 @@ $grp SCR_CTI_Town {
    ActionsManagerComponent "{5A0D38F44064BAFC}" {
     ActionContexts {
      UserActionContext "{5A0EF617D2626586}" {
-      ContextName "PurchaseVehicle"
+      ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616EF5E9E2B}" {
        Offset 0 0.7 0
       }
@@ -1356,9 +1532,25 @@ $grp SCR_CTI_Town {
     additionalActions {
      SCR_CTI_PurchaseVehicleAction "{5A0EF6165297DDAE}" {
       ParentContextList {
-       "PurchaseVehicle"
+       "PurchaseOnFlag"
       }
       UIInfo UIInfo "{5A0EF629FA423EF9}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D3468C3CBE827}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D34683A0A3BF6}" {
+      }
+      VisibilityRange 5
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346E5BCA28A6}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346E570228A7}" {
       }
       VisibilityRange 5
      }

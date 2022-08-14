@@ -28,11 +28,120 @@ class SCR_CTI_UnitsUS
 	
 	void fillUp()
 	{
+		// Equipment box
+		res.Insert("{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(500);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
 		// Soldiers
-		res.Insert("NONE");
+		res.Insert("{2F912ED6E399FF47}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Unarmed.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(75);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{E45F1E163F5CA080}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_SL.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(120);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{E398E44759DA1A43}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_TL.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(120);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{5B1996C05B1E51A4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AR.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(150);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{1623EA3AEFACA0E4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_MG.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(150);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{27BF1FF235DD6036}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_LAT.et");
 		pic.Insert("");
 		name.Insert("");
 		pri.Insert(200);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{0F6689B491641155}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Sniper.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(200);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{84029128FA6F6BB9}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_GL.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(120);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{3726077BE60962FF}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_RTO.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{1CA3D30464EE4674}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Spotter.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{6058AB54781A0C52}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AMG.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(110);
 		bt.Insert(10);
 		ul.Insert(0);
 		fac.Insert("");

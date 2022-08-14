@@ -28,11 +28,111 @@ class SCR_CTI_UnitsUSSR
 	
 	void fillUp()
 	{
+		// Equipment box
+		res.Insert("{B728C4AE0E6EB1E8}Prefabs/Systems/Arsenal/AmmoBoxes/USSR/AmmoBoxArsenal_Equipment_USSR.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(500);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
 		// Soldiers
-		res.Insert("NONE");
+		res.Insert("{98EB9CDD85B8C92C}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Unarmed.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(75);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{5436629450D8387A}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_SL.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(120);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{23ADBBC31B6A3DC6}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AR.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(150);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{96C784C502AC37DA}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_MG.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(150);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{1C78331E156A3D65}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AT.et");
 		pic.Insert("");
 		name.Insert("");
 		pri.Insert(200);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{976AC400219898FA}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Sharpshooter.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(200);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{8E0FE664CE7D1CA9}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_GL.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(120);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{612F43A4D5AE765F}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_RTO.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{E9AEEF2D9E41321B}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AMG.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(110);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{631158F6898738A4}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AAT.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(110);
 		bt.Insert(10);
 		ul.Insert(0);
 		fac.Insert("");

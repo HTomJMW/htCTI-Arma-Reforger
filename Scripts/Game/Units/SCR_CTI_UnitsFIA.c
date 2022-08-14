@@ -28,11 +28,111 @@ class SCR_CTI_UnitsFIA
 		
 	void fillUp()
 	{
+		// Equipment box
+		res.Insert("{7F1A910F6EA32A82}Prefabs/Systems/Arsenal/AmmoBoxes/FIA/AmmoBoxArsenal_Equipment_FIA.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(500);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
 		// Soldiers
-		res.Insert("NONE");
+		res.Insert("{854C04F0EA2129CC}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Unarmed.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(75);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{677B515F119222C2}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_SL.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(120);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{84B40583F4D1B7A3}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Rifleman.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{58E47E5A4D599432}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_MG.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(150);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{D25BC9815A9F9E8D}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_AT.et");
 		pic.Insert("");
 		name.Insert("");
 		pri.Insert(200);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{CE33AB22F61F3365}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Sharpshooter.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(200);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{BF1E43FF39AA526B}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Scout.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{23D81C023DBF85AC}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_RTO.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{FE65E8C60C751352}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_PL.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{75FC25863194612A}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_AMG.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(110);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
+		res.Insert("{FF43925D26526B95}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_AAT.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(110);
 		bt.Insert(10);
 		ul.Insert(0);
 		fac.Insert("");

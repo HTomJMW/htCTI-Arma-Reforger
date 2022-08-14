@@ -1,5 +1,5 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "User Action")]
-class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
+class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 {
 	protected IEntity m_owner;
 	protected SCR_CTI_Town m_town;
@@ -7,8 +7,8 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 	protected SCR_CTI_GameMode m_gameMode;
 	protected SCR_CTI_ClientData m_clientData;
 	
-	protected ResourceName m_resNameUaz = "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et";
-	protected ResourceName m_resNameJeep = "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et";
+	protected ResourceName m_resNameUSSRsoldier = "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et";
+	protected ResourceName m_resNameUSsoldier = "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et";
 	
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
@@ -22,28 +22,28 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		RplComponent rplComp = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
 		if (!rplComp)	
 		{	
-			Print("RPL component missing! (SCR_CTI_PurchaseVehicleAction)");
+			Print("RPL component missing! (SCR_CTI_PurchaseAIAction)");
 			return;
 		}
 
 		RplId destructibleID = rplComp.Id();
 		if (!destructibleID.IsValid())
 		{
-			Print("RplId not valid! (SCR_CTI_PurchaseVehicleAction)");
+			Print("RplId not valid! (SCR_CTI_PurchaseAIAction)");
 			return;
 		}
-		
+
 		Resource resource;
 		int price;
 		if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
-			resource = Resource.Load(m_resNameUaz);
-			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
+			resource = Resource.Load(m_resNameUSSRsoldier);
+			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRsoldier);
 			SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 			price = unitData.getPri();
 		} else {
-			resource = Resource.Load(m_resNameJeep);
-			int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameJeep);
+			resource = Resource.Load(m_resNameUSsoldier);
+			int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSsoldier);
 			SCR_CTI_UnitData unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 			price = unitData.getPri();
 		}
@@ -61,7 +61,11 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 
 		params.Transform = mat;
 
-		GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
+		IEntity spawnedAI = GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
+		
+		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		SCR_AIGroup group = gmc.GetPlayerGroup(m_clientData.getPlayerId());
+		group.AddAIEntityToGroup(spawnedAI, -1); // UnitID not used in v0.9.5.109
 		
 		m_clientData.changeFunds(-price);
 	}
@@ -92,7 +96,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 				
 				if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 				{
-					int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
+					int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRsoldier);
 					SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 					int unitPrice = unitData.getPri();
 					if (funds > unitPrice)
@@ -103,7 +107,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 						return false;
 					}
 				} else {
-					int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameJeep);
+					int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSsoldier);
 					SCR_CTI_UnitData unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 					int unitPrice = unitData.getPri();
 					if (funds > unitPrice)
@@ -132,16 +136,16 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		ActionNameParams[0] = "PARAM1";
 		ActionNameParams[1] = "PARAM2";
 					
-		outName = ("Purchase Light Vehicle");
+		outName = ("Purchase AI");
 		
 		return true;
 	}
 	
-	void SCR_CTI_PurchaseVehicleAction()
+	void SCR_CTI_PurchaseAIAction()
 	{
 	}
 
-	void ~SCR_CTI_PurchaseVehicleAction()
+	void ~SCR_CTI_PurchaseAIAction()
 	{
 	}
 };

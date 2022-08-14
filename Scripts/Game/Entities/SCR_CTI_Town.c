@@ -124,6 +124,12 @@ class SCR_CTI_Town : BaseGameEntity
 					m_gameMode.SendHint(playerId, m_townName + " captured", "Information", 15); // send message to all players inside capture zone
 				}
 			}
+			if (m_FIA_Occupants.Count() + m_US_Occupants.Count() == 0)
+			{
+				m_isActive = false;
+				removeTownGroups();
+				PrintFormat("CTI :: Town %1 is Inactive", m_townName);
+			}
 		}
 		
 		if (us > 0 && ussr == 0 && fia == 0 && m_factionKey != "US")
@@ -142,6 +148,12 @@ class SCR_CTI_Town : BaseGameEntity
 					if (playerId == clientData.getPlayerId()) clientData.changeFunds(m_townValue * 10);
 					m_gameMode.SendHint(playerId, m_townName + " captured", "Information", 15); // send message to all players inside capture zone
 				}
+			}
+			if (m_FIA_Occupants.Count() + m_USSR_Occupants.Count() == 0)
+			{
+				m_isActive = false;
+				removeTownGroups();
+				PrintFormat("CTI :: Town %1 is Inactive", m_townName);
 			}
 		}
 		
@@ -258,6 +270,7 @@ class SCR_CTI_Town : BaseGameEntity
 	{
 		foreach (AIGroup group : m_groups)
 		{
+			if (!group) continue;
 			array<AIAgent> outAgents = {};
 			group.GetAgents(outAgents);
 			foreach (AIAgent agent : outAgents)
