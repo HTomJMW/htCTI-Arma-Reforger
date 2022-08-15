@@ -63,9 +63,35 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 
 		IEntity spawnedAI = GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
 		
-		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		SCR_AIGroup group = gmc.GetPlayerGroup(m_clientData.getPlayerId());
-		group.AddAIEntityToGroup(spawnedAI, -1); // UnitID not used in v0.9.5.109
+		//SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		//SCR_AIGroup group = gmc.GetPlayerGroup(m_clientData.getPlayerId());
+		//group.AddAIEntityToGroup(spawnedAI, -1); // UnitID not used in v0.9.5.109
+
+		AIControlComponent control = AIControlComponent.Cast(spawnedAI.FindComponent(AIControlComponent));
+		AIAgent agent = control.GetControlAIAgent();
+
+		ResourceName wpRes = "{93291E72AC23930F}Prefabs/AI/Waypoints/AIWaypoint_Defend.et";
+		Resource res = Resource.Load(wpRes);
+		IEntity wpEntity = GetGame().SpawnEntityPrefab(res, m_owner.GetWorld());
+		SCR_AIWaypoint wp = SCR_AIWaypoint.Cast(wpEntity);
+		wp.SetCompletionRadius(1);
+		wp.SetCompletionType(EAIWaypointCompletionType.Any);
+		
+		vector rndwppos = randomgen.GenerateRandomPointInRadius(12, 30, mat[3], true);
+		vector emptywppos;
+		SCR_WorldTools.FindEmptyTerrainPosition(emptywppos, rndwppos, 10);
+		mat[3] = emptywppos;
+		wp.SetTransform(mat);
+		
+		//AIGroup grp = AIGroup.Cast(GetGame().SpawnEntity(AIGroup, m_owner.GetWorld()));
+		//PrintFormat("GROUP: %1", grp);
+		//grp.AddAgent(agent);
+		//grp.AddWaypoint(wp);
+		
+		agent.AddWaypoint(wp);
+		
+		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(agent.FindComponent(SCR_AIConfigComponent));
+		aiConfigComponent.m_Skill = 0.75;
 		
 		m_clientData.changeFunds(-price);
 	}
@@ -119,6 +145,8 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 					}
 				}
 			}
+		
+		//todo player group size check
 
 		return true;
 	}
