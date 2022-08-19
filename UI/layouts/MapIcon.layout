@@ -1,0 +1,23 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Clipping False
+ {
+  ImageWidgetClass "{5A215C2F00E51BBF}" {
+   Name "Image"
+   Slot FrameWidgetSlot "{5A215C2F00E51BD1}" {
+    Anchor 0 0 0 0
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX 64
+    OffsetRight -64
+    SizeY 64
+    OffsetBottom -64
+   }
+   Clipping False
+   Size 64 64
+   "Blend Mode" Opaque
+  }
+ }
+}

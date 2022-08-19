@@ -1,9 +1,12 @@
 SubScene {
  Parent "worlds/Eden/Eden.ent"
 }
-Layer GameMode_and_Managers {
+Layer Managers {
  Index 2
 }
 Layer Towns {
  Index 1
+}
+Layer GameMode {
+ Index 0
 }

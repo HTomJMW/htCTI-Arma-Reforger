@@ -206,7 +206,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
         
         SCR_HintManagerComponent.ShowCustomHint(message, messageTitle, hintTime);
     }
-	
+
 	protected void townsToArray()
 	{
 		for (int i = 0; i < CTI_TownList.Count(); i++)

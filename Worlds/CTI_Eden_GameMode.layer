@@ -1,0 +1,228 @@
+SCR_CTI_GameMode SCR_CTI_GameMode_1 {
+ components {
+  Hierarchy "{59DD0D5A8C3C8B00}" {
+  }
+  SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
+  }
+  SCR_CTI_UpdateResourcesComponent "{59E92203A57C023A}" {
+  }
+  SCR_CTI_UpdateVictoryComponent "{59C56020BFAD9417}" {
+  }
+  SCR_CTI_WeatherAndTimeComponent "{59F94111F4BBAD91}" {
+  }
+  SCR_CallsignManagerComponent "{599D233D62F0CD34}" {
+  }
+  SCR_CompositionSlotManagerComponent "{599D233D506F9DF5}" {
+  }
+  SCR_DestructionManagerComponent "{599D2332BE7B4618}" {
+  }
+  SCR_GameOverScreenManagerComponent "{599D2332B59C3B6D}" {
+   m_GameOverScreenConfig SCR_GameOverScreenConfig "{59BD4D2C964FE9F0}" {
+    m_aGameOverScreens {
+     SCR_FactionGameOverScreenInfo "{59BD4D2C93BCA30C}" {
+      m_GameOverScreenId FACTION_DEFEAT_SCORE
+      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
+     }
+     SCR_FactionVictoryGameOverScreenInfo "{59BD4D2C8308B376}" {
+      m_GameOverScreenId FACTION_VICTORY_SCORE
+      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
+     }
+     SCR_EditorFactionGameOverScreenInfo "{59C3432CFB9B5240}" {
+      m_GameOverScreenId EDITOR_FACTION_DEFEAT
+      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
+     }
+     SCR_EditorFactionGameOverScreenInfo "{59C3432CE33D71AF}" {
+      m_GameOverScreenId EDITOR_FACTION_VICTORY
+      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
+     }
+    }
+   }
+  }
+  SCR_GroupsManagerComponent "{599D2332AB75BC0B}" {
+   m_sDefaultGroupPrefab "{8B4D49A9F324E7D5}Prefabs/Groups/PlayableGroup.et"
+  }
+  SCR_HintManagerComponent "{599D233299105F50}" {
+  }
+  SCR_InitWeatherComponent "{599D23329203E935}" {
+   m_sInitialStartingWeatherId "Cloudy"
+  }
+  SCR_NametagConfigComponent "{599D233287C00C43}" {
+   m_sConfigPath "{09F7AAA14A642683}Configs/NameTags/NametagFriendlies.conf"
+  }
+  SCR_NotificationSenderComponent "{599D2332FB47300E}" {
+   m_iKillFeedType FULL
+   m_iReceiveKillFeedType ALL
+  }
+  SCR_NotificationsComponent "{59FCE5766A58DA26}" {
+  }
+  SCR_PlayerPenaltyComponent "{599D2332EB47F0E5}" {
+   m_iFriendlyPlayerKillPenalty 3
+   m_iFriendlyAIKillPenalty 3
+   m_iKickPenaltyLimit 6
+   m_iBanDuration 1800
+   m_iPenaltySubstractionPeriod 900
+   m_iPenaltySubstractionPoints 2
+  }
+  SCR_PlayerProfileManagerComponent "{599D2332D6B40944}" {
+  }
+  SCR_PlayerSpawnPointManagerComponent "{599D2332C84C980E}" {
+   m_SpawnPointPrefab "{F6CAD21EDD2D1964}Prefabs/MP/Spawning/PlayerSpawnPoint.et"
+  }
+  SCR_PlayersRestrictionZoneManagerComponent "{599D23321AF91056}" {
+  }
+  SCR_PossessingManagerComponent "{599D2332151E01DC}" {
+  }
+  SCR_RespawnBriefingComponent "{599D23320E4836BE}" {
+   m_Info SCR_UIInfo "{59F74446F6C7A139}" {
+    Name "CTI"
+    Description "CTI mission"
+   }
+   m_aGameModeHints {
+    SCR_UIInfo "{59F74446C0DEA484}" {
+     Name "Arma Reforger CTI"
+     Description "by [H] Tom"
+     Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
+    }
+   }
+   m_aWinConditions {
+    SCR_BriefingVictoryCondition "{59F744460AF8FB60}" {
+     victoryCondition SEIZE
+     name "Victory Conditions"
+     description "Capture and hold towns, destroy enemy Bases and MHQ."
+    }
+   }
+  }
+  SCR_RespawnMenuHandlerComponent "{599D2332059DB42D}" {
+   m_bAllowFactionChange 0
+   m_bAllowLoadoutSelection 0
+   m_sRespawnUnavailable "No Spawn Points"
+   m_sFactionMenuMessage "Permanent Faction"
+  }
+  SCR_RespawnSystemComponent "{599D23318696B98C}" {
+  }
+  SCR_RespawnTimerComponent "{599D233269C13252}" {
+  }
+  SCR_SaveLoadComponent "{599D233263F4490B}" {
+   m_Struct SCR_MissionStruct "{599D23326144FD1A}" {
+    m_CampaignStruct SCR_CampaignStruct "{599D23325E36CBD0}" {
+    }
+   }
+   m_iAutosavePeriod 120
+  }
+  SCR_ScoringSystemComponent "{59DD0D587CD66AF0}" {
+   m_iObjectiveScoreMultiplier 3
+  }
+  SCR_SpawnProtectionComponent "{599D233253F1FA12}" {
+   m_bDisableOnAttack 0
+   m_bAllowPlayerSpawnpoints 1
+  }
+  SCR_TimedSpawnPointComponent "{599D23324D9764F0}" {
+   m_fRespawnTime 20
+  }
+  SCR_VotingManagerComponent "{599D233243E01369}" {
+   m_aVotingTemplates {
+    SCR_VotingKick "{599D2333BAB9DC6C}" {
+     m_bIsValuePlayerID 1
+     m_Info SCR_VotingUIInfo "{599D2333B249E6B8}" {
+      m_sStartVotingName "Vote Kick"
+      m_sStickyNotificationText "Vote Kick Player"
+      m_iStartNotificationId VOTING_KICK_START
+      m_iSucceededNotificationId VOTING_KICK_SUCCEED
+      m_iFailedNotificationId VOTING_KICK_FAIL
+     }
+    }
+   }
+  }
+  RplComponent "{599D2333BE8DD86F}" {
+  }
+ }
+ m_eTestGameFlags 6
+ {
+  $grp SCR_CTI_VehicleSpawn {
+   SpawnVehicleSouth1 {
+    components {
+     RplComponent "{59A919823217702D}" {
+     }
+    }
+    coords 10040.9 2.687 1586.133
+    angleY -160
+   }
+   SpawnVehicleSouth2 {
+    components {
+     RplComponent "{59A919822BDB025D}" {
+     }
+    }
+    coords 10050.465 2.739 1582.721
+    angleY -160
+   }
+   SpawnVehicleSouth3 {
+    components {
+     RplComponent "{59A919822749B86F}" {
+     }
+    }
+    coords 10059.909 2.803 1579.401
+    angleY 200
+   }
+   SpawnVehicleNorth1 {
+    components {
+     RplComponent "{59A91982C0F3E23E}" {
+     }
+    }
+    coords 4456.013 5.781 11218.104
+    angleY -180
+   }
+   SpawnVehicleNorth2 {
+    components {
+     RplComponent "{59A919823B89C69D}" {
+     }
+    }
+    coords 4446.495 5.813 11217.188
+    angleY -180
+   }
+   SpawnVehicleNorth3 {
+    components {
+     RplComponent "{59A91982356FD0AE}" {
+     }
+    }
+    coords 4431.466 5.781 11225.717
+    angleY 180
+   }
+  }
+  $grp SCR_SpawnPoint {
+   SpawnPointSouth {
+    components {
+     Hierarchy "{599D232B8EFA58E1}" {
+     }
+     SCR_MapDescriptorComponent "{599D232B8ABFA257}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{599D232B87E7AC11}" {
+     }
+    }
+    coords 10052.016 2.541 1566.471
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+   SpawnPointNorth {
+    components {
+     Hierarchy "{599D232BEFD89A08}" {
+     }
+     SCR_MapDescriptorComponent "{599D232BEA17C855}" {
+      DisplayName "Spawn Point"
+      MainType Spawnpoint
+     }
+     RplComponent "{599D232BED1FD16A}" {
+     }
+    }
+    coords 4446.115 5.75 11189.89
+    m_fSpawnRadius 5
+    m_fNoPlayerRadius 1
+    m_fNoSightRadius 3
+    m_sFaction ""
+   }
+  }
+ }
+}

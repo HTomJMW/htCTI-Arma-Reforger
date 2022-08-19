@@ -3,6 +3,9 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 {
 	protected Vehicle m_spawnedVehicle;
 	protected ref array<IEntity> m_items = {};
+	protected bool m_isMHQ = false;
+	protected ResourceName USSR_mhq = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
+	protected ResourceName US_MHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"; 
 	
 	protected override void EOnInit(IEntity owner)
 	{
@@ -13,15 +16,29 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	{
 		return !m_spawnedVehicle;
 	}
-	
+
 	protected override void OnSpawn(IEntity newEnt)
 	{
 		m_spawnedVehicle = Vehicle.Cast(newEnt);
 		
 		if (!m_items) return; // Check if items array is not null
 		insertItem(m_spawnedVehicle);
+		
+		if (m_rnPrefab == USSR_mhq || m_rnPrefab == US_MHQ)
+		{
+			setMHQ(true);
+			
+			GarbageManager garbagemanager = GetGame().GetGarbageManager();
+			if (!garbagemanager) { Print("CTI :: Garbage manager not found!"); return; }
+			
+			PrintFormat("CTI :: MHQ in garbage manager: %1", garbagemanager.IsInserted(newEnt).ToString());
+			
+			//garbagemanager.Bump(newEnt, -1);
+
+			PrintFormat("CTI :: MHQ wreck lifetime: %1", garbagemanager.GetLifetime(newEnt));
+		}
 	}
-	
+
 	void setPrefab(ResourceName newPrefab)
 	{
 		m_rnPrefab = newPrefab;
@@ -46,7 +63,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 			}
 		}
 	}
-	
+
 	protected void insertItem(Vehicle veh)
 	{
 		InventoryStorageManagerComponent ismc = InventoryStorageManagerComponent.Cast(veh.FindComponent(SCR_VehicleInventoryStorageManagerComponent));
@@ -55,6 +72,16 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		{
 			ismc.TryInsertItem(item);
 		}
+	}
+	
+	protected void setMHQ(bool value)
+	{
+		m_isMHQ = value;
+	}
+	
+	bool isMHQ()
+	{
+		return m_isMHQ;
 	}
 };
 
