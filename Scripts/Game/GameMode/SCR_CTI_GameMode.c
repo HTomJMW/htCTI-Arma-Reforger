@@ -50,7 +50,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			Print("CTI :: Server: Player-Hosted");
 		}
 
-		if (!m_RplComponent.IsProxy() || !m_RplComponent.IsMaster())
+		if (!m_RplComponent.IsProxy())
 		{
 			townsToArray();
 			initMap();
@@ -63,7 +63,10 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			UnitsFIA.init();
 			UnitsUSSR.init();
 			UnitsUS.init();
-		} else {
+		}
+			
+		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster()) 
+		{
 			SCR_HintManagerComponent.ShowCustomHint("htCTI Eden", "Mission", 15);
 			//popUpNotif.PopupMsg("Arma Reforger", 15, 0.25, "");
 			

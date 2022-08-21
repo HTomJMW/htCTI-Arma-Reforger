@@ -15,8 +15,9 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		m_owner = pOwnerEntity;
 		m_town = SCR_CTI_Town.Cast(pOwnerEntity);
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		PrintFormat("GetGame(): %1, GetGameMode(): %2, m_gameMode: %3", GetGame(), GetGame().GetGameMode(), m_gameMode);
 	}
-	
+
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
 	{	
 		RplComponent rplComp = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
@@ -105,7 +106,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	{
 		PlayerController playerController = GetGame().GetPlayerController();
 		int playerId = playerController.GetPlayerId();
-		
+
 		int sizeCDA = m_gameMode.ClientDataArray.Count();
 		for (int i = 0; i < sizeCDA; i++)
 		{
