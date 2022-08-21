@@ -77,6 +77,7 @@ SCR_AIWorld SCR_AIWorld_1 {
   }
  }
  "Initialize Road Network" 0
+ "Max budget of AI characters" 0
  m_aGoalMessages {
   SCR_AIMessage_Attack "{5A0558056D709401}" {
    m_eUIType ATTACK

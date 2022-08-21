@@ -68,7 +68,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 
 	override bool HasLocalEffectOnlyScript()
 	{
-		return true;
+		return false;
 	}
 
 	override bool CanBePerformedScript(IEntity user)

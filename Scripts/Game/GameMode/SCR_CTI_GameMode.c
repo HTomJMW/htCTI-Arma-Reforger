@@ -50,20 +50,20 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			Print("CTI :: Server: Player-Hosted");
 		}
 
-		townsToArray();
-		initMap();
-		
-		WeatherAndTimeComponent.init();
-		RandomStartComponent.init();
-		UpdateVictoryComponent.init();
-		UpdateResourcesComponent.init();
-
-		UnitsFIA.init();
-		UnitsUSSR.init();
-		UnitsUS.init();
-
-		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
+		if (!m_RplComponent.IsProxy() || !m_RplComponent.IsMaster())
 		{
+			townsToArray();
+			initMap();
+		
+			WeatherAndTimeComponent.init();
+			RandomStartComponent.init();
+			UpdateVictoryComponent.init();
+			UpdateResourcesComponent.init();
+
+			UnitsFIA.init();
+			UnitsUSSR.init();
+			UnitsUS.init();
+		} else {
 			SCR_HintManagerComponent.ShowCustomHint("htCTI Eden", "Mission", 15);
 			//popUpNotif.PopupMsg("Arma Reforger", 15, 0.25, "");
 			

@@ -98,7 +98,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 
 	override bool HasLocalEffectOnlyScript()
 	{
-		return true;
+		return false;
 	}
 
 	override bool CanBePerformedScript(IEntity user)

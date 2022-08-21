@@ -111,7 +111,8 @@ class SCR_CTI_Town : BaseGameEntity
 		{
 			setFactionByKey("USSR");
 			setFactionKey("USSR");
-			changeFlag("USSR");
+			changeFlag();
+			m_mapComponent.changeMarker();
 			m_sPoint.SetFactionKey("USSR");
 			PrintFormat("CTI :: Town %1 captured by %2", m_townName, m_factionKey);
 			foreach(SCR_ChimeraCharacter charactersInside : m_USSR_CapArea_Occ)
@@ -136,7 +137,8 @@ class SCR_CTI_Town : BaseGameEntity
 		{
 			setFactionByKey("US");
 			setFactionKey("US");
-			changeFlag("US");
+			changeFlag();
+			m_mapComponent.changeMarker();
 			m_sPoint.SetFactionKey("US");
 			PrintFormat("CTI :: Town %1 captured by %2", m_townName, m_factionKey);
 			foreach(SCR_ChimeraCharacter charactersInside : m_US_CapArea_Occ)
@@ -161,15 +163,16 @@ class SCR_CTI_Town : BaseGameEntity
 		{
 			setFactionByKey("FIA");
 			setFactionKey("FIA");
-			changeFlag("FIA");
+			changeFlag();
+			m_mapComponent.changeMarker();
 			m_sPoint.SetFactionKey("FIA");
 			PrintFormat("CTI :: Town %1 captured by %2", m_townName, m_factionKey);
 		}
 	}
 	
-	protected void changeFlag(FactionKey key)
+	protected void changeFlag()
 	{
-		switch (key)
+		switch (m_factionKey)
   		{
   		case "USSR":
   			m_flagComponent.ChangeMaterial("Assets/Props/Fabric/Flags/Data/Flag_1_2_Red.emat", "");

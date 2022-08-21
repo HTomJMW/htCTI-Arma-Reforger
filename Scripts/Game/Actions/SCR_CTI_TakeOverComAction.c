@@ -29,11 +29,12 @@ class SCR_CTI_TakeOverComAction : ScriptedUserAction
 		}
 		
 		//todo
+		Print("TAKE COMMAND ACTION");
 	}
 
 	override bool HasLocalEffectOnlyScript()
 	{
-		return true;
+		return false;
 	}
 
 	override bool CanBePerformedScript(IEntity user)
@@ -68,7 +69,7 @@ class SCR_CTI_TakeOverComAction : ScriptedUserAction
 
 	override bool CanBeShownScript(IEntity user)
 	{
-		if (!m_userAffiliationComponent) m_userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
+		//if (!m_userAffiliationComponent) m_userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
 		
 		return true;
 	}

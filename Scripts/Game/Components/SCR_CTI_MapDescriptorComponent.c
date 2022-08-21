@@ -45,6 +45,20 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 		
 		//widget.SetVisible(true);
 	}
+	
+	void changeMarker()
+	{
+		MapDescriptorProps props = item.GetProps();
+		
+		Color color;
+		switch (owner.getFactionKey())
+			{
+				case "USSR": color = color.Red; break;
+				case "US": color = color.Blue; break;
+				case "FIA": color = color.Green; break;
+			}
+		props.SetFrontColor(color);
+	}
 
 	void OnMapOpen()
 	{
