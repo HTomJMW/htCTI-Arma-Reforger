@@ -17,8 +17,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_PopUpNotification popUpNotif;
 	
 	protected int playerGroupSize = 8;
-	
-	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>;
+
+	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>; // empty on dedicated
 	
 	ref SCR_CTI_UnitsFIA UnitsFIA = new SCR_CTI_UnitsFIA();
 	ref SCR_CTI_UnitsUSSR UnitsUSSR = new SCR_CTI_UnitsUSSR();
@@ -49,22 +49,30 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		} else {
 			Print("CTI :: Server: Player-Hosted");
 		}
-
+		
+		// Common
+		townsToArray();
+		initMap();
+		
+		UnitsFIA.init();
+		UnitsUSSR.init();
+		UnitsUS.init();
+		
+		// Server
 		if (!m_RplComponent.IsProxy())
 		{
-			townsToArray();
-			initMap();
-		
 			WeatherAndTimeComponent.init();
 			RandomStartComponent.init();
 			UpdateVictoryComponent.init();
-			UpdateResourcesComponent.init();
-
-			UnitsFIA.init();
-			UnitsUSSR.init();
-			UnitsUS.init();
+			UpdateResourcesComponent.Deactivate(this); // disabled on server
+		} else {
+			UpdateResourcesComponent.init(); // run on proxys temporary
+			WeatherAndTimeComponent.Deactivate(this); // force disabled on proxy
+			RandomStartComponent.Deactivate(this);
+			UpdateVictoryComponent.Deactivate(this);
 		}
 
+		// Client or Player-Hosted server
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
 		{
 			SCR_HintManagerComponent.ShowCustomHint("htCTI Eden", "Mission", 15);
@@ -90,8 +98,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 				string name = clientData.getPlayerName();
 				PrintFormat("CTI :: Player: %1 PlayerId: %2, Funds: %3", name, playerId, funds);
 			}
-		}
+			
 		PrintFormat("CTI :: Client Data Array: %1", ClientDataArray);
+		}
 	}
 	
 	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
@@ -231,5 +240,22 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected int getPlayerGroupSize()
 	{
 		return playerGroupSize;
+	}
+	
+	void SCR_CTI_GameMode(IEntitySource src, IEntity parent)
+	{
+	}
+	
+	void ~SCR_CTI_GameMode()
+	{
+		CTI_Towns.Clear();
+		CTI_Towns = null;
+		
+		ClientDataArray.Clear();
+		ClientDataArray = null;
+		
+		UnitsFIA = null;
+		UnitsUSSR = null;
+		UnitsUS = null;
 	}
 };

@@ -2,7 +2,6 @@
 class SCR_CTI_TakeOverComAction : ScriptedUserAction
 {
 	protected IEntity m_owner;
-	protected FactionAffiliationComponent m_userAffiliationComponent;
 	protected SCR_CTI_GameMode m_gameMode;
 	protected SCR_CTI_ClientData m_clientData;
 
@@ -56,12 +55,13 @@ class SCR_CTI_TakeOverComAction : ScriptedUserAction
 			{
 				int funds = m_clientData.getFunds();
 				
-				if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
-				{
+				//FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
+				//if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+				//{
 					// todo
-				} else {
+				//} else {
 					// todo
-				}
+				//}
 			}
 
 		return true;
@@ -69,7 +69,7 @@ class SCR_CTI_TakeOverComAction : ScriptedUserAction
 
 	override bool CanBeShownScript(IEntity user)
 	{
-		//if (!m_userAffiliationComponent) m_userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
+		//FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
 		
 		return true;
 	}

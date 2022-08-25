@@ -8,7 +8,7 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	protected TimeAndWeatherManagerEntity m_manager;
 	protected float lenghtofday = 24 * 60 * 60;
 	protected float daytimeduration = lenghtofday / 1;
-	protected float nightduration = lenghtofday / 4;
+	protected float nightduration = lenghtofday / 4; //Night 4x faster than Daytime
 	
 	protected float m_timeDelta;
 	protected const float timeStep = 60;
@@ -21,13 +21,14 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 		
 		int random_hour = Math.RandomIntInclusive(8, 16);
 		m_manager.SetHoursMinutesSeconds(random_hour, 0, 0, true);
+		
+		PrintFormat("CTI :: Time: %1h", m_manager.GetTime().m_iHours);
 	}
 	
 	protected void timeAcceleration()
 	{
 		float time = m_manager.GetTimeOfTheDay();
 		
-		//Night 4x faster than Daytime
 		if (m_manager.IsNightHour(time))
 		{
 			m_manager.SetDayDuration(nightduration);

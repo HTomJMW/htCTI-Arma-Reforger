@@ -24,7 +24,12 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 		if (!m_gameMode.ClientDataArray) return;
 		foreach (SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
 		{
-			clientData.changeFunds(baseIncome);
+			if (clientData.isCommander())
+			{
+				clientData.changeFunds(baseIncome * 10); // todo faction size related commander income and need commander account
+			} else {
+				clientData.changeFunds(baseIncome);
+			}
 		}
 	}
 			

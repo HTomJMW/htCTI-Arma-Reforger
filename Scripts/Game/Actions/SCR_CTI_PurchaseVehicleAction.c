@@ -3,7 +3,6 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 {
 	protected IEntity m_owner;
 	protected SCR_CTI_Town m_town;
-	protected FactionAffiliationComponent m_userAffiliationComponent;
 	protected SCR_CTI_GameMode m_gameMode;
 	protected SCR_CTI_ClientData m_clientData;
 	
@@ -35,7 +34,8 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		
 		Resource resource;
 		int price;
-		if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
+		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
 			resource = Resource.Load(m_resNameUaz);
 			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
@@ -89,8 +89,9 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		if (m_clientData)
 			{
 				int funds = m_clientData.getFunds();
-				
-				if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+			
+				FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
+				if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 				{
 					int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
 					SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
@@ -121,8 +122,8 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 
 	override bool CanBeShownScript(IEntity user)
 	{
-		if (!m_userAffiliationComponent) m_userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
-		if (m_town.getFactionKey() != m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey()) return false;
+		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
+		if (m_town.getFactionKey() != userAffiliationComponent.GetAffiliatedFaction().GetFactionKey()) return false;
 		
 		return true;
 	}

@@ -12,12 +12,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F0D7C923BBA717}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    CollisionVelocityThreshold 5
-    "Heavy damage threshold" 70
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -151,10 +147,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB7ACA7E4A}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -286,10 +280,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB753F7A9A}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -421,10 +413,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB6D8D9DF6}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -556,10 +546,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB6872DDBD}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -691,10 +679,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB656A2451}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -826,10 +812,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB62FC9DFF}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -961,10 +945,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB5F359BFD}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -1096,10 +1078,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB5DADDCD2}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -1231,10 +1211,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB057BA792}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_SERIALIZABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -1366,10 +1344,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB4219D1BD}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
@@ -1501,10 +1477,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB0EF5D596}" {
    }
-   SCR_DestructionBaseComponent "{599D1844D050049D}" {
-    EnableDamage 0
-   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"

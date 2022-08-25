@@ -3,7 +3,6 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 {
 	protected IEntity m_owner;
 	protected SCR_CTI_Town m_town;
-	protected FactionAffiliationComponent m_userAffiliationComponent;
 	protected SCR_CTI_GameMode m_gameMode;
 	protected SCR_CTI_ClientData m_clientData;
 	
@@ -37,7 +36,8 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 
 		Resource resource;
 		int price;
-		if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
+		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
 			resource = Resource.Load(m_resNameUSSRbox);
 			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRbox);
@@ -64,7 +64,7 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		params.Transform = mat;
 
 		IEntity spawnedBox = GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
-		setEquipment();
+		setEquipment(userAffiliationComponent);
 		insertItems(spawnedBox);
 		
 		m_clientData.changeFunds(-price);
@@ -94,7 +94,8 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 			{
 				int funds = m_clientData.getFunds();
 				
-				if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+				FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
+				if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 				{
 					int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRbox);
 					SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
@@ -125,8 +126,8 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 
 	override bool CanBeShownScript(IEntity user)
 	{
-		if (!m_userAffiliationComponent) m_userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
-		if (m_town.getFactionKey() != m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey()) return false;
+		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
+		if (m_town.getFactionKey() != userAffiliationComponent.GetAffiliatedFaction().GetFactionKey()) return false;
 		
 		return true;
 	}
@@ -164,9 +165,9 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		}
 	}
 	
-	protected void setEquipment()
+	protected void setEquipment(FactionAffiliationComponent userAffiliationComponent)
 	{
-		switch (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
+		switch (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
 		{
 			case "USSR":	ResourceName ussr_bandage = "{C3F1FA1E2EC2B345}Prefabs/Items/Medicine/FieldDressing_USSR_01.et";
 							ResourceName ussr_ak_mag = "{0A84AA5A3884176F}Prefabs/Weapons/Magazines/Magazine_545x39_AK_30rnd_Last_5Tracer.et";
