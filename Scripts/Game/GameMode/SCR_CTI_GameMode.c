@@ -15,7 +15,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	
 	protected SCR_HintManagerComponent HintManagerComponent;
 	protected SCR_PopUpNotification popUpNotif;
-	
+
 	protected int playerGroupSize = 8;
 
 	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>; // empty on dedicated
@@ -74,11 +74,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 		// Client or Player-Hosted server
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
-		{
-			SCR_HintManagerComponent.ShowCustomHint("htCTI Eden", "Mission", 15);
-			//popUpNotif.PopupMsg("Arma Reforger", 15, 0.25, "");
-			
-			PlayerController pc = GetGame().GetPlayerController();
+		{	
+			/*PlayerController pc = GetGame().GetPlayerController();
 			int playerId = pc.GetPlayerId();
 			
 			int sizeCDA = ClientDataArray.Count();
@@ -99,7 +96,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 				PrintFormat("CTI :: Player: %1 PlayerId: %2, Funds: %3", name, playerId, funds);
 			}
 			
-		PrintFormat("CTI :: Client Data Array: %1", ClientDataArray);
+			PrintFormat("CTI :: Client Data Array: %1", ClientDataArray);*/
 		}
 	}
 	
@@ -125,7 +122,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			int funds = clientData.getFunds();
 			string name = clientData.getPlayerName();
 			PrintFormat("CTI :: Player: %1, PlayerId: %2, Funds: %3", name, playerId, funds);
-			popUpNotif.PopupMsg(("Funds: " + funds.ToString()), 10, 0.25, "");
+			popUpNotif.PopupMsg(("Funds: " + funds.ToString()), 15, 0.25, "");
 		}
 	}
 

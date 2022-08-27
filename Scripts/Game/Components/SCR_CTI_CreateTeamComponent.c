@@ -185,6 +185,8 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 
 	void OnTriggerActivate()
 	{
+		if (m_RplComponent.IsProxy()) return; // run only on server side
+		
 		m_town.m_groups.Clear();	
 
 		PrintFormat("CTI :: Town %1 - %2 AIs spawning", m_town.getTownName(), m_town.getFactionKey());
