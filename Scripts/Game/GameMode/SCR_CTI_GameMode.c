@@ -74,7 +74,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 		// Client or Player-Hosted server
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
-		{	
+		{
 			/*PlayerController pc = GetGame().GetPlayerController();
 			int playerId = pc.GetPlayerId();
 			

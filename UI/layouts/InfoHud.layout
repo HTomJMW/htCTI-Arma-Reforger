@@ -1,0 +1,69 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  WindowWidgetClass "{5A372D91FAAC8703}" {
+   Name "Window0"
+   Slot FrameWidgetSlot "{5A372D91FAAC8722}" {
+    Anchor 1 0 1 0
+    PositionX -485
+    OffsetLeft -485
+    PositionY 30
+    OffsetTop 30
+    SizeX 450
+    OffsetRight 35
+    SizeY 120
+    OffsetBottom -150
+   }
+   "Ignore Cursor" 1
+   Color 0.886 0.597 0.163 1
+   "no focus" 1
+   {
+    RichTextWidgetClass "{5A372D91E0108CAF}" {
+     Name "Name"
+     Slot FrameWidgetSlot "{5A372D91E0108CC7}" {
+      PositionX 30
+      OffsetLeft 30
+      PositionY 10
+      OffsetTop 10
+      SizeX 350
+      OffsetRight -380
+      SizeY 30
+      OffsetBottom -40
+     }
+     "Font Size" 26
+     "Min Font Size" 26
+    }
+    RichTextWidgetClass "{5A3B337E2E5EBFE0}" {
+     Name "Health"
+     Slot FrameWidgetSlot "{5A3B337E2E5EBFF8}" {
+      PositionX 30
+      OffsetLeft 30
+      PositionY 40
+      OffsetTop 40
+      SizeX 350
+      OffsetRight -380
+      SizeY 30
+      OffsetBottom -70
+     }
+     "Font Size" 26
+     "Min Font Size" 26
+    }
+    RichTextWidgetClass "{5A372D91D19A358B}" {
+     Name "Funds"
+     Slot FrameWidgetSlot "{5A372D91D19A35A9}" {
+      PositionX 30
+      OffsetLeft 30
+      PositionY 70
+      OffsetTop 70
+      SizeX 350
+      OffsetRight -380
+      SizeY 30
+      OffsetBottom -100
+     }
+     "Font Size" 26
+     "Min Font Size" 26
+    }
+   }
+  }
+ }
+}

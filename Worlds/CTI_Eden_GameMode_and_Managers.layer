@@ -337,6 +337,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   RplComponent "{599D2333BE8DD86F}" {
   }
  }
+ PlayerControllerPrefab "{FAC47A232296A0BB}Prefabs/CTI_PlayerController.et"
  m_eTestGameFlags 6
  {
   $grp SCR_CTI_VehicleSpawn {
