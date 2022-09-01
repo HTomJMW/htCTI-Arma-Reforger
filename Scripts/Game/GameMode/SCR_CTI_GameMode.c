@@ -75,28 +75,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		// Client or Player-Hosted server
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
 		{
-			/*PlayerController pc = GetGame().GetPlayerController();
-			int playerId = pc.GetPlayerId();
-			
-			int sizeCDA = ClientDataArray.Count();
-			SCR_CTI_ClientData clientData;
-			for (int i = 0; i < sizeCDA; i++)
-			{
-				if (ClientDataArray[i].getPlayerId() == playerId)
-				{
-					clientData = ClientDataArray[i];
-					break;
-				}
-			}
-
-			if (clientData)
-			{
-				int funds = clientData.getFunds();
-				string name = clientData.getPlayerName();
-				PrintFormat("CTI :: Player: %1 PlayerId: %2, Funds: %3", name, playerId, funds);
-			}
-			
-			PrintFormat("CTI :: Client Data Array: %1", ClientDataArray);*/
+			// not on dedicated server
 		}
 	}
 	
@@ -124,6 +103,21 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			PrintFormat("CTI :: Player: %1, PlayerId: %2, Funds: %3", name, playerId, funds);
 			popUpNotif.PopupMsg(("Funds: " + funds.ToString()), 15, 0.25, "");
 		}
+		
+		
+		
+		
+		
+		
+		
+		//GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuildMenu, playerId);
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
@@ -196,9 +190,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			clientData.setPlayerId(playerId);
 			ClientDataArray.Insert(clientData);
 		}
-			
-		SCR_HintManagerComponent.ShowCustomHint("htCTI Eden", "Mission", 15);
-		popUpNotif.PopupMsg("Arma Reforger", 15, 0.25, "");
+		
+		SendHint(playerId, "htCTI Eden", "Mission", 15);
+		SendPopUpNotif(playerId, "Arma Reforger", 15, 0.25, "");
 	}
 
 	void SendHint(int playerId, string message = "", string messageTitle = "", int hintTime = 5.0)
@@ -214,6 +208,21 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
         if(playerId != localPlayerId) return;
         
         SCR_HintManagerComponent.ShowCustomHint(message, messageTitle, hintTime);
+    }
+	
+	void SendPopUpNotif(int playerId, string message = "", float duration = 5.0, float fade = 0.5, string message2 = "", int prio = -1)
+	{
+		RpcAsk_RecievePopUpNotif(playerId, message, duration, fade, message2, prio);
+        Rpc(RpcAsk_RecievePopUpNotif, playerId, message, duration, fade, message2, prio);
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
+    protected void RpcAsk_RecievePopUpNotif(int playerId, string message, float duration, float fade, string message2, int prio)
+    {
+        int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
+        if(playerId != localPlayerId) return;
+
+		popUpNotif.PopupMsg(message, duration, fade, message2);
     }
 
 	protected void townsToArray()

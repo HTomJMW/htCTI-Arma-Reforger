@@ -1,0 +1,214 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  ImageWidgetClass "{5A3D637FFD52AA1A}" {
+   Name "BackGround"
+   Slot FrameWidgetSlot "{5A3D637FFD52AA3B}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -450
+    OffsetLeft -450
+    PositionY -350
+    OffsetTop -350
+    SizeX 900
+    OffsetRight -450
+    SizeY 700
+    OffsetBottom -350
+   }
+   Opacity 0.8
+   Texture "{AE0DAFB0ED1F2B1C}UI/Textures/Menu/background.edds"
+   Image ""
+   Size 64 64
+  }
+  WindowWidgetClass "{5A3D2853D83917DB}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A3D2853D8391800}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -400
+    OffsetLeft -400
+    PositionY -300
+    OffsetTop -300
+    SizeX 800
+    OffsetRight -400
+    SizeY 600
+    OffsetBottom -300
+   }
+   Clipping False
+   "no focus" 1
+   {
+    WindowWidgetClass "{5A3D28535422FA49}" {
+     Name "WindowLeft"
+     Slot FrameWidgetSlot "{5A3D28535422FA6D}" {
+      PositionX 0
+      OffsetLeft 0
+      PositionY 100
+      OffsetTop 100
+      SizeX 400
+      OffsetRight -400
+      SizeY 500
+      OffsetBottom -600
+     }
+     {
+      ButtonWidgetClass "{5A3D2851FFB851F5}" {
+       Name "AddWorker"
+       Slot FrameWidgetSlot "{5A3D2851FFB8520E}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 400
+        OffsetRight -400
+        SizeY 50
+        OffsetBottom -50
+       }
+       "no focus" 1
+      }
+      ButtonWidgetClass "{5A3D2851FAB8DEFB}" {
+       Name "BuildStructure"
+       Slot FrameWidgetSlot "{5A3D2851FAB8DF12}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 50
+        OffsetTop 50
+        SizeX 400
+        OffsetRight -400
+        SizeY 50
+        OffsetBottom -100
+       }
+       "no focus" 1
+      }
+      ButtonWidgetClass "{5A3F4D65D9FBD4C2}" {
+       Name "UndoStructure"
+       Slot FrameWidgetSlot "{5A3F4D65D9FBD4DA}" {
+        Anchor 0 1 0 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY -50
+        OffsetTop -50
+        SizeX 400
+        OffsetRight -400
+        SizeY 50
+        OffsetBottom 0
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5A3D285353B4F946}" {
+     Name "WindowRight"
+     Slot FrameWidgetSlot "{5A3D285353B4F95B}" {
+      Anchor 1 0 1 0
+      PositionX -400
+      OffsetLeft -400
+      PositionY 0
+      OffsetTop 0
+      SizeX 400
+      OffsetRight 0
+      SizeY 600
+      OffsetBottom -600
+     }
+     {
+      ButtonWidgetClass "{5A3D2851F6193358}" {
+       Name "DefAutoManning"
+       Slot FrameWidgetSlot "{5A3D2851F619337F}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 400
+        OffsetRight -400
+        SizeY 50
+        OffsetBottom -50
+       }
+       "no focus" 1
+      }
+      ButtonWidgetClass "{5A3D2851F5FD985C}" {
+       Name "AutoAlignWalls"
+       Slot FrameWidgetSlot "{5A3D2851F5FD9870}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 50
+        OffsetTop 50
+        SizeX 400
+        OffsetRight -400
+        SizeY 50
+        OffsetBottom -100
+       }
+       "no focus" 1
+      }
+      ButtonWidgetClass "{5A3D2851F4B5B851}" {
+       Name "BuildDefense"
+       Slot FrameWidgetSlot "{5A3D2851F4B5B86A}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 100
+        OffsetTop 100
+        SizeX 400
+        OffsetRight -400
+        SizeY 50
+        OffsetBottom -150
+       }
+       "no focus" 1
+      }
+      ButtonWidgetClass "{5A3F4D65D75D948F}" {
+       Name "UndoDefense"
+       Slot FrameWidgetSlot "{5A3F4D65D75D94A6}" {
+        Anchor 0 1 0 1
+        PositionX 0
+        OffsetLeft 0
+        PositionY -50
+        OffsetTop -50
+        SizeX 400
+        OffsetRight -400
+        SizeY 50
+        OffsetBottom 0
+       }
+      }
+     }
+    }
+    TextWidgetClass "{5A3D2851A2BA7A2F}" {
+     Name "Resources"
+     Slot FrameWidgetSlot "{5A3D2851A2BA7A48}" {
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 400
+      OffsetRight -400
+      SizeY 50
+      OffsetBottom -50
+     }
+     "Vertical Alignment" Center
+     Offset 10 0
+    }
+    TextWidgetClass "{5A3D28519E493984}" {
+     Name "Workers"
+     Slot FrameWidgetSlot "{5A3D28519E49399F}" {
+      PositionX 0
+      OffsetLeft 0
+      PositionY 50
+      OffsetTop 50
+      SizeX 400
+      OffsetRight -400
+      SizeY 50
+      OffsetBottom -100
+     }
+     "Vertical Alignment" Center
+     Offset 10 0
+    }
+    ButtonWidgetClass "{5A432A4F34902E52}" {
+     Name "Exit"
+     Slot FrameWidgetSlot "{5A432A4F34902E6B}" {
+      Anchor 1 0 1 0
+      PositionX 0
+      OffsetLeft 0
+      PositionY -50
+      OffsetTop -50
+      SizeX 50
+      OffsetRight -50
+      SizeY 50
+      OffsetBottom 0
+     }
+    }
+   }
+  }
+ }
+}

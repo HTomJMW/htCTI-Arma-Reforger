@@ -44,6 +44,10 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		bool menuOpen = GetGame().GetMenuManager().IsAnyMenuOpen();
 		m_wRoot.SetVisible(!menuOpen);
 		
+		pc = GetGame().GetPlayerController();
+		ent = pc.GetControlledEntity();
+		dmc = DamageManagerComponent.Cast(ent.FindComponent(DamageManagerComponent));
+		
 		int hp = dmc.GetHealth();
 
 		int playerId = pc.GetPlayerId();
@@ -81,9 +85,6 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		if (m_LayoutPath == "") m_LayoutPath = "{959E824DECAF27D7}UI/layouts/InfoHud.layout";
 		
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		pc = GetGame().GetPlayerController();
-		ent = pc.GetControlledEntity();
-		dmc = DamageManagerComponent.Cast(ent.FindComponent(DamageManagerComponent));
 
 		return true;
 	}

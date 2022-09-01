@@ -25,7 +25,9 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 			props.SetIconSize(32, 1, 4);
 			props.SetTextSize(32, 16, 64);
 			props.SetTextColor(Color.Black);
-			props.SetFrontColor(Color.Green);
+			Color orig = Color.Green;
+			orig.SetA(0.8);
+			props.SetFrontColor(orig);
 			props.SetTextVisible(true);
 			props.SetIconVisible(true);
 			props.Activate(true);
@@ -53,9 +55,9 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 		Color color;
 		switch (owner.getFactionKey())
 			{
-				case "USSR": color = color.Red; break;
-				case "US": color = color.Blue; break;
-				case "FIA": color = color.Green; break;
+				case "USSR": color = color.Red; color.SetA(0.8); break;
+				case "US": color = color.Blue; color.SetA(0.8); break;
+				case "FIA": color = color.Green; color.SetA(0.8); break;
 			}
 		props.SetFrontColor(color);
 	}

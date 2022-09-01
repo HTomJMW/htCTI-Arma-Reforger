@@ -2,7 +2,7 @@ FrameWidgetClass {
  Name "rootFrame"
  {
   WindowWidgetClass "{5A372D91FAAC8703}" {
-   Name "Window0"
+   Name "Window"
    Slot FrameWidgetSlot "{5A372D91FAAC8722}" {
     Anchor 1 0 1 0
     PositionX -485
