@@ -142,7 +142,17 @@ class SCR_CTI_UnitsFIA
 	void init()
 	{
 		fillUp();
+		setDisplayNames();
 		setUnits();
+	}
+	
+	void setDisplayNames()
+	{
+		for (int i = 0; i < res.Count(); i++)
+		{
+			//todo get and save display names from .et, if possible without spawn IEntity
+			// or use .conf files?
+		}
 	}
 
 	void setUnits()

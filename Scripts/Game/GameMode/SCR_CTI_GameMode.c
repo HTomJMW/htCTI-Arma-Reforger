@@ -76,6 +76,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
 		{
 			// not on dedicated server
+			//GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuildMenu);
 		}
 	}
 	
@@ -103,21 +104,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			PrintFormat("CTI :: Player: %1, PlayerId: %2, Funds: %3", name, playerId, funds);
 			popUpNotif.PopupMsg(("Funds: " + funds.ToString()), 15, 0.25, "");
 		}
-		
-		
-		
-		
-		
-		
-		
-		//GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuildMenu, playerId);
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
