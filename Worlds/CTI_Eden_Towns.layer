@@ -12,6 +12,8 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_MapDescriptorComponent "{59F0D7C923BBA717}" {
    }
+   SCR_CTI_TownPatrolComponent "{5A554AEFB997ADDE}" {
+   }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
    }

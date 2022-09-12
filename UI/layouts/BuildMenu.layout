@@ -61,6 +61,15 @@ FrameWidgetClass {
         OffsetBottom -50
        }
        "no focus" 1
+       {
+        RichTextWidgetClass "{5A570611CC524ABA}" {
+         Name "AddWorkerText"
+         Slot ButtonWidgetSlot "{5A570611CC524AED}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Add Worker [$300]"
+        }
+       }
       }
       ButtonWidgetClass "{5A3D2851FAB8DEFB}" {
        Name "BuildStructure"
@@ -75,6 +84,15 @@ FrameWidgetClass {
         OffsetBottom -100
        }
        "no focus" 1
+       {
+        RichTextWidgetClass "{5A57061E6A09F7F3}" {
+         Name "BuildStructureText"
+         Slot ButtonWidgetSlot "{5A57061E6A09F80B}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Build Structure"
+        }
+       }
       }
       ButtonWidgetClass "{5A3F4D65D9FBD4C2}" {
        Name "UndoStructure"
@@ -88,6 +106,15 @@ FrameWidgetClass {
         OffsetRight -400
         SizeY 50
         OffsetBottom 0
+       }
+       {
+        RichTextWidgetClass "{5A57061E66E7995D}" {
+         Name "UndoStructureText"
+         Slot ButtonWidgetSlot "{5A57061E66E7996E}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Undo Structure"
+        }
        }
       }
      }
@@ -119,6 +146,15 @@ FrameWidgetClass {
         OffsetBottom -50
        }
        "no focus" 1
+       {
+        RichTextWidgetClass "{5A57061E627933B8}" {
+         Name "DefAutoManningText"
+         Slot ButtonWidgetSlot "{5A57061E627933D6}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Def. Auto-Manning:"
+        }
+       }
       }
       ButtonWidgetClass "{5A3D2851F5FD985C}" {
        Name "AutoAlignWalls"
@@ -133,6 +169,15 @@ FrameWidgetClass {
         OffsetBottom -100
        }
        "no focus" 1
+       {
+        RichTextWidgetClass "{5A57061E61BED124}" {
+         Name "AutoAlignWallsText"
+         Slot ButtonWidgetSlot "{5A57061E61BED130}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Auto-Align Walls:"
+        }
+       }
       }
       ButtonWidgetClass "{5A3D2851F4B5B851}" {
        Name "BuildDefense"
@@ -147,6 +192,15 @@ FrameWidgetClass {
         OffsetBottom -150
        }
        "no focus" 1
+       {
+        RichTextWidgetClass "{5A57061E5F94FC02}" {
+         Name "BuildDefenseText"
+         Slot ButtonWidgetSlot "{5A57061E5F94FC1A}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Build Defense"
+        }
+       }
       }
       ButtonWidgetClass "{5A3F4D65D75D948F}" {
        Name "UndoDefense"
@@ -160,6 +214,15 @@ FrameWidgetClass {
         OffsetRight -400
         SizeY 50
         OffsetBottom 0
+       }
+       {
+        RichTextWidgetClass "{5A57061E5B00E6A2}" {
+         Name "UndoDefenseText"
+         Slot ButtonWidgetSlot "{5A57061E5B00E6BE}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Undo Defense"
+        }
        }
       }
      }
@@ -176,6 +239,7 @@ FrameWidgetClass {
       SizeY 50
       OffsetBottom -50
      }
+     Text "Resources:"
      "Vertical Alignment" Center
      Offset 10 0
     }
@@ -191,6 +255,7 @@ FrameWidgetClass {
       SizeY 50
       OffsetBottom -100
      }
+     Text "Workers:"
      "Vertical Alignment" Center
      Offset 10 0
     }
@@ -206,6 +271,15 @@ FrameWidgetClass {
       OffsetRight -50
       SizeY 50
       OffsetBottom 0
+     }
+     {
+      RichTextWidgetClass "{5A57061E54D29201}" {
+       Name "ExitText"
+       Slot ButtonWidgetSlot "{5A57061E54D2921C}" {
+       }
+       Color 0.302 0.227 0 1
+       Text "[X]"
+      }
      }
     }
    }

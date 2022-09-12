@@ -31,7 +31,7 @@ class SCR_CTI_UnitData
 	{
 		return pic;
 	}
-	
+
 	string getName()
 	{
 		return name;

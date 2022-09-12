@@ -72,12 +72,16 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			UpdateVictoryComponent.Deactivate(this);
 		}
 
-		// Client or Player-Hosted server
+		// Client or Player-Hosted server (not dedicated svr)
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
 		{
-			// not on dedicated server
-			//GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuildMenu);
+			GetGame().GetInputManager().AddActionListener("CTI_OpenBuildMenu", EActionTrigger.DOWN, openMenu);
 		}
+	}
+	
+	protected void openMenu()
+	{
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuildMenu);
 	}
 	
 	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
