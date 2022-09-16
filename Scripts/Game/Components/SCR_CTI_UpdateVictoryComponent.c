@@ -5,9 +5,6 @@ class SCR_CTI_UpdateVictoryComponentClass : ScriptComponentClass
 
 class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 {
-	protected const bool m_ecoWin = true;
-	protected const int m_winRate = 75;
-	
 	protected float m_timeDelta;
 	protected const float timeStep = 60;
 	
@@ -18,7 +15,7 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	
 	void update()
 	{
-		if (m_ecoWin)
+		if (m_gamemode.ecoWin)
 		{
 			float ussr = 0.0;
 			float us = 0.0;
@@ -30,13 +27,13 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 				if (town.getFactionKey() == "US") us++;
 			}
 			
-			if (ussr >= (m_gamemode.CTI_Towns.Count() * (m_winRate / 100)))
+			if (ussr >= (m_gamemode.CTI_Towns.Count() * (m_gamemode.winRate / 100)))
 			{
 				if (m_gamemode.IsRunning()) // Prevent multiple calls
 					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_ussrIndex));
 			}
 			
-			if (us >= (m_gamemode.CTI_Towns.Count() * (m_winRate / 100)))
+			if (us >= (m_gamemode.CTI_Towns.Count() * (m_gamemode.winRate / 100)))
 			{
 				if (m_gamemode.IsRunning()) // Prevent multiple calls
 					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_usIndex));

@@ -16,6 +16,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_HintManagerComponent HintManagerComponent;
 	protected SCR_PopUpNotification popUpNotif;
 
+	const bool ecoWin = true;
+	const int winRate = 75;
 	protected int playerGroupSize = 8;
 
 	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>; // empty on dedicated
@@ -75,13 +77,13 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		// Client or Player-Hosted server (not dedicated svr)
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
 		{
-			GetGame().GetInputManager().AddActionListener("CTI_OpenBuildMenu", EActionTrigger.DOWN, openMenu);
+			GetGame().GetInputManager().AddActionListener("CTI_OpenMainMenu", EActionTrigger.DOWN, openMenu);
 		}
 	}
 	
 	protected void openMenu()
 	{
-		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuildMenu);
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
 	
 	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)

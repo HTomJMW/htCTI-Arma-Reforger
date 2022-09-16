@@ -2,7 +2,7 @@
 class SCR_CTI_ClientData
 {
 	private int m_playerId = -1;
-	private Faction m_playerFaction;
+	//private Faction m_playerFaction;
 	private bool m_isCommander = false;
 	private int m_funds = 2400;
 
@@ -26,20 +26,20 @@ class SCR_CTI_ClientData
 		return m_isCommander;
 	}
 	
-	Faction getPlayerFaction()
-	{
-		return m_playerFaction;
-	}
+	//Faction getPlayerFaction()
+	//{
+	//	return m_playerFaction;
+	//}
 	
-	void setPlayerFaction(Faction faction)
-	{
-		m_playerFaction = faction;
-	}
+	//void setPlayerFaction(Faction faction)
+	//{
+	//	m_playerFaction = faction;
+	//}
 	
-	void setPlayerFactionByKey(FactionKey key)
-	{
-		m_playerFaction = GetGame().GetFactionManager().GetFactionByKey(key);	
-	}
+	//void setPlayerFactionByKey(FactionKey key)
+	//{
+	//	m_playerFaction = GetGame().GetFactionManager().GetFactionByKey(key);	
+	//}
 	
 	int getFunds()
 	{

@@ -16,7 +16,7 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 		item = Item();
 		owner = SCR_CTI_Town.Cast(item.Entity());
 		
-		item.SetDisplayName(owner.getTownName());
+		item.SetDisplayName(owner.getTownName() + " - " + owner.getTownValue().ToString());
 		item.SetBaseType(EMapDescriptorType.MDT_ICON);
 		
 		MapDescriptorProps props = item.GetProps();

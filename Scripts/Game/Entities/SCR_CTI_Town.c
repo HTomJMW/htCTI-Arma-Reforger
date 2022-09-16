@@ -46,6 +46,11 @@ class SCR_CTI_Town : BaseGameEntity
 		return m_townName;
 	}
 	
+	int getTownValue()
+	{
+		return m_townValue;
+	}
+	
 	vector getFlagPos()
 	{
 		vector transform[4];

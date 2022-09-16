@@ -1,10 +1,9 @@
-modded enum ChimeraMenuPreset
-{
-	CTI_GUI_BuildMenu
-};
-
 class SCR_CTI_BuildMenu : ChimeraMenuBase
 {
+	protected SCR_CTI_GameMode gameMode;
+	protected PlayerController pc;
+	protected int playerId;
+	
 	protected Widget m_wRoot;
 	protected WindowWidget m_window;
 	protected TextWidget m_resources;
@@ -26,10 +25,14 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected RichTextWidget m_undodefensetext;
 	protected RichTextWidget m_exittext;
 	
-	protected ref CTI_GUI_ButtonHandler m_buttonEventHandler;
+	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 	
 	override void OnMenuInit()
 	{
+		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		pc = GetGame().GetPlayerController();
+		playerId = pc.GetPlayerId();
+		
 		m_wRoot = GetRootWidget();
 		m_window = WindowWidget.Cast(m_wRoot.FindAnyWidget("Window"));
 		m_resources = TextWidget.Cast(m_wRoot.FindAnyWidget("Resources"));
@@ -52,7 +55,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_undodefensetext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("UndoDefenseText"));
 		m_exittext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ExitText"));
 		
-		m_buttonEventHandler = new CTI_GUI_ButtonHandler();
+		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
 		m_addworker.SetName("ADDWORKER");
 		m_addworker.SetColor(Color.Orange);
@@ -93,38 +96,20 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	
 	override void OnMenuUpdate(float tDelta)
 	{
-	}
-};
-
-class CTI_GUI_ButtonHandler : ScriptedWidgetEventHandler
-{
-	override bool OnMouseEnter(Widget w, int x, int y)
-	{
-		w.SetColor(Color.White);
-		
-		return true;
-	}
-	
-	override bool OnMouseLeave(Widget w, Widget enterW, int x, int y)
-	{
-		w.SetColor(Color.Orange);
-		
-		return true;
-	}
-	
-	override bool OnMouseButtonUp(Widget w, int x, int y, int button)
-	{
-		switch (w.GetName())
+		int sizeCDA = gameMode.ClientDataArray.Count();
+		SCR_CTI_ClientData clientData;
+		for (int i = 0; i < sizeCDA; i++)
 		{
-			case "EXITBUTTON":
+			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
 			{
-				auto menuManager = GetGame().GetMenuManager();
-				auto menu = ChimeraMenuPreset.CTI_GUI_BuildMenu;
-				menuManager.CloseMenuByPreset(menu);
+				clientData = gameMode.ClientDataArray[i];
 				break;
 			}
 		}
-		
-		return true;
+		if (clientData)
+		{
+			int funds = clientData.getFunds();
+			m_resources.SetText("Resources: " + funds.ToString());
+		}
 	}
 };

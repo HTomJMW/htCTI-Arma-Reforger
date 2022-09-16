@@ -51,14 +51,14 @@ FrameWidgetClass {
       ButtonWidgetClass "{5A3D2851FFB851F5}" {
        Name "AddWorker"
        Slot FrameWidgetSlot "{5A3D2851FFB8520E}" {
-        PositionX 0
-        OffsetLeft 0
-        PositionY 0
-        OffsetTop 0
-        SizeX 400
-        OffsetRight -400
-        SizeY 50
-        OffsetBottom -50
+        PositionX 5
+        OffsetLeft 5
+        PositionY 5
+        OffsetTop 5
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom -45
        }
        "no focus" 1
        {
@@ -74,14 +74,14 @@ FrameWidgetClass {
       ButtonWidgetClass "{5A3D2851FAB8DEFB}" {
        Name "BuildStructure"
        Slot FrameWidgetSlot "{5A3D2851FAB8DF12}" {
-        PositionX 0
-        OffsetLeft 0
+        PositionX 5
+        OffsetLeft 5
         PositionY 50
         OffsetTop 50
-        SizeX 400
-        OffsetRight -400
-        SizeY 50
-        OffsetBottom -100
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom -90
        }
        "no focus" 1
        {
@@ -98,14 +98,14 @@ FrameWidgetClass {
        Name "UndoStructure"
        Slot FrameWidgetSlot "{5A3F4D65D9FBD4DA}" {
         Anchor 0 1 0 1
-        PositionX 0
-        OffsetLeft 0
-        PositionY -50
-        OffsetTop -50
-        SizeX 400
-        OffsetRight -400
-        SizeY 50
-        OffsetBottom 0
+        PositionX 5
+        OffsetLeft 5
+        PositionY -45
+        OffsetTop -45
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom 5
        }
        {
         RichTextWidgetClass "{5A57061E66E7995D}" {
@@ -136,14 +136,14 @@ FrameWidgetClass {
       ButtonWidgetClass "{5A3D2851F6193358}" {
        Name "DefAutoManning"
        Slot FrameWidgetSlot "{5A3D2851F619337F}" {
-        PositionX 0
-        OffsetLeft 0
-        PositionY 0
-        OffsetTop 0
-        SizeX 400
-        OffsetRight -400
-        SizeY 50
-        OffsetBottom -50
+        PositionX 5
+        OffsetLeft 5
+        PositionY 5
+        OffsetTop 5
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom -45
        }
        "no focus" 1
        {
@@ -159,14 +159,14 @@ FrameWidgetClass {
       ButtonWidgetClass "{5A3D2851F5FD985C}" {
        Name "AutoAlignWalls"
        Slot FrameWidgetSlot "{5A3D2851F5FD9870}" {
-        PositionX 0
-        OffsetLeft 0
+        PositionX 5
+        OffsetLeft 5
         PositionY 50
         OffsetTop 50
-        SizeX 400
-        OffsetRight -400
-        SizeY 50
-        OffsetBottom -100
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom -90
        }
        "no focus" 1
        {
@@ -182,14 +182,14 @@ FrameWidgetClass {
       ButtonWidgetClass "{5A3D2851F4B5B851}" {
        Name "BuildDefense"
        Slot FrameWidgetSlot "{5A3D2851F4B5B86A}" {
-        PositionX 0
-        OffsetLeft 0
-        PositionY 100
-        OffsetTop 100
-        SizeX 400
-        OffsetRight -400
-        SizeY 50
-        OffsetBottom -150
+        PositionX 5
+        OffsetLeft 5
+        PositionY 95
+        OffsetTop 95
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom -135
        }
        "no focus" 1
        {
@@ -206,14 +206,14 @@ FrameWidgetClass {
        Name "UndoDefense"
        Slot FrameWidgetSlot "{5A3F4D65D75D94A6}" {
         Anchor 0 1 0 1
-        PositionX 0
-        OffsetLeft 0
-        PositionY -50
-        OffsetTop -50
-        SizeX 400
-        OffsetRight -400
-        SizeY 50
-        OffsetBottom 0
+        PositionX 5
+        OffsetLeft 5
+        PositionY -45
+        OffsetTop -45
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom 5
        }
        {
         RichTextWidgetClass "{5A57061E5B00E6A2}" {
@@ -263,14 +263,14 @@ FrameWidgetClass {
      Name "Exit"
      Slot FrameWidgetSlot "{5A432A4F34902E6B}" {
       Anchor 1 0 1 0
-      PositionX 0
-      OffsetLeft 0
-      PositionY -50
-      OffsetTop -50
-      SizeX 50
-      OffsetRight -50
-      SizeY 50
-      OffsetBottom 0
+      PositionX 2.5
+      OffsetLeft 2.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight -47.5
+      SizeY 45
+      OffsetBottom 2.5
      }
      {
       RichTextWidgetClass "{5A57061E54D29201}" {
