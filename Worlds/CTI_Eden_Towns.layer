@@ -74,23 +74,12 @@ $grp SCR_CTI_Town {
   coords 9696.289 13.559 1546.774
   m_townName "ST. Pierre"
   {
-   SCR_AIWaypoint WayPoint0_1 {
-    coords 14.025 -1.187 7.073
-    Type "Defend"
-    Title "WayPoint0_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea0 {
     components {
      Hierarchy "{59DF6D0E29AF4576}" {
      }
      SCR_CTI_CreateTeamComponent "{59C701EF12D49AFC}" {
       m_SpawnPos 9700.854 13.559 1546.774
-      m_Waypoints {
-       "WayPoint0_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -148,6 +137,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB7ACA7E4A}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A61122823E51E91}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -208,23 +199,12 @@ $grp SCR_CTI_Town {
   coords 4928.005 36.157 9125.537
   m_townName "Tyrone"
   {
-   SCR_AIWaypoint WayPoint2_1 {
-    coords 14.025 -0.075 7.073
-    Type "Defend"
-    Title "WayPoint2_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea2 {
     components {
      Hierarchy "{59DF6D0E14FA0087}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 4933.47 36.434 9125.537
-      m_Waypoints {
-       "WayPoint2_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -281,6 +261,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB753F7A9A}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112281FDFC704}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -341,23 +323,12 @@ $grp SCR_CTI_Town {
   coords 4132.306 36.308 7833.822
   m_townName "Gravette"
   {
-   SCR_AIWaypoint WayPoint3_1 {
-    coords 14.025 1.832 7.073
-    Type "Defend"
-    Title "WayPoint3_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea3 {
     components {
      Hierarchy "{59DF6D0E10E513EA}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 4137.475 36.428 7829.371
-      m_Waypoints {
-       "WayPoint3_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -414,6 +385,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB6D8D9DF6}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112281B880487}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -474,23 +447,12 @@ $grp SCR_CTI_Town {
   coords 4713.431 161.677 6978.969
   m_townName "Montignac"
   {
-   SCR_AIWaypoint WayPoint4_1 {
-    coords 14.025 0.367 7.073
-    Type "Defend"
-    Title "WayPoint4_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea4 {
     components {
      Hierarchy "{59DF6D0E0DC8D24A}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 4713.43 161.824 6983.895
-      m_Waypoints {
-       "WayPoint4_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -547,6 +509,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB6872DDBD}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112281771A235}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -607,23 +571,12 @@ $grp SCR_CTI_Town {
   coords 1299.932 38.09 6033.668
   m_townName "Lamentin"
   {
-   SCR_AIWaypoint WayPoint5_1 {
-    coords 14.025 1.084 7.073
-    Type "Defend"
-    Title "WayPoint5_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea5 {
     components {
      Hierarchy "{59DF6D0E09EA34E0}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 1304.288 38.197 6033.668
-      m_Waypoints {
-       "WayPoint5_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -680,6 +633,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB656A2451}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A61122813D013B1}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -740,23 +695,12 @@ $grp SCR_CTI_Town {
   coords 2605.381 94.163 5415.463
   m_townName "Le Moule"
   {
-   SCR_AIWaypoint WayPoint6_1 {
-    coords -13.578 0.991 7.073
-    Type "Defend"
-    Title "WayPoint6_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea6 {
     components {
      Hierarchy "{59DF6D0E068F1873}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 2605.381 94.266 5409.833
-      m_Waypoints {
-       "WayPoint6_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -813,6 +757,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB62FC9DFF}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112280F5E2249}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -873,23 +819,12 @@ $grp SCR_CTI_Town {
   coords 5477.503 95.806 6087.412
   m_townName "Provins"
   {
-   SCR_AIWaypoint WayPoint7_1 {
-    coords 14.025 0.155 7.073
-    Type "Defend"
-    Title "WayPoint7_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea7 {
     components {
      Hierarchy "{59DF6D0E0259C0D0}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 5482.085 96.13 6087.41
-      m_Waypoints {
-       "WayPoint7_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -946,6 +881,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB5F359BFD}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112280CDF05B6}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -1006,23 +943,12 @@ $grp SCR_CTI_Town {
   coords 7082.966 118.979 6020.249
   m_townName "Chotain"
   {
-   SCR_AIWaypoint WayPoint8_1 {
-    coords 12.079 0.024 7.073
-    Type "Defend"
-    Title "WayPoint8_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea8 {
     components {
      Hierarchy "{59DF6D0E7E17E628}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 7082.966 119.508 6028.094
-      m_Waypoints {
-       "WayPoint8_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -1079,6 +1005,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB5DADDCD2}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A61122808F1BA76}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -1139,23 +1067,12 @@ $grp SCR_CTI_Town {
   coords 5123.634 15.628 3992.189
   m_townName "Morton"
   {
-   SCR_AIWaypoint WayPoint9_1 {
-    coords 14.025 -1.523 7.073
-    Type "Defend"
-    Title "WayPoint9_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea9 {
     components {
      Hierarchy "{59DF6D0E7BE31E9E}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 5123.634 15.628 3998.239
-      m_Waypoints {
-       "WayPoint9_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -1212,6 +1129,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB057BA792}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112282944B176}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_SERIALIZABLE
@@ -1272,23 +1191,12 @@ $grp SCR_CTI_Town {
   coords 7460.326 136.995 4737.408
   m_townName "Levie"
   {
-   SCR_AIWaypoint WayPoint10_1 {
-    coords 14.025 -0.113 7.073
-    Type "Defend"
-    Title "WayPoint10_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea10 {
     components {
      Hierarchy "{59DF6D0E1D18CBDE}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 7460.325 137.207 4746.033
-      m_Waypoints {
-       "WayPoint10_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -1345,6 +1253,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB4219D1BD}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A611228262AF0E4}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -1405,23 +1315,12 @@ $grp SCR_CTI_Town {
   coords 7193.561 136.957 2333.68
   m_townName "Regina"
   {
-   SCR_AIWaypoint WayPoint11_1 {
-    coords 14.025 -0.041 7.073
-    Type "Defend"
-    Title "WayPoint11_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea11 {
     components {
      Hierarchy "{59DF6D0E18883409}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 7198.713 137.051 2338.676
-      m_Waypoints {
-       "WayPoint11_'"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }
@@ -1478,6 +1377,8 @@ $grp SCR_CTI_Town {
     Static 1
    }
    SCR_CTI_MapDescriptorComponent "{59F137AB0EF5D596}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112282D10E79C}" {
    }
    SCR_EditableEntityComponent "{599D1844332F9D41}" {
     m_Flags NON_DELETABLE
@@ -1538,23 +1439,12 @@ $grp SCR_CTI_Town {
   coords 4517.271 13.726 10892.203
   m_townName "ST. Philippe"
   {
-   SCR_AIWaypoint WayPoint1_1 {
-    coords 14.025 1.231 7.073
-    Type "Defend"
-    Title "WayPoint1_1"
-    CompletionRadius 5
-    Autocomplete 0
-    CompletionType Any
-   }
    SCR_CTI_ActivationArea ActivationArea1 {
     components {
      Hierarchy "{59DF6D0E21DE917E}" {
      }
      SCR_CTI_CreateTeamComponent "{59C701EF03F208D9}" {
       m_SpawnPos 4523.813 14.489 10892.203
-      m_Waypoints {
-       "WayPoint1_1"
-      }
      }
      RplComponent "{599F1E08CF916CBC}" {
      }

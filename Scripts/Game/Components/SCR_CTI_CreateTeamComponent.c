@@ -33,8 +33,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 	protected vector m_SpawnPos;
 	[Attribute("", UIWidgets.EditBox, "Group spawn direction. (only yaw used)", params: "inf inf 0 0 purposeAngles spaceWorld")]
 	protected vector m_SpawnDir;
-	[Attribute("", UIWidgets.Auto, "List of waypoints.")]
-	protected ref array<string> m_Waypoints;
+
 	protected ref ScriptInvoker_OnSpawnerEmpty m_OnEmptyInvoker = new ScriptInvoker_OnSpawnerEmpty();
 	
 	vector defaultCoords()
@@ -117,29 +116,6 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		}
 		
 		m_AIAgent = agent;
-		
-		if (m_Waypoints && !m_Waypoints.IsEmpty())
-		{
-			BaseWorld world = GetOwner().GetWorld();
-			foreach (string waypointName : m_Waypoints)
-			{
-				IEntity waypointEntity = world.FindEntityByName(waypointName);
-				if (!waypointEntity)
-				{
-					Print("No waypoints!");
-					continue;
-				}
-
-				AIWaypoint waypoint = AIWaypoint.Cast(waypointEntity);
-				if (!waypoint)
-				{
-					Print("No AIwaypoints!");
-					continue;
-				}
-
-				agent.AddWaypoint(waypoint);
-			}
-		}
 
 		SCR_AIGroup aiGroup = SCR_AIGroup.Cast(agent);
 		

@@ -5,6 +5,9 @@ SCR_AIWorld SCR_AIWorld_1 {
     TileSize 51
    }
    NavmeshSettings NavmeshWorld "{5A0558056D7092BB}" {
+    NavmeshFilesConfig BaseNavmeshFilesConfig "{5A68FC9590B6FD35}" {
+     NavmeshFile "{A07353FE17EB2C49}worlds/MP/Navmeshes/CTI_Campaign_Eden.nmn"
+    }
     RecastConfig NavmeshRecastConfig "{5A0558056D709203}" {
      CellHeight 0.1
      WalkableSlopeAngle 50
@@ -27,6 +30,9 @@ SCR_AIWorld SCR_AIWorld_1 {
     TileSize 51
    }
    NavmeshSettings NavmeshWorld "{5A0558056D709343}" {
+    NavmeshFilesConfig BaseNavmeshFilesConfig "{5A68FC95F1E12545}" {
+     NavmeshFile "{3D08F0F26F771346}worlds/MP/Navmeshes/CTI_Campaign_Eden_vehicles.nmn"
+    }
     RecastConfig NavmeshRecastConfig "{5A0558056D709324}" {
      CellHeight 0.1
      WalkableSlopeAngle 10

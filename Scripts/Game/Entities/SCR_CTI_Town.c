@@ -38,6 +38,7 @@ class SCR_CTI_Town : BaseGameEntity
 	protected SCR_FlagComponent m_flagComponent;
 	protected SCR_SpawnPoint m_sPoint;
 	protected SCR_CTI_MapDescriptorComponent m_mapComponent;
+	protected SCR_CTI_TownPatrolComponent m_townPatrolComponent;
 	protected SCR_CTI_GameMode m_gameMode;
 	protected RplComponent m_rplComponent;
 
@@ -229,6 +230,9 @@ class SCR_CTI_Town : BaseGameEntity
 
 		m_mapComponent = SCR_CTI_MapDescriptorComponent.Cast(owner.FindComponent(SCR_CTI_MapDescriptorComponent));
 		
+		m_townPatrolComponent = SCR_CTI_TownPatrolComponent.Cast(owner.FindComponent(SCR_CTI_TownPatrolComponent));
+		m_townPatrolComponent.EOnInit(this);
+		
 		m_timeDelta = 0;
 		this.SetEventMask(EntityEvent.FIXEDFRAME);
 	}
@@ -239,6 +243,7 @@ class SCR_CTI_Town : BaseGameEntity
 		if (m_timeDelta > timeStep)
 			{
 				timeOutCheck();
+				if (m_isActive) {addWayPointToGroups();}
 				m_timeDelta = 0;
 			}
 	}
@@ -289,5 +294,29 @@ class SCR_CTI_Town : BaseGameEntity
 		}
 		m_groups.Clear();
 		PrintFormat("CTI :: Town %1 groups: %2", m_townName, m_groups);
+	}
+	
+	protected void addWayPointToGroups()
+	{
+		for (int i = 0; i < m_groups.Count(); i++)
+		{
+			array<AIAgent> outAgents = {};
+			m_groups[i].GetAgents(outAgents);
+			PrintFormat("GRP %1 agents: %2", i, outAgents);
+			
+			for (int j = 0; j < outAgents.Count(); j++)
+			{
+				if (!m_townPatrolComponent.waypoints.IsEmpty())
+				{
+					if (!outAgents[j].GetCurrentWaypoint())
+					{
+						int rnd = Math.RandomIntInclusive(0, m_townPatrolComponent.waypoints.Count() - 1);
+						outAgents[j].FinishCurrentOrder();
+						outAgents[j].AddWaypoint(m_townPatrolComponent.waypoints[rnd]);
+						PrintFormat("NEW WP: %1", outAgents[j].GetCurrentWaypoint());
+					}
+				}
+			}
+		}
 	}
 };
