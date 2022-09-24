@@ -295,27 +295,17 @@ class SCR_CTI_Town : BaseGameEntity
 		m_groups.Clear();
 		PrintFormat("CTI :: Town %1 groups: %2", m_townName, m_groups);
 	}
-	
+
 	protected void addWayPointToGroups()
 	{
 		for (int i = 0; i < m_groups.Count(); i++)
 		{
-			array<AIAgent> outAgents = {};
-			m_groups[i].GetAgents(outAgents);
-			PrintFormat("GRP %1 agents: %2", i, outAgents);
-			
-			for (int j = 0; j < outAgents.Count(); j++)
+			if (!m_groups[i].GetCurrentWaypoint())
 			{
-				if (!m_townPatrolComponent.waypoints.IsEmpty())
-				{
-					if (!outAgents[j].GetCurrentWaypoint())
-					{
-						int rnd = Math.RandomIntInclusive(0, m_townPatrolComponent.waypoints.Count() - 1);
-						outAgents[j].FinishCurrentOrder();
-						outAgents[j].AddWaypoint(m_townPatrolComponent.waypoints[rnd]);
-						PrintFormat("NEW WP: %1", outAgents[j].GetCurrentWaypoint());
-					}
-				}
+				int rnd = Math.RandomIntInclusive(0, m_townPatrolComponent.waypoints.Count() - 1);
+				m_groups[i].FinishCurrentOrder();
+				m_groups[i].AddWaypoint(m_townPatrolComponent.waypoints[rnd]);
+				//PrintFormat("Group: %1, WP: %2", m_groups[i], m_groups[i].GetCurrentWaypoint());
 			}
 		}
 	}

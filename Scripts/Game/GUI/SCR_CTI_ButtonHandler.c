@@ -28,6 +28,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				menuManager.CloseAllMenus();
 				break;
 			}
+			case "BACKBUTTON":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
+				break;
+			}
 			case "BUILD":
 			{
 				auto menuManager = GetGame().GetMenuManager();
@@ -35,6 +42,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuildMenu);
 				break;
 			}
+			case "UNFLIPNEARESTVEHICLE":
+			{
+				SCR_CTI_UnflipNearestVehicle unflipveh = new SCR_CTI_UnflipNearestVehicle;
+				unflipveh.init(); // todo maybe need constructor
+				unflipveh.unflip();
+				break;
+			}			
 		}
 		
 		return true;

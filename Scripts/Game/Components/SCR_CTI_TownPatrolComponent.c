@@ -15,7 +15,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	
 	protected void createWayPoint()
 	{
-		ResourceName wpRes = "{06E1B6EBD480C6E0}Prefabs/AI/Waypoints/AIWaypoint_ForcedMove.et";
+		ResourceName wpRes = "{22A875E30470BD4F}Prefabs/AI/Waypoints/AIWaypoint_Patrol.et";
 		Resource res = Resource.Load(wpRes);
 		
 		EntitySpawnParams params = new EntitySpawnParams();
@@ -24,22 +24,13 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 		m_town.GetTransform(mat);
 
 		RandomGenerator randomgen = new RandomGenerator();
-		vector rndpos = randomgen.GenerateRandomPointInRadius(50, 100, mat[3], true);
+		vector rndpos = randomgen.GenerateRandomPointInRadius(50, 75, mat[3], true);
 
-		//vector emptyPos;
-		//SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, rndpos, 6);
-		//mat[3] = emptyPos;
-		
-		float x = rndpos[0];
-		float z = rndpos[2];
-		float y = GetGame().GetWorld().GetSurfaceY(x, z);
-		
-		rndpos[1] = y;
-		
-		mat[3] = rndpos;
-		
+		vector emptyPos;
+		SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, rndpos, 6);
+		mat[3] = emptyPos;
+
 		params.Transform = mat;
-
 
 		IEntity wpEntity = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
 		AIWaypoint wp = AIWaypoint.Cast(wpEntity);
@@ -48,7 +39,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 		
 		waypoints.Insert(wp);
 		
-		PrintFormat("Town pos: %1, WP pos: %2", m_town.getFlagPos(), mat[3]);
+		//PrintFormat("Town pos: %1, WP pos: %2", m_town.getFlagPos(), mat[3]);
 	}
 	
 	protected void updateWayPoints()

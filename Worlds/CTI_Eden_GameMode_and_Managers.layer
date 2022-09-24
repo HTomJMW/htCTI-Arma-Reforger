@@ -81,6 +81,12 @@ SCR_AIWorld SCR_AIWorld_1 {
     0 0 0 0 0 -3 0 0 -6 0 0 -9 0 0 -12 0 0 -15 0 0 -18 0 0 -21 0 0 -24 0 0 -27 0 0 -30
    }
   }
+  AIFormationDefinition "{5A6B320E0E9253D1}" {
+   Name "Alone"
+   Offsets {
+    0 0 0
+   }
+  }
  }
  "Initialize Road Network" 0
  m_aGoalMessages {

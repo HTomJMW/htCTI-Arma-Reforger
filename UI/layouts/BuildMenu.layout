@@ -259,6 +259,29 @@ FrameWidgetClass {
      "Vertical Alignment" Center
      Offset 10 0
     }
+    ButtonWidgetClass "{5A6D38DAC02C7D71}" {
+     Name "Back"
+     Slot FrameWidgetSlot "{5A6D38DAC02C7D8B}" {
+      Anchor 1 0 1 0
+      PositionX -47.5
+      OffsetLeft -47.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight 2.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      TextWidgetClass "{5A6D38DA34517D57}" {
+       Name "BackText"
+       Slot ButtonWidgetSlot "{5A6D38DA34517D6E}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[<]"
+      }
+     }
+    }
     ButtonWidgetClass "{5A432A4F34902E52}" {
      Name "Exit"
      Slot FrameWidgetSlot "{5A432A4F34902E6B}" {
@@ -277,7 +300,7 @@ FrameWidgetClass {
        Name "ExitText"
        Slot ButtonWidgetSlot "{5A57061E54D2921C}" {
        }
-       Color 0.302 0.227 0 1
+       Color 0.173 0.129 0 1
        Text "[X]"
       }
      }

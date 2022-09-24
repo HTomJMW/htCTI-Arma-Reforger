@@ -25,7 +25,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	ref SCR_CTI_UnitsFIA UnitsFIA = new SCR_CTI_UnitsFIA();
 	ref SCR_CTI_UnitsUSSR UnitsUSSR = new SCR_CTI_UnitsUSSR();
 	ref SCR_CTI_UnitsUS UnitsUS = new SCR_CTI_UnitsUS();
-	
+
 	protected override void EOnInit(IEntity owner)
 	{
 		super.EOnInit(owner);
@@ -55,7 +55,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		// Common
 		townsToArray();
 		initMap();
-		
+
 		UnitsFIA.init();
 		UnitsUSSR.init();
 		UnitsUS.init();

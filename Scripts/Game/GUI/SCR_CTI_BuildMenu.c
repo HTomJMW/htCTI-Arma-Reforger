@@ -15,6 +15,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected ButtonWidget m_autoalignwalls;
 	protected ButtonWidget m_builddefense;
 	protected ButtonWidget m_undodefense;
+	protected ButtonWidget m_back;
 	protected ButtonWidget m_exit;
 	protected RichTextWidget m_addworkertext;
 	protected RichTextWidget m_buildstructuretext;
@@ -23,8 +24,9 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected RichTextWidget m_autoalignwallstext;
 	protected RichTextWidget m_builddefensetext;
 	protected RichTextWidget m_undodefensetext;
+	protected RichTextWidget m_backtext;
 	protected RichTextWidget m_exittext;
-	
+
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 	
 	override void OnMenuInit()
@@ -37,6 +39,8 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_window = WindowWidget.Cast(m_wRoot.FindAnyWidget("Window"));
 		m_resources = TextWidget.Cast(m_wRoot.FindAnyWidget("Resources"));
 		m_workers = TextWidget.Cast(m_wRoot.FindAnyWidget("Workers"));
+		
+		// buttons
 		m_addworker = ButtonWidget.Cast(m_wRoot.FindAnyWidget("AddWorker"));
 		m_buildstructure = ButtonWidget.Cast(m_wRoot.FindAnyWidget("BuildStructure"));
 		m_undostructure = ButtonWidget.Cast(m_wRoot.FindAnyWidget("UndoStructure"));
@@ -44,8 +48,10 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_autoalignwalls = ButtonWidget.Cast(m_wRoot.FindAnyWidget("AutoAlignWalls"));
 		m_builddefense = ButtonWidget.Cast(m_wRoot.FindAnyWidget("BuildDefense"));
 		m_undodefense = ButtonWidget.Cast(m_wRoot.FindAnyWidget("UndoDefense"));
+		m_back = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Back"));
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 		
+		// button texts
 		m_addworkertext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("AddWorkerText"));
 		m_buildstructuretext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("BuildStructureText"));
 		m_undostructuretext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("UndoStructureText"));
@@ -53,8 +59,10 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_autoalignwallstext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("AutoAlignWallsText"));
 		m_builddefensetext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("BuildDefenseText"));
 		m_undodefensetext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("UndoDefenseText"));
+		m_backtext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("BackText"));
 		m_exittext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ExitText"));
-		
+
+		// handler
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
 		m_addworker.SetName("ADDWORKER");
@@ -84,6 +92,10 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_undodefense.SetName("UNDODEFENSE");
 		m_undodefense.SetColor(Color.Orange);
 		m_undodefense.AddHandler(m_buttonEventHandler);
+		
+		m_back.SetName("BACKBUTTON");
+		m_back.SetColor(Color.Orange);
+		m_back.AddHandler(m_buttonEventHandler);
 		
 		m_exit.SetName("EXITBUTTON");
 		m_exit.SetColor(Color.Orange);

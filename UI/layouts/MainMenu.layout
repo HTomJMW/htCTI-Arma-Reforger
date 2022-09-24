@@ -224,7 +224,7 @@ FrameWidgetClass {
          Name "OnlineHelpText"
          Slot ButtonWidgetSlot "{5A5D2DA326F4F05F}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Online Help"
         }
        }
@@ -246,7 +246,7 @@ FrameWidgetClass {
          Name "VideoSettingsText"
          Slot ButtonWidgetSlot "{5A5D2DA3247CD2A3}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Video Settings"
         }
        }
@@ -268,7 +268,7 @@ FrameWidgetClass {
          Name "TransferResourcesText"
          Slot ButtonWidgetSlot "{5A5D2DA3232ECF98}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Transfer Resources"
         }
        }
@@ -290,7 +290,7 @@ FrameWidgetClass {
          Name "UnflipNearestVehicleText"
          Slot ButtonWidgetSlot "{5A5D2DA322D919F6}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Unflip Nearest Vehicle"
         }
        }
@@ -312,7 +312,7 @@ FrameWidgetClass {
          Name "ServiceMenuText"
          Slot ButtonWidgetSlot "{5A5D2DA32193E5A6}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Service Menu"
         }
        }
@@ -334,7 +334,7 @@ FrameWidgetClass {
          Name "AIManagementText"
          Slot ButtonWidgetSlot "{5A5D2DA31F4CF7D5}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "AI Management"
         }
        }
@@ -356,7 +356,7 @@ FrameWidgetClass {
          Name "UnitsCameraText"
          Slot ButtonWidgetSlot "{5A5D2DA31E23D0F0}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Units Camera"
         }
        }
@@ -378,7 +378,7 @@ FrameWidgetClass {
          Name "SatelliteCameraText"
          Slot ButtonWidgetSlot "{5A5D2DA31DD7D5A7}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Satellite Camera"
         }
        }
@@ -416,7 +416,7 @@ FrameWidgetClass {
          Name "TeamsText"
          Slot ButtonWidgetSlot "{5A5D2DA31B2DE4D7}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Teams"
         }
        }
@@ -438,7 +438,7 @@ FrameWidgetClass {
          Name "MapCommandingText"
          Slot ButtonWidgetSlot "{5A5D2DA31ABA56DD}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Map Commanding"
         }
        }
@@ -460,7 +460,7 @@ FrameWidgetClass {
          Name "UpgradesText"
          Slot ButtonWidgetSlot "{5A5D2DA31856F08A}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Upgrades"
         }
        }
@@ -482,7 +482,7 @@ FrameWidgetClass {
          Name "BaseManagementText"
          Slot ButtonWidgetSlot "{5A5D2DA317303E44}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Base Management"
         }
        }
@@ -504,7 +504,7 @@ FrameWidgetClass {
          Name "TeamRequestsText"
          Slot ButtonWidgetSlot "{5A5D2DA316CE7219}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Team Requests"
         }
        }
@@ -526,7 +526,7 @@ FrameWidgetClass {
          Name "ArtilleryText"
          Slot ButtonWidgetSlot "{5A5D2DA315932E17}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Artillery"
         }
        }
@@ -548,7 +548,7 @@ FrameWidgetClass {
          Name "SetPriorityTownText"
          Slot ButtonWidgetSlot "{5A5D2DA314811BF2}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Set Priority Town"
         }
        }
@@ -570,7 +570,7 @@ FrameWidgetClass {
          Name "ForceDisactivationText"
          Slot ButtonWidgetSlot "{5A5D2DA312701020}" {
          }
-         Color 0.302 0.227 0 1
+         Color 0.173 0.129 0 1
          Text "Force Disactivation"
         }
        }
@@ -594,7 +594,7 @@ FrameWidgetClass {
        Name "RadioText"
        Slot ButtonWidgetSlot "{5A5D2DA85158A43A}" {
        }
-       Color 0.302 0.227 0 1
+       Color 0.173 0.129 0 1
        Text "Radio"
       }
      }
@@ -616,7 +616,7 @@ FrameWidgetClass {
        Name "UnitsText"
        Slot ButtonWidgetSlot "{5A5D2DA850CC3969}" {
        }
-       Color 0.302 0.227 0 1
+       Color 0.173 0.129 0 1
        Text "Units"
       }
      }
@@ -638,7 +638,7 @@ FrameWidgetClass {
        Name "HALOText"
        Slot ButtonWidgetSlot "{5A5D2DA84EED0F56}" {
        }
-       Color 0.302 0.227 0 1
+       Color 0.173 0.129 0 1
        Text "HALO"
       }
      }
@@ -660,7 +660,7 @@ FrameWidgetClass {
        Name "BuildText"
        Slot ButtonWidgetSlot "{5A5D2DA84CE54175}" {
        }
-       Color 0.302 0.227 0 1
+       Color 0.173 0.129 0 1
        Text "Build"
       }
      }
