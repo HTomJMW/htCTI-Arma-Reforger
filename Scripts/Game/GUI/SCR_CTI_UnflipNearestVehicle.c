@@ -2,11 +2,13 @@ class SCR_CTI_UnflipNearestVehicle
 {
 	protected IEntity playerEntity;
 	protected ref array<IEntity> vehicles = {};
+	protected SCR_CTI_GameMode gameMode;
 	
 	void init()
 	{
 		PlayerController pc = GetGame().GetPlayerController();
 		playerEntity = pc.GetControlledEntity();
+		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 	
 	protected IEntity findNearest()
@@ -55,24 +57,14 @@ class SCR_CTI_UnflipNearestVehicle
 	void unflip()
 	{
 		IEntity nearest = findNearest();
+
 		if (nearest)
 		{
-			Physics physics = nearest.GetPhysics();
-		
-			vector vel = physics.GetVelocity();
-			if (vel == "0 0 0")		
-			{
-				//vector origin = nearest.GetOrigin();
-				//origin[1] = origin[1] + 0.5;
-				//nearest.SetOrigin(origin);
-			
-				physics.SetVelocity("0 4 0");
-			
-				vector angles = nearest.GetAngles();
-				if (angles[0] > 70 || angles[0] < -70) angles[0] = 0;
-				if (angles[2] > 70 || angles[2] < -70) angles[2] = 0;
-				nearest.SetAngles(angles);
-			}
+			PlayerController pc = GetGame().GetPlayerController();
+			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+			RplComponent rplComp = RplComponent.Cast(nearest.FindComponent(RplComponent));
+			RplId rplId = rplComp.Id();
+			netComp.unflipNearestVehicleServer(rplId);
 		}
 	}
 	

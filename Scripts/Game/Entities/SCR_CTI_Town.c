@@ -128,7 +128,9 @@ class SCR_CTI_Town : BaseGameEntity
 				{
 					foreach(SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
 					if (playerId == clientData.getPlayerId()) clientData.changeFunds(m_townValue * 10);
-					m_gameMode.SendHint(playerId, m_townName + " captured", "Information", 15); // send message to all players inside capture zone
+					PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
+					SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+					netComp.SendHint(playerId, m_townName + " captured", "Information", 15);
 				}
 			}
 			if (m_FIA_Occupants.Count() + m_US_Occupants.Count() == 0)
@@ -154,7 +156,9 @@ class SCR_CTI_Town : BaseGameEntity
 				{
 					foreach(SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
 					if (playerId == clientData.getPlayerId()) clientData.changeFunds(m_townValue * 10);
-					m_gameMode.SendHint(playerId, m_townName + " captured", "Information", 15); // send message to all players inside capture zone
+					PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
+					SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+					netComp.SendHint(playerId, m_townName + " captured", "Information", 15);
 				}
 			}
 			if (m_FIA_Occupants.Count() + m_USSR_Occupants.Count() == 0)
@@ -300,6 +304,7 @@ class SCR_CTI_Town : BaseGameEntity
 	{
 		for (int i = 0; i < m_groups.Count(); i++)
 		{
+			if (m_groups[i].GetAgentsCount() == 0) break;
 			if (!m_groups[i].GetCurrentWaypoint())
 			{
 				int rnd = Math.RandomIntInclusive(0, m_townPatrolComponent.waypoints.Count() - 1);

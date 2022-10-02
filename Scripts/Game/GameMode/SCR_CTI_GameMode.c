@@ -12,9 +12,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_RandomStartComponent RandomStartComponent;
 	protected SCR_CTI_UpdateVictoryComponent UpdateVictoryComponent;
 	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
-	
-	protected SCR_HintManagerComponent HintManagerComponent;
-	protected SCR_PopUpNotification popUpNotif;
 
 	const bool ecoWin = true;
 	const int winRate = 75;
@@ -25,6 +22,11 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	ref SCR_CTI_UnitsFIA UnitsFIA = new SCR_CTI_UnitsFIA();
 	ref SCR_CTI_UnitsUSSR UnitsUSSR = new SCR_CTI_UnitsUSSR();
 	ref SCR_CTI_UnitsUS UnitsUS = new SCR_CTI_UnitsUS();
+	
+	ref SCR_CTI_FactorysUSSR FactorysUSSR = new SCR_CTI_FactorysUSSR();
+	ref SCR_CTI_FactorysUS FactorysUS = new SCR_CTI_FactorysUS();
+	ref SCR_CTI_DefensesUSSR DefensesUSSR = new SCR_CTI_DefensesUSSR();
+	ref SCR_CTI_DefensesUS DefensesUS = new SCR_CTI_DefensesUS();
 
 	protected override void EOnInit(IEntity owner)
 	{
@@ -34,9 +36,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		RandomStartComponent = SCR_CTI_RandomStartComponent.Cast(owner.FindComponent(SCR_CTI_RandomStartComponent));
 		UpdateVictoryComponent = SCR_CTI_UpdateVictoryComponent.Cast(owner.FindComponent(SCR_CTI_UpdateVictoryComponent));
 		UpdateResourcesComponent = SCR_CTI_UpdateResourcesComponent.Cast(owner.FindComponent(SCR_CTI_UpdateResourcesComponent));
-		
-		HintManagerComponent = SCR_HintManagerComponent.Cast(owner.FindComponent(SCR_HintManagerComponent));
-		popUpNotif = SCR_PopUpNotification.GetInstance();
 	}
 
 	protected override void OnGameStart()
@@ -59,6 +58,11 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UnitsFIA.init();
 		UnitsUSSR.init();
 		UnitsUS.init();
+		
+		FactorysUSSR.init();
+		FactorysUS.init();
+		DefensesUSSR.init();
+		DefensesUS.init();
 		
 		// Server
 		if (!m_RplComponent.IsProxy())
@@ -108,7 +112,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			int funds = clientData.getFunds();
 			string name = clientData.getPlayerName();
 			PrintFormat("CTI :: Player: %1, PlayerId: %2, Funds: %3", name, playerId, funds);
-			popUpNotif.PopupMsg(("Funds: " + funds.ToString()), 15, 0.25, "");
+			PlayerController pc = GetGame().GetPlayerController();
+			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+			netComp.SendPopUpNotif(pc.GetPlayerId(), ("Funds: " + funds.ToString()), 15, 0.25, "");
 		}
 	}
 
@@ -183,39 +189,11 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			ClientDataArray.Insert(clientData);
 		}
 		
-		SendHint(playerId, "htCTI Eden", "Mission", 15);
-		SendPopUpNotif(playerId, "Arma Reforger", 15, 0.25, "");
+		PlayerController pc = GetGame().GetPlayerController();
+		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+		netComp.SendHint(playerId, "htCTI Eden", "Mission", 15);
+		netComp.SendPopUpNotif(playerId, "Arma Reforger", 15, 0.25, "");
 	}
-
-	void SendHint(int playerId, string message = "", string messageTitle = "", int hintTime = 5.0)
-    {
-        RpcAsk_RecieveHint(playerId, message, messageTitle, hintTime);
-        Rpc(RpcAsk_RecieveHint, playerId, message, messageTitle, hintTime);
-    }
-    
-    [RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcAsk_RecieveHint(int playerId, string message, string messageTitle, int hintTime)
-    {
-        int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
-        if(playerId != localPlayerId) return;
-        
-        SCR_HintManagerComponent.ShowCustomHint(message, messageTitle, hintTime);
-    }
-	
-	void SendPopUpNotif(int playerId, string message = "", float duration = 5.0, float fade = 0.5, string message2 = "", int prio = -1)
-	{
-		RpcAsk_RecievePopUpNotif(playerId, message, duration, fade, message2, prio);
-        Rpc(RpcAsk_RecievePopUpNotif, playerId, message, duration, fade, message2, prio);
-	}
-	
-	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcAsk_RecievePopUpNotif(int playerId, string message, float duration, float fade, string message2, int prio)
-    {
-        int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
-        if(playerId != localPlayerId) return;
-
-		popUpNotif.PopupMsg(message, duration, fade, message2);
-    }
 
 	protected void townsToArray()
 	{
@@ -239,7 +217,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		return playerGroupSize;
 	}
-	
+
 	void SCR_CTI_GameMode(IEntitySource src, IEntity parent)
 	{
 	}
@@ -255,5 +233,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UnitsFIA = null;
 		UnitsUSSR = null;
 		UnitsUS = null;
+		
+		FactorysUSSR = null;
+		FactorysUS = null;
 	}
 };

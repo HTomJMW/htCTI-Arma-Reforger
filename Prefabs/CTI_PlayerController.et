@@ -3,6 +3,8 @@ SCR_PlayerController : "{6E2BB64764E3BE9B}Prefabs/Characters/Core/DefaultPlayerC
  components {
   RadioHandlerComponent "{5A3ACB01A1AB73F4}" {
   }
+  SCR_CTI_NetWorkComponent "{5A82EB320B9D8FE7}" {
+  }
   SCR_ChatComponent "{5A3ACB01A1AB73F2}" {
   }
   SCR_HUDManagerComponent "{2FDC275D9EBCDB8B}" {

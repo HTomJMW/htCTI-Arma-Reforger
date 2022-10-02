@@ -45,10 +45,98 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 			case "UNFLIPNEARESTVEHICLE":
 			{
 				SCR_CTI_UnflipNearestVehicle unflipveh = new SCR_CTI_UnflipNearestVehicle;
-				unflipveh.init(); // todo maybe need constructor
+				unflipveh.init();
 				unflipveh.unflip();
 				break;
-			}			
+			}
+			case "BUILDSTRUCTURE":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
+				Widget root = openedMenu.GetRootWidget();
+				OverlayWidget listbox = OverlayWidget.Cast(root.FindAnyWidget("ListBoxLeft"));
+				SCR_ListBoxComponent listboxcomp = SCR_ListBoxComponent.Cast(listbox.FindHandler(SCR_ListBoxComponent));
+				int selected = listboxcomp.GetSelectedItem();
+				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+				PlayerController pc = GetGame().GetPlayerController();
+				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
+				switch (fk)
+				{
+					case "USSR":
+					{
+						SCR_CTI_FactoryData facData = gameMode.FactorysUSSR.g_USSR_Factorys[selected];
+						ResourceName res = facData.getRes();
+						Resource resource = Resource.Load(res);
+						EntitySpawnParams params = new EntitySpawnParams();
+						params.TransformMode = ETransformMode.WORLD;
+						vector mat[4];
+						pc.GetControlledEntity().GetTransform(mat);
+						params.Transform = mat;
+						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						break;
+					}
+					case "US":
+					{
+						SCR_CTI_FactoryData facData = gameMode.FactorysUS.g_US_Factorys[selected];
+						ResourceName res = facData.getRes();
+						Resource resource = Resource.Load(res);
+						EntitySpawnParams params = new EntitySpawnParams();
+						params.TransformMode = ETransformMode.WORLD;
+						vector mat[4];
+						pc.GetControlledEntity().GetTransform(mat);
+						params.Transform = mat;
+						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						break;
+					}
+				}
+				menuManager.CloseAllMenus();
+				break;
+			}
+			case "BUILDDEFENSE":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
+				Widget root = openedMenu.GetRootWidget();
+				OverlayWidget listbox = OverlayWidget.Cast(root.FindAnyWidget("ListBoxRight"));
+				SCR_ListBoxComponent listboxcomp = SCR_ListBoxComponent.Cast(listbox.FindHandler(SCR_ListBoxComponent));
+				int selected = listboxcomp.GetSelectedItem();
+				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+				PlayerController pc = GetGame().GetPlayerController();
+				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
+				switch (fk)
+				{
+					case "USSR":
+					{
+						SCR_CTI_DefenseData defData = gameMode.DefensesUSSR.g_USSR_Defenses[selected];
+						ResourceName res = defData.getRes();
+						Resource resource = Resource.Load(res);
+						EntitySpawnParams params = new EntitySpawnParams();
+						params.TransformMode = ETransformMode.WORLD;
+						vector mat[4];
+						pc.GetControlledEntity().GetTransform(mat);
+						params.Transform = mat;
+						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						break;
+					}
+					case "US":
+					{
+						SCR_CTI_DefenseData defData = gameMode.DefensesUS.g_US_Defenses[selected];
+						ResourceName res = defData.getRes();
+						Resource resource = Resource.Load(res);
+						EntitySpawnParams params = new EntitySpawnParams();
+						params.TransformMode = ETransformMode.WORLD;
+						vector mat[4];
+						pc.GetControlledEntity().GetTransform(mat);
+						params.Transform = mat;
+						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						break;
+					}
+				}
+				menuManager.CloseAllMenus();
+				break;
+			}		
 		}
 		
 		return true;

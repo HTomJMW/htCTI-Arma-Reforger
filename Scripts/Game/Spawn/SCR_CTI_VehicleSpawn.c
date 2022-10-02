@@ -5,7 +5,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	protected ref array<IEntity> m_items = {};
 	protected bool m_isMHQ = false;
 	protected ResourceName USSR_mhq = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
-	protected ResourceName US_MHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"; 
+	protected ResourceName US_MHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 	
 	protected override void EOnInit(IEntity owner)
 	{
@@ -31,11 +31,11 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 			GarbageManager garbagemanager = GetGame().GetGarbageManager();
 			if (!garbagemanager) { Print("CTI :: Garbage manager not found!"); return; }
 			
-			PrintFormat("CTI :: MHQ in garbage manager: %1", garbagemanager.IsInserted(newEnt).ToString());
+			PrintFormat("CTI :: MHQ in garbage manager: %1 (%2)", garbagemanager.IsInserted(newEnt).ToString(), m_rnPrefab);
 			
 			//garbagemanager.Bump(newEnt, -1);
 
-			PrintFormat("CTI :: MHQ wreck lifetime: %1", garbagemanager.GetLifetime(newEnt));
+			PrintFormat("CTI :: MHQ wreck lifetime: %1 (%2)", garbagemanager.GetLifetime(newEnt), m_rnPrefab);
 		}
 	}
 

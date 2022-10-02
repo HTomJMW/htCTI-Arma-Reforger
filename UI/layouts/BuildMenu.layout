@@ -117,6 +117,44 @@ FrameWidgetClass {
         }
        }
       }
+      OverlayWidgetClass "{5A8341BBED3D849A}" {
+       Name "ListBoxLeft"
+       Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
+        Anchor 0 0 0 0
+        PositionX 5
+        OffsetLeft 5
+        PositionY 95
+        OffsetTop 95
+        SizeX 390
+        OffsetRight -395
+        SizeY 355
+        OffsetBottom -450
+       }
+       components {
+        SCR_ListBoxComponent "{566C9415BAA54E1B}" {
+         m_sElementLayout "{3121BDD71C35E46D}UI/layouts/ListBox/ListBoxElement_Text.layout"
+        }
+       }
+       {
+        ScrollLayoutWidgetClass "{5A8341BBED3D84A4}" {
+         Name "ScrollLayout0"
+         Slot OverlayWidgetSlot "{56691148E692437F}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+         Color 0.761 0.386 0.08 1
+         {
+          VerticalLayoutWidgetClass "{5A8341BBED3D84A6}" {
+           Name "List"
+           Slot AlignableSlot "{56691148E013D9A9}" {
+            HorizontalAlign 3
+            VerticalAlign 3
+           }
+          }
+         }
+        }
+       }
+      }
      }
     }
     WindowWidgetClass "{5A3D285353B4F946}" {
@@ -222,6 +260,43 @@ FrameWidgetClass {
          }
          Color 0.173 0.129 0 1
          Text "Undo Defense"
+        }
+       }
+      }
+      OverlayWidgetClass "{5A8341BC89496DFF}" {
+       Name "ListBoxRight"
+       Slot FrameWidgetSlot {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 140
+        OffsetTop 140
+        SizeX 390
+        OffsetRight -395
+        SizeY 410
+        OffsetBottom -550
+       }
+       components {
+        SCR_ListBoxComponent "{566C9415BAA54E1B}" {
+         m_sElementLayout "{3121BDD71C35E46D}UI/layouts/ListBox/ListBoxElement_Text.layout"
+        }
+       }
+       {
+        ScrollLayoutWidgetClass "{5A8341BC89496DFE}" {
+         Name "ScrollLayout0"
+         Slot OverlayWidgetSlot "{56691148E692437F}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+         Color 0.761 0.386 0.08 1
+         {
+          VerticalLayoutWidgetClass "{5A8341BC89496DF9}" {
+           Name "List"
+           Slot AlignableSlot "{56691148E013D9A9}" {
+            HorizontalAlign 3
+            VerticalAlign 3
+           }
+          }
+         }
         }
        }
       }
