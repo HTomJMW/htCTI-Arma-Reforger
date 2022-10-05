@@ -12,6 +12,9 @@ SCR_PlayerController : "{6E2BB64764E3BE9B}Prefabs/Characters/Core/DefaultPlayerC
     SCR_CTI_InfoHud "{5A3B337AA74D122C}" {
      m_LayoutPath "{959E824DECAF27D7}UI/layouts/InfoHud.layout"
     }
+    SCR_CTI_VehicleInfoHud "{5A871288C3898B8C}" {
+     m_LayoutPath "{FA2748932AA7B28A}UI/layouts/VehicleInfoHud.layout"
+    }
    }
   }
   SCR_RespawnComponent "{5A3ACB01A1AB73F9}" {

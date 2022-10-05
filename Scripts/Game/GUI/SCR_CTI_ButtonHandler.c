@@ -57,6 +57,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				OverlayWidget listbox = OverlayWidget.Cast(root.FindAnyWidget("ListBoxLeft"));
 				SCR_ListBoxComponent listboxcomp = SCR_ListBoxComponent.Cast(listbox.FindHandler(SCR_ListBoxComponent));
 				int selected = listboxcomp.GetSelectedItem();
+				if (selected == -1) break;
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 				PlayerController pc = GetGame().GetPlayerController();
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
@@ -72,6 +73,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						params.TransformMode = ETransformMode.WORLD;
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
+						CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
+						vector posInWorld = vector.Zero;
+						if (cam)
+						{
+							cam.GetCursorTargetWithPosition(posInWorld);
+							mat[3] = posInWorld;
+						}
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 						break;
@@ -85,6 +93,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						params.TransformMode = ETransformMode.WORLD;
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
+						CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
+						vector posInWorld = vector.Zero;
+						if (cam)
+						{
+							cam.GetCursorTargetWithPosition(posInWorld);
+							mat[3] = posInWorld;
+						}
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 						break;
@@ -101,6 +116,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				OverlayWidget listbox = OverlayWidget.Cast(root.FindAnyWidget("ListBoxRight"));
 				SCR_ListBoxComponent listboxcomp = SCR_ListBoxComponent.Cast(listbox.FindHandler(SCR_ListBoxComponent));
 				int selected = listboxcomp.GetSelectedItem();
+				if (selected == -1) break;
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 				PlayerController pc = GetGame().GetPlayerController();
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
@@ -116,6 +132,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						params.TransformMode = ETransformMode.WORLD;
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
+						CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
+						vector posInWorld = vector.Zero;
+						if (cam)
+						{
+							cam.GetCursorTargetWithPosition(posInWorld);
+							mat[3] = posInWorld;
+						}
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 						break;
@@ -129,6 +152,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						params.TransformMode = ETransformMode.WORLD;
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
+						CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
+						vector posInWorld = vector.Zero;
+						if (cam)
+						{
+							cam.GetCursorTargetWithPosition(posInWorld);
+							mat[3] = posInWorld;
+						}
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 						break;

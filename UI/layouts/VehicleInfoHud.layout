@@ -1,0 +1,57 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  WindowWidgetClass "{5A871286BCE681C5}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A372D91FAAC8722}" {
+    Anchor 1 0 1 0
+    PositionX -245
+    OffsetLeft -245
+    PositionY 320
+    OffsetTop 320
+    SizeX 200
+    OffsetRight 45
+    SizeY 200
+    OffsetBottom -520
+   }
+   "Ignore Cursor" 1
+   Color 0.886 0.597 0.163 1
+   "no focus" 1
+   {
+    RichTextWidgetClass "{5A871286BCE681C7}" {
+     Name "Name"
+     Slot FrameWidgetSlot "{5A372D91E0108CC7}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 10
+      OffsetTop 10
+      SizeX 180
+      OffsetRight -190
+      SizeY 145
+      OffsetBottom -155
+     }
+     "Font Size" 20
+     "Min Font Size" 20
+     "Horizontal Alignment" Right
+    }
+    RichTextWidgetClass "{5A871286BCE681C6}" {
+     Name "Damage"
+     Slot FrameWidgetSlot "{5A3B337E2E5EBFF8}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 160
+      OffsetTop 160
+      SizeX 180
+      OffsetRight -190
+      SizeY 30
+      OffsetBottom -190
+     }
+     "Font Size" 20
+     "Min Font Size" 20
+     "Horizontal Alignment" Right
+     "Vertical Alignment" Center
+    }
+   }
+  }
+ }
+}
