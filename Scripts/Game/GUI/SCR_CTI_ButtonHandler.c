@@ -49,6 +49,48 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				unflipveh.unflip();
 				break;
 			}
+			case "LEAVECOM":
+			{
+				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+				PlayerController pc = GetGame().GetPlayerController();
+				int playerId = pc.GetPlayerId();
+				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+				gameMode.clearCommanderId(affiliationComp.GetAffiliatedFaction().GetFactionKey());
+				
+				int sizeCDA = gameMode.ClientDataArray.Count();
+				SCR_CTI_ClientData clientData;
+				for (int i = 0; i < sizeCDA; i++)
+				{
+					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+					{
+						clientData = gameMode.ClientDataArray[i];
+						break;
+					}
+				}
+
+				if (clientData)
+				{
+					clientData.setCommander(false);
+				}
+
+				break;
+			}
+			case "UPGRADES":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_UpgradeMenu);
+				
+				break;
+			}
+			case "STARTUPGRADE":
+			{
+				break;
+			}
+			case "CANCELUPGRADE":
+			{
+				break;
+			}
 			case "BUILDSTRUCTURE":
 			{
 				auto menuManager = GetGame().GetMenuManager();
@@ -66,40 +108,41 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				{
 					case "USSR":
 					{
-						SCR_CTI_FactoryData facData = gameMode.FactorysUSSR.g_USSR_Factorys[selected];
+						SCR_CTI_FactoryData facData = gameMode.FactoriesUSSR.g_USSR_Factories[selected];
 						ResourceName res = facData.getRes();
 						Resource resource = Resource.Load(res);
 						EntitySpawnParams params = new EntitySpawnParams();
 						params.TransformMode = ETransformMode.WORLD;
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
-						CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
-						vector posInWorld = vector.Zero;
-						if (cam)
-						{
-							cam.GetCursorTargetWithPosition(posInWorld);
-							mat[3] = posInWorld;
-						}
+						//CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
+						//vector posInWorld = vector.Zero;
+						//if (cam)
+						//{
+						//	cam.GetCursorTargetWithPosition(posInWorld);
+						//	mat[3] = posInWorld;
+						//}
+						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
+						float dist = 10; // distance from facts file
+						mat[3] = mat[3] + (dir * dist); // maybe need get the new position ATL 
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						
+						// TODO money things
 						break;
 					}
 					case "US":
 					{
-						SCR_CTI_FactoryData facData = gameMode.FactorysUS.g_US_Factorys[selected];
+						SCR_CTI_FactoryData facData = gameMode.FactoriesUS.g_US_Factories[selected];
 						ResourceName res = facData.getRes();
 						Resource resource = Resource.Load(res);
 						EntitySpawnParams params = new EntitySpawnParams();
 						params.TransformMode = ETransformMode.WORLD;
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
-						CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
-						vector posInWorld = vector.Zero;
-						if (cam)
-						{
-							cam.GetCursorTargetWithPosition(posInWorld);
-							mat[3] = posInWorld;
-						}
+						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
+						float dist = 10; // distance from facts file
+						mat[3] = mat[3] + (dir * dist);	
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 						break;
@@ -132,13 +175,9 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						params.TransformMode = ETransformMode.WORLD;
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
-						CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
-						vector posInWorld = vector.Zero;
-						if (cam)
-						{
-							cam.GetCursorTargetWithPosition(posInWorld);
-							mat[3] = posInWorld;
-						}
+						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
+						float dist = 10; // distance from facts file
+						mat[3] = mat[3] + (dir * dist);	
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 						break;
@@ -152,13 +191,9 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						params.TransformMode = ETransformMode.WORLD;
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
-						CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
-						vector posInWorld = vector.Zero;
-						if (cam)
-						{
-							cam.GetCursorTargetWithPosition(posInWorld);
-							mat[3] = posInWorld;
-						}
+						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
+						float dist = 10; // distance from facts file
+						mat[3] = mat[3] + (dir * dist);	
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 						break;

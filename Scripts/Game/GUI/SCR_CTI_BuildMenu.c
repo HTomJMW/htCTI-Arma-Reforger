@@ -28,7 +28,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected RichTextWidget m_undodefensetext;
 	protected RichTextWidget m_backtext;
 	protected RichTextWidget m_exittext;
-	
+
 	protected OverlayWidget m_listboxleft;
 	protected OverlayWidget m_listboxright;
 	protected SCR_ListBoxComponent m_listboxleftcomp;
@@ -121,36 +121,36 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		{
 			case "USSR":
 			{
-				for (int i = 0; i < gameMode.FactorysUSSR.g_USSR_Factorys.Count(); i++)
+				for (int i = 0; i < gameMode.FactoriesUSSR.g_USSR_Factories.Count(); i++)
 				{
 					SCR_CTI_FactoryData factoryData;
-					factoryData = gameMode.FactorysUSSR.g_USSR_Factorys[i];
-					m_listboxleftcomp.AddItem(factoryData.getName());
+					factoryData = gameMode.FactoriesUSSR.g_USSR_Factories[i];
+					m_listboxleftcomp.AddItem(factoryData.getPri().ToString() + "$ " + factoryData.getName());
 				}
 				
 				for (int j = 0; j < gameMode.DefensesUSSR.g_USSR_Defenses.Count(); j++)
 				{
 					SCR_CTI_DefenseData defData;
 					defData = gameMode.DefensesUSSR.g_USSR_Defenses[j];
-					m_listboxrightcomp.AddItem(defData.getName());
+					m_listboxrightcomp.AddItem(defData.getPri().ToString() + "$ " + defData.getName());
 				}
 				break;
 			}
 			
 			case "US":
 			{
-				for (int i = 0; i < gameMode.FactorysUS.g_US_Factorys.Count(); i++)
+				for (int i = 0; i < gameMode.FactoriesUS.g_US_Factories.Count(); i++)
 				{
 					SCR_CTI_FactoryData factoryData;
-					factoryData = gameMode.FactorysUS.g_US_Factorys[i];
-					m_listboxleftcomp.AddItem(factoryData.getName());
+					factoryData = gameMode.FactoriesUS.g_US_Factories[i];
+					m_listboxleftcomp.AddItem(factoryData.getPri().ToString() + "$ " + factoryData.getName());
 				}
 				
 				for (int j = 0; j < gameMode.DefensesUS.g_US_Defenses.Count(); j++)
 				{
 					SCR_CTI_DefenseData defData;
 					defData = gameMode.DefensesUS.g_US_Defenses[j];
-					m_listboxrightcomp.AddItem(defData.getName());
+					m_listboxrightcomp.AddItem(defData.getPri().ToString() + "$ " + defData.getName());
 				}
 				break;
 			}		
@@ -176,7 +176,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		if (clientData)
 		{
 			int funds = clientData.getFunds();
-			m_resources.SetText("Resources: " + funds.ToString());
+			m_resources.SetText("Resources: " + funds.ToString() + "$");
 		}
 	}
 };

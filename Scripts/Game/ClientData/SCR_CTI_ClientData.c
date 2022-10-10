@@ -26,6 +26,11 @@ class SCR_CTI_ClientData
 		return m_isCommander;
 	}
 	
+	void setCommander(bool value)
+	{
+		m_isCommander = value;
+	}
+	
 	//Faction getPlayerFaction()
 	//{
 	//	return m_playerFaction;

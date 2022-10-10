@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{1796F8E1DE6A4929}UI/layouts/Menus/RoleSelection/RespawnSuperMenu.layout"
+ Configurations {
+  LayoutResourceClass PC {
+  }
+  LayoutResourceClass XBOX_ONE : PC {
+  }
+  LayoutResourceClass XBOX_SERIES : PC {
+  }
+  LayoutResourceClass PS4 : PC {
+  }
+  LayoutResourceClass HEADLESS : PC {
+  }
+ }
+}

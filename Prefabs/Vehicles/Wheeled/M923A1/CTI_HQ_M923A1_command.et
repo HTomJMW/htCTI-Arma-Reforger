@@ -1,0 +1,160 @@
+Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  RigidBody "{51DAA09FECF52BBF}" {
+   Mass 11402
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
+    Name "#AR-Vehicle_M934A1_Name"
+    Icon "{69691B5E759C0362}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Truck_Command.edds"
+    IconSetName ""
+    m_Image "{ADF5342179CB2029}UI/Textures/EditorPreviews/Vehicles/Wheeled/M923A1/M923A1_command.edds"
+    m_sFaction "US"
+    m_aAuthoredLabels + {
+     35
+    }
+    m_aAutoLabels +{
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{56FCFAC01565651D}" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{5A911B4FA89B2FC0}" {
+     m_iParentID -1
+     m_Mesh "{DF7CF60669EFC7E5}Assets/Vehicles/Wheeled/M923A1/M923A1_BASE.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5A911B4FA89B2FCC}" {
+     m_iParentID 0
+     m_Mesh "{4EE69C10EAB64B35}Assets/Vehicles/Wheeled/M923A1/M923A1_COM.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5A911B4FA89B2FC9}" {
+     m_iParentID 0
+     m_Mesh "{3EDD13326D1756CA}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Right.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_r01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5A911B4FA89B2FCB}" {
+     m_iParentID 0
+     m_Mesh "{815BAF9547C41A48}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Left.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_l01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5A911B4FA89B2FD5}" {
+     m_iParentID 0
+     m_Mesh "{CF5DA3DD8C0F1630}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Back_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5A911B4FA89B2FD4}" {
+     m_iParentID 0
+     m_Mesh "{56431A4491E827A0}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Back_02.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5A911B4FA89B2FD7}" {
+     m_iParentID 0
+     m_Mesh "{2084927666A41EA9}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Front_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5A911B4FA89B2FD6}" {
+     m_iParentID 0
+     m_Mesh "{B99A2BEF7B432F39}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Front_02.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo Radio {
+     Prefab "{DCE16D92C350D64F}Prefabs/Vehicles/Wheeled/M923A1/M923A1_combox.et"
+     RegisterActions 1
+     RegisterDamage 1
+     RegisterCompartments 1
+     RegisterLights 1
+    }
+   }
+  }
+  VehicleWheeledSimulation "{731B26FCA2F19855}" {
+   Simulation Wheeled "{4D8B26DEA5F25978}" {
+    Axles {
+     Axle "{4D8B26DF957A8E1C}" {
+      Suspension Suspension "{4D8B26DFF8859A7B}" {
+       SpringRate 105.3
+      }
+     }
+     Axle "{4D8B26DF8CF2F3D8}" {
+      Suspension Suspension "{4D8B26DF2B10AE05}" {
+       SpringRate 87.75
+      }
+     }
+     Axle "{50E44036F5F03A46}" {
+      Suspension Suspension "{50E44036FA29A2D0}" {
+       SpringRate 87.75
+      }
+     }
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5A911B5E90418DE5}" {
+     ContextName "take_command"
+     Position PointInfo "{5A911B5E83BA62AF}" {
+     }
+     Radius 5
+    }
+   }
+   additionalActions {
+    SCR_CTI_TakeCommandAction "{5A911B4C092AB225}" {
+     ParentContextList {
+      "take_command"
+     }
+     VisibilityRange 5
+     m_sActionStateOn ""
+     m_sActionStateOff ""
+    }
+   }
+  }
+ }
+ m_eVehicleType COMM_TRUCK
+}

@@ -17,16 +17,27 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	const int winRate = 75;
 	protected int playerGroupSize = 8;
 
-	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>; // empty on dedicated
+	protected int ussrCommanderId = -2;
+	protected int usCommanderId = -2;
+	
+	const int maxBases = 2;
+	
+	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>;
 	
 	ref SCR_CTI_UnitsFIA UnitsFIA = new SCR_CTI_UnitsFIA();
 	ref SCR_CTI_UnitsUSSR UnitsUSSR = new SCR_CTI_UnitsUSSR();
 	ref SCR_CTI_UnitsUS UnitsUS = new SCR_CTI_UnitsUS();
 	
-	ref SCR_CTI_FactorysUSSR FactorysUSSR = new SCR_CTI_FactorysUSSR();
-	ref SCR_CTI_FactorysUS FactorysUS = new SCR_CTI_FactorysUS();
+	ref SCR_CTI_FactoriesUSSR FactoriesUSSR = new SCR_CTI_FactoriesUSSR();
+	ref SCR_CTI_FactoriesUS FactoriesUS = new SCR_CTI_FactoriesUS();
 	ref SCR_CTI_DefensesUSSR DefensesUSSR = new SCR_CTI_DefensesUSSR();
 	ref SCR_CTI_DefensesUS DefensesUS = new SCR_CTI_DefensesUS();
+	
+	ref SCR_CTI_Upgrades UpgradesUSSR = new SCR_CTI_Upgrades();
+	ref SCR_CTI_Upgrades UpgradesUS = new SCR_CTI_Upgrades();
+	
+	ref array<IEntity> ussrFactories = {};
+	ref array<IEntity> usFactories = {};
 
 	protected override void EOnInit(IEntity owner)
 	{
@@ -59,10 +70,13 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UnitsUSSR.init();
 		UnitsUS.init();
 		
-		FactorysUSSR.init();
-		FactorysUS.init();
+		FactoriesUSSR.init();
+		FactoriesUS.init();
 		DefensesUSSR.init();
 		DefensesUS.init();
+		
+		UpgradesUSSR.init();
+		UpgradesUS.init();
 		
 		// Server
 		if (!m_RplComponent.IsProxy())
@@ -78,7 +92,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			UpdateVictoryComponent.Deactivate(this);
 		}
 
-		// Client or Player-Hosted server (not dedicated svr)
+		// Client or Player-Hosted server (not dedicated server)
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
 		{
 			GetGame().GetInputManager().AddActionListener("CTI_OpenMainMenu", EActionTrigger.DOWN, openMenu);
@@ -217,6 +231,37 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		return playerGroupSize;
 	}
+	
+	int getCommanderId(FactionKey factionkey)
+	{
+		int Id = -2;
+		
+		switch (factionkey)
+		{
+			case "USSR": Id = ussrCommanderId; break;
+			case "US": Id = usCommanderId; break;
+		}
+
+		return Id;
+	}
+	
+	void setCommanderId(FactionKey factionkey, int playerId)
+	{
+		switch (factionkey)
+		{
+			case "USSR": ussrCommanderId = playerId; break;
+			case "US": usCommanderId = playerId; break;
+		}
+	}
+	
+	void clearCommanderId(FactionKey factionkey)
+	{
+		switch (factionkey)
+		{
+			case "USSR": ussrCommanderId = -2; break;
+			case "US": usCommanderId = -2; break;
+		}
+	}
 
 	void SCR_CTI_GameMode(IEntitySource src, IEntity parent)
 	{
@@ -234,7 +279,10 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UnitsUSSR = null;
 		UnitsUS = null;
 		
-		FactorysUSSR = null;
-		FactorysUS = null;
+		FactoriesUSSR = null;
+		FactoriesUS = null;
+		
+		UpgradesUSSR = null;
+		UpgradesUS = null;
 	}
 };

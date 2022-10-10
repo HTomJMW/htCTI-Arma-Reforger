@@ -19,49 +19,55 @@ FrameWidgetClass {
    "no focus" 1
    {
     RichTextWidgetClass "{5A372D91E0108CAF}" {
-     Name "Name"
+     Name "HudLine1"
      Slot FrameWidgetSlot "{5A372D91E0108CC7}" {
-      PositionX 30
-      OffsetLeft 30
+      PositionX 20
+      OffsetLeft 20
       PositionY 10
       OffsetTop 10
-      SizeX 350
-      OffsetRight -380
+      SizeX 400
+      OffsetRight -420
       SizeY 30
       OffsetBottom -40
      }
-     "Font Size" 26
-     "Min Font Size" 26
+     Text "Radio/Funds/HP/Stamina"
+     "Font Size" 18
+     "Min Font Size" 18
+     "Vertical Alignment" Center
     }
     RichTextWidgetClass "{5A3B337E2E5EBFE0}" {
-     Name "Health"
+     Name "HudLine2"
      Slot FrameWidgetSlot "{5A3B337E2E5EBFF8}" {
-      PositionX 30
-      OffsetLeft 30
+      PositionX 20
+      OffsetLeft 20
       PositionY 40
       OffsetTop 40
-      SizeX 350
-      OffsetRight -380
+      SizeX 400
+      OffsetRight -420
       SizeY 30
       OffsetBottom -70
      }
-     "Font Size" 26
-     "Min Font Size" 26
+     Text "Commander/Bases"
+     "Font Size" 18
+     "Min Font Size" 18
+     "Vertical Alignment" Center
     }
     RichTextWidgetClass "{5A372D91D19A358B}" {
-     Name "Funds"
+     Name "HudLine3"
      Slot FrameWidgetSlot "{5A372D91D19A35A9}" {
-      PositionX 30
-      OffsetLeft 30
+      PositionX 20
+      OffsetLeft 20
       PositionY 70
       OffsetTop 70
-      SizeX 350
-      OffsetRight -380
+      SizeX 400
+      OffsetRight -420
       SizeY 30
       OffsetBottom -100
      }
-     "Font Size" 26
-     "Min Font Size" 26
+     Text "Upgrade"
+     "Font Size" 18
+     "Min Font Size" 18
+     "Vertical Alignment" Center
     }
    }
   }

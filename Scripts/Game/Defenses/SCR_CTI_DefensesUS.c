@@ -30,7 +30,7 @@ class SCR_CTI_DefensesUS
 		// Defenses
 		res.Insert("{887DB60486A18575}Prefabs/Weapons/Tripods/Tripod_M122_MG_M60.et");
 		name.Insert("M60 - Tripod");
-		pri.Insert(0);
+		pri.Insert(1000);
 		bt.Insert(10);
 		dis.Insert(5);
 		pla.Insert(0);

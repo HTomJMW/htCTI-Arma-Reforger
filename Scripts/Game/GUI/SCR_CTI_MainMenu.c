@@ -22,6 +22,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected ButtonWidget m_halo;
 	protected ButtonWidget m_build;
 	
+	protected ButtonWidget m_leavecom;
+	
 	protected ButtonWidget m_onlinehelp;
 	protected ButtonWidget m_videosettings;
 	protected ButtonWidget m_transferresources;
@@ -69,6 +71,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_halo = ButtonWidget.Cast(m_wRoot.FindAnyWidget("HALOButton"));
 		m_build = ButtonWidget.Cast(m_wRoot.FindAnyWidget("BuildButton"));
 		
+		m_leavecom = ButtonWidget.Cast(m_wRoot.FindAnyWidget("LeaveComButton"));
+		
 		m_onlinehelp = ButtonWidget.Cast(m_wRoot.FindAnyWidget("OnlineHelpButton"));
 		m_videosettings = ButtonWidget.Cast(m_wRoot.FindAnyWidget("VideoSettingsButton"));
 		m_transferresources = ButtonWidget.Cast(m_wRoot.FindAnyWidget("TransferResourcesButton"));
@@ -107,6 +111,10 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_build.SetName("BUILD");
 		m_build.SetColor(Color.Orange);
 		m_build.AddHandler(m_buttonEventHandler);
+		
+		m_leavecom.SetName("LEAVECOM");
+		m_leavecom.SetColor(Color.Orange);
+		m_leavecom.AddHandler(m_buttonEventHandler);
 		
 		m_onlinehelp.SetName("ONLINEHELP");
 		m_onlinehelp.SetColor(Color.Orange);

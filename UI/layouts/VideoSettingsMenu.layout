@@ -1,0 +1,238 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  ImageWidgetClass "{5A8F131EC57C5694}" {
+   Name "BackGround"
+   Slot FrameWidgetSlot "{5A3D637FFD52AA3B}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -450
+    OffsetLeft -450
+    PositionY -350
+    OffsetTop -350
+    SizeX 900
+    OffsetRight -450
+    SizeY 700
+    OffsetBottom -350
+   }
+   Opacity 0.8
+   Texture "{AE0DAFB0ED1F2B1C}UI/Textures/Menu/background.edds"
+   Image ""
+   Size 64 64
+  }
+  WindowWidgetClass "{5A8F131EC57C5695}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A3D2853D8391800}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -400
+    OffsetLeft -400
+    PositionY -300
+    OffsetTop -300
+    SizeX 800
+    OffsetRight -400
+    SizeY 600
+    OffsetBottom -300
+   }
+   Clipping False
+   "no focus" 1
+   {
+    ButtonWidgetClass "{5A8F131EC57C4698}" {
+     Name "Back"
+     Slot FrameWidgetSlot "{5A6D38DAC02C7D8B}" {
+      Anchor 1 0 1 0
+      PositionX -47.5
+      OffsetLeft -47.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight 2.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      TextWidgetClass "{5A8F131EC57C4699}" {
+       Name "BackText"
+       Slot ButtonWidgetSlot "{5A6D38DA34517D6E}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[<]"
+      }
+     }
+    }
+    ButtonWidgetClass "{5A8F131EC57C6940}" {
+     Name "Exit"
+     Slot FrameWidgetSlot "{5A432A4F34902E6B}" {
+      Anchor 1 0 1 0
+      PositionX 2.5
+      OffsetLeft 2.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight -47.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      RichTextWidgetClass "{5A8F131EC57C695F}" {
+       Name "ExitText"
+       Slot ButtonWidgetSlot "{5A57061E54D2921C}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[X]"
+      }
+     }
+    }
+    WindowWidgetClass "{5A8F131E17633FD5}" {
+     Name "UpperWindow"
+     Slot FrameWidgetSlot "{5A8F131E17633FFC}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 10
+      OffsetTop 10
+      SizeX 780
+      OffsetRight -790
+      SizeY 400
+      OffsetBottom -410
+     }
+     {
+      RichTextWidgetClass "{5A8F131D91928B33}" {
+       Name "ViewDistance"
+       Slot FrameWidgetSlot "{5A8F131D91928AD6}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 10
+        OffsetTop 10
+        SizeX 760
+        OffsetRight -770
+        OffsetBottom -40
+       }
+       Text "View Distance:"
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F131D8F761409}" {
+       Name "ObjectDistance"
+       Slot FrameWidgetSlot "{5A8F131D8F76142F}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 100
+        OffsetTop 100
+        SizeX 760
+        OffsetRight -770
+        OffsetBottom -130
+       }
+       Text "Object Distance:"
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F131D8E687F7A}" {
+       Name "ShadowDistance"
+       Slot FrameWidgetSlot "{5A8F131D8E687F1E}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 200
+        OffsetTop 200
+        SizeX 760
+        OffsetRight -770
+        OffsetBottom -230
+       }
+       Text "Shadow Distance:"
+       "Vertical Alignment" Center
+      }
+      SliderWidgetClass "{5A8F131CB8BA7EF4}" {
+       Name "SliderSD"
+       Slot FrameWidgetSlot "{5A8F131CB8BA7DF7}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 240
+        OffsetTop 240
+        SizeX 760
+        OffsetRight -770
+        SizeY 30
+        OffsetBottom -270
+       }
+       minimum 0
+       maximum 300
+       step 25
+       current 100
+      }
+      SliderWidgetClass "{5A8F131CA57C8CEF}" {
+       Name "SliderOD"
+       Slot FrameWidgetSlot "{5A8F131CA57C8CF6}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 140
+        OffsetTop 140
+        SizeX 760
+        OffsetRight -770
+        OffsetBottom -170
+       }
+       minimum 1000
+       maximum 4000
+       step 100
+       current 4000
+      }
+      SliderWidgetClass "{5A8F131CA4F2FDAD}" {
+       Name "SliderVD"
+       Slot FrameWidgetSlot "{5A8F131CA4F2FDB7}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 50
+        OffsetTop 50
+        SizeX 760
+        OffsetRight -770
+        SizeY 30
+        OffsetBottom -80
+       }
+       minimum 1000
+       maximum 4000
+       step 100
+       current 4000
+      }
+     }
+    }
+    WindowWidgetClass "{5A8F131E1606DD98}" {
+     Name "LowerWindow"
+     Slot FrameWidgetSlot "{5A8F131E1606DDBD}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 420
+      OffsetTop 420
+      SizeX 780
+      OffsetRight -790
+      SizeY 100
+      OffsetBottom -520
+     }
+     {
+      RichTextWidgetClass "{5A8F131D8D3E9675}" {
+       Name "TerrainGrid"
+       Slot FrameWidgetSlot "{5A8F131D8D3E9619}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 10
+        OffsetTop 10
+        SizeX 760
+        OffsetRight -770
+        OffsetBottom -40
+       }
+       Text "Terrain Grid:"
+       "Vertical Alignment" Center
+      }
+      SliderWidgetClass "{5A8F131CEF5A3811}" {
+       Name "SliderTG"
+       Slot FrameWidgetSlot "{5A8F131CEF5A3838}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 50
+        OffsetTop 50
+        SizeX 760
+        OffsetRight -770
+        OffsetBottom -80
+       }
+       minimum 15
+       step 5
+       current 25
+      }
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,8 +1,8 @@
 class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 {
-	protected RichTextWidget Name;
-	protected RichTextWidget Health;
-	protected RichTextWidget Funds;
+	protected RichTextWidget Line1;
+	protected RichTextWidget Line2;
+	protected RichTextWidget Line3;
 	
 	protected float m_timeDelta;
 	protected const float timeStep = 0.5;
@@ -14,18 +14,9 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 
 	protected void CreateHud(IEntity owner)
 	{
-		Name = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Name"));
-		Health = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Health"));
-		Funds = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Funds"));
-		
-		Name.SetText("Player Name");
-		Name.SetVisible(true);
-		
-		Health.SetText("Player Health");
-		Health.SetVisible(true);
-		
-		Funds.SetText("Player Funds");
-		Funds.SetVisible(true);
+		Line1 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine1"));
+		Line2 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine2"));
+		Line3 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine3"));
 	}
 
 	protected void DestroyHud()
@@ -53,9 +44,21 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			pc = GetGame().GetPlayerController();
 			ent = pc.GetControlledEntity();
 			dmc = DamageManagerComponent.Cast(ent.FindComponent(DamageManagerComponent));
-			
-			int hp = dmc.GetHealth();
 	
+			int hp = dmc.GetHealth();
+			
+			FactionAffiliationComponent side = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
+			FactionKey sidekey = side.GetAffiliatedFaction().GetFactionKey();
+			int commanderId = -2;
+			if (sidekey == "USSR")
+			{
+				commanderId = gameMode.getCommanderId(sidekey);
+			} else {
+				commanderId = gameMode.getCommanderId(sidekey);
+			}
+			string comm = "None";
+			if (commanderId != -2) comm = GetGame().GetPlayerManager().GetPlayerName(commanderId);
+			
 			int playerId = pc.GetPlayerId();
 			
 			int sizeCDA = gameMode.ClientDataArray.Count();
@@ -72,17 +75,17 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			if (clientData)
 			{
 				int funds = clientData.getFunds();
-				string name = clientData.getPlayerName();
-			
-				Name.SetText("Player: " + name);
+
+				string health;
 				switch (true)
 				{
-					case (hp < 75 && hp > 25): Health.SetColor(Color.Yellow); break;
-					case (hp < 25): Health.SetColor(Color.Red); break;
-					default: Health.SetColor(Color.Green); break;
+					case (hp < 75 && hp > 25): health = string.Format("<color rgba='255,255,0,255'>%1</color>", hp.ToString()); break;
+					case (hp < 25): health = string.Format("<color rgba='255,0,0,255'>%1</color>", hp.ToString()); break;
+					default: health = string.Format("<color rgba='0,255,0,255'>%1</color>", hp.ToString()); break;
 				}
-				Health.SetText("Health: " + hp.ToString());
-				Funds.SetText("Funds: " + funds.ToString());
+				Line1.SetText("Radio: - || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: -");
+				Line2.SetText("Current Com: " + comm + " || Bases: -/" + gameMode.maxBases.ToString());
+				Line3.SetText(string.Format("<color rgba='255,0,0,255'>No Upgrade Running</color>"));
 			}
 			m_timeDelta = 0;
 		}

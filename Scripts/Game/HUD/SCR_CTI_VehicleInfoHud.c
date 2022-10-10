@@ -79,13 +79,14 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 					maxhp += hitzone.GetMaxHealth();
 				}
 				float condition = Math.Round((hp / maxhp) * 100);
+				string cond;
 				switch (true)
 				{
-					case (condition < 75 && condition > 25): Damage.SetColor(Color.Yellow); break;
-					case (condition < 25): Damage.SetColor(Color.Red); break;
-					default: Damage.SetColor(Color.Green); break;
+					case (hp < 75 && hp > 25): cond = string.Format("<color rgba='255,255,0,255'>%1%2</color>", condition.ToString(), "%"); break;
+					case (hp < 25): cond = string.Format("<color rgba='255,0,0,255'>%1%2</color>", condition.ToString(), "%"); break;
+					default: cond = string.Format("<color rgba='0,255,0,255'>%1%2</color>", condition.ToString(), "%"); break;
 				}
-				Damage.SetText("Condition: " + condition.ToString() + "%");
+				Damage.SetText("Condition: " + cond);
 			}
 			m_timeDelta = 0;
 		}

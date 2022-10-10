@@ -666,7 +666,7 @@ FrameWidgetClass {
      }
     }
     ButtonWidgetClass "{5A5D2DAE84005E3C}" {
-     Name "ButtonRight0"
+     Name "LeaveComButton"
      Slot FrameWidgetSlot "{5A5D2DAE84005E51}" {
       Anchor 1 0 1 0
       PositionX -245
@@ -680,9 +680,11 @@ FrameWidgetClass {
      }
      {
       RichTextWidgetClass "{5A5D2DA84AD0531F}" {
-       Name "ButtonRight0Text"
+       Name "LeaveComText"
        Slot ButtonWidgetSlot "{5A5D2DA84AD05336}" {
        }
+       Color 0.173 0.129 0 1
+       Text "Leave Com."
       }
      }
     }
@@ -699,11 +701,13 @@ FrameWidgetClass {
       SizeY 45
       OffsetBottom -99
      }
+     Color 0.467 0.467 0.467 1
      {
       RichTextWidgetClass "{5A5D2DA849CA592B}" {
        Name "ButtonRight1Text"
        Slot ButtonWidgetSlot "{5A5D2DA849CA5940}" {
        }
+       Text ""
       }
      }
     }
@@ -720,11 +724,13 @@ FrameWidgetClass {
       SizeY 45
       OffsetBottom -148
      }
+     Color 0.467 0.467 0.467 1
      {
       RichTextWidgetClass "{5A5D2DA848A75FDE}" {
        Name "ButtonRight2Text"
        Slot ButtonWidgetSlot "{5A5D2DA848A75FF5}" {
        }
+       Text ""
       }
      }
     }
@@ -741,11 +747,13 @@ FrameWidgetClass {
       SizeY 45
       OffsetBottom -197
      }
+     Color 0.467 0.467 0.467 1
      {
       RichTextWidgetClass "{5A5D2DA8478BB916}" {
        Name "ButtonRight3Text"
        Slot ButtonWidgetSlot "{5A5D2DA8478BB92D}" {
        }
+       Text ""
       }
      }
     }

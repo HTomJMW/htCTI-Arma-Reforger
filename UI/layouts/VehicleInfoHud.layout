@@ -5,11 +5,11 @@ FrameWidgetClass {
    Name "Window"
    Slot FrameWidgetSlot "{5A372D91FAAC8722}" {
     Anchor 1 0 1 0
-    PositionX -245
-    OffsetLeft -245
+    PositionX -225
+    OffsetLeft -225
     PositionY 320
     OffsetTop 320
-    SizeX 200
+    SizeX 180
     OffsetRight 45
     SizeY 200
     OffsetBottom -520
@@ -25,13 +25,13 @@ FrameWidgetClass {
       OffsetLeft 10
       PositionY 10
       OffsetTop 10
-      SizeX 180
-      OffsetRight -190
+      SizeX 160
+      OffsetRight -170
       SizeY 145
       OffsetBottom -155
      }
-     "Font Size" 20
-     "Min Font Size" 20
+     "Font Size" 18
+     "Min Font Size" 18
      "Horizontal Alignment" Right
     }
     RichTextWidgetClass "{5A871286BCE681C6}" {
@@ -41,13 +41,13 @@ FrameWidgetClass {
       OffsetLeft 10
       PositionY 160
       OffsetTop 160
-      SizeX 180
-      OffsetRight -190
+      SizeX 160
+      OffsetRight -170
       SizeY 30
       OffsetBottom -190
      }
-     "Font Size" 20
-     "Min Font Size" 20
+     "Font Size" 18
+     "Min Font Size" 18
      "Horizontal Alignment" Right
      "Vertical Alignment" Center
     }

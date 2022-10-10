@@ -30,7 +30,7 @@ class SCR_CTI_DefensesUSSR
 		// Defenses
 		res.Insert("{723870DBB19D30B0}Prefabs/Weapons/Tripods/Tripod_6T5_PKM.et");
 		name.Insert("PKM - Tripod");
-		pri.Insert(0);
+		pri.Insert(1000);
 		bt.Insert(10);
 		dis.Insert(5);
 		pla.Insert(0);
