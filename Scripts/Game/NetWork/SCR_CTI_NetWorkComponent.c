@@ -91,6 +91,26 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 			vehicle.SetAngles(angles);
 		}
 	}
+	
+	void StartUpgradeServer(FactionKey fk, int selected)
+	{
+		Rpc(RpcAsk_StartUpgrade, fk, selected);
+		Rpc(RpcDo_StartUpgrade, fk, selected);
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_StartUpgrade(FactionKey fk, int selected)
+	{
+		SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_CTI_UpgradeComponent));
+		upgradeComp.runUpgrade(fk, selected);
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
+    protected void RpcDo_StartUpgrade(FactionKey fk, int selected)
+    {
+        SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_CTI_UpgradeComponent)); Print(upgradeComp);
+		upgradeComp.runUpgrade(fk, selected);
+    }
 
 	override void EOnInit(IEntity owner)
 	{

@@ -5,9 +5,10 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	protected RichTextWidget Line3;
 	
 	protected float m_timeDelta;
-	protected const float timeStep = 0.5;
+	protected const float timeStep = 1;
 	
 	SCR_CTI_GameMode gameMode;
+	SCR_CTI_UpgradeComponent upComp;
 	PlayerController pc;
 	IEntity ent;
 	DamageManagerComponent dmc;
@@ -50,11 +51,33 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			FactionAffiliationComponent side = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
 			FactionKey sidekey = side.GetAffiliatedFaction().GetFactionKey();
 			int commanderId = -2;
+			string upgrade = string.Format("<color rgba='255,0,0,255'>No Upgrade Running</color>");
+			SCR_CTI_UpgradeData upgradedata;
 			if (sidekey == "USSR")
 			{
 				commanderId = gameMode.getCommanderId(sidekey);
+				
+				for (int j = 0; j < gameMode.UpgradesUSSR.g_Upgrades.Count(); j++)
+				{
+					upgradedata = gameMode.UpgradesUSSR.g_Upgrades[j]; Print(upgradedata); Print(upgradedata.getStatus());
+					if (upgradedata.getStatus() == UpgradeStatus.RUNNING)
+					{
+						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(upComp.getRemainingTime(sidekey)).ToString() + "s";
+						break;
+					}
+				}
 			} else {
 				commanderId = gameMode.getCommanderId(sidekey);
+
+				for (int j = 0; j < gameMode.UpgradesUS.g_Upgrades.Count(); j++)
+				{
+					upgradedata = gameMode.UpgradesUSSR.g_Upgrades[j];
+					if (upgradedata.getStatus() == UpgradeStatus.RUNNING)
+					{
+						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(upComp.getRemainingTime(sidekey)).ToString() + "s";
+						break;
+					}
+				}
 			}
 			string comm = "None";
 			if (commanderId != -2) comm = GetGame().GetPlayerManager().GetPlayerName(commanderId);
@@ -84,8 +107,8 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 					default: health = string.Format("<color rgba='0,255,0,255'>%1</color>", hp.ToString()); break;
 				}
 				Line1.SetText("Radio: - || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: -");
-				Line2.SetText("Current Com: " + comm + " || Bases: -/" + gameMode.maxBases.ToString());
-				Line3.SetText(string.Format("<color rgba='255,0,0,255'>No Upgrade Running</color>"));
+				Line2.SetText("Current Com: " + comm + " || Bases: -/" + gameMode.maxBases.ToString()); 
+				Line3.SetText(upgrade);
 			}
 			m_timeDelta = 0;
 		}
@@ -96,6 +119,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		if (m_LayoutPath == "") m_LayoutPath = "{959E824DECAF27D7}UI/layouts/InfoHud.layout";
 		
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		upComp = SCR_CTI_UpgradeComponent.Cast(gameMode.FindComponent(SCR_CTI_UpgradeComponent));
 		m_timeDelta = 0;
 
 		return true;

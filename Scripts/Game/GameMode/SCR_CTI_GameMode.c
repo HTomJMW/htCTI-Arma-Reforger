@@ -12,6 +12,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_RandomStartComponent RandomStartComponent;
 	protected SCR_CTI_UpdateVictoryComponent UpdateVictoryComponent;
 	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
+	protected SCR_CTI_UpgradeComponent UpgradeComponent;
 
 	const bool ecoWin = true;
 	const int winRate = 75;
@@ -32,12 +33,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	ref SCR_CTI_FactoriesUS FactoriesUS = new SCR_CTI_FactoriesUS();
 	ref SCR_CTI_DefensesUSSR DefensesUSSR = new SCR_CTI_DefensesUSSR();
 	ref SCR_CTI_DefensesUS DefensesUS = new SCR_CTI_DefensesUS();
-	
+
 	ref SCR_CTI_Upgrades UpgradesUSSR = new SCR_CTI_Upgrades();
 	ref SCR_CTI_Upgrades UpgradesUS = new SCR_CTI_Upgrades();
-	
-	ref array<IEntity> ussrFactories = {};
-	ref array<IEntity> usFactories = {};
 
 	protected override void EOnInit(IEntity owner)
 	{
@@ -47,6 +45,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		RandomStartComponent = SCR_CTI_RandomStartComponent.Cast(owner.FindComponent(SCR_CTI_RandomStartComponent));
 		UpdateVictoryComponent = SCR_CTI_UpdateVictoryComponent.Cast(owner.FindComponent(SCR_CTI_UpdateVictoryComponent));
 		UpdateResourcesComponent = SCR_CTI_UpdateResourcesComponent.Cast(owner.FindComponent(SCR_CTI_UpdateResourcesComponent));
+		UpgradeComponent = SCR_CTI_UpgradeComponent.Cast(owner.FindComponent(SCR_CTI_UpgradeComponent));
 	}
 
 	protected override void OnGameStart()
@@ -84,12 +83,14 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			WeatherAndTimeComponent.init();
 			RandomStartComponent.init();
 			UpdateVictoryComponent.init();
+			UpgradeComponent.init();
 			UpdateResourcesComponent.Deactivate(this); // disabled on server
 		} else {
 			UpdateResourcesComponent.init(); // run on proxys temporary
 			WeatherAndTimeComponent.Deactivate(this); // force disabled on proxy
 			RandomStartComponent.Deactivate(this);
 			UpdateVictoryComponent.Deactivate(this);
+			UpgradeComponent.init();
 		}
 
 		// Client or Player-Hosted server (not dedicated server)

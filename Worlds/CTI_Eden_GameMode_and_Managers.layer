@@ -221,6 +221,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_UpdateVictoryComponent "{59C56020BFAD9417}" {
   }
+  SCR_CTI_UpgradeComponent "{5A994C801F61E5A6}" {
+  }
   SCR_CTI_WeatherAndTimeComponent "{59F94111F4BBAD91}" {
   }
   SCR_CallsignManagerComponent "{599D233D62F0CD34}" {

@@ -62,7 +62,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		params.Transform = mat;
 
 		GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
-		
+
 		m_clientData.changeFunds(-price);
 	}
 

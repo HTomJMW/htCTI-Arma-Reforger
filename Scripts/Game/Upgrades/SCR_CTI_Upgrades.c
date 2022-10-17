@@ -1,3 +1,10 @@
+enum UpgradeStatus
+{
+	NONE,
+	RUNNING,
+	FINISHED
+};
+
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Upgrade Data Structure")]
 class SCR_CTI_UpgradeData
 {
@@ -9,9 +16,9 @@ class SCR_CTI_UpgradeData
 	protected string link;
 	protected int linklevel;
 	protected int time;
-	protected bool status;
-	
-	void setData(string newlabel, string newname, string newdesc, int newlevel, int newcost, string newlink, int newlinklevel, int newtime, bool newstatus)
+	protected UpgradeStatus status;
+
+	void setData(string newlabel, string newname, string newdesc, int newlevel, int newcost, string newlink, int newlinklevel, int newtime, UpgradeStatus newstatus)
 	{
 		label = newlabel;
 		name = newname;
@@ -64,9 +71,14 @@ class SCR_CTI_UpgradeData
 		return time;
 	}
 	
-	bool getStatus()
+	UpgradeStatus getStatus()
 	{
 		return status;
+	}
+	
+	void setStatus(UpgradeStatus newStatus)
+	{
+		status = newStatus;
 	}
 
 	void SCR_CTI_UpgradeData()
@@ -83,15 +95,15 @@ class SCR_CTI_Upgrades
 {
 	ref array<ref SCR_CTI_UpgradeData> g_Upgrades = new array<ref SCR_CTI_UpgradeData>;
 
-	private ref array<string>	labels	     = {}; // Label
-	private ref array<string>	names		 = {}; // Name
-	private ref array<string>	descriptions = {}; // Description
-	private ref array<int>		levels		 = {}; // Level
-	private ref array<int>		costs		 = {}; // Cost
-	private ref array<string> 	links		 = {}; // Dependence
-	private ref array<int> 		linklevels	 = {}; // Dependence level 
-	private ref array<int> 		times		 = {}; // Time
-	private ref array<bool>		statuses	 = {}; // Status
+	private ref array<string>			labels	     = {}; // Label
+	private ref array<string>			names		 = {}; // Name
+	private ref array<string>			descriptions = {}; // Description
+	private ref array<int>				levels		 = {}; // Level
+	private ref array<int>				costs		 = {}; // Cost
+	private ref array<string> 			links		 = {}; // Dependence
+	private ref array<int> 				linklevels	 = {}; // Dependence level 
+	private ref array<int> 				times		 = {}; // Time
+	private ref array<UpgradeStatus>	statuses	 = {}; // Status
 
 	int findIndexFromName(string name)
 	{
@@ -116,7 +128,7 @@ class SCR_CTI_Upgrades
 		links.Insert("");
 		linklevels.Insert(0);
 		times.Insert(60);
-		statuses.Insert(false);
+		statuses.Insert(UpgradeStatus.NONE);
 		
 		labels.Insert("Barracks");
 		names.Insert("Barracks Level 2");
@@ -126,7 +138,7 @@ class SCR_CTI_Upgrades
 		links.Insert("Barracks Level 1");
 		linklevels.Insert(1);
 		times.Insert(120);
-		statuses.Insert(false);
+		statuses.Insert(UpgradeStatus.NONE);
 		
 		labels.Insert("Light Factory");
 		names.Insert("Light Factory level 1");
@@ -136,7 +148,7 @@ class SCR_CTI_Upgrades
 		links.Insert("Barracks Level 1");
 		linklevels.Insert(1);
 		times.Insert(300);
-		statuses.Insert(false);
+		statuses.Insert(UpgradeStatus.NONE);
 		
 		labels.Insert("Towns Occupation");
 		names.Insert("Towns Occupation Level 1");
@@ -146,7 +158,7 @@ class SCR_CTI_Upgrades
 		links.Insert("Barracks Level 1");
 		linklevels.Insert(1);
 		times.Insert(500);
-		statuses.Insert(false);
+		statuses.Insert(UpgradeStatus.NONE);
 	}
 	
 	void init()

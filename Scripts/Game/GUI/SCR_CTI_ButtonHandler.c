@@ -85,10 +85,27 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "STARTUPGRADE":
 			{
+				PlayerController pc = GetGame().GetPlayerController();
+				// maybe check Comm
+				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
+				auto menuManager = GetGame().GetMenuManager();
+				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
+				Widget root = openedMenu.GetRootWidget();
+				OverlayWidget listbox = OverlayWidget.Cast(root.FindAnyWidget("ListBox"));
+				SCR_ListBoxComponent listboxcomp = SCR_ListBoxComponent.Cast(listbox.FindHandler(SCR_ListBoxComponent));
+				int selected = listboxcomp.GetSelectedItem();
+				if (selected == -1) break;
+				
+				netComp.StartUpgradeServer(fk, selected);
+				
 				break;
 			}
 			case "CANCELUPGRADE":
 			{
+				// todo cancel upgrade
+				
 				break;
 			}
 			case "BUILDSTRUCTURE":
