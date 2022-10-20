@@ -6,12 +6,12 @@ class SCR_CTI_WeatherAndTimeComponentClass : ScriptComponentClass
 class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 {
 	protected TimeAndWeatherManagerEntity m_manager;
-	protected float lenghtofday = 24 * 60 * 60;
-	protected float daytimeduration = lenghtofday / 1;
-	protected float nightduration = lenghtofday / 4; //Night 4x faster than Daytime
+	protected float m_lenghtofday = 24 * 60 * 60;
+	protected float m_daytimeduration = m_lenghtofday / 1;
+	protected float m_nightduration = m_lenghtofday / 4; //Night 4x faster than Daytime
 	
 	protected float m_timeDelta;
-	protected const float timeStep = 60;
+	protected const float TIMESTEP = 60;
 	
 	protected void setStartTime()
 	{
@@ -31,9 +31,9 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 		
 		if (m_manager.IsNightHour(time))
 		{
-			m_manager.SetDayDuration(nightduration);
+			m_manager.SetDayDuration(m_nightduration);
 		} else {
-			m_manager.SetDayDuration(daytimeduration);
+			m_manager.SetDayDuration(m_daytimeduration);
 		}
 	}
 	
@@ -67,7 +67,7 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
-		if (m_timeDelta > timeStep)
+		if (m_timeDelta > TIMESTEP)
 			{
 				timeAcceleration();
 				m_timeDelta = 0;

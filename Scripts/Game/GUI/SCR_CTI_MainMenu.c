@@ -223,7 +223,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		
 		m_townsheldvalue.SetText("Town Held Value: " + sidevalue.ToString() + "/" + allvalue.ToString());
 		
-		float victoryvalue = allvalue * (gameMode.winRate / 100);
+		float victoryvalue = allvalue * (gameMode.WINRATE / 100);
 		m_victory.SetText("Victory: " + victoryvalue.ToString());
 	}
 };

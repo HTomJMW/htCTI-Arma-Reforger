@@ -6,7 +6,7 @@ class SCR_CTI_UpdateVictoryComponentClass : ScriptComponentClass
 class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 {
 	protected float m_timeDelta;
-	protected const float timeStep = 60;
+	protected const float TIMESTEP = 60;
 	
 	protected int m_ussrIndex;
 	protected int m_usIndex;
@@ -15,7 +15,7 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	
 	void update()
 	{
-		if (m_gamemode.ecoWin)
+		if (m_gamemode.ECOWIN)
 		{
 			float ussr = 0.0;
 			float us = 0.0;
@@ -27,13 +27,13 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 				if (town.getFactionKey() == "US") us++;
 			}
 			
-			if (ussr >= (m_gamemode.CTI_Towns.Count() * (m_gamemode.winRate / 100)))
+			if (ussr >= (m_gamemode.CTI_Towns.Count() * (m_gamemode.WINRATE / 100)))
 			{
 				if (m_gamemode.IsRunning()) // Prevent multiple calls
 					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_ussrIndex));
 			}
 			
-			if (us >= (m_gamemode.CTI_Towns.Count() * (m_gamemode.winRate / 100)))
+			if (us >= (m_gamemode.CTI_Towns.Count() * (m_gamemode.WINRATE / 100)))
 			{
 				if (m_gamemode.IsRunning()) // Prevent multiple calls
 					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_usIndex));
@@ -58,7 +58,7 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
-		if (m_timeDelta > timeStep)
+		if (m_timeDelta > TIMESTEP)
 			{
 				update();
 				m_timeDelta = 0;

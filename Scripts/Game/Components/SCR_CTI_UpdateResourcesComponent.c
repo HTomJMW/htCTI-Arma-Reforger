@@ -6,8 +6,8 @@ class SCR_CTI_UpdateResourcesComponentClass : ScriptComponentClass
 class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 {
 	protected float m_timeDelta;
-	protected const float timeStep = 45; // economy cycle
-	protected const float baseIncome = 10;
+	protected const float TIMESTEP = 45; // economy cycle
+	protected const float BASEINCOME = 10;
 	
 	//protected FactionManager m_factionManager;
 	protected SCR_CTI_GameMode m_gameMode;
@@ -26,9 +26,9 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 		{
 			if (clientData.isCommander())
 			{
-				clientData.changeFunds(baseIncome * 10); // todo faction size related commander income and need commander account
+				clientData.changeFunds(BASEINCOME * 10); // todo faction size related commander income and need commander account
 			} else {
-				clientData.changeFunds(baseIncome);
+				clientData.changeFunds(BASEINCOME);
 			}
 		}
 	}
@@ -36,7 +36,7 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
-		if (m_timeDelta > timeStep)
+		if (m_timeDelta > TIMESTEP)
 			{
 				update();
 				m_timeDelta = 0;

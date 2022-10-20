@@ -49,17 +49,21 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			int hp = dmc.GetHealth();
 			
 			FactionAffiliationComponent side = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
+			SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
 			FactionKey sidekey = side.GetAffiliatedFaction().GetFactionKey();
+			int baseCount = 0;
 			int commanderId = -2;
 			string upgrade = string.Format("<color rgba='255,0,0,255'>No Upgrade Running</color>");
 			SCR_CTI_UpgradeData upgradedata;
 			if (sidekey == "USSR")
 			{
+				baseCount = baseComp.ussrBases.Count();
+				
 				commanderId = gameMode.getCommanderId(sidekey);
 				
 				for (int j = 0; j < gameMode.UpgradesUSSR.g_Upgrades.Count(); j++)
 				{
-					upgradedata = gameMode.UpgradesUSSR.g_Upgrades[j]; Print(upgradedata); Print(upgradedata.getStatus());
+					upgradedata = gameMode.UpgradesUSSR.g_Upgrades[j];
 					if (upgradedata.getStatus() == UpgradeStatus.RUNNING)
 					{
 						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(upComp.getRemainingTime(sidekey)).ToString() + "s";
@@ -67,6 +71,8 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 					}
 				}
 			} else {
+				baseCount = baseComp.usBases.Count();
+				
 				commanderId = gameMode.getCommanderId(sidekey);
 
 				for (int j = 0; j < gameMode.UpgradesUS.g_Upgrades.Count(); j++)
@@ -106,10 +112,10 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 					case (hp < 25): health = string.Format("<color rgba='255,0,0,255'>%1</color>", hp.ToString()); break;
 					default: health = string.Format("<color rgba='0,255,0,255'>%1</color>", hp.ToString()); break;
 				}
-				Line1.SetText("Radio: - || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: -");
-				Line2.SetText("Current Com: " + comm + " || Bases: -/" + gameMode.maxBases.ToString()); 
-				Line3.SetText(upgrade);
+				Line1.SetText("Radio: [R] || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: [-]");
 			}
+			Line2.SetText("Current Com: " + comm + " || Bases: " + baseCount.ToString() + "/" + gameMode.MAXBASES.ToString()); 
+			Line3.SetText(upgrade);
 			m_timeDelta = 0;
 		}
 	}

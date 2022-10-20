@@ -1,0 +1,26 @@
+Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
+ ID "5206D4E79715C115"
+ components {
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5AA931A0B6CC7A10}" {
+     ContextName "take_command"
+     Position PointInfo "{5AA931A09582FA26}" {
+      PivotID "v_body"
+     }
+     Radius 5
+    }
+   }
+   additionalActions {
+    SCR_CTI_TakeCommandAction "{5AA931A0EA702280}" {
+     ParentContextList {
+      "take_command"
+     }
+     VisibilityRange 5
+     m_sActionStateOn ""
+     m_sActionStateOff ""
+    }
+   }
+  }
+ }
+}

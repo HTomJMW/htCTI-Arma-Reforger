@@ -5,22 +5,22 @@ class SCR_CTI_MapDescriptorComponentClass : SCR_MapDescriptorComponentClass
 
 class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 {
-	protected MapItem item;
-	protected SCR_CTI_Town owner;
+	protected MapItem m_item;
+	protected SCR_CTI_Town m_owner;
 	
-	protected Widget widget;
-	protected string marker = "Flag";
+	//protected Widget widget;
+	protected string m_marker = "Flag";
 
 	void init()
 	{
-		item = Item();
-		owner = SCR_CTI_Town.Cast(item.Entity());
+		m_item = Item();
+		m_owner = SCR_CTI_Town.Cast(m_item.Entity());
 		
-		item.SetDisplayName(owner.getTownName() + "\n" + owner.getTownValue().ToString());
-		item.SetBaseType(EMapDescriptorType.MDT_ICON);
+		m_item.SetDisplayName(m_owner.getTownName() + "\n" + m_owner.getTownValue().ToString());
+		m_item.SetBaseType(EMapDescriptorType.MDT_ICON);
 		
-		MapDescriptorProps props = item.GetProps();
-			item.SetImageDef(marker);
+		MapDescriptorProps props = m_item.GetProps();
+			m_item.SetImageDef(m_marker);
 			props.SetDetail(96);
 			props.SetIconSize(32, 1, 4);
 			props.SetTextSize(32, 16, 64);
@@ -32,7 +32,7 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 			props.SetIconVisible(true);
 			props.Activate(true);
 		
-		item.SetProps(props);
+		m_item.SetProps(props);
 		
 		//WorkspaceWidget workspace = GetGame().GetWorkspace();
 		//ResourceName layout = "{6B2B7AC257269983}UI/layouts/MapIcon.layout";
@@ -50,10 +50,10 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 	
 	void changeMarker()
 	{
-		MapDescriptorProps props = item.GetProps();
+		MapDescriptorProps props = m_item.GetProps();
 		
 		Color color;
-		switch (owner.getFactionKey())
+		switch (m_owner.getFactionKey())
 			{
 				case "USSR": color = color.Red; color.SetA(0.8); break;
 				case "US": color = color.Blue; color.SetA(0.8); break;

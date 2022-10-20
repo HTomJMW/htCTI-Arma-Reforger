@@ -86,7 +86,19 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 			case "STARTUPGRADE":
 			{
 				PlayerController pc = GetGame().GetPlayerController();
-				// maybe check Comm
+				int playerId = pc.GetPlayerId();
+				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+				int sizeCDA = gameMode.ClientDataArray.Count();
+				SCR_CTI_ClientData clientData;
+				for (int i = 0; i < sizeCDA; i++)
+				{
+					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+					{
+						clientData = gameMode.ClientDataArray[i];
+						break;
+					}
+				}
+				if (!clientData.isCommander()) break;
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
@@ -99,6 +111,8 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				if (selected == -1) break;
 				
 				netComp.StartUpgradeServer(fk, selected);
+				
+				menuManager.CloseAllMenus();
 				
 				break;
 			}
@@ -144,6 +158,14 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						mat[3] = mat[3] + (dir * dist); // maybe need get the new position ATL 
 						params.Transform = mat;
 						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						
+						SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
+						if (baseComp.ussrBases.Count() < 1)
+						{
+							baseComp.addBase(fk, mat[3], baseComp.ussrBases.Count());
+							//baseComp.ussrBases[0].structures.Insert(fact);
+						}
+						
 						
 						// TODO money things
 						break;

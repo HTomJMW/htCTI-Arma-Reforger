@@ -1,16 +1,16 @@
 class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 {
 	protected CarControllerComponent m_pCarController;
-	protected VehicleFactionAffiliationComponent m_vehAffiliationComp;
+	protected FactionAffiliationComponent m_vehAffiliationComp;
 	protected SCR_CTI_GameMode m_gameMode;
 	
-	protected ResourceName USSR_mhq = "{BF0C29DFC138F59A}Prefabs/Vehicles/Wheeled/Ural4320/CTI_HQ_Ural4320_command.et";
-	protected ResourceName US_mhq = "{00E39778A1A7C9E5}Prefabs/Vehicles/Wheeled/M923A1/CTI_HQ_M923A1_command.et";
+	protected ResourceName USSR_mhq = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
+	protected ResourceName US_mhq = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
 		m_pCarController = CarControllerComponent.Cast(pOwnerEntity.FindComponent(CarControllerComponent));
-		m_vehAffiliationComp = VehicleFactionAffiliationComponent.Cast(pOwnerEntity.FindComponent(VehicleFactionAffiliationComponent));
+		m_vehAffiliationComp = FactionAffiliationComponent.Cast(pOwnerEntity.FindComponent(FactionAffiliationComponent));
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 	

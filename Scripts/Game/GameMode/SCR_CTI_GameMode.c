@@ -13,22 +13,23 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_UpdateVictoryComponent UpdateVictoryComponent;
 	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
 	protected SCR_CTI_UpgradeComponent UpgradeComponent;
+	protected SCR_CTI_BaseComponent BaseComponent;
 
-	const bool ecoWin = true;
-	const int winRate = 75;
+	const int MAXBASES = 2;
+	const bool ECOWIN = true;
+	const int WINRATE = 75;
+
 	protected int playerGroupSize = 8;
 
 	protected int ussrCommanderId = -2;
 	protected int usCommanderId = -2;
 	
-	const int maxBases = 2;
-	
 	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>;
-	
+
 	ref SCR_CTI_UnitsFIA UnitsFIA = new SCR_CTI_UnitsFIA();
 	ref SCR_CTI_UnitsUSSR UnitsUSSR = new SCR_CTI_UnitsUSSR();
 	ref SCR_CTI_UnitsUS UnitsUS = new SCR_CTI_UnitsUS();
-	
+
 	ref SCR_CTI_FactoriesUSSR FactoriesUSSR = new SCR_CTI_FactoriesUSSR();
 	ref SCR_CTI_FactoriesUS FactoriesUS = new SCR_CTI_FactoriesUS();
 	ref SCR_CTI_DefensesUSSR DefensesUSSR = new SCR_CTI_DefensesUSSR();
@@ -46,6 +47,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UpdateVictoryComponent = SCR_CTI_UpdateVictoryComponent.Cast(owner.FindComponent(SCR_CTI_UpdateVictoryComponent));
 		UpdateResourcesComponent = SCR_CTI_UpdateResourcesComponent.Cast(owner.FindComponent(SCR_CTI_UpdateResourcesComponent));
 		UpgradeComponent = SCR_CTI_UpgradeComponent.Cast(owner.FindComponent(SCR_CTI_UpgradeComponent));
+		BaseComponent = SCR_CTI_BaseComponent.Cast(owner.FindComponent(SCR_CTI_BaseComponent));
 	}
 
 	protected override void OnGameStart()
@@ -84,6 +86,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			RandomStartComponent.init();
 			UpdateVictoryComponent.init();
 			UpgradeComponent.init();
+			BaseComponent.init();
 			UpdateResourcesComponent.Deactivate(this); // disabled on server
 		} else {
 			UpdateResourcesComponent.init(); // run on proxys temporary
@@ -91,6 +94,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			RandomStartComponent.Deactivate(this);
 			UpdateVictoryComponent.Deactivate(this);
 			UpgradeComponent.init();
+			BaseComponent.init();
 		}
 
 		// Client or Player-Hosted server (not dedicated server)
@@ -104,7 +108,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
-	
+
 	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
 	{
 		super.OnPlayerSpawned(playerId, controlledEntity);
@@ -132,7 +136,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			netComp.SendPopUpNotif(pc.GetPlayerId(), ("Funds: " + funds.ToString()), 15, 0.25, "");
 		}
 	}
-
+	
 	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
 	{
 		super.OnPlayerKilled(playerId, player, killer);
@@ -161,9 +165,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		super.OnPlayerConnected(playerId);
 	}
 	
-	override void OnPlayerDisconnected(int playerId)
+	override void OnPlayerDisconnected(int playerId, KickCauseCode cause)
 	{
-		super.OnPlayerDisconnected(playerId);
+		super.OnPlayerDisconnected(playerId, cause);
 		
 		if (playerId < 1) return;
 
@@ -282,6 +286,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		
 		FactoriesUSSR = null;
 		FactoriesUS = null;
+		DefensesUSSR = null;
+		DefensesUS = null;
 		
 		UpgradesUSSR = null;
 		UpgradesUS = null;

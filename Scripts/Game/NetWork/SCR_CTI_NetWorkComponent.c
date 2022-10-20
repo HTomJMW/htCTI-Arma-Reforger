@@ -108,7 +108,7 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
     protected void RpcDo_StartUpgrade(FactionKey fk, int selected)
     {
-        SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_CTI_UpgradeComponent)); Print(upgradeComp);
+        SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_CTI_UpgradeComponent));
 		upgradeComp.runUpgrade(fk, selected);
     }
 

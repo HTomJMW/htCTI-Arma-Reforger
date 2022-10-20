@@ -16,11 +16,11 @@ class SCR_CTI_Town : BaseGameEntity
 	protected ref SCR_UIInfo m_Info;
 	
 	protected float m_timeDelta;
-	protected const float timeStep = 60;
+	protected const float TIMESTEP = 60;
 	
 	protected bool m_isActive = false;
 	protected float m_activeTime = -1.0;
-	protected const float activeTimeMax = 30;
+	protected const float ACTIVETIMEMAX = 30;
 	
 	// Spawned AI groups
 	ref array<AIGroup> m_groups = {};
@@ -244,7 +244,7 @@ class SCR_CTI_Town : BaseGameEntity
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
-		if (m_timeDelta > timeStep)
+		if (m_timeDelta > TIMESTEP)
 			{
 				timeOutCheck();
 				if (m_isActive) {addWayPointToGroups();}
@@ -254,7 +254,7 @@ class SCR_CTI_Town : BaseGameEntity
 
 	protected void timeOutCheck()
 	{
-		if (m_isActive && m_gameMode.GetElapsedTime() - m_activeTime >= activeTimeMax)
+		if (m_isActive && m_gameMode.GetElapsedTime() - m_activeTime >= ACTIVETIMEMAX)
 		{
 			switch (m_factionKey)
 			{

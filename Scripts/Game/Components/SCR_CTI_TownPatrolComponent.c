@@ -9,7 +9,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	protected RplComponent m_RplComponent;
 	
 	protected float m_timeDelta;
-	protected const float timeStep = 60;
+	protected const float TIMESTEP = 60;
 	
 	ref array<AIWaypoint> waypoints = {};
 	
@@ -65,7 +65,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
-		if (m_timeDelta > timeStep)
+		if (m_timeDelta > TIMESTEP)
 			{
 				if (m_town.isActive())
 				{
@@ -85,5 +85,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	
 	void ~SCR_CTI_TownPatrolComponent()
 	{
+		waypoints.Clear();
+		waypoints = null;
 	}
 };

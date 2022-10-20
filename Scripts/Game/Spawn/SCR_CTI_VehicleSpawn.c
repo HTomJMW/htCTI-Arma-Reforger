@@ -5,8 +5,8 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	protected FactionKey m_factionkey;
 	protected ref array<IEntity> m_items = {};
 	protected bool m_isMHQ = false;
-	protected ResourceName USSR_mhq = "{BF0C29DFC138F59A}Prefabs/Vehicles/Wheeled/Ural4320/CTI_HQ_Ural4320_command.et";
-	protected ResourceName US_mhq = "{00E39778A1A7C9E5}Prefabs/Vehicles/Wheeled/M923A1/CTI_HQ_M923A1_command.et";
+	protected ResourceName USSR_mhq = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
+	protected ResourceName US_mhq = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 	
 	protected override void EOnInit(IEntity owner)
 	{

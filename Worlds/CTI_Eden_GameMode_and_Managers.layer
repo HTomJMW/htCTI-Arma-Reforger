@@ -215,6 +215,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
  components {
   Hierarchy "{59DD0D5A8C3C8B00}" {
   }
+  SCR_CTI_BaseComponent "{5AA31079657C4391}" {
+  }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
   SCR_CTI_UpdateResourcesComponent "{59E92203A57C023A}" {

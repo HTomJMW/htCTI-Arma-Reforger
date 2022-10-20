@@ -7,7 +7,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 {
 	protected SCR_CTI_GameMode m_gameMode;
 	protected float m_timeDelta;
-	protected const float timeStep = 5;
+	protected const float TIMESTEP = 5;
 	protected float ussr_remainingtime;
 	protected float us_remainingtime;
 	protected int ussr_upgradeindex;
@@ -93,7 +93,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 			us_remainingtime = 0;
 			finish("US", us_upgradeindex);
 		}
-		/*if (m_timeDelta > timeStep)
+		/*if (m_timeDelta > TIMESTEP)
 		{
 			Print("SERVER 5s LOOP");
 			
