@@ -28,7 +28,9 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
 		FactionAffiliationComponent affComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-		m_gameMode.setCommanderId(affComp.GetAffiliatedFaction().GetFactionKey(), playerId);
+		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+		netComp.setCommanderIdRpl(affComp.GetAffiliatedFaction().GetFactionKey(), playerId);
+		m_gameMode.setCommanderId(affComp.GetAffiliatedFaction().GetFactionKey(), playerId); // maybe not need?
 		
 		int sizeCDA = m_gameMode.ClientDataArray.Count();
 		SCR_CTI_ClientData clientData;
@@ -66,7 +68,9 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		FactionAffiliationComponent affComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 		IEntity veh = m_pCarController.GetOwner();
 		ResourceName res = veh.GetPrefabData().GetPrefabName();
+		VehicleWheeledSimulation simulation = VehicleWheeledSimulation.Cast(veh.FindComponent(VehicleWheeledSimulation));
 		
+		if (Math.AbsFloat(simulation.GetSpeedKmh()) > 5) return false; // check vehicle speed less then 5
 		if (m_gameMode.getCommanderId(affComp.GetAffiliatedFaction().GetFactionKey()) != -2) return false; // check no comm
 		if (affComp.GetAffiliatedFaction().GetFactionKey() == "USSR" && res != USSR_mhq) return false; // check hq in user side
 		if (affComp.GetAffiliatedFaction().GetFactionKey() == "US" && res != US_mhq) return false; // check hq in user side

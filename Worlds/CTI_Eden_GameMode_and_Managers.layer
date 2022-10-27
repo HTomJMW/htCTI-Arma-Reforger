@@ -87,6 +87,12 @@ SCR_AIWorld SCR_AIWorld_1 {
     0 0 0
    }
   }
+  AIFormationDefinition "{5AAB24456BE51429}" {
+   Name "Blob"
+   Offsets {
+    0 0 0
+   }
+  }
  }
  "Initialize Road Network" 0
  m_aGoalMessages {
@@ -134,9 +140,6 @@ SCR_AIWorld SCR_AIWorld_1 {
   }
   SCR_AIMessage_PerformAction "{5A0558056D7094BF}" {
    m_eUIType PERFORM_ACTION
-  }
-  SCR_AIMessage_Resupply "{5A0558056D7094D7}" {
-   m_eUIType RESUPPLY
   }
   SCR_AIMessage_AttackStatic "{5A0558056D7094DD}" {
    m_eUIType ATTACK_STATIC
@@ -351,9 +354,9 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
   }
   RplComponent "{599D2333BE8DD86F}" {
+   Streamable Disabled
   }
  }
- PlayerControllerPrefab "{FAC47A232296A0BB}Prefabs/CTI_PlayerController.et"
  m_eTestGameFlags 6
  {
   $grp SCR_CTI_VehicleSpawn {
@@ -418,11 +421,11 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
      RplComponent "{599D232B87E7AC11}" {
      }
     }
-    coords 10052.016 2.541 1566.471
+    coords 10052.016 2.54 1566.471
     m_fSpawnRadius 5
     m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
-    m_sFaction ""
+    m_fNoSightRadius 1
+    m_sFaction "USSR"
    }
    SpawnPointNorth {
     components {
@@ -435,11 +438,11 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
      RplComponent "{599D232BED1FD16A}" {
      }
     }
-    coords 4446.115 5.75 11189.89
+    coords 4446.115 5.749 11189.89
     m_fSpawnRadius 5
     m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
-    m_sFaction ""
+    m_fNoSightRadius 1
+    m_sFaction "US"
    }
   }
  }

@@ -7,7 +7,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 {
 	protected bool m_ussrOnNorth = false;
 		
-	void randomStart()
+	protected void randomStart()
 	{
 		if (Math.RandomIntInclusive(0, 1) == 0)
 		{
@@ -18,7 +18,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		PrintFormat("CTI :: USSR Spawn at north: %1", m_ussrOnNorth.ToString());
 	}
 	
-	void setupStart()
+	protected void setupStart()
 	{
 		BaseWorld world = GetGame().GetWorld();
 		

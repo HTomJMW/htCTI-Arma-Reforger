@@ -55,7 +55,9 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				PlayerController pc = GetGame().GetPlayerController();
 				int playerId = pc.GetPlayerId();
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-				gameMode.clearCommanderId(affiliationComp.GetAffiliatedFaction().GetFactionKey());
+				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+				netComp.clearCommanderIdRpl(affiliationComp.GetAffiliatedFaction().GetFactionKey());
+				gameMode.clearCommanderId(affiliationComp.GetAffiliatedFaction().GetFactionKey()); // maybe not need?
 				
 				int sizeCDA = gameMode.ClientDataArray.Count();
 				SCR_CTI_ClientData clientData;
@@ -72,6 +74,9 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				{
 					clientData.setCommander(false);
 				}
+				
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
 
 				break;
 			}

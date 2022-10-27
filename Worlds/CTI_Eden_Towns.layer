@@ -26,7 +26,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -152,7 +152,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -276,7 +276,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -400,7 +400,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -524,7 +524,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -648,7 +648,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -772,7 +772,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -896,7 +896,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -1020,7 +1020,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -1144,7 +1144,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -1268,7 +1268,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }
@@ -1392,7 +1392,7 @@ $grp SCR_CTI_Town {
     Slots {
      EntitySlotInfo Flag {
       Offset 0 5.2 -0.2
-      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_Green_01.et"
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
      }
     }
    }

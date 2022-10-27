@@ -64,7 +64,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 				for (int j = 0; j < gameMode.UpgradesUSSR.g_Upgrades.Count(); j++)
 				{
 					upgradedata = gameMode.UpgradesUSSR.g_Upgrades[j];
-					if (upgradedata.getStatus() == UpgradeStatus.RUNNING)
+					if (upComp.getUpgradeStatus(sidekey, j) == UpgradeStatus.RUNNING)
 					{
 						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(upComp.getRemainingTime(sidekey)).ToString() + "s";
 						break;
@@ -78,7 +78,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 				for (int j = 0; j < gameMode.UpgradesUS.g_Upgrades.Count(); j++)
 				{
 					upgradedata = gameMode.UpgradesUSSR.g_Upgrades[j];
-					if (upgradedata.getStatus() == UpgradeStatus.RUNNING)
+					if (upComp.getUpgradeStatus(sidekey, j) == UpgradeStatus.RUNNING)
 					{
 						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(upComp.getRemainingTime(sidekey)).ToString() + "s";
 						break;

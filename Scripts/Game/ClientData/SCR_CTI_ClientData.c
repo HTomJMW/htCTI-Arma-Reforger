@@ -4,7 +4,7 @@ class SCR_CTI_ClientData
 	private int m_playerId = -1;
 	//private Faction m_playerFaction;
 	private bool m_isCommander = false;
-	private int m_funds = 2400;
+	private int m_funds;
 
 	int getPlayerId()
 	{

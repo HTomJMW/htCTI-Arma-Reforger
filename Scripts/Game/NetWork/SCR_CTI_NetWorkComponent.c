@@ -95,7 +95,6 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	void StartUpgradeServer(FactionKey fk, int selected)
 	{
 		Rpc(RpcAsk_StartUpgrade, fk, selected);
-		Rpc(RpcDo_StartUpgrade, fk, selected);
 	}
 	
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
@@ -105,12 +104,29 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		upgradeComp.runUpgrade(fk, selected);
 	}
 	
-	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcDo_StartUpgrade(FactionKey fk, int selected)
-    {
-        SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_CTI_UpgradeComponent));
-		upgradeComp.runUpgrade(fk, selected);
-    }
+	void setCommanderIdRpl(FactionKey fk, int playerId)
+	{
+		Rpc(RpcAsk_SetCommanderId, fk, playerId);
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_SetCommanderId(FactionKey fk, int playerId)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		gameMode.setCommanderId(fk, playerId);
+	}
+	
+	void clearCommanderIdRpl(FactionKey fk)
+	{
+		Rpc(RpcAsk_ClearCommanderId, fk);
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_ClearCommanderId(FactionKey fk)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		gameMode.clearCommanderId(fk);
+	}
 
 	override void EOnInit(IEntity owner)
 	{

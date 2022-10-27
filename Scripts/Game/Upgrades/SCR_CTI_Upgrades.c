@@ -1,10 +1,3 @@
-enum UpgradeStatus
-{
-	NONE,
-	RUNNING,
-	FINISHED
-};
-
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Upgrade Data Structure")]
 class SCR_CTI_UpgradeData
 {
@@ -16,9 +9,8 @@ class SCR_CTI_UpgradeData
 	protected string link;
 	protected int linklevel;
 	protected int time;
-	protected UpgradeStatus status;
 
-	void setData(string newlabel, string newname, string newdesc, int newlevel, int newcost, string newlink, int newlinklevel, int newtime, UpgradeStatus newstatus)
+	void setData(string newlabel, string newname, string newdesc, int newlevel, int newcost, string newlink, int newlinklevel, int newtime)
 	{
 		label = newlabel;
 		name = newname;
@@ -28,7 +20,6 @@ class SCR_CTI_UpgradeData
 		link = newlink;
 		linklevel = newlinklevel;
 		time = newtime;
-		status = newstatus;
 	}
 
 	string getLabel()
@@ -70,16 +61,6 @@ class SCR_CTI_UpgradeData
 	{
 		return time;
 	}
-	
-	UpgradeStatus getStatus()
-	{
-		return status;
-	}
-	
-	void setStatus(UpgradeStatus newStatus)
-	{
-		status = newStatus;
-	}
 
 	void SCR_CTI_UpgradeData()
 	{
@@ -103,7 +84,6 @@ class SCR_CTI_Upgrades
 	private ref array<string> 			links		 = {}; // Dependence
 	private ref array<int> 				linklevels	 = {}; // Dependence level 
 	private ref array<int> 				times		 = {}; // Time
-	private ref array<UpgradeStatus>	statuses	 = {}; // Status
 
 	int findIndexFromName(string name)
 	{
@@ -125,10 +105,9 @@ class SCR_CTI_Upgrades
 		descriptions.Insert("Unlock better Infantry Units");
 		levels.Insert(1);
 		costs.Insert(1000);
-		links.Insert("");
+		links.Insert("None");
 		linklevels.Insert(0);
 		times.Insert(60);
-		statuses.Insert(UpgradeStatus.NONE);
 		
 		labels.Insert("Barracks");
 		names.Insert("Barracks Level 2");
@@ -138,7 +117,6 @@ class SCR_CTI_Upgrades
 		links.Insert("Barracks Level 1");
 		linklevels.Insert(1);
 		times.Insert(120);
-		statuses.Insert(UpgradeStatus.NONE);
 		
 		labels.Insert("Light Factory");
 		names.Insert("Light Factory level 1");
@@ -148,7 +126,6 @@ class SCR_CTI_Upgrades
 		links.Insert("Barracks Level 1");
 		linklevels.Insert(1);
 		times.Insert(300);
-		statuses.Insert(UpgradeStatus.NONE);
 		
 		labels.Insert("Towns Occupation");
 		names.Insert("Towns Occupation Level 1");
@@ -158,7 +135,6 @@ class SCR_CTI_Upgrades
 		links.Insert("Barracks Level 1");
 		linklevels.Insert(1);
 		times.Insert(500);
-		statuses.Insert(UpgradeStatus.NONE);
 	}
 	
 	void init()
@@ -173,7 +149,7 @@ class SCR_CTI_Upgrades
 		for (int i = 0; i < labels.Count(); i++)
 		{
 			store = new SCR_CTI_UpgradeData;
-			store.setData(labels[i], names[i], descriptions[i], levels[i], costs[i], links[i], linklevels[i], times[i], statuses[i]);
+			store.setData(labels[i], names[i], descriptions[i], levels[i], costs[i], links[i], linklevels[i], times[i]);
 			
 			g_Upgrades.Insert(store);
 		}

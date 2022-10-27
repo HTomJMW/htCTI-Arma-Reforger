@@ -18,11 +18,19 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	const int MAXBASES = 2;
 	const bool ECOWIN = true;
 	const int WINRATE = 75;
-
+	const int STARTFUNDS = 2400;
+	const int STARTCOMMFUNDS = 7500;
+	
 	protected int playerGroupSize = 8;
 
+	[RplProp()]
 	protected int ussrCommanderId = -2;
+	[RplProp()]
 	protected int usCommanderId = -2;
+	[RplProp()]
+	protected int ussrCommanderFunds = STARTCOMMFUNDS;
+	[RplProp()]
+	protected int usCommanderFunds = STARTCOMMFUNDS;
 	
 	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>;
 
@@ -55,14 +63,14 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		super.OnGameStart();
 		
 		StartGameMode();
-		PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
+		if (!m_RplComponent.IsProxy()) PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
 		if (RplSession.Mode() == RplMode.Dedicated)
 		{
 			Print("CTI :: Server: Dedicated");
 		} else {
 			Print("CTI :: Server: Player-Hosted");
 		}
-		
+
 		// Common
 		townsToArray();
 		initMap();
@@ -79,28 +87,32 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UpgradesUSSR.init();
 		UpgradesUS.init();
 		
+		UpgradeComponent.init();
+		BaseComponent.init();
+		
 		// Server
 		if (!m_RplComponent.IsProxy())
 		{
 			WeatherAndTimeComponent.init();
 			RandomStartComponent.init();
 			UpdateVictoryComponent.init();
-			UpgradeComponent.init();
-			BaseComponent.init();
 			UpdateResourcesComponent.Deactivate(this); // disabled on server
 		} else {
 			UpdateResourcesComponent.init(); // run on proxys temporary
 			WeatherAndTimeComponent.Deactivate(this); // force disabled on proxy
-			RandomStartComponent.Deactivate(this);
 			UpdateVictoryComponent.Deactivate(this);
-			UpgradeComponent.init();
-			BaseComponent.init();
 		}
 
 		// Client or Player-Hosted server (not dedicated server)
 		if (m_RplComponent.IsProxy() || m_RplComponent.IsMaster())
 		{
 			GetGame().GetInputManager().AddActionListener("CTI_OpenMainMenu", EActionTrigger.DOWN, openMenu);
+
+			PlayerController pc = GetGame().GetPlayerController();
+			int playerId = pc.GetPlayerId();
+			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+			netComp.SendHint(playerId, "htCTI Eden", "Mission", 15);
+			netComp.SendPopUpNotif(playerId, "Arma Reforger", 15, 0.25, "");
 		}
 	}
 	
@@ -131,9 +143,12 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			int funds = clientData.getFunds();
 			string name = clientData.getPlayerName();
 			PrintFormat("CTI :: Player: %1, PlayerId: %2, Funds: %3", name, playerId, funds);
-			PlayerController pc = GetGame().GetPlayerController();
-			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-			netComp.SendPopUpNotif(pc.GetPlayerId(), ("Funds: " + funds.ToString()), 15, 0.25, "");
+			if (m_RplComponent.IsProxy())
+			{
+				PlayerController pc = GetGame().GetPlayerController();
+				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+				netComp.SendPopUpNotif(pc.GetPlayerId(), ("Funds: " + funds.ToString()), 15, 0.25, "");
+			}
 		}
 	}
 	
@@ -205,13 +220,17 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			clientData = new SCR_CTI_ClientData;
 			clientData.setPlayerId(playerId);
+			clientData.changeFunds(STARTFUNDS);
 			ClientDataArray.Insert(clientData);
 		}
 		
-		PlayerController pc = GetGame().GetPlayerController();
-		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-		netComp.SendHint(playerId, "htCTI Eden", "Mission", 15);
-		netComp.SendPopUpNotif(playerId, "Arma Reforger", 15, 0.25, "");
+		// JIP get/sync commander ID from server
+		if (!m_RplComponent.IsProxy())
+		{
+			ussrCommanderId = ussrCommanderId;
+			usCommanderId = usCommanderId;
+			Replication.BumpMe();
+		}
 	}
 
 	protected void townsToArray()
@@ -231,8 +250,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			town.initMapComponent();
 		}
 	}
-	
-	protected int getPlayerGroupSize()
+
+	int getPlayerGroupSize()
 	{
 		return playerGroupSize;
 	}
@@ -254,18 +273,36 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		switch (factionkey)
 		{
-			case "USSR": ussrCommanderId = playerId; break;
-			case "US": usCommanderId = playerId; break;
+			case "USSR":
+			{
+				ussrCommanderId = playerId;
+				break;
+			}
+			case "US":
+			{
+				usCommanderId = playerId;
+				break;
+			}
 		}
+		Replication.BumpMe();
 	}
 	
 	void clearCommanderId(FactionKey factionkey)
 	{
 		switch (factionkey)
 		{
-			case "USSR": ussrCommanderId = -2; break;
-			case "US": usCommanderId = -2; break;
+			case "USSR":
+			{
+				ussrCommanderId = -2;
+				break;
+			}
+			case "US":
+			{
+				usCommanderId = -2;
+				break;
+			}
 		}
+		Replication.BumpMe();
 	}
 
 	void SCR_CTI_GameMode(IEntitySource src, IEntity parent)
