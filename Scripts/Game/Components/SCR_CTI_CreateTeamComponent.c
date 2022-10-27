@@ -11,6 +11,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 {
 	protected RplComponent m_RplComponent;
 	protected SCR_CTI_Town m_town;
+	protected SCR_CTI_GameMode m_gameMode;
 	
 	protected ResourceName m_FIA_Fire_Team = "{5BEA04939D148B1D}Prefabs/Groups/INDFOR/Group_FIA_FireTeam.et";
 	protected ResourceName m_FIA_MG_Team = "{22F33D3EC8F281AB}Prefabs/Groups/INDFOR/Group_FIA_MachineGunTeam.et";
@@ -121,7 +122,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		
 		//Set AI Skill
 		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(aiGroup.FindComponent(SCR_AIConfigComponent));
-		aiConfigComponent.m_Skill = 0.75;
+		aiConfigComponent.m_Skill = m_gameMode.AISKILL;
 		
 		if (aiGroup)
 		{
@@ -230,6 +231,8 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		
 		m_town = SCR_CTI_Town.Cast(GetOwner().GetParent());
 		m_town.m_groups.Clear();
+		
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 	
 	override void OnDelete(IEntity owner)

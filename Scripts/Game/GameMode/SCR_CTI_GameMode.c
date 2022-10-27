@@ -20,6 +20,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	const int WINRATE = 75;
 	const int STARTFUNDS = 2400;
 	const int STARTCOMMFUNDS = 7500;
+	const float AISKILL = 0.75;
 	
 	protected int playerGroupSize = 8;
 

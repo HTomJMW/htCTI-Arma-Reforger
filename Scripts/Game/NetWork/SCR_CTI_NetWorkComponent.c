@@ -104,6 +104,18 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		upgradeComp.runUpgrade(fk, selected);
 	}
 	
+	void StopUpgradeServer(FactionKey fk)
+	{
+		Rpc(RpcAsk_StopUpgrade, fk);
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_StopUpgrade(FactionKey fk)
+	{
+		SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_CTI_UpgradeComponent));
+		upgradeComp.stopUpgrade(fk);
+	}
+	
 	void setCommanderIdRpl(FactionKey fk, int playerId)
 	{
 		Rpc(RpcAsk_SetCommanderId, fk, playerId);
@@ -127,6 +139,35 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		gameMode.clearCommanderId(fk);
 	}
+	
+	void ProxyChangeFunds(int playerId, int value)
+	{
+		Rpc(RpcAsk_ProxyChangeFunds, playerId, value);
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
+    protected void RpcAsk_ProxyChangeFunds(int playerId, int value)
+    {
+        int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
+        if(playerId != localPlayerId) return;
+
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		int sizeCDA = gameMode.ClientDataArray.Count();
+		SCR_CTI_ClientData clientData;
+		for (int i = 0; i < sizeCDA; i++)
+		{
+			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+			{
+				clientData = gameMode.ClientDataArray[i];
+				break;
+			}
+		}
+		
+		if (clientData)
+		{
+			clientData.changeFunds(value);
+		}
+    }
 
 	override void EOnInit(IEntity owner)
 	{

@@ -123,7 +123,28 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "CANCELUPGRADE":
 			{
-				// todo cancel upgrade
+				PlayerController pc = GetGame().GetPlayerController();
+				int playerId = pc.GetPlayerId();
+				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+				int sizeCDA = gameMode.ClientDataArray.Count();
+				SCR_CTI_ClientData clientData;
+				for (int i = 0; i < sizeCDA; i++)
+				{
+					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+					{
+						clientData = gameMode.ClientDataArray[i];
+						break;
+					}
+				}
+				if (!clientData.isCommander()) break;
+				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
+
+				netComp.StopUpgradeServer(fk);
+
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
 				
 				break;
 			}

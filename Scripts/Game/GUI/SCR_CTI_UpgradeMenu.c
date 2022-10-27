@@ -1,6 +1,7 @@
 class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 {
 	protected SCR_CTI_GameMode gameMode;
+	protected SCR_CTI_UpgradeComponent upgradeComp;
 	protected PlayerController pc;
 	protected int playerId;
 	protected Faction playerFaction;
@@ -34,6 +35,7 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 	override void OnMenuInit()
 	{
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		upgradeComp = SCR_CTI_UpgradeComponent.Cast(gameMode.FindComponent(SCR_CTI_UpgradeComponent));
 		pc = GetGame().GetPlayerController();
 		playerId = pc.GetPlayerId();
 		affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
@@ -94,6 +96,11 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 					SCR_CTI_UpgradeData upgradeData;
 					upgradeData = gameMode.UpgradesUSSR.g_Upgrades[i];
 					m_listboxcomp.AddItem(upgradeData.getName());
+					
+					if (upgradeComp.getUpgradeStatus(fk, i) == UpgradeStatus.FINISHED)
+					{				
+						m_listboxcomp.SetItemText(i, upgradeData.getName() + " - Ready");
+					}
 				}
 				break;
 			}
@@ -105,6 +112,11 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 					SCR_CTI_UpgradeData upgradeData;
 					upgradeData = gameMode.UpgradesUS.g_Upgrades[i];
 					m_listboxcomp.AddItem(upgradeData.getName());
+					
+					if (upgradeComp.getUpgradeStatus(fk, i) == UpgradeStatus.FINISHED)
+					{				
+						m_listboxcomp.SetItemText(i, upgradeData.getName() + " - Ready");
+					}
 				}
 				break;
 			}		
@@ -131,7 +143,7 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		{
 			// todo
 		}*/
-		
+
 		int selected = m_listboxcomp.GetSelectedItem();
 		if (selected == -1) return;
 		

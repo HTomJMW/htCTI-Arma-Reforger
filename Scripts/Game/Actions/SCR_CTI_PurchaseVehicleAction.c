@@ -16,6 +16,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 	
+	// PerformAction part running on server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
 	{	
 		RplComponent rplComp = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
@@ -62,8 +63,11 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		params.Transform = mat;
 
 		GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
-
-		m_clientData.changeFunds(-price);
+		
+		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
+		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
+		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+		netComp.ProxyChangeFunds(playerId, -price);
 	}
 
 	override bool HasLocalEffectOnlyScript()

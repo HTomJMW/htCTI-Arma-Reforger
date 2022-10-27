@@ -16,6 +16,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 
+	// PerformAction part running on server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
 	{	
 		RplComponent rplComp = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
@@ -65,6 +66,8 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		IEntity spawnedAI = GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
 
 		AIControlComponent control = AIControlComponent.Cast(spawnedAI.FindComponent(AIControlComponent));
+		control.ActivateAI();
+		
 		AIAgent agent = control.GetControlAIAgent();
 
 		ResourceName wpRes = "{93291E72AC23930F}Prefabs/AI/Waypoints/AIWaypoint_Defend.et";
@@ -84,9 +87,12 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		agent.AddWaypoint(wp); // todo ... not working atm
 		
 		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(agent.FindComponent(SCR_AIConfigComponent));
-		aiConfigComponent.m_Skill = 0.75;
-		
-		m_clientData.changeFunds(-price);
+		aiConfigComponent.m_Skill = m_gameMode.AISKILL;
+
+		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
+		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
+		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+		netComp.ProxyChangeFunds(playerId, -price);
 	}
 
 	override bool HasLocalEffectOnlyScript()
@@ -162,7 +168,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		
 		return true;
 	}
-	
+
 	void SCR_CTI_PurchaseAIAction()
 	{
 	}

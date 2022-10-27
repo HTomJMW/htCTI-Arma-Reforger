@@ -304,6 +304,7 @@ class SCR_CTI_Town : BaseGameEntity
 	{
 		for (int i = 0; i < m_groups.Count(); i++)
 		{
+			if (!m_groups[i]) break;
 			if (m_groups[i].GetAgentsCount() == 0) break;
 			if (!m_groups[i].GetCurrentWaypoint())
 			{

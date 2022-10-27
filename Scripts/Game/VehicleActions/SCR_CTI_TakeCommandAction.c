@@ -23,6 +23,7 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 	{
 	}
 	
+	// PerformAction part running on server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity)
 	{
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
@@ -30,7 +31,6 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		FactionAffiliationComponent affComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 		netComp.setCommanderIdRpl(affComp.GetAffiliatedFaction().GetFactionKey(), playerId);
-		m_gameMode.setCommanderId(affComp.GetAffiliatedFaction().GetFactionKey(), playerId); // maybe not need?
 		
 		int sizeCDA = m_gameMode.ClientDataArray.Count();
 		SCR_CTI_ClientData clientData;

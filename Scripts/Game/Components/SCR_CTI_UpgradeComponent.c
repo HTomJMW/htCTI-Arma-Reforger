@@ -47,10 +47,10 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	}
 	
 	// Only on server
-	void runUpgrade(FactionKey factionKey, int upgradeindex)
+	void runUpgrade(FactionKey factionkey, int upgradeindex)
 	{
 		SCR_CTI_UpgradeData upgradeData;
-		switch (factionKey)
+		switch (factionkey)
 		{
 			case "USSR":
 			{
@@ -71,6 +71,43 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 					usUpgradeStatuses[upgradeindex] = UpgradeStatus.RUNNING;
 					usRemainingUpgradeTime = upgradeData.getTime();
 					usRunningUpgradeIndex = upgradeindex;
+				}
+				break;
+			}
+		}
+		Replication.BumpMe();
+	}
+	
+	// Only on Server
+	void stopUpgrade(FactionKey factionkey)
+	{
+		switch (factionkey)
+		{
+			case "USSR":
+			{
+				for (int i = 0; i < ussrUpgradeStatuses.Count(); i++)
+				{
+					if (ussrUpgradeStatuses[i] == UpgradeStatus.RUNNING)
+					{
+						ussrRunningUpgradeIndex = -1;
+						ussrUpgradeStatuses[i] = UpgradeStatus.NONE;
+						ussrRemainingUpgradeTime = 0;
+						break;
+					}
+				}
+				break;
+			}
+			case "US":
+			{
+				for (int i = 0; i < ussrUpgradeStatuses.Count(); i++)
+				{
+					if (usUpgradeStatuses[i] == UpgradeStatus.RUNNING)
+					{
+						usRunningUpgradeIndex = -1;
+						usUpgradeStatuses[i] = UpgradeStatus.NONE;
+						usRemainingUpgradeTime = 0;
+						break;
+					}
 				}
 				break;
 			}

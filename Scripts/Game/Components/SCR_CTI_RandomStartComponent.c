@@ -62,6 +62,10 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		itemMapUral.Set(ussr_rpg_ammo, 6);
 		itemMapUral.Set(ussr_grenade, 4);
 		
+		// Ural MHQ items
+		map<ResourceName, int> intemMapUralMHQ = new map<ResourceName, int>();
+		intemMapUralMHQ.Set(ussr_bandage, 5);
+		
 		// Jeep items
 		map<ResourceName, int> itemMapM151 = new map<ResourceName, int>();
 		itemMapM151.Set(us_bandage, 5);
@@ -78,6 +82,9 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		itemMapM923.Set(us_m72_ammo, 6);
 		itemMapM923.Set(us_grenade, 4);
 		
+		// M923 MHQ items
+		map<ResourceName, int> intemMapM923MHQ = new map<ResourceName, int>();
+		intemMapM923MHQ.Set(us_bandage, 5);
 		
 		if (m_ussrOnNorth)
 		{
@@ -93,8 +100,9 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svNorth2.setPrefab("{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
 			svNorth2.addItemsPrefab(itemMapUral);
 			
-			// USSR HQ
+			// USSR MHQ + equipment
 			svNorth3.setPrefab("{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et");
+			svNorth3.addItemsPrefab(intemMapUralMHQ);
 			
 			// Jeep + equipment
 			svSouth1.setPrefab("{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et");
@@ -104,8 +112,9 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth2.setPrefab("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
 			svSouth2.addItemsPrefab(itemMapM923);
 			
-			// US HQ
+			// US MHQ + equipment
 			svSouth3.setPrefab("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et");
+			svSouth3.addItemsPrefab(intemMapM923MHQ);
 			
 		} else {
 			
@@ -121,8 +130,9 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svNorth2.setPrefab("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
 			svNorth2.addItemsPrefab(itemMapM923);
 			
-			// US HQ
+			// US MHQ + equipment
 			svNorth3.setPrefab("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et");
+			svNorth3.addItemsPrefab(intemMapM923MHQ);
 			
 			// UAZ + equipment
 			svSouth1.setPrefab("{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et");
@@ -132,8 +142,9 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth2.setPrefab("{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
 			svSouth2.addItemsPrefab(itemMapUral);
 			
-			// USSR HQ
+			// USSR MHQ + equipment
 			svSouth3.setPrefab("{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et");
+			svSouth3.addItemsPrefab(intemMapUralMHQ);
 		}
 	}
 	
