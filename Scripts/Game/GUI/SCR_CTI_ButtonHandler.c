@@ -1,19 +1,22 @@
 class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 {
+	//------------------------------------------------------------------------------------------------
 	override bool OnMouseEnter(Widget w, int x, int y)
 	{
 		w.SetColor(Color.White);
 		
 		return true;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override bool OnMouseLeave(Widget w, Widget enterW, int x, int y)
 	{
 		w.SetColor(Color.Orange);
 		
 		return true;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override bool OnMouseButtonUp(Widget w, int x, int y, int button)
 	{
 		switch (w.GetName())
@@ -73,6 +76,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				if (clientData)
 				{
 					clientData.setCommander(false);
+					
+					if (affiliationComp.GetAffiliatedFaction().GetFactionKey() == "USSR")
+					{
+						clientData.changeFunds(-gameMode.getCommanderFunds("USSR"));
+					} else {
+						clientData.changeFunds(-gameMode.getCommanderFunds("US"));
+					}
 				}
 				
 				auto menuManager = GetGame().GetMenuManager();

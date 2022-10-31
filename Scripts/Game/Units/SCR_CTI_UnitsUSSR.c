@@ -13,7 +13,8 @@ class SCR_CTI_UnitsUSSR
 	private ref array<int>			ul   =  {};	// Upgrade Level
 	private ref array<string>		fac  =  {};	// Factory
 	private ref array<string>		scr  =  {};	// Script
-	
+
+	//------------------------------------------------------------------------------------------------
 	int findIndexFromResourcename(ResourceName resName)
 	{
 		SCR_CTI_UnitData unitData;
@@ -25,7 +26,8 @@ class SCR_CTI_UnitsUSSR
 		
 		return -1;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void fillUp()
 	{
 		// Equipment box
@@ -193,13 +195,15 @@ class SCR_CTI_UnitsUSSR
 		fac.Insert("");
 		scr.Insert("");
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		fillUp();
 		setUnits();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void setUnits()
 	{
 		SCR_CTI_UnitData store;

@@ -12,7 +12,8 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	protected int m_usIndex;
 	protected FactionManager m_factionmanager;
 	protected SCR_CTI_GameMode m_gamemode;
-	
+
+	//------------------------------------------------------------------------------------------------
 	void update()
 	{
 		if (m_gamemode.ECOWIN)
@@ -40,7 +41,8 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 			}
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		m_factionmanager = GetGame().GetFactionManager();
@@ -49,12 +51,14 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 		m_gamemode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		m_timeDelta = 0;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
 		SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
@@ -65,10 +69,12 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 			}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_UpdateVictoryComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UpdateVictoryComponent()
 	{
 	}	

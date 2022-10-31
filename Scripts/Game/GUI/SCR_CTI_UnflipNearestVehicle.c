@@ -3,14 +3,16 @@ class SCR_CTI_UnflipNearestVehicle
 	protected IEntity playerEntity;
 	protected ref array<IEntity> vehicles = {};
 	protected SCR_CTI_GameMode gameMode;
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		PlayerController pc = GetGame().GetPlayerController();
 		playerEntity = pc.GetControlledEntity();
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected IEntity findNearest()
 	{
 		vector mat[4];
@@ -38,14 +40,16 @@ class SCR_CTI_UnflipNearestVehicle
 
 		return nearest;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected bool GetEntity(IEntity ent)
 	{
 		vehicles.Insert(ent);
 
 		return true;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected bool FilterEntities(IEntity ent) 
 	{
 		if (ent.FindComponent(SCR_VehicleDamageManagerComponent))
@@ -53,7 +57,8 @@ class SCR_CTI_UnflipNearestVehicle
 
 		return false;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void unflip()
 	{
 		IEntity nearest = findNearest();
@@ -67,11 +72,13 @@ class SCR_CTI_UnflipNearestVehicle
 			netComp.unflipNearestVehicleServer(rplId);
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_UnflipNearestVehicle()
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UnflipNearestVehicle()
 	{
 	}

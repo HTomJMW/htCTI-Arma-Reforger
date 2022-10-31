@@ -6,7 +6,8 @@ class SCR_CTI_RandomStartComponentClass : ScriptComponentClass
 class SCR_CTI_RandomStartComponent : ScriptComponent
 {
 	protected bool m_ussrOnNorth = false;
-		
+
+	//------------------------------------------------------------------------------------------------	
 	protected void randomStart()
 	{
 		if (Math.RandomIntInclusive(0, 1) == 0)
@@ -17,7 +18,8 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		}
 		PrintFormat("CTI :: USSR Spawn at north: %1", m_ussrOnNorth.ToString());
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void setupStart()
 	{
 		BaseWorld world = GetGame().GetWorld();
@@ -147,17 +149,20 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth3.addItemsPrefab(intemMapUralMHQ);
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		randomStart();
 		setupStart();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_RandomStartComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_RandomStartComponent()
 	{
 	}	

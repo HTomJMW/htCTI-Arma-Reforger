@@ -11,12 +11,14 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	
 	ref array<SCR_CTI_Base> ussrBases = {};
 	ref array<SCR_CTI_Base> usBases = {};
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		m_gameMode = SCR_CTI_GameMode.Cast(GetOwner());
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void addBase(FactionKey factionkey, vector position, int baseId)
 	{
 		switch (factionkey)
@@ -46,6 +48,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		//m_timeDelta += timeSlice;
@@ -56,16 +59,19 @@ class SCR_CTI_BaseComponent : ScriptComponent
 			m_timeDelta = 0;
 		}*/
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
 		SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_BaseComponent()
 	{
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_BaseComponent()
 	{
 		ussrBases.Clear();

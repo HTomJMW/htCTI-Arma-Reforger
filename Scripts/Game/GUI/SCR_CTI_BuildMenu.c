@@ -35,7 +35,8 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected SCR_ListBoxComponent m_listboxrightcomp;
 	
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
@@ -156,11 +157,13 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 			}		
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
 		int sizeCDA = gameMode.ClientDataArray.Count();

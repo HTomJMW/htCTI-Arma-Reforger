@@ -29,14 +29,16 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	ref array<UpgradeStatus> ussrUpgradeStatuses = {};
 	[RplProp()]
 	ref array<UpgradeStatus> usUpgradeStatuses = {}; 
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		m_gameMode = SCR_CTI_GameMode.Cast(GetOwner());
 		m_rplComponent = RplComponent.Cast(m_gameMode.FindComponent(RplComponent));
 		fillUpStatuses();
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void fillUpStatuses()
 	{
 		for (int i = 0; i < m_gameMode.UpgradesUSSR.g_Upgrades.Count(); i++)
@@ -45,7 +47,8 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 			usUpgradeStatuses.Insert(UpgradeStatus.NONE);
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	// Only on server
 	void runUpgrade(FactionKey factionkey, int upgradeindex)
 	{
@@ -77,7 +80,8 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 		}
 		Replication.BumpMe();
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	// Only on Server
 	void stopUpgrade(FactionKey factionkey)
 	{
@@ -115,6 +119,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 		Replication.BumpMe();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected void finish(FactionKey factionkey, int upgradeindex)
 	{
 		if (upgradeindex != -1)
@@ -137,7 +142,8 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 			Replication.BumpMe();
 		}
 	}
-			
+
+	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		if (!m_rplComponent.IsProxy())
@@ -174,7 +180,8 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 			}
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	float getRemainingTime(FactionKey fk)
 	{
 		float time = -1;
@@ -187,7 +194,8 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 		
 		return time;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	UpgradeStatus getUpgradeStatus(FactionKey fk, int upgradeindex)
 	{
 		UpgradeStatus status;
@@ -200,16 +208,19 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 		
 		return status;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
 		SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_UpgradeComponent()
 	{
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UpgradeComponent()
 	{
 		ussrUpgradeStatuses.Clear();

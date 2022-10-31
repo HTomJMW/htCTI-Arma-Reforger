@@ -11,6 +11,7 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 	//protected Widget widget;
 	protected string m_marker = "Flag";
 
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		m_item = Item();
@@ -47,7 +48,8 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 		
 		//widget.SetVisible(true);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void changeMarker()
 	{
 		MapDescriptorProps props = m_item.GetProps();
@@ -62,24 +64,28 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 		props.SetFrontColor(color);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void OnMapOpen()
 	{
 		if (!SCR_PlayerController.GetLocalControlledEntity()) return;
 
 		Print("- MAP OPEN -");
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void OnMapClose()
 	{
 		Print("- MAP CLOSE -");
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_MapDescriptorComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 		//SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
 		//SCR_MapEntity.GetOnMapClose().Insert(OnMapClose);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_MapDescriptorComponent()
 	{
 		//SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);

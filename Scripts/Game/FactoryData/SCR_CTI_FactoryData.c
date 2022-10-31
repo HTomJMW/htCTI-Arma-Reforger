@@ -1,14 +1,15 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Factory Data Structure")]
 class SCR_CTI_FactoryData
 {
-	protected ResourceName res;
-	protected string name;
-	protected int pri;
-	protected int bt;
-	protected int dis;
-	protected int pla;
-	protected string scr;
-	
+	protected ResourceName res;	// Resource name
+	protected string name;		// Display name
+	protected int pri;			// Price
+	protected int bt;			// Build time
+	protected int dis;			// Distance
+	protected int pla;			// Placement degree
+	protected string scr;		// Script
+
+	//------------------------------------------------------------------------------------------------
 	void setData(ResourceName newres, string newname, int newpri, int newbt, int newdis, int newpla, string newscr)
 	{
 		res = newres;
@@ -19,46 +20,55 @@ class SCR_CTI_FactoryData
 		pla = newpla;
 		scr = newscr;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	ResourceName getRes()
 	{
 		return res;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	string getName()
 	{
 		return name;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	int getPri()
 	{
 		return pri;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	int getBt()
 	{
 		return bt;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	int getDis()
 	{
 		return dis;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	int getPla()
 	{
 		return pla;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	string getScr()
 	{
 		return scr;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_FactoryData()
 	{
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_FactoryData()
 	{
 	}

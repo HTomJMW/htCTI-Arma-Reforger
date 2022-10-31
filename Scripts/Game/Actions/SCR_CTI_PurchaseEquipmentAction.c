@@ -10,14 +10,16 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 	protected ResourceName m_resNameUSbox = "{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et";
 	
 	protected ref array<IEntity> m_items = {};
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
 		m_owner = pOwnerEntity;
 		m_town = SCR_CTI_Town.Cast(pOwnerEntity);
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	// PerformAction part running on server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
 	{	
@@ -69,16 +71,32 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		insertItems(spawnedBox);
 		
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
-		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-		netComp.ProxyChangeFunds(playerId, -price);
+
+		int sizeCDA = m_gameMode.ClientDataArray.Count();
+		SCR_CTI_ClientData clientData;
+		for (int i = 0; i < sizeCDA; i++)
+		{
+			if (m_gameMode.ClientDataArray[i].getPlayerId() == playerId)
+			{
+				clientData = m_gameMode.ClientDataArray[i];
+				break;
+			}
+		}
+		
+		if (clientData)
+		{
+			clientData.changeFunds(-price);
+			if (clientData.isCommander()) m_gameMode.changeCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), -price);
+		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool HasLocalEffectOnlyScript()
 	{
 		return false;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool CanBePerformedScript(IEntity user)
 	{
 		PlayerController playerController = GetGame().GetPlayerController();
@@ -128,6 +146,7 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
@@ -136,6 +155,7 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
 		ActionNameParams[0] = "PARAM1";
@@ -145,7 +165,8 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		
 		return true;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void addItemsPrefab(map<ResourceName, int> prefabMap)
 	{
 		foreach (ResourceName prefab, int piece : prefabMap)
@@ -158,7 +179,8 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 			}
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void insertItems(IEntity box)
 	{
 		InventoryStorageManagerComponent ismc = InventoryStorageManagerComponent.Cast(box.FindComponent(InventoryStorageManagerComponent));
@@ -168,7 +190,8 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 			ismc.TryInsertItem(item);
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void setEquipment(FactionAffiliationComponent userAffiliationComponent)
 	{
 		switch (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
@@ -208,11 +231,13 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 							break;
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_PurchaseEquipmentAction()
 	{
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_PurchaseEquipmentAction()
 	{
 	}

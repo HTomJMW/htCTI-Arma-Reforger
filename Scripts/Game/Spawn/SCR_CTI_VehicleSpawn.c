@@ -7,17 +7,20 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	protected bool m_isMHQ = false;
 	protected ResourceName USSR_mhq = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
 	protected ResourceName US_mhq = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected override void EOnInit(IEntity owner)
 	{
 		super.EOnInit(owner);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected override bool CanSpawn()
 	{
 		return !m_spawnedVehicle;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected override void OnSpawn(IEntity newEnt)
 	{
 		m_spawnedVehicle = Vehicle.Cast(newEnt);
@@ -38,18 +41,21 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void setPrefab(ResourceName newPrefab)
 	{
 		m_rnPrefab = newPrefab;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void addItemPrefab(ResourceName prefab)
 	{
 		Resource res = Resource.Load(prefab);
 		IEntity item = GetGame().SpawnEntityPrefab(res, GetWorld());
 		m_items.Insert(item);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void addItemsPrefab(map<ResourceName, int> prefabMap)
 	{
 		foreach (ResourceName prefab, int piece : prefabMap)
@@ -63,6 +69,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected void insertItem(Vehicle veh)
 	{
 		InventoryStorageManagerComponent ismc = InventoryStorageManagerComponent.Cast(veh.FindComponent(SCR_VehicleInventoryStorageManagerComponent));

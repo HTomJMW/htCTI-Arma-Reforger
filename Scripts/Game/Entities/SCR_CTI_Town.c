@@ -42,16 +42,19 @@ class SCR_CTI_Town : BaseGameEntity
 	protected SCR_CTI_GameMode m_gameMode;
 	protected RplComponent m_rplComponent;
 
+	//------------------------------------------------------------------------------------------------
 	string getTownName()
 	{
 		return m_townName;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	int getTownValue()
 	{
 		return m_townValue;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	vector getFlagPos()
 	{
 		vector transform[4];
@@ -59,52 +62,62 @@ class SCR_CTI_Town : BaseGameEntity
 		
 		return transform[3];
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	FactionKey getFactionKey()
 	{
 		return m_factionKey;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void setFactionKey(FactionKey newKey)
 	{
 		m_factionKey = newKey;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	Faction getFaction()
 	{
 		return m_faction;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void setFaction(Faction newFaction)
 	{
 		m_faction = newFaction;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void setFactionByKey(FactionKey newKey)
 	{
 		m_faction = GetGame().GetFactionManager().GetFactionByKey(newKey);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	bool isActive()
 	{
 		return m_isActive;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void setActive(bool value)
 	{
 		m_isActive = value;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void setActiveTime(float newTime)
 	{
 		m_activeTime = newTime;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	float getActiveTime()
 	{
 		return m_activeTime;
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void checkCapture()
 	{
 		int fia = m_FIA_CapArea_Occ.Count();
@@ -127,7 +140,7 @@ class SCR_CTI_Town : BaseGameEntity
 				if (m_gameMode.ClientDataArray)
 				{
 					foreach(SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
-					if (playerId == clientData.getPlayerId()) clientData.changeFunds(m_townValue * 10);
+					if (playerId == clientData.getPlayerId() && !clientData.isCommander()) clientData.changeFunds(m_townValue * 10);
 					PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
 					SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 					netComp.SendHint(playerId, m_townName + " captured", "Information", 15);
@@ -139,6 +152,20 @@ class SCR_CTI_Town : BaseGameEntity
 				removeTownGroups();
 				PrintFormat("CTI :: Town %1 is Inactive", m_townName);
 			}
+			
+			// commander reward
+			m_gameMode.changeCommanderFunds("USSR", m_townValue * 10);
+			int sizeCDA = m_gameMode.ClientDataArray.Count();
+			SCR_CTI_ClientData clientData;
+			for (int i = 0; i < sizeCDA; i++)
+			{
+					if (m_gameMode.ClientDataArray[i].getPlayerId() == m_gameMode.getCommanderId("USSR"))
+					{
+						clientData = m_gameMode.ClientDataArray[i];
+						break;
+					}
+			}
+			if (clientData) clientData.changeFunds(m_townValue * 10);
 		}
 		
 		if (us > 0 && ussr == 0 && fia == 0 && m_factionKey != "US")
@@ -155,7 +182,7 @@ class SCR_CTI_Town : BaseGameEntity
 				if (m_gameMode.ClientDataArray)
 				{
 					foreach(SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
-					if (playerId == clientData.getPlayerId()) clientData.changeFunds(m_townValue * 10);
+					if (playerId == clientData.getPlayerId() && !clientData.isCommander()) clientData.changeFunds(m_townValue * 10);
 					PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
 					SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 					netComp.SendHint(playerId, m_townName + " captured", "Information", 15);
@@ -167,6 +194,20 @@ class SCR_CTI_Town : BaseGameEntity
 				removeTownGroups();
 				PrintFormat("CTI :: Town %1 is Inactive", m_townName);
 			}
+			
+			// commander reward
+			m_gameMode.changeCommanderFunds("US", m_townValue * 10);
+			int sizeCDA = m_gameMode.ClientDataArray.Count();
+			SCR_CTI_ClientData clientData;
+			for (int i = 0; i < sizeCDA; i++)
+			{
+					if (m_gameMode.ClientDataArray[i].getPlayerId() == m_gameMode.getCommanderId("US"))
+					{
+						clientData = m_gameMode.ClientDataArray[i];
+						break;
+					}
+			}
+			if (clientData) clientData.changeFunds(m_townValue * 10);
 		}
 		
 		if (fia > 0 && ussr == 0 && us == 0 && m_factionKey != "FIA")
@@ -179,7 +220,8 @@ class SCR_CTI_Town : BaseGameEntity
 			PrintFormat("CTI :: Town %1 captured by %2", m_townName, m_factionKey);
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void changeFlag()
 	{
 		switch (m_factionKey)
@@ -195,12 +237,14 @@ class SCR_CTI_Town : BaseGameEntity
   			break;
   		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void initMapComponent()
 	{
 		m_mapComponent.init();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
 	{
 		m_FIA_CapArea_Occ.Clear();
@@ -241,6 +285,7 @@ class SCR_CTI_Town : BaseGameEntity
 		this.SetEventMask(EntityEvent.FIXEDFRAME);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
@@ -252,6 +297,7 @@ class SCR_CTI_Town : BaseGameEntity
 			}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected void timeOutCheck()
 	{
 		if (m_isActive && m_gameMode.GetElapsedTime() - m_activeTime >= ACTIVETIMEMAX)
@@ -282,7 +328,8 @@ class SCR_CTI_Town : BaseGameEntity
 			}
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void removeTownGroups()
 	{
 		foreach (AIGroup group : m_groups)
@@ -300,6 +347,7 @@ class SCR_CTI_Town : BaseGameEntity
 		PrintFormat("CTI :: Town %1 groups: %2", m_townName, m_groups);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected void addWayPointToGroups()
 	{
 		for (int i = 0; i < m_groups.Count(); i++)

@@ -47,6 +47,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	ref SCR_CTI_Upgrades UpgradesUSSR = new SCR_CTI_Upgrades();
 	ref SCR_CTI_Upgrades UpgradesUS = new SCR_CTI_Upgrades();
 
+	//------------------------------------------------------------------------------------------------
 	protected override void EOnInit(IEntity owner)
 	{
 		super.EOnInit(owner);
@@ -59,6 +60,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		BaseComponent = SCR_CTI_BaseComponent.Cast(owner.FindComponent(SCR_CTI_BaseComponent));
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected override void OnGameStart()
 	{
 		super.OnGameStart();
@@ -90,7 +92,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		
 		UpgradeComponent.init();
 		BaseComponent.init();
-		
+
 		// Server
 		if (!m_RplComponent.IsProxy())
 		{
@@ -116,12 +118,14 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			netComp.SendPopUpNotif(playerId, "Arma Reforger", 15, 0.25, "");
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void openMenu()
 	{
 		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
 	{
 		super.OnPlayerSpawned(playerId, controlledEntity);
@@ -144,21 +148,16 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			int funds = clientData.getFunds();
 			string name = clientData.getPlayerName();
 			PrintFormat("CTI :: Player: %1, PlayerId: %2, Funds: %3", name, playerId, funds);
-			if (m_RplComponent.IsProxy())
-			{
-				PlayerController pc = GetGame().GetPlayerController();
-				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-				netComp.SendPopUpNotif(pc.GetPlayerId(), ("Funds: " + funds.ToString()), 15, 0.25, "");
-			}
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
 	{
 		super.OnPlayerKilled(playerId, player, killer);
 
 		if (playerId < 1) return;
-
+		
 		int sizeCDA = ClientDataArray.Count();
 		SCR_CTI_ClientData clientData;
 		for (int i = 0; i < sizeCDA; i++)
@@ -175,12 +174,14 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			// todo
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPlayerConnected(int playerId)
 	{
 		super.OnPlayerConnected(playerId);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPlayerDisconnected(int playerId, KickCauseCode cause)
 	{
 		super.OnPlayerDisconnected(playerId, cause);
@@ -197,9 +198,24 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 				break;
 			}
 		}
-		if (removeIndex != -1) ClientDataArray.Remove(removeIndex);
+		if (removeIndex != -1) 
+		{
+			if (playerId == ussrCommanderId)
+			{
+				ussrCommanderId = -2;
+				Replication.BumpMe();
+			}
+			if (playerId == usCommanderId)
+			{
+				usCommanderId = -2;
+				Replication.BumpMe();
+			}
+		
+			ClientDataArray.Remove(removeIndex);
+		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPlayerRegistered(int playerId)
 	{
 		super.OnPlayerRegistered(playerId);
@@ -224,16 +240,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			clientData.changeFunds(STARTFUNDS);
 			ClientDataArray.Insert(clientData);
 		}
-		
-		// JIP get/sync commander ID from server
-		if (!m_RplComponent.IsProxy())
-		{
-			ussrCommanderId = ussrCommanderId;
-			usCommanderId = usCommanderId;
-			Replication.BumpMe();
-		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected void townsToArray()
 	{
 		for (int i = 0; i < CTI_TownList.Count(); i++)
@@ -243,7 +252,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		}
 		PrintFormat("CTI :: Number of Towns: %1", CTI_Towns.Count());
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void initMap()
 	{
 		foreach (SCR_CTI_Town town : CTI_Towns)
@@ -251,12 +261,14 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			town.initMapComponent();
 		}
 	}
-
+	
+	//------------------------------------------------------------------------------------------------
 	int getPlayerGroupSize()
 	{
 		return playerGroupSize;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	int getCommanderId(FactionKey factionkey)
 	{
 		int Id = -2;
@@ -269,7 +281,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 		return Id;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void setCommanderId(FactionKey factionkey, int playerId)
 	{
 		switch (factionkey)
@@ -287,7 +300,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		}
 		Replication.BumpMe();
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void clearCommanderId(FactionKey factionkey)
 	{
 		switch (factionkey)
@@ -306,10 +320,37 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		Replication.BumpMe();
 	}
 
+	//------------------------------------------------------------------------------------------------
+	int getCommanderFunds(FactionKey fk)
+	{
+		int funds;
+		switch (fk)
+		{
+			case "USSR": funds = ussrCommanderFunds; break;
+			case "US": funds = usCommanderFunds; break;
+		}
+		
+		return funds;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	// Only on server
+	void changeCommanderFunds(FactionKey fk, int value)
+	{
+		switch (fk)
+		{
+			case "USSR": ussrCommanderFunds += value; break;
+			case "US": usCommanderFunds += value; break;
+		}
+		Replication.BumpMe();
+	}
+
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_GameMode(IEntitySource src, IEntity parent)
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_GameMode()
 	{
 		CTI_Towns.Clear();

@@ -7,22 +7,26 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 	protected ResourceName USSR_mhq = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
 	protected ResourceName US_mhq = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 
+	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
 		m_pCarController = CarControllerComponent.Cast(pOwnerEntity.FindComponent(CarControllerComponent));
 		m_vehAffiliationComp = FactionAffiliationComponent.Cast(pOwnerEntity.FindComponent(FactionAffiliationComponent));
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override bool HasLocalEffectOnlyScript()
 	{
 		return false;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void PerformScriptedContinuousAction(IEntity pOwnerEntity, IEntity pUserEntity, float timeSlice)
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	// PerformAction part running on server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity)
 	{
@@ -46,21 +50,32 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		if (clientData)
 		{
 			clientData.setCommander(true);
+			
+			SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+			if (affComp.GetAffiliatedFaction().GetFactionKey() == "USSR")
+			{
+				clientData.changeFunds(gameMode.getCommanderFunds("USSR"));
+			} else {
+				clientData.changeFunds(gameMode.getCommanderFunds("US"));
+			}
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	//! Method called from scripted interaction handler when an action is started (progress bar appeared)
 	//! \param pUserEntity The entity that started performing this action
 	override void OnActionStart(IEntity pUserEntity)
 	{
 	}
 
+	//------------------------------------------------------------------------------------------------
 	//! Action canceled
 	//! \param pUserEntity The entity that started performing this action
 	override void OnActionCanceled(IEntity pOwnerEntity, IEntity pUserEntity)
 	{
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
@@ -79,14 +94,17 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool GetState()
 	{
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void SetState(bool enable)
 	{
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
 		outName = "Take Command";

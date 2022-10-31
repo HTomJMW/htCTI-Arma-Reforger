@@ -14,6 +14,7 @@ class SCR_CTI_UnitsFIA
 	private ref array<string>		fac  =  {};	// Factory
 	private ref array<string>		scr  =  {};	// Script
 
+	//------------------------------------------------------------------------------------------------
 	int findIndexFromResourcename(ResourceName resName)
 	{
 		SCR_CTI_UnitData unitData;
@@ -25,7 +26,8 @@ class SCR_CTI_UnitsFIA
 		
 		return -1;
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void fillUp()
 	{
 		// Equipment box
@@ -138,23 +140,25 @@ class SCR_CTI_UnitsFIA
 		fac.Insert("");
 		scr.Insert("");
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		fillUp();
 		setDisplayNames();
 		setUnits();
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void setDisplayNames()
 	{
 		for (int i = 0; i < res.Count(); i++)
 		{
-			//todo get and save display names from .et, if possible without spawn IEntity
-			// or use .conf files?
+			//todo get display names from uiinfo - EntityInfo better maybe?
 		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void setUnits()
 	{
 		SCR_CTI_UnitData store;

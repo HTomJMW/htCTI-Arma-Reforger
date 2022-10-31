@@ -8,7 +8,8 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	
 	protected ResourceName m_resNameUSSRsoldier = "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et";
 	protected ResourceName m_resNameUSsoldier = "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et";
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
 		m_owner = pOwnerEntity;
@@ -16,9 +17,10 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 
+	//------------------------------------------------------------------------------------------------
 	// PerformAction part running on server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
-	{	
+	{
 		RplComponent rplComp = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
 		if (!rplComp)	
 		{	
@@ -90,16 +92,32 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		aiConfigComponent.m_Skill = m_gameMode.AISKILL;
 
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
-		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-		netComp.ProxyChangeFunds(playerId, -price);
+
+		int sizeCDA = m_gameMode.ClientDataArray.Count();
+		SCR_CTI_ClientData clientData;
+		for (int i = 0; i < sizeCDA; i++)
+		{
+			if (m_gameMode.ClientDataArray[i].getPlayerId() == playerId)
+			{
+				clientData = m_gameMode.ClientDataArray[i];
+				break;
+			}
+		}
+		
+		if (clientData)
+		{
+			clientData.changeFunds(-price);
+			if (clientData.isCommander()) m_gameMode.changeCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), -price);
+		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool HasLocalEffectOnlyScript()
 	{
 		return false;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool CanBePerformedScript(IEntity user)
 	{
 		PlayerController playerController = GetGame().GetPlayerController();
@@ -151,6 +169,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
@@ -159,6 +178,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
 		ActionNameParams[0] = "PARAM1";
@@ -169,10 +189,12 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_PurchaseAIAction()
 	{
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_PurchaseAIAction()
 	{
 	}

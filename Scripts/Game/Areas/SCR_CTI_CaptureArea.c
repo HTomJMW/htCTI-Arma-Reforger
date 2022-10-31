@@ -29,6 +29,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 	//! Callback raised when a character enters this area
 	protected ref CTI_CaptureAreaEvent m_pOnCharacterEnter = new CTI_CaptureAreaEvent();
 
+	//------------------------------------------------------------------------------------------------
 	//! Returns invoker that is invoked when a character enters this area.
 	CTI_CaptureAreaEvent GetCharacterEnterInvoker()
 	{
@@ -38,6 +39,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 	//! Callback raised when a character leaves this area
 	protected ref CTI_CaptureAreaEvent m_pOnCharacterExit = new CTI_CaptureAreaEvent();
 
+	//------------------------------------------------------------------------------------------------
 	//! Returns invoker that is invoked when a character exits this area.
 	CTI_CaptureAreaEvent GetCharacterExitInvoker()
 	{
@@ -47,6 +49,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 	//! Replication component of this entity.
 	protected RplComponent m_pRplComponent;
 
+	//------------------------------------------------------------------------------------------------
 	//! Initializes this area by initializing and preallocating required resources.
 	protected override void OnInit(IEntity owner)
 	{
@@ -86,6 +89,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		m_town = SCR_CTI_Town.Cast(GetParent());
 	}
 
+	//------------------------------------------------------------------------------------------------
 	/*!
 		Called when Item is initialized from replication stream. Carries the data from Master.
 	*/
@@ -94,6 +98,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	/*!
 		Called when Item is getting replicated from Master to Slave connection. The data will be
 		delivered to Slave using RplInit method.
@@ -103,6 +108,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	//! By default queries only for characters of SCR_ChimeraCharacter type
 	protected override bool ScriptedEntityFilterForQuery(IEntity ent)
 	{
@@ -115,6 +121,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		return !character.GetCharacterController().IsDead();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	//! callback - activation - occurs when and entity which fulfills the filter definitions enters the Trigger
 	protected override void OnActivate(IEntity ent)
 	{
@@ -128,6 +135,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	//! Occurs when a [character] of provided [faction] enters the area.
 	protected event void OnCharacterEntered(Faction faction, SCR_ChimeraCharacter character)
 	{
@@ -143,6 +151,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		m_town.checkCapture();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	//! callback - deactivation - occurs when and entity which was activated (OnActivate) leaves the Trigger
 	protected override void OnDeactivate(IEntity ent)
 	{
@@ -156,6 +165,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	//! Occurs when a [character] of provided [faction] leaves the area.
 	protected event void OnCharacterExit(Faction faction, SCR_ChimeraCharacter character)
 	{
@@ -171,6 +181,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		m_town.checkCapture();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	/*!
 		Fills the provided [outCharacters] array with all occupants of provided [faction].
 		\param faction Faction to filter for
@@ -187,6 +198,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		return characters.Count();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	/*!
 		Returns the number of occupants of provided [faction].
 		\param Faction The faction to return the count for
@@ -197,6 +209,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		return m_mOccupants[faction].Count();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	/*!
 		Updates the internal state of the area and reevaluates the owner.
 	*/

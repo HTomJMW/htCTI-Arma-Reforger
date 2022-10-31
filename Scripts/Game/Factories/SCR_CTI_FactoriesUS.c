@@ -12,7 +12,8 @@ class SCR_CTI_FactoriesUS
 	private ref array<int>			dis  =	{}; // Distance
 	private ref array<int>			pla  =  {};	// Placement
 	private ref array<string>		scr  =  {};	// Script
-	
+
+	//------------------------------------------------------------------------------------------------
 	int findIndexFromResourcename(ResourceName resName)
 	{
 		SCR_CTI_FactoryData factoryData;
@@ -24,7 +25,8 @@ class SCR_CTI_FactoriesUS
 		
 		return -1;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void fillUp()
 	{
 		// Buildings
@@ -60,13 +62,15 @@ class SCR_CTI_FactoriesUS
 		pla.Insert(0);
 		scr.Insert("");
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		fillUp();
 		setFactories();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void setFactories()
 	{
 		SCR_CTI_FactoryData store;

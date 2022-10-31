@@ -13,6 +13,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	IEntity ent;
 	DamageManagerComponent dmc;
 
+	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
 	{
 		Line1 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine1"));
@@ -20,6 +21,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		Line3 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine3"));
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected void DestroyHud()
 	{		
 		if (!m_wRoot)
@@ -31,6 +33,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		m_wRoot = null;		
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override event void DisplayUpdate(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
@@ -120,6 +123,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool DisplayStartDrawInit(IEntity owner)
 	{
 		if (m_LayoutPath == "") m_LayoutPath = "{959E824DECAF27D7}UI/layouts/InfoHud.layout";
@@ -131,6 +135,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void DisplayStartDraw(IEntity owner)
 	{
 		if (!m_wRoot)
@@ -140,13 +145,15 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 
 		CreateHud(owner);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void DisplayInit(IEntity owner)
 	{
 		if (m_wRoot)
 			m_wRoot.RemoveFromHierarchy();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void DisplayStopDraw(IEntity owner)
 	{
 		DestroyHud();

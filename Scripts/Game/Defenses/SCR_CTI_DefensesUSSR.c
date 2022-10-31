@@ -12,7 +12,8 @@ class SCR_CTI_DefensesUSSR
 	private ref array<int>	 		dis  =	{}; // Distance
 	private ref array<int>			pla  =  {};	// Placement
 	private ref array<string>		scr  =  {};	// Script
-	
+
+	//------------------------------------------------------------------------------------------------
 	int findIndexFromResourcename(ResourceName resName)
 	{
 		SCR_CTI_DefenseData defData;
@@ -24,7 +25,8 @@ class SCR_CTI_DefensesUSSR
 		
 		return -1;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void fillUp()
 	{
 		// Defenses
@@ -36,13 +38,15 @@ class SCR_CTI_DefensesUSSR
 		pla.Insert(0);
 		scr.Insert("");
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		fillUp();
 		setDefenses();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void setDefenses()
 	{
 		SCR_CTI_DefenseData store;

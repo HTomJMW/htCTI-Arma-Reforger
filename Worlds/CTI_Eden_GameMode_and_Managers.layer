@@ -318,7 +318,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    m_sRespawnUnavailable "No Spawn Points"
    m_sFactionMenuMessage "Permanent Faction"
   }
-  SCR_RespawnSystemComponent "{599D23318696B98C}" {
+  SCR_RespawnSystemComponent "{5ABD5768B956B1B8}" {
   }
   SCR_RespawnTimerComponent "{599D233269C13252}" {
   }
@@ -337,7 +337,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    m_bAllowPlayerSpawnpoints 1
   }
   SCR_TimedSpawnPointComponent "{599D23324D9764F0}" {
-   m_fRespawnTime 20
+   m_fRespawnTime 10
   }
   SCR_VotingManagerComponent "{599D233243E01369}" {
    m_aVotingTemplates {

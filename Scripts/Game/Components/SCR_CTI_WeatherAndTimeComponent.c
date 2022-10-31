@@ -12,7 +12,8 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 60;
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void setStartTime()
 	{
 		if (!m_manager) return;
@@ -24,7 +25,8 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 		
 		PrintFormat("CTI :: Time: %1h", m_manager.GetTime().m_iHours);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void timeAcceleration()
 	{
 		float time = m_manager.GetTimeOfTheDay();
@@ -36,20 +38,24 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 			m_manager.SetDayDuration(m_daytimeduration);
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void setFog()
 	{
 		//Fog not included yet, fog entity need
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void setWeather()
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void setRain()
 	{
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		m_manager = GetGame().GetTimeAndWeatherManager();
@@ -58,12 +64,14 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 		
 		m_timeDelta = 0;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
 		SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
@@ -74,10 +82,12 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 			}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_WeatherAndTimeComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_WeatherAndTimeComponent()
 	{
 	}	

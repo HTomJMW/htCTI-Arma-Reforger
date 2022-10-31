@@ -31,7 +31,8 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 	protected RichTextWidget m_exittext;
 
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
@@ -122,11 +123,13 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			}		
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
 		/*int sizeCDA = gameMode.ClientDataArray.Count();

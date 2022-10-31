@@ -37,6 +37,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 
 	protected ref ScriptInvoker_OnSpawnerEmpty m_OnEmptyInvoker = new ScriptInvoker_OnSpawnerEmpty();
 	
+	//------------------------------------------------------------------------------------------------
 	vector defaultCoords()
 	{
 		SCR_BaseTriggerEntity parent = SCR_BaseTriggerEntity.Cast(GetOwner());
@@ -45,17 +46,20 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		
 		return coords;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	AIAgent GetAgent()
 	{
 		return m_AIAgent;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	ScriptInvoker_OnSpawnerEmpty GetOnEmptyInvoker()
 	{
 		return m_OnEmptyInvoker;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	vector GetSpawnPos()
 	{
 		if (m_SpawnPos == "0 0 0")
@@ -66,12 +70,14 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		
 		return m_SpawnPos;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	vector GetSpawnDir()
 	{
 		return Vector(0.0, m_SpawnDir[1], 0.0);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void GetSpawnTransform(out vector transformMatrix[4])
 	{
 		vector rotation = GetSpawnDir();
@@ -81,7 +87,8 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, GetSpawnPos(), 3);
 		transformMatrix[3] = emptyPos;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	bool DoSpawn(ResourceName aiAgentPrefab, array<string> wayPoints = null)
 	{
 		if (!VerifyRplComponentPresent())
@@ -132,12 +139,14 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		
 		return true;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected event void OnEmpty()
 	{
 		m_OnEmptyInvoker.Invoke();
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 #ifdef WORKBENCH
 	protected override void _WB_AfterWorldUpdate(IEntity owner, float timeSlice)
 	{
@@ -149,6 +158,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 	}
 #endif
 
+	//------------------------------------------------------------------------------------------------
 	protected bool VerifyRplComponentPresent()
 	{
 		if (!m_RplComponent)
@@ -160,6 +170,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void OnTriggerActivate()
 	{
 		if (m_RplComponent.IsProxy()) return; // run only on server side
@@ -211,6 +222,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		PrintFormat("CTI :: Town %1 - Spawned groups: %2", m_town.getTownName(), m_town.m_groups);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
 		m_RplComponent = RplComponent.Cast(owner.FindComponent(RplComponent));
@@ -220,6 +232,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		SetEventMask(owner, EntityEvent.INIT);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
 	{
 		SCR_CTI_ActivationArea parent = SCR_CTI_ActivationArea.Cast(owner);
@@ -234,17 +247,20 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnDelete(IEntity owner)
 	{
 		SCR_AIGroup aiGroup = SCR_AIGroup.Cast(GetAgent());
 		if (aiGroup) {aiGroup.GetOnEmpty().Remove(OnEmpty);}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------	
 	void SCR_CTI_CreateTeamComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_CreateTeamComponent()
 	{
 	}

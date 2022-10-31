@@ -10,6 +10,7 @@ class SCR_CTI_UpgradeData
 	protected int linklevel;
 	protected int time;
 
+	//------------------------------------------------------------------------------------------------
 	void setData(string newlabel, string newname, string newdesc, int newlevel, int newcost, string newlink, int newlinklevel, int newtime)
 	{
 		label = newlabel;
@@ -22,50 +23,60 @@ class SCR_CTI_UpgradeData
 		time = newtime;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	string getLabel()
 	{
 		return label;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	string getName()
 	{
 		return name;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	string getDesc()
 	{
 		return desc;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	int getLevel()
 	{
 		return level;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	int getCost()
 	{
 		return cost;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	string getLink()
 	{
 		return link;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	int getLinkLevel()
 	{
 		return linklevel;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	int getTime()
 	{
 		return time;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_UpgradeData()
 	{
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UpgradeData()
 	{
 	}
@@ -85,6 +96,7 @@ class SCR_CTI_Upgrades
 	private ref array<int> 				linklevels	 = {}; // Dependence level 
 	private ref array<int> 				times		 = {}; // Time
 
+	//------------------------------------------------------------------------------------------------
 	int findIndexFromName(string name)
 	{
 		SCR_CTI_UpgradeData upgradeData;
@@ -96,7 +108,8 @@ class SCR_CTI_Upgrades
 		
 		return -1;
 	}
-		
+
+	//------------------------------------------------------------------------------------------------
 	void fillUp()
 	{
 		// Upgrades
@@ -136,13 +149,15 @@ class SCR_CTI_Upgrades
 		linklevels.Insert(1);
 		times.Insert(500);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		fillUp();
 		setUpgrades();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected void setUpgrades()
 	{
 		SCR_CTI_UpgradeData store;

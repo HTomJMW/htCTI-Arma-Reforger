@@ -8,14 +8,16 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 	
 	protected ResourceName m_resNameUaz = "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et";
 	protected ResourceName m_resNameJeep = "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et";
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
 		m_owner = pOwnerEntity;
 		m_town = SCR_CTI_Town.Cast(pOwnerEntity);
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	// PerformAction part running on server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
 	{	
@@ -65,16 +67,32 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
 		
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
-		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-		netComp.ProxyChangeFunds(playerId, -price);
+
+		int sizeCDA = m_gameMode.ClientDataArray.Count();
+		SCR_CTI_ClientData clientData;
+		for (int i = 0; i < sizeCDA; i++)
+		{
+			if (m_gameMode.ClientDataArray[i].getPlayerId() == playerId)
+			{
+				clientData = m_gameMode.ClientDataArray[i];
+				break;
+			}
+		}
+		
+		if (clientData)
+		{
+			clientData.changeFunds(-price);
+			if (clientData.isCommander()) m_gameMode.changeCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), -price);
+		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool HasLocalEffectOnlyScript()
 	{
 		return false;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool CanBePerformedScript(IEntity user)
 	{
 		PlayerController playerController = GetGame().GetPlayerController();
@@ -124,6 +142,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
@@ -132,6 +151,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
 		ActionNameParams[0] = "PARAM1";
@@ -141,11 +161,13 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		
 		return true;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_PurchaseVehicleAction()
 	{
 	}
 
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_PurchaseVehicleAction()
 	{
 	}

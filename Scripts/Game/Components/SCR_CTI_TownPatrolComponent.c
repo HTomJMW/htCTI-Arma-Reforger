@@ -12,7 +12,8 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	protected const float TIMESTEP = 60;
 	
 	ref array<AIWaypoint> waypoints = {};
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void createWayPoint()
 	{
 		ResourceName wpRes = "{22A875E30470BD4F}Prefabs/AI/Waypoints/AIWaypoint_Patrol.et";
@@ -41,7 +42,8 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 		
 		//PrintFormat("Town pos: %1, WP pos: %2", m_town.getFlagPos(), mat[3]);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void updateWayPoints()
 	{
 		if (waypoints.Count() < 5)
@@ -49,19 +51,22 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 			createWayPoint();
 		}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
 		SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
 	{
 		m_town = SCR_CTI_Town.Cast(owner);
 		m_RplComponent = RplComponent.Cast(owner.FindComponent(RplComponent));
 		m_timeDelta = 0;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
@@ -74,15 +79,18 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 				m_timeDelta = 0;
 			}
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnDelete(IEntity owner)
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_TownPatrolComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_TownPatrolComponent()
 	{
 		waypoints.Clear();

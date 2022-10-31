@@ -46,7 +46,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected RichTextWidget m_exittext;
 	
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
@@ -169,11 +170,13 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_exit.SetColor(Color.Orange);
 		m_exit.AddHandler(m_buttonEventHandler);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
 		int missiontime = gameMode.GetElapsedTime();

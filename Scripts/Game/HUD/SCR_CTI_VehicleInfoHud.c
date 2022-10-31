@@ -13,6 +13,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 	IEntity vehicle;
 	SCR_VehicleDamageManagerComponent vehicleDamageManager;
 
+	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
 	{
 		Name = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Name"));
@@ -27,6 +28,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 		m_wRoot.SetVisible(false);
 	}
 
+	//------------------------------------------------------------------------------------------------
 	protected void DestroyHud()
 	{		
 		if (!m_wRoot)
@@ -38,6 +40,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 		m_wRoot = null;		
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override event void DisplayUpdate(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
@@ -64,7 +67,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 				BaseContainer container = data.GetPrefab();
 				//Name.SetText(container.GetClassName());
 				SCR_EditableVehicleComponent vehComp = SCR_EditableVehicleComponent.Cast(vehicle.FindComponent(SCR_EditableVehicleComponent));
-				SCR_UIInfo info = vehComp.GetInfo();
+				SCR_UIInfo info = vehComp.GetInfo(); // Entityinfo better?
 				string displayName = WidgetManager.Translate(info.GetName());
 				displayName.Replace(" ", "\n");
 				Name.SetText(displayName);
@@ -92,6 +95,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 		}
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override bool DisplayStartDrawInit(IEntity owner)
 	{
 		if (m_LayoutPath == "") m_LayoutPath = "{FA2748932AA7B28A}UI/layouts/VehicleInfoHud.layout";
@@ -102,6 +106,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void DisplayStartDraw(IEntity owner)
 	{
 		if (!m_wRoot)
@@ -111,13 +116,15 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 
 		CreateHud(owner);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	override void DisplayInit(IEntity owner)
 	{
 		if (m_wRoot)
 			m_wRoot.RemoveFromHierarchy();
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void DisplayStopDraw(IEntity owner)
 	{
 		DestroyHud();
