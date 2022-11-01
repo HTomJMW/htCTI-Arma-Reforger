@@ -1,22 +1,23 @@
 class SCR_CTI_UnflipNearestVehicle
 {
-	protected IEntity playerEntity;
-	protected ref array<IEntity> vehicles = {};
-	protected SCR_CTI_GameMode gameMode;
+	protected PlayerController m_pc;
+	protected IEntity m_playerEntity;
+	protected ref array<IEntity> m_vehicles = {};
+	protected SCR_CTI_GameMode m_gameMode;
 
 	//------------------------------------------------------------------------------------------------
 	void init()
 	{
-		PlayerController pc = GetGame().GetPlayerController();
-		playerEntity = pc.GetControlledEntity();
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_pc = GetGame().GetPlayerController();
+		m_playerEntity = m_pc.GetControlledEntity();
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 
 	//------------------------------------------------------------------------------------------------
 	protected IEntity findNearest()
 	{
 		vector mat[4];
-		playerEntity.GetTransform(mat);
+		m_playerEntity.GetTransform(mat);
 
 		vector center = mat[3];
 		float radius = 10.0;
@@ -26,7 +27,7 @@ class SCR_CTI_UnflipNearestVehicle
 		IEntity nearest = null;
 		float distance = radius;
 		
-		foreach (IEntity veh : vehicles)
+		foreach (IEntity veh : m_vehicles)
 		{
 			vector vmat[4];
 			veh.GetTransform(vmat);
@@ -44,13 +45,13 @@ class SCR_CTI_UnflipNearestVehicle
 	//------------------------------------------------------------------------------------------------
 	protected bool GetEntity(IEntity ent)
 	{
-		vehicles.Insert(ent);
+		m_vehicles.Insert(ent);
 
 		return true;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected bool FilterEntities(IEntity ent) 
+	protected bool FilterEntities(IEntity ent)
 	{
 		if (ent.FindComponent(SCR_VehicleDamageManagerComponent))
 			return true;
@@ -65,11 +66,16 @@ class SCR_CTI_UnflipNearestVehicle
 
 		if (nearest)
 		{
-			PlayerController pc = GetGame().GetPlayerController();
-			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+			// disable unflip when vehicle is manned (its make RPL desync bug) (maybe player compartmentaccess component getout better?)
+			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(nearest.FindComponent(SCR_BaseCompartmentManagerComponent));
+			array<IEntity> occupants = {};
+			bcmc.GetOccupants(occupants);
+			if (occupants.Count() > 0) return;
+			
+			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_pc.FindComponent(SCR_CTI_NetWorkComponent));
 			RplComponent rplComp = RplComponent.Cast(nearest.FindComponent(RplComponent));
-			RplId rplId = rplComp.Id();
-			netComp.unflipNearestVehicleServer(rplId);
+			RplId vehRplId = rplComp.Id();
+			netComp.unflipNearestVehicleServer(vehRplId);
 		}
 	}
 
@@ -81,5 +87,7 @@ class SCR_CTI_UnflipNearestVehicle
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UnflipNearestVehicle()
 	{
+		m_vehicles.Clear();
+		m_vehicles = null;
 	}
 };

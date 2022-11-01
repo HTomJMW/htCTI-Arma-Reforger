@@ -5,7 +5,7 @@ class SCR_CTI_ClientData
 	private bool m_isCommander = false;
 	private int m_funds;
 	
-	ref array<ResourceName> m_savedGear = {};
+	//ref array<ResourceName> m_savedGear = {};
 
 	//------------------------------------------------------------------------------------------------
 	int getPlayerId()
@@ -51,6 +51,18 @@ class SCR_CTI_ClientData
 	}
 
 	//------------------------------------------------------------------------------------------------
+	/*void getLoadout(int playerId)
+	{
+		SCR_ArsenalManagerComponent amc = SCR_ArsenalManagerComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_ArsenalManagerComponent));
+		
+		amc.SetPlayerArsenalLoadout(playerId, GetGame().GetPlayerManager().GetPlayerControlledEntity(playerId));
+		
+		string jsonCharacter;
+		amc.GetPlayerArsenalLoadout(playerId, jsonCharacter);
+		Print(jsonCharacter);
+	}*/
+
+	//------------------------------------------------------------------------------------------------
 	/*void saveLastGear(IEntity player)
 	{
 		SCR_InventoryStorageManagerComponent ismc = SCR_InventoryStorageManagerComponent.Cast(player.FindComponent(SCR_InventoryStorageManagerComponent));
@@ -66,7 +78,7 @@ class SCR_CTI_ClientData
 		
 		PrintFormat("Player: %1, Items: %2", getPlayerName(), m_savedGear);
 	}*/
-	
+
 	//------------------------------------------------------------------------------------------------
 	/*void loadGear(IEntity controlledEntity)
 	{
@@ -98,7 +110,7 @@ class SCR_CTI_ClientData
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_ClientData()
 	{
-		m_savedGear.Clear();
-		m_savedGear = null;
+		//m_savedGear.Clear();
+		//m_savedGear = null;
 	}
 };

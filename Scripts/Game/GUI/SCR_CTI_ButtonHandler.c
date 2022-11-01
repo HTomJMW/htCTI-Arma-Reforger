@@ -177,11 +177,11 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 					{
 						SCR_CTI_FactoryData facData = gameMode.FactoriesUSSR.g_USSR_Factories[selected];
 						ResourceName res = facData.getRes();
-						Resource resource = Resource.Load(res);
-						EntitySpawnParams params = new EntitySpawnParams();
-						params.TransformMode = ETransformMode.WORLD;
+						float dist = facData.getDis();
+
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
+						
 						//CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
 						//vector posInWorld = vector.Zero;
 						//if (cam)
@@ -189,20 +189,17 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						//	cam.GetCursorTargetWithPosition(posInWorld);
 						//	mat[3] = posInWorld;
 						//}
+						
 						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-						float dist = 10; // distance from facts file
-						mat[3] = mat[3] + (dir * dist); // maybe need get the new position ATL 
-						params.Transform = mat;
-						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						dir.Normalize();
 						
-						SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
-						if (baseComp.ussrBases.Count() < 1)
-						{
-							baseComp.addBase(fk, mat[3], baseComp.ussrBases.Count());
-							//baseComp.ussrBases[0].structures.Insert(fact);
-						}
-						
-						
+						mat[3] = mat[3] + (dir * dist);
+						BaseWorld world = GetGame().GetWorld();
+						mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
+
+						SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+						netComp.buildStructureServer(fk, res, mat);
+
 						// TODO money things
 						break;
 					}
@@ -210,16 +207,30 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 					{
 						SCR_CTI_FactoryData facData = gameMode.FactoriesUS.g_US_Factories[selected];
 						ResourceName res = facData.getRes();
-						Resource resource = Resource.Load(res);
-						EntitySpawnParams params = new EntitySpawnParams();
-						params.TransformMode = ETransformMode.WORLD;
+						float dist = facData.getDis();
+
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
+						
+						//CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
+						//vector posInWorld = vector.Zero;
+						//if (cam)
+						//{
+						//	cam.GetCursorTargetWithPosition(posInWorld);
+						//	mat[3] = posInWorld;
+						//}
+						
 						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-						float dist = 10; // distance from facts file
-						mat[3] = mat[3] + (dir * dist);	
-						params.Transform = mat;
-						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						dir.Normalize();
+						
+						mat[3] = mat[3] + (dir * dist);
+						BaseWorld world = GetGame().GetWorld();
+						mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
+
+						SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+						netComp.buildStructureServer(fk, res, mat);
+
+						// TODO money things
 						break;
 					}
 				}
@@ -245,32 +256,68 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 					{
 						SCR_CTI_DefenseData defData = gameMode.DefensesUSSR.g_USSR_Defenses[selected];
 						ResourceName res = defData.getRes();
-						Resource resource = Resource.Load(res);
-						EntitySpawnParams params = new EntitySpawnParams();
-						params.TransformMode = ETransformMode.WORLD;
+						float dist = defData.getDis();
+						
+						// get player position
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
+						
+						// get player direction
 						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-						float dist = 10; // distance from facts file
-						mat[3] = mat[3] + (dir * dist);	
-						params.Transform = mat;
-						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						dir.Normalize();
+
+						// calc def placement
+						mat[3] = mat[3] + (dir * dist);
+
+						// find empty pos on terrain level
+						vector emptyPos;
+						bool found = SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, mat[3], 3);
+						if (found)
+						{
+							mat[3] = emptyPos;
+						} else {
+							// if not found, use the original on terrain level (temporary)
+							BaseWorld world = GetGame().GetWorld();
+							mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
+						}
+						
+						SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+						netComp.buildDefenseServer(res, mat);
+
 						break;
 					}
 					case "US":
 					{
 						SCR_CTI_DefenseData defData = gameMode.DefensesUS.g_US_Defenses[selected];
 						ResourceName res = defData.getRes();
-						Resource resource = Resource.Load(res);
-						EntitySpawnParams params = new EntitySpawnParams();
-						params.TransformMode = ETransformMode.WORLD;
+						float dist = defData.getDis();
+						
+						// get player position
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
+						
+						// get player direction
 						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-						float dist = 10; // distance from facts file
-						mat[3] = mat[3] + (dir * dist);	
-						params.Transform = mat;
-						IEntity fact = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+						dir.Normalize();
+
+						// calc def placement
+						mat[3] = mat[3] + (dir * dist);
+
+						// find empty pos on terrain level
+						vector emptyPos;
+						bool found = SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, mat[3], 3);
+						if (found)
+						{
+							mat[3] = emptyPos;
+						} else {
+							// if not found, use the original on terrain level (temporary)
+							BaseWorld world = GetGame().GetWorld();
+							mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
+						}
+						
+						SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+						netComp.buildDefenseServer(res, mat);
+
 						break;
 					}
 				}

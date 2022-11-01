@@ -60,7 +60,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			SCR_CTI_UpgradeData upgradedata;
 			if (sidekey == "USSR")
 			{
-				baseCount = baseComp.ussrBases.Count();
+				baseCount = baseComp.getBaseCount(sidekey);
 				
 				commanderId = gameMode.getCommanderId(sidekey);
 				
@@ -74,7 +74,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 					}
 				}
 			} else {
-				baseCount = baseComp.usBases.Count();
+				baseCount = baseComp.getBaseCount(sidekey);
 				
 				commanderId = gameMode.getCommanderId(sidekey);
 

@@ -3,7 +3,6 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 {
 	protected SCR_PlayerController m_PlayerController;
 	protected RplComponent m_RplComponent;
-	protected SCR_PopUpNotification popUpNotif;
 
 	//------------------------------------------------------------------------------------------------
 	protected bool IsProxy()
@@ -42,49 +41,22 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
         int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
         if(playerId != localPlayerId) return;
 
+		SCR_PopUpNotification popUpNotif = SCR_PopUpNotification.GetInstance();
 		popUpNotif.PopupMsg(message, duration, fade, message2);
     }
 
 	//------------------------------------------------------------------------------------------------
-	void unflipNearestVehicleServer(RplId rplId)
+	void unflipNearestVehicleServer(RplId vehRplId)
 	{
-		Rpc(RpcAsk_UnflipNearestVehicle, rplId);
-		Rpc(RpcDo_UnflipNearestVehicle, rplId);
+		Rpc(RpcAsk_UnflipNearestVehicle, vehRplId);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_UnflipNearestVehicle(RplId rplId)
+	protected void RpcAsk_UnflipNearestVehicle(RplId vehRplId)
 	{
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplId));
+		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(vehRplId));
 		IEntity vehicle = rplComp.GetEntity();
-		
-		RplIdentity rplIdentity = m_PlayerController.GetRplIdentity();
-		rplComp.GiveExt(rplIdentity, true);
-
-		Physics physics = vehicle.GetPhysics();
-		
-		vector vel = physics.GetVelocity();
-		if (vel == "0 0 0")
-		{
-			physics.SetVelocity("0 4 0");
-
-			vector angles = vehicle.GetAngles();
-			if (angles[0] > 70 || angles[0] < -70) angles[0] = 0;
-			if (angles[2] > 70 || angles[2] < -70) angles[2] = 0;
-			vehicle.SetAngles(angles);
-		}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
-	protected void RpcDo_UnflipNearestVehicle(RplId rplId)
-	{
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplId));
-		IEntity vehicle = rplComp.GetEntity();
-		
-		RplIdentity rplIdentity = m_PlayerController.GetRplIdentity();
-		rplComp.GiveExt(rplIdentity, true);
 
 		Physics physics = vehicle.GetPhysics();
 		
@@ -155,6 +127,45 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		gameMode.clearCommanderId(fk);
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	void buildDefenseServer(ResourceName resourcename, vector mat[4])
+	{
+		Rpc(RpcAsk_BuildDefenseServer, resourcename, mat);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_BuildDefenseServer(ResourceName resourcename, vector mat[4])
+	{
+		Resource resource = Resource.Load(resourcename);
+		EntitySpawnParams params = new EntitySpawnParams();
+		params.TransformMode = ETransformMode.WORLD;
+		params.Transform = mat;
+
+		GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void buildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4])
+	{
+		Rpc(RpcAsk_BuildStructureServer, factionkey, resourcename, mat);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_BuildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4])
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
+		
+		Resource resource = Resource.Load(resourcename);
+		EntitySpawnParams params = new EntitySpawnParams();
+		params.TransformMode = ETransformMode.WORLD;
+		params.Transform = mat;
+
+		GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+	}
 
 	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
@@ -168,7 +179,6 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		}
 		
 		m_RplComponent = RplComponent.Cast(owner.FindComponent(RplComponent));
-		popUpNotif = SCR_PopUpNotification.GetInstance();
 	}
 
 	//------------------------------------------------------------------------------------------------

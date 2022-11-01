@@ -8,6 +8,11 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	protected SCR_CTI_GameMode m_gameMode;
 	//protected float m_timeDelta;
 	//protected const float TIMESTEP = 5;
+
+	[RplProp()]
+	protected int ussrBaseCount = 0;
+	[RplProp()]
+	protected int usBaseCount = 0;
 	
 	ref array<SCR_CTI_Base> ussrBases = {};
 	ref array<SCR_CTI_Base> usBases = {};
@@ -19,6 +24,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
+	// Only on server
 	void addBase(FactionKey factionkey, vector position, int baseId)
 	{
 		switch (factionkey)
@@ -31,6 +37,9 @@ class SCR_CTI_BaseComponent : ScriptComponent
 					base.setBaseFactionKey(factionkey);
 					base.setBaseId(baseId);
 					base.setBasePos(position);
+					
+					ussrBases.Insert(base);
+					ussrBaseCount = ussrBases.Count();
 				}
 				break;
 			}
@@ -42,10 +51,60 @@ class SCR_CTI_BaseComponent : ScriptComponent
 					base.setBaseFactionKey(factionkey);
 					base.setBaseId(baseId);
 					base.setBasePos(position);
+					
+					usBases.Insert(base);
+					usBaseCount = usBases.Count();
 				}
 				break;
 			}
 		}
+		Replication.BumpMe();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	int getBaseCount(FactionKey factionkey)
+	{
+		int result = 0;
+		switch (factionkey)
+		{
+			case "USSR":
+			{
+				result = ussrBaseCount;
+				break;
+			}
+			case "US":
+			{
+				result = usBaseCount;
+				break;
+			}
+		}
+		return result;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void markBase(FactionKey sidekey, int baseId)
+	{
+	}
+
+	//------------------------------------------------------------------------------------------------
+	// maybe need basecount check for baseid/index
+	SCR_CTI_Base getBase(FactionKey factionkey, int baseId)
+	{
+		SCR_CTI_Base base;
+		switch (factionkey)
+		{
+			case "USSR":
+			{
+				base = ussrBases[baseId];
+				break;
+			}
+			case "US":
+			{
+				base = usBases[baseId];
+				break;
+			}
+		}
+		return base;
 	}
 
 	//------------------------------------------------------------------------------------------------

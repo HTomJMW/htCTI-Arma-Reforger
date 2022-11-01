@@ -28,7 +28,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	[RplProp()]
 	ref array<UpgradeStatus> ussrUpgradeStatuses = {};
 	[RplProp()]
-	ref array<UpgradeStatus> usUpgradeStatuses = {}; 
+	ref array<UpgradeStatus> usUpgradeStatuses = {};
 
 	//------------------------------------------------------------------------------------------------
 	void init()

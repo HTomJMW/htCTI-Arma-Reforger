@@ -7,7 +7,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 {
 	ref array<SCR_CTI_Town> CTI_Towns = {};
 	ref array<string> CTI_TownList = {"Town0", "Town1", "Town2", "Town3", "Town4", "Town5", "Town6", "Town7", "Town8", "Town9", "Town10", "Town11"};
-	
+
 	protected SCR_CTI_WeatherAndTimeComponent WeatherAndTimeComponent;
 	protected SCR_CTI_RandomStartComponent RandomStartComponent;
 	protected SCR_CTI_UpdateVictoryComponent UpdateVictoryComponent;
@@ -90,8 +90,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UpgradesUSSR.init();
 		UpgradesUS.init();
 		
-		UpgradeComponent.init();
 		BaseComponent.init();
+		UpgradeComponent.init();
 
 		// Server
 		if (!m_RplComponent.IsProxy())

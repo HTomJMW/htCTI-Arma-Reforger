@@ -5,7 +5,6 @@ class SCR_CTI_Base
 	protected int m_baseId;
 	protected vector m_basePos;
 	protected bool m_destroyed = false;
-	//protected SCR_CTI_MapDescriptorComponent m_mapComponent;
 	
 	ref array<IEntity> structures = {};
 

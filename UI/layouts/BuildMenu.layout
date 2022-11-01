@@ -265,7 +265,7 @@ FrameWidgetClass {
       }
       OverlayWidgetClass "{5A8341BC89496DFF}" {
        Name "ListBoxRight"
-       Slot FrameWidgetSlot {
+       Slot FrameWidgetSlot "{5ABEE1210E30A48F}" {
         PositionX 5
         OffsetLeft 5
         PositionY 140
