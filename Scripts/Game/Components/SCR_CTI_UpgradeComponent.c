@@ -41,7 +41,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	protected void fillUpStatuses()
 	{
-		for (int i = 0; i < m_gameMode.UpgradesUSSR.g_Upgrades.Count(); i++)
+		for (int i = 0; i < m_gameMode.Upgrades.g_Upgrades.Count(); i++)
 		{
 			ussrUpgradeStatuses.Insert(UpgradeStatus.NONE);
 			usUpgradeStatuses.Insert(UpgradeStatus.NONE);
@@ -52,12 +52,11 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	// Only on server
 	void runUpgrade(FactionKey factionkey, int upgradeindex)
 	{
-		SCR_CTI_UpgradeData upgradeData;
+		SCR_CTI_UpgradeData upgradeData = m_gameMode.Upgrades.g_Upgrades[upgradeindex];
 		switch (factionkey)
 		{
 			case "USSR":
 			{
-				upgradeData = m_gameMode.UpgradesUSSR.g_Upgrades[upgradeindex];
 				if (upgradeindex != -1 && ussrUpgradeStatuses[upgradeindex] == UpgradeStatus.NONE)
 				{
 					ussrUpgradeStatuses[upgradeindex] = UpgradeStatus.RUNNING;
@@ -68,7 +67,6 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 			}
 			case "US":
 			{
-				upgradeData = m_gameMode.UpgradesUS.g_Upgrades[upgradeindex];
 				if (upgradeindex != -1 && usUpgradeStatuses[upgradeindex] == UpgradeStatus.NONE)
 				{
 					usUpgradeStatuses[upgradeindex] = UpgradeStatus.RUNNING;

@@ -44,8 +44,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	ref SCR_CTI_DefensesUSSR DefensesUSSR = new SCR_CTI_DefensesUSSR();
 	ref SCR_CTI_DefensesUS DefensesUS = new SCR_CTI_DefensesUS();
 
-	ref SCR_CTI_Upgrades UpgradesUSSR = new SCR_CTI_Upgrades();
-	ref SCR_CTI_Upgrades UpgradesUS = new SCR_CTI_Upgrades();
+	ref SCR_CTI_Upgrades Upgrades = new SCR_CTI_Upgrades();
 
 	//------------------------------------------------------------------------------------------------
 	protected override void EOnInit(IEntity owner)
@@ -356,7 +355,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		DefensesUSSR = null;
 		DefensesUS = null;
 		
-		UpgradesUSSR = null;
-		UpgradesUS = null;
+		Upgrades = null;
 	}
 };

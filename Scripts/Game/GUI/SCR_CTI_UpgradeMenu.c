@@ -88,14 +88,14 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		m_exit.AddHandler(m_buttonEventHandler);
 		
 		FactionKey fk = playerFaction.GetFactionKey();
+		SCR_CTI_UpgradeData upgradeData;
 		switch (fk)
 		{
 			case "USSR":
 			{
-				for (int i = 0; i < gameMode.UpgradesUSSR.g_Upgrades.Count(); i++)
+				for (int i = 0; i < gameMode.Upgrades.g_Upgrades.Count(); i++)
 				{
-					SCR_CTI_UpgradeData upgradeData;
-					upgradeData = gameMode.UpgradesUSSR.g_Upgrades[i];
+					upgradeData = gameMode.Upgrades.g_Upgrades[i];
 					m_listboxcomp.AddItem(upgradeData.getName());
 					
 					if (upgradeComp.getUpgradeStatus(fk, i) == UpgradeStatus.FINISHED)
@@ -108,10 +108,9 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			
 			case "US":
 			{
-				for (int i = 0; i < gameMode.UpgradesUS.g_Upgrades.Count(); i++)
+				for (int i = 0; i < gameMode.Upgrades.g_Upgrades.Count(); i++)
 				{
-					SCR_CTI_UpgradeData upgradeData;
-					upgradeData = gameMode.UpgradesUS.g_Upgrades[i];
+					upgradeData = gameMode.Upgrades.g_Upgrades[i];
 					m_listboxcomp.AddItem(upgradeData.getName());
 					
 					if (upgradeComp.getUpgradeStatus(fk, i) == UpgradeStatus.FINISHED)
@@ -151,11 +150,11 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		if (selected == -1) return;
 		
 		FactionKey fk = playerFaction.GetFactionKey();
+		SCR_CTI_UpgradeData upgradeData = gameMode.Upgrades.g_Upgrades[selected];
 		switch (fk)
 		{
 			case "USSR":
 			{
-				SCR_CTI_UpgradeData upgradeData = gameMode.UpgradesUSSR.g_Upgrades[selected];
 				m_labeltext.SetText(upgradeData.getLabel());
 				m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
 				m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$");
@@ -169,7 +168,6 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			
 			case "US":
 			{
-				SCR_CTI_UpgradeData upgradeData = gameMode.UpgradesUS.g_Upgrades[selected];
 				m_labeltext.SetText(upgradeData.getLabel());
 				m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
 				m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$");
