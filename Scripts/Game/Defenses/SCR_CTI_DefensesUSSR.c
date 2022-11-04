@@ -27,7 +27,7 @@ class SCR_CTI_DefensesUSSR
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void fillUp()
+	private void fillUp()
 	{
 		// Defenses
 		res.Insert("{723870DBB19D30B0}Prefabs/Weapons/Tripods/Tripod_6T5_PKM.et");
@@ -40,14 +40,7 @@ class SCR_CTI_DefensesUSSR
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		fillUp();
-		setDefenses();
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void setDefenses()
+	private void setDefenses()
 	{
 		SCR_CTI_DefenseData store;
 		for (int i = 0; i < res.Count(); i++)
@@ -57,5 +50,19 @@ class SCR_CTI_DefensesUSSR
 			
 			g_USSR_Defenses.Insert(store);
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void SCR_CTI_DefensesUSSR()
+	{
+		fillUp();
+		setDefenses();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void ~SCR_CTI_DefensesUSSR()
+	{
+		g_USSR_Defenses.Clear();
+		g_USSR_Defenses = null;
 	}
 };

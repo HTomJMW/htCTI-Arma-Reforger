@@ -1,17 +1,11 @@
+// Unflip Transport trucks not working atm. Feedback: https://feedback.bistudio.com/T168705
+
 class SCR_CTI_UnflipNearestVehicle
 {
 	protected PlayerController m_pc;
 	protected IEntity m_playerEntity;
 	protected ref array<IEntity> m_vehicles = {};
 	protected SCR_CTI_GameMode m_gameMode;
-
-	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		m_pc = GetGame().GetPlayerController();
-		m_playerEntity = m_pc.GetControlledEntity();
-		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-	}
 
 	//------------------------------------------------------------------------------------------------
 	protected IEntity findNearest()
@@ -66,7 +60,7 @@ class SCR_CTI_UnflipNearestVehicle
 
 		if (nearest)
 		{
-			// disable unflip when vehicle is manned (its make RPL desync bug) (maybe player compartmentaccess component getout better?)
+			// disable unflip when vehicle is manned (its make ownship or RPL bug) (maybe player compartmentaccess component getout better?)
 			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(nearest.FindComponent(SCR_BaseCompartmentManagerComponent));
 			array<IEntity> occupants = {};
 			bcmc.GetOccupants(occupants);
@@ -82,6 +76,9 @@ class SCR_CTI_UnflipNearestVehicle
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_UnflipNearestVehicle()
 	{
+		m_pc = GetGame().GetPlayerController();
+		m_playerEntity = m_pc.GetControlledEntity();
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 
 	//------------------------------------------------------------------------------------------------

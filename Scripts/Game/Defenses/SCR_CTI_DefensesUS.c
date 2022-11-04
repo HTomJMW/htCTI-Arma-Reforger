@@ -27,7 +27,7 @@ class SCR_CTI_DefensesUS
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void fillUp()
+	private void fillUp()
 	{
 		// Defenses
 		res.Insert("{887DB60486A18575}Prefabs/Weapons/Tripods/Tripod_M122_MG_M60.et");
@@ -40,14 +40,7 @@ class SCR_CTI_DefensesUS
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		fillUp();
-		setDefenses();
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void setDefenses()
+	private void setDefenses()
 	{
 		SCR_CTI_DefenseData store;
 		for (int i = 0; i < res.Count(); i++)
@@ -57,5 +50,19 @@ class SCR_CTI_DefensesUS
 			
 			g_US_Defenses.Insert(store);
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void SCR_CTI_DefensesUS()
+	{
+		fillUp();
+		setDefenses();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void ~SCR_CTI_DefensesUS()
+	{
+		g_US_Defenses.Clear();
+		g_US_Defenses = null;
 	}
 };

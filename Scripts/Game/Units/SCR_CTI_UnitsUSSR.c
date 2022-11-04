@@ -28,7 +28,7 @@ class SCR_CTI_UnitsUSSR
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void fillUp()
+	private void fillUp()
 	{
 		// Equipment box
 		res.Insert("{B728C4AE0E6EB1E8}Prefabs/Systems/Arsenal/AmmoBoxes/USSR/AmmoBoxArsenal_Equipment_USSR.et");
@@ -197,14 +197,7 @@ class SCR_CTI_UnitsUSSR
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		fillUp();
-		setUnits();
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void setUnits()
+	private void setUnits()
 	{
 		SCR_CTI_UnitData store;
 		for (int i = 0; i < res.Count(); i++)
@@ -214,5 +207,19 @@ class SCR_CTI_UnitsUSSR
 			
 			g_USSR_Units.Insert(store);
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void SCR_CTI_UnitsUSSR()
+	{
+		fillUp();
+		setUnits();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void ~SCR_CTI_UnitsUSSR()
+	{
+		g_USSR_Units.Clear();
+		g_USSR_Units = null;
 	}
 };

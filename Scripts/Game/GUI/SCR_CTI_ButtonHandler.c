@@ -48,7 +48,6 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 			case "UNFLIPNEARESTVEHICLE":
 			{
 				SCR_CTI_UnflipNearestVehicle unflipveh = new SCR_CTI_UnflipNearestVehicle;
-				unflipveh.init();
 				unflipveh.unflip();
 				break;
 			}
@@ -60,7 +59,6 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				netComp.clearCommanderIdRpl(affiliationComp.GetAffiliatedFaction().GetFactionKey());
-				gameMode.clearCommanderId(affiliationComp.GetAffiliatedFaction().GetFactionKey()); // maybe not need?
 				
 				int sizeCDA = gameMode.ClientDataArray.Count();
 				SCR_CTI_ClientData clientData;

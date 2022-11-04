@@ -78,18 +78,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		townsToArray();
 		initMap();
 
-		UnitsFIA.init();
-		UnitsUSSR.init();
-		UnitsUS.init();
-		
-		FactoriesUSSR.init();
-		FactoriesUS.init();
-		DefensesUSSR.init();
-		DefensesUS.init();
-		
-		UpgradesUSSR.init();
-		UpgradesUS.init();
-		
 		BaseComponent.init();
 		UpgradeComponent.init();
 

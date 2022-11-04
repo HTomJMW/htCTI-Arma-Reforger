@@ -110,7 +110,7 @@ class SCR_CTI_Upgrades
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void fillUp()
+	private void fillUp()
 	{
 		// Upgrades
 		labels.Insert("Barracks");
@@ -151,14 +151,7 @@ class SCR_CTI_Upgrades
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		fillUp();
-		setUpgrades();
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void setUpgrades()
+	private void setUpgrades()
 	{
 		SCR_CTI_UpgradeData store;
 		for (int i = 0; i < labels.Count(); i++)
@@ -168,5 +161,19 @@ class SCR_CTI_Upgrades
 			
 			g_Upgrades.Insert(store);
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void SCR_CTI_Upgrades()
+	{
+		fillUp();
+		setUpgrades();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void ~SCR_CTI_Upgrades()
+	{
+		g_Upgrades.Clear();
+		g_Upgrades = null;
 	}
 };

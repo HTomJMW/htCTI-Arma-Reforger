@@ -27,7 +27,7 @@ class SCR_CTI_FactoriesUSSR
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void fillUp()
+	private void fillUp()
 	{
 		// Buildings
 		res.Insert("{3F91DEEC9C78E473}Prefabs/Structures/Military/Houses/GuardHouse_01.et");
@@ -64,14 +64,7 @@ class SCR_CTI_FactoriesUSSR
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		fillUp();
-		setFactories();
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void setFactories()
+	private void setFactories()
 	{
 		SCR_CTI_FactoryData store;
 		for (int i = 0; i < res.Count(); i++)
@@ -81,5 +74,19 @@ class SCR_CTI_FactoriesUSSR
 			
 			g_USSR_Factories.Insert(store);
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void SCR_CTI_FactoriesUSSR()
+	{
+		fillUp();
+		setFactories();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void ~SCR_CTI_FactoriesUSSR()
+	{
+		g_USSR_Factories.Clear();
+		g_USSR_Factories = null;
 	}
 };

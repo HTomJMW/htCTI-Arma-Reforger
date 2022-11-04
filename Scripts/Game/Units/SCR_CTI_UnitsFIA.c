@@ -28,7 +28,7 @@ class SCR_CTI_UnitsFIA
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void fillUp()
+	private void fillUp()
 	{
 		// Equipment box
 		res.Insert("{7F1A910F6EA32A82}Prefabs/Systems/Arsenal/AmmoBoxes/FIA/AmmoBoxArsenal_Equipment_FIA.et");
@@ -142,15 +142,7 @@ class SCR_CTI_UnitsFIA
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		fillUp();
-		setDisplayNames();
-		setUnits();
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void setDisplayNames()
+	private void setDisplayNames()
 	{
 		for (int i = 0; i < res.Count(); i++)
 		{
@@ -159,7 +151,7 @@ class SCR_CTI_UnitsFIA
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void setUnits()
+	private void setUnits()
 	{
 		SCR_CTI_UnitData store;
 		for (int i = 0; i < res.Count(); i++)
@@ -169,5 +161,20 @@ class SCR_CTI_UnitsFIA
 			
 			g_FIA_Units.Insert(store);
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void SCR_CTI_UnitsFIA()
+	{
+		fillUp();
+		setDisplayNames();
+		setUnits();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void ~SCR_CTI_UnitsFIA()
+	{
+		g_FIA_Units.Clear();
+		g_FIA_Units = null;
 	}
 };

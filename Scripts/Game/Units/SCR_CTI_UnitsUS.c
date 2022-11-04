@@ -28,7 +28,7 @@ class SCR_CTI_UnitsUS
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void fillUp()
+	private void fillUp()
 	{
 		// Equipment box
 		res.Insert("{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et");
@@ -233,14 +233,7 @@ class SCR_CTI_UnitsUS
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		fillUp();
-		setUnits();
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void setUnits()
+	private void setUnits()
 	{
 		SCR_CTI_UnitData store;
 		for (int i = 0; i < res.Count(); i++)
@@ -250,5 +243,19 @@ class SCR_CTI_UnitsUS
 			
 			g_US_Units.Insert(store);
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void SCR_CTI_UnitsUS()
+	{
+		fillUp();
+		setUnits();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void ~SCR_CTI_UnitsUS()
+	{
+		g_US_Units.Clear();
+		g_US_Units = null;
 	}
 };
