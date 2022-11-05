@@ -16,6 +16,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_BaseComponent BaseComponent;
 
 	const int MAXBASES = 2;
+	const int BASERADIUS = 100;
 	const bool ECOWIN = true;
 	const int WINRATE = 75;
 	const int STARTFUNDS = 2400;

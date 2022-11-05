@@ -81,33 +81,60 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		// handler
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
-		m_addworker.SetName("ADDWORKER");
-		m_addworker.SetColor(Color.Orange);
-		m_addworker.AddHandler(m_buttonEventHandler);
+		//m_addworker.SetName("ADDWORKER");
+		//m_addworker.SetColor(Color.Orange);
+		//m_addworker.AddHandler(m_buttonEventHandler);
+		m_addworker.SetColor(Color.Gray);
+		m_addworker.SetEnabled(false);
+
+		int sizeCDA = gameMode.ClientDataArray.Count();
+		SCR_CTI_ClientData clientData;
+		for (int i = 0; i < sizeCDA; i++)
+		{
+			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+			{
+				clientData = gameMode.ClientDataArray[i];
+				break;
+			}
+		}
 		
-		m_buildstructure.SetName("BUILDSTRUCTURE");
-		m_buildstructure.SetColor(Color.Orange);
-		m_buildstructure.AddHandler(m_buttonEventHandler);
+		if (clientData && clientData.isCommander())
+		{
+			m_buildstructure.SetName("BUILDSTRUCTURE");
+			m_buildstructure.SetColor(Color.Orange);
+			m_buildstructure.AddHandler(m_buttonEventHandler);
+		} else {
+			m_buildstructure.SetColor(Color.Gray);
+			m_buildstructure.SetEnabled(false);
+		}
+
+		//m_undostructure.SetName("UNDOSTRUCTURE");
+		//m_undostructure.SetColor(Color.Orange);
+		//m_undostructure.AddHandler(m_buttonEventHandler);
+		m_undostructure.SetColor(Color.Gray);
+		m_undostructure.SetEnabled(false);
 		
-		m_undostructure.SetName("UNDOSTRUCTURE");
-		m_undostructure.SetColor(Color.Orange);
-		m_undostructure.AddHandler(m_buttonEventHandler);
+		//m_defautomanning.SetName("DEFAUTOMANNING");
+		//m_defautomanning.SetColor(Color.Orange);
+		//m_defautomanning.AddHandler(m_buttonEventHandler);
+		m_defautomanning.SetColor(Color.Gray);
+		m_defautomanning.SetEnabled(false);
 		
-		m_defautomanning.SetName("DEFAUTOMANNING");
-		m_defautomanning.SetColor(Color.Orange);
-		m_defautomanning.AddHandler(m_buttonEventHandler);
-		
-		m_autoalignwalls.SetName("AUTOALIGNWALLS");
-		m_autoalignwalls.SetColor(Color.Orange);
-		m_autoalignwalls.AddHandler(m_buttonEventHandler);
-		
+		//m_autoalignwalls.SetName("AUTOALIGNWALLS");
+		//m_autoalignwalls.SetColor(Color.Orange);
+		//m_autoalignwalls.AddHandler(m_buttonEventHandler);
+		m_autoalignwalls.SetColor(Color.Gray);
+		m_autoalignwalls.SetEnabled(false);
+
 		m_builddefense.SetName("BUILDDEFENSE");
 		m_builddefense.SetColor(Color.Orange);
 		m_builddefense.AddHandler(m_buttonEventHandler);
 		
-		m_undodefense.SetName("UNDODEFENSE");
-		m_undodefense.SetColor(Color.Orange);
-		m_undodefense.AddHandler(m_buttonEventHandler);
+		//m_undodefense.SetName("UNDODEFENSE");
+		//m_undodefense.SetColor(Color.Orange);
+		//m_undodefense.AddHandler(m_buttonEventHandler);
+		m_autoalignwalls.SetColor(Color.Gray);
+		m_autoalignwalls.SetEnabled(false);
 		
 		m_back.SetName("BACKBUTTON");
 		m_back.SetColor(Color.Orange);

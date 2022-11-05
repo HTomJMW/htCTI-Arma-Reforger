@@ -14,8 +14,8 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	[RplProp()]
 	protected int usBaseCount = 0;
 	
-	ref array<SCR_CTI_Base> ussrBases = {};
-	ref array<SCR_CTI_Base> usBases = {};
+	protected ref array<ref SCR_CTI_Base> ussrBases = {};
+	protected ref array<ref SCR_CTI_Base> usBases = {};
 
 	//------------------------------------------------------------------------------------------------
 	void init()
@@ -80,9 +80,18 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		}
 		return result;
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	float getAreaDistances(vector base1, vector base2)
+	{
+		float dist= -1;
+		dist = vector.DistanceXZ(base1, base2);
+
+		return dist;
+	}
 
 	//------------------------------------------------------------------------------------------------
-	void markBase(FactionKey sidekey, int baseId)
+	protected void markBase(FactionKey sidekey, int baseId)
 	{
 	}
 

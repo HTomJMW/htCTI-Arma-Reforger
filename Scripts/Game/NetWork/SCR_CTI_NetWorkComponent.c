@@ -156,15 +156,8 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
 	protected void RpcAsk_BuildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4])
 	{
-		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
-		
-		Resource resource = Resource.Load(resourcename);
-		EntitySpawnParams params = new EntitySpawnParams();
-		params.TransformMode = ETransformMode.WORLD;
-		params.Transform = mat;
-
-		GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+		SCR_CTI_BuildStructure BuildStructure = new SCR_CTI_BuildStructure;
+		BuildStructure.build(factionkey, resourcename, mat);
 	}
 
 	//------------------------------------------------------------------------------------------------
