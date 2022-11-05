@@ -1,10 +1,11 @@
 class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 {
 	protected RichTextWidget Name;
+	protected RichTextWidget Fuel;
 	protected RichTextWidget Damage;
 	
 	protected float m_timeDelta;
-	protected const float timeStep = 0.5;
+	protected const float TIMESTEP = 0.5;
 	
 	SCR_CTI_GameMode gameMode;
 	PlayerController pc;
@@ -12,15 +13,20 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 	CompartmentAccessComponent compartmentAccessComp;
 	IEntity vehicle;
 	SCR_VehicleDamageManagerComponent vehicleDamageManager;
+	FuelManagerComponent fuelManagerComp;
 
 	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
 	{
 		Name = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Name"));
+		Fuel = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Fuel"));
 		Damage = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Damage"));
 		
 		Name.SetText("Vehicle Name");
 		Name.SetVisible(true);
+		
+		Fuel.SetText("Vehicle Fuel");
+		Fuel.SetVisible(true);
 		
 		Damage.SetText("Vehicle Damage");
 		Damage.SetVisible(true);
@@ -44,7 +50,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 	override event void DisplayUpdate(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
-		if (m_timeDelta > timeStep)
+		if (m_timeDelta > TIMESTEP)
 		{
 			if (!m_wRoot)
 				return;	
@@ -71,17 +77,20 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 				string displayName = WidgetManager.Translate(info.GetName());
 				displayName.Replace(" ", "\n");
 				Name.SetText(displayName);
+				
 				vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(vehicle.FindComponent(SCR_VehicleDamageManagerComponent));
 				array<HitZone> hitZones = {};
 				vehicleDamageManager.GetAllHitZones(hitZones);
 				float hp = 0.0;
 				float maxhp = 0.0;
+				
 				foreach (HitZone hitzone : hitZones)
 				{
 					hp += hitzone.GetHealth();
 					maxhp += hitzone.GetMaxHealth();
 				}
 				float condition = Math.Round((hp / maxhp) * 100);
+				
 				string cond;
 				switch (true)
 				{
@@ -90,6 +99,18 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 					default: cond = string.Format("<color rgba='0,255,0,255'>%1%2</color>", condition.ToString(), "%"); break;
 				}
 				Damage.SetText("Condition: " + cond);
+				
+				fuelManagerComp = FuelManagerComponent.Cast(vehicle.FindComponent(FuelManagerComponent));
+				int fuel = (fuelManagerComp.GetTotalFuel() / fuelManagerComp.GetTotalMaxFuel()) * 100; // maybe L better than %?
+
+				string fu;
+				switch (true)
+				{
+					case (fuel < 75 && fuel > 25): fu = string.Format("<color rgba='255,255,0,255'>%1%2</color>", fuel.ToString(), "%"); break;
+					case (fuel < 25): fu = string.Format("<color rgba='255,0,0,255'>%1%2</color>", fuel.ToString(), "%"); break;
+					default: fu = string.Format("<color rgba='0,255,0,255'>%1%2</color>", fuel.ToString(), "%"); break;
+				}
+				Fuel.SetText("Fuel: " + fu);
 			}
 			m_timeDelta = 0;
 		}

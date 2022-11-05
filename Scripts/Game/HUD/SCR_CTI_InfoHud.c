@@ -5,13 +5,20 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	protected RichTextWidget Line3;
 	
 	protected float m_timeDelta;
-	protected const float timeStep = 1;
+	protected const float TIMESTEP = 1;
 	
-	SCR_CTI_GameMode gameMode;
-	SCR_CTI_UpgradeComponent upComp;
-	PlayerController pc;
-	IEntity ent;
-	DamageManagerComponent dmc;
+	protected SCR_CTI_GameMode gameMode;
+	protected SCR_CTI_UpgradeComponent upComp;
+	protected PlayerController pc;
+	protected IEntity ent;
+	protected DamageManagerComponent dmc;
+	protected BaseStaminaComponent bsc;
+	protected SCR_InventoryStorageManagerComponent ismc;
+	
+	protected ResourceName m_ussr_radio1 = "{E1A5D4B878AA8980}Prefabs/Items/Equipment/Radios/Radio_R148.et"; // start radio
+	protected ResourceName m_ussr_radio2 = "{54C68E438DD34265}Prefabs/Items/Equipment/Radios/Radio_R107M.et";
+	protected ResourceName m_us_radio1 = "{73950FBA2D7DB5C5}Prefabs/Items/Equipment/Radios/Radio_ANPRC68.et"; // start radio
+	protected ResourceName m_us_radio2 = "{9B6B61BB3FE3DFB0}Prefabs/Items/Equipment/Radios/Radio_ANPRC77.et";
 
 	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
@@ -37,7 +44,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	override event void DisplayUpdate(IEntity owner, float timeSlice)
 	{
 		m_timeDelta += timeSlice;
-		if (m_timeDelta > timeStep)
+		if (m_timeDelta > TIMESTEP)
 		{
 			if (!m_wRoot)
 				return;	
@@ -47,11 +54,44 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			
 			pc = GetGame().GetPlayerController();
 			ent = pc.GetControlledEntity();
+
 			dmc = DamageManagerComponent.Cast(ent.FindComponent(DamageManagerComponent));
-	
 			int hp = dmc.GetHealth();
 			
+			bsc = BaseStaminaComponent.Cast(ent.FindComponent(BaseStaminaComponent));
+			int st = bsc.GetStamina() * 100;
+			
 			FactionAffiliationComponent side = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
+
+			ismc = SCR_InventoryStorageManagerComponent.Cast(ent.FindComponent(SCR_InventoryStorageManagerComponent));
+			SCR_PrefabNamePredicate predicate = new SCR_PrefabNamePredicate();
+			array<IEntity> radios = {};
+			switch (side.GetAffiliatedFaction().GetFactionKey())
+			{
+				case "USSR":
+				{
+					predicate.prefabName = m_ussr_radio1;
+					ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_GADGET_PROXY);
+					if (radios.IsEmpty())
+						{
+							predicate.prefabName = m_ussr_radio2;
+							ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_GADGET_PROXY);
+						}
+					break;
+				}
+				case "US":
+				{
+					predicate.prefabName = m_us_radio1;
+					ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_GADGET_PROXY);
+					if (radios.IsEmpty())
+						{
+							predicate.prefabName = m_us_radio2;
+							ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_GADGET_PROXY);
+						}
+					break;
+				}
+			}
+
 			SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
 			FactionKey sidekey = side.GetAffiliatedFaction().GetFactionKey();
 			int baseCount = 0;
@@ -108,6 +148,9 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			{
 				int funds = clientData.getFunds();
 
+				string rad = "None";
+				if (radios.IsEmpty()) rad = "Live";
+
 				string health;
 				switch (true)
 				{
@@ -115,7 +158,16 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 					case (hp < 25): health = string.Format("<color rgba='255,0,0,255'>%1</color>", hp.ToString()); break;
 					default: health = string.Format("<color rgba='0,255,0,255'>%1</color>", hp.ToString()); break;
 				}
-				Line1.SetText("Radio: [R] || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: [-]");
+				
+				string stamina;
+				switch (true)
+				{
+					case (st < 75 && st > 25): stamina = string.Format("<color rgba='255,255,0,255'>%1</color>", st.ToString()); break;
+					case (st < 25): stamina = string.Format("<color rgba='255,0,0,255'>%1</color>", st.ToString()); break;
+					default: stamina = string.Format("<color rgba='0,0,255,255'>%1</color>", st.ToString()); break;
+				}
+				
+				Line1.SetText("Radio: " + rad + " || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: " + stamina);
 			}
 			Line2.SetText("Current Com: " + comm + " || Bases: " + baseCount.ToString() + "/" + gameMode.MAXBASES.ToString()); 
 			Line3.SetText(upgrade);

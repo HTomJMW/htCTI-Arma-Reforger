@@ -27,12 +27,29 @@ FrameWidgetClass {
       OffsetTop 10
       SizeX 160
       OffsetRight -170
-      SizeY 145
+      SizeY 110
+      OffsetBottom -120
+     }
+     "Font Size" 18
+     "Min Font Size" 18
+     "Horizontal Alignment" Right
+    }
+    RichTextWidgetClass "{5AC965887ED4CFD4}" {
+     Name "Fuel"
+     Slot FrameWidgetSlot "{5A3B337E2E5EBFF8}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 125
+      OffsetTop 125
+      SizeX 160
+      OffsetRight -170
+      SizeY 30
       OffsetBottom -155
      }
      "Font Size" 18
      "Min Font Size" 18
      "Horizontal Alignment" Right
+     "Vertical Alignment" Center
     }
     RichTextWidgetClass "{5A871286BCE681C6}" {
      Name "Damage"
