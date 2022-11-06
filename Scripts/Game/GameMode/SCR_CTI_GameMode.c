@@ -22,6 +22,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	const int STARTFUNDS = 2400;
 	const int STARTCOMMFUNDS = 7500;
 	const float AISKILL = 0.75;
+	const string USSRMHQ = "CTI_USSR_MHQ";
+	const string USMHQ = "CTI_US_MHQ";
 	
 	protected int playerGroupSize = 8;
 
@@ -44,6 +46,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	ref SCR_CTI_FactoriesUS FactoriesUS = new SCR_CTI_FactoriesUS();
 	ref SCR_CTI_DefensesUSSR DefensesUSSR = new SCR_CTI_DefensesUSSR();
 	ref SCR_CTI_DefensesUS DefensesUS = new SCR_CTI_DefensesUS();
+	
+	ref SCR_CTI_GearUSSR GearUSSR = new SCR_CTI_GearUSSR();
+	ref SCR_CTI_GearUS GearUS = new SCR_CTI_GearUS();
 
 	ref SCR_CTI_Upgrades Upgrades = new SCR_CTI_Upgrades();
 

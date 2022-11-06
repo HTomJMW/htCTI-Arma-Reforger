@@ -176,6 +176,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						SCR_CTI_FactoryData facData = gameMode.FactoriesUSSR.g_USSR_Factories[selected];
 						ResourceName res = facData.getRes();
 						float dist = facData.getDis();
+						int placement = facData.getPla();
 
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
@@ -191,6 +192,8 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
 						dir.Normalize();
 						
+						// todo rotation (placement angle)
+
 						mat[3] = mat[3] + (dir * dist);
 						BaseWorld world = GetGame().GetWorld();
 						mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);

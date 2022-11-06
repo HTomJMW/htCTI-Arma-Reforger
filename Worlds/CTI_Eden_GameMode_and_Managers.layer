@@ -581,9 +581,10 @@ GarbageManager {
   RplComponent "{599D233FEF87801A}" {
   }
  }
- CharacterLifetime 240
- VehicleLifetime 1800
- ItemLifetime 240
+ CollectorInterval 30
+ CharacterLifetime 300
+ VehicleLifetime 3600
+ ItemLifetime 300
 }
 HitRegistrationManager HitRegistrationManager1 {
 }

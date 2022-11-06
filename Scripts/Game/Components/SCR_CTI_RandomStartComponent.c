@@ -127,7 +127,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			// Jeep + equipment
 			svNorth1.setPrefab("{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et");
 			svNorth1.addItemsPrefab(itemMapM151);
-			
+
 			// M923A1 truck + equipment
 			svNorth2.setPrefab("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
 			svNorth2.addItemsPrefab(itemMapM923);

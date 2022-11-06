@@ -113,6 +113,24 @@ class SCR_CTI_Upgrades
 	private void fillUp()
 	{
 		// Upgrades
+		labels.Insert("Gear");
+		names.Insert("Gear Level 1");
+		descriptions.Insert("Unlock better Gear");
+		levels.Insert(1);
+		costs.Insert(1000);
+		links.Insert("None");
+		linklevels.Insert(0);
+		times.Insert(60);
+		
+		labels.Insert("Gear");
+		names.Insert("Gear Level 2");
+		descriptions.Insert("Unlock better Gear");
+		levels.Insert(2);
+		costs.Insert(2000);
+		links.Insert("None");
+		linklevels.Insert(1);
+		times.Insert(120);
+		
 		labels.Insert("Barracks");
 		names.Insert("Barracks Level 1");
 		descriptions.Insert("Unlock better Infantry Units");

@@ -35,14 +35,14 @@ class SCR_CTI_FactoriesUSSR
 		pri.Insert(2000);
 		bt.Insert(10);
 		dis.Insert(10);
-		pla.Insert(0);
+		pla.Insert(180);
 		scr.Insert("");
 		
 		res.Insert("{88044D117268E628}Prefabs/Structures/Military/Houses/Barracks_01_military_yellow.et");
 		name.Insert("Barracks");
 		pri.Insert(1000);
 		bt.Insert(10);
-		dis.Insert(10);
+		dis.Insert(25);
 		pla.Insert(0);
 		scr.Insert("");
 		
@@ -50,16 +50,16 @@ class SCR_CTI_FactoriesUSSR
 		name.Insert("Light Factory");
 		pri.Insert(2000);
 		bt.Insert(10);
-		dis.Insert(10);
-		pla.Insert(0);
+		dis.Insert(15);
+		pla.Insert(180);
 		scr.Insert("");
 		
 		res.Insert("{F16324CB8CB07C00}Prefabs/Structures/Military/Houses/GarageMilitary_E_01.et");
 		name.Insert("Heavy Factory");
 		pri.Insert(4000);
 		bt.Insert(10);
-		dis.Insert(10);
-		pla.Insert(0);
+		dis.Insert(20);
+		pla.Insert(180);
 		scr.Insert("");
 	}
 
