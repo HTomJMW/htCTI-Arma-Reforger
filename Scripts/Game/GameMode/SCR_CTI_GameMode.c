@@ -22,8 +22,10 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	const int STARTFUNDS = 2400;
 	const int STARTCOMMFUNDS = 7500;
 	const float AISKILL = 0.75;
-	const string USSRMHQ = "CTI_USSR_MHQ";
-	const string USMHQ = "CTI_US_MHQ";
+	const ResourceName USSRMHQ = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
+	const ResourceName USMHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
+	const string USSRMHQNAME = "CTI_USSR_MHQ";
+	const string USMHQNAME = "CTI_US_MHQ";
 	
 	protected int playerGroupSize = 8;
 

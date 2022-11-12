@@ -204,7 +204,7 @@ class SCR_CTI_UnitsUS
 		fac.Insert("");
 		scr.Insert("");
 		
-		res.Insert("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et");
+		res.Insert("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"); // MHQ
 		pic.Insert("");
 		name.Insert("");
 		pri.Insert(20000);

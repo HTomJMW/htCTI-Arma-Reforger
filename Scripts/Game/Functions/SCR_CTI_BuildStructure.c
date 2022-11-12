@@ -4,69 +4,126 @@ class SCR_CTI_BuildStructure
 	protected SCR_CTI_BaseComponent m_baseComp;
 
 	//------------------------------------------------------------------------------------------------
-	void build(FactionKey factionkey, ResourceName resourcename, vector mat[4])
+	void build(FactionKey factionkey, ResourceName resourcename, vector mat[4], float dist, float placement)
 	{
-		if (m_baseComp.getBaseCount(factionkey) >= m_gameMode.MAXBASES) return;
+		// position
+		vector dir = mat[2];
+		mat[3] = mat[3] + (dir * dist);
+		
+		// ATL position
+		BaseWorld world = GetGame().GetWorld();
+		mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
 		
 		Resource resource = Resource.Load(resourcename);
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		params.Transform = mat;
-
-		GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 		
-		setBaseArea(factionkey, mat[3]);
-		
-		// todo add structure to base
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void setBaseArea(FactionKey factionkey, vector mat)
-	{
-		int basecount;
+		IEntity structure = null;
+		int basecount = m_baseComp.getBaseCount(factionkey);
 		switch (factionkey)
 		{
 			case "USSR":
 			{
-				basecount = m_baseComp.getBaseCount(factionkey);
+				// Step 1:
+				// if no base yet
 				if (basecount < 1)
 				{
-					m_baseComp.addBase(factionkey, mat, basecount);
-				} else {
-					float distance;
-					for (int i = 0; i < basecount; i++)
+					m_baseComp.addBase(factionkey, mat[3], basecount);
+					structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+					m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+					break;
+				}
+
+				// Step 2: 
+				// if pos inside base area (base area unions not handled, add structure to first possible base)
+				bool inside = false;
+				for (int i = 0; i < basecount; i++)
+				{
+					if (!inside)
 					{
-						distance = m_baseComp.getAreaDistances(mat,m_baseComp.getBase(factionkey, i).getBasePos());
-						if (distance > m_gameMode.BASERADIUS * 2)
+						float distance = m_baseComp.getAreaDistances(mat[3], m_baseComp.getBase(factionkey, i).getBasePos());
+		
+						if (distance <= m_gameMode.BASERADIUS)
 						{
-							m_baseComp.addBase(factionkey, mat, basecount);
-							break;
+							structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+							m_baseComp.getBase(factionkey, i).addStructure(structure);
+							inside = true;
 						}
 					}
 				}
+				if (inside) break;
+
+				// Step 3:
+				// if pos not inside base area and max base count reached
+				if (basecount >= m_gameMode.MAXBASES) break;
+				
+				// Step 4:
+				// not first and not inside other area so make new base
+				m_baseComp.addBase(factionkey, mat[3], basecount);
+				structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+				m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+
 				break;
 			}
 			case "US":
 			{
-				basecount = m_baseComp.getBaseCount(factionkey);
+				// Step 1:
+				// if no base yet
 				if (basecount < 1)
 				{
-					m_baseComp.addBase(factionkey, mat, basecount);
-				} else {
-					float distance;
-					for (int i = 0; i < basecount; i++)
+					m_baseComp.addBase(factionkey, mat[3], basecount);
+					structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+					m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+					break;
+				}
+
+				// Step 2: 
+				// if pos inside base area (base area unions not handled, add structure to first possible base)
+				bool inside = false;
+				for (int i = 0; i < basecount; i++)
+				{
+					if (!inside)
 					{
-						distance = m_baseComp.getAreaDistances(mat, m_baseComp.getBase(factionkey, i).getBasePos());
-						if (distance > m_gameMode.BASERADIUS * 2)
+						float distance = m_baseComp.getAreaDistances(mat[3], m_baseComp.getBase(factionkey, i).getBasePos());
+		
+						if (distance <= m_gameMode.BASERADIUS)
 						{
-							m_baseComp.addBase(factionkey, mat, basecount);
-							break;
+							structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+							m_baseComp.getBase(factionkey, i).addStructure(structure);
+							inside = true;
 						}
 					}
 				}
+				if (inside) break;
+
+				// Step 3:
+				// if pos not inside base area and max base count reached
+				if (basecount >= m_gameMode.MAXBASES) break;
+				
+				// Step 4:
+				// not first and not inside other area so make new base
+				m_baseComp.addBase(factionkey, mat[3], basecount);
+				structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+				m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+
 				break;
 			}
 		}
+
+		// rotate
+		if (structure)
+		{
+			vector rot = "0 0 0";
+			vector angles = mat[2].VectorToAngles();
+			rot[0] = angles[0] + placement;
+			
+			structure.SetYawPitchRoll(rot);
+		} else {
+			PrintFormat("CTI :: Side %1 reached Base limit", factionkey);
+		}
+		
+		// todo money things
 	}
 
 	//------------------------------------------------------------------------------------------------

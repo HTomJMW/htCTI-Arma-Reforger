@@ -1,0 +1,453 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  ImageWidgetClass "{5ACCDED394A8D3DF}" {
+   Name "BackGround"
+   Slot FrameWidgetSlot "{5A3D637FFD52AA3B}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -450
+    OffsetLeft -450
+    PositionY -350
+    OffsetTop -350
+    SizeX 900
+    OffsetRight -450
+    SizeY 700
+    OffsetBottom -350
+   }
+   Opacity 0.8
+   Texture "{AE0DAFB0ED1F2B1C}UI/Textures/Menu/background.edds"
+   Image ""
+   Size 64 64
+  }
+  WindowWidgetClass "{5ACCDED394A8D726}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A3D2853D8391800}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -400
+    OffsetLeft -400
+    PositionY -300
+    OffsetTop -300
+    SizeX 800
+    OffsetRight -400
+    SizeY 600
+    OffsetBottom -300
+   }
+   Clipping False
+   "no focus" 1
+   {
+    WindowWidgetClass "{5ACCDED394A8D721}" {
+     Name "WindowLeft"
+     Slot FrameWidgetSlot "{5A3D28535422FA6D}" {
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 400
+      OffsetRight -400
+      SizeY 600
+      OffsetBottom -600
+     }
+     {
+      RichTextWidgetClass "{5ACCEA8EF5FDF948}" {
+       Name "Resources"
+       Slot FrameWidgetSlot "{5ACCEA8EF5FDF96E}" {
+        Anchor 1 0 1 0
+        PositionX -200
+        OffsetLeft -200
+        PositionY 150
+        OffsetTop 150
+        SizeX 195
+        OffsetRight 5
+        SizeY 30
+        OffsetBottom -180
+       }
+       Text "Resources:"
+       "Horizontal Alignment" Right
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5ACCEA8EF67C21AA}" {
+       Name "Cost"
+       Slot FrameWidgetSlot "{5ACCEA8EF67C21CE}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 150
+        OffsetTop 150
+        SizeX 195
+        OffsetRight -200
+        OffsetBottom -180
+       }
+       Text "Cost:"
+       "Vertical Alignment" Center
+      }
+      ButtonWidgetClass "{5ACCEA8D57EF03FF}" {
+       Name "ButtonCrew"
+       Slot FrameWidgetSlot "{5ACCEA8D57EF0411}" {
+        PositionX 275
+        OffsetLeft 275
+        PositionY 75
+        OffsetTop 75
+        SizeX 50
+        OffsetRight -325
+        SizeY 50
+        OffsetBottom -125
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8D6B0E9CAF}" {
+       Name "ButtonGunner"
+       Slot FrameWidgetSlot "{5ACCEA8D6B0E9CC7}" {
+        PositionX 200
+        OffsetLeft 200
+        PositionY 75
+        OffsetTop 75
+        SizeX 50
+        OffsetRight -250
+        SizeY 50
+        OffsetBottom -125
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8D6C50D0A9}" {
+       Name "ButtonPilot"
+       Slot FrameWidgetSlot "{5ACCEA8D6C50D0C0}" {
+        PositionX 125
+        OffsetLeft 125
+        PositionY 75
+        OffsetTop 75
+        SizeX 50
+        OffsetRight -175
+        SizeY 50
+        OffsetBottom -125
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8D6E04EDC0}" {
+       Name "ButtonDriver"
+       Slot FrameWidgetSlot "{5ACCEA8D6E04EDD9}" {
+        PositionX 50
+        OffsetLeft 50
+        PositionY 75
+        OffsetTop 75
+        SizeX 50
+        OffsetRight -100
+        SizeY 50
+        OffsetBottom -125
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8C540265C1}" {
+       Name "ButtonAmmo"
+       Slot FrameWidgetSlot "{5ACCEA8C540265D8}" {
+        PositionX 250
+        OffsetLeft 250
+        PositionY 0
+        OffsetTop 0
+        SizeX 50
+        OffsetRight -300
+        SizeY 50
+        OffsetBottom -50
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8C5511016B}" {
+       Name "ButtonFlag"
+       Slot FrameWidgetSlot "{5ACCEA8C55110189}" {
+        PositionX 350
+        OffsetLeft 350
+        PositionY 0
+        OffsetTop 0
+        SizeX 50
+        OffsetRight -400
+        SizeY 50
+        OffsetBottom -50
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8C563B742E}" {
+       Name "ButtonNaval"
+       Slot FrameWidgetSlot "{5ACCEA8C563B7442}" {
+        PositionX 300
+        OffsetLeft 300
+        PositionY 0
+        OffsetTop 0
+        SizeX 50
+        OffsetRight -350
+        SizeY 50
+        OffsetBottom -50
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8C57643009}" {
+       Name "ButtonRep"
+       Slot FrameWidgetSlot "{5ACCEA8C57643022}" {
+        PositionX 200
+        OffsetLeft 200
+        PositionY 0
+        OffsetTop 0
+        SizeX 50
+        OffsetRight -250
+        SizeY 50
+        OffsetBottom -50
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8C5987BDB1}" {
+       Name "ButtonAir"
+       Slot FrameWidgetSlot "{5ACCEA8C5987BDC8}" {
+        PositionX 150
+        OffsetLeft 150
+        PositionY 0
+        OffsetTop 0
+        SizeX 50
+        OffsetRight -200
+        SizeY 50
+        OffsetBottom -50
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8C5AB84533}" {
+       Name "ButtonHeavy"
+       Slot FrameWidgetSlot "{5ACCEA8C5AB84557}" {
+        PositionX 100
+        OffsetLeft 100
+        PositionY 0
+        OffsetTop 0
+        SizeX 50
+        OffsetRight -150
+        SizeY 50
+        OffsetBottom -50
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8C5BFAF550}" {
+       Name "ButtonInf"
+       Slot FrameWidgetSlot "{5ACCEA8C5BFAF56B}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 50
+        OffsetRight -50
+        SizeY 50
+        OffsetBottom -50
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8C5EC407BF}" {
+       Name "ButtonLight"
+       Slot FrameWidgetSlot "{5ACCEA8C5EC407DF}" {
+        PositionX 50
+        OffsetLeft 50
+        PositionY 0
+        OffsetTop 0
+        SizeX 50
+        OffsetRight -100
+        SizeY 50
+        OffsetBottom -50
+       }
+      }
+      ButtonWidgetClass "{5ACCDED394A8D72C}" {
+       Name "Purchase"
+       Slot FrameWidgetSlot "{5A3F4D65D9FBD4DA}" {
+        Anchor 0 1 0 1
+        PositionX 5
+        OffsetLeft 5
+        PositionY -45
+        OffsetTop -45
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom 5
+       }
+       {
+        RichTextWidgetClass "{5ACCDED394A8D72F}" {
+         Name "PurchaseText"
+         Slot ButtonWidgetSlot "{5A57061E66E7996E}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Purchase"
+        }
+       }
+      }
+      OverlayWidgetClass "{5ACCDED394A8D72E}" {
+       Name "ListBox"
+       Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
+        Anchor 0 0 0 0
+        PositionX 5
+        OffsetLeft 5
+        PositionY 190
+        OffsetTop 190
+        SizeX 390
+        OffsetRight -395
+        SizeY 360
+        OffsetBottom -550
+       }
+       components {
+        SCR_ListBoxComponent "{566C9415BAA54E1B}" {
+         m_sElementLayout "{3121BDD71C35E46D}UI/layouts/ListBox/ListBoxElement_Text.layout"
+        }
+       }
+       {
+        ScrollLayoutWidgetClass "{5ACCDED394A8D729}" {
+         Name "ScrollLayout0"
+         Slot OverlayWidgetSlot "{56691148E692437F}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+         Color 0.761 0.386 0.08 1
+         {
+          VerticalLayoutWidgetClass "{5ACCDED394A8D728}" {
+           Name "List"
+           Slot AlignableSlot "{56691148E013D9A9}" {
+            HorizontalAlign 3
+            VerticalAlign 3
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5ACCDED394A8D72B}" {
+     Name "WindowRight"
+     Slot FrameWidgetSlot "{5A3D285353B4F95B}" {
+      Anchor 1 0 1 0
+      PositionX -400
+      OffsetLeft -400
+      PositionY 0
+      OffsetTop 0
+      SizeX 400
+      OffsetRight 0
+      SizeY 600
+      OffsetBottom -600
+     }
+     {
+      RichTextWidgetClass "{5ACCEA88D6D28087}" {
+       Name "Team"
+       Slot FrameWidgetSlot "{5ACCEA88D6D2809A}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 5
+        OffsetTop 5
+        OffsetRight -105
+        OffsetBottom -35
+       }
+       Text "Team:"
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5ACCEA88D7377B23}" {
+       Name "Factory"
+       Slot FrameWidgetSlot "{5ACCEA88D7377B46}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 65
+        OffsetTop 65
+        OffsetRight -105
+        OffsetBottom -95
+       }
+       Text "Factory:"
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5ACCEA8EF3354FF9}" {
+       Name "GroupSize"
+       Slot FrameWidgetSlot "{5ACCEA8EF335701E}" {
+        PositionX 200
+        OffsetLeft 200
+        PositionY 150
+        OffsetTop 150
+        SizeX 195
+        OffsetRight -395
+        OffsetBottom -180
+       }
+       Text "Group Size:"
+       "Horizontal Alignment" Right
+       "Vertical Alignment" Center
+      }
+      ButtonWidgetClass "{5ACCDED394A8D736}" {
+       Name "CancelQueue"
+       Slot FrameWidgetSlot "{5A3D2851F4B5B86A}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 510
+        OffsetTop 510
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom -550
+       }
+       "no focus" 1
+       {
+        RichTextWidgetClass "{5ACCDED394A8D731}" {
+         Name "CancelQueueText"
+         Slot ButtonWidgetSlot "{5A57061E5F94FC1A}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Cancel Queue"
+        }
+       }
+      }
+      ButtonWidgetClass "{5ACCDED394A8D730}" {
+       Name "BuyIndependentSalvager"
+       Slot FrameWidgetSlot "{5A3F4D65D75D94A6}" {
+        Anchor 0 1 0 1
+        PositionX 5
+        OffsetLeft 5
+        PositionY -45
+        OffsetTop -45
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom 5
+       }
+       {
+        RichTextWidgetClass "{5ACCDED394A8D733}" {
+         Name "BuyIndependentSalvagerText"
+         Slot ButtonWidgetSlot "{5A57061E5B00E6BE}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Buy Independent Salvager"
+        }
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5ACCDED394A8D739}" {
+     Name "Back"
+     Slot FrameWidgetSlot "{5A6D38DAC02C7D8B}" {
+      Anchor 1 0 1 0
+      PositionX -47.5
+      OffsetLeft -47.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight 2.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      TextWidgetClass "{5ACCDED394A8D738}" {
+       Name "BackText"
+       Slot ButtonWidgetSlot "{5A6D38DA34517D6E}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[<]"
+      }
+     }
+    }
+    ButtonWidgetClass "{5ACCDED394A8D73B}" {
+     Name "Exit"
+     Slot FrameWidgetSlot "{5A432A4F34902E6B}" {
+      Anchor 1 0 1 0
+      PositionX 2.5
+      OffsetLeft 2.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight -47.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      RichTextWidgetClass "{5ACCDED394A8D73A}" {
+       Name "ExitText"
+       Slot ButtonWidgetSlot "{5A57061E54D2921C}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[X]"
+      }
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,279 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  ImageWidgetClass "{5ACCC84A62760CE1}" {
+   Name "BackGround"
+   Slot FrameWidgetSlot "{5A3D637FFD52AA3B}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -450
+    OffsetLeft -450
+    PositionY -350
+    OffsetTop -350
+    SizeX 900
+    OffsetRight -450
+    SizeY 700
+    OffsetBottom -350
+   }
+   Opacity 0.8
+   Texture "{AE0DAFB0ED1F2B1C}UI/Textures/Menu/background.edds"
+   Image ""
+   Size 64 64
+  }
+  WindowWidgetClass "{5ACCC84A627600BF}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A3D2853D8391800}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -400
+    OffsetLeft -400
+    PositionY -300
+    OffsetTop -300
+    SizeX 800
+    OffsetRight -400
+    SizeY 600
+    OffsetBottom -300
+   }
+   Clipping False
+   "no focus" 1
+   {
+    ButtonWidgetClass "{5ACCC84A627600B9}" {
+     Name "Repair"
+     Slot FrameWidgetSlot "{5A3F4D65D9FBD4DA}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 510
+      OffsetTop 510
+      SizeX 385
+      OffsetRight -395
+      SizeY 40
+      OffsetBottom -550
+     }
+     {
+      RichTextWidgetClass "{5ACCC84A627600B8}" {
+       Name "RepairText"
+       Slot ButtonWidgetSlot "{5ACCDED3032B4EB2}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "Repair"
+      }
+     }
+    }
+    ButtonWidgetClass "{5ACCC84A627600BB}" {
+     Name "Rearm"
+     Slot FrameWidgetSlot "{5A3D2851FAB8DF12}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 555
+      OffsetTop 555
+      SizeX 385
+      OffsetRight -395
+      SizeY 40
+      OffsetBottom -595
+     }
+     "no focus" 1
+     {
+      RichTextWidgetClass "{5ACCC84A627600BA}" {
+       Name "RearmText"
+       Slot ButtonWidgetSlot "{5ACCDED37BE03BC8}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "Rearm"
+      }
+     }
+    }
+    TextWidgetClass "{5ACCC84A627600A7}" {
+     Name "Unit"
+     Slot FrameWidgetSlot "{5A3D28519E49399F}" {
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 350
+      OffsetRight -350
+      SizeY 50
+      OffsetBottom -50
+     }
+     Text "Unit"
+     "Vertical Alignment" Center
+     Offset 10 0
+    }
+    TextWidgetClass "{5ACCC84A627600A8}" {
+     Name "Damage"
+     Slot FrameWidgetSlot "{5A3D2851A2BA7A48}" {
+      PositionX 350
+      OffsetLeft 350
+      PositionY 0
+      OffsetTop 0
+      SizeX 150
+      OffsetRight -500
+      SizeY 50
+      OffsetBottom -50
+     }
+     Text "Damage"
+     "Vertical Alignment" Center
+     Offset 10 0
+    }
+    ButtonWidgetClass "{5ACCC84A627600AD}" {
+     Name "Refuel"
+     Slot FrameWidgetSlot "{5A3F4D65D75D94A6}" {
+      PositionX 405
+      OffsetLeft 405
+      PositionY 510
+      OffsetTop 510
+      SizeX 385
+      OffsetRight -790
+      SizeY 40
+      OffsetBottom -550
+     }
+     {
+      RichTextWidgetClass "{5ACCC84A627600AE}" {
+       Name "RefuelText"
+       Slot ButtonWidgetSlot "{5ACCDED3691ECCA6}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "Refuel"
+      }
+     }
+    }
+    ButtonWidgetClass "{5ACCC84A627600AF}" {
+     Name "Heal"
+     Slot FrameWidgetSlot "{5A3D2851F4B5B86A}" {
+      PositionX 405
+      OffsetLeft 405
+      PositionY 555
+      OffsetTop 555
+      SizeX 385
+      OffsetRight -790
+      SizeY 40
+      OffsetBottom -595
+     }
+     "no focus" 1
+     {
+      RichTextWidgetClass "{5ACCC84A627600AC}" {
+       Name "HealText"
+       Slot ButtonWidgetSlot "{5ACCDED373345F84}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "Heal"
+      }
+     }
+    }
+    ButtonWidgetClass "{5ACCC84A627600A6}" {
+     Name "Back"
+     Slot FrameWidgetSlot "{5A6D38DAC02C7D8B}" {
+      Anchor 1 0 1 0
+      PositionX -47.5
+      OffsetLeft -47.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight 2.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      TextWidgetClass "{5ACCC84A627600A5}" {
+       Name "BackText"
+       Slot ButtonWidgetSlot "{5A6D38DA34517D6E}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[<]"
+      }
+     }
+    }
+    ButtonWidgetClass "{5ACCC84A627600A4}" {
+     Name "Exit"
+     Slot FrameWidgetSlot "{5A432A4F34902E6B}" {
+      Anchor 1 0 1 0
+      PositionX 2.5
+      OffsetLeft 2.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight -47.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      RichTextWidgetClass "{5ACCC84A627600A3}" {
+       Name "ExitText"
+       Slot ButtonWidgetSlot "{5A57061E54D2921C}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[X]"
+      }
+     }
+    }
+    TextWidgetClass "{5ACCDED34050AAC6}" {
+     Name "Ammo"
+     Slot FrameWidgetSlot "{5A3D2851A2BA7A48}" {
+      PositionX 500
+      OffsetLeft 500
+      PositionY 0
+      OffsetTop 0
+      SizeX 150
+      OffsetRight -650
+      SizeY 50
+      OffsetBottom -50
+     }
+     Text "Ammo"
+     "Vertical Alignment" Center
+     Offset 10 0
+    }
+    TextWidgetClass "{5ACCDED2BB0F0CC2}" {
+     Name "Health"
+     Slot FrameWidgetSlot "{5A3D2851A2BA7A48}" {
+      PositionX 650
+      OffsetLeft 650
+      PositionY 0
+      OffsetTop 0
+      SizeX 150
+      OffsetRight -800
+      SizeY 50
+      OffsetBottom -50
+     }
+     Text "Health"
+     "Vertical Alignment" Center
+     Offset 10 0
+    }
+    OverlayWidgetClass "{5ACCDED176920D9B}" {
+     Name "ListBox"
+     Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
+      Anchor 0 0 0 0
+      PositionX 5
+      OffsetLeft 5
+      PositionY 55
+      OffsetTop 55
+      SizeX 790
+      OffsetRight -795
+      SizeY 450
+      OffsetBottom -505
+     }
+     components {
+      SCR_ListBoxComponent "{566C9415BAA54E1B}" {
+       m_sElementLayout "{3121BDD71C35E46D}UI/layouts/ListBox/ListBoxElement_Text.layout"
+      }
+     }
+     {
+      ScrollLayoutWidgetClass "{5ACCDED176920D9A}" {
+       Name "ScrollLayout0"
+       Slot OverlayWidgetSlot "{56691148E692437F}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+       Color 0.761 0.386 0.08 1
+       {
+        VerticalLayoutWidgetClass "{5ACCDED176920DA5}" {
+         Name "List"
+         Slot AlignableSlot "{56691148E013D9A9}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

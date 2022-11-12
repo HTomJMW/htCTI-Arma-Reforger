@@ -181,27 +181,9 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
 						
-						//CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
-						//vector posInWorld = vector.Zero;
-						//if (cam)
-						//{
-						//	cam.GetCursorTargetWithPosition(posInWorld);
-						//	mat[3] = posInWorld;
-						//}
-						
-						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-						dir.Normalize();
-						
-						// todo rotation (placement angle)
-
-						mat[3] = mat[3] + (dir * dist);
-						BaseWorld world = GetGame().GetWorld();
-						mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
-
 						SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-						netComp.buildStructureServer(fk, res, mat);
+						netComp.buildStructureServer(fk, res, mat, dist, placement);
 
-						// TODO money things
 						break;
 					}
 					case "US":
@@ -209,29 +191,14 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						SCR_CTI_FactoryData facData = gameMode.FactoriesUS.g_US_Factories[selected];
 						ResourceName res = facData.getRes();
 						float dist = facData.getDis();
+						int placement = facData.getPla();
 
 						vector mat[4];
 						pc.GetControlledEntity().GetTransform(mat);
 						
-						//CameraBase cam = GetGame().GetCameraManager().CurrentCamera();
-						//vector posInWorld = vector.Zero;
-						//if (cam)
-						//{
-						//	cam.GetCursorTargetWithPosition(posInWorld);
-						//	mat[3] = posInWorld;
-						//}
-						
-						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-						dir.Normalize();
-						
-						mat[3] = mat[3] + (dir * dist);
-						BaseWorld world = GetGame().GetWorld();
-						mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
-
 						SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-						netComp.buildStructureServer(fk, res, mat);
+						netComp.buildStructureServer(fk, res, mat, dist, placement);
 
-						// TODO money things
 						break;
 					}
 				}
@@ -265,7 +232,6 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						
 						// get player direction
 						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-						dir.Normalize();
 
 						// calc def placement
 						mat[3] = mat[3] + (dir * dist);
@@ -299,7 +265,6 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						
 						// get player direction
 						vector dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-						dir.Normalize();
 
 						// calc def placement
 						mat[3] = mat[3] + (dir * dist);

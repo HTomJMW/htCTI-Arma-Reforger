@@ -40,6 +40,9 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_usIndex));
 			}
 		}
+		
+		// todo base win
+		// todo hq check
 	}
 
 	//------------------------------------------------------------------------------------------------

@@ -3,9 +3,6 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 	protected CarControllerComponent m_pCarController;
 	protected FactionAffiliationComponent m_vehAffiliationComp;
 	protected SCR_CTI_GameMode m_gameMode;
-	
-	protected ResourceName USSR_mhq = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
-	protected ResourceName US_mhq = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
@@ -87,8 +84,8 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		
 		if (Math.AbsFloat(simulation.GetSpeedKmh()) > 5) return false; // check vehicle speed less then 5
 		if (m_gameMode.getCommanderId(affComp.GetAffiliatedFaction().GetFactionKey()) != -2) return false; // check no comm
-		if (affComp.GetAffiliatedFaction().GetFactionKey() == "USSR" && res != USSR_mhq) return false; // check hq in user side
-		if (affComp.GetAffiliatedFaction().GetFactionKey() == "US" && res != US_mhq) return false; // check hq in user side
+		if (affComp.GetAffiliatedFaction().GetFactionKey() == "USSR" && res != m_gameMode.USSRMHQ) return false; // check hq in user side
+		if (affComp.GetAffiliatedFaction().GetFactionKey() == "US" && res != m_gameMode.USMHQ) return false; // check hq in user side
 		if (m_gameMode.getCommanderId(affComp.GetAffiliatedFaction().GetFactionKey()) == playerId) return false; // check player is comm (after side check)
 		
 		return true;

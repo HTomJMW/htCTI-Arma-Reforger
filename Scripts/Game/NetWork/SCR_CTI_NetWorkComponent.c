@@ -147,17 +147,17 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void buildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4])
+	void buildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4], float dist, float placement)
 	{
-		Rpc(RpcAsk_BuildStructureServer, factionkey, resourcename, mat);
+		Rpc(RpcAsk_BuildStructureServer, factionkey, resourcename, mat, dist, placement);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_BuildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4])
+	protected void RpcAsk_BuildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4], float dist, float placement)
 	{
 		SCR_CTI_BuildStructure BuildStructure = new SCR_CTI_BuildStructure;
-		BuildStructure.build(factionkey, resourcename, mat);
+		BuildStructure.build(factionkey, resourcename, mat, dist, placement);
 	}
 
 	//------------------------------------------------------------------------------------------------

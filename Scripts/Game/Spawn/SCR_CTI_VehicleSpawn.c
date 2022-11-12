@@ -4,9 +4,6 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	protected Vehicle m_spawnedVehicle;
 	protected FactionKey m_factionkey;
 	protected ref array<IEntity> m_items = {};
-	protected bool m_isMHQ = false;
-	protected ResourceName USSR_mhq = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
-	protected ResourceName US_mhq = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 	protected SCR_CTI_GameMode m_gameMode;
 
 	//------------------------------------------------------------------------------------------------
@@ -16,11 +13,6 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
-
-	//------------------------------------------------------------------------------------------------
-	/*protected override void EOnFrame(IEntity owner, float timeSlice)
-	{
-	}*/
 
 	//------------------------------------------------------------------------------------------------
 	protected override bool CanSpawn()
@@ -39,14 +31,16 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		// todo add lifetime for support vehicles
 		switch (m_rnPrefab)
 		{
-			case USSR_mhq:
+			case m_gameMode.USSRMHQ:
 			{
-				m_spawnedVehicle.SetName(m_gameMode.USSRMHQ);
+				// Keep out of garbage manager
+				newEnt.SetName(m_gameMode.USSRMHQNAME);
 				break;
 			}
-			case US_mhq:
+			case m_gameMode.USMHQ:
 			{
-				m_spawnedVehicle.SetName(m_gameMode.USMHQ);
+				// Keep out of garbage manager
+				newEnt.SetName(m_gameMode.USMHQNAME);
 				break;
 			}
 			default:

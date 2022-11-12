@@ -5,6 +5,7 @@ class SCR_CTI_RandomStartComponentClass : ScriptComponentClass
 
 class SCR_CTI_RandomStartComponent : ScriptComponent
 {
+	protected SCR_CTI_GameMode m_gameMode;
 	protected bool m_ussrOnNorth = false;
 
 	//------------------------------------------------------------------------------------------------	
@@ -103,7 +104,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svNorth2.addItemsPrefab(itemMapUral);
 			
 			// USSR MHQ + equipment
-			svNorth3.setPrefab("{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et");
+			svNorth3.setPrefab(m_gameMode.USSRMHQ);
 			svNorth3.addItemsPrefab(intemMapUralMHQ);
 			
 			// Jeep + equipment
@@ -115,7 +116,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth2.addItemsPrefab(itemMapM923);
 			
 			// US MHQ + equipment
-			svSouth3.setPrefab("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et");
+			svSouth3.setPrefab(m_gameMode.USMHQ);
 			svSouth3.addItemsPrefab(intemMapM923MHQ);
 			
 		} else {
@@ -133,7 +134,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svNorth2.addItemsPrefab(itemMapM923);
 			
 			// US MHQ + equipment
-			svNorth3.setPrefab("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et");
+			svNorth3.setPrefab(m_gameMode.USMHQ);
 			svNorth3.addItemsPrefab(intemMapM923MHQ);
 			
 			// UAZ + equipment
@@ -145,7 +146,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth2.addItemsPrefab(itemMapUral);
 			
 			// USSR MHQ + equipment
-			svSouth3.setPrefab("{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et");
+			svSouth3.setPrefab(m_gameMode.USSRMHQ);
 			svSouth3.addItemsPrefab(intemMapUralMHQ);
 		}
 	}
@@ -153,6 +154,8 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void init()
 	{
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		
 		randomStart();
 		setupStart();
 	}

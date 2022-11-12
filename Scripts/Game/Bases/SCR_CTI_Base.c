@@ -55,6 +55,19 @@ class SCR_CTI_Base
 	{
 		m_destroyed = value;
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	void addStructure(IEntity structure)
+	{
+		structures.Insert(structure);
+		// todo need make marker
+	}
+	
+	void destroyStructure(IEntity structure)
+	{
+		// todo remove
+		// todo remove marker
+	}
 
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_Base()

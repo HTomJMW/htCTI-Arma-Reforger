@@ -177,7 +177,7 @@ class SCR_CTI_UnitsUSSR
 		fac.Insert("");
 		scr.Insert("");
 		
-		res.Insert("{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et");
+		res.Insert("{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et"); // MHQ
 		pic.Insert("");
 		name.Insert("");
 		pri.Insert(20000);
