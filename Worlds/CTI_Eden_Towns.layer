@@ -117,10 +117,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords -9.329 0.035 2.634
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -241,10 +240,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords -4.945 -0.031 -1.664
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -365,10 +363,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords 3.078 0.1 -4.41
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -489,10 +486,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords 0.022 0.15 -6.219
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -613,10 +609,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords -2.816 -0.25 -6.407
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -737,10 +732,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords 5.551 0.152 1.468
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -861,10 +855,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords 3.468 -0.251 -6.082
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -985,10 +978,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords 2.111 -0.242 -3.624
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -1109,10 +1101,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords 0.312 -0.935 -6.357
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -1233,10 +1224,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords 7.098 0.342 -0.329
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -1357,10 +1347,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords 6.965 -0.158 0.725
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }
@@ -1481,10 +1470,9 @@ $grp SCR_CTI_Town {
      RplComponent "{59B72B6E62E6AB24}" {
      }
     }
-    coords -5.935 -0.527 -1.374
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 3
+    m_fSpawnRadius 20
+    m_fNoPlayerRadius 5
+    m_fNoSightRadius 5
     m_sFaction ""
    }
   }

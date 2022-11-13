@@ -60,9 +60,10 @@ class SCR_CTI_Base
 	void addStructure(IEntity structure)
 	{
 		structures.Insert(structure);
-		// todo need make marker
+		// todo make marker
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	void destroyStructure(IEntity structure)
 	{
 		// todo remove

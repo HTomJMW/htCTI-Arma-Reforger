@@ -61,6 +61,8 @@ class SCR_CTI_Town : BaseGameEntity
 		GetTransform(transform);
 		
 		return transform[3];
+		
+		// GETORIGIN BETTER?
 	}
 
 	//------------------------------------------------------------------------------------------------

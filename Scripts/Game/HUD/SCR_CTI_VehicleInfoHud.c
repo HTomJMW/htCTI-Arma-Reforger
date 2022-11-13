@@ -69,8 +69,8 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 			}
 			if (vehicle)
 			{
-				EntityPrefabData data = vehicle.GetPrefabData();
-				BaseContainer container = data.GetPrefab();
+				//EntityPrefabData data = vehicle.GetPrefabData();
+				//BaseContainer container = data.GetPrefab();
 				//Name.SetText(container.GetClassName());
 				SCR_EditableVehicleComponent vehComp = SCR_EditableVehicleComponent.Cast(vehicle.FindComponent(SCR_EditableVehicleComponent));
 				SCR_UIInfo info = vehComp.GetInfo(); // Entityinfo better?

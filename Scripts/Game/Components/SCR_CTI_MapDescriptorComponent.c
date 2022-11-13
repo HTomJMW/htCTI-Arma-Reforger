@@ -57,11 +57,14 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 		Color color;
 		switch (m_owner.getFactionKey())
 			{
-				case "USSR": color = color.Red; color.SetA(0.8); break;
-				case "US": color = color.Blue; color.SetA(0.8); break;
-				case "FIA": color = color.Green; color.SetA(0.8); break;
+				case "USSR": color = color.Red; break;
+				case "US": color = color.Blue; break;
+				case "FIA": color = color.Green; break;
 			}
+		color.SetA(0.8);
 		props.SetFrontColor(color);
+		
+		// default green maybe better
 	}
 
 	//------------------------------------------------------------------------------------------------

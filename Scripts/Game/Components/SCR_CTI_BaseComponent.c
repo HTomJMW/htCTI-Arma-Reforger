@@ -13,7 +13,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	protected int ussrBaseCount = 0;
 	[RplProp()]
 	protected int usBaseCount = 0;
-	
+
 	protected ref array<ref SCR_CTI_Base> ussrBases = {};
 	protected ref array<ref SCR_CTI_Base> usBases = {};
 
@@ -59,6 +59,24 @@ class SCR_CTI_BaseComponent : ScriptComponent
 			}
 		}
 		Replication.BumpMe();
+		createBaseMarker(position, factionkey);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void createBaseMarker(vector position, FactionKey factionkey)
+	{
+		EntitySpawnParams params = new EntitySpawnParams();
+		params.TransformMode = ETransformMode.WORLD;
+		params.Transform[3] = position;
+		ResourceName resname;
+		if (factionkey == "USSR")
+		{
+			resname = "{D6EE5AB2287665DB}Prefabs/Markers/CTI_BaseMarkerUSSR.et";
+		} else {
+			resname = "{F1601BFC409D50E7}Prefabs/Markers/CTI_BaseMarkerUS.et";
+		}
+		Resource res = Resource.Load(resname);
+		GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -88,11 +106,6 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		dist = vector.DistanceXZ(base1, base2);
 
 		return dist;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void markBase(FactionKey sidekey, int baseId)
-	{
 	}
 
 	//------------------------------------------------------------------------------------------------
