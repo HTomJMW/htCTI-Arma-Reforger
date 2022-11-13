@@ -1,0 +1,11 @@
+SCR_CTI_BaseMarkerUSSR {
+ ID "5ADB38168BE2ED60"
+ components {
+  Hierarchy "{5ADB3816AB0B63B7}" {
+  }
+  SCR_MapDescriptorComponent "{5ADB3816A05F5C76}" {
+  }
+  RplComponent "{5ADB3816A9C73B12}" {
+  }
+ }
+}
