@@ -1,6 +1,15 @@
 Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
  ID "5206D4E7C4A16F13"
  components {
+  SCR_BaseLockComponent "{54D6FBC0EA806FE5}" {
+   Enabled 0
+  }
+  SCR_CTI_MHQLockComponent "{5AE568D7E21912C5}" {
+  }
+  SCR_CTI_MHQMapDescriptorComponent "{5ADF3C1C3E62A92E}" {
+   DisplayName "MHQ"
+   Faction 1
+  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{5AA931A023DA6CCF}" {

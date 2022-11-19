@@ -1,6 +1,15 @@
 Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
  ID "5206D4E79715C115"
  components {
+  SCR_BaseLockComponent "{54D6FBC0EA806FE5}" {
+   Enabled 0
+  }
+  SCR_CTI_MHQLockComponent "{5AE568D7D646A473}" {
+  }
+  SCR_CTI_MHQMapDescriptorComponent "{5ADF3C1CDF970E0D}" {
+   DisplayName "MHQ"
+   Faction 1
+  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{5AA931A0B6CC7A10}" {
