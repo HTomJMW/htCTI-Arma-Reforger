@@ -110,7 +110,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			int playerId = pc.GetPlayerId();
 			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 			netComp.SendHint(playerId, "htCTI Eden", "Mission", 15);
-			netComp.SendPopUpNotif(playerId, "Arma Reforger", 15, 0.25, "");
+			netComp.SendPopUpNotif(playerId, "Arma Reforger CTI", 15, 0.25, "");
 		}
 	}
 
@@ -256,7 +256,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			town.initMapComponent();
 		}
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	int getPlayerGroupSize()
 	{
