@@ -37,6 +37,14 @@ class SCR_CTI_DefensesUS
 		dis.Insert(5);
 		pla.Insert(0);
 		scr.Insert("");
+		
+		res.Insert("{B89C671B75B43849}Prefabs/Structures/Military/CamoNets/US/CamoNet_Medium_US.et");
+		name.Insert("Camo Net - Medium");
+		pri.Insert(500);
+		bt.Insert(10);
+		dis.Insert(15);
+		pla.Insert(0);
+		scr.Insert("");
 	}
 
 	//------------------------------------------------------------------------------------------------

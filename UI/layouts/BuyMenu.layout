@@ -48,6 +48,19 @@ FrameWidgetClass {
       OffsetBottom -600
      }
      {
+      WindowWidgetClass "{5AE94579BF0F58A2}" {
+       Name "WindowSmall"
+       Slot FrameWidgetSlot "{5AE94579BF0F58C6}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 65
+        OffsetTop 65
+        SizeX 370
+        OffsetRight -380
+        SizeY 60
+        OffsetBottom -125
+       }
+      }
       RichTextWidgetClass "{5ACCEA8EF5FDF948}" {
        Name "Resources"
        Slot FrameWidgetSlot "{5ACCEA8EF5FDF96E}" {
@@ -82,157 +95,289 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8D57EF03FF}" {
        Name "ButtonCrew"
        Slot FrameWidgetSlot "{5ACCEA8D57EF0411}" {
-        PositionX 275
-        OffsetLeft 275
-        PositionY 75
-        OffsetTop 75
-        SizeX 50
-        OffsetRight -325
-        SizeY 50
-        OffsetBottom -125
-       }
-      }
-      ButtonWidgetClass "{5ACCEA8D6B0E9CAF}" {
-       Name "ButtonGunner"
-       Slot FrameWidgetSlot "{5ACCEA8D6B0E9CC7}" {
         PositionX 200
         OffsetLeft 200
         PositionY 75
         OffsetTop 75
-        SizeX 50
-        OffsetRight -250
-        SizeY 50
-        OffsetBottom -125
+        SizeX 40
+        OffsetRight -240
+        SizeY 40
+        OffsetBottom -115
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE945747E0DACC6}" {
+         Name "ImageCrew"
+         Slot ButtonWidgetSlot "{5AE945747E0DACDE}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "add-friends"
+         Size 64 64
+        }
+       }
+      }
+      ButtonWidgetClass "{5ACCEA8D6B0E9CAF}" {
+       Name "ButtonCommander"
+       Slot FrameWidgetSlot "{5ACCEA8D6B0E9CC7}" {
+        PositionX 140
+        OffsetLeft 140
+        PositionY 75
+        OffsetTop 75
+        SizeX 40
+        OffsetRight -180
+        SizeY 40
+        OffsetBottom -115
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE945747F73C3FE}" {
+         Name "ImageCommander"
+         Slot ButtonWidgetSlot "{5AE945747F73C416}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "rating"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8D6C50D0A9}" {
-       Name "ButtonPilot"
+       Name "ButtonGunner"
        Slot FrameWidgetSlot "{5ACCEA8D6C50D0C0}" {
-        PositionX 125
-        OffsetLeft 125
+        PositionX 80
+        OffsetLeft 80
         PositionY 75
         OffsetTop 75
-        SizeX 50
-        OffsetRight -175
-        SizeY 50
-        OffsetBottom -125
+        SizeX 40
+        OffsetRight -120
+        SizeY 40
+        OffsetBottom -115
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE9457401751D87}" {
+         Name "ImageGunner"
+         Slot ButtonWidgetSlot "{5AE9457401751D9E}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "kill"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8D6E04EDC0}" {
        Name "ButtonDriver"
        Slot FrameWidgetSlot "{5ACCEA8D6E04EDD9}" {
-        PositionX 50
-        OffsetLeft 50
+        PositionX 20
+        OffsetLeft 20
         PositionY 75
         OffsetTop 75
-        SizeX 50
-        OffsetRight -100
-        SizeY 50
-        OffsetBottom -125
+        SizeX 40
+        OffsetRight -60
+        SizeY 40
+        OffsetBottom -115
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE945738D8FBBC9}" {
+         Name "ImageDriver"
+         Slot ButtonWidgetSlot "{5AE945738D8FBBE2}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "mountAsDriverCommand"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8C540265C1}" {
        Name "ButtonAmmo"
        Slot FrameWidgetSlot "{5ACCEA8C540265D8}" {
-        PositionX 250
-        OffsetLeft 250
-        PositionY 0
-        OffsetTop 0
-        SizeX 50
-        OffsetRight -300
-        SizeY 50
+        PositionX 252
+        OffsetLeft 252
+        PositionY 5
+        OffsetTop 5
+        SizeX 45
+        OffsetRight -297
+        SizeY 45
         OffsetBottom -50
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE9457473036B4B}" {
+         Name "ImageAmmo"
+         Slot ButtonWidgetSlot "{5AE9457473036B61}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "fxIcon"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8C5511016B}" {
        Name "ButtonFlag"
        Slot FrameWidgetSlot "{5ACCEA8C55110189}" {
-        PositionX 350
-        OffsetLeft 350
-        PositionY 0
-        OffsetTop 0
-        SizeX 50
-        OffsetRight -400
-        SizeY 50
+        PositionX 352
+        OffsetLeft 352
+        PositionY 5
+        OffsetTop 5
+        SizeX 45
+        OffsetRight -397
+        SizeY 45
         OffsetBottom -50
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE9457471B11837}" {
+         Name "ImageFlag"
+         Slot ButtonWidgetSlot "{5AE9457471B11848}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "report"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8C563B742E}" {
        Name "ButtonNaval"
        Slot FrameWidgetSlot "{5ACCEA8C563B7442}" {
-        PositionX 300
-        OffsetLeft 300
-        PositionY 0
-        OffsetTop 0
-        SizeX 50
-        OffsetRight -350
-        SizeY 50
+        PositionX 302
+        OffsetLeft 302
+        PositionY 5
+        OffsetTop 5
+        SizeX 45
+        OffsetRight -347
+        SizeY 45
         OffsetBottom -50
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE9457472E78350}" {
+         Name "ImageNaval"
+         Slot ButtonWidgetSlot "{5AE9457472E78377}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "circle"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8C57643009}" {
        Name "ButtonRep"
        Slot FrameWidgetSlot "{5ACCEA8C57643022}" {
-        PositionX 200
-        OffsetLeft 200
-        PositionY 0
-        OffsetTop 0
-        SizeX 50
-        OffsetRight -250
-        SizeY 50
+        PositionX 202
+        OffsetLeft 202
+        PositionY 5
+        OffsetTop 5
+        SizeX 45
+        OffsetRight -247
+        SizeY 45
         OffsetBottom -50
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE945747463CAEB}" {
+         Name "ImageRep"
+         Slot ButtonWidgetSlot "{5AE945747463CB09}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "repair"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8C5987BDB1}" {
        Name "ButtonAir"
        Slot FrameWidgetSlot "{5ACCEA8C5987BDC8}" {
-        PositionX 150
-        OffsetLeft 150
-        PositionY 0
-        OffsetTop 0
-        SizeX 50
-        OffsetRight -200
-        SizeY 50
+        PositionX 152
+        OffsetLeft 152
+        PositionY 5
+        OffsetTop 5
+        SizeX 45
+        OffsetRight -197
+        SizeY 45
         OffsetBottom -50
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE9457476CEF0B6}" {
+         Name "ImageAir"
+         Slot ButtonWidgetSlot "{5AE9457476CEF0CE}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "whisper"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8C5AB84533}" {
        Name "ButtonHeavy"
        Slot FrameWidgetSlot "{5ACCEA8C5AB84557}" {
-        PositionX 100
-        OffsetLeft 100
-        PositionY 0
-        OffsetTop 0
-        SizeX 50
-        OffsetRight -150
-        SizeY 50
+        PositionX 102
+        OffsetLeft 102
+        PositionY 5
+        OffsetTop 5
+        SizeX 45
+        OffsetRight -147
+        SizeY 45
         OffsetBottom -50
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE9457477076A98}" {
+         Name "ImageHeavy"
+         Slot ButtonWidgetSlot "{5AE9457477076ABE}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "favourite"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8C5BFAF550}" {
        Name "ButtonInf"
        Slot FrameWidgetSlot "{5ACCEA8C5BFAF56B}" {
-        PositionX 0
-        OffsetLeft 0
-        PositionY 0
-        OffsetTop 0
-        SizeX 50
-        OffsetRight -50
-        SizeY 50
+        PositionX 2
+        OffsetLeft 2
+        PositionY 5
+        OffsetTop 5
+        SizeX 45
+        OffsetRight -47
+        SizeY 45
         OffsetBottom -50
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE945747AC6125D}" {
+         Name "ImageInf"
+         Slot ButtonWidgetSlot "{5AE945747AC61275}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "characters"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCEA8C5EC407BF}" {
        Name "ButtonLight"
        Slot FrameWidgetSlot "{5ACCEA8C5EC407DF}" {
-        PositionX 50
-        OffsetLeft 50
-        PositionY 0
-        OffsetTop 0
-        SizeX 50
-        OffsetRight -100
-        SizeY 50
+        PositionX 52
+        OffsetLeft 52
+        PositionY 5
+        OffsetTop 5
+        SizeX 45
+        OffsetRight -97
+        SizeY 45
         OffsetBottom -50
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE945747878AF26}" {
+         Name "ImageLight"
+         Slot ButtonWidgetSlot "{5AE945747878AF38}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "vehicles"
+         Size 64 64
+        }
        }
       }
       ButtonWidgetClass "{5ACCDED394A8D72C}" {
@@ -293,6 +438,54 @@ FrameWidgetClass {
            }
           }
          }
+        }
+       }
+      }
+      ButtonWidgetClass "{5AE7327B10CAD3BB}" {
+       Name "ButtonLock"
+       Slot FrameWidgetSlot "{5ACCEA8D57EF0411}" {
+        PositionX 260
+        OffsetLeft 260
+        PositionY 75
+        OffsetTop 75
+        SizeX 40
+        OffsetRight -300
+        SizeY 40
+        OffsetBottom -115
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE945747DB1AF1E}" {
+         Name "ImageLock"
+         Slot ButtonWidgetSlot "{5AE945747DB1AF35}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "server-locked"
+         Size 64 64
+        }
+       }
+      }
+      ButtonWidgetClass "{5AE7327B76E38D48}" {
+       Name "ButtonUnlock"
+       Slot FrameWidgetSlot "{5ACCEA8D57EF0411}" {
+        PositionX 320
+        OffsetLeft 320
+        PositionY 75
+        OffsetTop 75
+        SizeX 40
+        OffsetRight -360
+        SizeY 40
+        OffsetBottom -115
+       }
+       Color 0.761 0.384 0.078 1
+       {
+        ImageWidgetClass "{5AE945747B410F3B}" {
+         Name "ImageUnlock"
+         Slot ButtonWidgetSlot "{5AE945747B410F52}" {
+         }
+         Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+         Image "server-unlocked"
+         Size 64 64
         }
        }
       }

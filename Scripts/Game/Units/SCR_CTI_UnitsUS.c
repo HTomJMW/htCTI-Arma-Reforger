@@ -33,11 +33,11 @@ class SCR_CTI_UnitsUS
 		// Equipment box
 		res.Insert("{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et");
 		pic.Insert("");
-		name.Insert("");
+		name.Insert("Equipment");
 		pri.Insert(500);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Flag");
 		scr.Insert("");
 		
 		// Soldiers
@@ -47,7 +47,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(75);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{E45F1E163F5CA080}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_SL.et");
@@ -56,7 +56,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(120);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{E398E44759DA1A43}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_TL.et");
@@ -65,7 +65,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(120);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et");
@@ -74,7 +74,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(100);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{5B1996C05B1E51A4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AR.et");
@@ -83,7 +83,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(150);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{1623EA3AEFACA0E4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_MG.et");
@@ -92,7 +92,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(150);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{27BF1FF235DD6036}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_LAT.et");
@@ -101,7 +101,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(200);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{0F6689B491641155}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Sniper.et");
@@ -110,7 +110,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(200);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{84029128FA6F6BB9}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_GL.et");
@@ -119,7 +119,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(120);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{3726077BE60962FF}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_RTO.et");
@@ -128,7 +128,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(100);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{1CA3D30464EE4674}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Spotter.et");
@@ -137,7 +137,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(100);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		res.Insert("{6058AB54781A0C52}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AMG.et");
@@ -146,7 +146,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(110);
 		bt.Insert(10);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Barracks");
 		scr.Insert("");
 		
 		// Vehicles
@@ -156,7 +156,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(700);
 		bt.Insert(20);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Light Factory");
 		scr.Insert("");
 		
 		res.Insert("{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et");
@@ -165,7 +165,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(750);
 		bt.Insert(20);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Light Factory");
 		scr.Insert("");
 		
 		res.Insert("{F6B23D17D5067C11}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et");
@@ -174,7 +174,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(900);
 		bt.Insert(30);
 		ul.Insert(1);
-		fac.Insert("");
+		fac.Insert("Light Factory");
 		scr.Insert("");
 		
 		res.Insert("{F1FBD0972FA5FE09}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et");
@@ -183,7 +183,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(1200);
 		bt.Insert(30);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Light Factory");
 		scr.Insert("");
 		
 		res.Insert("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
@@ -192,7 +192,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(1300);
 		bt.Insert(30);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Light Factory");
 		scr.Insert("");
 		
 		res.Insert("{2BE1F8B9299B67C1}Prefabs/Vehicles/Wheeled/M923A1/M923A1_tanker.et");
@@ -201,7 +201,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(1500);
 		bt.Insert(30);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Repair Depot");
 		scr.Insert("");
 		
 		res.Insert("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"); // MHQ
@@ -219,7 +219,7 @@ class SCR_CTI_UnitsUS
 		pri.Insert(1000);
 		bt.Insert(45);
 		ul.Insert(0);
-		fac.Insert("");
+		fac.Insert("Light Factory");
 		scr.Insert("");
 		
 		res.Insert("{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et");
@@ -228,8 +228,42 @@ class SCR_CTI_UnitsUS
 		pri.Insert(1500);
 		bt.Insert(45);
 		ul.Insert(1);
-		fac.Insert("");
+		fac.Insert("Light Factory");
 		scr.Insert("");
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	private void setDisplayNames()
+	{
+		for (int i = 0; i < res.Count(); i++)
+		{
+			if (name[i] == "")
+			{
+				Resource resource = Resource.Load(res[i]);
+                BaseResourceObject prefabBase = resource.GetResource();
+                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
+                BaseContainerList components = prefabSrc.GetObjectArray("components");
+
+                BaseContainer meshComponent = null;
+                for (int c = components.Count() - 1; c >= 0; c--)
+                {
+                    meshComponent = components.Get(c);
+                    if (meshComponent.GetClassName() == "SCR_EditableCharacterComponent" || meshComponent.GetClassName() == "SCR_EditableVehicleComponent")
+						break;
+        
+                    meshComponent = null;
+                }
+                if (meshComponent)
+                {
+					BaseContainer infoContainer = meshComponent.GetObject("m_UIInfo");
+					string displayName;
+					infoContainer.Get("Name", displayName);
+					displayName = WidgetManager.Translate(displayName);
+					
+					name[i] = displayName;
+                }
+			}
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -249,6 +283,7 @@ class SCR_CTI_UnitsUS
 	void SCR_CTI_UnitsUS()
 	{
 		fillUp();
+		setDisplayNames();
 		setUnits();
 	}
 

@@ -146,7 +146,32 @@ class SCR_CTI_UnitsFIA
 	{
 		for (int i = 0; i < res.Count(); i++)
 		{
-			//todo get display names from uiinfo - EntityInfo better maybe?
+			if (name[i] == "")
+			{
+				Resource resource = Resource.Load(res[i]);
+                BaseResourceObject prefabBase = resource.GetResource();
+                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
+                BaseContainerList components = prefabSrc.GetObjectArray("components");
+
+                BaseContainer meshComponent = null;
+                for (int c = components.Count() - 1; c >= 0; c--)
+                {
+                    meshComponent = components.Get(c);
+                    if (meshComponent.GetClassName() == "SCR_EditableCharacterComponent" || meshComponent.GetClassName() == "SCR_EditableVehicleComponent")
+						break;
+        
+                    meshComponent = null;
+                }
+                if (meshComponent)
+                {
+					BaseContainer infoContainer = meshComponent.GetObject("m_UIInfo");
+					string displayName;
+					infoContainer.Get("Name", displayName);
+					displayName = WidgetManager.Translate(displayName);
+					
+					name[i] = displayName;
+                }
+			}
 		}
 	}
 

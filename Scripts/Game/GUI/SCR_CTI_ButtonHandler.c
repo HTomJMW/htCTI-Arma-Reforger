@@ -38,6 +38,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 				break;
 			}
+			case "UNITS":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuyMenu);
+				break;
+			}
 			case "BUILD":
 			{
 				auto menuManager = GetGame().GetMenuManager();

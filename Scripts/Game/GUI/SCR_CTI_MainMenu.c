@@ -103,11 +103,9 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_radio.SetColor(Color.Gray);
 		m_radio.SetEnabled(false);
 		
-		//m_units.SetName("UNITS");
-		//m_units.SetColor(Color.Orange);
-		//m_units.AddHandler(m_buttonEventHandler);
-		m_units.SetColor(Color.Gray);
-		m_units.SetEnabled(false);
+		m_units.SetName("UNITS");
+		m_units.SetColor(Color.Orange);
+		m_units.AddHandler(m_buttonEventHandler);
 		
 		//m_halo.SetName("HALO");
 		//m_halo.SetColor(Color.Orange);
