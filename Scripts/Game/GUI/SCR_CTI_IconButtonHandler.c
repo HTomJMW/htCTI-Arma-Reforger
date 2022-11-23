@@ -15,33 +15,22 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 	protected bool crewSelected = false;
 	protected bool lockSelected = true; // default lock
 	protected bool unlockSelected = false;
-
+	
 	//------------------------------------------------------------------------------------------------
-	/*override bool OnMouseEnter(Widget w, int x, int y)
+	override bool OnUpdate(Widget w)
 	{
-		w.SetColor(Color.White);
-		ImageWidget children = ImageWidget.Cast(w.GetChildren());
-		children.SetColor(Color.Orange);
+		if (w.GetName() == "ButtonLock") changeColor(w, lockSelected);
+		if (w.GetName() == "ButtonInf") changeColor(w, infSelected);
 		
 		return true;
 	}
-
-	//------------------------------------------------------------------------------------------------
-	override bool OnMouseLeave(Widget w, Widget enterW, int x, int y)
-	{
-		w.SetColor(Color.Orange);
-		ImageWidget children = ImageWidget.Cast(w.GetChildren());
-		children.SetColor(Color.White);
-		
-		return true;
-	}*/
 
 	//------------------------------------------------------------------------------------------------
 	override bool OnMouseButtonDown(Widget w, int x, int y, int button)
 	{
 		switch (w.GetName())
 		{
-			case "BUTTONINF":
+			case "ButtonInf":
 			{
 				infSelected = true;
 				lightSelected = false;
@@ -52,11 +41,11 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 				navalSelected = false;
 				flagSelected = false;
 				
-				changeColor(w, infSelected);
+				changeColorAllType(w);
 
 				break;
 			}
-			case "BUTTONLIGHT":
+			case "ButtonLight":
 			{
 				infSelected = false;
 				lightSelected = true;
@@ -67,11 +56,11 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 				navalSelected = false;
 				flagSelected = false;
 				
-				changeColor(w, lightSelected);
+				changeColorAllType(w);
 
 				break;
 			}
-			case "BUTTONHEAVY":
+			case "ButtonHeavy":
 			{
 				infSelected = false;
 				lightSelected = false;
@@ -82,11 +71,11 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 				navalSelected = false;
 				flagSelected = false;
 				
-				changeColor(w, heavySelected);
+				changeColorAllType(w);
 			
 				break;
 			}
-			case "BUTTONAIR":
+			case "ButtonAir":
 			{
 				infSelected = false;
 				lightSelected = false;
@@ -97,11 +86,11 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 				navalSelected = false;
 				flagSelected = false;
 				
-				changeColor(w, airSelected);
+				changeColorAllType(w);
 			
 				break;
 			}
-			case "BUTTONREP":
+			case "ButtonRep":
 			{
 				infSelected = false;
 				lightSelected = false;
@@ -112,11 +101,11 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 				navalSelected = false;
 				flagSelected = false;
 				
-				changeColor(w, repSelected);
+				changeColorAllType(w);
 				
 				break;
 			}
-			case "BUTTONAMMO":
+			case "ButtonAmmo":
 			{
 				infSelected = false;
 				lightSelected = false;
@@ -127,11 +116,11 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 				navalSelected = false;
 				flagSelected = false;
 				
-				changeColor(w, ammoSelected);
+				changeColorAllType(w);
 			
 				break;
 			}
-			case "BUTTONNAVAL":
+			case "ButtonNaval":
 			{
 				infSelected = false;
 				lightSelected = false;
@@ -142,11 +131,11 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 				navalSelected = true;
 				flagSelected = false;
 				
-				changeColor(w, navalSelected);
+				changeColorAllType(w);
 			
 				break;
 			}
-			case "BUTTONFLAG":
+			case "ButtonFlag":
 			{
 				infSelected = false;
 				lightSelected = false;
@@ -157,11 +146,11 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 				navalSelected = false;
 				flagSelected = true;
 				
-				changeColor(w, flagSelected);
+				changeColorAllType(w);
 			
 				break;
 			}
-			case "BUTTONDRIVER":
+			case "ButtonDriver":
 			{
 				if (driverSelected)
 				{
@@ -173,7 +162,7 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 
 				break;
 			}
-			case "BUTTONGUNNER":
+			case "ButtonGunner":
 			{
 				if (gunnerSelected)
 				{
@@ -185,7 +174,7 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 			
 				break;
 			}
-			case "BUTTONCOMMANDER":
+			case "ButtonCommander":
 			{
 				if (commanderSelected)
 				{
@@ -197,7 +186,7 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 			
 				break;
 			}
-			case "BUTTONCREW":
+			case "ButtonCrew":
 			{
 				if (crewSelected)
 				{
@@ -209,50 +198,29 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 			
 				break;
 			}
-			case "BUTTONLOCK":
+			case "ButtonLock":
 			{
 				lockSelected = true;
 				unlockSelected = false;
 				
 				changeColor(w, lockSelected);
+
+				ButtonWidget unlock = ButtonWidget.Cast(w.GetParent().FindAnyWidget("ButtonUnlock"));
 				
-				ButtonWidget m_unlock;
-				Widget sibling = w.GetParent().GetChildren();
-				while (sibling)
-				{
-					if (sibling.GetName() == "BUTTONUNLOCK")
-					{
-						m_unlock = ButtonWidget.Cast(sibling);
-						break;
-					}
-					sibling = sibling.GetSibling();
-				}
-				
-				changeColor(m_unlock, unlockSelected);
+				changeColor(unlock, unlockSelected);
 
 				break;
 			}
-			case "BUTTONUNLOCK":
+			case "ButtonUnlock":
 			{
 				unlockSelected = true;
 				lockSelected = false;
 
 				changeColor(w, unlockSelected);
 				
+				ButtonWidget lock = ButtonWidget.Cast(w.GetParent().FindAnyWidget("ButtonLock"));
 				
-				ButtonWidget m_lock;
-				Widget sibling = w.GetParent().GetChildren();
-				while (sibling)
-				{
-					if (sibling.GetName() == "BUTTONLOCK")
-					{
-						m_lock = ButtonWidget.Cast(sibling);
-						break;
-					}
-					sibling = sibling.GetSibling();
-				}
-				
-				changeColor(m_lock, lockSelected);
+				changeColor(lock, lockSelected);
 
 				break;
 			}
@@ -274,5 +242,28 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 			ImageWidget children = ImageWidget.Cast(w.GetChildren());
 			children.SetColor(Color.White);
 		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void changeColorAllType(Widget w)
+	{
+		Widget parent = w.GetParent();
+		
+		ButtonWidget inf = ButtonWidget.Cast(parent.FindAnyWidget("ButtonInf"));
+		changeColor(inf, infSelected);
+		ButtonWidget light = ButtonWidget.Cast(parent.FindAnyWidget("ButtonLight"));
+		changeColor(light, lightSelected);
+		ButtonWidget heavy = ButtonWidget.Cast(parent.FindAnyWidget("ButtonHeavy"));
+		changeColor(heavy, heavySelected);
+		ButtonWidget air = ButtonWidget.Cast(parent.FindAnyWidget("ButtonAir"));
+		changeColor(air, airSelected);
+		ButtonWidget rep = ButtonWidget.Cast(parent.FindAnyWidget("ButtonRep"));
+		changeColor(rep, repSelected);
+		ButtonWidget ammo = ButtonWidget.Cast(parent.FindAnyWidget("ButtonAmmo"));
+		changeColor(ammo, ammoSelected);
+		ButtonWidget naval = ButtonWidget.Cast(parent.FindAnyWidget("ButtonNaval"));
+		changeColor(naval, navalSelected);
+		ButtonWidget flag = ButtonWidget.Cast(parent.FindAnyWidget("ButtonFlag"));
+		changeColor(flag, flagSelected);
 	}
 };

@@ -97,23 +97,19 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 
-		//m_radio.SetName("RADIO");
 		//m_radio.SetColor(Color.Orange);
 		//m_radio.AddHandler(m_buttonEventHandler);
 		m_radio.SetColor(Color.Gray);
 		m_radio.SetEnabled(false);
 		
-		m_units.SetName("UNITS");
 		m_units.SetColor(Color.Orange);
 		m_units.AddHandler(m_buttonEventHandler);
 		
-		//m_halo.SetName("HALO");
 		//m_halo.SetColor(Color.Orange);
 		//m_halo.AddHandler(m_buttonEventHandler);
 		m_halo.SetColor(Color.Gray);
 		m_halo.SetEnabled(false);
-		
-		m_build.SetName("BUILD");
+
 		m_build.SetColor(Color.Orange);
 		m_build.AddHandler(m_buttonEventHandler);
 		
@@ -130,7 +126,6 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		
 		if (clientData && clientData.isCommander())
 		{
-			m_leavecom.SetName("LEAVECOM");
 			m_leavecom.SetColor(Color.Orange);
 			m_leavecom.AddHandler(m_buttonEventHandler);
 		} else {
@@ -138,99 +133,82 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			m_leavecom.SetEnabled(false);
 		}
 
-		//m_onlinehelp.SetName("ONLINEHELP");
 		//m_onlinehelp.SetColor(Color.Orange);
 		//m_onlinehelp.AddHandler(m_buttonEventHandler);
 		m_onlinehelp.SetColor(Color.Gray);
 		m_onlinehelp.SetEnabled(false);
 		
-		//m_videosettings.SetName("VIDEOSETTINGS");
 		//m_videosettings.SetColor(Color.Orange);
 		//m_videosettings.AddHandler(m_buttonEventHandler);
 		m_videosettings.SetColor(Color.Gray);
 		m_videosettings.SetEnabled(false);
 		
-		//m_transferresources.SetName("TRANSFERRESOURCES");
 		//m_transferresources.SetColor(Color.Orange);
 		//m_transferresources.AddHandler(m_buttonEventHandler);
 		m_transferresources.SetColor(Color.Gray);
 		m_transferresources.SetEnabled(false);
-		
-		m_unflipnearestvehicle.SetName("UNFLIPNEARESTVEHICLE");
+
 		m_unflipnearestvehicle.SetColor(Color.Orange);
 		m_unflipnearestvehicle.AddHandler(m_buttonEventHandler);
 		
-		//m_servicemenu.SetName("SERVICEMENU");
 		//m_servicemenu.SetColor(Color.Orange);
 		//m_servicemenu.AddHandler(m_buttonEventHandler);
 		m_servicemenu.SetColor(Color.Gray);
 		m_servicemenu.SetEnabled(false);
 		
-		//m_aimanagement.SetName("AIMANAGEMENT");
 		//m_aimanagement.SetColor(Color.Orange);
 		//m_aimanagement.AddHandler(m_buttonEventHandler);
 		m_aimanagement.SetColor(Color.Gray);
 		m_aimanagement.SetEnabled(false);
 		
-		//m_unitscamera.SetName("UNITSCAMERA");
 		//m_unitscamera.SetColor(Color.Orange);
 		//m_unitscamera.AddHandler(m_buttonEventHandler);
 		m_unitscamera.SetColor(Color.Gray);
 		m_unitscamera.SetEnabled(false);
 		
-		//m_satellitecamera.SetName("SATELLITECAMERA");
 		//m_satellitecamera.SetColor(Color.Orange);
 		//m_satellitecamera.AddHandler(m_buttonEventHandler);
 		m_satellitecamera.SetColor(Color.Gray);
 		m_satellitecamera.SetEnabled(false);
-		
-		//m_teams.SetName("TEAMS");
+
 		//m_teams.SetColor(Color.Orange);
 		//m_teams.AddHandler(m_buttonEventHandler);
 		m_teams.SetColor(Color.Gray);
 		m_teams.SetEnabled(false);
 		
-		//m_mapcommanding.SetName("MAPCOMMANDING");
 		//m_mapcommanding.SetColor(Color.Orange);
 		//m_mapcommanding.AddHandler(m_buttonEventHandler);
 		m_mapcommanding.SetColor(Color.Gray);
 		m_mapcommanding.SetEnabled(false);
 		
-		m_upgrades.SetName("UPGRADES");
 		m_upgrades.SetColor(Color.Orange);
 		m_upgrades.AddHandler(m_buttonEventHandler);
 		
-		//m_basemanagement.SetName("BASEMANAGEMENT");
 		//m_basemanagement.SetColor(Color.Orange);
 		//m_basemanagement.AddHandler(m_buttonEventHandler);
 		m_basemanagement.SetColor(Color.Gray);
 		m_basemanagement.SetEnabled(false);
-		
-		//m_teamrequests.SetName("TEAMREQUESTS");
+
 		//m_teamrequests.SetColor(Color.Orange);
 		//m_teamrequests.AddHandler(m_buttonEventHandler);
 		m_teamrequests.SetColor(Color.Gray);
 		m_teamrequests.SetEnabled(false);
-		
-		//m_artillery.SetName("ARTILLERY");
+
 		//m_artillery.SetColor(Color.Orange);
 		//m_artillery.AddHandler(m_buttonEventHandler);
 		m_artillery.SetColor(Color.Gray);
 		m_artillery.SetEnabled(false);
-		
-		//m_setprioritytown.SetName("SETPRIORITYTOWN");
+
 		//m_setprioritytown.SetColor(Color.Orange);
 		//m_setprioritytown.AddHandler(m_buttonEventHandler);
 		m_setprioritytown.SetColor(Color.Gray);
 		m_setprioritytown.SetEnabled(false);
 		
-		//m_forcedisactibation.SetName("FORCEDISACTIVATION");
 		//m_forcedisactibation.SetColor(Color.Orange);
 		//m_forcedisactibation.AddHandler(m_buttonEventHandler);
 		m_forcedisactibation.SetColor(Color.Gray);
 		m_forcedisactibation.SetEnabled(false);
-		
-		m_exit.SetName("EXITBUTTON");
+
 		m_exit.SetColor(Color.Orange);
 		m_exit.AddHandler(m_buttonEventHandler);
 	}

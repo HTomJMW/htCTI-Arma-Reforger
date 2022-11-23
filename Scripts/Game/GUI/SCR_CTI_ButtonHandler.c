@@ -21,7 +21,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 	{
 		switch (w.GetName())
 		{
-			case "EXITBUTTON":
+			case "Exit":
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				//auto menu = ChimeraMenuPreset.CTI_GUI_MainMenu;
@@ -31,34 +31,34 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				menuManager.CloseAllMenus();
 				break;
 			}
-			case "BACKBUTTON":
+			case "Back":
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 				break;
 			}
-			case "UNITS":
+			case "UnitsButton":
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuyMenu);
 				break;
 			}
-			case "BUILD":
+			case "BuildButton":
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuildMenu);
 				break;
 			}
-			case "UNFLIPNEARESTVEHICLE":
+			case "UnflipNearestVehicleButton":
 			{
 				SCR_CTI_UnflipNearestVehicle unflipveh = new SCR_CTI_UnflipNearestVehicle;
 				unflipveh.unflip();
 				break;
 			}
-			case "LEAVECOM":
+			case "LeaveComButton":
 			{
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 				PlayerController pc = GetGame().GetPlayerController();
@@ -95,7 +95,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 
 				break;
 			}
-			case "UPGRADES":
+			case "UpgradesButton":
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
@@ -103,7 +103,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				
 				break;
 			}
-			case "STARTUPGRADE":
+			case "StartUpgrade":
 			{
 				PlayerController pc = GetGame().GetPlayerController();
 				int playerId = pc.GetPlayerId();
@@ -136,7 +136,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				
 				break;
 			}
-			case "CANCELUPGRADE":
+			case "CancelUpgrade":
 			{
 				PlayerController pc = GetGame().GetPlayerController();
 				int playerId = pc.GetPlayerId();
@@ -163,7 +163,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				
 				break;
 			}
-			case "BUILDSTRUCTURE":
+			case "BuildStructure":
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
@@ -212,7 +212,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				menuManager.CloseAllMenus();
 				break;
 			}
-			case "BUILDDEFENSE":
+			case "BuildDefense":
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());

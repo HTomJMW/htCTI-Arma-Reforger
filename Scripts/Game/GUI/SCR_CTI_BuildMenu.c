@@ -100,7 +100,6 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		
 		if (clientData && clientData.isCommander())
 		{
-			m_buildstructure.SetName("BUILDSTRUCTURE");
 			m_buildstructure.SetColor(Color.Orange);
 			m_buildstructure.AddHandler(m_buttonEventHandler);
 		} else {
@@ -108,39 +107,32 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 			m_buildstructure.SetEnabled(false);
 		}
 
-		//m_undostructure.SetName("UNDOSTRUCTURE");
 		//m_undostructure.SetColor(Color.Orange);
 		//m_undostructure.AddHandler(m_buttonEventHandler);
 		m_undostructure.SetColor(Color.Gray);
 		m_undostructure.SetEnabled(false);
 		
-		//m_defautomanning.SetName("DEFAUTOMANNING");
 		//m_defautomanning.SetColor(Color.Orange);
 		//m_defautomanning.AddHandler(m_buttonEventHandler);
 		m_defautomanning.SetColor(Color.Gray);
 		m_defautomanning.SetEnabled(false);
-		
-		//m_autoalignwalls.SetName("AUTOALIGNWALLS");
+
 		//m_autoalignwalls.SetColor(Color.Orange);
 		//m_autoalignwalls.AddHandler(m_buttonEventHandler);
 		m_autoalignwalls.SetColor(Color.Gray);
 		m_autoalignwalls.SetEnabled(false);
 
-		m_builddefense.SetName("BUILDDEFENSE");
 		m_builddefense.SetColor(Color.Orange);
 		m_builddefense.AddHandler(m_buttonEventHandler);
 		
-		//m_undodefense.SetName("UNDODEFENSE");
 		//m_undodefense.SetColor(Color.Orange);
 		//m_undodefense.AddHandler(m_buttonEventHandler);
 		m_autoalignwalls.SetColor(Color.Gray);
 		m_autoalignwalls.SetEnabled(false);
 		
-		m_back.SetName("BACKBUTTON");
 		m_back.SetColor(Color.Orange);
 		m_back.AddHandler(m_buttonEventHandler);
-		
-		m_exit.SetName("EXITBUTTON");
+
 		m_exit.SetColor(Color.Orange);
 		m_exit.AddHandler(m_buttonEventHandler);
 

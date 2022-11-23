@@ -84,11 +84,9 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		
 		if (clientData && clientData.isCommander())
 		{
-			m_cancelupgrade.SetName("CANCELUPGRADE");
 			m_cancelupgrade.SetColor(Color.Orange);
 			m_cancelupgrade.AddHandler(m_buttonEventHandler);
-		
-			m_upgrade.SetName("STARTUPGRADE");
+
 			m_upgrade.SetColor(Color.Orange);
 			m_upgrade.AddHandler(m_buttonEventHandler);
 		} else {
@@ -99,11 +97,9 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			m_upgrade.SetEnabled(false);
 		}
 
-		m_back.SetName("BACKBUTTON");
 		m_back.SetColor(Color.Orange);
 		m_back.AddHandler(m_buttonEventHandler);
-		
-		m_exit.SetName("EXITBUTTON");
+
 		m_exit.SetColor(Color.Orange);
 		m_exit.AddHandler(m_buttonEventHandler);
 		

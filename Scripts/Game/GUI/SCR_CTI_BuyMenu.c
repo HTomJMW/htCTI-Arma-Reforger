@@ -81,41 +81,25 @@ class SCR_CTI_BuyMenu : ChimeraMenuBase
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		m_iconbuttonEventHandler = new SCR_CTI_IconButtonHandler();
 		
-		m_buttoninf.SetName("BUTTONINF");
 		m_buttoninf.AddHandler(m_iconbuttonEventHandler);
-		m_buttonlight.SetName("BUTTONLIGHT");
 		m_buttonlight.AddHandler(m_iconbuttonEventHandler);
-		m_buttonheavy.SetName("BUTTONHEAVY");
 		m_buttonheavy.AddHandler(m_iconbuttonEventHandler);
-		m_buttonair.SetName("BUTTONAIR");
 		m_buttonair.AddHandler(m_iconbuttonEventHandler);
-		m_buttonrep.SetName("BUTTONREP");
 		m_buttonrep.AddHandler(m_iconbuttonEventHandler);
-		m_buttonammo.SetName("BUTTONAMMO");
 		m_buttonammo.AddHandler(m_iconbuttonEventHandler);
-		m_buttonnaval.SetName("BUTTONNAVAL");
 		m_buttonnaval.AddHandler(m_iconbuttonEventHandler);
-		m_buttonflag.SetName("BUTTONFLAG");
 		m_buttonflag.AddHandler(m_iconbuttonEventHandler);
-		
-		m_driver.SetName("BUTTONDRIVER");
+
 		m_driver.AddHandler(m_iconbuttonEventHandler);
-		m_gunner.SetName("BUTTONGUNNER");
 		m_gunner.AddHandler(m_iconbuttonEventHandler);
-		m_commander.SetName("BUTTONCOMMANDER");
 		m_commander.AddHandler(m_iconbuttonEventHandler);
-		m_crew.SetName("BUTTONCREW");
 		m_crew.AddHandler(m_iconbuttonEventHandler);
-		m_lock.SetName("BUTTONLOCK");
 		m_lock.AddHandler(m_iconbuttonEventHandler);
-		m_unlock.SetName("BUTTONUNLOCK");
 		m_unlock.AddHandler(m_iconbuttonEventHandler);
 
-		m_back.SetName("BACKBUTTON");
 		m_back.SetColor(Color.Orange);
 		m_back.AddHandler(m_buttonEventHandler);
-		
-		m_exit.SetName("EXITBUTTON");
+
 		m_exit.SetColor(Color.Orange);
 		m_exit.AddHandler(m_buttonEventHandler);
 
