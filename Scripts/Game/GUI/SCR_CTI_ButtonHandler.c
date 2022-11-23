@@ -129,8 +129,10 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				SCR_ListBoxComponent listboxcomp = SCR_ListBoxComponent.Cast(listbox.FindHandler(SCR_ListBoxComponent));
 				int selected = listboxcomp.GetSelectedItem();
 				if (selected == -1) break;
+				SCR_CTI_UpgradeData upgradeData = SCR_CTI_UpgradeData.Cast(listboxcomp.GetItemData(selected));
+				int upgradeindex = gameMode.Upgrades.findIndexFromName(upgradeData.getName());
 				
-				netComp.StartUpgradeServer(fk, selected);
+				netComp.StartUpgradeServer(fk, upgradeindex);
 				
 				menuManager.CloseAllMenus();
 				

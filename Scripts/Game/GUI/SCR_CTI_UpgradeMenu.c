@@ -7,6 +7,9 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 	protected Faction playerFaction;
 	protected FactionAffiliationComponent affiliationComp;
 	
+	protected float m_timeDelta;
+	protected const float TIMESTEP = 0.3;
+	
 	protected Widget m_wRoot;
 	protected WindowWidget m_window;
 	
@@ -111,12 +114,10 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			{
 				for (int i = 0; i < gameMode.Upgrades.g_Upgrades.Count(); i++)
 				{
-					upgradeData = gameMode.Upgrades.g_Upgrades[i];
-					m_listboxcomp.AddItem(upgradeData.getName());
-					
-					if (upgradeComp.getUpgradeStatus(fk, i) == UpgradeStatus.FINISHED)
-					{				
-						m_listboxcomp.SetItemText(i, upgradeData.getName() + " - Ready");
+					if (upgradeComp.getUpgradeStatus(fk, i) != UpgradeStatus.FINISHED)
+					{
+						upgradeData = gameMode.Upgrades.g_Upgrades[i];				
+						m_listboxcomp.AddItem(upgradeData.getName(), upgradeData);
 					}
 				}
 				break;
@@ -126,17 +127,16 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			{
 				for (int i = 0; i < gameMode.Upgrades.g_Upgrades.Count(); i++)
 				{
-					upgradeData = gameMode.Upgrades.g_Upgrades[i];
-					m_listboxcomp.AddItem(upgradeData.getName());
-					
-					if (upgradeComp.getUpgradeStatus(fk, i) == UpgradeStatus.FINISHED)
-					{				
-						m_listboxcomp.SetItemText(i, upgradeData.getName() + " - Ready");
+					if (upgradeComp.getUpgradeStatus(fk, i) != UpgradeStatus.FINISHED)
+					{
+						upgradeData = gameMode.Upgrades.g_Upgrades[i];		
+						m_listboxcomp.AddItem(upgradeData.getName(), upgradeData);
 					}
 				}
 				break;
 			}		
 		}
+		m_listboxcomp.SetItemSelected(0, true); // not working? 0 not selected by default (false marker)
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -147,53 +147,45 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
-		/*int sizeCDA = gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
+		m_timeDelta += tDelta;
+		if (m_timeDelta > TIMESTEP)
 		{
-			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = gameMode.ClientDataArray[i];
-				break;
-			}
-		}
-		if (clientData)
-		{
-			// todo
-		}*/
+			int selected = m_listboxcomp.GetSelectedItem();
+			if (selected == -1) return;
 
-		int selected = m_listboxcomp.GetSelectedItem();
-		if (selected == -1) return;
-		
-		FactionKey fk = playerFaction.GetFactionKey();
-		SCR_CTI_UpgradeData upgradeData = gameMode.Upgrades.g_Upgrades[selected];
-		switch (fk)
-		{
-			case "USSR":
+			FactionKey fk = playerFaction.GetFactionKey();
+			SCR_CTI_UpgradeData upgradeData = SCR_CTI_UpgradeData.Cast(m_listboxcomp.GetItemData(selected));
+			switch (fk)
 			{
-				m_labeltext.SetText(upgradeData.getLabel());
-				m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
-				m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$");
-				m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
+				case "USSR":
+				{
+					m_labeltext.SetText(upgradeData.getLabel());
+					m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
+					m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$");
+					m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
+					
+					m_dependencetext.SetText(upgradeData.getLink());
+					m_descriptiontext.SetText(upgradeData.getDesc());
+					
+					break;
+				}
 				
-				m_dependencetext.SetText(upgradeData.getLink());
-				m_descriptiontext.SetText(upgradeData.getDesc());
-				
-				break;
+				case "US":
+				{
+					m_labeltext.SetText(upgradeData.getLabel());
+					m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
+					m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$");
+					m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
+					
+					m_dependencetext.SetText(upgradeData.getLink());
+					m_descriptiontext.SetText(upgradeData.getDesc());
+					
+					break;
+				}		
 			}
-			
-			case "US":
-			{
-				m_labeltext.SetText(upgradeData.getLabel());
-				m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
-				m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$");
-				m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
+			// need remove finished upgrades from list when complete
 				
-				m_dependencetext.SetText(upgradeData.getLink());
-				m_descriptiontext.SetText(upgradeData.getDesc());
-				
-				break;
-			}		
+			m_timeDelta = 0;
 		}
 	}
 };

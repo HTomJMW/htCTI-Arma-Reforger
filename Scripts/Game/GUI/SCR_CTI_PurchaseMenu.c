@@ -6,6 +6,9 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 	protected Faction playerFaction;
 	protected FactionAffiliationComponent affiliationComp;
 	
+	protected float m_timeDelta;
+	protected const float TIMESTEP = 0.3;
+	
 	protected Widget m_wRoot;
 	
 	protected RichTextWidget m_cost;
@@ -29,6 +32,10 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 	
 	protected ButtonWidget m_back;
 	protected ButtonWidget m_exit;
+	
+	protected ButtonWidget m_purchase;
+	protected ButtonWidget m_cancelqueue;
+	protected ButtonWidget m_buyindsalvager;
 
 	protected OverlayWidget m_listbox;
 	protected SCR_ListBoxComponent m_listboxcomp;
@@ -70,6 +77,10 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_back = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Back"));
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 		
+		m_purchase = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Purchase"));
+		m_cancelqueue = ButtonWidget.Cast(m_wRoot.FindAnyWidget("CancelQueue"));
+		m_buyindsalvager = ButtonWidget.Cast(m_wRoot.FindAnyWidget("BuyIndependentSalvager"));
+		
 		// listbox
 		m_listbox = OverlayWidget.Cast(m_wRoot.FindAnyWidget("ListBox"));
 		m_listboxcomp = SCR_ListBoxComponent.Cast(m_listbox.FindHandler(SCR_ListBoxComponent));
@@ -99,7 +110,15 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 
 		m_exit.SetColor(Color.Orange);
 		m_exit.AddHandler(m_buttonEventHandler);
-
+		
+		m_purchase.SetColor(Color.Orange);
+		m_purchase.AddHandler(m_buttonEventHandler);
+		
+		//m_cancelqueue.SetColor(Color.Orange);
+		//m_cancelqueue.AddHandler(m_buttonEventHandler);
+		//m_buyindsalvager.SetColor(Color.Orange);
+		//m_buyindsalvager.AddHandler(m_buttonEventHandler);
+		
 		FactionKey fk = playerFaction.GetFactionKey();
 		SCR_CTI_UnitData unitData;
 		switch (fk)
@@ -109,7 +128,7 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 				for (int i = 0; i < gameMode.UnitsUSSR.g_USSR_Units.Count(); i++)
 				{
 					unitData = gameMode.UnitsUSSR.g_USSR_Units[i];
-					m_listboxcomp.AddItem(unitData.getName());
+					m_listboxcomp.AddItem(unitData.getName(), unitData);
 				}
 				break;
 			}
@@ -119,7 +138,7 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 				for (int i = 0; i < gameMode.UnitsUS.g_US_Units.Count(); i++)
 				{
 					unitData = gameMode.UnitsUS.g_US_Units[i];
-					m_listboxcomp.AddItem(unitData.getName());
+					m_listboxcomp.AddItem(unitData.getName(), unitData);
 				}
 				break;
 			}		
@@ -134,5 +153,12 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
+		m_timeDelta += tDelta;
+		if (m_timeDelta > TIMESTEP)
+		{
+			// todo
+			
+			m_timeDelta = 0;
+		}
 	}
 };
