@@ -42,7 +42,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
-				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BuyMenu);
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_PurchaseMenu);
 				break;
 			}
 			case "BuildButton":

@@ -1,4 +1,4 @@
-class SCR_CTI_BuyMenu : ChimeraMenuBase
+class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 {
 	protected SCR_CTI_GameMode gameMode;
 	protected PlayerController pc;
@@ -29,9 +29,6 @@ class SCR_CTI_BuyMenu : ChimeraMenuBase
 	
 	protected ButtonWidget m_back;
 	protected ButtonWidget m_exit;
-
-	protected RichTextWidget m_backtext;
-	protected RichTextWidget m_exittext;
 
 	protected OverlayWidget m_listbox;
 	protected SCR_ListBoxComponent m_listboxcomp;

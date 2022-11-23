@@ -26,8 +26,6 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected RichTextWidget m_autoalignwallstext;
 	protected RichTextWidget m_builddefensetext;
 	protected RichTextWidget m_undodefensetext;
-	protected RichTextWidget m_backtext;
-	protected RichTextWidget m_exittext;
 
 	protected OverlayWidget m_listboxleft;
 	protected OverlayWidget m_listboxright;
@@ -69,8 +67,6 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_autoalignwallstext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("AutoAlignWallsText"));
 		m_builddefensetext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("BuildDefenseText"));
 		m_undodefensetext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("UndoDefenseText"));
-		m_backtext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("BackText"));
-		m_exittext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ExitText"));
 
 		// listboxes
 		m_listboxleft = OverlayWidget.Cast(m_wRoot.FindAnyWidget("ListBoxLeft"));
