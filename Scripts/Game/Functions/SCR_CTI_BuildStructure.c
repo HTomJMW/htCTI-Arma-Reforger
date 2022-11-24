@@ -111,9 +111,17 @@ class SCR_CTI_BuildStructure
 			}
 		}
 
-		// rotate
 		if (structure)
 		{
+			// create marker
+			SCR_MapDescriptorComponent mdc =  SCR_MapDescriptorComponent.Cast(structure.FindComponent(SCR_MapDescriptorComponent));
+			createStructureMarker(mdc, factionkey, resourcename);
+			
+			// set faction of building
+			FactionAffiliationComponent faffcomp = FactionAffiliationComponent.Cast(structure.FindComponent(FactionAffiliationComponent));
+			faffcomp.SetAffiliatedFactionByKey(factionkey);
+			
+			// rotate
 			vector rot = "0 0 0";
 			vector angles = mat[2].VectorToAngles();
 			rot[0] = angles[0] + placement;
@@ -124,6 +132,60 @@ class SCR_CTI_BuildStructure
 		}
 		
 		// todo money things
+	}
+	
+	protected void createStructureMarker(SCR_MapDescriptorComponent mdc, FactionKey factionkey, ResourceName resourcename)
+	{
+		FactionManager fm = GetGame().GetFactionManager();
+		Faction faction = fm.GetFactionByKey(factionkey);
+		int factionIndex = fm.GetFactionIndex(faction);
+		Color color = Color.Black; // faction.GetFactionColor();
+		string name = "Building";
+		
+		SCR_CTI_FactoryData facData;
+		if (factionkey == "USSR")
+		{
+			int size = m_gameMode.FactoriesUSSR.g_USSR_Factories.Count();
+			for (int i = 0; i < size; i++)
+			{
+				facData = m_gameMode.FactoriesUSSR.g_USSR_Factories[i];
+				if (facData.getRes() == resourcename)
+				{
+					name = facData.getName();
+					break;
+				}
+			}
+		} else {
+			int size = m_gameMode.FactoriesUS.g_US_Factories.Count();
+			for (int i = 0; i < size; i++)
+			{
+				facData = m_gameMode.FactoriesUS.g_US_Factories[i];
+				if (facData.getRes() == resourcename)
+				{
+					name = facData.getName();
+					break;
+				}
+			}
+		}
+		
+		MapItem mapitem = mdc.Item();
+		
+		mapitem.SetDisplayName(name);
+		mapitem.SetBaseType(EMapDescriptorType.MDT_UNIT);
+		mapitem.SetFactionIndex(factionIndex);
+		
+		MapDescriptorProps props = mapitem.GetProps();
+			props.SetDetail(96);
+			//props.SetIconSize(2, 1, 2);
+			props.SetTextSize(16, 8, 32);
+			props.SetTextColor(color);
+			color.SetA(0.8);
+			props.SetFrontColor(color);
+			props.SetTextVisible(true);
+			props.SetIconVisible(false);
+			props.Activate(true);
+		
+		mapitem.SetProps(props);
 	}
 
 	//------------------------------------------------------------------------------------------------

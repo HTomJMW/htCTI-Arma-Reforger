@@ -176,6 +176,8 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				if (selected == -1) break;
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 				PlayerController pc = GetGame().GetPlayerController();
+				ChimeraCharacter player = ChimeraCharacter.Cast(pc.GetControlledEntity());
+				if (player.IsInVehicle()) break;
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
 				switch (fk)
@@ -225,6 +227,8 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				if (selected == -1) break;
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 				PlayerController pc = GetGame().GetPlayerController();
+				ChimeraCharacter player = ChimeraCharacter.Cast(pc.GetControlledEntity());
+				if (player.IsInVehicle()) break;
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
 				switch (fk)

@@ -232,14 +232,14 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 	//------------------------------------------------------------------------------------------------
 	protected void changeColor(Widget w, bool selected)
 	{
+		ImageWidget children = ImageWidget.Cast(w.GetChildren());
+		
 		if (selected)
 		{
 			w.SetColor(Color.White);
-			ImageWidget children = ImageWidget.Cast(w.GetChildren());
 			children.SetColor(Color.Orange);
 		} else {
 			w.SetColor(Color.Orange);
-			ImageWidget children = ImageWidget.Cast(w.GetChildren());
 			children.SetColor(Color.White);
 		}
 	}

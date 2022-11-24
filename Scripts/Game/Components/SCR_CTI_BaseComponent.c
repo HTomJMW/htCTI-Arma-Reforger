@@ -80,6 +80,12 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
+	protected void createStructureMarker(vector position, FactionKey factionkey, IEntity structure)
+	{
+		
+	}
+
+	//------------------------------------------------------------------------------------------------
 	int getBaseCount(FactionKey factionkey)
 	{
 		int result = 0;
