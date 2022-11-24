@@ -1,0 +1,9 @@
+SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/Fire/FireStation_E_01/FireStation_E_01_base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  FactionAffiliationComponent "{5AF112365EC352AB}" {
+  }
+  SCR_MapDescriptorComponent "{5AF11222182BA0B6}" {
+  }
+ }
+}

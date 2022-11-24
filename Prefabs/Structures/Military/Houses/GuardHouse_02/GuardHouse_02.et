@@ -1,0 +1,9 @@
+SCR_DestructibleBuildingEntity : "{906CB40C3D7DBA68}Prefabs/Structures/Military/Houses/GuardHouse_02/GuardHouse_02_base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  FactionAffiliationComponent "{5AF112364C74C5E8}" {
+  }
+  SCR_MapDescriptorComponent "{5AF11222248242C0}" {
+  }
+ }
+}
