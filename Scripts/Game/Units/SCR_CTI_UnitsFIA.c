@@ -59,6 +59,15 @@ class SCR_CTI_UnitsFIA
 		fac.Insert("");
 		scr.Insert("");
 		
+		res.Insert("{45A02CA25CBA9443}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Medic.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("");
+		scr.Insert("");
+		
 		res.Insert("{84B40583F4D1B7A3}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Rifleman.et");
 		pic.Insert("");
 		name.Insert("");

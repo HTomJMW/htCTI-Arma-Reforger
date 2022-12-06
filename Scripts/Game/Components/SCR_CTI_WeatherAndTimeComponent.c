@@ -20,7 +20,7 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 		
 		m_manager.SetDate(1985, 06, 01, true);
 		
-		int random_hour = Math.RandomIntInclusive(8, 16);
+		int random_hour = Math.RandomIntInclusive(7, 17);
 		m_manager.SetHoursMinutesSeconds(random_hour, 0, 0, true);
 		
 		PrintFormat("CTI :: Time: %1h", m_manager.GetTime().m_iHours);
@@ -37,22 +37,6 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 		} else {
 			m_manager.SetDayDuration(m_daytimeduration);
 		}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void setFog()
-	{
-		//Fog not included yet, fog entity need
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void setWeather()
-	{
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void setRain()
-	{
 	}
 
 	//------------------------------------------------------------------------------------------------

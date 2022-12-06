@@ -159,6 +159,43 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		SCR_CTI_BuildStructure BuildStructure = new SCR_CTI_BuildStructure;
 		BuildStructure.build(factionkey, resourcename, mat, dist, placement);
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	void factoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4])
+	{
+		Rpc(RpcAsk_FactoryProductionServer, resourcename, factionkey, groupID, mat);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_FactoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4])
+	{
+		SCR_CTI_FactoryProduction FactoryProduction = new SCR_CTI_FactoryProduction;
+		FactoryProduction.build(resourcename, factionkey, groupID, mat);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void transferResourcesServer(int senderId, int receiverId, int value)
+	{
+		Rpc(RpcAsk_TransferResourcesServer, senderId, receiverId, value);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_TransferResourcesServer(int senderId, int receiverId, int value)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		
+		PlayerController pcSender = GetGame().GetPlayerManager().GetPlayerController(senderId);
+		SCR_CTI_ClientDataComponent cdcSender = SCR_CTI_ClientDataComponent.Cast(pcSender.FindComponent(SCR_CTI_ClientDataComponent));
+	
+		cdcSender.changeFunds(-value);
+		
+		PlayerController pcReceiver = GetGame().GetPlayerManager().GetPlayerController(receiverId);
+		SCR_CTI_ClientDataComponent cdcReceiver = SCR_CTI_ClientDataComponent.Cast(pcSender.FindComponent(SCR_CTI_ClientDataComponent));
+
+		cdcReceiver.changeFunds(value);
+	}
 
 	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)

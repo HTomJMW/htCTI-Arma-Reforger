@@ -4,7 +4,6 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 	protected IEntity m_owner;
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
-	protected SCR_CTI_ClientData m_clientData;
 	
 	protected ResourceName m_resNameUSSRbox = "{B728C4AE0E6EB1E8}Prefabs/Systems/Arsenal/AmmoBoxes/USSR/AmmoBoxArsenal_Equipment_USSR.et";
 	protected ResourceName m_resNameUSbox = "{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et";
@@ -72,22 +71,10 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 
-		int sizeCDA = m_gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (m_gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = m_gameMode.ClientDataArray[i];
-				break;
-			}
-		}
+		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
+		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
 		
-		if (clientData)
-		{
-			clientData.changeFunds(-price);
-			if (clientData.isCommander()) m_gameMode.changeCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), -price);
-		}
+		cdc.changeFunds(-price);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -102,46 +89,35 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		PlayerController playerController = GetGame().GetPlayerController();
 		int playerId = playerController.GetPlayerId();
 		
-		int sizeCDA = m_gameMode.ClientDataArray.Count();
-		for (int i = 0; i < sizeCDA; i++)
+		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(playerController.FindComponent(SCR_CTI_ClientDataComponent));
+
+		int funds = cdc.getFunds();
+				
+		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
+		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
-			if (m_gameMode.ClientDataArray[i].getPlayerId() == playerId)
+			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRbox);
+			SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+			int unitPrice = unitData.getPri();
+			if (funds > unitPrice)
 			{
-				m_clientData = m_gameMode.ClientDataArray[i];
-				break;
+				return true;
+			} else {
+				SetCannotPerformReason("Insufficent funds!");
+				return false;
+			}
+		} else {
+			int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSbox);
+			SCR_CTI_UnitData unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+			int unitPrice = unitData.getPri();
+			if (funds > unitPrice)
+			{
+				return true;
+			} else {
+				SetCannotPerformReason("Insufficent funds!");
+				return false;
 			}
 		}
-		
-		if (m_clientData)
-			{
-				int funds = m_clientData.getFunds();
-				
-				FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
-				if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
-				{
-					int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRbox);
-					SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-					int unitPrice = unitData.getPri();
-					if (funds > unitPrice)
-					{
-						return true;
-					} else {
-						SetCannotPerformReason("Insufficent funds!");
-						return false;
-					}
-				} else {
-					int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSbox);
-					SCR_CTI_UnitData unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-					int unitPrice = unitData.getPri();
-					if (funds > unitPrice)
-					{
-						return true;
-					} else {
-						SetCannotPerformReason("Insufficent funds!");
-						return false;
-					}
-				}
-			}
 
 		return true;
 	}
@@ -240,5 +216,7 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_PurchaseEquipmentAction()
 	{
+		m_items.Clear();
+		m_items = null;
 	}
 };

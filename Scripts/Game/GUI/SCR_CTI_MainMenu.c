@@ -113,18 +113,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_build.SetColor(Color.Orange);
 		m_build.AddHandler(m_buttonEventHandler);
 		
-		int sizeCDA = gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = gameMode.ClientDataArray[i];
-				break;
-			}
-		}
-		
-		if (clientData && clientData.isCommander())
+		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+		if (cdc.isCommander())
 		{
 			m_leavecom.SetColor(Color.Orange);
 			m_leavecom.AddHandler(m_buttonEventHandler);
@@ -133,20 +123,14 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			m_leavecom.SetEnabled(false);
 		}
 
-		//m_onlinehelp.SetColor(Color.Orange);
-		//m_onlinehelp.AddHandler(m_buttonEventHandler);
-		m_onlinehelp.SetColor(Color.Gray);
-		m_onlinehelp.SetEnabled(false);
+		m_onlinehelp.SetColor(Color.Orange);
+		m_onlinehelp.AddHandler(m_buttonEventHandler);
 		
-		//m_videosettings.SetColor(Color.Orange);
-		//m_videosettings.AddHandler(m_buttonEventHandler);
-		m_videosettings.SetColor(Color.Gray);
-		m_videosettings.SetEnabled(false);
+		m_videosettings.SetColor(Color.Orange);
+		m_videosettings.AddHandler(m_buttonEventHandler);
 		
-		//m_transferresources.SetColor(Color.Orange);
-		//m_transferresources.AddHandler(m_buttonEventHandler);
-		m_transferresources.SetColor(Color.Gray);
-		m_transferresources.SetEnabled(false);
+		m_transferresources.SetColor(Color.Orange);
+		m_transferresources.AddHandler(m_buttonEventHandler);
 
 		m_unflipnearestvehicle.SetColor(Color.Orange);
 		m_unflipnearestvehicle.AddHandler(m_buttonEventHandler);
@@ -161,10 +145,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_aimanagement.SetColor(Color.Gray);
 		m_aimanagement.SetEnabled(false);
 		
-		//m_unitscamera.SetColor(Color.Orange);
-		//m_unitscamera.AddHandler(m_buttonEventHandler);
-		m_unitscamera.SetColor(Color.Gray);
-		m_unitscamera.SetEnabled(false);
+		m_unitscamera.SetColor(Color.Orange);
+		m_unitscamera.AddHandler(m_buttonEventHandler);
 		
 		//m_satellitecamera.SetColor(Color.Orange);
 		//m_satellitecamera.AddHandler(m_buttonEventHandler);
@@ -221,6 +203,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
+		// TODO slow down this, not need run on every frame
+		
 		int missiontime = gameMode.GetElapsedTime();
 		int days = missiontime / 86400;
 		int hours = (missiontime - (days * 86400)) / 3600;
@@ -238,21 +222,9 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		int timelimit = gameMode.GetTimeLimit();
 		m_maxmissiontime.SetText("Max Mission Time: " + timelimit.ToString());
 		
-		int sizeCDA = gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = gameMode.ClientDataArray[i];
-				break;
-			}
-		}
-		if (clientData)
-		{
-			int funds = clientData.getFunds();
-			m_resources.SetText("Resources: " + funds.ToString());
-		}
+		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+		int funds = cdc.getFunds();
+		m_resources.SetText("Resources: " + funds.ToString());
 		
 		int allvalue = 0;
 		int sidevalue = 0;

@@ -26,7 +26,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	const ResourceName USMHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 	const string USSRMHQNAME = "CTI_USSR_MHQ";
 	const string USMHQNAME = "CTI_US_MHQ";
-	
+
 	protected int playerGroupSize = 8;
 
 	[RplProp()]
@@ -38,8 +38,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	[RplProp()]
 	protected int usCommanderFunds = STARTCOMMFUNDS;
 	
-	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>;
-
 	ref SCR_CTI_UnitsFIA UnitsFIA = new SCR_CTI_UnitsFIA();
 	ref SCR_CTI_UnitsUSSR UnitsUSSR = new SCR_CTI_UnitsUSSR();
 	ref SCR_CTI_UnitsUS UnitsUS = new SCR_CTI_UnitsUS();
@@ -121,92 +119,19 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	}
 
 	//------------------------------------------------------------------------------------------------
-	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
+	override void OnPlayerDisconnected(int playerId, KickCauseCode cause,  int timeout)
 	{
-		super.OnPlayerSpawned(playerId, controlledEntity);
-
-		if (playerId < 1) return;
-			
-		int sizeCDA = ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = ClientDataArray[i];
-				break;
-			}
-		}
+		super.OnPlayerDisconnected(playerId, cause, timeout);
 		
-		if (clientData)
+		if (playerId == ussrCommanderId)
 		{
-			int funds = clientData.getFunds();
-			string name = clientData.getPlayerName();
-			PrintFormat("CTI :: Player: %1, PlayerId: %2, Funds: %3", name, playerId, funds);
+			ussrCommanderId = -2;
+			Replication.BumpMe();
 		}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
-	{
-		super.OnPlayerKilled(playerId, player, killer);
-
-		if (playerId < 1) return;
-		
-		int sizeCDA = ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
+		if (playerId == usCommanderId)
 		{
-			if (ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = ClientDataArray[i];
-				break;
-			}
-		}
-
-		if (clientData)
-		{
-			// todo
-		}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override void OnPlayerConnected(int playerId)
-	{
-		super.OnPlayerConnected(playerId);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override void OnPlayerDisconnected(int playerId, KickCauseCode cause)
-	{
-		super.OnPlayerDisconnected(playerId, cause);
-		
-		if (playerId < 1) return;
-
-		int sizeCDA = ClientDataArray.Count();
-		int removeIndex = -1;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (ClientDataArray[i].getPlayerId() == playerId)
-			{
-				removeIndex = i;
-				break;
-			}
-		}
-		if (removeIndex != -1) 
-		{
-			if (playerId == ussrCommanderId)
-			{
-				ussrCommanderId = -2;
-				Replication.BumpMe();
-			}
-			if (playerId == usCommanderId)
-			{
-				usCommanderId = -2;
-				Replication.BumpMe();
-			}
-		
-			ClientDataArray.Remove(removeIndex);
+			usCommanderId = -2;
+			Replication.BumpMe();
 		}
 	}
 
@@ -214,27 +139,12 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	override void OnPlayerRegistered(int playerId)
 	{
 		super.OnPlayerRegistered(playerId);
+
+		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
+		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
 		
-		if (playerId < 1) return;
-
-		int sizeCDA = ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = ClientDataArray[i];
-				break;
-			}
-		}
-
-		if (!clientData)
-		{
-			clientData = new SCR_CTI_ClientData;
-			clientData.setPlayerId(playerId);
-			clientData.changeFunds(STARTFUNDS);
-			ClientDataArray.Insert(clientData);
-		}
+		cdc.setPlayerId(playerId);
+		cdc.changeFunds(STARTFUNDS);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -350,9 +260,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		CTI_Towns.Clear();
 		CTI_Towns = null;
-		
-		ClientDataArray.Clear();
-		ClientDataArray = null;
 		
 		UnitsFIA = null;
 		UnitsUSSR = null;

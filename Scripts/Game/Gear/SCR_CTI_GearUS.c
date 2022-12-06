@@ -44,11 +44,23 @@ class SCR_CTI_GearUS
 		ul.Insert(1);
 		pri.Insert(300);
 		
-		//Flashlight
+		// Flashlight
 		res.Insert("{3A421547BC29F679}Prefabs/Items/Equipment/Flashlights/Flashlight_MX991.et");
 		name.Insert("");
 		ul.Insert(0);
 		pri.Insert(100);
+		
+		// Watch
+		res.Insert("{78ED4FEF62BBA728}Prefabs/Items/Equipment/Watches/Watch_SandY184A.et");
+		name.Insert("");
+		ul.Insert(0);
+		pri.Insert(30);
+		
+		// Compass
+		res.Insert("{61D4F80E49BF9B12}Prefabs/Items/Equipment/Compass/Compass_SY183.et");
+		name.Insert("");
+		ul.Insert(0);
+		pri.Insert(30);
 
 		// Bino
 		res.Insert("{0CF54B9A85D8E0D4}Prefabs/Items/Equipment/Binoculars/Binoculars_M22.et");

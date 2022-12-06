@@ -33,7 +33,7 @@ class SCR_CTI_UnitsUSSR
 		// Equipment box
 		res.Insert("{B728C4AE0E6EB1E8}Prefabs/Systems/Arsenal/AmmoBoxes/USSR/AmmoBoxArsenal_Equipment_USSR.et");
 		pic.Insert("");
-		name.Insert("Equipment");
+		name.Insert("Equipment Box");
 		pri.Insert(500);
 		bt.Insert(10);
 		ul.Insert(0);
@@ -54,6 +54,15 @@ class SCR_CTI_UnitsUSSR
 		pic.Insert("");
 		name.Insert("");
 		pri.Insert(120);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("Barracks");
+		scr.Insert("");
+		
+		res.Insert("{AB9726163EC1BD81}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Medic.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
 		bt.Insert(10);
 		ul.Insert(0);
 		fac.Insert("Barracks");

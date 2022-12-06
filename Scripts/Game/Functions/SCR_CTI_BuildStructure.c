@@ -113,7 +113,7 @@ class SCR_CTI_BuildStructure
 
 		if (structure)
 		{
-			// create marker
+			// create marker and get name from factories list
 			SCR_MapDescriptorComponent mdc =  SCR_MapDescriptorComponent.Cast(structure.FindComponent(SCR_MapDescriptorComponent));
 			createStructureMarker(mdc, factionkey, resourcename);
 			
@@ -121,12 +121,16 @@ class SCR_CTI_BuildStructure
 			FactionAffiliationComponent faffcomp = FactionAffiliationComponent.Cast(structure.FindComponent(FactionAffiliationComponent));
 			faffcomp.SetAffiliatedFactionByKey(factionkey);
 			
+			// store structure IDs for searching
+			m_baseComp.addStuctureId(factionkey, structure.GetID());
+			
 			// rotate
 			vector rot = "0 0 0";
 			vector angles = mat[2].VectorToAngles();
 			rot[0] = angles[0] + placement;
 			
 			structure.SetYawPitchRoll(rot);
+			structure.Update();
 		} else {
 			PrintFormat("CTI :: Side %1 reached Base limit", factionkey);
 		}

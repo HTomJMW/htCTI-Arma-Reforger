@@ -33,29 +33,8 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 		netComp.setCommanderIdRpl(affComp.GetAffiliatedFaction().GetFactionKey(), playerId);
 		
-		int sizeCDA = m_gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (m_gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = m_gameMode.ClientDataArray[i];
-				break;
-			}
-		}
-		
-		if (clientData)
-		{
-			clientData.setCommander(true);
-			
-			SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-			if (affComp.GetAffiliatedFaction().GetFactionKey() == "USSR")
-			{
-				clientData.changeFunds(gameMode.getCommanderFunds("USSR"));
-			} else {
-				clientData.changeFunds(gameMode.getCommanderFunds("US"));
-			}
-		}
+		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+		cdc.setCommander(true);
 	}
 
 	//------------------------------------------------------------------------------------------------

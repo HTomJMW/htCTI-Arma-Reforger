@@ -12,8 +12,6 @@ class SCR_CTI_Town : BaseGameEntity
 	[Attribute(defvalue: "FIA", UIWidgets.EditBox, "Faction key:")]
 	protected FactionKey m_factionKey;
 	protected Faction m_faction;
-	[Attribute()]
-	protected ref SCR_UIInfo m_Info;
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 60;
@@ -139,14 +137,11 @@ class SCR_CTI_Town : BaseGameEntity
 			foreach(SCR_ChimeraCharacter charactersInside : m_USSR_CapArea_Occ)
 			{
 				int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(charactersInside);
-				if (m_gameMode.ClientDataArray)
-				{
-					foreach(SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
-					if (playerId == clientData.getPlayerId() && !clientData.isCommander()) clientData.changeFunds(m_townValue * 10);
-					PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-					SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-					netComp.SendHint(playerId, m_townName + " captured", "Information", 15);
-				}
+				PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
+				SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+				cdc.changeFunds(m_townValue * 10);
+				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+				netComp.SendHint(playerId, m_townName + " captured", "Information", 15);
 			}
 			if (m_FIA_Occupants.Count() + m_US_Occupants.Count() == 0)
 			{
@@ -157,17 +152,6 @@ class SCR_CTI_Town : BaseGameEntity
 			
 			// commander reward
 			m_gameMode.changeCommanderFunds("USSR", m_townValue * 10);
-			int sizeCDA = m_gameMode.ClientDataArray.Count();
-			SCR_CTI_ClientData clientData;
-			for (int i = 0; i < sizeCDA; i++)
-			{
-					if (m_gameMode.ClientDataArray[i].getPlayerId() == m_gameMode.getCommanderId("USSR"))
-					{
-						clientData = m_gameMode.ClientDataArray[i];
-						break;
-					}
-			}
-			if (clientData) clientData.changeFunds(m_townValue * 10);
 		}
 		
 		if (us > 0 && ussr == 0 && fia == 0 && m_factionKey != "US")
@@ -181,14 +165,11 @@ class SCR_CTI_Town : BaseGameEntity
 			foreach(SCR_ChimeraCharacter charactersInside : m_US_CapArea_Occ)
 			{
 				int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(charactersInside);
-				if (m_gameMode.ClientDataArray)
-				{
-					foreach(SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
-					if (playerId == clientData.getPlayerId() && !clientData.isCommander()) clientData.changeFunds(m_townValue * 10);
-					PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-					SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-					netComp.SendHint(playerId, m_townName + " captured", "Information", 15);
-				}
+				PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
+				SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+				cdc.changeFunds(m_townValue * 10);
+				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+				netComp.SendHint(playerId, m_townName + " captured", "Information", 15);
 			}
 			if (m_FIA_Occupants.Count() + m_USSR_Occupants.Count() == 0)
 			{
@@ -199,17 +180,6 @@ class SCR_CTI_Town : BaseGameEntity
 			
 			// commander reward
 			m_gameMode.changeCommanderFunds("US", m_townValue * 10);
-			int sizeCDA = m_gameMode.ClientDataArray.Count();
-			SCR_CTI_ClientData clientData;
-			for (int i = 0; i < sizeCDA; i++)
-			{
-					if (m_gameMode.ClientDataArray[i].getPlayerId() == m_gameMode.getCommanderId("US"))
-					{
-						clientData = m_gameMode.ClientDataArray[i];
-						break;
-					}
-			}
-			if (clientData) clientData.changeFunds(m_townValue * 10);
 		}
 		
 		if (fia > 0 && ussr == 0 && us == 0 && m_factionKey != "FIA")

@@ -16,6 +16,11 @@ class SCR_CTI_BaseComponent : ScriptComponent
 
 	protected ref array<ref SCR_CTI_Base> ussrBases = {};
 	protected ref array<ref SCR_CTI_Base> usBases = {};
+	
+	[RplProp()]
+	protected ref array<ref EntityID> ussrStructureIDs = {};
+	[RplProp()]
+	protected ref array<ref EntityID> usStructureIDs = {};
 
 	//------------------------------------------------------------------------------------------------
 	void init()
@@ -136,6 +141,37 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
+	void addStuctureId(FactionKey factionkey, EntityID id)
+	{
+		switch (factionkey)
+		{
+			case "USSR":
+			{
+				ussrStructureIDs.Insert(id);
+				break;
+			}
+			case "US":
+			{
+				usStructureIDs.Insert(id);
+				break;
+			}
+		}
+		Replication.BumpMe();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	array<ref EntityID> getUSSRStructureIdArray()
+	{
+		return ussrStructureIDs;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	array<ref EntityID> getUSStructureIdArray()
+	{
+		return usStructureIDs;
+	}
+
+	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
 		//m_timeDelta += timeSlice;
@@ -165,5 +201,9 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		ussrBases = null;
 		usBases.Clear();
 		usBases = null;
+		ussrStructureIDs.Clear();
+		ussrStructureIDs = null;
+		usStructureIDs.Clear();
+		usStructureIDs = null;
 	}
 };

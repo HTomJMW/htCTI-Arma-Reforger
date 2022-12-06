@@ -5,6 +5,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected int playerId;
 	protected Faction playerFaction;
 	protected FactionAffiliationComponent affiliationComp;
+	protected SCR_CTI_ClientDataComponent cdc;
 	
 	protected Widget m_wRoot;
 	protected WindowWidget m_window;
@@ -83,18 +84,8 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_addworker.SetColor(Color.Gray);
 		m_addworker.SetEnabled(false);
 
-		int sizeCDA = gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = gameMode.ClientDataArray[i];
-				break;
-			}
-		}
-		
-		if (clientData && clientData.isCommander())
+		cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+		if (cdc.isCommander())
 		{
 			m_buildstructure.SetColor(Color.Orange);
 			m_buildstructure.AddHandler(m_buttonEventHandler);
@@ -181,20 +172,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
-		int sizeCDA = gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = gameMode.ClientDataArray[i];
-				break;
-			}
-		}
-		if (clientData)
-		{
-			int funds = clientData.getFunds();
-			m_resources.SetText("Resources: " + funds.ToString() + "$");
-		}
+		int funds = cdc.getFunds();
+		m_resources.SetText("Resources: " + funds.ToString() + "$");
 	}
 };

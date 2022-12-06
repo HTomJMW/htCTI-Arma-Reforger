@@ -33,7 +33,7 @@ class SCR_CTI_UnitsUS
 		// Equipment box
 		res.Insert("{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et");
 		pic.Insert("");
-		name.Insert("Equipment");
+		name.Insert("Equipment Box");
 		pri.Insert(500);
 		bt.Insert(10);
 		ul.Insert(0);
@@ -63,6 +63,15 @@ class SCR_CTI_UnitsUS
 		pic.Insert("");
 		name.Insert("");
 		pri.Insert(120);
+		bt.Insert(10);
+		ul.Insert(0);
+		fac.Insert("Barracks");
+		scr.Insert("");
+		
+		res.Insert("{C9E4FEAF5AAC8D8C}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Medic.et");
+		pic.Insert("");
+		name.Insert("");
+		pri.Insert(100);
 		bt.Insert(10);
 		ul.Insert(0);
 		fac.Insert("Barracks");

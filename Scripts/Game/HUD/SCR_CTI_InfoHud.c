@@ -133,42 +133,30 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			
 			int playerId = pc.GetPlayerId();
 			
-			int sizeCDA = gameMode.ClientDataArray.Count();
-			SCR_CTI_ClientData clientData;
-			for (int i = 0; i < sizeCDA; i++)
-			{
-				if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-				{
-					clientData = gameMode.ClientDataArray[i];
-					break;
-				}
-			}
+			SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
 			
-			if (clientData)
+			int funds = cdc.getFunds();
+			
+			string rad = "None";
+			if (radios.IsEmpty()) rad = "Live";
+
+			string health;
+			switch (true)
 			{
-				int funds = clientData.getFunds();
-
-				string rad = "None";
-				if (radios.IsEmpty()) rad = "Live";
-
-				string health;
-				switch (true)
-				{
-					case (hp < 75 && hp > 25): health = string.Format("<color rgba='255,255,0,255'>%1</color>", hp.ToString()); break;
-					case (hp < 25): health = string.Format("<color rgba='255,0,0,255'>%1</color>", hp.ToString()); break;
-					default: health = string.Format("<color rgba='0,255,0,255'>%1</color>", hp.ToString()); break;
-				}
-				
-				string stamina;
-				switch (true)
-				{
-					case (st < 75 && st > 25): stamina = string.Format("<color rgba='255,255,0,255'>%1</color>", st.ToString()); break;
-					case (st < 25): stamina = string.Format("<color rgba='255,0,0,255'>%1</color>", st.ToString()); break;
-					default: stamina = string.Format("<color rgba='0,0,255,255'>%1</color>", st.ToString()); break;
-				}
-				
-				Line1.SetText("Radio: " + rad + " || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: " + stamina);
+				case (hp < 75 && hp > 25): health = string.Format("<color rgba='255,255,0,255'>%1</color>", hp.ToString()); break;
+				case (hp < 25): health = string.Format("<color rgba='255,0,0,255'>%1</color>", hp.ToString()); break;
+				default: health = string.Format("<color rgba='0,255,0,255'>%1</color>", hp.ToString()); break;
 			}
+
+			string stamina;
+			switch (true)
+			{
+				case (st < 75 && st > 25): stamina = string.Format("<color rgba='255,255,0,255'>%1</color>", st.ToString()); break;
+				case (st < 25): stamina = string.Format("<color rgba='255,0,0,255'>%1</color>", st.ToString()); break;
+				default: stamina = string.Format("<color rgba='0,0,255,255'>%1</color>", st.ToString()); break;
+			}
+				
+			Line1.SetText("Radio: " + rad + " || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: " + stamina);
 			Line2.SetText("Current Com: " + comm + " || Bases: " + baseCount.ToString() + "/" + gameMode.MAXBASES.ToString()); 
 			Line3.SetText(upgrade);
 			m_timeDelta = 0;

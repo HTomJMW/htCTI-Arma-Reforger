@@ -1,6 +1,6 @@
 class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 {
-	protected bool infSelected = true; // default selected
+	protected bool infSelected = false;
 	protected bool lightSelected = false;
 	protected bool heavySelected = false;
 	protected bool airSelected = false;
@@ -13,14 +13,33 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 	protected bool gunnerSelected = false;
 	protected bool commanderSelected = false;
 	protected bool crewSelected = false;
-	protected bool lockSelected = true; // default lock
+	protected bool lockSelected = true; // default lock - maybe not need for AIs
 	protected bool unlockSelected = false;
+	
+	//------------------------------------------------------------------------------------------------
+	string getSelectedFactoryTypeIcon()
+	{
+		string selected = "None";
+		
+		switch (true)
+		{
+			case infSelected: selected = "Barracks"; break;
+			case lightSelected: selected = "Light Factory"; break;
+			case heavySelected: selected = "Heavy Factory"; break;
+			case airSelected: selected = "Air Factory"; break;
+			case repSelected: selected = "Repair Depot"; break;
+			case ammoSelected: selected = "Ammo Depot"; break;
+			case navalSelected: selected = "Naval"; break;
+			case flagSelected: selected = "Flag"; break;
+		}
+		
+		return selected; 
+	}
 	
 	//------------------------------------------------------------------------------------------------
 	override bool OnUpdate(Widget w)
 	{
 		if (w.GetName() == "ButtonLock") changeColor(w, lockSelected);
-		if (w.GetName() == "ButtonInf") changeColor(w, infSelected);
 		
 		return true;
 	}
@@ -28,6 +47,8 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 	//------------------------------------------------------------------------------------------------
 	override bool OnMouseButtonDown(Widget w, int x, int y, int button)
 	{
+		ButtonWidget bw = ButtonWidget.Cast(w);
+		
 		switch (w.GetName())
 		{
 			case "ButtonInf":

@@ -8,30 +8,27 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 45; // economy cycle
 	protected const float BASEINCOME = 10;
-	
-	//protected FactionManager m_factionManager;
-	protected SCR_CTI_GameMode m_gameMode;
 
 	//------------------------------------------------------------------------------------------------
 	void init()
 	{
-		//m_factionManager = GetGame().GetFactionManager();
-		m_gameMode = SCR_CTI_GameMode.Cast(GetOwner());
 		m_timeDelta = 0;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	protected void update()
 	{
-		if (!m_gameMode.ClientDataArray) return;
-		foreach (SCR_CTI_ClientData clientData : m_gameMode.ClientDataArray)
+		PlayerManager pm = GetGame().GetPlayerManager();
+		
+		array<int> players = {};
+		pm.GetPlayers(players);
+		
+		foreach (int playerId : players)
 		{
-			if (clientData.isCommander())
-			{
-				clientData.changeFunds(BASEINCOME * 5);
-			} else {
-				clientData.changeFunds(BASEINCOME);
-			}
+			PlayerController pc = GetGame().GetPlayerController();
+			SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+			
+			cdc.changeFunds(BASEINCOME);
 		}
 	}
 

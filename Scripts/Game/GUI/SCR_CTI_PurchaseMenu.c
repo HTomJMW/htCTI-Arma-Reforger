@@ -3,11 +3,13 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 	protected SCR_CTI_GameMode gameMode;
 	protected PlayerController pc;
 	protected int playerId;
-	protected Faction playerFaction;
+	protected FactionKey factionKey;
 	protected FactionAffiliationComponent affiliationComp;
 	
+	protected string currentSelectedFactoryTypeIcon = "None";
+	
 	protected float m_timeDelta;
-	protected const float TIMESTEP = 0.3;
+	protected const float TIMESTEP = 0.2;
 	
 	protected Widget m_wRoot;
 	
@@ -39,6 +41,13 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 
 	protected OverlayWidget m_listbox;
 	protected SCR_ListBoxComponent m_listboxcomp;
+	
+	protected XComboBoxWidget m_comboteam;
+	protected XComboBoxWidget m_combofactory;
+	
+	protected ref array<IEntity> m_sortedfactories = {};
+	
+	protected SCR_AIGroup m_playergroup;
 
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 	protected ref SCR_CTI_IconButtonHandler m_iconbuttonEventHandler;
@@ -50,7 +59,7 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		pc = GetGame().GetPlayerController();
 		playerId = pc.GetPlayerId();
 		affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-		playerFaction = affiliationComp.GetAffiliatedFaction();
+		factionKey = affiliationComp.GetAffiliatedFaction().GetFactionKey();
 		
 		m_wRoot = GetRootWidget();
 		
@@ -84,6 +93,10 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		// listbox
 		m_listbox = OverlayWidget.Cast(m_wRoot.FindAnyWidget("ListBox"));
 		m_listboxcomp = SCR_ListBoxComponent.Cast(m_listbox.FindHandler(SCR_ListBoxComponent));
+		
+		// xcombobox
+		m_comboteam = XComboBoxWidget.Cast(m_wRoot.FindAnyWidget("XComboBoxTeam"));
+		m_combofactory = XComboBoxWidget.Cast(m_wRoot.FindAnyWidget("XComboBoxFactory"));
 
 		// handler
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
@@ -119,30 +132,12 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		//m_buyindsalvager.SetColor(Color.Orange);
 		//m_buyindsalvager.AddHandler(m_buttonEventHandler);
 		
-		FactionKey fk = playerFaction.GetFactionKey();
-		SCR_CTI_UnitData unitData;
-		switch (fk)
-		{
-			case "USSR":
-			{
-				for (int i = 0; i < gameMode.UnitsUSSR.g_USSR_Units.Count(); i++)
-				{
-					unitData = gameMode.UnitsUSSR.g_USSR_Units[i];
-					m_listboxcomp.AddItem(unitData.getName(), unitData);
-				}
-				break;
-			}
-			
-			case "US":
-			{
-				for (int i = 0; i < gameMode.UnitsUS.g_US_Units.Count(); i++)
-				{
-					unitData = gameMode.UnitsUS.g_US_Units[i];
-					m_listboxcomp.AddItem(unitData.getName(), unitData);
-				}
-				break;
-			}		
-		}
+		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+		m_resources.SetText("Resources: " + cdc.getFunds().ToString() + "$");
+
+		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		m_playergroup = gmc.GetPlayerGroup(playerId);
+		m_comboteam.AddItem("Group " + m_playergroup.GetGroupID().ToString() + " " + m_playergroup.GetCustomName());
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -156,9 +151,113 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			// todo
+			SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+			m_resources.SetText("Resources: " + cdc.getFunds().ToString() + "$");
+
+			// if factory type selection changed
+			if (currentSelectedFactoryTypeIcon != m_iconbuttonEventHandler.getSelectedFactoryTypeIcon())
+			{
+				m_listboxcomp.SetAllItemsSelected(false);
+				m_combofactory.ClearAll();
+				m_sortedfactories.Clear();
+				
+				// listbox update
+				SCR_CTI_UnitData unitData;
+				int removeIndex = -1;
+				switch (factionKey)
+				{
+					case "USSR":
+					{
+						for (int i = 0; i < gameMode.UnitsUSSR.g_USSR_Units.Count(); i++)
+						{
+							unitData = gameMode.UnitsUSSR.g_USSR_Units[i];
+							if (unitData.getFac() == m_iconbuttonEventHandler.getSelectedFactoryTypeIcon())
+							{
+								m_listboxcomp.AddItem(unitData.getName(), unitData);
+							} else {
+								removeIndex = m_listboxcomp.FindItemWithData(unitData);
+								if (removeIndex > -1) m_listboxcomp.RemoveItem(removeIndex);
+							}
+						}
+						break;
+					}
+					case "US":
+					{
+						for (int i = 0; i < gameMode.UnitsUS.g_US_Units.Count(); i++)
+						{
+							unitData = gameMode.UnitsUS.g_US_Units[i];
+							if (unitData.getFac() == m_iconbuttonEventHandler.getSelectedFactoryTypeIcon())
+							{
+								m_listboxcomp.AddItem(unitData.getName(), unitData);
+							} else {
+								removeIndex = m_listboxcomp.FindItemWithData(unitData);
+								if (removeIndex > -1) m_listboxcomp.RemoveItem(removeIndex);
+							}
+						}
+						break;
+					}		
+				}
+
+				// xcombobox update
+				SCR_CTI_FactoryData factoryData;
+				array<IEntity> unsortedfactories = SCR_CTI_GetSideFactories.GetSideFactoriesByType(factionKey, m_iconbuttonEventHandler.getSelectedFactoryTypeIcon());
+				if (unsortedfactories)
+				{
+					m_sortedfactories = SCR_CTI_SortByDistance.SortByDistance(pc.GetControlledEntity(), unsortedfactories);
+					unsortedfactories.Clear();
+					unsortedfactories = null;
+					for (int i = 0; i < m_sortedfactories.Count(); i++)
+					{
+						int index = -1;
+						switch (factionKey)
+						{
+							case "USSR":
+							{
+								index = gameMode.FactoriesUSSR.findIndexFromResourcename(m_sortedfactories[i].GetPrefabData().GetPrefabName());
+								factoryData = gameMode.FactoriesUSSR.g_USSR_Factories[index];
+								break;
+							}
+							case "US":
+							{
+								index = gameMode.FactoriesUS.findIndexFromResourcename(m_sortedfactories[i].GetPrefabData().GetPrefabName());
+								factoryData = gameMode.FactoriesUS.g_US_Factories[index];
+								break;
+							}
+						}
+						if (index > -1)
+						{
+							float distance = vector.Distance(pc.GetControlledEntity().GetOrigin(), m_sortedfactories[i].GetOrigin());
+							m_combofactory.AddItem(string.Format(factoryData.getName() + " - " + (Math.Round(distance)).ToString() + "m - Grid [" + SCR_MapEntity.GetGridPos(m_sortedfactories[i].GetOrigin(), 2, 4, ",") + "]"));
+						}
+					}
+				}
+
+				m_cost.SetText("Cost:");
+				currentSelectedFactoryTypeIcon = m_iconbuttonEventHandler.getSelectedFactoryTypeIcon();
+			} else {
+				int selectedId = m_listboxcomp.GetSelectedItem();
+				if (m_listboxcomp.GetItemCount() > 0 && selectedId > -1 && m_listboxcomp.GetElementComponent(selectedId) && m_listboxcomp.IsItemSelected(selectedId))
+				{
+					SCR_CTI_UnitData unitData = SCR_CTI_UnitData.Cast(m_listboxcomp.GetItemData(selectedId));
+					m_cost.SetText("Cost: " + unitData.getPri() + "$");
+				} else {
+					m_cost.SetText("Cost:");
+				}
+			}
 			
 			m_timeDelta = 0;
 		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	array<IEntity> getSortedFactoriesForCombobox()
+	{
+		return m_sortedfactories;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	AIGroup getGroupforCombobox()
+	{
+		return m_playergroup;
 	}
 };

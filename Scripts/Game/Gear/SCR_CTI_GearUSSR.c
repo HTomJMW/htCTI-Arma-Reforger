@@ -50,6 +50,18 @@ class SCR_CTI_GearUSSR
 		ul.Insert(0);
 		pri.Insert(100);
 		
+		// Watch
+		res.Insert("{6FD6C96121905202}Prefabs/Items/Equipment/Watches/Watch_Vostok.et");
+		name.Insert("");
+		ul.Insert(0);
+		pri.Insert(30);
+		
+		// Compass
+		res.Insert("{7CEF68E2BC68CE71}Prefabs/Items/Equipment/Compass/Compass_Adrianov.et");
+		name.Insert("");
+		ul.Insert(0);
+		pri.Insert(30);
+		
 		// Bino
 		res.Insert("{F2539FA5706E51E4}Prefabs/Items/Equipment/Binoculars/Binoculars_B12.et");
 		name.Insert("");
