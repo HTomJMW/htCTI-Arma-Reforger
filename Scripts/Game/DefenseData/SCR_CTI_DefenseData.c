@@ -1,30 +1,30 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Defense Data Structure")]
 class SCR_CTI_DefenseData
 {
-	protected ResourceName res;	// Resource name
-	protected string name;		// Display name
-	protected int pri;			// Price
-	protected int bt;			// Build time
-	protected int dis;			// Distance
-	protected int pla;			// Placement
-	protected string scr;		// Script
+	protected ResourceName resname;	// Resource name
+	protected string name;			// Display name
+	protected int price;			// Price
+	protected int buildtime;		// Build time
+	protected int distance;			// Distance
+	protected int placement;		// Placement
+	protected string script;		// Script
 
 	//------------------------------------------------------------------------------------------------
-	void setData(ResourceName newres, string newname, int newpri, int newbt, int newdis, int newpla, string newscr)
+	void setData(ResourceName newresname, string newname, int newprice, int newbuildtime, int newdistance, int newplacement, string newscript)
 	{
-		res = newres;
+		resname = newresname;
 		name = newname;
-		pri = newpri;
-		bt = newbt;
-		dis = newdis;
-		pla = newpla;
-		scr = newscr;
+		price = newprice;
+		buildtime = newbuildtime;
+		distance = newdistance;
+		placement = newplacement;
+		script = newscript;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	ResourceName getRes()
+	ResourceName getResname()
 	{
-		return res;
+		return resname;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -34,33 +34,33 @@ class SCR_CTI_DefenseData
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getPri()
+	int getPrice()
 	{
-		return pri;
+		return price;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getBt()
+	int getBuildtime()
 	{
-		return bt;
+		return buildtime;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getDis()
+	int getDistance()
 	{
-		return dis;
+		return distance;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getPla()
+	int getPlacement()
 	{
-		return pla;
+		return placement;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	string getScr()
+	string getScript()
 	{
-		return scr;
+		return script;
 	}
 
 	//------------------------------------------------------------------------------------------------

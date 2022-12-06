@@ -11,7 +11,6 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 	protected const float TIMESTEP = 0.3;
 	
 	protected Widget m_wRoot;
-	protected WindowWidget m_window;
 	
 	protected OverlayWidget m_listbox;
 	protected SCR_ListBoxComponent m_listboxcomp;
@@ -46,7 +45,6 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		playerFaction = affiliationComp.GetAffiliatedFaction();
 		
 		m_wRoot = GetRootWidget();
-		m_window = WindowWidget.Cast(m_wRoot.FindAnyWidget("Window"));
 		
 		// listbox
 		m_listbox = OverlayWidget.Cast(m_wRoot.FindAnyWidget("ListBox"));

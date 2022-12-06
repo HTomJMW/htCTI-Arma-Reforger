@@ -1,14 +1,14 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Upgrade Data Structure")]
 class SCR_CTI_UpgradeData
 {
-	protected string label;
-	protected string name;
-	protected string desc;
-	protected int level;
-	protected int cost;
-	protected string link;
-	protected int linklevel;
-	protected int time;
+	protected string label;		// Label
+	protected string name;		// Name
+	protected string desc;		// Description
+	protected int level;		// Level
+	protected int cost;			// Cost
+	protected string link;		// Link
+	protected int linklevel;	// Link Level
+	protected int time;			// Time
 
 	//------------------------------------------------------------------------------------------------
 	void setData(string newlabel, string newname, string newdesc, int newlevel, int newcost, string newlink, int newlinklevel, int newtime)

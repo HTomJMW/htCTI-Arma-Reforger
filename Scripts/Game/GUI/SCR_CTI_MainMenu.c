@@ -7,7 +7,6 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected int playerId;
 	
 	protected Widget m_wRoot;
-	protected WindowWidget m_window;
 	
 	protected RichTextWidget m_missiontime;
 	protected RichTextWidget m_maxmissiontime;
@@ -57,7 +56,6 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		playerId = pc.GetPlayerId();
 		
 		m_wRoot = GetRootWidget();
-		m_window = WindowWidget.Cast(m_wRoot.FindAnyWidget("Window"));
 		
 		m_missiontime = RichTextWidget.Cast(m_wRoot.FindAnyWidget("MissionTime"));
 		m_maxmissiontime = RichTextWidget.Cast(m_wRoot.FindAnyWidget("MaxMissionTime"));

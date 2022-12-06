@@ -8,28 +8,25 @@ class SCR_CTI_GetSideFactories
 		SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
 		
 		IEntity ent = null;
+		array<ref EntityID> structureIdArray = {};
 		switch (factionkey)
 		{
 			case "USSR":
 			{
-				array<ref EntityID> ussrArr = baseComp.getUSSRStructureIdArray();
-				for (int i = 0; i < ussrArr.Count(); i++)
-				{
-					ent = GetGame().GetWorld().FindEntityByID(ussrArr[i]);
-					list.Insert(ent);
-				}
+				structureIdArray = baseComp.getUSSRStructureIdArray();
 				break;
 			}
 			case "US":
 			{
-				array<ref EntityID> usArr = baseComp.getUSStructureIdArray();
-				for (int i = 0; i < usArr.Count(); i++)
-				{
-					ent = GetGame().GetWorld().FindEntityByID(usArr[i]);
-					list.Insert(ent);
-				}
+				structureIdArray = baseComp.getUSStructureIdArray();
 				break;
 			}
+		}
+		
+		for (int i = 0; i < structureIdArray.Count(); i++)
+		{
+			ent = GetGame().GetWorld().FindEntityByID(structureIdArray[i]);
+			list.Insert(ent);
 		}
 		
 		if (list.Count() < 1) return null;
@@ -46,15 +43,17 @@ class SCR_CTI_GetSideFactories
 		
 		IEntity ent = null;
 		SCR_CTI_FactoryData factoryData;
+		array<ref EntityID> structureIdArray = {};
+		int index = -1;
 		switch (factionkey)
 		{
 			case "USSR":
 			{
-				array<ref EntityID> ussrArr = baseComp.getUSSRStructureIdArray();
-				for (int i = 0; i < ussrArr.Count(); i++)
+				structureIdArray = baseComp.getUSSRStructureIdArray();
+				for (int i = 0; i < structureIdArray.Count(); i++)
 				{
-					ent = GetGame().GetWorld().FindEntityByID(ussrArr[i]);
-					int index = gameMode.FactoriesUSSR.findIndexFromResourcename(ent.GetPrefabData().GetPrefabName());
+					ent = GetGame().GetWorld().FindEntityByID(structureIdArray[i]);
+					index = gameMode.FactoriesUSSR.findIndexFromResourcename(ent.GetPrefabData().GetPrefabName());
 					if (index > -1)
 					{
 						factoryData = gameMode.FactoriesUSSR.g_USSR_Factories[index];
@@ -65,11 +64,11 @@ class SCR_CTI_GetSideFactories
 			}
 			case "US":
 			{
-				array<ref EntityID> usArr = baseComp.getUSStructureIdArray();
-				for (int i = 0; i < usArr.Count(); i++)
+				structureIdArray = baseComp.getUSStructureIdArray();
+				for (int i = 0; i < structureIdArray.Count(); i++)
 				{
-					ent = GetGame().GetWorld().FindEntityByID(usArr[i]);
-					int index = gameMode.FactoriesUS.findIndexFromResourcename(ent.GetPrefabData().GetPrefabName());
+					ent = GetGame().GetWorld().FindEntityByID(structureIdArray[i]);
+					index = gameMode.FactoriesUS.findIndexFromResourcename(ent.GetPrefabData().GetPrefabName());
 					if (index > -1)
 					{
 						factoryData = gameMode.FactoriesUS.g_US_Factories[index];

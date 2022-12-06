@@ -1,24 +1,24 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Gear Data Structure")]
 class SCR_CTI_GearData
 {
-	protected ResourceName res;	// Resource name
-	protected string name;		// Display name
-	protected int ul;			// Upgrade level
-	protected int pri;			// Price
+	protected ResourceName resname;	// Resource name
+	protected string name;			// Display name
+	protected int uplevel;			// Upgrade level
+	protected int price;			// Price
 
 	//------------------------------------------------------------------------------------------------
-	void setData(ResourceName newres, string newname, int newul, int newpri)
+	void setData(ResourceName newresname, string newname, int newuplevel, int newprice)
 	{
-		res = newres;
+		resname = newresname;
 		name = newname;
-		ul = newul;
-		pri = newpri;
+		uplevel = newuplevel;
+		price = newprice;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	ResourceName getRes()
+	ResourceName getResname()
 	{
-		return res;
+		return resname;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -28,15 +28,15 @@ class SCR_CTI_GearData
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	int getUl()
+	int getUplevel()
 	{
-		return ul;
+		return uplevel;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getPri()
+	int getPrice()
 	{
-		return pri;
+		return price;
 	}
 
 	//------------------------------------------------------------------------------------------------

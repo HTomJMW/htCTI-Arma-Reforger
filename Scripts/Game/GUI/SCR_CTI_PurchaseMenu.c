@@ -171,7 +171,7 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 						for (int i = 0; i < gameMode.UnitsUSSR.g_USSR_Units.Count(); i++)
 						{
 							unitData = gameMode.UnitsUSSR.g_USSR_Units[i];
-							if (unitData.getFac() == m_iconbuttonEventHandler.getSelectedFactoryTypeIcon())
+							if (unitData.getFactory() == m_iconbuttonEventHandler.getSelectedFactoryTypeIcon())
 							{
 								m_listboxcomp.AddItem(unitData.getName(), unitData);
 							} else {
@@ -186,7 +186,7 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 						for (int i = 0; i < gameMode.UnitsUS.g_US_Units.Count(); i++)
 						{
 							unitData = gameMode.UnitsUS.g_US_Units[i];
-							if (unitData.getFac() == m_iconbuttonEventHandler.getSelectedFactoryTypeIcon())
+							if (unitData.getFactory() == m_iconbuttonEventHandler.getSelectedFactoryTypeIcon())
 							{
 								m_listboxcomp.AddItem(unitData.getName(), unitData);
 							} else {
@@ -239,7 +239,7 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 				if (m_listboxcomp.GetItemCount() > 0 && selectedId > -1 && m_listboxcomp.GetElementComponent(selectedId) && m_listboxcomp.IsItemSelected(selectedId))
 				{
 					SCR_CTI_UnitData unitData = SCR_CTI_UnitData.Cast(m_listboxcomp.GetItemData(selectedId));
-					m_cost.SetText("Cost: " + unitData.getPri() + "$");
+					m_cost.SetText("Cost: " + unitData.getPrice() + "$");
 				} else {
 					m_cost.SetText("Cost:");
 				}

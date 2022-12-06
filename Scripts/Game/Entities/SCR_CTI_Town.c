@@ -278,25 +278,24 @@ class SCR_CTI_Town : BaseGameEntity
 			{
 				case "FIA": if (m_USSR_Occupants.Count() + m_US_Occupants.Count() == 0)
 							{
-								removeTownGroups();
 								m_isActive = false;
-								PrintFormat("CTI :: Town %1 is Inactive", m_townName);
 							}
 							break;
 				case "US": if (m_FIA_Occupants.Count() + m_USSR_Occupants.Count() == 0)
 							{
-								removeTownGroups();
 								m_isActive = false;
-								PrintFormat("CTI :: Town %1 is Inactive", m_townName);
 							}
 							break;
 				case "USSR": if (m_FIA_Occupants.Count() + m_US_Occupants.Count() == 0)
 							{
-								removeTownGroups();
 								m_isActive = false;
-								PrintFormat("CTI :: Town %1 is Inactive", m_townName);
 							}
 							break;
+			}
+			if (!m_isActive)
+			{
+				removeTownGroups();
+				PrintFormat("CTI :: Town %1 is Inactive", m_townName);
 			}
 		}
 	}

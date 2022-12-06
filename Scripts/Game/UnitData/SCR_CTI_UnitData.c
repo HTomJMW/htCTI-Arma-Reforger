@@ -1,38 +1,38 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Unit Data Structure")]
 class SCR_CTI_UnitData
 {
-	protected ResourceName res; // Resource name
-	protected string pic;		// Picture name
-	protected string name;		// Display name
-	protected int pri;			// Price
-	protected int bt;			// Build time
-	protected int ul;			// Upgrade level
-	protected string fac;		// Factory
-	protected string scr;		// Script
+	protected ResourceName resname; // Resource name
+	protected string picture;		// Picture name
+	protected string name;			// Display name
+	protected int price;			// Price
+	protected int buildtime;		// Build time
+	protected int uplevel;			// Upgrade level
+	protected string factory;		// Factory
+	protected string script;		// Script
 
 	//------------------------------------------------------------------------------------------------
-	void setData(ResourceName newres, string newpic, string newname, int newpri, int newbt, int newul, string newfac, string newscr)
+	void setData(ResourceName newresname, string newpicture, string newname, int newprice, int newbuildtime, int newuplevel, string newfactory, string newscript)
 	{
-		res = newres;
-		pic = newpic;
+		resname = newresname;
+		picture = newpicture;
 		name = newname;
-		pri = newpri;
-		bt = newbt;
-		ul = newul;
-		fac = newfac;
-		scr = newscr;
+		price = newprice;
+		buildtime = newbuildtime;
+		uplevel = newuplevel;
+		factory = newfactory;
+		script = newscript;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	ResourceName getRes()
+	ResourceName getResname()
 	{
-		return res;
+		return resname;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	string getPic()
+	string getPicture()
 	{
-		return pic;
+		return picture;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -42,33 +42,33 @@ class SCR_CTI_UnitData
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getPri()
+	int getPrice()
 	{
-		return pri;
+		return price;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getBt()
+	int getBuildtime()
 	{
-		return bt;
+		return buildtime;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getUl()
+	int getUplevel()
 	{
-		return ul;
+		return uplevel;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	string getFac()
+	string getFactory()
 	{
-		return fac;
+		return factory;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	string getScr()
+	string getScript()
 	{
-		return scr;
+		return script;
 	}
 
 	//------------------------------------------------------------------------------------------------

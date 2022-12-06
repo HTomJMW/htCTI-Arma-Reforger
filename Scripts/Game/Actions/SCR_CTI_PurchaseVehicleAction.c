@@ -1,4 +1,4 @@
-[EntityEditorProps(category: "GameScripted/CTI", description: "User Action")]
+[EntityEditorProps(category: "GameScripted/CTI", description: "Purchase Vehicle User Action")]
 class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 {
 	protected IEntity m_owner;
@@ -35,19 +35,22 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		}
 		
 		Resource resource;
+		int unitIndex;
+		SCR_CTI_UnitData unitData;
 		int price;
+		
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
 		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
 			resource = Resource.Load(m_resNameUaz);
-			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
-			SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-			price = unitData.getPri();
+			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
+			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+			price = unitData.getPrice();
 		} else {
 			resource = Resource.Load(m_resNameJeep);
-			int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameJeep);
-			SCR_CTI_UnitData unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-			price = unitData.getPri();
+			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameJeep);
+			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+			price = unitData.getPrice();
 		}
 			
 		EntitySpawnParams params = new EntitySpawnParams();
@@ -88,13 +91,17 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(playerController.FindComponent(SCR_CTI_ClientDataComponent));
 		
 		int funds = cdc.getFunds();
-			
+
+		int unitIndex;
+		SCR_CTI_UnitData unitData;
+		int unitPrice;
+		
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
 		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
-			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
-			SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-			int unitPrice = unitData.getPri();
+			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
+			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+			unitPrice = unitData.getPrice();
 			if (funds > unitPrice)
 			{
 				return true;
@@ -103,9 +110,9 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 				return false;
 			}
 		} else {
-			int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameJeep);
-			SCR_CTI_UnitData unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-			int unitPrice = unitData.getPri();
+			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameJeep);
+			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+			unitPrice = unitData.getPrice();
 			if (funds > unitPrice)
 			{
 				return true;
@@ -130,9 +137,6 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
-		ActionNameParams[0] = "PARAM1";
-		ActionNameParams[1] = "PARAM2";
-					
 		outName = ("Purchase Light Vehicle");
 		
 		return true;

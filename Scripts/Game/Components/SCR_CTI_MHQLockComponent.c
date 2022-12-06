@@ -5,16 +5,16 @@ class SCR_CTI_MHQLockComponentClass : SCR_BaseLockComponentClass
 
 class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 {
-	protected SCR_CTI_GameMode gameMode;
-	protected SCR_VehicleSpawnProtectionComponent vehSpawnProtection;
-	protected SCR_VehicleFactionAffiliationComponent vehFactionAffComp;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected SCR_VehicleSpawnProtectionComponent m_vehSpawnProtection;
+	protected SCR_VehicleFactionAffiliationComponent m_vehFactionAffComp;
 	
 	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
 	{
 		ClearEventMask(owner, EntityEvent.INIT);
 		
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -22,10 +22,10 @@ class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 	{
 		SetEventMask(owner, EntityEvent.INIT);
 
-		vehFactionAffComp = SCR_VehicleFactionAffiliationComponent.Cast(owner.FindComponent(SCR_VehicleFactionAffiliationComponent));
-		vehSpawnProtection = SCR_VehicleSpawnProtectionComponent.Cast(owner.FindComponent(SCR_VehicleSpawnProtectionComponent));
-		vehSpawnProtection.SetVehicleOwner(-2);
-		vehSpawnProtection.SetProtectionTime(0); // unlimited protection time
+		m_vehFactionAffComp = SCR_VehicleFactionAffiliationComponent.Cast(owner.FindComponent(SCR_VehicleFactionAffiliationComponent));
+		m_vehSpawnProtection = SCR_VehicleSpawnProtectionComponent.Cast(owner.FindComponent(SCR_VehicleSpawnProtectionComponent));
+		m_vehSpawnProtection.SetVehicleOwner(-2);
+		m_vehSpawnProtection.SetProtectionTime(0); // unlimited protection time
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 		SCR_ChimeraCharacter character = SCR_ChimeraCharacter.Cast(user);
 		Faction characterFaction = character.GetFaction();
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
-		if (playerId != gameMode.getCommanderId(characterFaction.GetFactionKey()))
+		if (playerId != m_gameMode.getCommanderId(characterFaction.GetFactionKey()))
 		{
 			return true;
 		}

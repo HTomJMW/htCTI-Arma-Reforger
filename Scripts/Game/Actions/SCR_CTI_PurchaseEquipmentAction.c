@@ -1,4 +1,4 @@
-[EntityEditorProps(category: "GameScripted/CTI", description: "User Action")]
+[EntityEditorProps(category: "GameScripted/CTI", description: "Purchase Equipment User Action")]
 class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 {
 	protected IEntity m_owner;
@@ -38,18 +38,21 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 
 		Resource resource;
 		int price;
+		SCR_CTI_UnitData unitData;
+		int unitIndex;
+		
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
 		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
 			resource = Resource.Load(m_resNameUSSRbox);
-			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRbox);
-			SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-			price = unitData.getPri();
+			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRbox);
+			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+			price = unitData.getPrice();
 		} else {
 			resource = Resource.Load(m_resNameUSbox);
-			int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSbox);
-			SCR_CTI_UnitData unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-			price = unitData.getPri();
+			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSbox);
+			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+			price = unitData.getPrice();
 		}
 			
 		EntitySpawnParams params = new EntitySpawnParams();
@@ -92,13 +95,17 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(playerController.FindComponent(SCR_CTI_ClientDataComponent));
 
 		int funds = cdc.getFunds();
+		
+		int unitIndex;
+		SCR_CTI_UnitData unitData;
+		int unitPrice;
 				
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
 		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
-			int unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRbox);
-			SCR_CTI_UnitData unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-			int unitPrice = unitData.getPri();
+			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRbox);
+			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+			unitPrice = unitData.getPrice();
 			if (funds > unitPrice)
 			{
 				return true;
@@ -107,9 +114,9 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 				return false;
 			}
 		} else {
-			int unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSbox);
-			SCR_CTI_UnitData unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-			int unitPrice = unitData.getPri();
+			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSbox);
+			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+			unitPrice = unitData.getPrice();
 			if (funds > unitPrice)
 			{
 				return true;
@@ -134,9 +141,6 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
-		ActionNameParams[0] = "PARAM1";
-		ActionNameParams[1] = "PARAM2";
-					
 		outName = ("Purchase Equipment");
 		
 		return true;
@@ -172,39 +176,44 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 	{
 		switch (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
 		{
-			case "USSR":	ResourceName ussr_bandage = "{C3F1FA1E2EC2B345}Prefabs/Items/Medicine/FieldDressing_USSR_01.et";
-							ResourceName ussr_ak_mag = "{0A84AA5A3884176F}Prefabs/Weapons/Magazines/Magazine_545x39_AK_30rnd_Last_5Tracer.et";
-							ResourceName ussr_rpg7 = "{7A82FE978603F137}Prefabs/Weapons/Launchers/RPG7/Launcher_RPG7.et";
-							ResourceName ussr_rpg_ammo = "{32E12D322E107F1C}Prefabs/Weapons/Ammo/Ammo_Rocket_PG7VM.et";
-							ResourceName ussr_grenade = "{645C73791ECA1698}Prefabs/Weapons/Grenades/Grenade_RGD5.et";
+			case "USSR":
+			{
+				ResourceName ussr_bandage = "{C3F1FA1E2EC2B345}Prefabs/Items/Medicine/FieldDressing_USSR_01.et";
+				ResourceName ussr_ak_mag = "{0A84AA5A3884176F}Prefabs/Weapons/Magazines/Magazine_545x39_AK_30rnd_Last_5Tracer.et";
+				ResourceName ussr_rpg7 = "{7A82FE978603F137}Prefabs/Weapons/Launchers/RPG7/Launcher_RPG7.et";
+				ResourceName ussr_rpg_ammo = "{32E12D322E107F1C}Prefabs/Weapons/Ammo/Ammo_Rocket_PG7VM.et";
+				ResourceName ussr_grenade = "{645C73791ECA1698}Prefabs/Weapons/Grenades/Grenade_RGD5.et";
 
-							map<ResourceName, int> itemMapUSSR = new map<ResourceName, int>();
-							itemMapUSSR.Set(ussr_bandage, 5);
-							itemMapUSSR.Set(ussr_ak_mag, 10);
-							itemMapUSSR.Set(ussr_rpg7, 2);
-							itemMapUSSR.Set(ussr_rpg_ammo, 4);
-							itemMapUSSR.Set(ussr_grenade, 4);
+				map<ResourceName, int> itemMapUSSR = new map<ResourceName, int>();
+				itemMapUSSR.Set(ussr_bandage, 5);
+				itemMapUSSR.Set(ussr_ak_mag, 10);
+				itemMapUSSR.Set(ussr_rpg7, 2);
+				itemMapUSSR.Set(ussr_rpg_ammo, 4);
+				itemMapUSSR.Set(ussr_grenade, 4);
 			
-							addItemsPrefab(itemMapUSSR);
+				addItemsPrefab(itemMapUSSR);
 
-							break;
-					
-			case "US":		ResourceName us_bandage = "{A81F501D3EF6F38E}Prefabs/Items/Medicine/FieldDressing_US_01.et";
-							ResourceName us_m16_mag = "{D8F2CA92583B23D3}Prefabs/Weapons/Magazines/Magazine_556x45_STANAG_30rnd_Last_5Tracer.et";
-							ResourceName us_m72 = "{9C5C20FB0E01E64F}Prefabs/Weapons/Launchers/M72/Launcher_M72A3.et";
-							ResourceName us_m72_ammo = "{79FA751EEBE25DDE}Prefabs/Weapons/Ammo/Ammo_Rocket_M72A3.et";
-							ResourceName us_grenade = "{E8F00BF730225B00}Prefabs/Weapons/Grenades/Grenade_M67.et";
+				break;
+			}
+			case "US":
+			{
+				ResourceName us_bandage = "{A81F501D3EF6F38E}Prefabs/Items/Medicine/FieldDressing_US_01.et";
+				ResourceName us_m16_mag = "{D8F2CA92583B23D3}Prefabs/Weapons/Magazines/Magazine_556x45_STANAG_30rnd_Last_5Tracer.et";
+				ResourceName us_m72 = "{9C5C20FB0E01E64F}Prefabs/Weapons/Launchers/M72/Launcher_M72A3.et";
+				ResourceName us_m72_ammo = "{79FA751EEBE25DDE}Prefabs/Weapons/Ammo/Ammo_Rocket_M72A3.et";
+				ResourceName us_grenade = "{E8F00BF730225B00}Prefabs/Weapons/Grenades/Grenade_M67.et";
 
-							map<ResourceName, int> itemMapUS = new map<ResourceName, int>();
-							itemMapUS.Set(us_bandage, 5);
-							itemMapUS.Set(us_m16_mag, 10);
-							itemMapUS.Set(us_m72, 2);
-							itemMapUS.Set(us_m72_ammo, 4);
-							itemMapUS.Set(us_grenade, 4);
+				map<ResourceName, int> itemMapUS = new map<ResourceName, int>();
+				itemMapUS.Set(us_bandage, 5);
+				itemMapUS.Set(us_m16_mag, 10);
+				itemMapUS.Set(us_m72, 2);
+				itemMapUS.Set(us_m72_ammo, 4);
+				itemMapUS.Set(us_grenade, 4);
 			
-							addItemsPrefab(itemMapUS);
+				addItemsPrefab(itemMapUS);
 
-							break;
+				break;
+			}
 		}
 	}
 

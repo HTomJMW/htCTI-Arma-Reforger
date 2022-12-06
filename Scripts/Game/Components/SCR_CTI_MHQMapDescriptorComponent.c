@@ -5,14 +5,14 @@ class SCR_CTI_MHQMapDescriptorComponentClass : SCR_MapDescriptorComponentClass
 
 class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 {
-	protected SCR_CTI_GameMode gamemode;
-	protected ResourceName resname;
+	protected SCR_CTI_GameMode m_gamemode;
+	protected ResourceName m_resname;
 	
 	//------------------------------------------------------------------------------------------------
 	void init()
 	{
 		Color textcolor = Color.Black;
-		if (resname == gamemode.USSRMHQ)
+		if (m_resname == m_gamemode.USSRMHQ)
 		{
 			textcolor = Color.Red;
 		} else {
@@ -51,8 +51,8 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_MHQMapDescriptorComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{	
-		gamemode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		resname = ent.GetPrefabData().GetPrefabName();
+		m_gamemode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_resname = ent.GetPrefabData().GetPrefabName();
 		
 		// Call init function after 5s (wait until object ready for use)
 		GetGame().GetCallqueue().CallLater(init, 5000);

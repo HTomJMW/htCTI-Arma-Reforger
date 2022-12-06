@@ -32,13 +32,13 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	// Only on server
 	void addBase(FactionKey factionkey, vector position, int baseId)
 	{
+		SCR_CTI_Base base = new SCR_CTI_Base();
 		switch (factionkey)
 		{
 			case "USSR":
 			{
 				if (ussrBases.Count() < m_gameMode.MAXBASES)
 				{
-					SCR_CTI_Base base = new SCR_CTI_Base();
 					base.setBaseFactionKey(factionkey);
 					base.setBaseId(baseId);
 					base.setBasePos(position);
@@ -52,7 +52,6 @@ class SCR_CTI_BaseComponent : ScriptComponent
 			{
 				if (usBases.Count() < m_gameMode.MAXBASES)
 				{
-					SCR_CTI_Base base = new SCR_CTI_Base();
 					base.setBaseFactionKey(factionkey);
 					base.setBaseId(baseId);
 					base.setBasePos(position);
@@ -73,6 +72,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		params.Transform[3] = position;
+		
 		ResourceName resname;
 		if (factionkey == "USSR")
 		{
@@ -81,13 +81,14 @@ class SCR_CTI_BaseComponent : ScriptComponent
 			resname = "{F1601BFC409D50E7}Prefabs/Markers/CTI_BaseMarkerUS.et";
 		}
 		Resource res = Resource.Load(resname);
+		
 		GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	protected void createStructureMarker(vector position, FactionKey factionkey, IEntity structure)
 	{
-		
+		// TODO
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -107,6 +108,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 				break;
 			}
 		}
+		
 		return result;
 	}
 	
@@ -137,6 +139,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 				break;
 			}
 		}
+		
 		return base;
 	}
 

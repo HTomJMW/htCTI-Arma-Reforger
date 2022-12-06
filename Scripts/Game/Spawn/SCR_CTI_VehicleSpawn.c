@@ -46,12 +46,12 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 			default:
 			{
 				garbagemanager.Insert(newEnt, 3600);
-				PrintFormat("CTI :: Default vehicle: %1", m_rnPrefab);
+				//PrintFormat("CTI :: Default vehicle: %1", m_rnPrefab);
 				break;
 			}
 		}
-		PrintFormat("CTI :: Vehicle in garbage manager: %1 (%2)", garbagemanager.IsInserted(newEnt).ToString(), m_rnPrefab);
-		PrintFormat("CTI :: Lifetime: %1 (%2)", garbagemanager.GetLifetime(newEnt), m_rnPrefab);
+		//PrintFormat("CTI :: Vehicle in garbage manager: %1 (%2)", garbagemanager.IsInserted(newEnt).ToString(), m_rnPrefab);
+		//PrintFormat("CTI :: Lifetime: %1 (%2)", garbagemanager.GetLifetime(newEnt), m_rnPrefab);
 		
 		Deactivate(); // Deactivate after vehicle spawned
 	}

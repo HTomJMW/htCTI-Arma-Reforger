@@ -6,18 +6,18 @@ class SCR_CTI_RandomStartComponentClass : ScriptComponentClass
 class SCR_CTI_RandomStartComponent : ScriptComponent
 {
 	protected SCR_CTI_GameMode m_gameMode;
-	protected bool m_ussrOnNorth = false;
+	protected bool m_ussrAtNorth = false;
 
 	//------------------------------------------------------------------------------------------------	
 	protected void randomStart()
 	{
 		if (Math.RandomIntInclusive(0, 1) == 0)
 		{
-			m_ussrOnNorth = true;
+			m_ussrAtNorth = true;
 		} else {
-			m_ussrOnNorth = false;
+			m_ussrAtNorth = false;
 		}
-		PrintFormat("CTI :: USSR Spawn at north: %1", m_ussrOnNorth.ToString());
+		PrintFormat("CTI :: USSR Spawn at north: %1", m_ussrAtNorth.ToString());
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -89,7 +89,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		map<ResourceName, int> intemMapM923MHQ = new map<ResourceName, int>();
 		intemMapM923MHQ.Set(us_bandage, 5);
 		
-		if (m_ussrOnNorth)
+		if (m_ussrAtNorth)
 		{
 			// USSR on North
 			spNorth.SetFactionKey("USSR");

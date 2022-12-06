@@ -153,7 +153,7 @@ class SCR_CTI_BuildStructure
 			for (int i = 0; i < size; i++)
 			{
 				facData = m_gameMode.FactoriesUSSR.g_USSR_Factories[i];
-				if (facData.getRes() == resourcename)
+				if (facData.getResname() == resourcename)
 				{
 					name = facData.getName();
 					break;
@@ -164,7 +164,7 @@ class SCR_CTI_BuildStructure
 			for (int i = 0; i < size; i++)
 			{
 				facData = m_gameMode.FactoriesUS.g_US_Factories[i];
-				if (facData.getRes() == resourcename)
+				if (facData.getResname() == resourcename)
 				{
 					name = facData.getName();
 					break;

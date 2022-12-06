@@ -38,20 +38,6 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 	}
 
 	//------------------------------------------------------------------------------------------------
-	//! Method called from scripted interaction handler when an action is started (progress bar appeared)
-	//! \param pUserEntity The entity that started performing this action
-	override void OnActionStart(IEntity pUserEntity)
-	{
-	}
-
-	//------------------------------------------------------------------------------------------------
-	//! Action canceled
-	//! \param pUserEntity The entity that started performing this action
-	override void OnActionCanceled(IEntity pOwnerEntity, IEntity pUserEntity)
-	{
-	}
-
-	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
@@ -68,16 +54,6 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		if (m_gameMode.getCommanderId(affComp.GetAffiliatedFaction().GetFactionKey()) == playerId) return false; // check player is comm (after side check)
 		
 		return true;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override bool GetState()
-	{
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override void SetState(bool enable)
-	{
 	}
 	
 	//------------------------------------------------------------------------------------------------

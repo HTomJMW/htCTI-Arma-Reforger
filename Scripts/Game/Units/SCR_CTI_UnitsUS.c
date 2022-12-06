@@ -5,14 +5,14 @@ class SCR_CTI_UnitsUS
 	FactionKey factionKey = "US";
 	ref array<ref SCR_CTI_UnitData> g_US_Units = new array<ref SCR_CTI_UnitData>;
 
-	private ref array<ResourceName> res  =  {};	// ResourceName
-	private ref array<string>		pic	 =  {};	// Picture
-	private ref array<string>		name =  {};	// Name
-	private ref array<int>			pri  =  {};	// Price
-	private ref array<int>			bt   =  {};	// Build Time
-	private ref array<int>			ul   =  {};	// Upgrade Level
-	private ref array<string>		fac  =  {};	// Factory
-	private ref array<string>		scr  =  {};	// Script
+	private ref array<ResourceName> resname		= {}; // ResourceName
+	private ref array<string>		picture		= {}; // Picture
+	private ref array<string>		name		= {}; // Name
+	private ref array<int>			price		= {}; // Price
+	private ref array<int>			buildtime	= {}; // Build Time
+	private ref array<int>			uplevel		= {}; // Upgrade Level
+	private ref array<string>		factory		= {}; // Factory
+	private ref array<string>		script		= {}; // Script
 
 	//------------------------------------------------------------------------------------------------
 	int findIndexFromResourcename(ResourceName resName)
@@ -21,7 +21,7 @@ class SCR_CTI_UnitsUS
 		for (int i = 0; i < g_US_Units.Count(); i++)
 		{
 			unitData = g_US_Units[i];
-			if (unitData.getRes() == resName) return i;
+			if (unitData.getResname() == resName) return i;
 		}
 		
 		return -1;
@@ -31,224 +31,224 @@ class SCR_CTI_UnitsUS
 	private void fillUp()
 	{
 		// Equipment box
-		res.Insert("{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et");
-		pic.Insert("");
+		resname.Insert("{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et");
+		picture.Insert("");
 		name.Insert("Equipment Box");
-		pri.Insert(500);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Flag");
-		scr.Insert("");
+		price.Insert(500);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Flag");
+		script.Insert("");
 		
 		// Soldiers
-		res.Insert("{2F912ED6E399FF47}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Unarmed.et");
-		pic.Insert("");
+		resname.Insert("{2F912ED6E399FF47}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Unarmed.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(75);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(75);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{E45F1E163F5CA080}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_SL.et");
-		pic.Insert("");
+		resname.Insert("{E45F1E163F5CA080}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_SL.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(120);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(120);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{E398E44759DA1A43}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_TL.et");
-		pic.Insert("");
+		resname.Insert("{E398E44759DA1A43}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_TL.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(120);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(120);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{C9E4FEAF5AAC8D8C}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Medic.et");
-		pic.Insert("");
+		resname.Insert("{C9E4FEAF5AAC8D8C}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Medic.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(100);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(100);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et");
-		pic.Insert("");
+		resname.Insert("{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(100);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(100);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{5B1996C05B1E51A4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AR.et");
-		pic.Insert("");
+		resname.Insert("{5B1996C05B1E51A4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AR.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(150);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(150);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{1623EA3AEFACA0E4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_MG.et");
-		pic.Insert("");
+		resname.Insert("{1623EA3AEFACA0E4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_MG.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(150);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(150);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{27BF1FF235DD6036}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_LAT.et");
-		pic.Insert("");
+		resname.Insert("{27BF1FF235DD6036}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_LAT.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(200);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(200);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{0F6689B491641155}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Sniper.et");
-		pic.Insert("");
+		resname.Insert("{0F6689B491641155}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Sniper.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(200);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(200);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{84029128FA6F6BB9}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_GL.et");
-		pic.Insert("");
+		resname.Insert("{84029128FA6F6BB9}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_GL.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(120);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(120);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{3726077BE60962FF}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_RTO.et");
-		pic.Insert("");
+		resname.Insert("{3726077BE60962FF}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_RTO.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(100);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(100);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{1CA3D30464EE4674}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Spotter.et");
-		pic.Insert("");
+		resname.Insert("{1CA3D30464EE4674}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Spotter.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(100);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(100);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
-		res.Insert("{6058AB54781A0C52}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AMG.et");
-		pic.Insert("");
+		resname.Insert("{6058AB54781A0C52}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AMG.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(110);
-		bt.Insert(10);
-		ul.Insert(0);
-		fac.Insert("Barracks");
-		scr.Insert("");
+		price.Insert(110);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("Barracks");
+		script.Insert("");
 		
 		// Vehicles
-		res.Insert("{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et");
-		pic.Insert("");
+		resname.Insert("{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(700);
-		bt.Insert(20);
-		ul.Insert(0);
-		fac.Insert("Light Factory");
-		scr.Insert("");
+		price.Insert(700);
+		buildtime.Insert(20);
+		uplevel.Insert(0);
+		factory.Insert("Light Factory");
+		script.Insert("");
 		
-		res.Insert("{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et");
-		pic.Insert("");
+		resname.Insert("{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(750);
-		bt.Insert(20);
-		ul.Insert(0);
-		fac.Insert("Light Factory");
-		scr.Insert("");
+		price.Insert(750);
+		buildtime.Insert(20);
+		uplevel.Insert(0);
+		factory.Insert("Light Factory");
+		script.Insert("");
 		
-		res.Insert("{F6B23D17D5067C11}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et");
-		pic.Insert("");
+		resname.Insert("{F6B23D17D5067C11}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(900);
-		bt.Insert(30);
-		ul.Insert(1);
-		fac.Insert("Light Factory");
-		scr.Insert("");
+		price.Insert(900);
+		buildtime.Insert(30);
+		uplevel.Insert(1);
+		factory.Insert("Light Factory");
+		script.Insert("");
 		
-		res.Insert("{F1FBD0972FA5FE09}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et");
-		pic.Insert("");
+		resname.Insert("{F1FBD0972FA5FE09}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(1200);
-		bt.Insert(30);
-		ul.Insert(0);
-		fac.Insert("Light Factory");
-		scr.Insert("");
+		price.Insert(1200);
+		buildtime.Insert(30);
+		uplevel.Insert(0);
+		factory.Insert("Light Factory");
+		script.Insert("");
 		
-		res.Insert("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
-		pic.Insert("");
+		resname.Insert("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(1300);
-		bt.Insert(30);
-		ul.Insert(0);
-		fac.Insert("Light Factory");
-		scr.Insert("");
+		price.Insert(1300);
+		buildtime.Insert(30);
+		uplevel.Insert(0);
+		factory.Insert("Light Factory");
+		script.Insert("");
 		
-		res.Insert("{2BE1F8B9299B67C1}Prefabs/Vehicles/Wheeled/M923A1/M923A1_tanker.et");
-		pic.Insert("");
+		resname.Insert("{2BE1F8B9299B67C1}Prefabs/Vehicles/Wheeled/M923A1/M923A1_tanker.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(1500);
-		bt.Insert(30);
-		ul.Insert(0);
-		fac.Insert("Repair Depot");
-		scr.Insert("");
+		price.Insert(1500);
+		buildtime.Insert(30);
+		uplevel.Insert(0);
+		factory.Insert("Repair Depot");
+		script.Insert("");
 		
-		res.Insert("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"); // MHQ
-		pic.Insert("");
+		resname.Insert("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"); // MHQ
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(20000);
-		bt.Insert(60);
-		ul.Insert(0);
-		fac.Insert("");
-		scr.Insert("");
+		price.Insert(20000);
+		buildtime.Insert(60);
+		uplevel.Insert(0);
+		factory.Insert("");
+		script.Insert("");
 		
-		res.Insert("{4A71F755A4513227}Prefabs/Vehicles/Wheeled/M998/M1025.et");
-		pic.Insert("");
+		resname.Insert("{4A71F755A4513227}Prefabs/Vehicles/Wheeled/M998/M1025.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(1000);
-		bt.Insert(45);
-		ul.Insert(0);
-		fac.Insert("Light Factory");
-		scr.Insert("");
+		price.Insert(1000);
+		buildtime.Insert(45);
+		uplevel.Insert(0);
+		factory.Insert("Light Factory");
+		script.Insert("");
 		
-		res.Insert("{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et");
-		pic.Insert("");
+		resname.Insert("{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et");
+		picture.Insert("");
 		name.Insert("");
-		pri.Insert(1500);
-		bt.Insert(45);
-		ul.Insert(1);
-		fac.Insert("Light Factory");
-		scr.Insert("");
+		price.Insert(1500);
+		buildtime.Insert(45);
+		uplevel.Insert(1);
+		factory.Insert("Light Factory");
+		script.Insert("");
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	private void setDisplayNames()
 	{
-		for (int i = 0; i < res.Count(); i++)
+		for (int i = 0; i < resname.Count(); i++)
 		{
 			if (name[i] == "")
 			{
-				Resource resource = Resource.Load(res[i]);
+				Resource resource = Resource.Load(resname[i]);
                 BaseResourceObject prefabBase = resource.GetResource();
                 BaseContainer prefabSrc = prefabBase.ToBaseContainer();
                 BaseContainerList components = prefabSrc.GetObjectArray("components");
@@ -279,10 +279,10 @@ class SCR_CTI_UnitsUS
 	private void setUnits()
 	{
 		SCR_CTI_UnitData store;
-		for (int i = 0; i < res.Count(); i++)
+		for (int i = 0; i < resname.Count(); i++)
 		{
 			store = new SCR_CTI_UnitData;
-			store.setData(res[i], pic[i], name[i], pri[i], bt[i], ul[i], fac[i], scr[i]);
+			store.setData(resname[i], picture[i], name[i], price[i], buildtime[i], uplevel[i], factory[i], script[i]);
 			
 			g_US_Units.Insert(store);
 		}

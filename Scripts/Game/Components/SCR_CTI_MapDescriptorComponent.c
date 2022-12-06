@@ -7,8 +7,6 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 {
 	protected MapItem m_item;
 	protected SCR_CTI_Town m_owner;
-	
-	//protected Widget widget;
 	protected string m_marker = "Flag";
 
 	//------------------------------------------------------------------------------------------------
@@ -34,19 +32,6 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 			props.Activate(true);
 		
 		m_item.SetProps(props);
-		
-		//WorkspaceWidget workspace = GetGame().GetWorkspace();
-		//ResourceName layout = "{6B2B7AC257269983}UI/layouts/MapIcon.layout";
-
-		//widget = workspace.CreateWidgets(layout);
-		//ImageWidget iwg = ImageWidget.Cast(widget.FindAnyWidget("Image"));
-
-		//ResourceName imageset = "{3EA91214A3CABFCC}UI/Imagesets/MapIcons.imageset";
-		
-		//iwg.LoadImageFromSet(0, imageset, "Flag");
-		//iwg.SetImage(0);
-		
-		//widget.SetVisible(true);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -63,8 +48,6 @@ class SCR_CTI_MapDescriptorComponent : SCR_MapDescriptorComponent
 			}
 		color.SetA(0.8);
 		props.SetFrontColor(color);
-		
-		// default green maybe better
 	}
 
 	//------------------------------------------------------------------------------------------------

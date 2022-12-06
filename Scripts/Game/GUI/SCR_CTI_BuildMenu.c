@@ -8,7 +8,6 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected SCR_CTI_ClientDataComponent cdc;
 	
 	protected Widget m_wRoot;
-	protected WindowWidget m_window;
 	protected TextWidget m_resources;
 	protected TextWidget m_workers;
 	protected ButtonWidget m_addworker;
@@ -45,7 +44,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		playerFaction = affiliationComp.GetAffiliatedFaction();
 		
 		m_wRoot = GetRootWidget();
-		m_window = WindowWidget.Cast(m_wRoot.FindAnyWidget("Window"));
+
 		m_resources = TextWidget.Cast(m_wRoot.FindAnyWidget("Resources"));
 		m_workers = TextWidget.Cast(m_wRoot.FindAnyWidget("Workers"));
 		
@@ -132,14 +131,14 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 				{
 					SCR_CTI_FactoryData factoryData;
 					factoryData = gameMode.FactoriesUSSR.g_USSR_Factories[i];
-					m_listboxleftcomp.AddItem(factoryData.getPri().ToString() + "$ " + factoryData.getName());
+					m_listboxleftcomp.AddItem(factoryData.getPrice().ToString() + "$ " + factoryData.getName());
 				}
 				
 				for (int j = 0; j < gameMode.DefensesUSSR.g_USSR_Defenses.Count(); j++)
 				{
 					SCR_CTI_DefenseData defData;
 					defData = gameMode.DefensesUSSR.g_USSR_Defenses[j];
-					m_listboxrightcomp.AddItem(defData.getPri().ToString() + "$ " + defData.getName());
+					m_listboxrightcomp.AddItem(defData.getPrice().ToString() + "$ " + defData.getName());
 				}
 				break;
 			}
@@ -150,14 +149,14 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 				{
 					SCR_CTI_FactoryData factoryData;
 					factoryData = gameMode.FactoriesUS.g_US_Factories[i];
-					m_listboxleftcomp.AddItem(factoryData.getPri().ToString() + "$ " + factoryData.getName());
+					m_listboxleftcomp.AddItem(factoryData.getPrice().ToString() + "$ " + factoryData.getName());
 				}
 				
 				for (int j = 0; j < gameMode.DefensesUS.g_US_Defenses.Count(); j++)
 				{
 					SCR_CTI_DefenseData defData;
 					defData = gameMode.DefensesUS.g_US_Defenses[j];
-					m_listboxrightcomp.AddItem(defData.getPri().ToString() + "$ " + defData.getName());
+					m_listboxrightcomp.AddItem(defData.getPrice().ToString() + "$ " + defData.getName());
 				}
 				break;
 			}		
