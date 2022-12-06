@@ -3,7 +3,1053 @@ SCR_DestructibleBuildingEntity : "{E35EA41864A3B0ED}Prefabs/Structures/Industria
  components {
   FactionAffiliationComponent "{5AF112365458ADED}" {
   }
+  SCR_CTI_FactorySpawnComponent "{5AFD393A576A7D9F}" {
+   m_SpawnPos -13.5 0.1 0
+  }
+  SCR_CTI_FactorySpawnComponent "{5AFD393A7ADC8F09}" {
+   m_SpawnPos 5.5 0.1 0
+  }
   SCR_MapDescriptorComponent "{5AF11222D6223A87}" {
+  }
+ }
+ {
+  GenericEntity {
+   ID "56E0EC1545F918AA"
+   components {
+    Hierarchy "{5AFD1EFE0C6ADE8D}" {
+    }
+   }
+   {
+    GenericEntity {
+     ID "56E0EC154B650001"
+     components {
+      Hierarchy "{5AFD1EF1DCCA7B2D}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65000F"
+     components {
+      Hierarchy "{5AFD1EF1DAC0E6D5}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650014"
+     components {
+      Hierarchy "{5AFD1EF18981D83A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650021"
+     components {
+      Hierarchy "{5AFD1EF1D8CE9348}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65002F"
+     components {
+      Hierarchy "{5AFD1EF1D60DFAAF}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65003B"
+     components {
+      Hierarchy "{5AFD1EF1D41FE691}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650045"
+     components {
+      Hierarchy "{5AFD1EF1D39CD4E0}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65005A"
+     components {
+      Hierarchy "{5AFD1EF1D1048713}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65006B"
+     components {
+      Hierarchy "{5AFD1EF1CF33F33C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650071"
+     components {
+      Hierarchy "{5AFD1EF1CD681001}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65007C"
+     components {
+      Hierarchy "{5AFD1EF1C6C393E7}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650081"
+     components {
+      Hierarchy "{5AFD1EF187D9CD74}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65008D"
+     components {
+      Hierarchy "{5AFD1EF1851BB53D}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65009A"
+     components {
+      Hierarchy "{5AFD1EF18353C252}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6500A5"
+     components {
+      Hierarchy "{5AFD1EF182BCE24B}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6500B8"
+     components {
+      Hierarchy "{5AFD1EF180D76467}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6500CA"
+     components {
+      Hierarchy "{5AFD1EF1FA13239A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6500E3"
+     components {
+      Hierarchy "{5AFD1EF1F8629ADE}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6500E9"
+     components {
+      Hierarchy "{5AFD1EF1F66E8958}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6500F4"
+     components {
+      Hierarchy "{5AFD1EF1F4703F01}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65010F"
+     components {
+      Hierarchy "{5AFD1EF18B07B1E7}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650111"
+     components {
+      Hierarchy "{5AFD1EF18E609F0A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65011D"
+     components {
+      Hierarchy "{5AFD1EF18DB65BF3}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650126"
+     components {
+      Hierarchy "{5AFD1EF1F3998941}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65012C"
+     components {
+      Hierarchy "{5AFD1EF1F1F12934}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65013A"
+     components {
+      Hierarchy "{5AFD1EF1EF5B74DF}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65014F"
+     components {
+      Hierarchy "{5AFD1EF1EEB62676}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65015A"
+     components {
+      Hierarchy "{5AFD1EF1EC23BD0C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650161"
+     components {
+      Hierarchy "{5AFD1EF1EB83B48B}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65016C"
+     components {
+      Hierarchy "{5AFD1EF1E9C87210}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65017A"
+     components {
+      Hierarchy "{5AFD1EF1E701CCBE}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65018A"
+     components {
+      Hierarchy "{5AFD1EF1A4B3D9AA}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650199"
+     components {
+      Hierarchy "{5AFD1EF1A20D399A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6501AE"
+     components {
+      Hierarchy "{5AFD1EF1A06A3C56}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6501B6"
+     components {
+      Hierarchy "{5AFD1EF19F9E5E57}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6501C7"
+     components {
+      Hierarchy "{5AFD1EF19C2DB3CE}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6501E4"
+     components {
+      Hierarchy "{5AFD1EF1904202A1}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6501F8"
+     components {
+      Hierarchy "{5AFD1EF19A0A4D43}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650208"
+     components {
+      Hierarchy "{5AFD1EFE43BC0B23}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650216"
+     components {
+      Hierarchy "{5AFD1EFE418EA06A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650228"
+     components {
+      Hierarchy "{5AFD1EF1B24087CC}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650236"
+     components {
+      Hierarchy "{5AFD1EF1BFD9498B}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65023D"
+     components {
+      Hierarchy "{5AFD1EF1B19D362A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650242"
+     components {
+      Hierarchy "{5AFD1EF1AF04CDF3}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65024E"
+     components {
+      Hierarchy "{5AFD1EF1AA1295C8}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650257"
+     components {
+      Hierarchy "{5AFD1EF1AE9E13D3}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650263"
+     components {
+      Hierarchy "{5AFD1EF1A6F6B64B}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650275"
+     components {
+      Hierarchy "{5AFD1EF1A82696AF}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650281"
+     components {
+      Hierarchy "{5AFD1EFE508D952C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65029A"
+     components {
+      Hierarchy "{5AFD1EFE4DF889F4}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6502AB"
+     components {
+      Hierarchy "{5AFD1EF1BD39834C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6502B3"
+     components {
+      Hierarchy "{5AFD1EF1BCC2FD12}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6502B9"
+     components {
+      Hierarchy "{5AFD1EF1BA2ECDCD}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6502C7"
+     components {
+      Hierarchy "{5AFD1EF1B9A6C098}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6502DA"
+     components {
+      Hierarchy "{5AFD1EF1B7FA9338}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6502EB"
+     components {
+      Hierarchy "{5AFD1EF1B57BBA11}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6502FC"
+     components {
+      Hierarchy "{5AFD1EF1B4FAC98E}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65030A"
+     components {
+      Hierarchy "{5AFD1EFE59165F25}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650319"
+     components {
+      Hierarchy "{5AFD1EFE57CABD0A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650323"
+     components {
+      Hierarchy "{5AFD1EFE531715E6}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65032C"
+     components {
+      Hierarchy "{5AFD1EFE5123310C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650336"
+     components {
+      Hierarchy "{5AFD1EFE550BB991}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65034A"
+     components {
+      Hierarchy "{5AFD1EFE4B59DDDE}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65035F"
+     components {
+      Hierarchy "{5AFD1EFE4965659A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650363"
+     components {
+      Hierarchy "{5AFD1EFE48D9A9F3}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65036F"
+     components {
+      Hierarchy "{5AFD1EFE4618AD9E}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650376"
+     components {
+      Hierarchy "{5AFD1EFE446033A5}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65038F"
+     components {
+      Hierarchy "{5AFD1EFE6B746FFE}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650390"
+     components {
+      Hierarchy "{5AFD1EFE73ABE7A6}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65039F"
+     components {
+      Hierarchy "{5AFD1EFE705FAECD}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6503AB"
+     components {
+      Hierarchy "{5AFD1EFE68432C82}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6503BE"
+     components {
+      Hierarchy "{5AFD1EFE660DDA4E}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6503C3"
+     components {
+      Hierarchy "{5AFD1EFE641E9713}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6503CF"
+     components {
+      Hierarchy "{5AFD1EFE62538E1C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6503D7"
+     components {
+      Hierarchy "{5AFD1EFE61A11B71}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6503ED"
+     components {
+      Hierarchy "{5AFD1EFE5BC64E68}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6503FC"
+     components {
+      Hierarchy "{5AFD1EFE5DE65BCE}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650409"
+     components {
+      Hierarchy "{5AFD1EFE7EB4C862}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65041B"
+     components {
+      Hierarchy "{5AFD1EFE00EA0C67}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650438"
+     components {
+      Hierarchy "{5AFD1EFE7C09DA93}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65044F"
+     components {
+      Hierarchy "{5AFD1EFE76055C5E}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B65045F"
+     components {
+      Hierarchy "{5AFD1EFE78BE3E09}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650464"
+     components {
+      Hierarchy "{5AFD1EFE6FB0DC34}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B650479"
+     components {
+      Hierarchy "{5AFD1EFE6D214458}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6504A2"
+     components {
+      Hierarchy "{5AFD1EFE09DA846B}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6504C5"
+     components {
+      Hierarchy "{5AFD1EFE071BA594}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6504E8"
+     components {
+      Hierarchy "{5AFD1EFE02C2D797}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B6504FB"
+     components {
+      Hierarchy "{5AFD1EFE053F09C4}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651D17"
+     components {
+      Hierarchy "{5AFD1EF15DF18E3C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651D84"
+     components {
+      Hierarchy "{5AFD1EF16AF7A6E7}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651D93"
+     components {
+      Hierarchy "{5AFD1EF16E3753D4}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651D99"
+     components {
+      Hierarchy "{5AFD1EF16D96DF17}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DAB"
+     components {
+      Hierarchy "{5AFD1EF1649ECB06}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DB0"
+     components {
+      Hierarchy "{5AFD1EF168441649}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DBC"
+     components {
+      Hierarchy "{5AFD1EF166142876}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DCB"
+     components {
+      Hierarchy "{5AFD1EF162A83EFB}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DD6"
+     components {
+      Hierarchy "{5AFD1EF160FFCE3F}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DDC"
+     components {
+      Hierarchy "{5AFD1EF15E63E809}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DE9"
+     components {
+      Hierarchy "{5AFD1EF15B4413A4}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DF6"
+     components {
+      Hierarchy "{5AFD1EF159E71DE2}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651DFD"
+     components {
+      Hierarchy "{5AFD1EF157D7DA63}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E08"
+     components {
+      Hierarchy "{5AFD1EF103597AB6}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E16"
+     components {
+      Hierarchy "{5AFD1EF101799E7B}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E1D"
+     components {
+      Hierarchy "{5AFD1EF17F155C3A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E20"
+     components {
+      Hierarchy "{5AFD1EF17D789198}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E2E"
+     components {
+      Hierarchy "{5AFD1EF17CD5C278}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E34"
+     components {
+      Hierarchy "{5AFD1EF17A18C0CD}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E43"
+     components {
+      Hierarchy "{5AFD1EF17856EAF8}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E4F"
+     components {
+      Hierarchy "{5AFD1EF1750EA4B6}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E55"
+     components {
+      Hierarchy "{5AFD1EF177A18997}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E67"
+     components {
+      Hierarchy "{5AFD1EF1729F52B2}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E78"
+     components {
+      Hierarchy "{5AFD1EF1735EAC3C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E88"
+     components {
+      Hierarchy "{5AFD1EF1143E3D9D}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651E9F"
+     components {
+      Hierarchy "{5AFD1EF11612BB5C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651EA1"
+     components {
+      Hierarchy "{5AFD1EF110A4CE50}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651EAC"
+     components {
+      Hierarchy "{5AFD1EF10EA7D692}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651EB6"
+     components {
+      Hierarchy "{5AFD1EF112F5B4F2}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651EDB"
+     components {
+      Hierarchy "{5AFD1EF10CEAB821}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651EEB"
+     components {
+      Hierarchy "{5AFD1EF1068DC4AA}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651EF3"
+     components {
+      Hierarchy "{5AFD1EF10AE51667}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651EFF"
+     components {
+      Hierarchy "{5AFD1EF108B145A4}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F18"
+     components {
+      Hierarchy "{5AFD1EF1C3DF57E8}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F51"
+     components {
+      Hierarchy "{5AFD1EF127D9BC49}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F5D"
+     components {
+      Hierarchy "{5AFD1EF12223E8FA}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F62"
+     components {
+      Hierarchy "{5AFD1EF11DBD8162}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F6F"
+     components {
+      Hierarchy "{5AFD1EF11A551801}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F70"
+     components {
+      Hierarchy "{5AFD1EF120F12E6F}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F8B"
+     components {
+      Hierarchy "{5AFD1EF1C1F0F735}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F96"
+     components {
+      Hierarchy "{5AFD1EF13E55F625}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651F9D"
+     components {
+      Hierarchy "{5AFD1EF13D9D36DB}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FAB"
+     components {
+      Hierarchy "{5AFD1EF13BA86C28}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FB6"
+     components {
+      Hierarchy "{5AFD1EF139E48E6C}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FBD"
+     components {
+      Hierarchy "{5AFD1EF13734ED2E}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FC3"
+     components {
+      Hierarchy "{5AFD1EF136859CE4}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FCE"
+     components {
+      Hierarchy "{5AFD1EF134B286EE}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FD6"
+     components {
+      Hierarchy "{5AFD1EF1321F7EB4}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FE1"
+     components {
+      Hierarchy "{5AFD1EF13029B039}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FED"
+     components {
+      Hierarchy "{5AFD1EF12ECF012A}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "56E0EC154B651FF5"
+     components {
+      Hierarchy "{5AFD1EF12CFAA729}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "58E2EE2B4CCEAC22"
+     components {
+      Hierarchy "{5AFD1EF19825C434}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "58E2EE2B4CCEAC46"
+     components {
+      Hierarchy "{5AFD1EF195931009}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "58E2EE2B4CCEAC67"
+     components {
+      Hierarchy "{5AFD1EF1966AA2FF}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "58E2EE2B4CCEAC74"
+     components {
+      Hierarchy "{5AFD1EF1924488B1}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "58E2EE2B4CCEAC86"
+     components {
+      Hierarchy "{5AFD1EF1E687702E}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "58E2EE2B4CCEAC97"
+     components {
+      Hierarchy "{5AFD1EF1E4F554BE}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "58E2EE2B4CCEACB2"
+     components {
+      Hierarchy "{5AFD1EF1E26E3253}" {
+      }
+     }
+    }
+    GenericEntity {
+     ID "58E2EE2B55D35A70"
+     components {
+      Hierarchy "{5AFD1EFE04A21DB3}" {
+      }
+     }
+    }
+   }
   }
  }
 }
