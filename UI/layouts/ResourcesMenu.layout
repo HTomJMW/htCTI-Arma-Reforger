@@ -102,6 +102,35 @@ FrameWidgetClass {
       OffsetBottom -600
      }
      {
+      WindowWidgetClass "{5B0B0D7071C48A47}" {
+       Name "WindowEBox"
+       Slot FrameWidgetSlot "{5B0B0D7071C48A64}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 115
+        OffsetTop 115
+        SizeX 160
+        OffsetRight -165
+        SizeY 30
+        OffsetBottom -145
+       }
+       {
+        EditBoxWidgetClass "{5B0B0D715DBBC73E}" {
+         Name "EditBox"
+         Slot FrameWidgetSlot "{5B0B0D715DBBC795}" {
+          PositionX 5
+          OffsetLeft 5
+          OffsetTop 0
+          SizeX 150
+          OffsetRight -155
+          SizeY 30
+          OffsetBottom -30
+          Alignment 0 0
+         }
+         text "0"
+        }
+       }
+      }
       SliderWidgetClass "{5ACCDED7FC3EE61E}" {
        Name "Slider"
        Slot FrameWidgetSlot "{5ACCDED7FC3EE67A}" {

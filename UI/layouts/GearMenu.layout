@@ -52,6 +52,13 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
+     {
+      ImageWidgetClass "{5B09398ED844FBDF}" {
+       Name "TemplatesImg"
+       Slot ButtonWidgetSlot "{5B09398ED844FBF2}" {
+       }
+      }
+     }
     }
     ButtonWidgetClass "{5ACCEA9913A1F649}" {
      Name "Uniforms"
@@ -64,6 +71,13 @@ FrameWidgetClass {
       OffsetRight -575
       SizeY 75
       OffsetBottom -95
+     }
+     {
+      ImageWidgetClass "{5B09398EDBDDEAC7}" {
+       Name "UniformsImg"
+       Slot ButtonWidgetSlot "{5B09398EDBDDEAD8}" {
+       }
+      }
      }
     }
     ButtonWidgetClass "{5ACCEA99149B0AD6}" {
@@ -78,6 +92,13 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
+     {
+      ImageWidgetClass "{5B09398EDDECB106}" {
+       Name "ItemsImg"
+       Slot ButtonWidgetSlot "{5B09398EDDECB127}" {
+       }
+      }
+     }
     }
     ButtonWidgetClass "{5ACCEA991595C2F7}" {
      Name "Ammos"
@@ -90,6 +111,13 @@ FrameWidgetClass {
       OffsetRight -425
       SizeY 75
       OffsetBottom -95
+     }
+     {
+      ImageWidgetClass "{5B09398EDFDF5D8D}" {
+       Name "AmmosImg"
+       Slot ButtonWidgetSlot "{5B09398EDFDF5DA4}" {
+       }
+      }
      }
     }
     ButtonWidgetClass "{5ACCEA99164C6AC9}" {
@@ -104,6 +132,13 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
+     {
+      ImageWidgetClass "{5B09398EE1B7E0E5}" {
+       Name "AccessoriesImg"
+       Slot ButtonWidgetSlot "{5B09398EE1B7E0F3}" {
+       }
+      }
+     }
     }
     ButtonWidgetClass "{5ACCEA9917663099}" {
      Name "Pistols"
@@ -117,9 +152,16 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
+     {
+      ImageWidgetClass "{5B09398EE2777D88}" {
+       Name "PistolsImg"
+       Slot ButtonWidgetSlot "{5B09398EE2777DA2}" {
+       }
+      }
+     }
     }
     ButtonWidgetClass "{5ACCEA9919821215}" {
-     Name "Launcgers"
+     Name "Launchers"
      Slot FrameWidgetSlot "{5ACCEA991982122B}" {
       PositionX 125
       OffsetLeft 125
@@ -129,6 +171,13 @@ FrameWidgetClass {
       OffsetRight -200
       SizeY 75
       OffsetBottom -95
+     }
+     {
+      ImageWidgetClass "{5B09398EE5AC81B6}" {
+       Name "LaunchersImg"
+       Slot ButtonWidgetSlot "{5B09398EE5AC81CA}" {
+       }
+      }
      }
     }
     ButtonWidgetClass "{5ACCEA991A1F5081}" {
@@ -143,9 +192,16 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
+     {
+      ImageWidgetClass "{5B09398ED156B6F7}" {
+       Name "RiflesImg"
+       Slot ButtonWidgetSlot "{5B09398ED156B70D}" {
+       }
+      }
+     }
     }
     OverlayWidgetClass "{5ACCEA949E003ED8}" {
-     Name "ListBoxLeft"
+     Name "ListBox"
      Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
       Anchor 0 0 0 0
       PositionX 10
@@ -198,6 +254,444 @@ FrameWidgetClass {
     OffsetBottom -1060
    }
    {
+    WindowWidgetClass "{5B0944285F17A165}" {
+     Name "Window5"
+     Slot FrameWidgetSlot "{5B0944285F17A173}" {
+      PositionX 660
+      OffsetLeft 660
+      PositionY 640
+      OffsetTop 640
+      SizeX 450
+      OffsetRight -1110
+      SizeY 300
+      OffsetBottom -940
+     }
+     {
+      WindowWidgetClass "{5B09442EAFEE7D4B}" {
+       Name "Window50"
+       Slot FrameWidgetSlot "{5B09442EAFEE7D6D}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 450
+        OffsetRight -450
+        SizeY 40
+        OffsetBottom -40
+       }
+       {
+        RichTextWidgetClass "{5B09442E2C91D4E7}" {
+         Name "RichText500"
+         Slot FrameWidgetSlot "{5B09442E2C91D4F2}" {
+          PositionX 10
+          OffsetLeft 10
+          PositionY 5
+          OffsetTop 5
+          SizeX 430
+          OffsetRight -440
+          OffsetBottom -35
+         }
+         Text "[]"
+        }
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5B0944286021114B}" {
+     Name "Window4"
+     Slot FrameWidgetSlot "{5B09442860211161}" {
+      PositionX 200
+      OffsetLeft 200
+      PositionY 640
+      OffsetTop 640
+      SizeX 450
+      OffsetRight -650
+      SizeY 300
+      OffsetBottom -940
+     }
+     {
+      WindowWidgetClass "{5B09442EB0F5F860}" {
+       Name "Window40"
+       Slot FrameWidgetSlot "{5B09442EB0F5F87A}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 450
+        OffsetRight -450
+        SizeY 40
+        OffsetBottom -40
+       }
+       {
+        RichTextWidgetClass "{5B09442E2D00A505}" {
+         Name "RichText400"
+         Slot FrameWidgetSlot "{5B09442E2D00A51C}" {
+          PositionX 10
+          OffsetLeft 10
+          PositionY 5
+          OffsetTop 5
+          SizeX 430
+          OffsetRight -440
+          OffsetBottom -35
+         }
+         Text "[]"
+        }
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5B094428639507A8}" {
+     Name "Window3"
+     Slot FrameWidgetSlot "{5B094428639507CE}" {
+      PositionX 660
+      OffsetLeft 660
+      PositionY 330
+      OffsetTop 330
+      SizeX 450
+      OffsetRight -1110
+      SizeY 300
+      OffsetBottom -630
+     }
+     {
+      WindowWidgetClass "{5B09442EB1009852}" {
+       Name "Window30"
+       Slot FrameWidgetSlot "{5B09442EB1009868}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 450
+        OffsetRight -450
+        SizeY 40
+        OffsetBottom -40
+       }
+       {
+        RichTextWidgetClass "{5B09442E2E5A9B02}" {
+         Name "RichText300"
+         Slot FrameWidgetSlot "{5B09442E2E5A9B18}" {
+          PositionX 10
+          OffsetLeft 10
+          PositionY 5
+          OffsetTop 5
+          SizeX 430
+          OffsetRight -440
+          OffsetBottom -35
+         }
+         Text "[]"
+        }
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5B09442864DF7E96}" {
+     Name "Window2"
+     Slot FrameWidgetSlot "{5B09442864DF7EAE}" {
+      PositionX 200
+      OffsetLeft 200
+      PositionY 330
+      OffsetTop 330
+      SizeX 450
+      OffsetRight -650
+      SizeY 300
+      OffsetBottom -630
+     }
+     {
+      WindowWidgetClass "{5B09442EB21A9429}" {
+       Name "Window20"
+       Slot FrameWidgetSlot "{5B09442EB21A9443}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 450
+        OffsetRight -450
+        SizeY 40
+        OffsetBottom -40
+       }
+       {
+        RichTextWidgetClass "{5B09442E30B38BE5}" {
+         Name "RichText200"
+         Slot FrameWidgetSlot "{5B09442E30B38BFD}" {
+          PositionX 10
+          OffsetLeft 10
+          PositionY 5
+          OffsetTop 5
+          SizeX 430
+          OffsetRight -440
+          OffsetBottom -35
+         }
+         Text "[]"
+        }
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5B0944286526FCBB}" {
+     Name "Window1"
+     Slot FrameWidgetSlot "{5B0944286526FCD0}" {
+      PositionX 660
+      OffsetLeft 660
+      PositionY 25
+      OffsetTop 25
+      SizeX 450
+      OffsetRight -1110
+      SizeY 300
+      OffsetBottom -325
+     }
+     {
+      WindowWidgetClass "{5B09442EB33B9D10}" {
+       Name "Window10"
+       Slot FrameWidgetSlot "{5B09442EB33B9D2F}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 450
+        OffsetRight -450
+        SizeY 40
+        OffsetBottom -40
+       }
+       {
+        RichTextWidgetClass "{5B09442E325748E5}" {
+         Name "RichText100"
+         Slot FrameWidgetSlot "{5B09442E325748F0}" {
+          PositionX 10
+          OffsetLeft 10
+          PositionY 5
+          OffsetTop 5
+          SizeX 430
+          OffsetRight -440
+          OffsetBottom -35
+         }
+         Text "[]"
+        }
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5B09442867C5686B}" {
+     Name "Window0"
+     Slot FrameWidgetSlot "{5B09442867C56881}" {
+      PositionX 200
+      OffsetLeft 200
+      PositionY 25
+      OffsetTop 25
+      SizeX 450
+      OffsetRight -650
+      SizeY 300
+      OffsetBottom -325
+     }
+     {
+      WindowWidgetClass "{5B09442EB5C6EA51}" {
+       Name "Window00"
+       Slot FrameWidgetSlot "{5B09442EB5C6EA6F}" {
+        PositionX 0
+        OffsetLeft 0
+        PositionY 0
+        OffsetTop 0
+        SizeX 450
+        OffsetRight -450
+        SizeY 40
+        OffsetBottom -40
+       }
+       {
+        RichTextWidgetClass "{5B09442E341B0836}" {
+         Name "RichText000"
+         Slot FrameWidgetSlot "{5B09442E341B084D}" {
+          PositionX 10
+          OffsetLeft 10
+          PositionY 5
+          OffsetTop 5
+          SizeX 430
+          OffsetRight -440
+          OffsetBottom -35
+         }
+         Text "[]"
+        }
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428C8807326}" {
+     Name "Button8"
+     Slot FrameWidgetSlot "{5B094428C880733E}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 850
+      OffsetTop 850
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -925
+     }
+     {
+      ImageWidgetClass "{5B09442B6ECC420F}" {
+       Name "Item8"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428F1E537AD}" {
+     Name "Button7"
+     Slot FrameWidgetSlot "{5B094428F1E537C4}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 750
+      OffsetTop 750
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -825
+     }
+     {
+      ImageWidgetClass "{5B09442B6FB9F9C9}" {
+       Name "Item7"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428F2034BED}" {
+     Name "Button6"
+     Slot FrameWidgetSlot "{5B094428F2034C03}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 650
+      OffsetTop 650
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -725
+     }
+     {
+      ImageWidgetClass "{5B09442B6FE4E5F4}" {
+       Name "Item6"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428F3512AAC}" {
+     Name "Button5"
+     Slot FrameWidgetSlot "{5B094428F3512AC0}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 550
+      OffsetTop 550
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -625
+     }
+     {
+      ImageWidgetClass "{5B09442B6F279F89}" {
+       Name "Item5"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428F5A9D0C0}" {
+     Name "Button4"
+     Slot FrameWidgetSlot "{5B094428F5A9D0DA}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 450
+      OffsetTop 450
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -525
+     }
+     {
+      ImageWidgetClass "{5B09442B7091ECC6}" {
+       Name "Item4"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428F61E7A2F}" {
+     Name "Button3"
+     Slot FrameWidgetSlot "{5B094428F61E7A46}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 350
+      OffsetTop 350
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -425
+     }
+     {
+      ImageWidgetClass "{5B09442B716BE067}" {
+       Name "Item3"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428F74211F6}" {
+     Name "Button2"
+     Slot FrameWidgetSlot "{5B094428F742120F}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 250
+      OffsetTop 250
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -325
+     }
+     {
+      ImageWidgetClass "{5B09442B73FA0D51}" {
+       Name "Item2"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428F87E32FB}" {
+     Name "Button1"
+     Slot FrameWidgetSlot "{5B094428F87E331C}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 150
+      OffsetTop 150
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -225
+     }
+     {
+      ImageWidgetClass "{5B09442B76A8F2AC}" {
+       Name "Item1"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
+    ButtonWidgetClass "{5B094428FACF70DF}" {
+     Name "Button0"
+     Slot FrameWidgetSlot "{5B094428FACF70F0}" {
+      PositionX 50
+      OffsetLeft 50
+      PositionY 50
+      OffsetTop 50
+      SizeX 75
+      OffsetRight -125
+      SizeY 75
+      OffsetBottom -125
+     }
+     {
+      ImageWidgetClass "{5B09442B21178A7E}" {
+       Name "Item0"
+       Slot ButtonWidgetSlot {
+       }
+      }
+     }
+    }
     ButtonWidgetClass "{5ACCEA9699E9C8E8}" {
      Name "Exit"
      Slot FrameWidgetSlot "{5ACCEA9699E9C90A}" {
@@ -225,14 +719,14 @@ FrameWidgetClass {
      Name "Buy"
      Slot FrameWidgetSlot "{5ACCEA95FAA79E5D}" {
       Anchor 1 1 1 1
-      PositionX -420
-      OffsetLeft -420
-      PositionY -120
-      OffsetTop -120
+      PositionX -830
+      OffsetLeft -830
+      PositionY -60
+      OffsetTop -60
       SizeX 400
-      OffsetRight 20
+      OffsetRight 430
       SizeY 40
-      OffsetBottom 80
+      OffsetBottom 20
      }
      {
       RichTextWidgetClass "{5ACCEA9522430BE7}" {

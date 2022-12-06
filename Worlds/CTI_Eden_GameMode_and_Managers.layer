@@ -326,8 +326,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_SaveLoadComponent "{599D233263F4490B}" {
    m_Struct SCR_MissionStruct "{599D23326144FD1A}" {
-    m_CampaignStruct SCR_CampaignStruct "{599D23325E36CBD0}" {
-    }
    }
    m_iAutosavePeriod 120
   }
@@ -354,6 +352,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
      }
     }
    }
+  }
+  SerializerInventoryStorageManagerComponent "{5B0348448C9E43FA}" {
   }
   RplComponent "{599D2333BE8DD86F}" {
    Streamable Disabled

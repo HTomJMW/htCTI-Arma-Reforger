@@ -94,6 +94,32 @@ FrameWidgetClass {
       OffsetBottom -410
      }
      {
+      WindowWidgetClass "{5AF2EC40667662B1}" {
+       Name "WindowVD"
+       Slot FrameWidgetSlot "{5AF2EC40667662CB}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 5
+        OffsetTop 5
+        SizeX 770
+        OffsetRight -775
+        SizeY 80
+        OffsetBottom -85
+       }
+      }
+      WindowWidgetClass "{5AF2EC4068A101E2}" {
+       Name "WindowTG"
+       Slot FrameWidgetSlot "{5AF2EC4068A10207}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 95
+        OffsetTop 95
+        SizeX 770
+        OffsetRight -775
+        SizeY 80
+        OffsetBottom -175
+       }
+      }
       RichTextWidgetClass "{5A8F131D91928B33}" {
        Name "ViewDistance"
        Slot FrameWidgetSlot "{5A8F131D91928AD6}" {
@@ -108,67 +134,6 @@ FrameWidgetClass {
        Text "View Distance:"
        "Vertical Alignment" Center
       }
-      RichTextWidgetClass "{5A8F131D8F761409}" {
-       Name "ObjectDistance"
-       Slot FrameWidgetSlot "{5A8F131D8F76142F}" {
-        PositionX 10
-        OffsetLeft 10
-        PositionY 100
-        OffsetTop 100
-        SizeX 760
-        OffsetRight -770
-        OffsetBottom -130
-       }
-       Text "Object Distance:"
-       "Vertical Alignment" Center
-      }
-      RichTextWidgetClass "{5A8F131D8E687F7A}" {
-       Name "ShadowDistance"
-       Slot FrameWidgetSlot "{5A8F131D8E687F1E}" {
-        PositionX 10
-        OffsetLeft 10
-        PositionY 200
-        OffsetTop 200
-        SizeX 760
-        OffsetRight -770
-        OffsetBottom -230
-       }
-       Text "Shadow Distance:"
-       "Vertical Alignment" Center
-      }
-      SliderWidgetClass "{5A8F131CB8BA7EF4}" {
-       Name "SliderSD"
-       Slot FrameWidgetSlot "{5A8F131CB8BA7DF7}" {
-        PositionX 10
-        OffsetLeft 10
-        PositionY 240
-        OffsetTop 240
-        SizeX 760
-        OffsetRight -770
-        SizeY 30
-        OffsetBottom -270
-       }
-       minimum 0
-       maximum 300
-       step 25
-       current 100
-      }
-      SliderWidgetClass "{5A8F131CA57C8CEF}" {
-       Name "SliderOD"
-       Slot FrameWidgetSlot "{5A8F131CA57C8CF6}" {
-        PositionX 10
-        OffsetLeft 10
-        PositionY 140
-        OffsetTop 140
-        SizeX 760
-        OffsetRight -770
-        OffsetBottom -170
-       }
-       minimum 1000
-       maximum 4000
-       step 100
-       current 4000
-      }
       SliderWidgetClass "{5A8F131CA4F2FDAD}" {
        Name "SliderVD"
        Slot FrameWidgetSlot "{5A8F131CA4F2FDB7}" {
@@ -181,10 +146,42 @@ FrameWidgetClass {
         SizeY 30
         OffsetBottom -80
        }
-       minimum 1000
-       maximum 4000
+       Color 0.761 0.384 0.078 1
+       minimum 500
+       maximum 5000
        step 100
-       current 4000
+       current 2500
+      }
+      RichTextWidgetClass "{5A8F131D8D3E9675}" {
+       Name "TerrainGrid"
+       Slot FrameWidgetSlot "{5A8F131D8D3E9619}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 100
+        OffsetTop 100
+        SizeX 760
+        OffsetRight -770
+        OffsetBottom -130
+       }
+       Text "Terrain Grid:"
+       "Vertical Alignment" Center
+      }
+      SliderWidgetClass "{5A8F131CEF5A3811}" {
+       Name "SliderTG"
+       Slot FrameWidgetSlot "{5A8F131CEF5A3838}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 140
+        OffsetTop 140
+        SizeX 760
+        OffsetRight -770
+        OffsetBottom -170
+       }
+       Color 0.761 0.384 0.078 1
+       minimum 0
+       maximum 150
+       step 1
+       current 25
       }
      }
     }
@@ -197,39 +194,8 @@ FrameWidgetClass {
       OffsetTop 420
       SizeX 780
       OffsetRight -790
-      SizeY 100
-      OffsetBottom -520
-     }
-     {
-      RichTextWidgetClass "{5A8F131D8D3E9675}" {
-       Name "TerrainGrid"
-       Slot FrameWidgetSlot "{5A8F131D8D3E9619}" {
-        PositionX 10
-        OffsetLeft 10
-        PositionY 10
-        OffsetTop 10
-        SizeX 760
-        OffsetRight -770
-        OffsetBottom -40
-       }
-       Text "Terrain Grid:"
-       "Vertical Alignment" Center
-      }
-      SliderWidgetClass "{5A8F131CEF5A3811}" {
-       Name "SliderTG"
-       Slot FrameWidgetSlot "{5A8F131CEF5A3838}" {
-        PositionX 10
-        OffsetLeft 10
-        PositionY 50
-        OffsetTop 50
-        SizeX 760
-        OffsetRight -770
-        OffsetBottom -80
-       }
-       minimum 15
-       step 5
-       current 25
-      }
+      SizeY 170
+      OffsetBottom -590
      }
     }
    }
