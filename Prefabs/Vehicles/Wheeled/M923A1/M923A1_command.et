@@ -10,6 +10,8 @@ Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
    DisplayName "MHQ"
    Faction 1
   }
+  SCR_CTI_MHQSpawnPointComponent "{5B2297F4A70D04F3}" {
+  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{5AA931A0B6CC7A10}" {

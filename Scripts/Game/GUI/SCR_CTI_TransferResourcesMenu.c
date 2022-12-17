@@ -5,11 +5,11 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 	protected int playerId;
 	protected Faction playerFaction;
 	protected FactionAffiliationComponent affiliationComp;
-	protected SCR_GroupsManagerComponent groupManComp;
+	protected PlayerManager pm;
 	
-	protected ref array<SCR_AIGroup> sideGroups;
-	protected int groupCount;
-	
+	protected ref array<int> players = {};
+	protected int playerCount;
+
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.3;
 	
@@ -42,7 +42,7 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 		playerId = pc.GetPlayerId();
 		affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 		playerFaction = affiliationComp.GetAffiliatedFaction();
-		groupManComp = SCR_GroupsManagerComponent.Cast(gameMode.FindComponent(SCR_GroupsManagerComponent));
+		pm = GetGame().GetPlayerManager();
 		
 		m_wRoot = GetRootWidget();
 		
@@ -80,15 +80,30 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 		m_transfer.SetColor(Color.Orange);
 		m_transfer.AddHandler(m_buttonEventHandler);
 		
-		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-		m_yourresources.SetText("Your Resources: " + cdc.getFunds().ToString() + "$");
+		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+
+		int funds = 0;
 		
-		sideGroups = groupManComp.GetPlayableGroupsByFaction(playerFaction);
-		groupCount = sideGroups.Count();
-		
-		for (int i = 0; i < sideGroups.Count(); i++)
+		if (pocketComp)
 		{
-			m_listboxcomp.AddItem(sideGroups[i].GetCustomName() + " " + GetGame().GetPlayerManager().GetPlayerName(sideGroups[i].GetLeaderID()), sideGroups[i]);
+			funds = pocketComp.getFunds();
+		}
+		
+		m_yourresources.SetText("Your Resources: " + funds.ToString() + "$");
+		
+		pm.GetPlayers(players);
+		playerCount = players.Count();
+		for (int i = 0; i < playerCount; i++)
+		{
+			IEntity playerEnt = pm.GetPlayerControlledEntity(players[i]);
+			FactionAffiliationComponent affcomp = FactionAffiliationComponent.Cast(playerEnt.FindComponent(FactionAffiliationComponent));
+
+			if (affcomp.GetAffiliatedFaction() == playerFaction)
+			{
+				RplComponent rplComp = RplComponent.Cast(playerEnt.FindComponent(RplComponent));
+				
+				m_listboxcomp.AddItem(pm.GetPlayerName(players[i]), rplComp);
+			}
 		}
 	}
 
@@ -103,26 +118,33 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			// if groups changed just reload menu (temporary)
-			sideGroups = groupManComp.GetPlayableGroupsByFaction(playerFaction);
-			if (sideGroups.Count() != groupCount)
+			// if playerlist changed just reload menu (temporary)
+			pm.GetPlayers(players);
+			if (players.Count() != playerCount)
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_TransferResourcesMenu);
 			}
 			
-			SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+			SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+	
+			int funds = 0;
+			
+			if (pocketComp)
+			{
+				funds = pocketComp.getFunds();
+			}
 
-			m_yourresources.SetText("Your Resources: " + cdc.getFunds().ToString() + "$");
+			m_yourresources.SetText("Your Resources: " + funds.ToString() + "$");
 				
-			m_slider.SetMax(cdc.getFunds());
+			m_slider.SetMax(funds);
 				
 			string ebox = m_editbox.GetText();
 			ask = ebox.ToInt();
-			if (ask > cdc.getFunds())
+			if (ask > funds)
 			{
-				ask = cdc.getFunds();
+				ask = funds;
 				m_editbox.SetText(ask.ToString());
 			}
 			if (ask < 0)
@@ -135,15 +157,16 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 			
 			if (m_listboxcomp.GetSelectedItem() != -1)
 			{
-				AIGroup selectedgroup = AIGroup.Cast(m_listboxcomp.GetItemData(m_listboxcomp.GetSelectedItem())); Print(selectedgroup);
-				int selectedId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(selectedgroup.GetLeaderAgent().GetControlledEntity()); Print(selectedId);
-
-				PlayerController pcSelected = GetGame().GetPlayerManager().GetPlayerController(selectedId);
-				SCR_CTI_ClientDataComponent cdcSelected = SCR_CTI_ClientDataComponent.Cast(pcSelected.FindComponent(SCR_CTI_ClientDataComponent));
+				RplComponent rplCompReceiver = RplComponent.Cast(m_listboxcomp.GetItemData(m_listboxcomp.GetSelectedItem()));
+				RplId rplid = rplCompReceiver.Id();
+				int receiverId = GetGame().GetPlayerManager().GetPlayerIdFromEntityRplId(rplid);
+				PlayerController pcrec = PlayerController.Cast(GetGame().GetPlayerManager().GetPlayerController(receiverId));
 				
-				m_playerresources.SetText("Player Resources: " + cdcSelected.getFunds().ToString() + "$");
+				SCR_CTI_ClientPocketComponent pocketCompReceiver = SCR_CTI_ClientPocketComponent.Cast(pcrec.FindComponent(SCR_CTI_ClientPocketComponent));
+				
+				m_playerresources.SetText("Player Resources: " + pocketCompReceiver.getFunds().ToString() + "$");
 			}
-	
+
 			m_timeDelta = 0;
 		}
 	}

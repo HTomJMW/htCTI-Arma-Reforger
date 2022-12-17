@@ -63,9 +63,24 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				netComp.clearCommanderIdRpl(affiliationComp.GetAffiliatedFaction().GetFactionKey());
 
-				SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
+				int sizeCDA = gameMode.ClientDataArray.Count();
+				SCR_CTI_ClientData clientData;
+		
+				for (int i = 0; i < sizeCDA; i++)
+				{
+					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+					{
+						clientData = gameMode.ClientDataArray[i];
+						break;
+					}
+				}
+		
+				int funds = 0;
 				
-				cdc.setCommander(false);
+				if (clientData)
+				{
+					clientData.setCommander(false);
+				}
 				
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
@@ -85,9 +100,19 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				PlayerController pc = GetGame().GetPlayerController();
 				int playerId = pc.GetPlayerId();
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+				int sizeCDA = gameMode.ClientDataArray.Count();
+				SCR_CTI_ClientData clientData;
+		
+				for (int i = 0; i < sizeCDA; i++)
+				{
+					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+					{
+						clientData = gameMode.ClientDataArray[i];
+						break;
+					}
+				}
 				
-				SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-				if (!cdc.isCommander()) break;
+				if (!clientData && !clientData.isCommander()) break;
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
@@ -112,9 +137,19 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				PlayerController pc = GetGame().GetPlayerController();
 				int playerId = pc.GetPlayerId();
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+				int sizeCDA = gameMode.ClientDataArray.Count();
+				SCR_CTI_ClientData clientData;
+		
+				for (int i = 0; i < sizeCDA; i++)
+				{
+					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+					{
+						clientData = gameMode.ClientDataArray[i];
+						break;
+					}
+				}
 				
-				SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-				if (!cdc.isCommander()) break;
+				if (!clientData && !clientData.isCommander()) break;
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
@@ -339,10 +374,10 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Transfer":
 			{
+				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 				PlayerController pc = GetGame().GetPlayerController();
+				int playerId = pc.GetPlayerId();
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-				
-				int senderId = pc.GetPlayerId();
 				
 				auto menuManager = GetGame().GetMenuManager();
 				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
@@ -355,10 +390,15 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				int selected = listboxcomp.GetSelectedItem();
 				if (selected < 0) break;
 				
-				AIGroup selectedgorup = AIGroup.Cast(listboxcomp.GetItemData(selected));
-				int receiverId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(selectedgorup.GetLeaderEntity());
+				SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
 				
-				netComp.transferResourcesServer(senderId, receiverId, value);
+				if (pocketComp) pocketComp.changeFunds(-value);
+
+				RplComponent rplCompReceiver = RplComponent.Cast(listboxcomp.GetItemData(listboxcomp.GetSelectedItem()));
+				RplId rplid = rplCompReceiver.Id();
+				int receiverId = GetGame().GetPlayerManager().GetPlayerIdFromEntityRplId(rplid);
+
+				netComp.transferResourcesServer(receiverId, value);
 
 				break;
 			}

@@ -11,41 +11,6 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void SendHint(int playerId, string message = "", string messageTitle = "", int hintTime = 5.0)
-    {
-        RpcAsk_RecieveHint(playerId, message, messageTitle, hintTime);
-        Rpc(RpcAsk_RecieveHint, playerId, message, messageTitle, hintTime);
-    }
-   
-	//------------------------------------------------------------------------------------------------
-    [RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcAsk_RecieveHint(int playerId, string message, string messageTitle, int hintTime)
-    {
-        int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
-        if(playerId != localPlayerId) return;
-        
-        SCR_HintManagerComponent.ShowCustomHint(message, messageTitle, hintTime);
-    }
-
-	//------------------------------------------------------------------------------------------------
-	void SendPopUpNotif(int playerId, string message = "", float duration = 5.0, float fade = 0.5, string message2 = "", int prio = -1)
-	{
-		RpcAsk_RecievePopUpNotif(playerId, message, duration, fade, message2, prio);
-        Rpc(RpcAsk_RecievePopUpNotif, playerId, message, duration, fade, message2, prio);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcAsk_RecievePopUpNotif(int playerId, string message, float duration, float fade, string message2, int prio)
-    {
-        int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
-        if(playerId != localPlayerId) return;
-
-		SCR_PopUpNotification popUpNotif = SCR_PopUpNotification.GetInstance();
-		popUpNotif.PopupMsg(message, duration, fade, message2);
-    }
-
-	//------------------------------------------------------------------------------------------------
 	void unflipNearestVehicleServer(RplId vehRplId)
 	{
 		Rpc(RpcAsk_UnflipNearestVehicle, vehRplId);
@@ -175,26 +140,18 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void transferResourcesServer(int senderId, int receiverId, int value)
+	void transferResourcesServer(int receiverId, int value)
 	{
-		Rpc(RpcAsk_TransferResourcesServer, senderId, receiverId, value);
+		Rpc(RpcAsk_TransferResourcesServer, receiverId, value);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_TransferResourcesServer(int senderId, int receiverId, int value)
+	protected void RpcAsk_TransferResourcesServer(int receiverId, int value)
 	{
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		
-		PlayerController pcSender = GetGame().GetPlayerManager().GetPlayerController(senderId);
-		SCR_CTI_ClientDataComponent cdcSender = SCR_CTI_ClientDataComponent.Cast(pcSender.FindComponent(SCR_CTI_ClientDataComponent));
-	
-		cdcSender.changeFunds(-value);
-		
-		PlayerController pcReceiver = GetGame().GetPlayerManager().GetPlayerController(receiverId);
-		SCR_CTI_ClientDataComponent cdcReceiver = SCR_CTI_ClientDataComponent.Cast(pcSender.FindComponent(SCR_CTI_ClientDataComponent));
-
-		cdcReceiver.changeFunds(value);
+		gameMode.Transfer(receiverId, value);
 	}
 
 	//------------------------------------------------------------------------------------------------

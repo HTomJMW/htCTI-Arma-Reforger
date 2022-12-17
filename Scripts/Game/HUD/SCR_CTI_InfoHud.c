@@ -133,9 +133,14 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			
 			int playerId = pc.GetPlayerId();
 			
-			SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-			
-			int funds = cdc.getFunds();
+			SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+
+			int funds = 0;
+
+			if (pocketComp)
+			{
+				funds = pocketComp.getFunds();
+			}
 			
 			string rad = "None";
 			if (radios.IsEmpty()) rad = "Live";

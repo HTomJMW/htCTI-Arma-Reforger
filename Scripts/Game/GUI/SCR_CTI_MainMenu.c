@@ -111,8 +111,19 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_build.SetColor(Color.Orange);
 		m_build.AddHandler(m_buttonEventHandler);
 		
-		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-		if (cdc.isCommander())
+		int sizeCDA = gameMode.ClientDataArray.Count();
+		SCR_CTI_ClientData clientData;
+
+		for (int i = 0; i < sizeCDA; i++)
+		{
+			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+			{
+				clientData = gameMode.ClientDataArray[i];
+				break;
+			}
+		}
+
+		if (clientData && clientData.isCommander())
 		{
 			m_leavecom.SetColor(Color.Orange);
 			m_leavecom.AddHandler(m_buttonEventHandler);
@@ -220,8 +231,15 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		int timelimit = gameMode.GetTimeLimit();
 		m_maxmissiontime.SetText("Max Mission Time: " + timelimit.ToString());
 		
-		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-		int funds = cdc.getFunds();
+		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+
+		int funds = 0;
+		
+		if (pocketComp)
+		{
+			funds = pocketComp.getFunds();
+		}
+		
 		m_resources.SetText("Resources: " + funds.ToString());
 		
 		int allvalue = 0;

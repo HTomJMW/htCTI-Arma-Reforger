@@ -75,9 +75,12 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 
 		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-		
-		cdc.changeFunds(-price);
+		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+
+		if (pocketComp)
+		{
+			pocketComp.changeFunds(-price);
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -90,11 +93,9 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 	override bool CanBePerformedScript(IEntity user)
 	{
 		PlayerController playerController = GetGame().GetPlayerController();
-		int playerId = playerController.GetPlayerId();
-		
-		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(playerController.FindComponent(SCR_CTI_ClientDataComponent));
+		SCR_CTI_ClientPocketComponent clientPocketComp = SCR_CTI_ClientPocketComponent.Cast(playerController.FindComponent(SCR_CTI_ClientPocketComponent));
 
-		int funds = cdc.getFunds();
+		int funds = clientPocketComp.getFunds();
 		
 		int unitIndex;
 		SCR_CTI_UnitData unitData;

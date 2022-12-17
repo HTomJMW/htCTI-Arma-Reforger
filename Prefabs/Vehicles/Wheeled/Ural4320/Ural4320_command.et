@@ -10,6 +10,8 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
    DisplayName "MHQ"
    Faction 1
   }
+  SCR_CTI_MHQSpawnPointComponent "{5B2297F4B7804B8D}" {
+  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{5AA931A023DA6CCF}" {

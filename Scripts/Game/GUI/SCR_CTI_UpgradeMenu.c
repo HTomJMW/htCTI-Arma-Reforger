@@ -72,8 +72,19 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		// handler
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
-		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-		if (cdc.isCommander())
+		int sizeCDA = gameMode.ClientDataArray.Count();
+		SCR_CTI_ClientData clientData;
+		
+		for (int i = 0; i < sizeCDA; i++)
+		{
+			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
+			{
+				clientData = gameMode.ClientDataArray[i];
+				break;
+			}
+		}
+
+		if (clientData && clientData.isCommander())
 		{
 			m_cancelupgrade.SetColor(Color.Orange);
 			m_cancelupgrade.AddHandler(m_buttonEventHandler);

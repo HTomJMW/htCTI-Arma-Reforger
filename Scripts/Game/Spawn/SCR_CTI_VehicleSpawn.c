@@ -35,12 +35,20 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 			{
 				// Keep out of garbage manager
 				newEnt.SetName(m_gameMode.USSRMHQNAME);
+				
+				SCR_CTI_MHQSpawnPointComponent spcomp = SCR_CTI_MHQSpawnPointComponent.Cast(newEnt.FindComponent(SCR_CTI_MHQSpawnPointComponent));
+				spcomp.init();
+				
 				break;
 			}
 			case m_gameMode.USMHQ:
 			{
 				// Keep out of garbage manager
 				newEnt.SetName(m_gameMode.USMHQNAME);
+				
+				SCR_CTI_MHQSpawnPointComponent spcomp = SCR_CTI_MHQSpawnPointComponent.Cast(newEnt.FindComponent(SCR_CTI_MHQSpawnPointComponent));
+				spcomp.init();
+				
 				break;
 			}
 			default:

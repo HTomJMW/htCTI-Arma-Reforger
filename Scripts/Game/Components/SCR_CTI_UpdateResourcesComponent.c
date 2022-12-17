@@ -1,36 +1,16 @@
-[ComponentEditorProps(category: "GameScripted/CTI", description: "CTI Update Resources")]
+[ComponentEditorProps(category: "GameScripted/CTI", description: "CTI Update Player Resources")]
 class SCR_CTI_UpdateResourcesComponentClass : ScriptComponentClass
 {
 };
 
 class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 {
+	protected PlayerController m_playerController;
+	protected SCR_CTI_ClientPocketComponent m_clientPocketComp;
+	protected SCR_CTI_GameMode m_gameMode;
+	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 45; // economy cycle
-	protected const float BASEINCOME = 10;
-
-	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		m_timeDelta = 0;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void update()
-	{
-		PlayerManager pm = GetGame().GetPlayerManager();
-		
-		array<int> players = {};
-		pm.GetPlayers(players);
-		
-		foreach (int playerId : players)
-		{
-			PlayerController pc = GetGame().GetPlayerController();
-			SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-			
-			cdc.changeFunds(BASEINCOME);
-		}
-	}
 
 	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
@@ -38,7 +18,7 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 		m_timeDelta += timeSlice;
 		if (m_timeDelta > TIMESTEP)
 			{
-				update();
+				m_clientPocketComp.changeFunds(m_gameMode.BASEINCOME); // update
 				m_timeDelta = 0;
 			}
 	}
@@ -46,6 +26,11 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
+		m_playerController = PlayerController.Cast(owner);
+		m_clientPocketComp = SCR_CTI_ClientPocketComponent.Cast(m_playerController.FindComponent(SCR_CTI_ClientPocketComponent));
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		
+		m_timeDelta = 0;
 		SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
 

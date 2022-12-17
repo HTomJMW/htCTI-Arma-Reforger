@@ -132,8 +132,16 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		//m_buyindsalvager.SetColor(Color.Orange);
 		//m_buyindsalvager.AddHandler(m_buttonEventHandler);
 		
-		SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-		m_resources.SetText("Resources: " + cdc.getFunds().ToString() + "$");
+		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+
+		int funds = 0;
+		
+		if (pocketComp)
+		{
+			funds = pocketComp.getFunds();
+		}
+		
+		m_resources.SetText("Resources: " + funds.ToString() + "$");
 
 		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
 		m_playergroup = gmc.GetPlayerGroup(playerId);
@@ -151,8 +159,16 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			SCR_CTI_ClientDataComponent cdc = SCR_CTI_ClientDataComponent.Cast(pc.FindComponent(SCR_CTI_ClientDataComponent));
-			m_resources.SetText("Resources: " + cdc.getFunds().ToString() + "$");
+			SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+	
+			int funds = 0;
+			
+			if (pocketComp)
+			{
+				funds = pocketComp.getFunds();
+			}
+
+			m_resources.SetText("Resources: " + funds.ToString() + "$");
 
 			// if factory type selection changed
 			if (currentSelectedFactoryTypeIcon != m_iconbuttonEventHandler.getSelectedFactoryTypeIcon())
