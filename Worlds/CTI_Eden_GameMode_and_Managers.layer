@@ -224,8 +224,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
-  SCR_CTI_UpdateResourcesComponent "{59E92203A57C023A}" {
-  }
   SCR_CTI_UpdateVictoryComponent "{59C56020BFAD9417}" {
   }
   SCR_CTI_UpgradeComponent "{5A994C801F61E5A6}" {
@@ -325,8 +323,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_RespawnTimerComponent "{599D233269C13252}" {
   }
   SCR_SaveLoadComponent "{599D233263F4490B}" {
-   m_Struct SCR_MissionStruct "{599D23326144FD1A}" {
-   }
    m_iAutosavePeriod 120
   }
   SCR_ScoringSystemComponent "{59DD0D587CD66AF0}" {
