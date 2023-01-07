@@ -2,6 +2,7 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 {
 	protected SCR_CTI_GameMode gameMode;
 	protected PlayerController pc;
+	protected SCR_CTI_ClientData clientData;
 	protected int playerId;
 	protected Faction playerFaction;
 	protected FactionAffiliationComponent affiliationComp;
@@ -31,6 +32,7 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 	protected TextWidget m_playerresources;
 	protected TextWidget m_yourresources;
 	
+	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 	protected ref SCR_CTI_TransferMenuSliderHandler m_sliderEventHandler;
 
@@ -65,29 +67,26 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 		m_playerresources = TextWidget.Cast(m_wRoot.FindAnyWidget("PlayerResources"));
 		m_yourresources = TextWidget.Cast(m_wRoot.FindAnyWidget("YourResources"));
 
-		// handler
+		// handlers
+		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		m_sliderEventHandler = new SCR_CTI_TransferMenuSliderHandler();
 		
 		m_slider.AddHandler(m_sliderEventHandler);
 
 		m_back.SetColor(Color.Orange);
-		m_back.AddHandler(m_buttonEventHandler);
+		m_back.AddHandler(m_commonButtonHandler);
 
 		m_exit.SetColor(Color.Orange);
-		m_exit.AddHandler(m_buttonEventHandler);
+		m_exit.AddHandler(m_commonButtonHandler);
 		
 		m_transfer.SetColor(Color.Orange);
 		m_transfer.AddHandler(m_buttonEventHandler);
 		
-		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+		clientData = gameMode.getClientData(playerId);
 
 		int funds = 0;
-		
-		if (pocketComp)
-		{
-			funds = pocketComp.getFunds();
-		}
+		if (clientData) funds = clientData.getFunds();
 		
 		m_yourresources.SetText("Your Resources: " + funds.ToString() + "$");
 		
@@ -126,15 +125,9 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 				menuManager.CloseAllMenus();
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_TransferResourcesMenu);
 			}
-			
-			SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
-	
+
 			int funds = 0;
-			
-			if (pocketComp)
-			{
-				funds = pocketComp.getFunds();
-			}
+			if (clientData) funds = clientData.getFunds();
 
 			m_yourresources.SetText("Your Resources: " + funds.ToString() + "$");
 				
@@ -162,9 +155,9 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 				int receiverId = GetGame().GetPlayerManager().GetPlayerIdFromEntityRplId(rplid);
 				PlayerController pcrec = PlayerController.Cast(GetGame().GetPlayerManager().GetPlayerController(receiverId));
 				
-				SCR_CTI_ClientPocketComponent pocketCompReceiver = SCR_CTI_ClientPocketComponent.Cast(pcrec.FindComponent(SCR_CTI_ClientPocketComponent));
+				SCR_CTI_ClientData receiverClientData = gameMode.getClientData(receiverId);
 				
-				m_playerresources.SetText("Player Resources: " + pocketCompReceiver.getFunds().ToString() + "$");
+				m_playerresources.SetText("Player Resources: " + receiverClientData.getFunds().ToString() + "$");
 			}
 
 			m_timeDelta = 0;

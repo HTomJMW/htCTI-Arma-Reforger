@@ -1,5 +1,6 @@
 class SCR_CTI_SortByDistance
 {
+	//------------------------------------------------------------------------------------------------
 	static array<IEntity> SortByDistance(notnull IEntity object, notnull array<IEntity> source)
 	{
 		array<IEntity> sorted = {};

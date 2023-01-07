@@ -21,6 +21,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 	protected ButtonWidget m_normalnv;
 	protected ButtonWidget m_satellite;
 
+	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_UnitCamButtonHandler m_unitCamButtonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
@@ -34,6 +35,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		
 		camMan = GetGame().GetCameraManager();
 		
+		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_unitCamButtonEventHandler = new SCR_CTI_UnitCamButtonHandler();
 
 		m_wRoot = GetRootWidget();
@@ -57,7 +59,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		m_internal.AddHandler(m_unitCamButtonEventHandler);
 
 		m_exit.SetColor(Color.Orange);
-		m_exit.AddHandler(m_unitCamButtonEventHandler);
+		m_exit.AddHandler(m_commonButtonHandler);
 		
 		IEntity player = pc.GetControlledEntity();
 		SCR_CharacterCameraHandlerComponent cchc = SCR_CharacterCameraHandlerComponent.Cast(player.FindComponent(SCR_CharacterCameraHandlerComponent));

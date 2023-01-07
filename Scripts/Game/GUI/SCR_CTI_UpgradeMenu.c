@@ -32,6 +32,7 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 	protected RichTextWidget m_backtext;
 	protected RichTextWidget m_exittext;
 
+	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
@@ -69,21 +70,11 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		m_descriptionlabeltext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("UpgradeDescription"));
 		m_descriptiontext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("DescriptionText"));
 
-		// handler
+		// handlers
+		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
-		int sizeCDA = gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = gameMode.ClientDataArray[i];
-				break;
-			}
-		}
-
+		SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
 		if (clientData && clientData.isCommander())
 		{
 			m_cancelupgrade.SetColor(Color.Orange);
@@ -100,10 +91,10 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		}
 
 		m_back.SetColor(Color.Orange);
-		m_back.AddHandler(m_buttonEventHandler);
+		m_back.AddHandler(m_commonButtonHandler);
 
 		m_exit.SetColor(Color.Orange);
-		m_exit.AddHandler(m_buttonEventHandler);
+		m_exit.AddHandler(m_commonButtonHandler);
 		
 		FactionKey fk = playerFaction.GetFactionKey();
 		SCR_CTI_UpgradeData upgradeData;

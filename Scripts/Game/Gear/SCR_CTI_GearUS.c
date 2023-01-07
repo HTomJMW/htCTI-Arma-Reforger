@@ -272,6 +272,61 @@ class SCR_CTI_GearUS
 		uplevel.Insert(0);
 		price.Insert(20);
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	private void setDisplayNames()
+	{
+		for (int i = 0; i < resname.Count(); i++)
+		{
+			if (name[i] == "")
+			{
+				Resource resource = Resource.Load(resname[i]);
+                BaseResourceObject prefabBase = resource.GetResource();
+                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
+                BaseContainerList components = prefabSrc.GetObjectArray("components");
+
+                BaseContainer meshComponent = null;
+                for (int c = components.Count() - 1; c >= 0; c--)
+                {
+                    meshComponent = components.Get(c);
+                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
+						break;
+        
+                    meshComponent = null;
+                }
+				
+				if (meshComponent)
+				{
+					switch (meshComponent.GetClassName())
+					{
+						case "WeaponComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("UIInfo");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+						
+							name[i] = displayName;
+							
+							break;
+						}
+						case "InventoryItemComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
+							infoContainer = infoContainer.GetObject("ItemDisplayName");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+						
+							name[i] = displayName;
+							
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
 
 	//------------------------------------------------------------------------------------------------
 	private void setGear()
@@ -290,6 +345,7 @@ class SCR_CTI_GearUS
 	void SCR_CTI_GearUS()
 	{
 		fillUp();
+		setDisplayNames();
 		setGear();
 	}
 

@@ -15,6 +15,7 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 	protected RichTextWidget m_vdText;
 	protected RichTextWidget m_tgText;
 	
+	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
@@ -24,6 +25,7 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 		pc = GetGame().GetPlayerController();
 		playerId = pc.GetPlayerId();
 		
+		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 
 		m_wRoot = GetRootWidget();
@@ -32,10 +34,10 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 		
 		m_back.SetColor(Color.Orange);
-		m_back.AddHandler(m_buttonEventHandler);
+		m_back.AddHandler(m_commonButtonHandler);
 
 		m_exit.SetColor(Color.Orange);
-		m_exit.AddHandler(m_buttonEventHandler);
+		m_exit.AddHandler(m_commonButtonHandler);
 		
 		m_vdText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ViewDistance"));
 		m_tgText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("TerrainGrid"));

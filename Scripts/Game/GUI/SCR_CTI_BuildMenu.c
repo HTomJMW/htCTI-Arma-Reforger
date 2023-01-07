@@ -2,6 +2,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 {
 	protected SCR_CTI_GameMode gameMode;
 	protected PlayerController pc;
+	protected SCR_CTI_ClientData clientData;
 	protected int playerId;
 	protected Faction playerFaction;
 	protected FactionAffiliationComponent affiliationComp;
@@ -30,7 +31,8 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected OverlayWidget m_listboxright;
 	protected SCR_ListBoxComponent m_listboxleftcomp;
 	protected SCR_ListBoxComponent m_listboxrightcomp;
-	
+
+	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
@@ -73,7 +75,8 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_listboxleftcomp = SCR_ListBoxComponent.Cast(m_listboxleft.FindHandler(SCR_ListBoxComponent));
 		m_listboxrightcomp = SCR_ListBoxComponent.Cast(m_listboxright.FindHandler(SCR_ListBoxComponent));
 
-		// handler
+		// handlers
+		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
 		//m_addworker.SetName("ADDWORKER");
@@ -82,17 +85,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_addworker.SetColor(Color.Gray);
 		m_addworker.SetEnabled(false);
 
-		int sizeCDA = gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = gameMode.ClientDataArray[i];
-				break;
-			}
-		}
+		clientData = gameMode.getClientData(playerId);
 
 		if (clientData && clientData.isCommander())
 		{
@@ -127,10 +120,10 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_autoalignwalls.SetEnabled(false);
 		
 		m_back.SetColor(Color.Orange);
-		m_back.AddHandler(m_buttonEventHandler);
+		m_back.AddHandler(m_commonButtonHandler);
 
 		m_exit.SetColor(Color.Orange);
-		m_exit.AddHandler(m_buttonEventHandler);
+		m_exit.AddHandler(m_commonButtonHandler);
 
 		FactionKey fk = playerFaction.GetFactionKey();
 		switch (fk)
@@ -181,14 +174,8 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
-		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
-
 		int funds = 0;
-		
-		if (pocketComp)
-		{
-			funds = pocketComp.getFunds();
-		}
+		if (clientData) funds = clientData.getFunds();
 
 		m_resources.SetText("Resources: " + funds.ToString() + "$");
 	}

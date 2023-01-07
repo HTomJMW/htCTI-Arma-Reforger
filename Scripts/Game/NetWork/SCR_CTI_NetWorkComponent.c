@@ -1,4 +1,8 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "Handles client - server communication. Should be attached to PlayerController.")]
+class SCR_CTI_NetWorkComponentClass: ScriptComponentClass
+{
+};
+
 class SCR_CTI_NetWorkComponent : ScriptComponent
 {
 	protected SCR_PlayerController m_PlayerController;
@@ -138,20 +142,21 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		SCR_CTI_FactoryProduction FactoryProduction = new SCR_CTI_FactoryProduction;
 		FactoryProduction.build(resourcename, factionkey, groupID, mat);
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	void transferResourcesServer(int receiverId, int value)
-	{
-		Rpc(RpcAsk_TransferResourcesServer, receiverId, value);
-	}
 
 	//------------------------------------------------------------------------------------------------
+	void changeFundsServer(int playerId, int value)
+	{
+		Rpc(RpcAsk_changeFundsServer, playerId, value);
+	}
+	
+	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_TransferResourcesServer(int receiverId, int value)
+	protected void RpcAsk_changeFundsServer(int playerId, int value)
 	{
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		
-		gameMode.Transfer(receiverId, value);
+		SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
+		if (clientData) clientData.changeFunds(value);
+		gameMode.bumpMeServer();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -185,8 +190,4 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	void ~SCR_CTI_NetWorkComponent()
 	{
 	}
-};
-
-class SCR_CTI_NetWorkComponentClass: ScriptComponentClass
-{
 };

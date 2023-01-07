@@ -5,8 +5,6 @@ class SCR_CTI_UpdateResourcesComponentClass : ScriptComponentClass
 
 class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 {
-	protected PlayerController m_playerController;
-	protected SCR_CTI_ClientPocketComponent m_clientPocketComp;
 	protected SCR_CTI_GameMode m_gameMode;
 	
 	protected float m_timeDelta;
@@ -18,19 +16,30 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 		m_timeDelta += timeSlice;
 		if (m_timeDelta > TIMESTEP)
 			{
-				m_clientPocketComp.changeFunds(m_gameMode.BASEINCOME); // update
+				int CDA = m_gameMode.ClientDataArray.Count();
+				for (int i = 0; i < CDA; i++)
+				{
+					SCR_CTI_ClientData clientData = m_gameMode.ClientDataArray[i];
+					if (clientData) clientData.changeFunds(m_gameMode.BASEINCOME);	
+				}
+			
+				m_gameMode.bumpMeServer();
+
 				m_timeDelta = 0;
 			}
 	}
 
 	//------------------------------------------------------------------------------------------------
-	override void OnPostInit(IEntity owner)
+	void init()
 	{
-		m_playerController = PlayerController.Cast(owner);
-		m_clientPocketComp = SCR_CTI_ClientPocketComponent.Cast(m_playerController.FindComponent(SCR_CTI_ClientPocketComponent));
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		
 		m_timeDelta = 0;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	override void OnPostInit(IEntity owner)
+	{
 		SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
 

@@ -21,12 +21,6 @@ class SCR_CTI_UnitCamButtonHandler : ScriptedWidgetEventHandler
 	{
 		switch (w.GetName())
 		{
-			case "Exit":
-			{
-				auto menuManager = GetGame().GetMenuManager();
-				menuManager.CloseAllMenus();
-				break;
-			}
 			case "IronSight":
 			{
 				

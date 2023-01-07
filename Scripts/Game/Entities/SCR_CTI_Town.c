@@ -137,10 +137,12 @@ class SCR_CTI_Town : BaseGameEntity
 			foreach(SCR_ChimeraCharacter charactersInside : m_USSR_CapArea_Occ)
 			{
 				int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(charactersInside);
-				PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-				SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
 				
-				if (pocketComp) pocketComp.changeFunds(m_townValue * 10);
+				SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
+				
+				if (clientData) clientData.changeFunds(m_townValue * 10);
+				
+				m_gameMode.bumpMeServer();
 			
 				m_gameMode.SendHint(playerId, m_townName + " captured", "Information", 15);
 			}
@@ -166,10 +168,12 @@ class SCR_CTI_Town : BaseGameEntity
 			foreach(SCR_ChimeraCharacter charactersInside : m_US_CapArea_Occ)
 			{
 				int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(charactersInside);
-				PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-				SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
 				
-				if (pocketComp) pocketComp.changeFunds(m_townValue * 10);
+				SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
+				
+				if (clientData) clientData.changeFunds(m_townValue * 10);
+				
+				m_gameMode.bumpMeServer();
 				
 				m_gameMode.SendHint(playerId, m_townName + " captured", "Information", 15);
 			}

@@ -21,19 +21,6 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 	{
 		switch (w.GetName())
 		{
-			case "Exit":
-			{
-				auto menuManager = GetGame().GetMenuManager();
-				menuManager.CloseAllMenus();
-				break;
-			}
-			case "Back":
-			{
-				auto menuManager = GetGame().GetMenuManager();
-				menuManager.CloseAllMenus();
-				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
-				break;
-			}
 			case "UnitsButton":
 			{
 				auto menuManager = GetGame().GetMenuManager();
@@ -63,24 +50,8 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				netComp.clearCommanderIdRpl(affiliationComp.GetAffiliatedFaction().GetFactionKey());
 
-				int sizeCDA = gameMode.ClientDataArray.Count();
-				SCR_CTI_ClientData clientData;
-		
-				for (int i = 0; i < sizeCDA; i++)
-				{
-					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-					{
-						clientData = gameMode.ClientDataArray[i];
-						break;
-					}
-				}
-		
-				int funds = 0;
-				
-				if (clientData)
-				{
-					clientData.setCommander(false);
-				}
+				SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
+				if (clientData) clientData.setCommander(false);
 				
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
@@ -100,19 +71,10 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				PlayerController pc = GetGame().GetPlayerController();
 				int playerId = pc.GetPlayerId();
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-				int sizeCDA = gameMode.ClientDataArray.Count();
-				SCR_CTI_ClientData clientData;
-		
-				for (int i = 0; i < sizeCDA; i++)
-				{
-					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-					{
-						clientData = gameMode.ClientDataArray[i];
-						break;
-					}
-				}
-				
+
+				SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
 				if (!clientData && !clientData.isCommander()) break;
+				
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
@@ -137,19 +99,10 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				PlayerController pc = GetGame().GetPlayerController();
 				int playerId = pc.GetPlayerId();
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-				int sizeCDA = gameMode.ClientDataArray.Count();
-				SCR_CTI_ClientData clientData;
-		
-				for (int i = 0; i < sizeCDA; i++)
-				{
-					if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-					{
-						clientData = gameMode.ClientDataArray[i];
-						break;
-					}
-				}
-				
+
+				SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
 				if (!clientData && !clientData.isCommander()) break;
+				
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
@@ -176,6 +129,15 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				if (player.IsInVehicle()) break;
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
+				
+				IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(fk);
+				if (!mhq) break;
+				
+				SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(mhq.FindComponent(SCR_VehicleDamageManagerComponent));
+				if (vehicleDamageManager.IsDestroyed()) break;
+				
+				float distance = vector.Distance(mhq.GetOrigin(), player.GetOrigin());
+				if (distance > gameMode.BUILDRANGE) break;
 				
 				SCR_CTI_FactoryData facData;
 				ResourceName res;
@@ -231,6 +193,15 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				if (player.IsInVehicle()) break;
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
+				
+				IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(fk);
+				if (!mhq) break;
+				
+				SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(mhq.FindComponent(SCR_VehicleDamageManagerComponent));
+				if (vehicleDamageManager.IsDestroyed()) break;
+				
+				float distance = vector.Distance(mhq.GetOrigin(), player.GetOrigin());
+				if (distance > gameMode.BUILDRANGE) break;
 				
 				SCR_CTI_DefenseData defData;
 				ResourceName res;
@@ -390,15 +361,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				int selected = listboxcomp.GetSelectedItem();
 				if (selected < 0) break;
 				
-				SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
-				
-				if (pocketComp) pocketComp.changeFunds(-value);
+				netComp.changeFundsServer(playerId, -value);
 
 				RplComponent rplCompReceiver = RplComponent.Cast(listboxcomp.GetItemData(listboxcomp.GetSelectedItem()));
 				RplId rplid = rplCompReceiver.Id();
 				int receiverId = GetGame().GetPlayerManager().GetPlayerIdFromEntityRplId(rplid);
 
-				netComp.transferResourcesServer(receiverId, value);
+				netComp.changeFundsServer(receiverId, value);
 
 				break;
 			}

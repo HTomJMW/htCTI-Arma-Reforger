@@ -14,6 +14,7 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 	
 	protected XComboBoxWidget m_combokey;
 
+	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 	protected ref SCR_CTI_OnlineHelpButtonHandler m_oHButtonEventHandler;
 
@@ -37,15 +38,16 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 		m_combokey = XComboBoxWidget.Cast(m_wRoot.FindAnyWidget("KeyChangerComboBox"));
 		m_combokey.AddItem("NumPad 0"); // TODO temporary
 
-		// handler
+		// handlers
+		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		m_oHButtonEventHandler = new SCR_CTI_OnlineHelpButtonHandler();
 
 		m_back.SetColor(Color.Orange);
-		m_back.AddHandler(m_buttonEventHandler);
+		m_back.AddHandler(m_commonButtonHandler);
 
 		m_exit.SetColor(Color.Orange);
-		m_exit.AddHandler(m_buttonEventHandler);
+		m_exit.AddHandler(m_commonButtonHandler);
 		
 		m_welcomescreen.AddHandler(m_oHButtonEventHandler);
 		m_base.AddHandler(m_oHButtonEventHandler);

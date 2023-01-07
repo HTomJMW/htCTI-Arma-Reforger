@@ -2,6 +2,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 {
 	protected SCR_CTI_GameMode gameMode;
 	protected PlayerController pc;
+	protected SCR_CTI_ClientData clientData;
 	protected IEntity ent;
 	protected FactionAffiliationComponent userAffiliationComponent;
 	protected int playerId;
@@ -44,6 +45,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected ButtonWidget m_exit;
 	protected RichTextWidget m_exittext;
 	
+	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
@@ -92,7 +94,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 		m_exittext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ExitText"));
-		
+
+		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 
 		//m_radio.SetColor(Color.Orange);
@@ -111,17 +114,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_build.SetColor(Color.Orange);
 		m_build.AddHandler(m_buttonEventHandler);
 		
-		int sizeCDA = gameMode.ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (gameMode.ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = gameMode.ClientDataArray[i];
-				break;
-			}
-		}
+		clientData = gameMode.getClientData(playerId);
 
 		if (clientData && clientData.isCommander())
 		{
@@ -201,7 +194,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_forcedisactibation.SetEnabled(false);
 
 		m_exit.SetColor(Color.Orange);
-		m_exit.AddHandler(m_buttonEventHandler);
+		m_exit.AddHandler(m_commonButtonHandler);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -230,15 +223,9 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		
 		int timelimit = gameMode.GetTimeLimit();
 		m_maxmissiontime.SetText("Max Mission Time: " + timelimit.ToString());
-		
-		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
 
 		int funds = 0;
-		
-		if (pocketComp)
-		{
-			funds = pocketComp.getFunds();
-		}
+		if (clientData) funds = clientData.getFunds();
 		
 		m_resources.SetText("Resources: " + funds.ToString());
 		

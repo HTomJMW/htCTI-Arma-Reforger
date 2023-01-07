@@ -1,5 +1,6 @@
 class SCR_CTI_GetSideFactories
 {
+	//------------------------------------------------------------------------------------------------
 	static array<IEntity> GetSideFactories(FactionKey factionkey)
 	{
 		array<IEntity> list = {};
@@ -33,7 +34,8 @@ class SCR_CTI_GetSideFactories
 
 		return list;
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	static array<IEntity> GetSideFactoriesByType(FactionKey factionkey, string factorytype)
 	{
 		array<IEntity> list = {};

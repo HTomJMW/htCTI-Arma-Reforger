@@ -2,6 +2,7 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 {
 	protected SCR_CTI_GameMode gameMode;
 	protected PlayerController pc;
+	protected SCR_CTI_ClientData clientData;
 	protected int playerId;
 	protected FactionKey factionKey;
 	protected FactionAffiliationComponent affiliationComp;
@@ -49,6 +50,7 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 	
 	protected SCR_AIGroup m_playergroup;
 
+	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
 	protected ref SCR_CTI_IconButtonHandler m_iconbuttonEventHandler;
 
@@ -98,7 +100,8 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_comboteam = XComboBoxWidget.Cast(m_wRoot.FindAnyWidget("XComboBoxTeam"));
 		m_combofactory = XComboBoxWidget.Cast(m_wRoot.FindAnyWidget("XComboBoxFactory"));
 
-		// handler
+		// handlers
+		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		m_iconbuttonEventHandler = new SCR_CTI_IconButtonHandler();
 		
@@ -119,10 +122,10 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_unlock.AddHandler(m_iconbuttonEventHandler);
 
 		m_back.SetColor(Color.Orange);
-		m_back.AddHandler(m_buttonEventHandler);
+		m_back.AddHandler(m_commonButtonHandler);
 
 		m_exit.SetColor(Color.Orange);
-		m_exit.AddHandler(m_buttonEventHandler);
+		m_exit.AddHandler(m_commonButtonHandler);
 		
 		m_purchase.SetColor(Color.Orange);
 		m_purchase.AddHandler(m_buttonEventHandler);
@@ -132,14 +135,10 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		//m_buyindsalvager.SetColor(Color.Orange);
 		//m_buyindsalvager.AddHandler(m_buttonEventHandler);
 		
-		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
+		clientData = gameMode.getClientData(playerId);
 
 		int funds = 0;
-		
-		if (pocketComp)
-		{
-			funds = pocketComp.getFunds();
-		}
+		if (clientData) funds = clientData.getFunds();
 		
 		m_resources.SetText("Resources: " + funds.ToString() + "$");
 
@@ -159,14 +158,8 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
-	
 			int funds = 0;
-			
-			if (pocketComp)
-			{
-				funds = pocketComp.getFunds();
-			}
+			if (clientData) funds = clientData.getFunds();
 
 			m_resources.SetText("Resources: " + funds.ToString() + "$");
 

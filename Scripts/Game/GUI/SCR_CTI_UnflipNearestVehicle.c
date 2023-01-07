@@ -60,11 +60,14 @@ class SCR_CTI_UnflipNearestVehicle
 
 		if (nearest)
 		{
-			// disable unflip when vehicle is manned (its make ownship or RPL bug) (maybe player compartmentaccess component getout better?)
+			// disable unflip when vehicle is manned (maybe player compartmentaccess component getout better?)
 			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(nearest.FindComponent(SCR_BaseCompartmentManagerComponent));
 			array<IEntity> occupants = {};
 			bcmc.GetOccupants(occupants);
 			if (occupants.Count() > 0) return;
+			
+			SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(nearest.FindComponent(SCR_VehicleDamageManagerComponent));
+			if (vehicleDamageManager.IsDestroyed()) return;
 			
 			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_pc.FindComponent(SCR_CTI_NetWorkComponent));
 			RplComponent rplComp = RplComponent.Cast(nearest.FindComponent(RplComponent));

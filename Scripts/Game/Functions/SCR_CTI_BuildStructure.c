@@ -135,9 +135,17 @@ class SCR_CTI_BuildStructure
 			PrintFormat("CTI :: Side %1 reached Base limit", factionkey);
 		}
 		
+		// create spawn point
+		ResourceName resname = "{E7F4D5562F48DDE4}Prefabs/MP/Spawning/SpawnPoint_Base.et";
+		Resource res = Resource.Load(resname);
+		IEntity sp = GetGame().SpawnEntityPrefab(res, world, params);
+		SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
+		spawn.SetFactionKey(factionkey);
+		
 		// todo money things
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
 	protected void createStructureMarker(SCR_MapDescriptorComponent mdc, FactionKey factionkey, ResourceName resourcename)
 	{
 		FactionManager fm = GetGame().GetFactionManager();

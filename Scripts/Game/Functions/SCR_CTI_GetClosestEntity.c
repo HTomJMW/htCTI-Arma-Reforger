@@ -1,5 +1,6 @@
 class SCR_CTI_GetClosestEntity
 {
+	//------------------------------------------------------------------------------------------------
 	static IEntity GetClosestEntity(notnull IEntity entity, notnull array<IEntity> dynamicArrayOfEntities)
 	{
 		IEntity closest = null;
@@ -18,6 +19,7 @@ class SCR_CTI_GetClosestEntity
 		return closest;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	static IEntity GetClosestEntity(notnull IEntity entity, notnull IEntity staticArrayOfEntities[])
 	{
 		IEntity closest = null;

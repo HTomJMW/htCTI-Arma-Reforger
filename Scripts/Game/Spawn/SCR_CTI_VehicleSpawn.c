@@ -1,4 +1,8 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Vehicle Spawn")]
+class SCR_CTI_VehicleSpawnClass : SCR_BasePrefabSpawnerClass
+{
+};
+
 class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 {
 	protected Vehicle m_spawnedVehicle;
@@ -102,8 +106,4 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 			ismc.TryInsertItem(item);
 		}
 	}
-};
-
-class SCR_CTI_VehicleSpawnClass : SCR_BasePrefabSpawnerClass
-{
 };

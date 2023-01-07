@@ -94,13 +94,14 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 
-		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
-		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
-
-		if (pocketComp)
+		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
+		
+		if (clientData)
 		{
-			pocketComp.changeFunds(-price);
+			clientData.changeFunds(-price);
 		}
+		
+		m_gameMode.bumpMeServer();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -112,10 +113,11 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool CanBePerformedScript(IEntity user)
 	{
-		PlayerController playerController = GetGame().GetPlayerController();
-		SCR_CTI_ClientPocketComponent clientPocketComp = SCR_CTI_ClientPocketComponent.Cast(playerController.FindComponent(SCR_CTI_ClientPocketComponent));
+		int playerId = GetGame().GetPlayerController().GetPlayerId();
+		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 
-		int funds = clientPocketComp.getFunds();
+		int funds = 0;
+		if (clientData) funds = clientData.getFunds();
 
 		int unitIndex;
 		SCR_CTI_UnitData unitData;

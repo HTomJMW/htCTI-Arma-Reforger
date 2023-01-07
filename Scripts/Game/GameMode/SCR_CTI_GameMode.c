@@ -6,16 +6,17 @@ class SCR_CTI_GameModeClass: SCR_BaseGameModeClass
 class SCR_CTI_GameMode : SCR_BaseGameMode
 {
 	ref array<SCR_CTI_Town> CTI_Towns = {};
-	ref array<string> CTI_TownList = {"Town0", "Town1", "Town2", "Town3", "Town4", "Town5", "Town6", "Town7", "Town8", "Town9", "Town10", "Town11"};
 
 	protected SCR_CTI_WeatherAndTimeComponent WeatherAndTimeComponent;
 	protected SCR_CTI_RandomStartComponent RandomStartComponent;
 	protected SCR_CTI_UpdateVictoryComponent UpdateVictoryComponent;
 	protected SCR_CTI_UpgradeComponent UpgradeComponent;
 	protected SCR_CTI_BaseComponent BaseComponent;
+	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
 
 	const int MAXBASES = 2;
 	const int BASERADIUS = 100;
+	const int BUILDRANGE = 100;
 	const bool ECOWIN = true;
 	const int WINRATE = 75;
 	const int STARTFUNDS = 2400;
@@ -37,7 +38,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected int ussrCommanderFunds = STARTCOMMFUNDS;
 	[RplProp()]
 	protected int usCommanderFunds = STARTCOMMFUNDS;
-	
+
+	[RplProp()]
 	ref array<ref SCR_CTI_ClientData> ClientDataArray = new array<ref SCR_CTI_ClientData>;
 	
 	ref SCR_CTI_UnitsFIA UnitsFIA = new SCR_CTI_UnitsFIA();
@@ -64,6 +66,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UpdateVictoryComponent = SCR_CTI_UpdateVictoryComponent.Cast(owner.FindComponent(SCR_CTI_UpdateVictoryComponent));
 		UpgradeComponent = SCR_CTI_UpgradeComponent.Cast(owner.FindComponent(SCR_CTI_UpgradeComponent));
 		BaseComponent = SCR_CTI_BaseComponent.Cast(owner.FindComponent(SCR_CTI_BaseComponent));
+		UpdateResourcesComponent = SCR_CTI_UpdateResourcesComponent.Cast(owner.FindComponent(SCR_CTI_UpdateResourcesComponent));
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -81,7 +84,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		}
 
 		// Common
-		townsToArray();
+		townsArray();
 		initMap();
 
 		BaseComponent.init();
@@ -95,10 +98,12 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			WeatherAndTimeComponent.init();
 			RandomStartComponent.init();
 			UpdateVictoryComponent.init();
+			UpdateResourcesComponent.init();
 		} else {
 			// Client
 			WeatherAndTimeComponent.Deactivate(this);
 			UpdateVictoryComponent.Deactivate(this);
+			UpdateResourcesComponent.Deactivate(this);
 			
 			PlayerController pc = GetGame().GetPlayerController();
 			int playerId = pc.GetPlayerId();
@@ -117,20 +122,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	override void OnPlayerDisconnected(int playerId, KickCauseCode cause,  int timeout)
 	{
 		super.OnPlayerDisconnected(playerId, cause, timeout);
-		
-		if (playerId < 1) return;
-		
-		int sizeCDA = ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = ClientDataArray[i];
-				break;
-			}
-		}
+
+		SCR_CTI_ClientData clientData = getClientData(playerId);
 		
 		if (clientData && clientData.isCommander()) clientData.setCommander(false);
 
@@ -152,19 +145,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		super.OnPlayerRegistered(playerId);
 
-		if (playerId < 1) return;
-
-		int sizeCDA = ClientDataArray.Count();
-		SCR_CTI_ClientData clientData;
-		
-		for (int i = 0; i < sizeCDA; i++)
-		{
-			if (ClientDataArray[i].getPlayerId() == playerId)
-			{
-				clientData = ClientDataArray[i];
-				break;
-			}
-		}
+		SCR_CTI_ClientData clientData = getClientData(playerId);
 		
 		SCR_RespawnSystemComponent respawnSystem = SCR_RespawnSystemComponent.Cast(GetRespawnSystemComponent());
 		FactionManager fm = GetGame().GetFactionManager();
@@ -173,11 +154,14 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			clientData = new SCR_CTI_ClientData;
 			clientData.setPlayerId(playerId);
+			clientData.changeFunds(STARTFUNDS);
 			ClientDataArray.Insert(clientData);
 		} else {
 			int forcedFaction = fm.GetFactionIndex(clientData.getFaction());
 			respawnSystem.DoSetPlayerFaction(playerId, forcedFaction);
 		}
+		
+		Replication.BumpMe();
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -187,26 +171,21 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		
 		if (!m_RplComponent.IsProxy())
 		{
-			int sizeCDA = ClientDataArray.Count();
-			SCR_CTI_ClientData clientData;
-		
-			for (int i = 0; i < sizeCDA; i++)
-			{
-				if (ClientDataArray[i].getPlayerId() == playerID)
-				{
-					clientData = ClientDataArray[i];
-					break;
-				}
-			}
-			
+			SCR_CTI_ClientData clientData = getClientData(playerID);
+
 			if (clientData && assignedFaction)
 				clientData.setFaction(assignedFaction);
+			
+				int factionIndex = GetGame().GetFactionManager().GetFactionIndex(assignedFaction);
+				clientData.setFactionIndex(factionIndex);
 		}
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void townsToArray()
+	protected void townsArray()
 	{
+		array<string> CTI_TownList = {"Town0", "Town1", "Town2", "Town3", "Town4", "Town5", "Town6", "Town7", "Town8", "Town9", "Town10", "Town11"};
+		
 		for (int i = 0; i < CTI_TownList.Count(); i++)
 		{
 			SCR_CTI_Town town = SCR_CTI_Town.Cast(GetGame().GetWorld().FindEntityByName(CTI_TownList[i]));
@@ -308,6 +287,31 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	}
 	
 	//------------------------------------------------------------------------------------------------
+	SCR_CTI_ClientData getClientData(int playerId)
+	{
+		SCR_CTI_ClientData clientData = null;
+		if (playerId < 1) return clientData;
+		
+		int sizeCDA = ClientDataArray.Count();
+		for (int i = 0; i < sizeCDA; i++)
+		{
+			if (ClientDataArray[i].getPlayerId() == playerId)
+			{
+				clientData = ClientDataArray[i];
+				break;
+			}
+		}
+		
+		return clientData;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void bumpMeServer()
+	{
+		Replication.BumpMe();
+	}
+	
+	//------------------------------------------------------------------------------------------------
 	void SendHint(int playerId, string message = "", string messageTitle = "", int hintTime = 5.0)
     {
         Rpc(RpcDo_RecieveHint, playerId, message, messageTitle, hintTime);
@@ -338,26 +342,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 		SCR_PopUpNotification popUpNotif = SCR_PopUpNotification.GetInstance();
 		popUpNotif.PopupMsg(message, duration, fade, message2);
-    }
-	
-	//------------------------------------------------------------------------------------------------
-	void Transfer(int playerId, int value)
-	{
-        Rpc(RpcDo_Transfer, playerId, value);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcDo_Transfer(int playerId, int value)
-    {
-        int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
-        if(playerId != localPlayerId) return;
-		
-		PlayerController pc = GetGame().GetPlayerController();
-		SCR_CTI_ClientPocketComponent pocketComp = SCR_CTI_ClientPocketComponent.Cast(pc.FindComponent(SCR_CTI_ClientPocketComponent));
-		
-		if (pocketComp) pocketComp.changeFunds(value);
-		
     }
 
 	//------------------------------------------------------------------------------------------------
