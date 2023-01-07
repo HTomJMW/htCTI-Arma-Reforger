@@ -224,6 +224,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
+  SCR_CTI_UpdateResourcesComponent "{5C4920D164E382C7}" {
+  }
   SCR_CTI_UpdateVictoryComponent "{59C56020BFAD9417}" {
   }
   SCR_CTI_UpgradeComponent "{5A994C801F61E5A6}" {
@@ -265,6 +267,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_InitWeatherComponent "{599D23329203E935}" {
    m_sInitialStartingWeatherId "Cloudy"
+   m_initialWeatherDurationMin 0.5
+   m_initialWeatherDurationMax 1
   }
   SCR_NametagConfigComponent "{599D233287C00C43}" {
    m_sConfigPath "{09F7AAA14A642683}Configs/NameTags/NametagFriendlies.conf"

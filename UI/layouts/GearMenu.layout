@@ -1,6 +1,22 @@
 FrameWidgetClass {
  Name "rootFrame"
  {
+  ImageWidgetClass "{5B3339DA4F5538F5}" {
+   Name "BackGround"
+   Slot FrameWidgetSlot "{5B3339DA4F553911}" {
+    Anchor 0 0 1 1
+    PositionX 20
+    OffsetLeft 20
+    PositionY 20
+    OffsetTop 20
+    SizeX -40
+    OffsetRight 20
+    SizeY -40
+    OffsetBottom 20
+   }
+   Texture "{AE0DAFB0ED1F2B1C}UI/Textures/Menu/background.edds"
+   Size 64 64
+  }
   WindowWidgetClass "{5ACCEA98514BEACF}" {
    Name "WindowLeft"
    Slot FrameWidgetSlot "{5ACCEA98514BEAE6}" {
@@ -19,12 +35,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5ACCEA94CED81CFB}" {
       PositionX 10
       OffsetLeft 10
-      PositionY 10
-      OffsetTop 10
+      PositionY 8.835
+      OffsetTop 8.835
       SizeX 700
       OffsetRight -710
       SizeY 95
-      OffsetBottom -105
+      OffsetBottom -103.835
      }
     }
     WindowWidgetClass "{5ACCEA94D38AE382}" {
@@ -39,84 +55,114 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -190
      }
+     {
+      RichTextWidgetClass "{5B3339E33E27785B}" {
+       Name "RichText0"
+       Slot FrameWidgetSlot "{5B3339E33E277871}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 10
+        OffsetTop 10
+        SizeX 300
+        OffsetRight -310
+        SizeY 50
+        OffsetBottom -60
+       }
+       Text "Total Weight: 0.0 / 80kg"
+       "Vertical Alignment" Center
+      }
+     }
     }
     ButtonWidgetClass "{5ACCEA991177474E}" {
      Name "Templates"
      Slot FrameWidgetSlot "{5ACCEA991177476D}" {
-      PositionX 575
-      OffsetLeft 575
+      PositionX 615
+      OffsetLeft 615
       PositionY 20
       OffsetTop 20
       SizeX 75
-      OffsetRight -650
+      OffsetRight -690
       SizeY 75
       OffsetBottom -95
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09398ED844FBDF}" {
        Name "TemplatesImg"
        Slot ButtonWidgetSlot "{5B09398ED844FBF2}" {
        }
+       Texture "{2EFEA2AF1F38E7F0}UI/Textures/Icons/icons_wrapperUI-64.imageset"
+       Image "characters"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5ACCEA9913A1F649}" {
      Name "Uniforms"
      Slot FrameWidgetSlot "{5ACCEA9913A1F663}" {
-      PositionX 500
-      OffsetLeft 500
+      PositionX 530
+      OffsetLeft 530
       PositionY 20
       OffsetTop 20
       SizeX 75
-      OffsetRight -575
+      OffsetRight -605
       SizeY 75
       OffsetBottom -95
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09398EDBDDEAC7}" {
        Name "UniformsImg"
        Slot ButtonWidgetSlot "{5B09398EDBDDEAD8}" {
        }
+       Texture "{92245C15E122EDB2}UI/Textures/Editor/Attributes/Arsenal/Attribute_Arsenal_Jackets.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5ACCEA99149B0AD6}" {
      Name "Items"
      Slot FrameWidgetSlot "{5ACCEA99149B0AF7}" {
-      PositionX 425
-      OffsetLeft 425
+      PositionX 445
+      OffsetLeft 445
       PositionY 20
       OffsetTop 20
       SizeX 75
-      OffsetRight -500
+      OffsetRight -520
       SizeY 75
       OffsetBottom -95
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09398EDDECB106}" {
        Name "ItemsImg"
        Slot ButtonWidgetSlot "{5B09398EDDECB127}" {
        }
+       Texture "{4B4A98921A5C3583}UI/Textures/Editor/Attributes/Arsenal/Attribute_Arsenal_Radio.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5ACCEA991595C2F7}" {
      Name "Ammos"
      Slot FrameWidgetSlot "{5ACCEA991595C30A}" {
-      PositionX 350
-      OffsetLeft 350
+      PositionX 360
+      OffsetLeft 360
       PositionY 20
       OffsetTop 20
       SizeX 75
-      OffsetRight -425
+      OffsetRight -435
       SizeY 75
       OffsetBottom -95
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09398EDFDF5D8D}" {
        Name "AmmosImg"
        Slot ButtonWidgetSlot "{5B09398EDFDF5DA4}" {
        }
+       Texture "{A3D157619860A564}UI/Textures/Editor/Attributes/Arsenal/Attribute_Arsenal_Magazines.edds"
+       Size 64 64
       }
      }
     }
@@ -132,71 +178,83 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09398EE1B7E0E5}" {
        Name "AccessoriesImg"
        Slot ButtonWidgetSlot "{5B09398EE1B7E0F3}" {
        }
+       Texture "{CDF94F179A33CFB9}UI/Textures/Editor/Attributes/Arsenal/Attribute_Arsenal_Accessories.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5ACCEA9917663099}" {
      Name "Pistols"
      Slot FrameWidgetSlot "{5ACCEA99176630BF}" {
-      PositionX 200
-      OffsetLeft 200
+      PositionX 190
+      OffsetLeft 190
       PositionY 20
       OffsetTop 20
       SizeX 75
-      OffsetRight -275
+      OffsetRight -265
       SizeY 75
       OffsetBottom -95
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09398EE2777D88}" {
        Name "PistolsImg"
        Slot ButtonWidgetSlot "{5B09398EE2777DA2}" {
        }
+       Texture "{2EEBBBCA36DD775F}UI/Textures/Editor/Attributes/Arsenal/Attribute_Arsenal_Pistols.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5ACCEA9919821215}" {
      Name "Launchers"
      Slot FrameWidgetSlot "{5ACCEA991982122B}" {
-      PositionX 125
-      OffsetLeft 125
+      PositionX 105
+      OffsetLeft 105
       PositionY 20
       OffsetTop 20
       SizeX 75
-      OffsetRight -200
+      OffsetRight -180
       SizeY 75
       OffsetBottom -95
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09398EE5AC81B6}" {
        Name "LaunchersImg"
        Slot ButtonWidgetSlot "{5B09398EE5AC81CA}" {
        }
+       Texture "{10840233D666C940}UI/Textures/Editor/Attributes/Arsenal/Attribute_Arsenal_Launcher.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5ACCEA991A1F5081}" {
      Name "Rifles"
      Slot FrameWidgetSlot "{5ACCEA991A1F50A4}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 20
+      OffsetLeft 20
       PositionY 20
       OffsetTop 20
       SizeX 75
-      OffsetRight -125
+      OffsetRight -95
       SizeY 75
       OffsetBottom -95
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09398ED156B6F7}" {
        Name "RiflesImg"
        Slot ButtonWidgetSlot "{5B09398ED156B70D}" {
        }
+       Texture "{A02EB3B80E276400}UI/Textures/Editor/Attributes/Arsenal/Attribute_Arsenal_MachineGuns.edds"
+       Size 64 64
       }
      }
     }
@@ -254,62 +312,279 @@ FrameWidgetClass {
     OffsetBottom -1060
    }
    {
-    WindowWidgetClass "{5B0944285F17A165}" {
-     Name "Window5"
-     Slot FrameWidgetSlot "{5B0944285F17A173}" {
+    WindowWidgetClass "{5B0944286021114B}" {
+     Name "WindowTrousers"
+     Slot FrameWidgetSlot "{5B09442860211161}" {
       PositionX 660
       OffsetLeft 660
-      PositionY 640
-      OffsetTop 640
+      PositionY 645
+      OffsetTop 645
       SizeX 450
       OffsetRight -1110
       SizeY 300
-      OffsetBottom -940
+      OffsetBottom -945
      }
      {
-      WindowWidgetClass "{5B09442EAFEE7D4B}" {
-       Name "Window50"
-       Slot FrameWidgetSlot "{5B09442EAFEE7D6D}" {
-        PositionX 0
-        OffsetLeft 0
-        PositionY 0
-        OffsetTop 0
-        SizeX 450
-        OffsetRight -450
-        SizeY 40
-        OffsetBottom -40
+      ButtonWidgetClass "{5B3F0B69660FB53E}" {
+       Name "ButtonT12"
+       Slot FrameWidgetSlot "{5B3F0B69660FB554}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -285
        }
+       Color 0.471 0.471 0.471 1
        {
-        RichTextWidgetClass "{5B09442E2C91D4E7}" {
-         Name "RichText500"
-         Slot FrameWidgetSlot "{5B09442E2C91D4F2}" {
-          PositionX 10
-          OffsetLeft 10
-          PositionY 5
-          OffsetTop 5
-          SizeX 430
-          OffsetRight -440
-          OffsetBottom -35
+        TextWidgetClass "{5B3F0B76264993E6}" {
+         Name "TextT12"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
          }
-         Text "[]"
+         Text "[ + ]"
         }
        }
       }
-     }
-    }
-    WindowWidgetClass "{5B0944286021114B}" {
-     Name "Window4"
-     Slot FrameWidgetSlot "{5B09442860211161}" {
-      PositionX 200
-      OffsetLeft 200
-      PositionY 640
-      OffsetTop 640
-      SizeX 450
-      OffsetRight -650
-      SizeY 300
-      OffsetBottom -940
-     }
-     {
+      ButtonWidgetClass "{5B3F0B69674C0FF0}" {
+       Name "ButtonT11"
+       Slot FrameWidgetSlot "{5B3F0B69674C3009}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762794EA0E}" {
+         Name "TextT11"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6969BCD18E}" {
+       Name "ButtonT10"
+       Slot FrameWidgetSlot "{5B3F0B6969BCD1A0}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7627FEB7AD}" {
+         Name "TextT10"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B696A1D6504}" {
+       Name "ButtonT9"
+       Slot FrameWidgetSlot "{5B3F0B696A1D651B}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76276DB6BA}" {
+         Name "TextT9"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B696C9229B2}" {
+       Name "ButtonT8"
+       Slot FrameWidgetSlot "{5B3F0B696C9229D2}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7629E89081}" {
+         Name "TextT8"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B696DF5DC1E}" {
+       Name "ButtonT7"
+       Slot FrameWidgetSlot "{5B3F0B696DF5DC37}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762981D105}" {
+         Name "TextT7"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B696E4D6218}" {
+       Name "ButtonT6"
+       Slot FrameWidgetSlot "{5B3F0B696E4D6233}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7628275FAD}" {
+         Name "TextT6"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6970D6F71A}" {
+       Name "ButtonT5"
+       Slot FrameWidgetSlot "{5B3F0B6970D6F733}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7628DDFB20}" {
+         Name "TextT5"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6971331BC7}" {
+       Name "ButtonT4"
+       Slot FrameWidgetSlot "{5B3F0B6971331BDD}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 50
+        OffsetTop 50
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76295AB0E4}" {
+         Name "TextT4"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6972766109}" {
+       Name "ButtonT3"
+       Slot FrameWidgetSlot "{5B3F0B6972766128}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 50
+        OffsetTop 50
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762AAF1359}" {
+         Name "TextT3"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6974A12889}" {
+       Name "ButtonT2"
+       Slot FrameWidgetSlot "{5B3F0B6974A128A1}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 50
+        OffsetTop 50
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762A23B2BA}" {
+         Name "TextT2"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6975D82213}" {
+       Name "ButtonT1"
+       Slot FrameWidgetSlot "{5B3F0B6975D8222E}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 50
+        OffsetTop 50
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762B82ABFE}" {
+         Name "TextT1"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
       WindowWidgetClass "{5B09442EB0F5F860}" {
        Name "Window40"
        Slot FrameWidgetSlot "{5B09442EB0F5F87A}" {
@@ -334,25 +609,281 @@ FrameWidgetClass {
           OffsetRight -440
           OffsetBottom -35
          }
-         Text "[]"
+         Text "[ Trousers ]"
         }
        }
       }
      }
     }
     WindowWidgetClass "{5B094428639507A8}" {
-     Name "Window3"
+     Name "WindowVest"
      Slot FrameWidgetSlot "{5B094428639507CE}" {
       PositionX 660
       OffsetLeft 660
-      PositionY 330
-      OffsetTop 330
+      PositionY 335
+      OffsetTop 335
       SizeX 450
       OffsetRight -1110
       SizeY 300
-      OffsetBottom -630
+      OffsetBottom -635
      }
      {
+      ButtonWidgetClass "{5B3F0B6976388D28}" {
+       Name "ButtonV12"
+       Slot FrameWidgetSlot "{5B3F0B6976388D49}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762C65703E}" {
+         Name "TextV12"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B697753BC20}" {
+       Name "ButtonV11"
+       Slot FrameWidgetSlot "{5B3F0B697753BC47}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762DE9CE80}" {
+         Name "TextV11"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69799D3078}" {
+       Name "ButtonV10"
+       Slot FrameWidgetSlot "{5B3F0B69799D3096}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762D4FF8F4}" {
+         Name "TextV10"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B697AD76459}" {
+       Name "ButtonV9"
+       Slot FrameWidgetSlot "{5B3F0B697AD76474}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B762EB9A60C}" {
+         Name "TextV9"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B697B5E791B}" {
+       Name "ButtonV8"
+       Slot FrameWidgetSlot "{5B3F0B697B5E7933}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 130
+        OffsetTop 130
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7631EF6D5E}" {
+         Name "TextV8"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B697DB38799}" {
+       Name "ButtonV7"
+       Slot FrameWidgetSlot "{5B3F0B697DB387B8}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 130
+        OffsetTop 130
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7631517EB5}" {
+         Name "TextV7"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B697E4910D7}" {
+       Name "ButtonV6"
+       Slot FrameWidgetSlot "{5B3F0B697E4910EA}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 130
+        OffsetTop 130
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7632CA579B}" {
+         Name "TextV6"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6900C4CDEA}" {
+       Name "ButtonV5"
+       Slot FrameWidgetSlot "{5B3F0B6900C4CE0E}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 130
+        OffsetTop 130
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7632274908}" {
+         Name "TextV5"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6901140BA8}" {
+       Name "ButtonV4"
+       Slot FrameWidgetSlot "{5B3F0B6901140BC3}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 50
+        OffsetTop 50
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7633C7C9E1}" {
+         Name "TextV4"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69025EE795}" {
+       Name "ButtonV3"
+       Slot FrameWidgetSlot "{5B3F0B69025EE7AD}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 50
+        OffsetTop 50
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76333DDEB6}" {
+         Name "TextV3"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69036B2B56}" {
+       Name "ButtonV2"
+       Slot FrameWidgetSlot "{5B3F0B69036B2B69}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 50
+        OffsetTop 50
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B763493C8F1}" {
+         Name "TextV2"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6905A10D1F}" {
+       Name "ButtonV1"
+       Slot FrameWidgetSlot "{5B3F0B6905A10D30}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 50
+        OffsetTop 50
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7634F63ED2}" {
+         Name "TextV1"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
       WindowWidgetClass "{5B09442EB1009852}" {
        Name "Window30"
        Slot FrameWidgetSlot "{5B09442EB1009868}" {
@@ -377,25 +908,289 @@ FrameWidgetClass {
           OffsetRight -440
           OffsetBottom -35
          }
-         Text "[]"
+         Text "[ Vest ]"
         }
        }
       }
      }
     }
     WindowWidgetClass "{5B09442864DF7E96}" {
-     Name "Window2"
+     Name "WindowJacket"
      Slot FrameWidgetSlot "{5B09442864DF7EAE}" {
-      PositionX 200
-      OffsetLeft 200
-      PositionY 330
-      OffsetTop 330
-      SizeX 450
-      OffsetRight -650
+      PositionX 657.709
+      OffsetLeft 657.709
+      PositionY 25
+      OffsetTop 25
+      SizeX 450.001
+      OffsetRight -1107.71
       SizeY 300
-      OffsetBottom -630
+      OffsetBottom -325
      }
      {
+      ButtonWidgetClass "{5B3F0B693C39F87F}" {
+       Name "ButtonJ12"
+       Slot FrameWidgetSlot "{5B3F0B693C39F894}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76364CAF01}" {
+         Name "TextJ12"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69C0580006}" {
+       Name "ButtonJ11"
+       Slot FrameWidgetSlot "{5B3F0B69C0580018}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76369B2FA3}" {
+         Name "TextJ11"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69C1544C63}" {
+       Name "ButtonJ10"
+       Slot FrameWidgetSlot "{5B3F0B69C1544C78}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B763527912C}" {
+         Name "TextJ10"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69C3BFEA5D}" {
+       Name "ButtonJ9"
+       Slot FrameWidgetSlot "{5B3F0B69C3BFEA74}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 210
+        OffsetTop 210
+        SizeX 100
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -285
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7635DAFD40}" {
+         Name "TextJ9"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69C4512F85}" {
+       Name "ButtonJ8"
+       Slot FrameWidgetSlot "{5B3F0B69C4512F99}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7637B7CF89}" {
+         Name "TextJ8"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69C829D486}" {
+       Name "ButtonJ7"
+       Slot FrameWidgetSlot "{5B3F0B69C829D49E}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B763726386B}" {
+         Name "TextJ7"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69C96BF696}" {
+       Name "ButtonJ6"
+       Slot FrameWidgetSlot "{5B3F0B69C96BF6AB}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7638B2BD9B}" {
+         Name "TextJ6"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69CB85C5A4}" {
+       Name "ButtonJ5"
+       Slot FrameWidgetSlot "{5B3F0B69CB85C5B2}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B763826F7A7}" {
+         Name "TextJ5"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69CD101DD1}" {
+       Name "ButtonJ4"
+       Slot FrameWidgetSlot "{5B3F0B69CD101DF5}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 50
+        OffsetTop 50
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7639C5B8F4}" {
+         Name "TextJ4"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69D1829710}" {
+       Name "ButtonJ3"
+       Slot FrameWidgetSlot "{5B3F0B69D1829735}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 50
+        OffsetTop 50
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7639428BC6}" {
+         Name "TextJ3"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69D237CF13}" {
+       Name "ButtonJ2"
+       Slot FrameWidgetSlot "{5B3F0B69D237CF37}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 50
+        OffsetTop 50
+        SizeX 100
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B763A02DFB7}" {
+         Name "TextJ2"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B69D4102523}" {
+       Name "ButtonJ1"
+       Slot FrameWidgetSlot "{5B3F0B69D4102541}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 50
+        OffsetTop 50
+        SizeX 100
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76D021E8A7}" {
+         Name "TextJ1"
+         Slot ButtonWidgetSlot "{5B3F0B76D021E8BB}" {
+         }
+         Text "[ + ]"
+        }
+       }
+      }
       WindowWidgetClass "{5B09442EB21A9429}" {
        Name "Window20"
        Slot FrameWidgetSlot "{5B09442EB21A9443}" {
@@ -420,25 +1215,169 @@ FrameWidgetClass {
           OffsetRight -440
           OffsetBottom -35
          }
-         Text "[]"
+         Text "[ Jacket ]"
         }
        }
       }
      }
     }
     WindowWidgetClass "{5B0944286526FCBB}" {
-     Name "Window1"
+     Name "WindowEquipment"
      Slot FrameWidgetSlot "{5B0944286526FCD0}" {
-      PositionX 660
-      OffsetLeft 660
-      PositionY 25
-      OffsetTop 25
+      PositionX 200
+      OffsetLeft 200
+      PositionY 335
+      OffsetTop 335
       SizeX 450
-      OffsetRight -1110
+      OffsetRight -650
       SizeY 300
-      OffsetBottom -325
+      OffsetBottom -635
      }
      {
+      ButtonWidgetClass "{5B3F0B6F34597882}" {
+       Name "ButtonE6"
+       Slot FrameWidgetSlot "{5B3F0B6F34597898}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76BB06A360}" {
+         Name "TextE6"
+         Slot ButtonWidgetSlot "{5B3F0B76BB06A37E}" {
+         }
+         Text "Gadget"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6F3685B33D}" {
+       Name "ButtonE5"
+       Slot FrameWidgetSlot "{5B3F0B6F3685B354}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76BC4A66E7}" {
+         Name "TextE5"
+         Slot ButtonWidgetSlot "{5B3F0B76BC4A66F8}" {
+         }
+         Text "Gadget"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6F3719AD73}" {
+       Name "ButtonE4"
+       Slot FrameWidgetSlot "{5B3F0B6F3719AD89}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 50
+        OffsetTop 50
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76BD7C3CBC}" {
+         Name "TextE4"
+         Slot ButtonWidgetSlot "{5B3F0B76BD7C3CD4}" {
+         }
+         Text "Gadget"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6F38480743}" {
+       Name "ButtonE3"
+       Slot FrameWidgetSlot "{5B3F0B6F38480764}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 50
+        OffsetTop 50
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B76BF9CBC9E}" {
+         Name "TextE3"
+         Slot ButtonWidgetSlot "{5B3F0B76BF9CBCB2}" {
+         }
+         Text "Gadget"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6F3A4B5E1F}" {
+       Name "ButtonE2"
+       Slot FrameWidgetSlot "{5B3F0B6F3A4B5E34}" {
+        PositionX 120
+        OffsetLeft 120
+        PositionY 50
+        OffsetTop 50
+        SizeX 100
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7540CE45FF}" {
+         Name "TextE2"
+         Slot ButtonWidgetSlot "{5B3F0B7540CE4614}" {
+         }
+         Text "Gadget"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6F3B4A0406}" {
+       Name "ButtonE1"
+       Slot FrameWidgetSlot "{5B3F0B6F3B4A041C}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 50
+        OffsetTop 50
+        SizeX 100
+        OffsetRight -110
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B754114D77B}" {
+         Name "TextE1"
+         Slot ButtonWidgetSlot "{5B3F0B754114D793}" {
+         }
+         Text "Gadget"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
       WindowWidgetClass "{5B09442EB33B9D10}" {
        Name "Window10"
        Slot FrameWidgetSlot "{5B09442EB33B9D2F}" {
@@ -463,14 +1402,14 @@ FrameWidgetClass {
           OffsetRight -440
           OffsetBottom -35
          }
-         Text "[]"
+         Text "[ Equipment ]"
         }
        }
       }
      }
     }
     WindowWidgetClass "{5B09442867C5686B}" {
-     Name "Window0"
+     Name "WindowWeapons"
      Slot FrameWidgetSlot "{5B09442867C56881}" {
       PositionX 200
       OffsetLeft 200
@@ -482,6 +1421,102 @@ FrameWidgetClass {
       OffsetBottom -325
      }
      {
+      ButtonWidgetClass "{5B3F0B6FEED1CDD4}" {
+       Name "ButtonGrenade"
+       Slot FrameWidgetSlot "{5B3F0B6FEED1CDEE}" {
+        PositionX 340
+        OffsetLeft 340
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7515CD45E4}" {
+         Name "TextGrenade"
+         Slot ButtonWidgetSlot "{5B3F0B7515CD45FD}" {
+         }
+         Text "Grenade"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6FEF39B7EB}" {
+       Name "ButtonPistol"
+       Slot FrameWidgetSlot "{5B3F0B6FEF39B820}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 130
+        OffsetTop 130
+        SizeX 100
+        OffsetRight -330
+        SizeY 75
+        OffsetBottom -205
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B7516D66B20}" {
+         Name "TextPistol"
+         Slot ButtonWidgetSlot "{5B3F0B7516D66B39}" {
+         }
+         Text "Pistol"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6FB32FF65D}" {
+       Name "ButtonSecondary"
+       Slot FrameWidgetSlot "{5B3F0B6FB32FF66B}" {
+        PositionX 230
+        OffsetLeft 230
+        PositionY 50
+        OffsetTop 50
+        SizeX 210
+        OffsetRight -440
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B75189372D6}" {
+         Name "TextSecondary"
+         Slot ButtonWidgetSlot "{5B3F0B75189372EE}" {
+         }
+         Text "Secondary"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
+      ButtonWidgetClass "{5B3F0B6FB51B7748}" {
+       Name "ButtonPrimary"
+       Slot FrameWidgetSlot "{5B3F0B6FB51B7763}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 50
+        OffsetTop 50
+        SizeX 210
+        OffsetRight -220
+        SizeY 75
+        OffsetBottom -125
+       }
+       Color 0.471 0.471 0.471 1
+       {
+        TextWidgetClass "{5B3F0B751958520A}" {
+         Name "TextPrimary"
+         Slot ButtonWidgetSlot "{5B3F0B7519585238}" {
+         }
+         Text "Primary"
+         "Horizontal Alignment" Center
+         "Vertical Alignment" Center
+        }
+       }
+      }
       WindowWidgetClass "{5B09442EB5C6EA51}" {
        Name "Window00"
        Slot FrameWidgetSlot "{5B09442EB5C6EA6F}" {
@@ -506,189 +1541,216 @@ FrameWidgetClass {
           OffsetRight -440
           OffsetBottom -35
          }
-         Text "[]"
+         Text "[ Weapons ]"
         }
        }
       }
      }
     }
     ButtonWidgetClass "{5B094428C8807326}" {
-     Name "Button8"
+     Name "ButtonItem"
      Slot FrameWidgetSlot "{5B094428C880733E}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 850
       OffsetTop 850
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -925
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B6ECC420F}" {
-       Name "Item8"
-       Slot ButtonWidgetSlot {
+       Name "IconItem"
+       Slot ButtonWidgetSlot "{5B3339DA769920D1}" {
        }
+       Texture "{7027DDC03DC199C7}UI/Textures/InventoryIcons/InventorySlot_lbs.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5B094428F1E537AD}" {
-     Name "Button7"
+     Name "ButtonBottomItem"
      Slot FrameWidgetSlot "{5B094428F1E537C4}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 750
       OffsetTop 750
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -825
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B6FB9F9C9}" {
-       Name "Item7"
-       Slot ButtonWidgetSlot {
+       Name "IconBottomItem"
+       Slot ButtonWidgetSlot "{5B3339DA769920FE}" {
        }
+       Texture "{43E1D240687C6EFD}UI/Textures/InventoryIcons/InventorySlot_watch.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5B094428F2034BED}" {
-     Name "Button6"
+     Name "ButtonBoots"
      Slot FrameWidgetSlot "{5B094428F2034C03}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 650
       OffsetTop 650
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -725
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B6FE4E5F4}" {
-       Name "Item6"
-       Slot ButtonWidgetSlot {
+       Name "IconBoots"
+       Slot ButtonWidgetSlot "{5B3339DA76992121}" {
        }
+       Texture "{3BDF4AADE505CFC2}UI/Textures/InventoryIcons/InventorySlot_boots.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5B094428F3512AAC}" {
-     Name "Button5"
+     Name "ButtonTrousers"
      Slot FrameWidgetSlot "{5B094428F3512AC0}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 550
       OffsetTop 550
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -625
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B6F279F89}" {
-       Name "Item5"
-       Slot ButtonWidgetSlot {
+       Name "IconTrousers"
+       Slot ButtonWidgetSlot "{5B3339DA7699214D}" {
        }
+       Texture "{24B00F970F8CAF51}UI/Textures/InventoryIcons/InventorySlot_pants.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5B094428F5A9D0C0}" {
-     Name "Button4"
+     Name "ButtonVest"
      Slot FrameWidgetSlot "{5B094428F5A9D0DA}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 450
       OffsetTop 450
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -525
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B7091ECC6}" {
-       Name "Item4"
-       Slot ButtonWidgetSlot {
+       Name "IconVest"
+       Slot ButtonWidgetSlot "{5B3339DA76992168}" {
        }
+       Texture "{38968D9D6BE9C6DC}UI/Textures/InventoryIcons/InventorySlot_vest.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5B094428F61E7A2F}" {
-     Name "Button3"
+     Name "ButtonJacket"
      Slot FrameWidgetSlot "{5B094428F61E7A46}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 350
       OffsetTop 350
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -425
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B716BE067}" {
-       Name "Item3"
-       Slot ButtonWidgetSlot {
+       Name "IconJacket"
+       Slot ButtonWidgetSlot "{5B3339DA7699219D}" {
        }
+       Texture "{FB0C5ADB0235B940}UI/Textures/InventoryIcons/InventorySlot_blouse.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5B094428F74211F6}" {
-     Name "Button2"
+     Name "ButtonBackPack"
      Slot FrameWidgetSlot "{5B094428F742120F}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 250
       OffsetTop 250
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -325
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B73FA0D51}" {
-       Name "Item2"
-       Slot ButtonWidgetSlot {
+       Name "IconBackPack"
+       Slot ButtonWidgetSlot "{5B3339DA769921B9}" {
        }
+       Texture "{044C18D7A0102172}UI/Textures/InventoryIcons/InventorySlot_backpack.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5B094428F87E32FB}" {
-     Name "Button1"
+     Name "ButtonUpperItem"
      Slot FrameWidgetSlot "{5B094428F87E331C}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 150
       OffsetTop 150
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -225
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B76A8F2AC}" {
-       Name "Item1"
-       Slot ButtonWidgetSlot {
+       Name "IconUpperItem"
+       Slot ButtonWidgetSlot "{5B3339DA769921E7}" {
        }
+       Texture "{F565C4A388964DBE}UI/Textures/InventoryIcons/InventorySlot_gadget.edds"
+       Size 64 64
       }
      }
     }
     ButtonWidgetClass "{5B094428FACF70DF}" {
-     Name "Button0"
+     Name "ButtonHelmet"
      Slot FrameWidgetSlot "{5B094428FACF70F0}" {
-      PositionX 50
-      OffsetLeft 50
+      PositionX 60
+      OffsetLeft 60
       PositionY 50
       OffsetTop 50
       SizeX 75
-      OffsetRight -125
+      OffsetRight -135
       SizeY 75
       OffsetBottom -125
      }
+     Color 0.761 0.384 0.078 1
      {
       ImageWidgetClass "{5B09442B21178A7E}" {
-       Name "Item0"
-       Slot ButtonWidgetSlot {
+       Name "IconHelmet"
+       Slot ButtonWidgetSlot "{5B3339DA76992203}" {
        }
+       Texture "{0E8DECDCEBD37EFD}UI/Textures/InventoryIcons/InventorySlot_helmet.edds"
+       Size 64 64
       }
      }
     }
