@@ -1,11 +1,7 @@
 SCR_PlayerController : "{6E2BB64764E3BE9B}Prefabs/Characters/Core/DefaultPlayerController.et" {
  ID "1A9BA6BEFA06E3B1"
  components {
-  SCR_CTI_ClientPocketComponent "{5B16F7E64B27C90E}" {
-  }
   SCR_CTI_NetWorkComponent "{5AAD300C3C74846D}" {
-  }
-  SCR_CTI_UpdateResourcesComponent "{5B1742289EE1CABA}" {
   }
   SCR_HUDManagerComponent "{2FDC275D9EBCDB8B}" {
    InfoDisplays {
