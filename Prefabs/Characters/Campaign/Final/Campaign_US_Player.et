@@ -4,5 +4,11 @@ SCR_ChimeraCharacter : "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_
   SCR_CharacterRankComponent "{528E6D4286AA2D8F}" {
    m_iRank CAPTAIN
   }
+  ActionsManagerComponent "{520EA1D2F659CE02}" {
+   ActionContexts {
+   }
+   additionalActions {
+   }
+  }
  }
 }
