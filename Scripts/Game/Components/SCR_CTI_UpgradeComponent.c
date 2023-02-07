@@ -196,7 +196,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	UpgradeStatus getUpgradeStatus(FactionKey fk, int upgradeindex)
 	{
-		UpgradeStatus status;
+		UpgradeStatus status = UpgradeStatus.NONE;
 		if (fk == "USSR")
 		{
 			status = ussrUpgradeStatuses[upgradeindex];

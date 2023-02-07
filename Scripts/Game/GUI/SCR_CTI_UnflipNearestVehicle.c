@@ -1,5 +1,3 @@
-// Unflip Transport trucks not working atm. Feedback: https://feedback.bistudio.com/T168705
-
 class SCR_CTI_UnflipNearestVehicle
 {
 	protected PlayerController m_pc;

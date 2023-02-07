@@ -8,8 +8,8 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	protected SCR_CTI_Town m_town;
 	protected RplComponent m_RplComponent;
 	
-	protected float m_timeDelta;
-	protected const float TIMESTEP = 60;
+	protected float m_timeDelta = 30; // first waypoint need faster
+	protected const float TIMESTEP = 45;
 	
 	ref array<AIWaypoint> waypoints = {};
 
@@ -55,39 +55,32 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
-		SetEventMask(owner, EntityEvent.FIXEDFRAME);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override void EOnInit(IEntity owner)
-	{
-		m_town = SCR_CTI_Town.Cast(owner);
 		m_RplComponent = RplComponent.Cast(owner.FindComponent(RplComponent));
-		m_timeDelta = 0;
+		
+		SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
-		m_timeDelta += timeSlice;
-		if (m_timeDelta > TIMESTEP)
+		if (m_town.isActive() && !m_RplComponent.IsProxy())
+		{
+			m_timeDelta += timeSlice;
+			if (m_timeDelta > TIMESTEP)
 			{
-				if (m_town.isActive())
-				{
-					updateWayPoints();
-				}
+				updateWayPoints();
+
 				m_timeDelta = 0;
 			}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override void OnDelete(IEntity owner)
-	{
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_TownPatrolComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
+		m_town = SCR_CTI_Town.Cast(ent);
+
+		m_timeDelta = 30;
 	}
 
 	//------------------------------------------------------------------------------------------------

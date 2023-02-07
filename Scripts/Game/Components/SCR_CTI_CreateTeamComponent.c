@@ -3,10 +3,6 @@ class SCR_CTI_CreateTeamComponentClass : ScriptComponentClass
 {
 };
 
-void ScriptInvoker_OnSpawnerEmptyDelegate();
-typedef func ScriptInvoker_OnSpawnerEmptyDelegate;
-typedef ScriptInvokerBase<ScriptInvoker_OnSpawnerEmptyDelegate> ScriptInvoker_OnSpawnerEmpty;
-
 class SCR_CTI_CreateTeamComponent : ScriptComponent
 {
 	protected RplComponent m_RplComponent;
@@ -32,6 +28,8 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 	protected ResourceName m_USSR_GLTeam = "{43C7A28EEB660FF8}Prefabs/Groups/OPFOR/Group_USSR_Team_GL.et";
 	protected ResourceName m_USSR_ATTeam = "{96BAB56E6558788E}Prefabs/Groups/OPFOR/Group_USSR_Team_AT.et";
 	protected ResourceName m_USSR_SuppressTeam = "{1C0502B5729E7231}Prefabs/Groups/OPFOR/Group_USSR_Team_Suppress.et";
+	
+	protected ResourceName m_USSR_BTR70 = "{C012BB3488BEA0C2}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et";
 
 	protected ResourceName m_US_FireTeam = "{84E5BBAB25EA23E5}Prefabs/Groups/BLUFOR/Group_US_FireTeam.et";
 	protected ResourceName m_US_LightFireTeam = "{FCF7F5DC4F83955C}Prefabs/Groups/BLUFOR/Group_US_LightFireTeam.et";
@@ -43,15 +41,13 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 	protected ResourceName m_US_GLTeam = "{DE747BC9217D383C}Prefabs/Groups/BLUFOR/Group_US_Team_GL.et";
 	protected ResourceName m_US_ATTeam = "{FAEA8B9E1252F56E}Prefabs/Groups/BLUFOR/Group_US_Team_LAT.et";
 	protected ResourceName m_US_SuppressTeam = "{81B6DBF2B88545F5}Prefabs/Groups/BLUFOR/Group_US_Team_Suppress.et";
-
-	protected AIAgent m_AIAgent;
+	
+	protected ResourceName m_US_M1025_M2 = "{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et";
 	
 	[Attribute("", UIWidgets.EditBox, "Group spawn position.", params: "inf inf 0 0 purposeCoords spaceWorld")]
 	protected vector m_SpawnPos;
 	[Attribute("", UIWidgets.EditBox, "Group spawn direction. (only yaw used)", params: "inf inf 0 0 purposeAngles spaceWorld")]
 	protected vector m_SpawnDir;
-
-	protected ref ScriptInvoker_OnSpawnerEmpty m_OnEmptyInvoker = new ScriptInvoker_OnSpawnerEmpty();
 	
 	//------------------------------------------------------------------------------------------------
 	vector defaultCoords()
@@ -61,18 +57,6 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		vector coords = grandParent.getFlagPos();
 		
 		return coords;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	AIAgent GetAgent()
-	{
-		return m_AIAgent;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	ScriptInvoker_OnSpawnerEmpty GetOnEmptyInvoker()
-	{
-		return m_OnEmptyInvoker;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -138,28 +122,73 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 			RplComponent.DeleteRplEntity(spawnedEntity, false);
 			return false;
 		}
-		
-		m_AIAgent = agent;
 
 		SCR_AIGroup aiGroup = SCR_AIGroup.Cast(agent);
 		
-		//Set AI Skill
-		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(aiGroup.FindComponent(SCR_AIConfigComponent));
-		aiConfigComponent.m_Skill = m_gameMode.AISKILL;
-		
 		if (aiGroup)
 		{
-			aiGroup.GetOnEmpty().Insert(OnEmpty);
-			m_town.m_groups.Insert(aiGroup);
+			m_town.m_townGroups.Insert(aiGroup);
+			
+			//Set AI Skill
+			SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(aiGroup.FindComponent(SCR_AIConfigComponent));
+			aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL;
 		}
 		
 		return true;
 	}
-
+	
 	//------------------------------------------------------------------------------------------------
-	protected event void OnEmpty()
+	bool SpawnVehicle(ResourceName resourceName)
 	{
-		m_OnEmptyInvoker.Invoke();
+		if (!VerifyRplComponentPresent())
+		{			
+			Print("RPL Component missing!");
+			return false;
+		}
+		
+		Resource resource = Resource.Load(resourceName);
+		if (!resource)
+		{
+			Print("Vehicle prefab load failed!");
+			return false;
+		}
+		
+		EntitySpawnParams spawnParams = new EntitySpawnParams();
+		spawnParams.TransformMode = ETransformMode.WORLD;		
+		GetSpawnTransform(spawnParams.Transform);
+		
+		IEntity spawnedEntity = GetGame().SpawnEntityPrefab(resource, GetOwner().GetWorld(), spawnParams);
+		if (!spawnedEntity)
+		{
+			Print("Spawn Failed!");
+			return false;
+		}
+
+		Vehicle vehicle = Vehicle.Cast(spawnedEntity);
+		if (!vehicle)
+		{
+			Print("Vehicle type fail!");
+			RplComponent.DeleteRplEntity(spawnedEntity, false);
+			return false;
+		}
+		
+		SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(spawnedEntity.FindComponent(SCR_BaseCompartmentManagerComponent));
+		array<ECompartmentType> compartmentTypes = {ECompartmentType.Pilot, ECompartmentType.Turret};
+		bcmc.SpawnDefaultOccupants(compartmentTypes);
+		
+		array<IEntity> occupants = {};
+		bcmc.GetOccupants(occupants);
+		
+		SCR_AIGroup vehGroup;
+		foreach (IEntity crew : occupants)
+		{
+			AIAgent agent = AIAgent.Cast(crew);
+			if (agent) vehGroup.AddAgent(agent);
+		}
+
+		//m_town.m_groups.Insert(vehGroup);
+
+		return true;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -187,13 +216,17 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
+	// server only
 	void OnTriggerActivate()
 	{
-		if (m_RplComponent.IsProxy()) return; // run only on server side
+		if (m_RplComponent.IsProxy()) return;
 		
-		m_town.m_groups.Clear();	
+		m_town.m_townGroups.Clear();
 
-		PrintFormat("CTI :: Town %1 - %2 AIs spawning", m_town.getTownName(), m_town.getFactionKey());
+		SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(m_gameMode.FindComponent(SCR_CTI_UpgradeComponent));
+		int TO1index = m_gameMode.Upgrades.findIndexFromName("Towns Occupation Level 1");
+		int TO2index = m_gameMode.Upgrades.findIndexFromName("Towns Occupation Level 2");
+		int TO3index = m_gameMode.Upgrades.findIndexFromName("Towns Occupation Level 3");
 
 		int rnd = Math.RandomIntInclusive(0,5);
 		switch (m_town.getFactionKey())
@@ -217,6 +250,9 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 				}
 				break;
 			case "USSR":
+				UpgradeStatus status = upgradeComp.getUpgradeStatus("USSR", TO1index);
+				if (status != UpgradeStatus.FINISHED) break;
+
 				DoSpawn(m_USSR_FireGroup);
 				switch (rnd)
 				{
@@ -233,8 +269,15 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 					case 5:	DoSpawn(m_USSR_ATTeam);
 							break;
 				}
+
+				status = upgradeComp.getUpgradeStatus("USSR", TO2index);
+				if (status == UpgradeStatus.FINISHED) SpawnVehicle(m_USSR_BTR70);
+			 
 				break;
 			case "US":
+				UpgradeStatus status = upgradeComp.getUpgradeStatus("US", TO1index);
+				if (status != UpgradeStatus.FINISHED) break;
+
 				DoSpawn(m_US_FireTeam);
 				switch (rnd)
 				{
@@ -251,9 +294,13 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 					case 5:	DoSpawn(m_US_ATTeam);
 							break;
 				}
+
+				status = upgradeComp.getUpgradeStatus("US", TO2index);
+				if (status == UpgradeStatus.FINISHED) SpawnVehicle(m_US_M1025_M2);
+
 				break;
 			}
-		PrintFormat("CTI :: Town %1 - Spawned groups: %2", m_town.getTownName(), m_town.m_groups);
+		PrintFormat("CTI :: Town %1 (%2) - Spawned groups: %3", m_town.getTownName(), m_town.getFactionKey(), m_town.m_townGroups);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -277,16 +324,9 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		}
 		
 		m_town = SCR_CTI_Town.Cast(GetOwner().GetParent());
-		m_town.m_groups.Clear();
+		m_town.m_townGroups.Clear();
 		
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override void OnDelete(IEntity owner)
-	{
-		SCR_AIGroup aiGroup = SCR_AIGroup.Cast(GetAgent());
-		if (aiGroup) {aiGroup.GetOnEmpty().Remove(OnEmpty);}
 	}
 
 	//------------------------------------------------------------------------------------------------	

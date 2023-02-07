@@ -14,7 +14,7 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	protected const float TIMESTEP = 60;
 
 	//------------------------------------------------------------------------------------------------
-	protected void setStartTime()
+	void randomStartTime()
 	{
 		if (!m_manager) return;
 		
@@ -40,16 +40,6 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		m_manager = GetGame().GetTimeAndWeatherManager();
-		
-		setStartTime();
-		
-		m_timeDelta = 0;
-	}
-
-	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
 		SetEventMask(owner, EntityEvent.FIXEDFRAME);
@@ -69,6 +59,9 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_WeatherAndTimeComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
+		m_manager = GetGame().GetTimeAndWeatherManager();
+		
+		m_timeDelta = 0;
 	}
 
 	//------------------------------------------------------------------------------------------------

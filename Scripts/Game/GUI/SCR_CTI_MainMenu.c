@@ -7,6 +7,9 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected FactionAffiliationComponent userAffiliationComponent;
 	protected int playerId;
 	
+	protected float m_timeDelta;
+	protected const float TIMESTEP = 0.5;
+	
 	protected Widget m_wRoot;
 	
 	protected RichTextWidget m_missiontime;
@@ -40,7 +43,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected ButtonWidget m_teamrequests;
 	protected ButtonWidget m_artillery;
 	protected ButtonWidget m_setprioritytown;
-	protected ButtonWidget m_forcedisactibation;
+	protected ButtonWidget m_clearpriority;
 	
 	protected ButtonWidget m_exit;
 	protected RichTextWidget m_exittext;
@@ -56,6 +59,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		ent = pc.GetControlledEntity();
 		userAffiliationComponent = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
 		playerId = pc.GetPlayerId();
+		
+		ChimeraCharacter ch = ChimeraCharacter.Cast(ent);
 		
 		m_wRoot = GetRootWidget();
 		
@@ -90,7 +95,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_teamrequests = ButtonWidget.Cast(m_wRoot.FindAnyWidget("TeamRequestsButton"));
 		m_artillery = ButtonWidget.Cast(m_wRoot.FindAnyWidget("ArtilleryButton"));
 		m_setprioritytown = ButtonWidget.Cast(m_wRoot.FindAnyWidget("SetPriorityTownButton"));
-		m_forcedisactibation = ButtonWidget.Cast(m_wRoot.FindAnyWidget("ForceDisactivationButton"));
+		m_clearpriority = ButtonWidget.Cast(m_wRoot.FindAnyWidget("ClearPriorityButton"));
 
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 		m_exittext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ExitText"));
@@ -111,9 +116,15 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_halo.SetColor(Color.Gray);
 		m_halo.SetEnabled(false);
 
-		m_build.SetColor(Color.Orange);
-		m_build.AddHandler(m_buttonEventHandler);
-		
+		if (!ch.IsInVehicle())
+		{
+			m_build.SetColor(Color.Orange);
+			m_build.AddHandler(m_buttonEventHandler);
+		} else {
+			m_build.SetColor(Color.Gray);
+			m_build.SetEnabled(false);
+		}
+			
 		clientData = gameMode.getClientData(playerId);
 
 		if (clientData && clientData.isCommander())
@@ -183,15 +194,20 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_artillery.SetColor(Color.Gray);
 		m_artillery.SetEnabled(false);
 
-		//m_setprioritytown.SetColor(Color.Orange);
-		//m_setprioritytown.AddHandler(m_buttonEventHandler);
-		m_setprioritytown.SetColor(Color.Gray);
-		m_setprioritytown.SetEnabled(false);
-		
-		//m_forcedisactibation.SetColor(Color.Orange);
-		//m_forcedisactibation.AddHandler(m_buttonEventHandler);
-		m_forcedisactibation.SetColor(Color.Gray);
-		m_forcedisactibation.SetEnabled(false);
+		if (clientData && clientData.isCommander())
+		{
+			m_setprioritytown.SetColor(Color.Orange);
+			m_setprioritytown.AddHandler(m_buttonEventHandler);
+			
+			m_clearpriority.SetColor(Color.Orange);
+			m_clearpriority.AddHandler(m_buttonEventHandler);
+		} else {
+			m_setprioritytown.SetColor(Color.Gray);
+			m_setprioritytown.SetEnabled(false);
+			
+			m_clearpriority.SetColor(Color.Gray);
+			m_clearpriority.SetEnabled(false);
+		}
 
 		m_exit.SetColor(Color.Orange);
 		m_exit.AddHandler(m_commonButtonHandler);
@@ -205,45 +221,49 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
-		// TODO slow down this, not need run on every frame
-		
-		int missiontime = gameMode.GetElapsedTime();
-		int days = missiontime / 86400;
-		int hours = (missiontime - (days * 86400)) / 3600;
-		int mins = (missiontime - (hours * 3600) - (days * 86400)) / 60;
-		int secs = missiontime - (mins * 60) - (hours * 3600) - (days * 86400);
-		
-		string d, h, m, s;
-		d = days.ToString() + "D ";
-		if (hours < 10) {h = "0" + hours.ToString();} else {h = hours.ToString();}
-		if (mins < 10) {m = "0" + mins.ToString();} else {m = mins.ToString();}
-		if (secs < 10) {s = "0" + secs.ToString();} else {s = secs.ToString();}
-		
-		m_missiontime.SetText("Mission Time: " + d + h + ":" + m + ":" + s);
-		
-		int timelimit = gameMode.GetTimeLimit();
-		m_maxmissiontime.SetText("Max Mission Time: " + timelimit.ToString());
-
-		int funds = 0;
-		if (clientData) funds = clientData.getFunds();
-		
-		m_resources.SetText("Resources: " + funds.ToString());
-		
-		int allvalue = 0;
-		int sidevalue = 0;
-		int townsCNT = gameMode.CTI_Towns.Count();
-		for (int i = 0; i < townsCNT; i++)
+		m_timeDelta += tDelta;
+		if (m_timeDelta > TIMESTEP)
 		{
-			allvalue += gameMode.CTI_Towns[i].getTownValue();
-			if (userAffiliationComponent.GetAffiliatedFaction() == gameMode.CTI_Towns[i].getFaction())
+			int missiontime = gameMode.GetElapsedTime();
+			int days = missiontime / 86400;
+			int hours = (missiontime - (days * 86400)) / 3600;
+			int mins = (missiontime - (hours * 3600) - (days * 86400)) / 60;
+			int secs = missiontime - (mins * 60) - (hours * 3600) - (days * 86400);
+			
+			string d, h, m, s;
+			d = days.ToString() + "D ";
+			if (hours < 10) {h = "0" + hours.ToString();} else {h = hours.ToString();}
+			if (mins < 10) {m = "0" + mins.ToString();} else {m = mins.ToString();}
+			if (secs < 10) {s = "0" + secs.ToString();} else {s = secs.ToString();}
+			
+			m_missiontime.SetText("Mission Time: " + d + h + ":" + m + ":" + s);
+			
+			int timelimit = gameMode.GetTimeLimit();
+			m_maxmissiontime.SetText("Max Mission Time: " + timelimit.ToString());
+	
+			int funds = 0;
+			if (clientData) funds = clientData.getFunds();
+			
+			m_resources.SetText("Resources: " + funds.ToString());
+			
+			int allvalue = 0;
+			int sidevalue = 0;
+			int townsCNT = gameMode.CTI_Towns.Count();
+			for (int i = 0; i < townsCNT; i++)
 			{
-				sidevalue += gameMode.CTI_Towns[i].getTownValue();
+				allvalue += gameMode.CTI_Towns[i].getTownValue();
+				if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == gameMode.CTI_Towns[i].getFactionKey())
+				{
+					sidevalue += gameMode.CTI_Towns[i].getTownValue();
+				}
 			}
+			
+			m_townsheldvalue.SetText("Town Held Value: " + sidevalue.ToString() + "/" + allvalue.ToString());
+			
+			float victoryvalue = allvalue * (SCR_CTI_Constants.WINRATE / 100);
+			m_victory.SetText("Victory: " + victoryvalue.ToString());
+			
+			m_timeDelta = 0;
 		}
-		
-		m_townsheldvalue.SetText("Town Held Value: " + sidevalue.ToString() + "/" + allvalue.ToString());
-		
-		float victoryvalue = allvalue * (gameMode.WINRATE / 100);
-		m_victory.SetText("Victory: " + victoryvalue.ToString());
 	}
 };

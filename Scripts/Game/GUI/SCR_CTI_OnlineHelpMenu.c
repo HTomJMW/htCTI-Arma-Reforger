@@ -65,5 +65,6 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
+		// TODO INPUTBINDING
 	}
 };

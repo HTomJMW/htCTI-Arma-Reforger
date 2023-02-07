@@ -75,7 +75,8 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
 		SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
-		if (clientData && clientData.isCommander())
+		array<IEntity> ccList = SCR_CTI_GetSideFactories.GetSideFactoriesByType(playerFaction.GetFactionKey(), "Control Center");
+		if (clientData && clientData.isCommander() && ccList)
 		{
 			m_cancelupgrade.SetColor(Color.Orange);
 			m_cancelupgrade.AddHandler(m_buttonEventHandler);

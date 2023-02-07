@@ -4,6 +4,9 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 	protected PlayerController pc;
 	protected int playerId;
 	
+	protected float m_timeDelta;
+	protected const float TIMESTEP = 0.5;
+	
 	protected Widget m_wRoot;
 	
 	protected ButtonWidget m_back;
@@ -69,12 +72,16 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
-		// TODO SLOW DOWN RUNS
-		
-		m_vdText.SetText("View Distance: " + m_vd.GetCurrent().ToString() + "m");
-		m_tgText.SetText("Terrain Grid: " + m_tg.GetCurrent().ToString() + "m");
-		
-		GetGame().SetViewDistance(m_vd.GetCurrent());
-		GetGame().SetGrassDistance(m_tg.GetCurrent());
+		m_timeDelta += tDelta;
+		if (m_timeDelta > TIMESTEP)
+		{
+			m_vdText.SetText("View Distance: " + m_vd.GetCurrent().ToString() + "m");
+			m_tgText.SetText("Terrain Grid: " + m_tg.GetCurrent().ToString() + "m");
+
+			GetGame().SetViewDistance(m_vd.GetCurrent());
+			GetGame().SetGrassDistance(m_tg.GetCurrent());
+			
+			m_timeDelta = 0;
+		}
 	}
 };

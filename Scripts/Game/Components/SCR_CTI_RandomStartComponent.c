@@ -9,7 +9,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 	protected bool m_ussrAtNorth = false;
 
 	//------------------------------------------------------------------------------------------------	
-	protected void randomStart()
+	void randomStart()
 	{
 		if (Math.RandomIntInclusive(0, 1) == 0)
 		{
@@ -18,6 +18,8 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			m_ussrAtNorth = false;
 		}
 		PrintFormat("CTI :: USSR Spawn at north: %1", m_ussrAtNorth.ToString());
+		
+		setupStart();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -46,7 +48,6 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		ResourceName us_bandage = "{A81F501D3EF6F38E}Prefabs/Items/Medicine/FieldDressing_US_01.et";
 		ResourceName us_m16_mag = "{D8F2CA92583B23D3}Prefabs/Weapons/Magazines/Magazine_556x45_STANAG_30rnd_Last_5Tracer.et";
 		ResourceName us_m72 = "{9C5C20FB0E01E64F}Prefabs/Weapons/Launchers/M72/Launcher_M72A3.et";
-		ResourceName us_m72_ammo = "{79FA751EEBE25DDE}Prefabs/Weapons/Ammo/Ammo_Rocket_M72A3.et";
 		ResourceName us_grenade = "{E8F00BF730225B00}Prefabs/Weapons/Grenades/Grenade_M67.et";
 		
 		// UAZ items
@@ -73,16 +74,14 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		map<ResourceName, int> itemMapM151 = new map<ResourceName, int>();
 		itemMapM151.Set(us_bandage, 5);
 		itemMapM151.Set(us_m16_mag, 10);
-		itemMapM151.Set(us_m72, 3);
-		itemMapM151.Set(us_m72_ammo, 6);
+		itemMapM151.Set(us_m72, 9);
 		itemMapM151.Set(us_grenade, 4);
 		
 		// M923 Items
 		map<ResourceName, int> itemMapM923 = new map<ResourceName, int>();
 		itemMapM923.Set(us_bandage, 5);
 		itemMapM923.Set(us_m16_mag, 10);
-		itemMapM923.Set(us_m72, 3);
-		itemMapM923.Set(us_m72_ammo, 6);
+		itemMapM923.Set(us_m72, 9);
 		itemMapM923.Set(us_grenade, 4);
 		
 		// M923 MHQ items
@@ -104,7 +103,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svNorth2.addItemsPrefab(itemMapUral);
 			
 			// USSR MHQ + equipment
-			svNorth3.setPrefab(m_gameMode.USSRMHQ);
+			svNorth3.setPrefab(SCR_CTI_Constants.USSRMHQ);
 			svNorth3.addItemsPrefab(intemMapUralMHQ);
 			
 			// Jeep + equipment
@@ -116,7 +115,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth2.addItemsPrefab(itemMapM923);
 			
 			// US MHQ + equipment
-			svSouth3.setPrefab(m_gameMode.USMHQ);
+			svSouth3.setPrefab(SCR_CTI_Constants.USMHQ);
 			svSouth3.addItemsPrefab(intemMapM923MHQ);
 			
 		} else {
@@ -134,7 +133,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svNorth2.addItemsPrefab(itemMapM923);
 			
 			// US MHQ + equipment
-			svNorth3.setPrefab(m_gameMode.USMHQ);
+			svNorth3.setPrefab(SCR_CTI_Constants.USMHQ);
 			svNorth3.addItemsPrefab(intemMapM923MHQ);
 			
 			// UAZ + equipment
@@ -146,23 +145,15 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth2.addItemsPrefab(itemMapUral);
 			
 			// USSR MHQ + equipment
-			svSouth3.setPrefab(m_gameMode.USSRMHQ);
+			svSouth3.setPrefab(SCR_CTI_Constants.USSRMHQ);
 			svSouth3.addItemsPrefab(intemMapUralMHQ);
 		}
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		
-		randomStart();
-		setupStart();
-	}
-
-	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_RandomStartComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
+		m_gameMode = SCR_CTI_GameMode.Cast(ent);
 	}
 
 	//------------------------------------------------------------------------------------------------

@@ -16,18 +16,12 @@ typedef ScriptInvokerBase<CTI_ActivationAreaCharacterEventDelegate> CTI_Activati
 */
 class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 {
-	// Parent Town
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
+	protected SCR_CTI_CreateTeamComponent m_createTeamComponent;
+	protected RplComponent m_pRplComponent;
 	
-	// component
-	SCR_CTI_CreateTeamComponent m_createTeamComponent;
-	
-	/*!
-		Map of all occupants of this area.
-			key: Faction
-			value: Array of characters (must be alive)
-	*/
+	//! Map of all occupants of this area. key: Faction, value: Array of characters (must be alive)
 	protected ref map<Faction, ref array<SCR_ChimeraCharacter>> m_mOccupants = new map<Faction, ref array<SCR_ChimeraCharacter>>();
 
 	//! Callback raised when a character enters this area
@@ -50,9 +44,6 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 		return m_pOnCharacterExit;
 	}
 
-	//! Replication component of this entity.
-	protected RplComponent m_pRplComponent;
-
 	//------------------------------------------------------------------------------------------------
 	//! Initializes this area by initializing and preallocating required resources.
 	protected override void OnInit(IEntity owner)
@@ -67,7 +58,7 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 		FactionManager factionManager = GetGame().GetFactionManager();
 		if (!factionManager)
 		{
-			Debug.Error("No faction manager present in the world! Capture area will malfunction!");
+			Debug.Error("No faction manager present in the world! ActivationArea will malfunction!");
 			return;
 		}
 
@@ -79,8 +70,8 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 			return;
 		}
 		
-		// get GameMode
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_town = SCR_CTI_Town.Cast(GetParent());
 
 		// Enable OnFrame event mask
 		SetEventMask(EntityEvent.FRAME);
@@ -91,9 +82,6 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 		// Fetch available actions and preallocate map arrays
 		foreach (Faction faction : availableFactions)
 			m_mOccupants.Insert(faction, new array<SCR_ChimeraCharacter>());
-		
-		// Save parent town
-		m_town = SCR_CTI_Town.Cast(GetParent());
 		
 		// find create team component
 		m_createTeamComponent = SCR_CTI_CreateTeamComponent.Cast(FindComponent(SCR_CTI_CreateTeamComponent));
@@ -143,13 +131,15 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 		SCR_ChimeraCharacter character = SCR_ChimeraCharacter.Cast(ent);
 		Faction faction = character.GetFaction();
 
-		if (faction)
+		if (faction && !m_mOccupants[faction].Contains(character)) // BIS bug: not unique
 		{
 			m_mOccupants[faction].Insert(character);
 			OnCharacterEntered(faction, character);
 		}
 		
-		if (!m_town.isActive() && m_town.getFaction() != faction)
+		if (m_pRplComponent.IsProxy()) return;
+		
+		if (!m_town.isActive() && m_town.getFactionKey() != faction.GetFactionKey())
 		{
 			m_town.setActiveTime(m_gameMode.GetElapsedTime());
 			m_town.setActive(true);
@@ -164,14 +154,9 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 	{
 		m_pOnCharacterEnter.Invoke(this, faction, character);
 		
-		if (m_town.getFaction() != faction) m_town.setActiveTime(m_gameMode.GetElapsedTime());
-		
-		switch (faction.GetFactionKey())
-		{
-			case "FIA": if (m_town.m_FIA_Occupants.Find(character) == -1) m_town.m_FIA_Occupants.Insert(character); break;
-			case "USSR": if (m_town.m_USSR_Occupants.Find(character) == -1) m_town.m_USSR_Occupants.Insert(character); break;
-			case "US": if (m_town.m_US_Occupants.Find(character) == -1) m_town.m_US_Occupants.Insert(character); break;
-		}
+		if (m_pRplComponent.IsProxy()) return;
+
+		// TODO enemy report notif
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -194,14 +179,9 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 	{
 		m_pOnCharacterExit.Invoke(this, faction, character);
 		
-		if (m_town.getFaction() != faction) m_town.setActiveTime(m_gameMode.GetElapsedTime());
+		if (m_pRplComponent.IsProxy()) return;
 		
-		switch (faction.GetFactionKey())
-		{
-			case "FIA": m_town.m_FIA_Occupants.RemoveItem(character); break;
-			case "USSR": m_town.m_USSR_Occupants.RemoveItem(character); break;
-			case "US": m_town.m_US_Occupants.RemoveItem(character); break;
-		}
+		if (m_town.getFactionKey() != faction.GetFactionKey()) m_town.setActiveTime(m_gameMode.GetElapsedTime());
 	}
 
 	//------------------------------------------------------------------------------------------------

@@ -86,11 +86,11 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		wp.SetTransform(mat);
 		wp.SetCompletionRadius(1);
 		wp.SetCompletionType(EAIWaypointCompletionType.Any);
-
-		agent.AddWaypoint(wp); // todo ... not working atm
 		
+		agent.AddWaypoint(wp); // not working atm
+				
 		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(agent.FindComponent(SCR_AIConfigComponent));
-		aiConfigComponent.m_Skill = m_gameMode.AISKILL;
+		aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL;
 
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 
@@ -166,7 +166,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{			
-		outName = ("Purchase AI");
+		outName = "Purchase AI";
 		
 		return true;
 	}

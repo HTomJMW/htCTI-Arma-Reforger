@@ -16,14 +16,9 @@ typedef ScriptInvokerBase<CTI_CaptureAreaCharacterEventDelegate> CTI_CaptureArea
 */
 class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 {
-	// Parent Town
-	protected SCR_CTI_Town m_town;
+	protected RplComponent m_pRplComponent;
 	
-	/*!
-		Map of all occupants of this area.
-			key: Faction
-			value: Array of characters (must be alive)
-	*/
+	// Map of all occupants of this area. key: Faction, value: Array of characters (must be alive)
 	protected ref map<Faction, ref array<SCR_ChimeraCharacter>> m_mOccupants = new map<Faction, ref array<SCR_ChimeraCharacter>>();
 
 	//! Callback raised when a character enters this area
@@ -46,9 +41,6 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		return m_pOnCharacterExit;
 	}
 
-	//! Replication component of this entity.
-	protected RplComponent m_pRplComponent;
-
 	//------------------------------------------------------------------------------------------------
 	//! Initializes this area by initializing and preallocating required resources.
 	protected override void OnInit(IEntity owner)
@@ -63,7 +55,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		FactionManager factionManager = GetGame().GetFactionManager();
 		if (!factionManager)
 		{
-			Debug.Error("No faction manager present in the world! Capture area will malfunction!");
+			Debug.Error("No faction manager present in the world! CaptureArea will malfunction!");
 			return;
 		}
 
@@ -85,8 +77,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		foreach (Faction faction : availableFactions)
 			m_mOccupants.Insert(faction, new array<SCR_ChimeraCharacter>());
 		
-		// Save parent town
-		m_town = SCR_CTI_Town.Cast(GetParent());
+		SetSphereRadius(SCR_CTI_Constants.CAPTURERANGE);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -128,7 +119,7 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 		SCR_ChimeraCharacter character = SCR_ChimeraCharacter.Cast(ent);
 		Faction faction = character.GetFaction();
 
-		if (faction)
+		if (faction && !m_mOccupants[faction].Contains(character)) // BIS bug: not unique
 		{
 			m_mOccupants[faction].Insert(character);
 			OnCharacterEntered(faction, character);
@@ -140,15 +131,6 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 	protected event void OnCharacterEntered(Faction faction, SCR_ChimeraCharacter character)
 	{
 		m_pOnCharacterEnter.Invoke(this, faction, character);
-		
-		switch (faction.GetFactionKey())
-		{
-			case "FIA": if (m_town.m_FIA_CapArea_Occ.Find(character) == -1) m_town.m_FIA_CapArea_Occ.Insert(character); break;
-			case "USSR": if (m_town.m_USSR_CapArea_Occ.Find(character) == -1) m_town.m_USSR_CapArea_Occ.Insert(character); break;
-			case "US": if (m_town.m_US_CapArea_Occ.Find(character) == -1) m_town.m_US_CapArea_Occ.Insert(character); break;
-		}
-
-		m_town.checkCapture();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -170,15 +152,6 @@ class SCR_CTI_CaptureArea : ScriptedGameTriggerEntity
 	protected event void OnCharacterExit(Faction faction, SCR_ChimeraCharacter character)
 	{
 		m_pOnCharacterExit.Invoke(this, faction, character);
-		
-		switch (faction.GetFactionKey())
-		{
-			case "FIA": m_town.m_FIA_CapArea_Occ.RemoveItem(character); break;
-			case "USSR": m_town.m_USSR_CapArea_Occ.RemoveItem(character); break;
-			case "US": m_town.m_US_CapArea_Occ.RemoveItem(character); break;
-		}
-		
-		m_town.checkCapture();
 	}
 
 	//------------------------------------------------------------------------------------------------

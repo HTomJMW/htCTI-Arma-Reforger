@@ -15,26 +15,26 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 	{
 		m_timeDelta += timeSlice;
 		if (m_timeDelta > TIMESTEP)
+		{
+			int CDA = m_gameMode.ClientDataArray.Count();
+			for (int i = 0; i < CDA; i++)
 			{
-				int CDA = m_gameMode.ClientDataArray.Count();
-				for (int i = 0; i < CDA; i++)
+				SCR_CTI_ClientData clientData = m_gameMode.ClientDataArray[i];
+				if (clientData)
 				{
-					SCR_CTI_ClientData clientData = m_gameMode.ClientDataArray[i];
-					if (clientData) clientData.changeFunds(m_gameMode.BASEINCOME);	
-				}
-			
-				m_gameMode.bumpMeServer();
-
-				m_timeDelta = 0;
+					if (clientData.isCommander())
+					{
+						m_gameMode.changeCommanderFunds(clientData.getFaction().GetFactionKey(), SCR_CTI_Constants.BASEINCOME * 5);
+					} else {
+						clientData.changeFunds(SCR_CTI_Constants.BASEINCOME);
+					}
+				}	
 			}
-	}
 
-	//------------------------------------------------------------------------------------------------
-	void init()
-	{
-		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		
-		m_timeDelta = 0;
+			m_gameMode.bumpMeServer();
+
+			m_timeDelta = 0;
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -46,6 +46,8 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_UpdateResourcesComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
+		m_gameMode = SCR_CTI_GameMode.Cast(ent);
+		m_timeDelta = 0;
 	}
 
 	//------------------------------------------------------------------------------------------------

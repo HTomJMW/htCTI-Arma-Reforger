@@ -54,9 +54,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 		{
 			if (!m_wRoot)
 				return;	
-			
-			pc = GetGame().GetPlayerController();
-			ent = pc.GetControlledEntity();
+
 			compartmentAccessComp = CompartmentAccessComponent.Cast(ent.FindComponent(CompartmentAccessComponent));
 			vehicle = compartmentAccessComp.GetVehicleIn(ent);
 			if (vehicle) {if (vehicle.Type().ToString() != "Vehicle") return;} // prevent use hud on static weapons
@@ -122,6 +120,9 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 		if (m_LayoutPath == "") m_LayoutPath = "{FA2748932AA7B28A}UI/layouts/VehicleInfoHud.layout";
 		
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		pc = GetGame().GetPlayerController();
+		ent = pc.GetControlledEntity();
+		
 		m_timeDelta = 0;
 
 		return true;

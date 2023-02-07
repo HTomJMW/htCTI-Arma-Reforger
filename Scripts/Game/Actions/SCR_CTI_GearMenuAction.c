@@ -44,7 +44,7 @@ class SCR_CTI_GearMenuAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{			
-		outName = ("Open Gear menu");
+		outName = "Open Gear menu";
 		
 		return true;
 	}

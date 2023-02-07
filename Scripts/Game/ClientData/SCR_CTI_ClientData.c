@@ -79,19 +79,19 @@ class SCR_CTI_ClientData
 	//------------------------------------------------------------------------------------------------
 	static void Encode(SSnapSerializerBase snapshot, ScriptCtx ctx, ScriptBitSerializer packet) 
 	{
-		snapshot.Serialize(packet, 16);
+		snapshot.Serialize(packet, 13);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	static bool Decode(ScriptBitSerializer packet, ScriptCtx ctx, SSnapSerializerBase snapshot) 
 	{
-		return snapshot.Serialize(packet, 16);
+		return snapshot.Serialize(packet, 13);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	static bool SnapCompare(SSnapSerializerBase lhs, SSnapSerializerBase rhs, ScriptCtx ctx) 
 	{	
-		return lhs.CompareSnapshots(rhs, 16);
+		return lhs.CompareSnapshots(rhs, 13);
 	}
 	
 	//------------------------------------------------------------------------------------------------

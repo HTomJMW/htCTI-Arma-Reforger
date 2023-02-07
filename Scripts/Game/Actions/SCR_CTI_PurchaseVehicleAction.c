@@ -140,7 +140,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
-		outName = ("Purchase Light Vehicle");
+		outName = "Purchase Light Vehicle";
 		
 		return true;
 	}

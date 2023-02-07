@@ -30,25 +30,28 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		m_spawnedVehicle = Vehicle.Cast(newEnt);
 		
 		if (m_items) insertItem(m_spawnedVehicle);
-		
+
 		GarbageManager garbagemanager = GetGame().GetGarbageManager();
 		// todo add lifetime for support vehicles
+
 		switch (m_rnPrefab)
 		{
-			case m_gameMode.USSRMHQ:
+			case SCR_CTI_Constants.USSRMHQ:
 			{
 				// Keep out of garbage manager
-				newEnt.SetName(m_gameMode.USSRMHQNAME);
-				
+				RplId rplId = Replication.FindId(newEnt);
+				m_gameMode.setMHQrplId("USSR", rplId);
+
 				SCR_CTI_MHQSpawnPointComponent spcomp = SCR_CTI_MHQSpawnPointComponent.Cast(newEnt.FindComponent(SCR_CTI_MHQSpawnPointComponent));
 				spcomp.init();
 				
 				break;
 			}
-			case m_gameMode.USMHQ:
+			case SCR_CTI_Constants.USMHQ:
 			{
 				// Keep out of garbage manager
-				newEnt.SetName(m_gameMode.USMHQNAME);
+				RplId rplId = Replication.FindId(newEnt);
+				m_gameMode.setMHQrplId("US", rplId);
 				
 				SCR_CTI_MHQSpawnPointComponent spcomp = SCR_CTI_MHQSpawnPointComponent.Cast(newEnt.FindComponent(SCR_CTI_MHQSpawnPointComponent));
 				spcomp.init();

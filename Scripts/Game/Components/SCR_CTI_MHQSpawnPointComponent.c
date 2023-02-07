@@ -10,6 +10,7 @@ class SCR_CTI_MHQSpawnPointComponent : ScriptGameComponent
 	protected SCR_VehicleDamageManagerComponent m_vehdamagecomp;
 	protected SCR_SpawnPoint m_sp;
 	protected FactionKey m_fk;
+	protected SCR_CTI_GameMode m_gameMode;
 	
 	bool m_enabled = false;
 	
@@ -19,6 +20,7 @@ class SCR_CTI_MHQSpawnPointComponent : ScriptGameComponent
 	//------------------------------------------------------------------------------------------------
 	void init()
 	{
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		m_vehicleEnt = GetOwner();
 		BaseWorld world = GetGame().GetWorld();
 		SCR_SpawnPoint spNorth = SCR_SpawnPoint.Cast(world.FindEntityByName("SpawnPointNorth"));
@@ -47,9 +49,11 @@ class SCR_CTI_MHQSpawnPointComponent : ScriptGameComponent
 		vector pos = m_vehicleEnt.GetOrigin();
 		m_sp.SetOrigin(pos);
 		
+		m_gameMode.UpdateMHQSpawnPoint(SCR_SpawnPoint.GetSpawnPointRplId(m_sp), pos);
+
 		if (m_vehdamagecomp.IsDestroyed())
 		{
-			m_sp.SetFactionKey("FIA"); //Deactivate() not working
+			m_sp.SetFactionKey("FIA");
 		} else {
 			m_sp.SetFactionKey(m_fk);
 		}

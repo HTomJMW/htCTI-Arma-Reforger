@@ -4,21 +4,13 @@ class SCR_CTI_BuildStructure
 	protected SCR_CTI_BaseComponent m_baseComp;
 
 	//------------------------------------------------------------------------------------------------
-	void build(FactionKey factionkey, ResourceName resourcename, vector mat[4], float dist, float placement)
+	void build(FactionKey factionkey, ResourceName resourcename, vector mat[4])
 	{
-		// position
-		vector dir = mat[2];
-		mat[3] = mat[3] + (dir * dist);
-		
-		// ATL position
-		BaseWorld world = GetGame().GetWorld();
-		mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
-		
 		Resource resource = Resource.Load(resourcename);
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		params.Transform = mat;
-		
+
 		IEntity structure = null;
 		int basecount = m_baseComp.getBaseCount(factionkey);
 		switch (factionkey)
@@ -44,7 +36,7 @@ class SCR_CTI_BuildStructure
 					{
 						float distance = m_baseComp.getAreaDistances(mat[3], m_baseComp.getBase(factionkey, i).getBasePos());
 		
-						if (distance <= m_gameMode.BASERADIUS)
+						if (distance <= SCR_CTI_Constants.BASERADIUS)
 						{
 							structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 							m_baseComp.getBase(factionkey, i).addStructure(structure);
@@ -56,7 +48,7 @@ class SCR_CTI_BuildStructure
 
 				// Step 3:
 				// if pos not inside base area and max base count reached
-				if (basecount >= m_gameMode.MAXBASES) break;
+				if (basecount >= SCR_CTI_Constants.MAXBASES) break;
 				
 				// Step 4:
 				// not first and not inside other area so make new base
@@ -87,7 +79,7 @@ class SCR_CTI_BuildStructure
 					{
 						float distance = m_baseComp.getAreaDistances(mat[3], m_baseComp.getBase(factionkey, i).getBasePos());
 		
-						if (distance <= m_gameMode.BASERADIUS)
+						if (distance <= SCR_CTI_Constants.BASERADIUS)
 						{
 							structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 							m_baseComp.getBase(factionkey, i).addStructure(structure);
@@ -99,7 +91,7 @@ class SCR_CTI_BuildStructure
 
 				// Step 3:
 				// if pos not inside base area and max base count reached
-				if (basecount >= m_gameMode.MAXBASES) break;
+				if (basecount >= SCR_CTI_Constants.MAXBASES) break;
 				
 				// Step 4:
 				// not first and not inside other area so make new base
@@ -123,22 +115,14 @@ class SCR_CTI_BuildStructure
 			
 			// store structure IDs for searching
 			m_baseComp.addStuctureId(factionkey, structure.GetID());
-			
-			// rotate
-			vector rot = "0 0 0";
-			vector angles = mat[2].VectorToAngles();
-			rot[0] = angles[0] + placement;
-			
-			structure.SetYawPitchRoll(rot);
-			structure.Update();
 		} else {
 			PrintFormat("CTI :: Side %1 reached Base limit", factionkey);
 		}
 		
 		// create spawn point
-		ResourceName resname = "{E7F4D5562F48DDE4}Prefabs/MP/Spawning/SpawnPoint_Base.et";
+		ResourceName resname = "{987991DCED3DC197}PrefabsEditable/SpawnPoints/E_SpawnPoint.et";
 		Resource res = Resource.Load(resname);
-		IEntity sp = GetGame().SpawnEntityPrefab(res, world, params);
+		IEntity sp = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
 		SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
 		spawn.SetFactionKey(factionkey);
 		

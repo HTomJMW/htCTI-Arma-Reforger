@@ -21,8 +21,8 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	{
 		if (m_gamemode.IsRunning())
 		{
-			if (!m_ussrMHQ) m_ussrMHQ = GetGame().GetWorld().FindEntityByName(m_gamemode.USSRMHQNAME);
-			if (!m_usMHQ) m_usMHQ = GetGame().GetWorld().FindEntityByName(m_gamemode.USMHQNAME);
+			if (!m_ussrMHQ) m_ussrMHQ = SCR_CTI_GetSideMHQ.GetSideMHQ("USSR");
+			if (!m_usMHQ) m_usMHQ = SCR_CTI_GetSideMHQ.GetSideMHQ("US");
 			
 			SCR_VehicleDamageManagerComponent vdmcUSSR = SCR_VehicleDamageManagerComponent.Cast(m_ussrMHQ.FindComponent(SCR_VehicleDamageManagerComponent));
 			SCR_VehicleDamageManagerComponent vdmcUS = SCR_VehicleDamageManagerComponent.Cast(m_usMHQ.FindComponent(SCR_VehicleDamageManagerComponent));
@@ -35,7 +35,7 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 			if (baseComp.getBaseCount("USSR") == 0 && ussrMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_usIndex));
 			if (baseComp.getBaseCount("US") == 0 && usMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_ussrIndex));
 			
-			if (m_gamemode.ECOWIN)
+			if (SCR_CTI_Constants.ECOWIN)
 			{
 				float ussr = 0.0;
 				float us = 0.0;
@@ -47,12 +47,12 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 					if (town.getFactionKey() == "US") us++;
 				}
 
-				if (ussr >= (m_gamemode.CTI_Towns.Count() * (m_gamemode.WINRATE / 100)))
+				if (ussr >= (m_gamemode.CTI_Towns.Count() * (SCR_CTI_Constants.WINRATE / 100)))
 				{
 					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_ussrIndex));
 				}
 				
-				if (us >= (m_gamemode.CTI_Towns.Count() * (m_gamemode.WINRATE / 100)))
+				if (us >= (m_gamemode.CTI_Towns.Count() * (SCR_CTI_Constants.WINRATE / 100)))
 				{
 					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_usIndex));
 				}
@@ -66,7 +66,6 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 		m_factionmanager = GetGame().GetFactionManager();
 		m_ussrIndex = m_factionmanager.GetFactionIndex(m_factionmanager.GetFactionByKey("USSR"));
 		m_usIndex = m_factionmanager.GetFactionIndex(m_factionmanager.GetFactionByKey("US"));
-		m_gamemode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		
 		m_timeDelta = 0;
 	}
@@ -91,6 +90,7 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_UpdateVictoryComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
+		m_gamemode = SCR_CTI_GameMode.Cast(ent);
 	}
 
 	//------------------------------------------------------------------------------------------------

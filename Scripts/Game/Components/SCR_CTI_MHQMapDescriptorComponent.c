@@ -13,7 +13,7 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 	//------------------------------------------------------------------------------------------------
 	void init()
 	{
-		if (m_resname == m_gamemode.USSRMHQ)
+		if (m_resname == SCR_CTI_Constants.USSRMHQ)
 		{
 			m_textcolor = Color.Red;
 		} else {
@@ -33,6 +33,24 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 			props.Activate(true);
 		
 		m_mapitem.SetProps(props);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void markAsDestroyed(bool value)
+	{
+		Color color;
+		if (value)
+		{
+			color = Color.Black;
+		} else {
+			color = m_textcolor;
+		}
+		
+		MapItem item = Item();
+		MapDescriptorProps props = item.GetProps();
+			props.SetTextColor(color);
+		
+		item.SetProps(props);
 	}
 
 	//------------------------------------------------------------------------------------------------

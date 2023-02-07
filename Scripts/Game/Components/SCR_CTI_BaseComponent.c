@@ -37,7 +37,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		{
 			case "USSR":
 			{
-				if (ussrBases.Count() < m_gameMode.MAXBASES)
+				if (ussrBases.Count() < SCR_CTI_Constants.MAXBASES)
 				{
 					base.setBaseFactionKey(factionkey);
 					base.setBaseId(baseId);
@@ -50,7 +50,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 			}
 			case "US":
 			{
-				if (usBases.Count() < m_gameMode.MAXBASES)
+				if (usBases.Count() < SCR_CTI_Constants.MAXBASES)
 				{
 					base.setBaseFactionKey(factionkey);
 					base.setBaseId(baseId);
@@ -83,12 +83,6 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		Resource res = Resource.Load(resname);
 		
 		GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void createStructureMarker(vector position, FactionKey factionkey, IEntity structure)
-	{
-		// TODO
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -180,7 +174,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		//m_timeDelta += timeSlice;
 		/*if (m_timeDelta > TIMESTEP)
 		{
-			Print("SERVER 5s LOOP");
+			//TODO
 			
 			m_timeDelta = 0;
 		}*/

@@ -3,6 +3,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	protected RichTextWidget Line1;
 	protected RichTextWidget Line2;
 	protected RichTextWidget Line3;
+	protected RichTextWidget Line4;
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 1;
@@ -26,6 +27,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		Line1 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine1"));
 		Line2 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine2"));
 		Line3 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine3"));
+		Line4 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine4"));
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -51,9 +53,6 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			
 			bool menuOpen = GetGame().GetMenuManager().IsAnyMenuOpen();
 			m_wRoot.SetVisible(!menuOpen);
-			
-			pc = GetGame().GetPlayerController();
-			ent = pc.GetControlledEntity();
 
 			dmc = DamageManagerComponent.Cast(ent.FindComponent(DamageManagerComponent));
 			int hp = dmc.GetHealth();
@@ -156,10 +155,15 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 				case (st < 25): stamina = string.Format("<color rgba='255,0,0,255'>%1</color>", st.ToString()); break;
 				default: stamina = string.Format("<color rgba='0,0,255,255'>%1</color>", st.ToString()); break;
 			}
+			
+			string priority = "None";
+			if (gameMode.getPriority(sidekey) != "") priority = gameMode.getPriority(sidekey);
 				
 			Line1.SetText("Radio: " + rad + " || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: " + stamina);
-			Line2.SetText("Current Com: " + comm + " || Bases: " + baseCount.ToString() + "/" + gameMode.MAXBASES.ToString()); 
+			Line2.SetText("Current Com: " + comm + " || Bases: " + baseCount.ToString() + "/" + SCR_CTI_Constants.MAXBASES.ToString()); 
 			Line3.SetText(upgrade);
+			Line4.SetText("Priority Town: " + priority);
+
 			m_timeDelta = 0;
 		}
 	}
@@ -171,6 +175,10 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 		
 		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		upComp = SCR_CTI_UpgradeComponent.Cast(gameMode.FindComponent(SCR_CTI_UpgradeComponent));
+		
+		pc = GetGame().GetPlayerController();
+		ent = pc.GetControlledEntity();
+		
 		m_timeDelta = 0;
 
 		return true;

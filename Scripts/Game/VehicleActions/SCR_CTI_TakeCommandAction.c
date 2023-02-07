@@ -35,6 +35,9 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 		if (clientData) clientData.setCommander(true);
+		
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		gameMode.bumpMeServer();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -49,8 +52,8 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		
 		if (Math.AbsFloat(simulation.GetSpeedKmh()) > 5) return false; // check vehicle speed less then 5
 		if (m_gameMode.getCommanderId(affComp.GetAffiliatedFaction().GetFactionKey()) != -2) return false; // check no comm
-		if (affComp.GetAffiliatedFaction().GetFactionKey() == "USSR" && res != m_gameMode.USSRMHQ) return false; // check hq in user side
-		if (affComp.GetAffiliatedFaction().GetFactionKey() == "US" && res != m_gameMode.USMHQ) return false; // check hq in user side
+		if (affComp.GetAffiliatedFaction().GetFactionKey() == "USSR" && res != SCR_CTI_Constants.USSRMHQ) return false; // check hq in user side
+		if (affComp.GetAffiliatedFaction().GetFactionKey() == "US" && res != SCR_CTI_Constants.USMHQ) return false; // check hq in user side
 		if (m_gameMode.getCommanderId(affComp.GetAffiliatedFaction().GetFactionKey()) == playerId) return false; // check player is comm (after side check)
 		
 		return true;

@@ -7,6 +7,9 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	protected Faction playerFaction;
 	protected FactionAffiliationComponent affiliationComp;
 	
+	protected float m_timeDelta;
+	protected const float TIMESTEP = 0.5;
+	
 	protected Widget m_wRoot;
 	protected TextWidget m_resources;
 	protected TextWidget m_workers;
@@ -116,6 +119,9 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		
 		//m_undodefense.SetColor(Color.Orange);
 		//m_undodefense.AddHandler(m_buttonEventHandler);
+		m_undodefense.SetColor(Color.Gray);
+		m_undodefense.SetEnabled(false);
+		
 		m_autoalignwalls.SetColor(Color.Gray);
 		m_autoalignwalls.SetEnabled(false);
 		
@@ -174,9 +180,15 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
-		int funds = 0;
-		if (clientData) funds = clientData.getFunds();
+		m_timeDelta += tDelta;
+		if (m_timeDelta > TIMESTEP)
+		{
+			int funds = 0;
+			if (clientData) funds = clientData.getFunds();
 
-		m_resources.SetText("Resources: " + funds.ToString() + "$");
+			m_resources.SetText("Resources: " + funds.ToString() + "$");
+
+			m_timeDelta = 0;
+		}
 	}
 };

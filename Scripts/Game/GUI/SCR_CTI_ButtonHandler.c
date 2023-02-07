@@ -37,7 +37,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "UnflipNearestVehicleButton":
 			{
-				SCR_CTI_UnflipNearestVehicle unflipveh = new SCR_CTI_UnflipNearestVehicle;
+				SCR_CTI_UnflipNearestVehicle unflipveh = new SCR_CTI_UnflipNearestVehicle();
 				unflipveh.unflip();
 				break;
 			}
@@ -78,6 +78,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
+
 				auto menuManager = GetGame().GetMenuManager();
 				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
 				Widget root = openedMenu.GetRootWidget();
@@ -137,14 +138,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				if (vehicleDamageManager.IsDestroyed()) break;
 				
 				float distance = vector.Distance(mhq.GetOrigin(), player.GetOrigin());
-				if (distance > gameMode.BUILDRANGE) break;
+				if (distance > SCR_CTI_Constants.BUILDRANGE) break;
 				
 				SCR_CTI_FactoryData facData;
 				ResourceName res;
 				float dist;
 				int placement;
-				vector mat[4];
-				
+
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				switch (fk)
 				{
@@ -155,10 +155,6 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						dist = facData.getDistance();
 						placement = facData.getPlacement();
 
-						pc.GetControlledEntity().GetTransform(mat);
-						
-						netComp.buildStructureServer(fk, res, mat, dist, placement);
-
 						break;
 					}
 					case "US":
@@ -168,13 +164,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						dist = facData.getDistance();
 						placement = facData.getPlacement();
 
-						pc.GetControlledEntity().GetTransform(mat);
-						
-						netComp.buildStructureServer(fk, res, mat, dist, placement);
-
 						break;
 					}
 				}
+
+				SCR_CTI_PlacingStructureComponent placingStructureComp = SCR_CTI_PlacingStructureComponent.Cast(pc.FindComponent(SCR_CTI_PlacingStructureComponent));
+				if (!placingStructureComp.getStartPlacing()) placingStructureComp.createStructurePreview(fk, res, dist, placement, true);
+				
 				menuManager.CloseAllMenus();
 				break;
 			}
@@ -201,17 +197,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				if (vehicleDamageManager.IsDestroyed()) break;
 				
 				float distance = vector.Distance(mhq.GetOrigin(), player.GetOrigin());
-				if (distance > gameMode.BUILDRANGE) break;
+				if (distance > SCR_CTI_Constants.BUILDRANGE) break;
 				
 				SCR_CTI_DefenseData defData;
 				ResourceName res;
 				float dist;
-				vector mat[4];
-				vector dir;
-				vector emptyPos;
-				
-				BaseWorld world = GetGame().GetWorld();
-				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+				float placement;
+
 				switch (fk)
 				{
 					case "USSR":
@@ -219,25 +211,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						defData = gameMode.DefensesUSSR.g_USSR_Defenses[selected];
 						res = defData.getResname();
 						dist = defData.getDistance();
-						
-						// get player position
-						pc.GetControlledEntity().GetTransform(mat);
-						
-						// get player direction
-						dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-
-						// calc def placement
-						mat[3] = mat[3] + (dir * dist);
-
-						// find empty pos on terrain level
-						bool found = SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, mat[3], 3);
-						if (found)
-						{
-							mat[3] = emptyPos;
-						} else {
-							// if not found, use the original on terrain level (temporary)
-							mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
-						}
+						placement = defData.getPlacement();
 
 						break;
 					}
@@ -246,33 +220,17 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						defData = gameMode.DefensesUS.g_US_Defenses[selected];
 						res = defData.getResname();
 						dist = defData.getDistance();
-						
-						// get player position
-						pc.GetControlledEntity().GetTransform(mat);
-						
-						// get player direction
-						dir = pc.GetControlledEntity().GetWorldTransformAxis(2);
-
-						// calc def placement
-						mat[3] = mat[3] + (dir * dist);
-
-						// find empty pos on terrain level
-						bool found = SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, mat[3], 3);
-						if (found)
-						{
-							mat[3] = emptyPos;
-						} else {
-							// if not found, use the original on terrain level (temporary)
-							mat[3][1] = world.GetSurfaceY(mat[3][0], mat[3][2]);
-						}
+						placement = defData.getPlacement();
 
 						break;
 					}
 				}
+
+				menuManager.CloseAllMenus(); // close this menu before confirm menu show up
 				
-				netComp.buildDefenseServer(res, mat);
-				
-				menuManager.CloseAllMenus();
+				SCR_CTI_PlacingDefenseComponent placingDefComp = SCR_CTI_PlacingDefenseComponent.Cast(pc.FindComponent(SCR_CTI_PlacingDefenseComponent));
+				if (!placingDefComp.getStartPlacing()) placingDefComp.createDefPreview(res, dist, placement, true);
+
 				break;
 			}
 			case "VideoSettingsButton":
@@ -371,7 +329,31 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 
 				break;
 			}
-			
+			case "SetPriorityTownButton":
+			{
+				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+
+				SCR_MapEntity.GetOnMapOpen().Insert(gameMode.OnPrioMapOpen);
+				SCR_MapEntity.GetOnSelection().Insert(gameMode.OnPrioMapSelection);
+				SCR_MapEntity.GetOnMapClose().Insert(gameMode.OnPrioMapClose);
+
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.MapMenu);
+
+				break;
+			}
+			case "ClearPriorityButton":
+			{
+				PlayerController pc = GetGame().GetPlayerController();
+				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
+				netComp.setPriorityServer(fk, "");
+				
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
+				
+				break;
+			}
 		}
 		
 		return true;
