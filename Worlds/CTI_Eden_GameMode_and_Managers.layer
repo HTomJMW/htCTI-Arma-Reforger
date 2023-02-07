@@ -222,6 +222,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_BaseComponent "{5AA31079657C4391}" {
   }
+  SCR_CTI_RadioConnectionComponent "{5C795D5F3860FF18}" {
+  }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
   SCR_CTI_UpdateResourcesComponent "{5C4920D164E382C7}" {
@@ -239,23 +241,25 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_DestructionManagerComponent "{599D2332BE7B4618}" {
   }
   SCR_GameOverScreenManagerComponent "{599D2332B59C3B6D}" {
-   m_GameOverScreenConfig SCR_GameOverScreenConfig "{59BD4D2C964FE9F0}" {
+   m_GameOverScreenConfig SCR_GameOverScreenConfig "{5C4F5C4EEA408BEC}" {
     m_aGameOverScreens {
-     SCR_FactionGameOverScreenInfo "{59BD4D2C93BCA30C}" {
-      m_GameOverScreenId FACTION_DEFEAT_SCORE
-      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
-     }
-     SCR_FactionVictoryGameOverScreenInfo "{59BD4D2C8308B376}" {
-      m_GameOverScreenId FACTION_VICTORY_SCORE
-      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
-     }
-     SCR_EditorFactionGameOverScreenInfo "{59C3432CFB9B5240}" {
-      m_GameOverScreenId EDITOR_FACTION_DEFEAT
-      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
-     }
-     SCR_EditorFactionGameOverScreenInfo "{59C3432CE33D71AF}" {
+     SCR_FactionGameOverScreenInfo "{5C4F5C4EE58F9B39}" {
       m_GameOverScreenId EDITOR_FACTION_VICTORY
       m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
+      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5C5D2A2F99B72664}" {
+      }
+      m_OptionalEditorParams SCR_BaseGameOverScreenInfoEditor "{5C5D2A2F97CB3524}" {
+       m_MirroredState EDITOR_FACTION_DEFEAT
+      }
+     }
+     SCR_FactionGameOverScreenInfo "{5C4F5C4FA7B320E2}" {
+      m_GameOverScreenId EDITOR_FACTION_DEFEAT
+      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
+      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5C5D2A2F8763F632}" {
+      }
+      m_OptionalEditorParams SCR_BaseGameOverScreenInfoEditor "{5C5D2A2F8691EB06}" {
+       m_MirroredState EDITOR_FACTION_VICTORY
+      }
      }
     }
    }
@@ -290,9 +294,11 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_PlayerProfileManagerComponent "{599D2332D6B40944}" {
   }
   SCR_PlayerSpawnPointManagerComponent "{599D2332C84C980E}" {
+   Enabled 0
    m_SpawnPointPrefab "{F6CAD21EDD2D1964}Prefabs/MP/Spawning/PlayerSpawnPoint.et"
   }
   SCR_PlayersRestrictionZoneManagerComponent "{599D23321AF91056}" {
+   Enabled 0
   }
   SCR_PossessingManagerComponent "{599D2332151E01DC}" {
   }
@@ -333,8 +339,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    m_iObjectiveScoreMultiplier 3
   }
   SCR_SpawnProtectionComponent "{599D233253F1FA12}" {
+   Enabled 0
    m_bDisableOnAttack 0
-   m_bAllowPlayerSpawnpoints 1
   }
   SCR_TimedSpawnPointComponent "{599D23324D9764F0}" {
    m_fRespawnTime 10
@@ -360,6 +366,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
  }
  m_eTestGameFlags 6
+ m_fAutoReloadTime 30
  {
   $grp SCR_CTI_VehicleSpawn {
    SpawnVehicleSouth1 {
@@ -424,9 +431,9 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
      }
     }
     coords 10052.016 2.54 1566.471
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 1
+    m_fSpawnRadius 8
+    m_fNoPlayerRadius 0.5
+    m_fNoSightRadius 0
     m_sFaction "USSR"
    }
    SpawnPointNorth {
@@ -441,9 +448,9 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
      }
     }
     coords 4446.115 5.749 11189.89
-    m_fSpawnRadius 5
-    m_fNoPlayerRadius 1
-    m_fNoSightRadius 1
+    m_fSpawnRadius 8
+    m_fNoPlayerRadius 0.5
+    m_fNoSightRadius 0
     m_sFaction "US"
    }
   }

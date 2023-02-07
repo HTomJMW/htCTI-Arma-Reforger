@@ -10,7 +10,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F0D7C923BBA717}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F0D7C923BBA717}" {
    }
    SCR_CTI_TownPatrolComponent "{5A554AEFB997ADDE}" {
    }
@@ -90,7 +90,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea0 {
     components {
@@ -100,27 +100,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint0 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -135,7 +119,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB7ACA7E4A}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB7ACA7E4A}" {
    }
    SCR_CTI_TownPatrolComponent "{5A61122823E51E91}" {
    }
@@ -213,7 +197,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea2 {
     components {
@@ -223,27 +207,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint2 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -258,7 +226,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB753F7A9A}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB753F7A9A}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112281FDFC704}" {
    }
@@ -336,7 +304,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea3 {
     components {
@@ -346,27 +314,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint3 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -381,7 +333,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB6D8D9DF6}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB6D8D9DF6}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112281B880487}" {
    }
@@ -459,7 +411,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea4 {
     components {
@@ -469,27 +421,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint4 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -504,7 +440,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB6872DDBD}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB6872DDBD}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112281771A235}" {
    }
@@ -582,7 +518,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea5 {
     components {
@@ -592,27 +528,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint5 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -627,7 +547,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB656A2451}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB656A2451}" {
    }
    SCR_CTI_TownPatrolComponent "{5A61122813D013B1}" {
    }
@@ -705,7 +625,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea6 {
     components {
@@ -715,27 +635,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint6 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -750,7 +654,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB62FC9DFF}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB62FC9DFF}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112280F5E2249}" {
    }
@@ -828,7 +732,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea7 {
     components {
@@ -838,27 +742,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint7 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -873,7 +761,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB5F359BFD}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB5F359BFD}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112280CDF05B6}" {
    }
@@ -951,7 +839,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea8 {
     components {
@@ -961,27 +849,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint8 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -996,7 +868,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB5DADDCD2}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB5DADDCD2}" {
    }
    SCR_CTI_TownPatrolComponent "{5A61122808F1BA76}" {
    }
@@ -1074,7 +946,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea9 {
     components {
@@ -1084,27 +956,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint9 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -1119,7 +975,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB057BA792}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB057BA792}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112282944B176}" {
    }
@@ -1197,7 +1053,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea10 {
     components {
@@ -1207,27 +1063,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint10 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -1242,7 +1082,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB4219D1BD}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB4219D1BD}" {
    }
    SCR_CTI_TownPatrolComponent "{5A611228262AF0E4}" {
    }
@@ -1320,7 +1160,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea11 {
     components {
@@ -1330,27 +1170,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint11 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -1365,7 +1189,7 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
-   SCR_CTI_MapDescriptorComponent "{59F137AB0EF5D596}" {
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB0EF5D596}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112282D10E79C}" {
    }
@@ -1443,7 +1267,7 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "ChimeraCharacter"
+    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea1 {
     components {
@@ -1453,27 +1277,11 @@ $grp SCR_CTI_Town {
      }
     }
     TriggerShapeType Sphere
-    SphereRadius 75
+    SphereRadius 1
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "ChimeraCharacter"
-   }
-   SCR_SpawnPoint SpawnPoint1 {
-    components {
-     Hierarchy "{59B72B6E75E966E1}" {
-     }
-     SCR_CTI_MapDescriptorComponent "{59B72B6E72D6836D}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{59B72B6E62E6AB24}" {
-     }
-    }
-    m_fSpawnRadius 20
-    m_fNoPlayerRadius 5
-    m_fNoSightRadius 5
-    m_sFaction ""
+    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }

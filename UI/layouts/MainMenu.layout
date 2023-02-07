@@ -554,7 +554,7 @@ FrameWidgetClass {
        }
       }
       ButtonWidgetClass "{5A5D2DA9033300C7}" {
-       Name "ForceDisactivationButton"
+       Name "ClearPriorityButton"
        Slot FrameWidgetSlot "{5A5D2DA9033300DF}" {
         PositionX 5
         OffsetLeft 5
@@ -567,11 +567,11 @@ FrameWidgetClass {
        }
        {
         RichTextWidgetClass "{5A5D2DA312701009}" {
-         Name "ForceDisactivationText"
+         Name "ClearPriorityText"
          Slot ButtonWidgetSlot "{5A5D2DA312701020}" {
          }
          Color 0.173 0.129 0 1
-         Text "Force Disactivation"
+         Text "Clear Priority"
         }
        }
       }
