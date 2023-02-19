@@ -9,6 +9,7 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
   SCR_CTI_MHQMapDescriptorComponent "{5ADF3C1C3E62A92E}" {
    DisplayName "MHQ"
    Faction 1
+   Priority 0
   }
   SCR_CTI_MHQSpawnPointComponent "{5B2297F4B7804B8D}" {
   }

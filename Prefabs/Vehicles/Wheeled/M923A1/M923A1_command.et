@@ -8,7 +8,8 @@ Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
   }
   SCR_CTI_MHQMapDescriptorComponent "{5ADF3C1CDF970E0D}" {
    DisplayName "MHQ"
-   Faction 1
+   Faction 2
+   Priority 0
   }
   SCR_CTI_MHQSpawnPointComponent "{5B2297F4A70D04F3}" {
   }
