@@ -1,7 +1,6 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "Purchase Vehicle User Action")]
 class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 {
-	protected IEntity m_owner;
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
 	
@@ -11,7 +10,6 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
-		m_owner = pOwnerEntity;
 		m_town = SCR_CTI_Town.Cast(pOwnerEntity);
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
@@ -56,7 +54,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		vector mat[4];
-		m_owner.GetTransform(mat); // flagpos
+		m_town.GetTransform(mat); // flagpos
 		
 		RandomGenerator randomgen = new RandomGenerator();
 		vector rndpos = randomgen.GenerateRandomPointInRadius(3, 8, mat[3], true);
@@ -66,7 +64,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 
 		params.Transform = mat;
 
-		GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
+		GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 		
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 

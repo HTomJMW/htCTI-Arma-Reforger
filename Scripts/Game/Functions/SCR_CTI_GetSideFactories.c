@@ -9,24 +9,24 @@ class SCR_CTI_GetSideFactories
 		SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
 		
 		IEntity ent = null;
-		array<ref EntityID> structureIdArray = {};
+		array<RplId> structureRplIdArray = {};
 		switch (factionkey)
 		{
 			case "USSR":
 			{
-				structureIdArray = baseComp.getUSSRStructureIdArray();
+				structureRplIdArray = baseComp.getUSSRStructureRplIdArray();
 				break;
 			}
 			case "US":
 			{
-				structureIdArray = baseComp.getUSStructureIdArray();
+				structureRplIdArray = baseComp.getUSStructureRplIdArray();
 				break;
 			}
 		}
 		
-		for (int i = 0; i < structureIdArray.Count(); i++)
+		for (int i = 0; i < structureRplIdArray.Count(); i++)
 		{
-			ent = GetGame().GetWorld().FindEntityByID(structureIdArray[i]);
+			ent = GetGame().GetWorld().FindEntityByID(structureRplIdArray[i]);
 			list.Insert(ent);
 		}
 		
@@ -45,16 +45,17 @@ class SCR_CTI_GetSideFactories
 		
 		IEntity ent = null;
 		SCR_CTI_FactoryData factoryData;
-		array<ref EntityID> structureIdArray = {};
+		array<RplId> structureRplIdArray = {};
 		int index = -1;
 		switch (factionkey)
 		{
 			case "USSR":
 			{
-				structureIdArray = baseComp.getUSSRStructureIdArray();
-				for (int i = 0; i < structureIdArray.Count(); i++)
+				structureRplIdArray = baseComp.getUSSRStructureRplIdArray();
+				for (int i = 0; i < structureRplIdArray.Count(); i++)
 				{
-					ent = GetGame().GetWorld().FindEntityByID(structureIdArray[i]);
+					RplComponent rplComp = RplComponent.Cast(Replication.FindItem(structureRplIdArray[i]));
+					ent = rplComp.GetEntity();
 					index = gameMode.FactoriesUSSR.findIndexFromResourcename(ent.GetPrefabData().GetPrefabName());
 					if (index > -1)
 					{
@@ -66,10 +67,11 @@ class SCR_CTI_GetSideFactories
 			}
 			case "US":
 			{
-				structureIdArray = baseComp.getUSStructureIdArray();
-				for (int i = 0; i < structureIdArray.Count(); i++)
+				structureRplIdArray = baseComp.getUSStructureRplIdArray();
+				for (int i = 0; i < structureRplIdArray.Count(); i++)
 				{
-					ent = GetGame().GetWorld().FindEntityByID(structureIdArray[i]);
+					RplComponent rplComp = RplComponent.Cast(Replication.FindItem(structureRplIdArray[i]));
+					ent = rplComp.GetEntity();
 					index = gameMode.FactoriesUS.findIndexFromResourcename(ent.GetPrefabData().GetPrefabName());
 					if (index > -1)
 					{

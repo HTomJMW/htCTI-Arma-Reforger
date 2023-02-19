@@ -144,8 +144,8 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			int selected = m_listboxcomp.GetSelectedItem();
 			if (selected == -1) return;
 
-			FactionKey fk = playerFaction.GetFactionKey();
 			SCR_CTI_UpgradeData upgradeData = SCR_CTI_UpgradeData.Cast(m_listboxcomp.GetItemData(selected));
+			FactionKey fk = playerFaction.GetFactionKey();
 			switch (fk)
 			{
 				case "USSR":
@@ -175,7 +175,7 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 				}		
 			}
 			// need remove finished upgrades from list when complete
-				
+
 			m_timeDelta = 0;
 		}
 	}

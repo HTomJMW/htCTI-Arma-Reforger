@@ -1,7 +1,6 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "Purchase Equipment User Action")]
 class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 {
-	protected IEntity m_owner;
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
 	
@@ -13,7 +12,6 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
-		m_owner = pOwnerEntity;
 		m_town = SCR_CTI_Town.Cast(pOwnerEntity);
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
@@ -58,7 +56,7 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		vector mat[4];
-		m_owner.GetTransform(mat); // flagpos
+		m_town.GetTransform(mat); // flagpos
 		
 		RandomGenerator randomgen = new RandomGenerator();
 		vector rndpos = randomgen.GenerateRandomPointInRadius(3, 8, mat[3], true);
@@ -68,7 +66,7 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 
 		params.Transform = mat;
 
-		IEntity spawnedBox = GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
+		IEntity spawnedBox = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 		setEquipment(userAffiliationComponent);
 		insertItems(spawnedBox);
 		
@@ -156,7 +154,7 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 			Resource res = Resource.Load(prefab);
 			for (int i = 0; i < piece; i++)
 			{
-				IEntity item = GetGame().SpawnEntityPrefab(res, m_owner.GetWorld());
+				IEntity item = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld());
 				m_items.Insert(item);
 			}
 		}

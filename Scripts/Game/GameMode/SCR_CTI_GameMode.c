@@ -15,8 +15,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
 	protected SCR_CTI_RadioConnectionComponent RadioConnectionComponent;
 
-	protected bool firstSpawn = true;
-
 	[RplProp()]
 	protected int ussrCommanderId = -2;
 	[RplProp()]
@@ -69,7 +67,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected override void OnGameStart()
 	{
 		super.OnGameStart();
-		
+
 		StartGameMode();
 		if (!m_RplComponent.IsProxy()) PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
 		if (RplSession.Mode() == RplMode.Dedicated)
@@ -93,6 +91,11 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 		GetGame().GetInputManager().AddActionListener("CTI_OpenMainMenu", EActionTrigger.DOWN, openMenu);
 		
+		GetGame().GetInputManager().AddActionListener("Inventory", EActionTrigger.UP, saveLoadout);
+		GetGame().GetInputManager().AddActionListener("CharacterDropItem", EActionTrigger.UP, saveLoadout);
+		GetGame().GetInputManager().AddActionListener("Inventory_StepBack", EActionTrigger.UP, saveLoadout);
+		GetGame().GetInputManager().AddActionListener("CharacterAction", EActionTrigger.UP, saveLoadout);
+
 		// Server
 		if (!m_RplComponent.IsProxy())
 		{
@@ -111,6 +114,21 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected void openMenu()
 	{
 		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void saveLoadout()
+	{
+		PlayerController pc = GetGame().GetPlayerController();
+		IEntity controlledEnt = pc.GetControlledEntity();
+		RplComponent rplComp = RplComponent.Cast(controlledEnt.FindComponent(RplComponent));
+		if (!rplComp) return;
+		RplId rplid = rplComp.Id();
+		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+		if (netComp)
+		{
+			netComp.savePlayerLoadout(pc.GetPlayerId(), rplid);
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -178,20 +196,23 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 				Replication.BumpMe();
 			}
 		}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
-	{
-		super.OnPlayerSpawned(playerId, controlledEntity);
 		
-		if (firstSpawn)
-		{
-			RpcDo_RecieveHint(playerId, "htCTI Eden", "Mission", 30);
-			RpcDo_RecievePopUpNotif(playerId, "Arma Reforger CTI", 20, "", -1);
-			
-			firstSpawn = false;
-		}
+		// necessary delay due to proxy playercontroller check
+		GetGame().GetCallqueue().CallLater(missionHintsCallLater, 20000, false, playerID);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void missionHintsCallLater(int playerId)
+	{
+		SendHint(playerId, "htCTI Eden", "Mission", 30);
+		SendPopUpNotif(playerId, "Arma Reforger CTI", 20, "", -1);
+	}
+	
+	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
+	{
+		super.OnPlayerKilled(playerId, player, killer);
+		
+		SCR_RespawnComponent.GetInstance().RequestClearPlayerLoadout();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -321,6 +342,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		
 		return priority;
 	}
+
 	//------------------------------------------------------------------------------------------------
 	// Only on Server
 	void setPriority(FactionKey fk, string townName)

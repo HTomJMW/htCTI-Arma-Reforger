@@ -18,9 +18,9 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	protected ref array<ref SCR_CTI_Base> usBases = {};
 	
 	[RplProp()]
-	protected ref array<ref EntityID> ussrStructureIDs = {};
+	protected ref array<RplId> ussrStructureRplIds = {};
 	[RplProp()]
-	protected ref array<ref EntityID> usStructureIDs = {};
+	protected ref array<RplId> usStructureRplIds = {};
 
 	//------------------------------------------------------------------------------------------------
 	void init()
@@ -138,18 +138,18 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void addStuctureId(FactionKey factionkey, EntityID id)
+	void addStuctureRplId(FactionKey factionkey, RplId rplid)
 	{
 		switch (factionkey)
 		{
 			case "USSR":
 			{
-				ussrStructureIDs.Insert(id);
+				ussrStructureRplIds.Insert(rplid);
 				break;
 			}
 			case "US":
 			{
-				usStructureIDs.Insert(id);
+				usStructureRplIds.Insert(rplid);
 				break;
 			}
 		}
@@ -157,15 +157,15 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	array<ref EntityID> getUSSRStructureIdArray()
+	array<RplId> getUSSRStructureRplIdArray()
 	{
-		return ussrStructureIDs;
+		return ussrStructureRplIds;
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	array<ref EntityID> getUSStructureIdArray()
+	array<RplId> getUSStructureRplIdArray()
 	{
-		return usStructureIDs;
+		return usStructureRplIds;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -198,9 +198,9 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		ussrBases = null;
 		usBases.Clear();
 		usBases = null;
-		ussrStructureIDs.Clear();
-		ussrStructureIDs = null;
-		usStructureIDs.Clear();
-		usStructureIDs = null;
+		ussrStructureRplIds.Clear();
+		ussrStructureRplIds = null;
+		usStructureRplIds.Clear();
+		usStructureRplIds = null;
 	}
 };

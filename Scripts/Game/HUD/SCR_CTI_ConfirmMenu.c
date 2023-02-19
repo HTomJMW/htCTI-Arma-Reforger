@@ -1,11 +1,11 @@
 class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 {
-	protected SCR_CTI_GameMode gameMode;
-	protected PlayerController pc;
-	protected ChimeraCharacter ch;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected PlayerController m_pc;
+	protected ChimeraCharacter m_ch;
 	
-	protected SCR_CTI_PlacingDefenseComponent pdc;
-	protected SCR_CTI_PlacingStructureComponent psc;
+	protected SCR_CTI_PlacingDefenseComponent m_pdc;
+	protected SCR_CTI_PlacingStructureComponent m_psc;
 
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.02;
@@ -58,17 +58,18 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				return;
 
 			bool menuOpen = GetGame().GetMenuManager().IsAnyMenuOpen();
-			if (!menuOpen && (pdc.getStartPlacing() || psc.getStartPlacing()))
+			if (!menuOpen && (m_pdc.getStartPlacing() || m_psc.getStartPlacing()))
 			{
 				m_wRoot.SetVisible(true);
 			} else {
 				m_wRoot.SetVisible(false);
 			}
 			
-			if (ch.IsInVehicle())
+			m_ch = ChimeraCharacter.Cast(m_pc.GetControlledEntity());
+			if (m_ch.IsInVehicle())
 			{
-				pdc.cancelPlacement(true);
-				psc.cancelPlacement(true);
+				m_pdc.cancelPlacement(true);
+				m_psc.cancelPlacement(true);
 			}
 
 			if (m_wRoot.IsVisible())
@@ -91,11 +92,11 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				{
 					if (m_confirm.GetState())
 					{
-						pdc.confirmPlacement(true);
-						psc.confirmPlacement(true);
+						m_pdc.confirmPlacement(true);
+						m_psc.confirmPlacement(true);
 					} else {
-						pdc.cancelPlacement(true);
-						psc.cancelPlacement(true);
+						m_pdc.cancelPlacement(true);
+						m_psc.cancelPlacement(true);
 					}
 				}
 			}
@@ -108,13 +109,12 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 	{
 		if (m_LayoutPath == "") m_LayoutPath = "{8C4B0F3E158814B4}UI/layouts/ConfirmMenu.layout";
 		
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		pc = GetGame().GetPlayerController();
-		ch = ChimeraCharacter.Cast(pc.GetControlledEntity());
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_pc = GetGame().GetPlayerController();
 		
-		pdc = SCR_CTI_PlacingDefenseComponent.Cast(pc.FindComponent(SCR_CTI_PlacingDefenseComponent));
-		psc = SCR_CTI_PlacingStructureComponent.Cast(pc.FindComponent(SCR_CTI_PlacingStructureComponent));
-		
+		m_pdc = SCR_CTI_PlacingDefenseComponent.Cast(m_pc.FindComponent(SCR_CTI_PlacingDefenseComponent));
+		m_psc = SCR_CTI_PlacingStructureComponent.Cast(m_pc.FindComponent(SCR_CTI_PlacingStructureComponent));
+
 		m_timeDelta = 0;
 
 		return true;

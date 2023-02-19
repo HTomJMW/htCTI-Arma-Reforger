@@ -1,20 +1,20 @@
 class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 {
-	protected RichTextWidget Line1;
-	protected RichTextWidget Line2;
-	protected RichTextWidget Line3;
-	protected RichTextWidget Line4;
+	protected RichTextWidget m_Line1;
+	protected RichTextWidget m_Line2;
+	protected RichTextWidget m_Line3;
+	protected RichTextWidget m_Line4;
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 1;
 	
-	protected SCR_CTI_GameMode gameMode;
-	protected SCR_CTI_UpgradeComponent upComp;
-	protected PlayerController pc;
-	protected IEntity ent;
-	protected DamageManagerComponent dmc;
-	protected BaseStaminaComponent bsc;
-	protected SCR_InventoryStorageManagerComponent ismc;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected SCR_CTI_UpgradeComponent m_upComp;
+	protected PlayerController m_pc;
+	protected IEntity m_ent;
+	protected DamageManagerComponent m_dmc;
+	protected BaseStaminaComponent m_bsc;
+	protected SCR_InventoryStorageManagerComponent m_ismc;
 	
 	protected ResourceName m_ussr_radio1 = "{E1A5D4B878AA8980}Prefabs/Items/Equipment/Radios/Radio_R148.et"; // start radio
 	protected ResourceName m_ussr_radio2 = "{54C68E438DD34265}Prefabs/Items/Equipment/Radios/Radio_R107M.et";
@@ -24,10 +24,10 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
 	{
-		Line1 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine1"));
-		Line2 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine2"));
-		Line3 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine3"));
-		Line4 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine4"));
+		m_Line1 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine1"));
+		m_Line2 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine2"));
+		m_Line3 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine3"));
+		m_Line4 = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HudLine4"));
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -54,15 +54,17 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			bool menuOpen = GetGame().GetMenuManager().IsAnyMenuOpen();
 			m_wRoot.SetVisible(!menuOpen);
 
-			dmc = DamageManagerComponent.Cast(ent.FindComponent(DamageManagerComponent));
-			int hp = dmc.GetHealth();
+			m_ent = m_pc.GetControlledEntity();
 			
-			bsc = BaseStaminaComponent.Cast(ent.FindComponent(BaseStaminaComponent));
-			int st = bsc.GetStamina() * 100;
+			m_dmc = DamageManagerComponent.Cast(m_ent.FindComponent(DamageManagerComponent));
+			int hp = m_dmc.GetHealth();
 			
-			FactionAffiliationComponent side = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
+			m_bsc = BaseStaminaComponent.Cast(m_ent.FindComponent(BaseStaminaComponent));
+			int st = m_bsc.GetStamina() * 100;
+			
+			FactionAffiliationComponent side = FactionAffiliationComponent.Cast(m_ent.FindComponent(FactionAffiliationComponent));
 
-			ismc = SCR_InventoryStorageManagerComponent.Cast(ent.FindComponent(SCR_InventoryStorageManagerComponent));
+			m_ismc = SCR_InventoryStorageManagerComponent.Cast(m_ent.FindComponent(SCR_InventoryStorageManagerComponent));
 			SCR_PrefabNamePredicate predicate = new SCR_PrefabNamePredicate();
 			array<IEntity> radios = {};
 			switch (side.GetAffiliatedFaction().GetFactionKey())
@@ -70,28 +72,28 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 				case "USSR":
 				{
 					predicate.prefabName = m_ussr_radio1;
-					ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_GADGET_PROXY);
+					m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 					if (radios.IsEmpty())
 						{
 							predicate.prefabName = m_ussr_radio2;
-							ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_GADGET_PROXY);
+							m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 						}
 					break;
 				}
 				case "US":
 				{
 					predicate.prefabName = m_us_radio1;
-					ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_GADGET_PROXY);
+					m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 					if (radios.IsEmpty())
 						{
 							predicate.prefabName = m_us_radio2;
-							ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_GADGET_PROXY);
+							m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 						}
 					break;
 				}
 			}
 
-			SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
+			SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(m_gameMode.FindComponent(SCR_CTI_BaseComponent));
 			FactionKey sidekey = side.GetAffiliatedFaction().GetFactionKey();
 			int baseCount = 0;
 			int commanderId = -2;
@@ -101,28 +103,28 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			{
 				baseCount = baseComp.getBaseCount(sidekey);
 				
-				commanderId = gameMode.getCommanderId(sidekey);
+				commanderId = m_gameMode.getCommanderId(sidekey);
 				
-				for (int j = 0; j < gameMode.Upgrades.g_Upgrades.Count(); j++)
+				for (int j = 0; j < m_gameMode.Upgrades.g_Upgrades.Count(); j++)
 				{
-					upgradedata = gameMode.Upgrades.g_Upgrades[j];
-					if (upComp.getUpgradeStatus(sidekey, j) == UpgradeStatus.RUNNING)
+					upgradedata = m_gameMode.Upgrades.g_Upgrades[j];
+					if (m_upComp.getUpgradeStatus(sidekey, j) == UpgradeStatus.RUNNING)
 					{
-						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(upComp.getRemainingTime(sidekey)).ToString() + "s";
+						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(m_upComp.getRemainingTime(sidekey)).ToString() + "s";
 						break;
 					}
 				}
 			} else {
 				baseCount = baseComp.getBaseCount(sidekey);
 				
-				commanderId = gameMode.getCommanderId(sidekey);
+				commanderId = m_gameMode.getCommanderId(sidekey);
 
-				for (int j = 0; j < gameMode.Upgrades.g_Upgrades.Count(); j++)
+				for (int j = 0; j < m_gameMode.Upgrades.g_Upgrades.Count(); j++)
 				{
-					upgradedata = gameMode.Upgrades.g_Upgrades[j];
-					if (upComp.getUpgradeStatus(sidekey, j) == UpgradeStatus.RUNNING)
+					upgradedata = m_gameMode.Upgrades.g_Upgrades[j];
+					if (m_upComp.getUpgradeStatus(sidekey, j) == UpgradeStatus.RUNNING)
 					{
-						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(upComp.getRemainingTime(sidekey)).ToString() + "s";
+						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(m_upComp.getRemainingTime(sidekey)).ToString() + "s";
 						break;
 					}
 				}
@@ -130,15 +132,15 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			string comm = "None";
 			if (commanderId != -2) comm = GetGame().GetPlayerManager().GetPlayerName(commanderId);
 			
-			int playerId = pc.GetPlayerId();
+			int playerId = m_pc.GetPlayerId();
 			
-			SCR_CTI_ClientData clientData = gameMode.getClientData(playerId); // TODO put to init
+			SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId); // TODO put to init
 
 			int funds = 0;
 			if (clientData) funds = clientData.getFunds();
 			
 			string rad = "None";
-			if (radios.IsEmpty()) rad = "Live";
+			if (!radios.IsEmpty()) rad = "Live";
 
 			string health;
 			switch (true)
@@ -157,12 +159,12 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			}
 			
 			string priority = "None";
-			if (gameMode.getPriority(sidekey) != "") priority = gameMode.getPriority(sidekey);
+			if (m_gameMode.getPriority(sidekey) != "") priority = m_gameMode.getPriority(sidekey);
 				
-			Line1.SetText("Radio: " + rad + " || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: " + stamina);
-			Line2.SetText("Current Com: " + comm + " || Bases: " + baseCount.ToString() + "/" + SCR_CTI_Constants.MAXBASES.ToString()); 
-			Line3.SetText(upgrade);
-			Line4.SetText("Priority Town: " + priority);
+			m_Line1.SetText("Radio: " + rad + " || Funds: " + funds.ToString() + "$ || HP: " + health + " || STA: " + stamina);
+			m_Line2.SetText("Current Com: " + comm + " || Bases: " + baseCount.ToString() + "/" + SCR_CTI_Constants.MAXBASES.ToString()); 
+			m_Line3.SetText(upgrade);
+			m_Line4.SetText("Priority Town: " + priority);
 
 			m_timeDelta = 0;
 		}
@@ -173,11 +175,10 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	{
 		if (m_LayoutPath == "") m_LayoutPath = "{959E824DECAF27D7}UI/layouts/InfoHud.layout";
 		
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		upComp = SCR_CTI_UpgradeComponent.Cast(gameMode.FindComponent(SCR_CTI_UpgradeComponent));
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_upComp = SCR_CTI_UpgradeComponent.Cast(m_gameMode.FindComponent(SCR_CTI_UpgradeComponent));
 		
-		pc = GetGame().GetPlayerController();
-		ent = pc.GetControlledEntity();
+		m_pc = GetGame().GetPlayerController();
 		
 		m_timeDelta = 0;
 

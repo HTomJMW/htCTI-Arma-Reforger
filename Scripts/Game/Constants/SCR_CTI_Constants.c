@@ -1,7 +1,7 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Constants")]
 class SCR_CTI_Constants
 {
-	static const float VERSIONNUMBER = 0.30;
+	// Global constants
 	static const int PLAYERGROUPSIZE = 8;
 	static const int MAXBASES = 2;
 	static const int BASERADIUS = 100;
@@ -18,11 +18,12 @@ class SCR_CTI_Constants
 	static const int MGQREPAIRPRICE = 20000;
 	static const int BASEINCOME = 50;
 	static const float AISKILL = 0.75;
-	static const ResourceName USSRMHQ = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
-	static const ResourceName USMHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 	static const int MAXVD = 4000;
 	static const int MINVD = 2500;
 	static const int MAXTG = 150;
 	static const int MINTG = 80;
-	static const bool DEBUG = true;
+	
+	// ResouceNames
+	static const ResourceName USSRMHQ = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
+	static const ResourceName USMHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 };

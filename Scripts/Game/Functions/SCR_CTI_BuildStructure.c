@@ -114,7 +114,9 @@ class SCR_CTI_BuildStructure
 			faffcomp.SetAffiliatedFactionByKey(factionkey);
 			
 			// store structure IDs for searching
-			m_baseComp.addStuctureId(factionkey, structure.GetID());
+			RplComponent rplComp = RplComponent.Cast(structure.FindComponent(RplComponent));
+			RplId rplid = rplComp.Id();
+			m_baseComp.addStuctureRplId(factionkey, rplid);
 		} else {
 			PrintFormat("CTI :: Side %1 reached Base limit", factionkey);
 		}

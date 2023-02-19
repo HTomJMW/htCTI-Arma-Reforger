@@ -1,7 +1,6 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "Pruchase AI User Action")]
 class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 {
-	protected IEntity m_owner;
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
 	
@@ -11,7 +10,6 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
-		m_owner = pOwnerEntity;
 		m_town = SCR_CTI_Town.Cast(pOwnerEntity);
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
@@ -56,7 +54,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		vector mat[4];
-		m_owner.GetTransform(mat); // flagpos
+		m_town.GetTransform(mat); // flagpos
 		
 		RandomGenerator randomgen = new RandomGenerator();
 		vector rndpos = randomgen.GenerateRandomPointInRadius(3, 8, mat[3], true);
@@ -66,7 +64,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 
 		params.Transform = mat;
 
-		IEntity spawnedAI = GetGame().SpawnEntityPrefab(resource, m_owner.GetWorld(), params);
+		IEntity spawnedAI = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 
 		AIControlComponent control = AIControlComponent.Cast(spawnedAI.FindComponent(AIControlComponent));
 		control.ActivateAI();
@@ -75,7 +73,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 
 		ResourceName wpRes = "{93291E72AC23930F}Prefabs/AI/Waypoints/AIWaypoint_Defend.et";
 		Resource res = Resource.Load(wpRes);
-		IEntity wpEntity = GetGame().SpawnEntityPrefab(res, m_owner.GetWorld(), params);
+		IEntity wpEntity = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
 		
 		vector rndwppos = randomgen.GenerateRandomPointInRadius(12, 30, mat[3], true);
 		vector emptywppos;
@@ -87,8 +85,12 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		wp.SetCompletionRadius(1);
 		wp.SetCompletionType(EAIWaypointCompletionType.Any);
 		
-		agent.AddWaypoint(wp); // not working atm
-				
+		agent.AddWaypoint(wp); // not working atm, maybe need agent group
+		
+		//SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		//SCR_AIGroup group = gmc.GetPlayerGroup(1);
+		//group.AddAgent(agent);
+
 		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(agent.FindComponent(SCR_AIConfigComponent));
 		aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL;
 
@@ -149,6 +151,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 			}
 		}
 		
+
 		//todo player group size check
 
 		return true;

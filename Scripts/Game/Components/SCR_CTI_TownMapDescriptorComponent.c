@@ -12,20 +12,21 @@ class SCR_CTI_TownMapDescriptorComponent : SCR_MapDescriptorComponent
 	//------------------------------------------------------------------------------------------------
 	void createMarker(FactionKey factionkey)
 	{
-		Color orig;
+		Color orig = Color.Green;
 		switch (factionkey)
 		{
-			case "USSR": orig = orig.Red; break;
-			case "US": orig = orig.Blue; break;
-			case "FIA": orig = orig.Green; break;
+			case "USSR": orig = Color.Red; break;
+			case "US": orig = Color.Blue; break;
+			case "FIA": orig = Color.Green; break;
 		}
-		orig.SetA(0.8);
+		orig.SetA(0.7);
 		
 		m_item = Item();
 		
 		m_item.SetDisplayName(m_owner.getTownName() + "\n" + m_owner.getTownValue().ToString());
 		m_item.SetBaseType(EMapDescriptorType.MDT_ICON);
-		
+		m_item.SetPriority(5);
+
 		MapDescriptorProps props = m_item.GetProps();
 			m_item.SetImageDef(m_marker);
 			props.SetDetail(96);
@@ -52,22 +53,19 @@ class SCR_CTI_TownMapDescriptorComponent : SCR_MapDescriptorComponent
 				case "US": color = color.Blue; break;
 				case "FIA": color = color.Green; break;
 			}
-		color.SetA(0.8);
+		color.SetA(0.7);
 		props.SetFrontColor(color);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void OnMapOpen()
 	{
-		if (!SCR_PlayerController.GetLocalControlledEntity()) return;
-
-		Print("- MAP OPEN -");
+		//if (!SCR_PlayerController.GetLocalControlledEntity()) return;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void OnMapClose()
 	{
-		Print("- MAP CLOSE -");
 	}
 
 	//------------------------------------------------------------------------------------------------

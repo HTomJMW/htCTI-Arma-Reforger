@@ -23,6 +23,7 @@ class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 		SetEventMask(owner, EntityEvent.INIT);
 
 		m_vehFactionAffComp = SCR_VehicleFactionAffiliationComponent.Cast(owner.FindComponent(SCR_VehicleFactionAffiliationComponent));
+		
 		m_vehSpawnProtection = SCR_VehicleSpawnProtectionComponent.Cast(owner.FindComponent(SCR_VehicleSpawnProtectionComponent));
 		m_vehSpawnProtection.SetVehicleOwner(-2);
 		m_vehSpawnProtection.SetProtectionTime(0); // unlimited protection time
@@ -43,7 +44,7 @@ class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 		SCR_ChimeraCharacter character = SCR_ChimeraCharacter.Cast(user);
 		Faction characterFaction = character.GetFaction();
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
-		if (playerId != m_gameMode.getCommanderId(characterFaction.GetFactionKey()))
+		if (playerId != m_gameMode.getCommanderId(characterFaction.GetFactionKey()) && compartmentSlot.Type() == PilotCompartmentSlot)
 		{
 			return true;
 		}

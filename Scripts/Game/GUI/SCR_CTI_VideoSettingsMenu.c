@@ -81,6 +81,8 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 			GetGame().SetViewDistance(m_vd.GetCurrent());
 			GetGame().SetGrassDistance(m_tg.GetCurrent());
 			
+			// TODO save profile/setting where?
+			
 			m_timeDelta = 0;
 		}
 	}

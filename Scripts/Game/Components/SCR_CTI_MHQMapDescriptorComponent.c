@@ -7,6 +7,7 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 {
 	protected SCR_CTI_GameMode m_gamemode;
 	protected ResourceName m_resname;
+	protected IEntity m_owner;
 	protected MapItem m_mapitem;
 	protected Color m_textcolor = Color.Black;
 	
@@ -56,7 +57,10 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 	//------------------------------------------------------------------------------------------------
 	void OnMapOpen()
 	{
-		//if (!SCR_PlayerController.GetLocalControlledEntity()) return;
+		if (!SCR_PlayerController.GetLocalControlledEntity()) return;
+		
+		SCR_DamageManagerComponent dmc = SCR_DamageManagerComponent.Cast(m_owner.FindComponent(SCR_DamageManagerComponent));
+		if (dmc && dmc.IsDestroyed()) markAsDestroyed(true); else markAsDestroyed(false);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -69,18 +73,19 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 	{
 		m_gamemode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		m_resname = ent.GetPrefabData().GetPrefabName();
+		m_owner = ent;
 		
 		// Call init function after 3s (wait until object ready for use)
 		GetGame().GetCallqueue().CallLater(init, 3000);
 
-		//SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
+		SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
 		//SCR_MapEntity.GetOnMapClose().Insert(OnMapClose);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_MHQMapDescriptorComponent()
 	{
-		//SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);
+		SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);
 		//SCR_MapEntity.GetOnMapClose().Remove(OnMapClose);
 	}
 };

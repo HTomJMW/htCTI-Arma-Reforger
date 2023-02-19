@@ -173,6 +173,25 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
+	void savePlayerLoadout(int playerId, RplId rplid)
+	{
+		Rpc(RpcAsk_savePlayerLoadoutServer, playerId, rplid);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_savePlayerLoadoutServer(int playerId, RplId rplid)
+	{
+		SCR_ArsenalManagerComponent arsenalManager;
+		SCR_ArsenalManagerComponent.GetArsenalManager(arsenalManager);
+		
+		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
+		IEntity ent = rplComp.GetEntity();
+
+		arsenalManager.SetPlayerArsenalLoadout(playerId, GameEntity.Cast(ent));
+	}
+
+	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
 	{
 		m_PlayerController = SCR_PlayerController.Cast(PlayerController.Cast(owner));
