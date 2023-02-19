@@ -222,8 +222,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_BaseComponent "{5AA31079657C4391}" {
   }
-  SCR_CTI_RadioConnectionComponent "{5C795D5F3860FF18}" {
-  }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
   SCR_CTI_UpdateResourcesComponent "{5C4920D164E382C7}" {
@@ -324,7 +322,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_RespawnMenuHandlerComponent "{599D2332059DB42D}" {
    m_bAllowFactionChange 0
-   m_bAllowLoadoutSelection 0
    m_sRespawnUnavailable "No Spawn Points"
    m_sFactionMenuMessage "Permanent Faction"
   }
@@ -580,7 +577,7 @@ TagManager {
 }
 BasePreloadManager BasePreloadManager1 {
  PrefabsToPreload {
-  "{F063CEEB9295E9B6}Prefabs/Characters/Campaign/Final/Campaign_USSR_Player.et" "{8D89B17BCFBFAE44}Prefabs/Characters/Campaign/Final/Campaign_US_Player.et"
+  "{F063CEEB9295E9B6}Prefabs/Characters/Campaign/Final/Campaign_USSR_Player.et" "{8D89B17BCFBFAE44}Prefabs/Characters/Campaign/Final/Campaign_US_Player.et" "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et" "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et" "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" "{4A71F755A4513227}Prefabs/Vehicles/Wheeled/M998/M1025.et" "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et" "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" "{C012BB3488BEA0C2}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et"
  }
 }
 GarbageManager {
@@ -609,6 +606,16 @@ SCR_LoadoutManager {
   }
   SCR_FactionPlayerLoadout "{599D233ECF058FD4}" {
    m_sLoadoutName "US"
+   m_sLoadoutResource "{8D89B17BCFBFAE44}Prefabs/Characters/Campaign/Final/Campaign_US_Player.et"
+   m_sAffiliatedFaction "US"
+  }
+  SCR_PlayerArsenalLoadout "{5CA568A2AE2216CE}" {
+   m_sLoadoutName "USSR Saved Loadout"
+   m_sLoadoutResource "{F063CEEB9295E9B6}Prefabs/Characters/Campaign/Final/Campaign_USSR_Player.et"
+   m_sAffiliatedFaction "USSR"
+  }
+  SCR_PlayerArsenalLoadout "{5CA568A2AD0AC0F2}" {
+   m_sLoadoutName "US Saved Loadout"
    m_sLoadoutResource "{8D89B17BCFBFAE44}Prefabs/Characters/Campaign/Final/Campaign_US_Player.et"
    m_sAffiliatedFaction "US"
   }

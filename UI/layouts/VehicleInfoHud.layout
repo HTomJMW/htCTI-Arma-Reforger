@@ -11,8 +11,8 @@ FrameWidgetClass {
     OffsetTop 320
     SizeX 180
     OffsetRight 45
-    SizeY 200
-    OffsetBottom -520
+    SizeY 350
+    OffsetBottom -670
    }
    "Ignore Cursor" 1
    Color 0.886 0.597 0.163 1
@@ -43,8 +43,8 @@ FrameWidgetClass {
       OffsetTop 125
       SizeX 160
       OffsetRight -170
-      SizeY 30
-      OffsetBottom -155
+      SizeY 25
+      OffsetBottom -150
      }
      "Font Size" 18
      "Min Font Size" 18
@@ -56,17 +56,33 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5A3B337E2E5EBFF8}" {
       PositionX 10
       OffsetLeft 10
-      PositionY 160
-      OffsetTop 160
+      PositionY 150
+      OffsetTop 150
       SizeX 160
       OffsetRight -170
-      SizeY 30
-      OffsetBottom -190
+      SizeY 25
+      OffsetBottom -175
      }
      "Font Size" 18
      "Min Font Size" 18
      "Horizontal Alignment" Right
      "Vertical Alignment" Center
+    }
+    RichTextWidgetClass "{5C9B18411DCA94E6}" {
+     Name "Occupants"
+     Slot FrameWidgetSlot "{5C9B18411DCA94F8}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 185
+      OffsetTop 185
+      SizeX 160
+      OffsetRight -170
+      SizeY 155
+      OffsetBottom -340
+     }
+     "Font Size" 14
+     "Min Font Size" 10
+     "Horizontal Alignment" Right
     }
    }
   }
