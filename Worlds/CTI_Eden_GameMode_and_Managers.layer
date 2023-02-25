@@ -307,7 +307,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger CTI"
+     Name "Arma Reforger CTI [htCTI 0.5.0.1]"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -600,22 +600,22 @@ ItemPreviewManagerEntity ItemPreviewManagerEntity1 {
 SCR_LoadoutManager {
  m_aPlayerLoadouts {
   SCR_FactionPlayerLoadout "{599D233EF0E560CE}" {
-   m_sLoadoutName "USSR"
+   m_sLoadoutName "USSR Default Gear"
    m_sLoadoutResource "{F063CEEB9295E9B6}Prefabs/Characters/Campaign/Final/Campaign_USSR_Player.et"
    m_sAffiliatedFaction "USSR"
   }
   SCR_FactionPlayerLoadout "{599D233ECF058FD4}" {
-   m_sLoadoutName "US"
+   m_sLoadoutName "US Default Gear"
    m_sLoadoutResource "{8D89B17BCFBFAE44}Prefabs/Characters/Campaign/Final/Campaign_US_Player.et"
    m_sAffiliatedFaction "US"
   }
   SCR_PlayerArsenalLoadout "{5CA568A2AE2216CE}" {
-   m_sLoadoutName "USSR Saved Loadout"
+   m_sLoadoutName "USSR Last Saved Gear"
    m_sLoadoutResource "{F063CEEB9295E9B6}Prefabs/Characters/Campaign/Final/Campaign_USSR_Player.et"
    m_sAffiliatedFaction "USSR"
   }
   SCR_PlayerArsenalLoadout "{5CA568A2AD0AC0F2}" {
-   m_sLoadoutName "US Saved Loadout"
+   m_sLoadoutName "US Last Saved Gear"
    m_sLoadoutResource "{8D89B17BCFBFAE44}Prefabs/Characters/Campaign/Final/Campaign_US_Player.et"
    m_sAffiliatedFaction "US"
   }
