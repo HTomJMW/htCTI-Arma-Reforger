@@ -3,13 +3,13 @@ SCR_DestructibleBuildingEntity : "{E35EA41864A3B0ED}Prefabs/Structures/Industria
  components {
   FactionAffiliationComponent "{5AF112365458ADED}" {
   }
+  SCR_CTI_BuildingMapDescriptorComponent "{5CB146EABC49E1CB}" {
+  }
   SCR_CTI_FactorySpawnComponent "{5AFD393A576A7D9F}" {
    m_SpawnPos -13.5 0.1 0
   }
   SCR_CTI_FactorySpawnComponent "{5AFD393A7ADC8F09}" {
    m_SpawnPos 5.5 0.1 0
-  }
-  SCR_MapDescriptorComponent "{5AF11222D6223A87}" {
   }
  }
  {

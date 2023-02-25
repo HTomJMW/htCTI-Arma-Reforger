@@ -3,6 +3,8 @@ SCR_DestructibleBuildingEntity : "{1E7AC996BD3B73A7}Prefabs/Structures/Military/
  components {
   FactionAffiliationComponent "{5AF1123613D03BB1}" {
   }
+  SCR_CTI_BuildingMapDescriptorComponent "{5CB146EA873AFB10}" {
+  }
   SCR_CTI_FactorySpawnComponent "{5AFD39388A275A94}" {
    m_SpawnPos -8 0.5 0
   }
@@ -11,8 +13,6 @@ SCR_DestructibleBuildingEntity : "{1E7AC996BD3B73A7}Prefabs/Structures/Military/
   }
   SCR_CTI_FactorySpawnComponent "{5AFD39388E3F0FB2}" {
    m_SpawnPos 16 0.5 5
-  }
-  SCR_MapDescriptorComponent "{5AF112222FADADC0}" {
   }
  }
  {
@@ -107,8 +107,6 @@ SCR_DestructibleBuildingEntity : "{1E7AC996BD3B73A7}Prefabs/Structures/Military/
     GenericEntity {
      ID "5704A4848F0C6F2D"
      components {
-      Hierarchy "{5AFD1EF57290911B}" {
-      }
      }
      {
       GenericEntity {
@@ -474,8 +472,6 @@ SCR_DestructibleBuildingEntity : "{1E7AC996BD3B73A7}Prefabs/Structures/Military/
     GenericEntity {
      ID "5704A4848F0CE3A3"
      components {
-      Hierarchy "{5AFD1EF566AAC857}" {
-      }
      }
      {
       GenericEntity {

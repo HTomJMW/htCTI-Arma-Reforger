@@ -3,6 +3,8 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
  components {
   FactionAffiliationComponent "{5AF112361C496B6B}" {
   }
+  SCR_CTI_BuildingMapDescriptorComponent "{5CB146EB5C0EA82D}" {
+  }
   SCR_CTI_FactorySpawnComponent "{5AF15E0D37D2AE7C}" {
    m_SpawnPos -9.5 0.1 0
   }
@@ -11,8 +13,6 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
   }
   SCR_CTI_FactorySpawnComponent "{5AF295E57ECC8B2A}" {
    m_SpawnPos 3.2 0.1 0
-  }
-  SCR_MapDescriptorComponent "{5AF11222F6A5F954}" {
   }
  }
  {

@@ -3,7 +3,7 @@ SCR_DestructibleBuildingEntity : "{74CBD673D67C58FF}Prefabs/Structures/Industria
  components {
   FactionAffiliationComponent "{5AF112363715B399}" {
   }
-  SCR_MapDescriptorComponent "{5AF11222E3D07E46}" {
+  SCR_CTI_BuildingMapDescriptorComponent "{5CB146EB4EC16EAE}" {
   }
  }
  {

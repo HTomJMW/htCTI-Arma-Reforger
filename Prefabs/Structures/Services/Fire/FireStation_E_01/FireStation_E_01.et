@@ -3,10 +3,10 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
  components {
   FactionAffiliationComponent "{5AF112365EC352AB}" {
   }
+  SCR_CTI_BuildingMapDescriptorComponent "{5CB146EAEE21BC97}" {
+  }
   SCR_CTI_FactorySpawnComponent "{5AFD39393B4384D4}" {
    m_SpawnPos -5 0.1 0
-  }
-  SCR_MapDescriptorComponent "{5AF11222182BA0B6}" {
   }
  }
  {
