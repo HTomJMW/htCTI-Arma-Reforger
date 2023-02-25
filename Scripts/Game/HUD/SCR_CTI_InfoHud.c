@@ -137,8 +137,16 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId); // TODO put to init
 
 			int funds = 0;
-			if (clientData) funds = clientData.getFunds();
-			
+			if (clientData)
+			{
+				if (clientData.isCommander())
+				{
+					funds = m_gameMode.getCommanderFunds(sidekey);
+				} else {
+					funds = clientData.getFunds();
+				}
+			}
+
 			string rad = "None";
 			if (!radios.IsEmpty()) rad = "Live";
 

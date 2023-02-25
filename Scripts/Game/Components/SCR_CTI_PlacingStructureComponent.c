@@ -56,11 +56,17 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		IEntity m_player = m_PlayerController.GetControlledEntity();
 		m_player.GetTransform(mat);
 		dir = m_player.GetWorldTransformAxis(2);
+		
+		//PlayerCamera playerCam = GetGame().GetPlayerController().GetPlayerCamera();
+		//playerCam.GetTransform(mat);
+
+		//CharacterHeadAimingComponent chac = CharacterHeadAimingComponent.Cast(m_player.FindComponent(CharacterHeadAimingComponent));
+		//dir = chac.GetAimingDirectionWorld();
 
 		vector angles = mat[2].VectorToAngles();
 		angles[0] = angles[0] + placement;
 		mat[2] = angles.AnglesToVector();
-		
+
 		mat[3] = mat[3] + (dir * m_dist);
 		mat[3][1] = GetGame().GetWorld().GetSurfaceY(mat[3][0], mat[3][2]);
 		
@@ -93,6 +99,12 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		IEntity m_player = m_PlayerController.GetControlledEntity();
 		m_player.GetTransform(mat);
 		dir = m_player.GetWorldTransformAxis(2);
+		
+		//PlayerCamera playerCam = GetGame().GetPlayerController().GetPlayerCamera();
+		//playerCam.GetTransform(mat);
+
+		//CharacterHeadAimingComponent chac = CharacterHeadAimingComponent.Cast(m_player.FindComponent(CharacterHeadAimingComponent));
+		//dir = chac.GetAimingDirectionWorld();
 
 		vector angles = mat[2].VectorToAngles();
 		angles[0] = angles[0] + m_placement;
@@ -101,8 +113,10 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		mat[3] = mat[3] + (dir * m_dist);
 		mat[3][1] = GetGame().GetWorld().GetSurfaceY(mat[3][0], mat[3][2]);
 		
-		m_structure.SetTransform(mat);
+		//m_structure.SetTransform(mat);
+		SetHierarchyTransform(m_structure, mat);
 		m_structure.Update();
+
 		finalMat = mat;
 	}
 	
@@ -114,7 +128,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 
 		m_startPlacing = false;
 		
-		RplComponent.DeleteRplEntity(m_structure, false);
+		SCR_EntityHelper.DeleteEntityAndChildren(m_structure);
 		
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_PlayerController.FindComponent(SCR_CTI_NetWorkComponent));
 		netComp.buildStructureServer(m_fk, m_resName, finalMat);
@@ -132,7 +146,43 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		m_canceled = false;
 		if (m_structure) SCR_EntityHelper.DeleteEntityAndChildren(m_structure);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
+	//SCR_EntityHelper's function without dynamic physics test
+	void SetHierarchyTransform(notnull IEntity ent, vector newTransform[4])
+	{
+		vector oldTransform[4];
+		ent.GetTransform(oldTransform);
+		ent.SetTransform(newTransform);
+
+		IEntity child = ent.GetChildren();
+		while (child)
+		{
+			SetHierarchyChildTransform(child, oldTransform, newTransform, true);
+			child = child.GetSibling();
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected static void SetHierarchyChildTransform(notnull IEntity ent, vector oldTransform[4], vector newTransform[4], bool recursive = true)
+	{
+		vector mat[4];
+		ent.GetTransform(mat);
+
+		vector diffMat[4];
+		Math3D.MatrixInvMultiply4(oldTransform, mat, diffMat);
+		Math3D.MatrixMultiply4(newTransform, diffMat, mat);
+
+		ent.SetTransform(mat);
+
+		IEntity child = ent.GetChildren();
+		while (child)
+		{
+			SetHierarchyChildTransform(child, oldTransform, newTransform, recursive);
+			child = child.GetSibling();
+		}
+	}
+
 	//------------------------------------------------------------------------------------------------
 	protected bool IsProxy()
 	{

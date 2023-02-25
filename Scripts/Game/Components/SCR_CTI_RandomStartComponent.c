@@ -5,7 +5,7 @@ class SCR_CTI_RandomStartComponentClass : ScriptComponentClass
 
 class SCR_CTI_RandomStartComponent : ScriptComponent
 {
-	protected SCR_CTI_GameMode m_gameMode;
+	//protected SCR_CTI_GameMode m_gameMode;
 	protected bool m_ussrAtNorth = false;
 
 	//------------------------------------------------------------------------------------------------	
@@ -153,7 +153,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_RandomStartComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
-		m_gameMode = SCR_CTI_GameMode.Cast(ent);
+		//m_gameMode = SCR_CTI_GameMode.Cast(ent);
 	}
 
 	//------------------------------------------------------------------------------------------------

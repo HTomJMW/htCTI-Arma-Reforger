@@ -13,7 +13,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_UpgradeComponent UpgradeComponent;
 	protected SCR_CTI_BaseComponent BaseComponent;
 	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
-	protected SCR_CTI_RadioConnectionComponent RadioConnectionComponent;
 
 	[RplProp()]
 	protected int ussrCommanderId = -2;
@@ -24,9 +23,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	[RplProp()]
 	protected int usCommanderFunds = SCR_CTI_Constants.STARTCOMMFUNDS;
 	[RplProp()]
-	protected RplId ussrMHQrplId;
+	protected RplId ussrMHQrplId = RplId.Invalid();
 	[RplProp()]
-	protected RplId usMHQrplId;
+	protected RplId usMHQrplId = RplId.Invalid();
 	[RplProp()]
 	protected string ussrPriority;
 	[RplProp()]
@@ -60,7 +59,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UpgradeComponent = SCR_CTI_UpgradeComponent.Cast(owner.FindComponent(SCR_CTI_UpgradeComponent));
 		BaseComponent = SCR_CTI_BaseComponent.Cast(owner.FindComponent(SCR_CTI_BaseComponent));
 		UpdateResourcesComponent = SCR_CTI_UpdateResourcesComponent.Cast(owner.FindComponent(SCR_CTI_UpdateResourcesComponent));
-		RadioConnectionComponent = SCR_CTI_RadioConnectionComponent.Cast(owner.FindComponent(SCR_CTI_RadioConnectionComponent));
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -68,8 +66,12 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		super.OnGameStart();
 
-		StartGameMode();
-		if (!m_RplComponent.IsProxy()) PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
+		if (!m_RplComponent.IsProxy())
+		{
+			StartGameMode();
+			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
+		}
+		
 		if (RplSession.Mode() == RplMode.Dedicated)
 		{
 			Print("CTI :: Server: Dedicated");
@@ -78,7 +80,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		}
 
 		// Common
-		townsArray();
+		uploadTownsArray();
 		
 		foreach (SCR_CTI_Town town : CTI_Towns)
 		{
@@ -90,7 +92,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UpgradeComponent.init();
 
 		GetGame().GetInputManager().AddActionListener("CTI_OpenMainMenu", EActionTrigger.DOWN, openMenu);
-		
+
 		GetGame().GetInputManager().AddActionListener("Inventory", EActionTrigger.UP, saveLoadout);
 		GetGame().GetInputManager().AddActionListener("CharacterDropItem", EActionTrigger.UP, saveLoadout);
 		GetGame().GetInputManager().AddActionListener("Inventory_StepBack", EActionTrigger.UP, saveLoadout);
@@ -129,6 +131,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			netComp.savePlayerLoadout(pc.GetPlayerId(), rplid);
 		}
+
+		SCR_RespawnComponent.GetInstance().RequestClearPlayerLoadout();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -196,7 +200,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 				Replication.BumpMe();
 			}
 		}
-		
+
 		// necessary delay due to proxy playercontroller check
 		GetGame().GetCallqueue().CallLater(missionHintsCallLater, 20000, false, playerID);
 	}
@@ -207,16 +211,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		SendHint(playerId, "htCTI Eden", "Mission", 30);
 		SendPopUpNotif(playerId, "Arma Reforger CTI", 20, "", -1);
 	}
-	
-	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
-	{
-		super.OnPlayerKilled(playerId, player, killer);
-		
-		SCR_RespawnComponent.GetInstance().RequestClearPlayerLoadout();
-	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void townsArray()
+	protected void uploadTownsArray()
 	{
 		array<string> CTI_TownList = {"Town0", "Town1", "Town2", "Town3", "Town4", "Town5", "Town6", "Town7", "Town8", "Town9", "Town10", "Town11"};
 		
@@ -432,7 +429,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected void OnPrioMapOpen()
 	{
 		//if (!SCR_PlayerController.GetLocalControlledEntity()) return;
-		
+
 		SCR_MapEntity mapEntity = SCR_MapEntity.GetMapInstance();
 		mapEntity.ZoomOut();
 	}
@@ -468,10 +465,26 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		SCR_MapEntity.GetOnSelection().Remove(OnPrioMapSelection);
 		SCR_MapEntity.GetOnMapClose().Remove(OnPrioMapClose);
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	// First map open by respawn menu, runs only once (Proxy/local) for assign player group to clientdata
+	protected void OnFirstMapOpen()
+	{
+		int playerId = GetGame().GetPlayerController().GetPlayerId();
+		
+		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		SCR_AIGroup playerGroup = gmc.GetPlayerGroup(playerId);
+		
+		SCR_CTI_ClientData clientData = getClientData(playerId);
+		if (clientData) clientData.assignPlayerGroup(playerGroup);
+
+		SCR_MapEntity.GetOnMapOpen().Remove(OnFirstMapOpen);
+	}
 
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_GameMode(IEntitySource src, IEntity parent)
 	{
+		SCR_MapEntity.GetOnMapOpen().Insert(OnFirstMapOpen);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -490,5 +503,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		DefensesUS = null;
 		
 		Upgrades = null;
+
+		ClientDataArray.Clear();
+		ClientDataArray = null;
 	}
 };

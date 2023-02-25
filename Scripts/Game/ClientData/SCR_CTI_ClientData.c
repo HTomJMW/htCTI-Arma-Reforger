@@ -6,6 +6,7 @@ class SCR_CTI_ClientData
 	private int m_factionIndex = 0;
 	private bool m_isCommander = false;
 	private int m_funds = 0;
+	private SCR_AIGroup m_group;
 
 	//------------------------------------------------------------------------------------------------
 	int getPlayerId()
@@ -72,6 +73,24 @@ class SCR_CTI_ClientData
 	{
 		m_funds += (value);
 		if (m_funds < 0) m_funds = 0;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	SCR_AIGroup getGroup()
+	{
+		return m_group;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void assignPlayerGroup(SCR_AIGroup playerGroup)
+	{
+		m_group = playerGroup;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void addAIAgent(AIAgent agent)
+	{
+		m_group.AddAgent(agent);
 	}
 
 	//################################################################################################

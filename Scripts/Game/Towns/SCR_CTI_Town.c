@@ -141,7 +141,7 @@ class SCR_CTI_Town : BaseGameEntity
 		m_spawnPoint.SetFactionKey(m_factionKey);
 
 		m_townGroups.Clear();
-		
+
 		this.SetEventMask(EntityEvent.FIXEDFRAME);
 		m_timeDelta = 0;
 	}
@@ -198,7 +198,7 @@ class SCR_CTI_Town : BaseGameEntity
 	
 	//------------------------------------------------------------------------------------------------
 	// Proxys
-	void OnTownCapturedClient()
+	protected void OnTownCapturedClient()
 	{
 		changeFlag(m_factionKey);
 		m_mapComponent.changeMarker(m_factionKey);

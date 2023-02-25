@@ -75,9 +75,14 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		
 		if (clientData)
 		{
-			clientData.changeFunds(-price);
+			if (clientData.isCommander())
+			{
+				m_gameMode.changeCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), -price);
+			} else {
+				clientData.changeFunds(-price);
+			}
 		}
-		
+
 		m_gameMode.bumpMeServer();
 	}
 

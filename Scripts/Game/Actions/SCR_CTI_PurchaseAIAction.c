@@ -86,10 +86,6 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		wp.SetCompletionType(EAIWaypointCompletionType.Any);
 		
 		agent.AddWaypoint(wp); // not working atm, maybe need agent group
-		
-		//SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		//SCR_AIGroup group = gmc.GetPlayerGroup(1);
-		//group.AddAgent(agent);
 
 		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(agent.FindComponent(SCR_AIConfigComponent));
 		aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL;
@@ -100,9 +96,15 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		
 		if (clientData)
 		{
-			clientData.changeFunds(-price);
+			if (clientData.isCommander())
+			{
+				m_gameMode.changeCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), -price);
+			} else {
+				clientData.changeFunds(-price);
+			}
+			clientData.addAIAgent(agent);
 		}
-		
+
 		m_gameMode.bumpMeServer();
 	}
 
@@ -117,6 +119,14 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	{
 		int playerId = GetGame().GetPlayerController().GetPlayerId();
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
+
+		int groupSize = 0;
+		if (clientData) groupSize = clientData.getGroup().GetAgentsCount();
+		if (groupSize >= SCR_CTI_Constants.PLAYERGROUPSIZE) 
+		{
+			SetCannotPerformReason("Group limit reached!");
+			return false;
+		}
 
 		int funds = 0;
 		if (clientData) funds = clientData.getFunds();
@@ -150,9 +160,6 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 				return false;
 			}
 		}
-		
-
-		//todo player group size check
 
 		return true;
 	}

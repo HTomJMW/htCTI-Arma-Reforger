@@ -5,7 +5,6 @@ class SCR_CTI_MHQMapDescriptorComponentClass : SCR_MapDescriptorComponentClass
 
 class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 {
-	protected SCR_CTI_GameMode m_gamemode;
 	protected ResourceName m_resname;
 	protected IEntity m_owner;
 	protected MapItem m_mapitem;
@@ -71,12 +70,11 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_MHQMapDescriptorComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
-		m_gamemode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		m_resname = ent.GetPrefabData().GetPrefabName();
 		m_owner = ent;
 		
-		// Call init function after 3s (wait until object ready for use)
-		GetGame().GetCallqueue().CallLater(init, 3000);
+		// Call init function after 1s (wait until object ready for use)
+		GetGame().GetCallqueue().CallLater(init, 1000);
 
 		SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
 		//SCR_MapEntity.GetOnMapClose().Insert(OnMapClose);

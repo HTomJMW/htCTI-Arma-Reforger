@@ -17,10 +17,45 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	protected ref array<ref SCR_CTI_Base> ussrBases = {};
 	protected ref array<ref SCR_CTI_Base> usBases = {};
 	
-	[RplProp()]
+	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
 	protected ref array<RplId> ussrStructureRplIds = {};
-	[RplProp()]
+	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
 	protected ref array<RplId> usStructureRplIds = {};
+
+	//------------------------------------------------------------------------------------------------
+	bool RpcConditionMethod()
+	{
+		return true;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	// Proxys
+	void OnStructureAdded()
+	{
+		RplComponent rplComp;
+		IEntity struct;
+		int last = 0;
+		
+		last = ussrStructureRplIds.Count();
+		
+		if (last > 0)
+		{
+			last = last - 1;
+			rplComp = RplComponent.Cast(Replication.FindItem(ussrStructureRplIds[last]));
+			struct = rplComp.GetEntity();
+			struct.Update();
+		}
+
+		last = usStructureRplIds.Count();
+		
+		if (last > 0)
+		{
+			last = last - 1;
+			rplComp = RplComponent.Cast(Replication.FindItem(usStructureRplIds[last]));
+			struct = rplComp.GetEntity();
+			struct.Update();
+		}
+	}
 
 	//------------------------------------------------------------------------------------------------
 	void init()
@@ -73,16 +108,16 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		params.TransformMode = ETransformMode.WORLD;
 		params.Transform[3] = position;
 		
-		ResourceName resname;
-		if (factionkey == "USSR")
-		{
-			resname = "{D6EE5AB2287665DB}Prefabs/Markers/CTI_BaseMarkerUSSR.et";
-		} else {
-			resname = "{F1601BFC409D50E7}Prefabs/Markers/CTI_BaseMarkerUS.et";
-		}
+		ResourceName resname = "{D6EE5AB2287665DB}Prefabs/Markers/CTI_BaseMarker.et";
 		Resource res = Resource.Load(resname);
 		
-		GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
+		IEntity marker = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
+
+		if (marker)
+		{
+			SCR_CTI_BaseMarker baseMarker = SCR_CTI_BaseMarker.Cast(marker);
+			baseMarker.setOwnerFaction(factionkey);
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -183,7 +218,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
-		SetEventMask(owner, EntityEvent.FIXEDFRAME);
+		//SetEventMask(owner, EntityEvent.FIXEDFRAME);
 	}
 
 	//------------------------------------------------------------------------------------------------
