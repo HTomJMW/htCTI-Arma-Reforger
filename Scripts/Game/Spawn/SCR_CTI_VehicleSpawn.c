@@ -36,7 +36,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 
 		switch (m_rnPrefab)
 		{
-			case SCR_CTI_Constants.USSRMHQ:
+			case SCR_CTI_Constants.USSR_MHQ:
 			{
 				// Keep out of garbage manager
 				RplId rplId = Replication.FindId(newEnt);
@@ -47,7 +47,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 				
 				break;
 			}
-			case SCR_CTI_Constants.USMHQ:
+			case SCR_CTI_Constants.US_MHQ:
 			{
 				// Keep out of garbage manager
 				RplId rplId = Replication.FindId(newEnt);
@@ -67,7 +67,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		}
 		//PrintFormat("CTI :: Vehicle in garbage manager: %1 (%2)", garbagemanager.IsInserted(newEnt).ToString(), m_rnPrefab);
 		//PrintFormat("CTI :: Lifetime: %1 (%2)", garbagemanager.GetLifetime(newEnt), m_rnPrefab);
-		
+
 		Deactivate(); // Deactivate after vehicle spawned
 	}
 

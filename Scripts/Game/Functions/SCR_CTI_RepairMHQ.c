@@ -17,8 +17,8 @@ class SCR_CTI_RepairMHQ
 			ResourceName resname;
 			switch(factionkey)
 			{
-				case "USSR": resname = SCR_CTI_Constants.USSRMHQ; break;
-				case "US": resname = SCR_CTI_Constants.USMHQ; break;
+				case "USSR": resname = SCR_CTI_Constants.USSR_MHQ; break;
+				case "US": resname = SCR_CTI_Constants.US_MHQ; break;
 			} 
 		
 			Resource res = Resource.Load(resname);

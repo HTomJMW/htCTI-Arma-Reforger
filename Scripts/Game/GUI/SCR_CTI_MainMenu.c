@@ -242,8 +242,16 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			m_maxmissiontime.SetText("Max Mission Time: " + timelimit.ToString());
 	
 			int funds = 0;
-			if (clientData) funds = clientData.getFunds();
-			
+			if (clientData)
+			{
+				if (clientData.isCommander())
+				{
+					funds = gameMode.getCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey());
+				} else {
+					funds = clientData.getFunds();
+				}
+			}
+
 			m_resources.SetText("Resources: " + funds.ToString());
 			
 			int allvalue = 0;

@@ -13,12 +13,7 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 	protected FactionAffiliationComponent m_factionAffComp;
 	protected DamageManagerComponent m_dmc;
 	protected MapItem m_mapitem;
-	
-	protected ResourceName m_ussr_radio1 = "{E1A5D4B878AA8980}Prefabs/Items/Equipment/Radios/Radio_R148.et"; // start radio
-	protected ResourceName m_ussr_radio2 = "{54C68E438DD34265}Prefabs/Items/Equipment/Radios/Radio_R107M.et";
-	protected ResourceName m_us_radio1 = "{73950FBA2D7DB5C5}Prefabs/Items/Equipment/Radios/Radio_ANPRC68.et"; // start radio
-	protected ResourceName m_us_radio2 = "{9B6B61BB3FE3DFB0}Prefabs/Items/Equipment/Radios/Radio_ANPRC77.et";
-	
+
 	//------------------------------------------------------------------------------------------------
 	bool hasRadio()
 	{
@@ -29,22 +24,22 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 		{
 			case "USSR":
 			{
-				predicate.prefabName = m_ussr_radio1;
+				predicate.prefabName = SCR_CTI_Constants.USSR_RADIO1;
 				m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 				if (radios.IsEmpty())
 					{
-						predicate.prefabName = m_ussr_radio2;
+						predicate.prefabName = SCR_CTI_Constants.USSR_RADIO2;
 						m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 					}
 				break;
 			}
 			case "US":
 			{
-				predicate.prefabName = m_us_radio1;
+				predicate.prefabName = SCR_CTI_Constants.US_RADIO1;
 				m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 				if (radios.IsEmpty())
 					{
-						predicate.prefabName = m_us_radio2;
+						predicate.prefabName = SCR_CTI_Constants.US_RADIO2;
 						m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 					}
 				break;
@@ -71,6 +66,7 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 		m_mapitem.SetDisplayName(GetGame().GetPlayerManager().GetPlayerName(m_pc.GetPlayerId()));
 		m_mapitem.SetBaseType(EMapDescriptorType.MDT_NAME_GENERIC);
 		m_mapitem.SetImageDef("Unit");
+		m_mapitem.SetPriority(3);
 		
 		MapDescriptorProps props = m_mapitem.GetProps();
 			props.SetDetail(96);
@@ -110,12 +106,18 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{
-		m_mapDescComp = SCR_MapDescriptorComponent.Cast(owner.FindComponent(SCR_MapDescriptorComponent));
-		m_ismc = SCR_InventoryStorageManagerComponent.Cast(owner.FindComponent(SCR_InventoryStorageManagerComponent));
-		m_factionAffComp = FactionAffiliationComponent.Cast(owner.FindComponent(FactionAffiliationComponent));
-		m_dmc = DamageManagerComponent.Cast(owner.FindComponent(DamageManagerComponent));
-		
-		GetGame().GetCallqueue().CallLater(initMapDescriptor, 3000);
+		super.OnPostInit(owner);
+
+		// disabled on dedicated server with playercontroller check
+		if (m_pc)
+		{
+			m_mapDescComp = SCR_MapDescriptorComponent.Cast(owner.FindComponent(SCR_MapDescriptorComponent));
+			m_ismc = SCR_InventoryStorageManagerComponent.Cast(owner.FindComponent(SCR_InventoryStorageManagerComponent));
+			m_factionAffComp = FactionAffiliationComponent.Cast(owner.FindComponent(FactionAffiliationComponent));
+			m_dmc = DamageManagerComponent.Cast(owner.FindComponent(DamageManagerComponent));
+	
+			GetGame().GetCallqueue().CallLater(initMapDescriptor, 3000);
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -125,12 +127,12 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 		m_player = SCR_ChimeraCharacter.Cast(ent);
 		m_pc = GetGame().GetPlayerController();
 
-		SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
+		if (m_pc) SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_RadioConnectionComponent()
 	{
-		SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);
+		if (m_pc) SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);
 	}
 };

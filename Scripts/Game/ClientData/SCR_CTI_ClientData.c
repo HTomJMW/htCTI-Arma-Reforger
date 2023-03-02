@@ -2,11 +2,10 @@
 class SCR_CTI_ClientData
 {
 	private int m_playerId = -1;
-	private Faction m_playerFaction;
 	private int m_factionIndex = 0;
 	private bool m_isCommander = false;
 	private int m_funds = 0;
-	private SCR_AIGroup m_group;
+	private int m_groupId = -1; // maybe not need? GM
 
 	//------------------------------------------------------------------------------------------------
 	int getPlayerId()
@@ -18,18 +17,6 @@ class SCR_CTI_ClientData
 	void setPlayerId(int id)
 	{
 		m_playerId = id;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	Faction getFaction()
-	{
-		return m_playerFaction;
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	void setFaction(Faction faction)
-	{
-		m_playerFaction = faction;
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -74,23 +61,17 @@ class SCR_CTI_ClientData
 		m_funds += (value);
 		if (m_funds < 0) m_funds = 0;
 	}
-
-	//------------------------------------------------------------------------------------------------
-	SCR_AIGroup getGroup()
-	{
-		return m_group;
-	}
 	
 	//------------------------------------------------------------------------------------------------
-	void assignPlayerGroup(SCR_AIGroup playerGroup)
+	int getGroupId()
 	{
-		m_group = playerGroup;
+		return m_groupId;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void addAIAgent(AIAgent agent)
+	void setGroupId(int groupId)
 	{
-		m_group.AddAgent(agent);
+		m_groupId = groupId;
 	}
 
 	//################################################################################################
@@ -98,19 +79,19 @@ class SCR_CTI_ClientData
 	//------------------------------------------------------------------------------------------------
 	static void Encode(SSnapSerializerBase snapshot, ScriptCtx ctx, ScriptBitSerializer packet) 
 	{
-		snapshot.Serialize(packet, 13);
+		snapshot.Serialize(packet, 17);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	static bool Decode(ScriptBitSerializer packet, ScriptCtx ctx, SSnapSerializerBase snapshot) 
 	{
-		return snapshot.Serialize(packet, 13);
+		return snapshot.Serialize(packet, 17);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	static bool SnapCompare(SSnapSerializerBase lhs, SSnapSerializerBase rhs, ScriptCtx ctx) 
 	{	
-		return lhs.CompareSnapshots(rhs, 13);
+		return lhs.CompareSnapshots(rhs, 17);
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -119,7 +100,8 @@ class SCR_CTI_ClientData
 		return snapshot.Compare(prop.m_playerId, 4)
 			&& snapshot.Compare(prop.m_factionIndex, 4)
 			&& snapshot.Compare(prop.m_isCommander, 1)
-			&& snapshot.Compare(prop.m_funds, 4);
+			&& snapshot.Compare(prop.m_funds, 4)
+			&& snapshot.Compare(prop.m_groupId, 4);
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -129,6 +111,7 @@ class SCR_CTI_ClientData
 		snapshot.SerializeBytes(prop.m_factionIndex, 4);
 		snapshot.SerializeBytes(prop.m_isCommander, 1);
 		snapshot.SerializeBytes(prop.m_funds, 4);
+		snapshot.SerializeBytes(prop.m_groupId, 4);
 		
 		return true;
 	}
@@ -140,6 +123,7 @@ class SCR_CTI_ClientData
 		snapshot.SerializeBytes(prop.m_factionIndex, 4);
 		snapshot.SerializeBytes(prop.m_isCommander, 1);
 		snapshot.SerializeBytes(prop.m_funds, 4);
+		snapshot.SerializeBytes(prop.m_groupId, 4);
 		
 		return true;
 	}

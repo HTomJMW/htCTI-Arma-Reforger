@@ -87,6 +87,14 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				int selected = listboxcomp.GetSelectedItem();
 				if (selected == -1) break;
 				SCR_CTI_UpgradeData upgradeData = SCR_CTI_UpgradeData.Cast(listboxcomp.GetItemData(selected));
+				int cost = upgradeData.getCost();
+				int commanderFunds = gameMode.getCommanderFunds(fk);
+				if (cost < commanderFunds)
+				{
+					netComp.changeCommanderFundsServer(fk, -cost);
+				} else {
+					break;
+				}				
 				int upgradeindex = gameMode.Upgrades.findIndexFromName(upgradeData.getName());
 				
 				netComp.StartUpgradeServer(fk, upgradeindex);
@@ -144,6 +152,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				ResourceName res;
 				float dist;
 				int placement;
+				int cost;
 
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				switch (fk)
@@ -154,6 +163,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						res = facData.getResname();
 						dist = facData.getDistance();
 						placement = facData.getPlacement();
+						cost = facData.getPrice();
 
 						break;
 					}
@@ -163,10 +173,13 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						res = facData.getResname();
 						dist = facData.getDistance();
 						placement = facData.getPlacement();
+						cost = facData.getPrice();
 
 						break;
 					}
 				}
+				
+				if (gameMode.getCommanderFunds(fk) < cost) break;
 
 				SCR_CTI_PlacingStructureComponent placingStructureComp = SCR_CTI_PlacingStructureComponent.Cast(pc.FindComponent(SCR_CTI_PlacingStructureComponent));
 				if (!placingStructureComp.getStartPlacing()) placingStructureComp.createStructurePreview(fk, res, dist, placement, true);
@@ -198,11 +211,12 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				
 				float distance = vector.Distance(mhq.GetOrigin(), player.GetOrigin());
 				if (distance > SCR_CTI_Constants.BUILDRANGE) break;
-				
+
 				SCR_CTI_DefenseData defData;
 				ResourceName res;
 				float dist;
 				float placement;
+				int cost;
 
 				switch (fk)
 				{
@@ -212,6 +226,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						res = defData.getResname();
 						dist = defData.getDistance();
 						placement = defData.getPlacement();
+						cost = defData.getPrice();
 
 						break;
 					}
@@ -221,10 +236,25 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 						res = defData.getResname();
 						dist = defData.getDistance();
 						placement = defData.getPlacement();
+						cost = defData.getPrice();
 
 						break;
 					}
 				}
+				
+				int funds = 0;
+				SCR_CTI_ClientData clientData = gameMode.getClientData(pc.GetPlayerId());
+				if (clientData)
+				{
+					if (clientData.isCommander())
+					{
+						funds = gameMode.getCommanderFunds(fk);
+					} else {
+						funds = clientData.getFunds();
+					}
+				}
+				
+				if (funds < cost) break;
 
 				menuManager.CloseAllMenus(); // close this menu before confirm menu show up
 				
@@ -269,11 +299,15 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				
 				SCR_CTI_UnitData unitData = SCR_CTI_UnitData.Cast(listboxcomp.GetItemData(selected));
 				ResourceName res = unitData.getResname();
+				int cost = unitData.getPrice();
 				
+				SCR_CTI_ClientData clientData = gameMode.getClientData(pc.GetPlayerId());
+				if (clientData && clientData.getFunds() < cost) break;
+
 				EntityID groupID = pm.getGroupforCombobox().GetID();
 				
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-				netComp.factoryProductionServer(res, fk, groupID, mat);
+				netComp.factoryProductionServer(res, fk, groupID, mat, pc.GetPlayerId());
 
 				break;
 			}
@@ -319,13 +353,36 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				int selected = listboxcomp.GetSelectedItem();
 				if (selected < 0) break;
 				
-				netComp.changeFundsServer(playerId, -value);
+				SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
+				
+				if (clientData)
+				{
+					FactionKey factionkey = GetGame().GetFactionManager().GetFactionByIndex(clientData.getFactionIndex()).GetFactionKey();
+					if (clientData.isCommander())
+					{
+						netComp.changeCommanderFundsServer(factionkey, -value);
+					} else {
+						netComp.changeFundsServer(playerId, -value);
+					}
+				}
 
 				RplComponent rplCompReceiver = RplComponent.Cast(listboxcomp.GetItemData(listboxcomp.GetSelectedItem()));
 				RplId rplid = rplCompReceiver.Id();
 				int receiverId = GetGame().GetPlayerManager().GetPlayerIdFromEntityRplId(rplid);
+				
+				clientData = null;
+				clientData = gameMode.getClientData(receiverId);
 
-				netComp.changeFundsServer(receiverId, value);
+				if (clientData)
+				{
+					FactionKey receiverFactionKey = GetGame().GetFactionManager().GetFactionByIndex(clientData.getFactionIndex()).GetFactionKey();
+					if (clientData.isCommander())
+					{
+						netComp.changeCommanderFundsServer(receiverFactionKey, value);
+					} else {
+						netComp.changeFundsServer(receiverId, value);
+					}
+				}
 
 				break;
 			}

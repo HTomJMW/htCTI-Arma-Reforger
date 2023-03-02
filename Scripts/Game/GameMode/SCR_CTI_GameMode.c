@@ -70,13 +70,13 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
-		}
-		
-		if (RplSession.Mode() == RplMode.Dedicated)
-		{
-			Print("CTI :: Server: Dedicated");
-		} else {
-			Print("CTI :: Server: Player-Hosted");
+			
+			if (RplSession.Mode() == RplMode.Dedicated)
+			{
+				Print("CTI :: Server: Dedicated");
+			} else {
+				Print("CTI :: Server: Player-Hosted");
+			}
 		}
 
 		// Common
@@ -97,6 +97,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		GetGame().GetInputManager().AddActionListener("CharacterDropItem", EActionTrigger.UP, saveLoadout);
 		GetGame().GetInputManager().AddActionListener("Inventory_StepBack", EActionTrigger.UP, saveLoadout);
 		GetGame().GetInputManager().AddActionListener("CharacterAction", EActionTrigger.UP, saveLoadout);
+		GetGame().GetInputManager().AddActionListener("CharacterReload", EActionTrigger.UP, saveLoadout);
 
 		// Server
 		if (!m_RplComponent.IsProxy())
@@ -109,6 +110,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			WeatherAndTimeComponent.Deactivate(this);
 			UpdateVictoryComponent.Deactivate(this);
 			UpdateResourcesComponent.Deactivate(this);
+			
+			loadUserSettings();
 		}
 	}
 
@@ -121,6 +124,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	protected void saveLoadout()
 	{
+		// save loadout
 		PlayerController pc = GetGame().GetPlayerController();
 		IEntity controlledEnt = pc.GetControlledEntity();
 		RplComponent rplComp = RplComponent.Cast(controlledEnt.FindComponent(RplComponent));
@@ -132,7 +136,26 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			netComp.savePlayerLoadout(pc.GetPlayerId(), rplid);
 		}
 
-		SCR_RespawnComponent.GetInstance().RequestClearPlayerLoadout();
+		// set saved loadout for use at next respawn
+		SCR_RespawnComponent respawnComp = SCR_RespawnComponent.GetInstance();
+		SCR_LoadoutManager loadoutManager = GetGame().GetLoadoutManager();
+
+		SCR_CTI_ClientData clientData = getClientData(pc.GetPlayerId());
+		if (clientData)
+		{
+			int factionIndex = clientData.getFactionIndex();
+			FactionKey factionkey = GetGame().GetFactionManager().GetFactionByIndex(factionIndex).GetFactionKey();
+			string loadoutName;
+			switch (factionkey)
+			{
+				case "USSR": loadoutName = "USSR Last Saved Gear"; break;
+				case "US": loadoutName = "US Last Saved Gear"; break;
+			}
+			SCR_BasePlayerLoadout savedLoadout = loadoutManager.GetLoadoutByName(loadoutName);
+			respawnComp.RequestPlayerLoadout(savedLoadout);
+		} else {
+			SCR_RespawnComponent.GetInstance().RequestClearPlayerLoadout();
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -165,7 +188,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		SCR_CTI_ClientData clientData = getClientData(playerId);
 		
 		SCR_RespawnSystemComponent respawnSystem = SCR_RespawnSystemComponent.Cast(GetRespawnSystemComponent());
-		FactionManager fm = GetGame().GetFactionManager();
 
 		if (!clientData)
 		{
@@ -176,8 +198,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			
 			Replication.BumpMe();
 		} else {
-			int forcedFaction = fm.GetFactionIndex(clientData.getFaction());
-			respawnSystem.DoSetPlayerFaction(playerId, forcedFaction);
+			int forcedFactionIndex = clientData.getFactionIndex();
+			respawnSystem.DoSetPlayerFaction(playerId, forcedFactionIndex);
 		}
 	}
 
@@ -192,11 +214,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 			if (clientData && assignedFaction)
 			{
-				clientData.setFaction(assignedFaction);
-			
 				int factionIndex = GetGame().GetFactionManager().GetFactionIndex(assignedFaction);
 				clientData.setFactionIndex(factionIndex);
-			
 				Replication.BumpMe();
 			}
 		}
@@ -210,6 +229,23 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		SendHint(playerId, "htCTI Eden", "Mission", 30);
 		SendPopUpNotif(playerId, "Arma Reforger CTI", 20, "", -1);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
+	{
+		super.OnPlayerSpawned(playerId, controlledEntity);
+		
+		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		SCR_AIGroup group = gmc.GetPlayerGroup(playerId);
+		int groupId = group.GetID();
+		
+		SCR_CTI_ClientData clientData = getClientData(playerId);
+		if (clientData && clientData.getGroupId() == -1)
+		{
+			clientData.setGroupId(groupId);
+			Replication.BumpMe();
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -465,26 +501,27 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		SCR_MapEntity.GetOnSelection().Remove(OnPrioMapSelection);
 		SCR_MapEntity.GetOnMapClose().Remove(OnPrioMapClose);
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	// First map open by respawn menu, runs only once (Proxy/local) for assign player group to clientdata
-	protected void OnFirstMapOpen()
-	{
-		int playerId = GetGame().GetPlayerController().GetPlayerId();
-		
-		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		SCR_AIGroup playerGroup = gmc.GetPlayerGroup(playerId);
-		
-		SCR_CTI_ClientData clientData = getClientData(playerId);
-		if (clientData) clientData.assignPlayerGroup(playerGroup);
 
-		SCR_MapEntity.GetOnMapOpen().Remove(OnFirstMapOpen);
+	//------------------------------------------------------------------------------------------------
+	protected void loadUserSettings()
+	{
+		SCR_JsonLoadContext loadContext = new SCR_JsonLoadContext();
+		bool found = loadContext.LoadFromFile("$profile:.save\\htCTI_VideoSettings.json");
+		
+		if (found)
+		{
+			float vd, tg;
+			loadContext.ReadValue("VD", vd);
+			loadContext.ReadValue("TG", tg);
+
+			if (vd) GetGame().SetViewDistance(vd);
+			if (tg) GetGame().SetGrassDistance(tg);
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_GameMode(IEntitySource src, IEntity parent)
 	{
-		SCR_MapEntity.GetOnMapOpen().Insert(OnFirstMapOpen);
 	}
 
 	//------------------------------------------------------------------------------------------------

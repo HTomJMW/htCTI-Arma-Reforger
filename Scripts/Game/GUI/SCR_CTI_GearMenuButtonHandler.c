@@ -19,7 +19,7 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 	//------------------------------------------------------------------------------------------------
 	override bool OnMouseButtonUp(Widget w, int x, int y, int button)
 	{
-		switch (w.GetName())
+		/*switch (w.GetName())
 		{
 			case "Exit":
 			{
@@ -34,7 +34,7 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 				break;
 			}
-		}
+		}*/
 		
 		return true;
 	}

@@ -4,8 +4,11 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 	protected PlayerController pc;
 	protected int playerId;
 	
+	protected float vd;
+	protected float tg;
+	
 	protected float m_timeDelta;
-	protected const float TIMESTEP = 0.5;
+	protected const float TIMESTEP = 0.25;
 	
 	protected Widget m_wRoot;
 	
@@ -51,17 +54,20 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 		// maybe need get server limit?
 		float vdmax = GetGame().GetMaximumViewDistance();
 		float vdmin = GetGame().GetMinimumViewDistance();
-		float vd = GetGame().GetViewDistance();
+		vd = GetGame().GetViewDistance();
 		m_vd.SetMax(vdmax);
 		m_vd.SetMin(vdmin);
 		m_vd.SetCurrent(vd);
 		
 		float tgmax = GetGame().GetMaximumGrassDistance();
 		float tgmin = GetGame().GetMinimumGrassDistance();
-		float tg = GetGame().GetGrassDistance();
+		tg = GetGame().GetGrassDistance();
 		m_tg.SetMax(tgmax);
 		m_tg.SetMin(tgmin);
 		m_tg.SetCurrent(tg);
+		
+		m_vdText.SetText("View Distance: " + m_vd.GetCurrent().ToString() + "m");
+		m_tgText.SetText("Terrain Grid: " + m_tg.GetCurrent().ToString() + "m");
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -75,14 +81,22 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			m_vdText.SetText("View Distance: " + m_vd.GetCurrent().ToString() + "m");
-			m_tgText.SetText("Terrain Grid: " + m_tg.GetCurrent().ToString() + "m");
+			if (vd != m_vd.GetCurrent() || tg != m_tg.GetCurrent())
+			{
+				m_vdText.SetText("View Distance: " + m_vd.GetCurrent().ToString() + "m");
+				m_tgText.SetText("Terrain Grid: " + m_tg.GetCurrent().ToString() + "m");
+				
+				GetGame().SetViewDistance(m_vd.GetCurrent());
+				GetGame().SetGrassDistance(m_tg.GetCurrent());
 
-			GetGame().SetViewDistance(m_vd.GetCurrent());
-			GetGame().SetGrassDistance(m_tg.GetCurrent());
-			
-			// TODO save profile/setting where?
-			
+				SCR_JsonSaveContext saveContext = new SCR_JsonSaveContext();
+				saveContext.WriteValue("VD", m_vd.GetCurrent());
+				saveContext.WriteValue("TG", m_tg.GetCurrent());
+				saveContext.SaveToFile("$profile:.save\\htCTI_VideoSettings.json");
+
+				vd = m_vd.GetCurrent();
+				tg = m_tg.GetCurrent();
+			}
 			m_timeDelta = 0;
 		}
 	}

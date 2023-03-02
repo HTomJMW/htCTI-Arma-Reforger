@@ -184,7 +184,15 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		if (m_timeDelta > TIMESTEP)
 		{
 			int funds = 0;
-			if (clientData) funds = clientData.getFunds();
+			if (clientData)
+			{
+				if (clientData.isCommander())
+				{
+					funds = gameMode.getCommanderFunds(playerFaction.GetFactionKey());
+				} else {
+					funds = clientData.getFunds();
+				}
+			}
 
 			m_resources.SetText("Resources: " + funds.ToString() + "$");
 

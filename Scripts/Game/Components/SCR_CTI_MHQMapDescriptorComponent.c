@@ -13,7 +13,7 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 	//------------------------------------------------------------------------------------------------
 	void init()
 	{
-		if (m_resname == SCR_CTI_Constants.USSRMHQ)
+		if (m_resname == SCR_CTI_Constants.USSR_MHQ)
 		{
 			m_textcolor = Color.Red;
 		} else {
@@ -21,6 +21,7 @@ class SCR_CTI_MHQMapDescriptorComponent : SCR_MapDescriptorComponent
 		}
 
 		m_mapitem = Item();
+		m_mapitem.SetPriority(2);
 
 		MapDescriptorProps props = m_mapitem.GetProps();
 			props.SetDetail(96);

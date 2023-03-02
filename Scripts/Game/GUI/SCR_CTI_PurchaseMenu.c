@@ -138,10 +138,19 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		clientData = gameMode.getClientData(playerId);
 
 		int funds = 0;
-		if (clientData) funds = clientData.getFunds();
+		if (clientData)
+		{
+			if (clientData.isCommander())
+			{
+				funds = gameMode.getCommanderFunds(factionKey);
+			} else {
+				funds = clientData.getFunds();
+			}
+		}
 		
 		m_resources.SetText("Resources: " + funds.ToString() + "$");
 
+		// TODO only commander can buy units for other groups
 		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
 		m_playergroup = gmc.GetPlayerGroup(playerId);
 		m_comboteam.AddItem("Group " + m_playergroup.GetGroupID().ToString() + " " + m_playergroup.GetCustomName());
@@ -159,7 +168,15 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		if (m_timeDelta > TIMESTEP)
 		{
 			int funds = 0;
-			if (clientData) funds = clientData.getFunds();
+			if (clientData)
+			{
+				if (clientData.isCommander())
+				{
+					funds = gameMode.getCommanderFunds(factionKey);
+				} else {
+					funds = clientData.getFunds();
+				}
+			}
 
 			m_resources.SetText("Resources: " + funds.ToString() + "$");
 

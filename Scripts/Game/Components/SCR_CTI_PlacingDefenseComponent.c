@@ -128,7 +128,7 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		SCR_EntityHelper.DeleteEntityAndChildren(m_defense);
 
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_PlayerController.FindComponent(SCR_CTI_NetWorkComponent));
-		netComp.buildDefenseServer(m_resName, finalMat);
+		netComp.buildDefenseServer(m_resName, finalMat, m_PlayerController.GetPlayerId());
 		
 		m_confirmed = false;
 	}

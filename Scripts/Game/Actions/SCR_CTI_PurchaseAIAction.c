@@ -3,34 +3,21 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 {
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
-	
-	protected ResourceName m_resNameUSSRsoldier = "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et";
-	protected ResourceName m_resNameUSsoldier = "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et";
+	protected RplComponent m_rplComponent;
 
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
 		m_town = SCR_CTI_Town.Cast(pOwnerEntity);
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_rplComponent = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
 	}
 
 	//------------------------------------------------------------------------------------------------
-	// PerformAction part running on server
+	// Only on Server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
 	{
-		RplComponent rplComp = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
-		if (!rplComp)	
-		{	
-			Print("RPL component missing! (SCR_CTI_PurchaseAIAction)");
-			return;
-		}
-
-		RplId destructibleID = rplComp.Id();
-		if (!destructibleID.IsValid())
-		{
-			Print("RplId not valid! (SCR_CTI_PurchaseAIAction)");
-			return;
-		}
+		if (m_rplComponent && m_rplComponent.IsProxy()) return;
 
 		Resource resource;
 		int price;
@@ -40,13 +27,13 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
 		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
-			resource = Resource.Load(m_resNameUSSRsoldier);
-			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRsoldier);
+			resource = Resource.Load(SCR_CTI_Constants.USSR_SOLDIER);
+			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_SOLDIER);
 			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 			price = unitData.getPrice();
 		} else {
-			resource = Resource.Load(m_resNameUSsoldier);
-			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSsoldier);
+			resource = Resource.Load(SCR_CTI_Constants.US_SOLDIER);
+			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_SOLDIER);
 			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 			price = unitData.getPrice();
 		}
@@ -102,8 +89,11 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 			} else {
 				clientData.changeFunds(-price);
 			}
-			clientData.addAIAgent(agent);
 		}
+		
+		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		SCR_AIGroup playerGroup = gmc.GetPlayerGroup(playerId);
+		playerGroup.AddAgent(agent);
 
 		m_gameMode.bumpMeServer();
 	}
@@ -120,17 +110,27 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		int playerId = GetGame().GetPlayerController().GetPlayerId();
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 
-		int groupSize = 0;
-		if (clientData) groupSize = clientData.getGroup().GetAgentsCount();
-		if (groupSize >= SCR_CTI_Constants.PLAYERGROUPSIZE) 
+		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		SCR_AIGroup playerGroup = gmc.GetPlayerGroup(playerId);
+			
+		if (playerGroup.GetAgentsCount() >= SCR_CTI_Constants.PLAYERGROUPSIZE)
 		{
 			SetCannotPerformReason("Group limit reached!");
 			return false;
 		}
 
 		int funds = 0;
-		if (clientData) funds = clientData.getFunds();
-
+		if (clientData)
+		{
+			if (clientData.isCommander())
+			{
+				int factionIndex = clientData.getFactionIndex();
+				funds = m_gameMode.getCommanderFunds(GetGame().GetFactionManager().GetFactionByIndex(factionIndex).GetFactionKey());
+			} else {
+				funds = clientData.getFunds();
+			}
+		}
+	
 		int unitIndex;
 		SCR_CTI_UnitData unitData;
 		int unitPrice;
@@ -138,7 +138,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
 		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
-			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUSSRsoldier);
+			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_SOLDIER);
 			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 			unitPrice = unitData.getPrice();
 			if (funds > unitPrice)
@@ -149,7 +149,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 				return false;
 			}
 		} else {
-			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameUSsoldier);
+			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_SOLDIER);
 			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 			unitPrice = unitData.getPrice();
 			if (funds > unitPrice)

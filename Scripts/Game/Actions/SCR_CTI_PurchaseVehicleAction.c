@@ -3,35 +3,22 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 {
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
-	
-	protected ResourceName m_resNameUaz = "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et";
-	protected ResourceName m_resNameJeep = "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et";
+	protected RplComponent m_rplComponent;
 
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
 		m_town = SCR_CTI_Town.Cast(pOwnerEntity);
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_rplComponent = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
 	}
 
 	//------------------------------------------------------------------------------------------------
-	// PerformAction part running on server
+	// Only on Server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
-	{	
-		RplComponent rplComp = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
-		if (!rplComp)	
-		{	
-			Print("RPL component missing! (SCR_CTI_PurchaseVehicleAction)");
-			return;
-		}
+	{
+		if (m_rplComponent && m_rplComponent.IsProxy()) return;
 
-		RplId destructibleID = rplComp.Id();
-		if (!destructibleID.IsValid())
-		{
-			Print("RplId not valid! (SCR_CTI_PurchaseVehicleAction)");
-			return;
-		}
-		
 		Resource resource;
 		int unitIndex;
 		SCR_CTI_UnitData unitData;
@@ -40,13 +27,13 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
 		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
-			resource = Resource.Load(m_resNameUaz);
-			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
+			resource = Resource.Load(SCR_CTI_Constants.USSR_UAZ);
+			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_UAZ);
 			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 			price = unitData.getPrice();
 		} else {
-			resource = Resource.Load(m_resNameJeep);
-			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameJeep);
+			resource = Resource.Load(SCR_CTI_Constants.US_JEEP);
+			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_JEEP);
 			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 			price = unitData.getPrice();
 		}
@@ -96,7 +83,16 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 
 		int funds = 0;
-		if (clientData) funds = clientData.getFunds();
+		if (clientData)
+		{
+			if (clientData.isCommander())
+			{
+				int factionIndex = clientData.getFactionIndex();
+				funds = m_gameMode.getCommanderFunds(GetGame().GetFactionManager().GetFactionByIndex(factionIndex).GetFactionKey());
+			} else {
+				funds = clientData.getFunds();
+			}
+		}
 
 		int unitIndex;
 		SCR_CTI_UnitData unitData;
@@ -105,7 +101,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
 		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
 		{
-			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(m_resNameUaz);
+			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_UAZ);
 			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 			unitPrice = unitData.getPrice();
 			if (funds > unitPrice)
@@ -116,7 +112,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 				return false;
 			}
 		} else {
-			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(m_resNameJeep);
+			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_JEEP);
 			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 			unitPrice = unitData.getPrice();
 			if (funds > unitPrice)

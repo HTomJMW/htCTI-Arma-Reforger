@@ -8,7 +8,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 	protected SCR_CTI_PlacingStructureComponent m_psc;
 
 	protected float m_timeDelta;
-	protected const float TIMESTEP = 0.02;
+	protected const float TIMESTEP = 0.05;
 
 	protected ButtonWidget m_confirm;
 	protected ButtonWidget m_cancel;
@@ -63,6 +63,9 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				m_wRoot.SetVisible(true);
 			} else {
 				m_wRoot.SetVisible(false);
+				
+				m_pdc.cancelPlacement(true);
+				m_psc.cancelPlacement(true);
 			}
 			
 			m_ch = ChimeraCharacter.Cast(m_pc.GetControlledEntity());

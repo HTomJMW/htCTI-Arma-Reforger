@@ -97,21 +97,59 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void buildDefenseServer(ResourceName resourcename, vector mat[4])
+	void buildDefenseServer(ResourceName resourcename, vector mat[4], int playerId)
 	{
-		Rpc(RpcAsk_BuildDefenseServer, resourcename, mat);
+		Rpc(RpcAsk_BuildDefenseServer, resourcename, mat, playerId);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_BuildDefenseServer(ResourceName resourcename, vector mat[4])
+	protected void RpcAsk_BuildDefenseServer(ResourceName resourcename, vector mat[4], int playerId)
 	{
 		Resource resource = Resource.Load(resourcename);
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		params.Transform = mat;
 
-		GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+		IEntity defense = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+		
+		if (defense)
+		{
+			SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+			SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
+			if (clientData)
+			{
+				int factionIndex = clientData.getFactionIndex();
+				FactionKey factionkey = GetGame().GetFactionManager().GetFactionByIndex(factionIndex).GetFactionKey();
+				
+				SCR_CTI_DefenseData defenseData;
+					int index = -1;
+					switch (factionkey)
+					{
+						case "USSR":
+						{
+							index = gameMode.DefensesUSSR.findIndexFromResourcename(resourcename);
+							defenseData = gameMode.DefensesUSSR.g_USSR_Defenses[index];
+							break;
+						}
+						case "US":
+						{
+							index = gameMode.DefensesUS.findIndexFromResourcename(resourcename);
+							defenseData = gameMode.DefensesUS.g_US_Defenses[index];
+							break;
+						}
+					}
+					int cost = defenseData.getPrice();
+
+				if (clientData.isCommander())
+				{
+					gameMode.changeCommanderFunds(factionkey, -cost);
+				} else {
+					clientData.changeFunds(-cost);
+					gameMode.bumpMeServer();
+				}
+			}
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -129,17 +167,17 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void factoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4])
+	void factoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4], int playerId)
 	{
-		Rpc(RpcAsk_FactoryProductionServer, resourcename, factionkey, groupID, mat);
+		Rpc(RpcAsk_FactoryProductionServer, resourcename, factionkey, groupID, mat, playerId);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_FactoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4])
+	protected void RpcAsk_FactoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4], int playerId)
 	{
 		SCR_CTI_FactoryProduction FactoryProduction = new SCR_CTI_FactoryProduction;
-		FactoryProduction.build(resourcename, factionkey, groupID, mat);
+		FactoryProduction.build(resourcename, factionkey, groupID, mat, playerId);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -156,6 +194,20 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
 		if (clientData) clientData.changeFunds(value);
 		gameMode.bumpMeServer();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void changeCommanderFundsServer(FactionKey fk, int value)
+	{
+		Rpc(RpcAsk_changeCommanderFundsServer, fk, value);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_changeCommanderFundsServer(FactionKey fk, int value)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		gameMode.changeCommanderFunds(fk, value);
 	}
 	
 	//------------------------------------------------------------------------------------------------

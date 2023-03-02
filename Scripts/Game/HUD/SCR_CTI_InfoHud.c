@@ -15,11 +15,6 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	protected DamageManagerComponent m_dmc;
 	protected BaseStaminaComponent m_bsc;
 	protected SCR_InventoryStorageManagerComponent m_ismc;
-	
-	protected ResourceName m_ussr_radio1 = "{E1A5D4B878AA8980}Prefabs/Items/Equipment/Radios/Radio_R148.et"; // start radio
-	protected ResourceName m_ussr_radio2 = "{54C68E438DD34265}Prefabs/Items/Equipment/Radios/Radio_R107M.et";
-	protected ResourceName m_us_radio1 = "{73950FBA2D7DB5C5}Prefabs/Items/Equipment/Radios/Radio_ANPRC68.et"; // start radio
-	protected ResourceName m_us_radio2 = "{9B6B61BB3FE3DFB0}Prefabs/Items/Equipment/Radios/Radio_ANPRC77.et";
 
 	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
@@ -71,22 +66,22 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			{
 				case "USSR":
 				{
-					predicate.prefabName = m_ussr_radio1;
+					predicate.prefabName = SCR_CTI_Constants.USSR_RADIO1;
 					m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 					if (radios.IsEmpty())
 						{
-							predicate.prefabName = m_ussr_radio2;
+							predicate.prefabName = SCR_CTI_Constants.USSR_RADIO2;
 							m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 						}
 					break;
 				}
 				case "US":
 				{
-					predicate.prefabName = m_us_radio1;
+					predicate.prefabName = SCR_CTI_Constants.US_RADIO1;
 					m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 					if (radios.IsEmpty())
 						{
-							predicate.prefabName = m_us_radio2;
+							predicate.prefabName = SCR_CTI_Constants.US_RADIO2;
 							m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
 						}
 					break;

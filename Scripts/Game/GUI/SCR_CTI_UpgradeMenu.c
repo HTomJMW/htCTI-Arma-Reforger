@@ -6,6 +6,7 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 	protected int playerId;
 	protected Faction playerFaction;
 	protected FactionAffiliationComponent affiliationComp;
+	protected SCR_CTI_ClientData clientData;
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.3;
@@ -74,7 +75,7 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
-		SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
+		clientData = gameMode.getClientData(playerId);
 		array<IEntity> ccList = SCR_CTI_GetSideFactories.GetSideFactoriesByType(playerFaction.GetFactionKey(), "Control Center");
 		if (clientData && clientData.isCommander() && ccList)
 		{
@@ -144,15 +145,27 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			int selected = m_listboxcomp.GetSelectedItem();
 			if (selected == -1) return;
 
-			SCR_CTI_UpgradeData upgradeData = SCR_CTI_UpgradeData.Cast(m_listboxcomp.GetItemData(selected));
 			FactionKey fk = playerFaction.GetFactionKey();
+
+			int funds = 0;
+			if (clientData)
+			{
+				if (clientData.isCommander())
+				{
+					funds = gameMode.getCommanderFunds(fk);
+				} else {
+					funds = clientData.getFunds();
+				}
+			}
+
+			SCR_CTI_UpgradeData upgradeData = SCR_CTI_UpgradeData.Cast(m_listboxcomp.GetItemData(selected));
 			switch (fk)
 			{
 				case "USSR":
 				{
 					m_labeltext.SetText(upgradeData.getLabel());
 					m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
-					m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$");
+					m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$ / " + funds.ToString() + "$");
 					m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
 					
 					m_dependencetext.SetText(upgradeData.getLink());
@@ -165,7 +178,7 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 				{
 					m_labeltext.SetText(upgradeData.getLabel());
 					m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
-					m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$");
+					m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$ / " + funds.ToString() + "$");
 					m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
 					
 					m_dependencetext.SetText(upgradeData.getLink());

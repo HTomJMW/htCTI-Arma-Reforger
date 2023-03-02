@@ -1,5 +1,8 @@
 class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 {
+	protected float m_timeDelta;
+	protected const float TIMESTEP = 0.25;
+
 	protected Widget m_wRoot;
 	
 	protected ButtonWidget m_welcomescreen;
@@ -13,6 +16,8 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 	protected ButtonWidget m_exit;
 	
 	protected XComboBoxWidget m_combokey;
+	
+	protected int m_lastItemIndex = -1;
 
 	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
@@ -20,7 +25,11 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
-	{
+	{		
+		InputBinding m_binding = GetGame().GetInputManager().CreateUserBinding();
+		array<string> currentBinds = {};
+		m_binding.GetBindings("CTI_OpenMainMenu", currentBinds, EInputDeviceType.KEYBOARD, "primary:click");
+
 		m_wRoot = GetRootWidget();
 		
 		// buttons
@@ -36,7 +45,19 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 
 		// xcombobox
 		m_combokey = XComboBoxWidget.Cast(m_wRoot.FindAnyWidget("KeyChangerComboBox"));
-		m_combokey.AddItem("NumPad 0"); // TODO temporary
+		int index_0 = m_combokey.AddItem("Num 0");
+		int index_1 = m_combokey.AddItem("Right Ctrl");
+
+		if (WidgetManager.Translate(currentBinds[0]) == "Num 0")
+		{
+			m_combokey.SetCurrentItem(index_0);
+			m_lastItemIndex = index_0;
+		}
+		if (WidgetManager.Translate(currentBinds[0]) == "Right Ctrl")
+		{
+			m_combokey.SetCurrentItem(index_1);
+			m_lastItemIndex = index_1;
+		}
 
 		// handlers
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
@@ -65,7 +86,36 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
-		// TODO INPUTBINDING
-		// save profile/button state where?
+		m_timeDelta += tDelta;
+		if (m_timeDelta > TIMESTEP)
+		{
+			int currentItem = m_combokey.GetCurrentItem();
+			
+			if (m_lastItemIndex != currentItem)
+			{
+				InputBinding m_binding = GetGame().GetInputManager().CreateUserBinding();
+				m_binding.StartCapture("CTI_OpenMainMenu", EInputDeviceType.KEYBOARD, "primary:click", false);
+				array<string> bind = {};
+
+				if (currentItem == 0)
+				{
+					bind.Insert("keyboard:KC_NUMPAD0");
+				}
+			
+				if (currentItem == 1)
+				{
+					bind.Insert("keyboard:KC_RCONTROL");
+				}
+				
+				if (!bind.IsEmpty())
+				{
+					m_binding.SaveCapture(bind);
+					m_binding.Save(); // Saved to profile
+					
+					m_lastItemIndex = currentItem;
+				}
+			}
+			m_timeDelta = 0;
+		}
 	}
 };

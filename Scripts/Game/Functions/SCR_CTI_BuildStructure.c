@@ -119,18 +119,37 @@ class SCR_CTI_BuildStructure
 			RplComponent rplComp = RplComponent.Cast(structure.FindComponent(RplComponent));
 			RplId rplid = rplComp.Id();
 			m_baseComp.addStuctureRplId(factionkey, rplid);
+			
+			// create spawn point
+			ResourceName resname = "{987991DCED3DC197}PrefabsEditable/SpawnPoints/E_SpawnPoint.et";
+			Resource res = Resource.Load(resname);
+			IEntity sp = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
+			SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
+			spawn.SetFactionKey(factionkey);
+			
+			// pay the cost
+			SCR_CTI_FactoryData factoryData;
+			int index = -1;
+			switch (factionkey)
+			{
+				case "USSR":
+				{
+					index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(resourcename);
+					factoryData = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
+					break;
+				}
+				case "US":
+				{
+					index = m_gameMode.FactoriesUS.findIndexFromResourcename(resourcename);
+					factoryData = m_gameMode.FactoriesUS.g_US_Factories[index];
+					break;
+				}
+			}
+			int cost = factoryData.getPrice();
+			m_gameMode.changeCommanderFunds(factionkey, -cost);
 		} else {
 			PrintFormat("CTI :: Side %1 reached Base limit", factionkey);
 		}
-		
-		// create spawn point
-		ResourceName resname = "{987991DCED3DC197}PrefabsEditable/SpawnPoints/E_SpawnPoint.et";
-		Resource res = Resource.Load(resname);
-		IEntity sp = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
-		SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
-		spawn.SetFactionKey(factionkey);
-		
-		// todo money things
 	}
 
 	//------------------------------------------------------------------------------------------------

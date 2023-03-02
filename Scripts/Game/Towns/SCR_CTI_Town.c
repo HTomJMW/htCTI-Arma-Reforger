@@ -247,7 +247,7 @@ class SCR_CTI_Town : BaseGameEntity
 			m_gameMode.SendHint(playerId, m_townName + " captured", "Information", 15);
 			
 			SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
-			if (clientData)
+			if (clientData && !clientData.isCommander())
 			{
 				if (!recap)
 				{

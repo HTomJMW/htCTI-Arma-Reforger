@@ -24,7 +24,8 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 				{
 					if (clientData.isCommander())
 					{
-						m_gameMode.changeCommanderFunds(clientData.getFaction().GetFactionKey(), SCR_CTI_Constants.BASEINCOME * 5);
+						int factionIndex = clientData.getFactionIndex();
+						m_gameMode.changeCommanderFunds(GetGame().GetFactionManager().GetFactionByIndex(factionIndex).GetFactionKey(), SCR_CTI_Constants.BASEINCOME * 5);
 					} else {
 						clientData.changeFunds(SCR_CTI_Constants.BASEINCOME);
 					}

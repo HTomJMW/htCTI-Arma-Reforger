@@ -17,10 +17,16 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	void randomStartTime()
 	{
 		if (!m_manager) return;
-		
+
 		m_manager.SetDate(1985, 06, 01, true);
-		
-		int random_hour = Math.RandomIntInclusive(7, 17);
+
+		RandomGenerator randomgen = new RandomGenerator();
+		int h, m, s;
+		System.GetHourMinuteSecond(h, m, s);
+		randomgen.SetSeed(s * 100000);
+
+		int random_hour = randomgen.RandIntInclusive(7, 17);
+
 		m_manager.SetHoursMinutesSeconds(random_hour, 0, 0, true);
 		
 		PrintFormat("CTI :: Time: %1h", m_manager.GetTime().m_iHours);
