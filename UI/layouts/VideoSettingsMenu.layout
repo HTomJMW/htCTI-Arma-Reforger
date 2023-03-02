@@ -82,7 +82,7 @@ FrameWidgetClass {
      }
     }
     WindowWidgetClass "{5A8F131E17633FD5}" {
-     Name "UpperWindow"
+     Name "InnerWindow"
      Slot FrameWidgetSlot "{5A8F131E17633FFC}" {
       PositionX 10
       OffsetLeft 10
@@ -90,8 +90,8 @@ FrameWidgetClass {
       OffsetTop 10
       SizeX 780
       OffsetRight -790
-      SizeY 400
-      OffsetBottom -410
+      SizeY 580
+      OffsetBottom -590
      }
      {
       WindowWidgetClass "{5AF2EC40667662B1}" {
@@ -183,19 +183,6 @@ FrameWidgetClass {
        step 1
        current 25
       }
-     }
-    }
-    WindowWidgetClass "{5A8F131E1606DD98}" {
-     Name "LowerWindow"
-     Slot FrameWidgetSlot "{5A8F131E1606DDBD}" {
-      PositionX 10
-      OffsetLeft 10
-      PositionY 420
-      OffsetTop 420
-      SizeX 780
-      OffsetRight -790
-      SizeY 170
-      OffsetBottom -590
      }
     }
    }
