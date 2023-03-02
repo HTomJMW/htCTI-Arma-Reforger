@@ -106,8 +106,6 @@ SCR_DestructibleBuildingEntity : "{1E7AC996BD3B73A7}Prefabs/Structures/Military/
     }
     GenericEntity {
      ID "5704A4848F0C6F2D"
-     components {
-     }
      {
       GenericEntity {
        ID "5216C470CA8B3802"
@@ -471,8 +469,6 @@ SCR_DestructibleBuildingEntity : "{1E7AC996BD3B73A7}Prefabs/Structures/Military/
     }
     GenericEntity {
      ID "5704A4848F0CE3A3"
-     components {
-     }
      {
       GenericEntity {
        ID "5216C470CA8B3802"
