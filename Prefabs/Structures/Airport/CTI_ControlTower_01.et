@@ -1,0 +1,675 @@
+SCR_DestructibleBuildingEntity : "{A43A100E3C377DB2}Prefabs/Structures/Core/Building_Base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  BaseSlotComponent "{5CC9076960077242}" {
+   AttachType EntitySlotInfo "{515AF7432AFA89DE}" {
+    PivotID "socket_entry_01"
+    Offset 0 -0.01 2.65
+   }
+   EntityPrefab "{69A8FFE5527CB776}Prefabs/Structures/BuildingParts/Entry/Entry_Direct_01.et"
+  }
+  BaseSlotComponent "{5CC9076960077248}" {
+   AttachType EntitySlotInfo "{515E816A854FC6D0}" {
+    PivotID "socket_addon_01"
+   }
+   EntityPrefab "{2F571A1E096644E9}Prefabs/Structures/BuildingParts/Entry/Entry_Roof_01_3x6.et"
+  }
+  BaseSlotComponent "{5CC907696007724A}" {
+   AttachType EntitySlotInfo "{515E816A3FA7B288}" {
+    PivotID "socket_entry_01"
+    Offset -1.3 0 1.4
+    ChildPivotID "snap_right"
+   }
+   EntityPrefab "{85C71F17C37D274C}Prefabs/Structures/BuildingParts/Entry/Entry_Block_Platform_01_3x6.et"
+  }
+  BaseSlotComponent "{5CC907696007724B}" {
+   AttachType EntitySlotInfo "{51B27AE989083A19}" {
+    PivotID "socket_entry_02"
+    Offset 0.2 -0.07 0
+   }
+   EntityPrefab "{69A8FFE5527CB776}Prefabs/Structures/BuildingParts/Entry/Entry_Direct_01.et"
+  }
+  BaseSlotComponent "{5CC907696007724F}" {
+   AttachType EntitySlotInfo "{515E816AF80C9A9B}" {
+    PivotID "socket_addon_02"
+   }
+   EntityPrefab "{0A87B5B82979BC0A}Prefabs/Structures/BuildingParts/Misc/SmallRoof_01.et"
+  }
+  FactionAffiliationComponent "{5CC9131D60CFDCBB}" {
+  }
+  MeshObject "{506EDA9D46FC6C06}" {
+   Object "{5BCDD2AFE67E82F5}Assets/Structures/Airport/ControlTower_01/ControlTower_01.xob"
+  }
+  RigidBody "{506EDA9CBE1B57FF}" {
+   ModelGeometry 1
+   Static 1
+  }
+  SCR_CTI_BuildingMapDescriptorComponent "{5CC9131D4E040F7D}" {
+  }
+  SCR_CTI_FactorySpawnComponent "{5CC9131D56076817}" {
+  }
+ }
+ coords 1400.296 9.892 2887.337
+ SlotBoneMappings {
+  SlotBoneMappingObject "{5CC9076960077252}" {
+   BonePrefix "socket_door_main"
+   Prefab "{C97D2037C275C757}Prefabs/Structures/BuildingParts/Doors/DoorSet_ShopModern_E_EXT_A.et"
+  }
+  SlotBoneMappingObject "{5CC9076960077251}" {
+   BonePrefix "socket_window_195x142"
+   Prefab "{A52F65CA9228EFC4}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_195x142_2_B.et"
+  }
+  SlotBoneMappingObject "{5CC9076960077250}" {
+   BonePrefix "socket_window_170x142"
+   Prefab "{E6D0FCCF5590AF55}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_170x142_1_B.et"
+  }
+  SlotBoneMappingObject "{5CC9076960077257}" {
+   BonePrefix "socket_window_90x142"
+   Prefab "{3F0A6375DB724BBD}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_90x142_1_B.et"
+  }
+  SlotBoneMappingObject "{5CC9076960076BD9}" {
+   BonePrefix "socket_window_90x72"
+   Prefab "{CA6F31FA82BD537F}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_90x72_1_B.et"
+  }
+  SlotBoneMappingObject "{5CC9076960076BD8}" {
+   BonePrefix "socket_window_130x72"
+   Prefab "{D3F903272380C266}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_130x72_1_B.et"
+  }
+  SlotBoneMappingObject "{5CC9076960076BDB}" {
+   BonePrefix "socket_door_int_right"
+   Prefab "{3001595FE0D14B45}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_INT_COV_B.et"
+  }
+  SlotBoneMappingObject "{5CC9076960076BDA}" {
+   BonePrefix "socket_door_roof"
+   Prefab "{CC6B92AEE60F0AAC}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_EXT_COV_B_brown.et"
+  }
+  SlotBoneMappingObject "{5CC9076960076BD5}" {
+   BonePrefix "socket_door_bottom"
+   Prefab "{79F622DEBB73D581}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_L_EXT_COV_B_brown.et"
+  }
+  SlotBoneMappingObject "{5CC9076960076BD4}" {
+   BonePrefix "socket_door_top"
+   Prefab "{B2C3809EEEA1B1EF}Prefabs/Structures/BuildingParts/Doors/Door_ControlTower_LEFT_EXT_COV_B.et"
+  }
+  SlotBoneMappingObject "{5CC90769600706C9}" {
+   BonePrefix "socket_window_top_190x230_B"
+   Prefab "{93299EA106D5DA88}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_190x230_1_B.et"
+  }
+  SlotBoneMappingObject "{5CC90769600706CA}" {
+   BonePrefix "socket_window_top_190x230_M1"
+   Prefab "{DDECA071C15FB0D6}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_190x230_1_M1.et"
+  }
+  SlotBoneMappingObject "{5CC90769600706CB}" {
+   BonePrefix "socket_window_top_190x230_M2"
+   Prefab "{B1B894917D9B3FF8}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_190x230_1_M2.et"
+  }
+  SlotBoneMappingObject "{5CC90769600706CC}" {
+   BonePrefix "socket_window_top_260x230_B"
+   Prefab "{E849A35B82E2F52F}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_260x230_1_B.et"
+  }
+  SlotBoneMappingObject "{5CC90769600706CD}" {
+   BonePrefix "socket_window_top_260x230_M1"
+   Prefab "{98E43F564B853AC3}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_260x230_1_M1.et"
+  }
+  SlotBoneMappingObject "{5CC90769600706CE}" {
+   BonePrefix "socket_window_top_260x230_M2"
+   Prefab "{F4B00BB6F741B5ED}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_260x230_1_M2.et"
+  }
+  SlotBoneMappingObject "{5CC90769600706CF}" {
+   BonePrefix "socket_window_top_85x140"
+   Prefab "{E40E53D24BE130AD}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_85x140_1_B.et"
+  }
+  SlotBoneMappingObject "{5CC90769600706F0}" {
+   BonePrefix "socket_window_top_295x85"
+   Prefab "{836A3C3DD93D0B4E}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_295x85_1_B.et"
+  }
+  SlotBoneMappingObject "{5CC90769600735AC}" {
+   BonePrefix "socket_door_int_left"
+   Prefab "{66A908B66DC3277A}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_L_INT_COV_B.et"
+  }
+ }
+ {
+  $grp GenericEntity : "{3001595FE0D14B45}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_INT_COV_B.et" {
+   {
+    ID "5CC90769600A4239"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_door_int_right_04"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600A423D"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_door_int_right_03"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600A423E"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_door_int_right_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600A423F"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_door_int_right_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  $grp Building : "{3F0A6375DB724BBD}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_90x142_1_B.et" {
+   {
+    ID "5CC90769600A20E5"
+    components {
+     Hierarchy "{5CC90769600735A0}" {
+      Enabled 1
+      PivotID "Socket_window_90x142_04"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600A20E7"
+    components {
+     Hierarchy "{5CC90769600735A6}" {
+      Enabled 1
+      PivotID "Socket_window_90x142_05"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600A8EF4"
+    components {
+     Hierarchy "{5CC90769600735A3}" {
+      Enabled 1
+      PivotID "Socket_window_90x142_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600A8EF5"
+    components {
+     Hierarchy "{5CC90769600735A2}" {
+      Enabled 1
+      PivotID "Socket_window_90x142_03"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600ABA11"
+    components {
+     Hierarchy "{5CC90769600735BE}" {
+      Enabled 1
+      PivotID "Socket_window_90x142_06"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600ABA6E"
+    components {
+     Hierarchy "{5CC90769600735BD}" {
+      Enabled 1
+      PivotID "Socket_window_90x142_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  EnvironmentProbeEntity : "{565470F7BA530E0D}Prefabs/Structures/Core/ProbeHouse_Base.et" {
+   ID "5CC90769600ABA10"
+   coords 5.263 12.99 -0.971
+   LVReflectionBrightness -3
+   LVDiffuseBrightness -3
+   DiffuseColor 1 0.77 0.644 1
+  }
+  $grp GenericEntity : "{66A908B66DC3277A}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_L_INT_COV_B.et" {
+   {
+    ID "5CC90769600B1C55"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_door_int_left_04"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600B1C56"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_door_int_left_03"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600B1C57"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_door_int_left_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600B2F4D"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_door_int_left_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  GenericEntity : "{79F622DEBB73D581}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_L_EXT_COV_B_brown.et" {
+   ID "5CC90769600B2F4A"
+   components {
+    MeshObject "{61B367470698533A}" {
+     Materials {
+      MaterialAssignClass "{5CC90769600735B7}" {
+       SourceMaterial "Assets/Structures/BuildingsParts/Doors/Data/Doors_Village_E"
+       AssignedMaterial "{A2D32876C291A8BE}Assets/Structures/BuildingsParts/Doors/Data/Doors_Village_E_INT.emat"
+      }
+      MaterialAssignClass "{5CC90769600735B1}" {
+       SourceMaterial "Doors_Village_E_INT"
+       AssignedMaterial "{D0A33C628C63F94A}Assets/Structures/BuildingsParts/Doors/Data/Doors_Village_E.emat"
+      }
+     }
+    }
+    Hierarchy "{612AE78C85563E26}" {
+     Enabled 1
+     PivotID "Socket_door_bottom"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 -0.091
+   {
+    GenericEntity {
+     ID "568ABA4E08EDA116"
+     components {
+      MeshObject "{309366462BDAFB24}" {
+       Materials {
+        MaterialAssignClass "{5CC90769600735C9}" {
+         SourceMaterial "Doors_Village_E"
+         AssignedMaterial "{A2D32876C291A8BE}Assets/Structures/BuildingsParts/Doors/Data/Doors_Village_E_INT.emat"
+        }
+        MaterialAssignClass "{5CC90769600735CA}" {
+         SourceMaterial "Doors_Village_E_INT"
+         AssignedMaterial "{D0A33C628C63F94A}Assets/Structures/BuildingsParts/Doors/Data/Doors_Village_E.emat"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  Building : "{836A3C3DD93D0B4E}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_295x85_1_B.et" {
+   ID "5CC90769600B2F4B"
+   components {
+    Hierarchy "{5CC90769600735C6}" {
+     PivotID "Socket_window_top_295x85"
+    }
+   }
+   coords 0 0 0.053
+  }
+  $grp Building : "{93299EA106D5DA88}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_190x230_1_B.et" {
+   {
+    ID "5CC90769600B9B8D"
+    components {
+     Hierarchy "{5CC90769600735C0}" {
+      Enabled 1
+      PivotID "Socket_window_top_190x230_B_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.048
+   }
+   {
+    ID "5CC90769600B9B8E"
+    components {
+     Hierarchy "{5CC90769600735C2}" {
+      Enabled 1
+      PivotID "Socket_window_top_190x230_B_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.078
+   }
+  }
+  GenericEntity : "{977461B206979919}Prefabs/Structures/Airport/ControlTower_01_furniture_01.et" {
+   ID "5CC90769600B9B8F"
+   coords 0 0 0
+  }
+  $grp Building : "{98E43F564B853AC3}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_260x230_1_M1.et" {
+   {
+    ID "5CC9076960085FEC"
+    components {
+     Hierarchy "{5CC90769600735E0}" {
+      Enabled 1
+      PivotID "Socket_window_top_260x230_M1_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.046
+   }
+   {
+    ID "5CC90769600B9BA2"
+    components {
+     Hierarchy "{5CC90769600735E6}" {
+      Enabled 1
+      PivotID "Socket_window_top_260x230_M1_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.053
+   }
+  }
+  $grp Building : "{A52F65CA9228EFC4}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_195x142_2_B.et" {
+   {
+    ID "5CC9076960085FEA"
+    components {
+     Hierarchy "{5CC90769600735FD}" {
+      Enabled 1
+      PivotID "Socket_window_195x142_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC9076960085FED"
+    components {
+     Hierarchy "{5CC90769600735E3}" {
+      Enabled 1
+      PivotID "Socket_window_195x142_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC907696008D470"
+    components {
+     Hierarchy "{5CC90769600735FA}" {
+      Enabled 1
+      PivotID "Socket_window_195x142_04"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC907696008D472"
+    components {
+     Hierarchy "{5CC90769600735FE}" {
+      Enabled 1
+      PivotID "Socket_window_195x142_06"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC907696008D473"
+    components {
+     Hierarchy "{5CC90769600735F8}" {
+      Enabled 1
+      PivotID "Socket_window_195x142_05"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC907696008E00D"
+    components {
+     Hierarchy "{5CC90769600735F4}" {
+      Enabled 1
+      PivotID "Socket_window_195x142_03"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  $grp Building : "{B1B894917D9B3FF8}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_190x230_1_M2.et" {
+   {
+    ID "5CC907696008E00C"
+    components {
+     Hierarchy "{5CC90769600735F6}" {
+      Enabled 1
+      PivotID "Socket_window_top_190x230_M2_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.048
+   }
+   {
+    ID "5CC907696008E013"
+    components {
+     Hierarchy "{5CC90769600735F0}" {
+      Enabled 1
+      PivotID "Socket_window_top_190x230_M2_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.078
+   }
+  }
+  GenericEntity : "{B2C3809EEEA1B1EF}Prefabs/Structures/BuildingParts/Doors/Door_ControlTower_LEFT_EXT_COV_B.et" {
+   ID "5CC907696008E012"
+   components {
+    Hierarchy "{7642683606C70747}" {
+     Enabled 1
+     PivotID "Socket_door_top"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 0
+  }
+  GenericEntity : "{C97D2037C275C757}Prefabs/Structures/BuildingParts/Doors/DoorSet_ShopModern_E_EXT_A.et" {
+   ID "5CC9076960097F52"
+   components {
+    Hierarchy "{612AE78C85563E26}" {
+     Enabled 1
+     PivotID "Socket_door_main"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 -0.051
+  }
+  Building : "{CA6F31FA82BD537F}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_90x72_1_B.et" {
+   ID "5CC9076960097F50"
+   components {
+    Hierarchy "{5CC907696007340E}" {
+     Enabled 1
+     PivotID "Socket_window_90x72"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 0
+  }
+  GenericEntity : "{CC6B92AEE60F0AAC}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_EXT_COV_B_brown.et" {
+   ID "5CC9076960097F57"
+   components {
+    Hierarchy "{612AE78C85563E26}" {
+     Enabled 1
+     PivotID "Socket_door_roof"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 0
+  }
+  Building : "{D3F903272380C266}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_130x72_1_B.et" {
+   ID "5CC907696009CD2B"
+   components {
+    Hierarchy "{5CC9076960073409}" {
+     Enabled 1
+     PivotID "Socket_window_130x72"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 0
+  }
+  $grp Building : "{DDECA071C15FB0D6}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_190x230_1_M1.et" {
+   {
+    ID "5CC907696009B67A"
+    components {
+     Hierarchy "{5CC9076960073404}" {
+      Enabled 1
+      PivotID "Socket_window_top_190x230_M1_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.078
+   }
+   {
+    ID "5CC907696009CD2A"
+    components {
+     Hierarchy "{5CC907696007340A}" {
+      Enabled 1
+      PivotID "Socket_window_top_190x230_M1_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.048
+   }
+  }
+  Building : "{E40E53D24BE130AD}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_85x140_1_B.et" {
+   ID "5CC907696009B679"
+   components {
+    Hierarchy "{5CC9076960073405}" {
+     PivotID "Socket_window_top_85x140"
+    }
+   }
+   coords 0 0 0.063
+  }
+  $grp Building : "{E6D0FCCF5590AF55}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_170x142_1_B.et" {
+   {
+    ID "5CC90769600673E0"
+    components {
+     Hierarchy "{5CC9076960073400}" {
+      Enabled 1
+      PivotID "Socket_window_170x142_04"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC90769600673EF"
+    components {
+     Hierarchy "{5CC9076960073403}" {
+      Enabled 1
+      PivotID "Socket_window_170x142_03"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC907696006AD4E"
+    components {
+     Hierarchy "{5CC907696007341D}" {
+      Enabled 1
+      PivotID "Socket_window_170x142_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC907696006C149"
+    components {
+     Hierarchy "{5CC907696007341C}" {
+      Enabled 1
+      PivotID "Socket_window_170x142_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CC907696009B678"
+    components {
+     Hierarchy "{5CC9076960073407}" {
+      Enabled 1
+      PivotID "Socket_window_170x142_05"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  $grp Building : "{E849A35B82E2F52F}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_260x230_1_B.et" {
+   {
+    ID "5CC907696006AD4C"
+    components {
+     Hierarchy "{5CC9076960073418}" {
+      Enabled 1
+      PivotID "Socket_window_top_260x230_B_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.046
+   }
+   {
+    ID "5CC907696006AD4F"
+    components {
+     Hierarchy "{5CC907696007341F}" {
+      Enabled 1
+      PivotID "Socket_window_top_260x230_B_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0.053
+   }
+  }
+  Building : "{F4B00BB6F741B5ED}Prefabs/Structures/BuildingParts/Windows/Win_ControlTower/Win_ControlTower_A_260x230_1_M2.et" {
+   ID "5CC90769600772B9"
+   components {
+    Hierarchy "{5CC9076960073419}" {
+     Enabled 1
+     PivotID "Socket_window_top_260x230_M2_01"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 0.046
+  }
+ }
+}

@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{9F0ADF73AD4259AE}Prefabs/Structures/Industrial/Houses/Warehouse_01/CTI_Warehouse_01_Office.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

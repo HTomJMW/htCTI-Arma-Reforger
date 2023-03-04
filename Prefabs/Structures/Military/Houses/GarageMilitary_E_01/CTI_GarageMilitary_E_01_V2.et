@@ -1,0 +1,17 @@
+SCR_DestructibleBuildingEntity : "{1E7AC996BD3B73A7}Prefabs/Structures/Military/Houses/GarageMilitary_E_01/GarageMilitary_E_01_base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  FactionAffiliationComponent "{5CC9131C7B933437}" {
+  }
+  SCR_CTI_BuildingMapDescriptorComponent "{5CC9131C73C3C375}" {
+  }
+  SCR_CTI_FactorySpawnComponent "{5CC9131C780ED403}" {
+  }
+ }
+ {
+  GenericEntity : "{35B69BCB36CEB771}Prefabs/Structures/Military/Houses/GarageMilitary_E_01/GarageMilitary_E_01_furniture_02.et" {
+   ID "5CC9076A44F538FD"
+   coords 0 0 0
+  }
+ }
+}

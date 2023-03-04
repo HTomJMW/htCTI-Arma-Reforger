@@ -1,0 +1,16 @@
+SCR_DestructibleBuildingEntity : "{74CBD673D67C58FF}Prefabs/Structures/Industrial/Houses/Office_E_01/Office_E_01_base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  FactionAffiliationComponent "{5CC9131CF5AD48A7}" {
+  }
+  SCR_CTI_BuildingMapDescriptorComponent "{5CC9131CEE4F323D}" {
+  }
+  SCR_CTI_FactorySpawnComponent "{5CC9131CF2C10530}" {
+  }
+ }
+ {
+  GenericEntity : "{8C1817BB43391597}Prefabs/Structures/Industrial/Houses/Office_E_01/Office_E_01_furniture_01.et" {
+   ID "5CC9076AF718A9BA"
+  }
+ }
+}
