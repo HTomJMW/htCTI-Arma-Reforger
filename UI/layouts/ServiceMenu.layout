@@ -35,6 +35,20 @@ FrameWidgetClass {
    Clipping False
    "no focus" 1
    {
+    WindowWidgetClass "{5CC50C7A1FBF21A1}" {
+     Name "UpperWindow"
+     Slot FrameWidgetSlot "{5CC50C7A1FBF21B8}" {
+      Anchor 0.5 0 0.5 0
+      PositionX -400
+      OffsetLeft -400
+      PositionY 0
+      OffsetTop 0
+      SizeX 800
+      OffsetRight -400
+      SizeY 50
+      OffsetBottom -50
+     }
+    }
     ButtonWidgetClass "{5ACCC84A627600B9}" {
      Name "Repair"
      Slot FrameWidgetSlot "{5A3F4D65D9FBD4DA}" {

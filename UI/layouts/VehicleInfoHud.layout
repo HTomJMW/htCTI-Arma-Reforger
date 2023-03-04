@@ -1,5 +1,6 @@
 FrameWidgetClass {
  Name "rootFrame"
+ "Is Visible" 0
  {
   WindowWidgetClass "{5A871286BCE681C5}" {
    Name "Window"

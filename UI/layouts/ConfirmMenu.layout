@@ -1,5 +1,6 @@
 FrameWidgetClass {
  Name "rootFrame"
+ "Is Visible" 0
  {
   ImageWidgetClass "{5C7B1CE1B897B3AE}" {
    Name "BackGround"
