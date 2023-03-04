@@ -66,8 +66,8 @@ class SCR_CTI_DefensesUSSR
 		name.Insert("Tent");
 		price.Insert(500);
 		buildtime.Insert(10);
-		distance.Insert(5);
-		placement.Insert(0);
+		distance.Insert(8);
+		placement.Insert(180);
 		script.Insert("");
 		
 		resname.Insert("{DA1B42FB9AEC02BE}Prefabs/Structures/Military/Fortifications/Dragontooth_01/Dragontooth_01_V3.et");

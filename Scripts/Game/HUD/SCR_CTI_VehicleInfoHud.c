@@ -20,6 +20,8 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
 	{
+		m_wRoot.SetVisible(false);
+		
 		m_name = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Name"));
 		m_fuel = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Fuel"));
 		m_damage = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Damage"));
@@ -36,8 +38,6 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 
 		m_occupants.SetText("");
 		m_occupants.SetVisible(true);
-		
-		m_wRoot.SetVisible(false);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 		m_pc = GetGame().GetPlayerController();
 		m_playerManager = GetGame().GetPlayerManager();
 
-		m_timeDelta = 0;
+		m_timeDelta = 1;
 
 		return true;
 	}

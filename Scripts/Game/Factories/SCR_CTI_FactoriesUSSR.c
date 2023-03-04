@@ -30,7 +30,7 @@ class SCR_CTI_FactoriesUSSR
 	private void fillUp()
 	{
 		// Buildings
-		resname.Insert("{51F233A0BA73532A}Prefabs/Structures/Industrial/Houses/Office_E_01/Office_E_01.et");
+		resname.Insert("{531C9448A4765D2C}Prefabs/Structures/Industrial/Houses/Office_E_01/CTI_Office_E_01.et");
 		name.Insert("Control Center");
 		price.Insert(2000);
 		buildtime.Insert(10);
@@ -38,7 +38,7 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{56073EA03FCF2043}Prefabs/Structures/Military/Houses/Barracks_01/Barracks_01_military_white.et");
+		resname.Insert("{8614313A0B9A7D00}Prefabs/Structures/Military/Houses/Barracks_01/CTI_Barracks_01_military_white.et");
 		name.Insert("Barracks");
 		price.Insert(1000);
 		buildtime.Insert(10);
@@ -46,7 +46,7 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(0);
 		script.Insert("");
 		
-		resname.Insert("{80A5B37A1472B084}Prefabs/Structures/Industrial/Garages/Garage_E_02/Garage_E_02.et");
+		resname.Insert("{B96C2C9025525F99}Prefabs/Structures/Industrial/Garages/Garage_E_02/CTI_Garage_E_02.et");
 		name.Insert("Light Factory");
 		price.Insert(2000);
 		buildtime.Insert(10);
@@ -54,7 +54,7 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(180);
 		script.Insert("");
 
-		resname.Insert("{4A862A8A65503FFC}Prefabs/Structures/Military/Houses/GarageMilitary_E_01/GarageMilitary_E_01_V2.et");
+		resname.Insert("{A23910B70FA0AE18}Prefabs/Structures/Military/Houses/GarageMilitary_E_01/CTI_GarageMilitary_E_01_V2.et");
 		name.Insert("Heavy Factory");
 		price.Insert(4000);
 		buildtime.Insert(10);
@@ -62,7 +62,7 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{9CEC8BB63429FF28}Prefabs/Structures/Airport/ControlTower_01.et");
+		resname.Insert("{B26CC368BE2940F1}Prefabs/Structures/Airport/CTI_ControlTower_01.et");
 		name.Insert("Air Factory");
 		price.Insert(8000);
 		buildtime.Insert(10);
@@ -70,7 +70,7 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{7E2380494811A5FB}Prefabs/Structures/Infrastructure/Towers/TransmitterTower_01/TransmitterTower_01_medium.et");
+		resname.Insert("{629CD40ABAEA6CF9}Prefabs/Structures/Infrastructure/Towers/TransmitterTower_01/CTI_TransmitterTower_01_medium.et");
 		name.Insert("Radar Tower");
 		price.Insert(2000);
 		buildtime.Insert(10);
@@ -78,7 +78,7 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(0);
 		script.Insert("");
 		
-		resname.Insert("{E8C14F26268A4D6D}Prefabs/Structures/Services/Fire/FireStation_E_01/FireStation_E_01.et");
+		resname.Insert("{706F5D7B89075C8E}Prefabs/Structures/Services/Fire/FireStation_E_01/CTI_FireStation_E_01_white.et");
 		name.Insert("Repair Depot");
 		price.Insert(1000);
 		buildtime.Insert(10);
@@ -86,7 +86,7 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{BBCEDBF2C4E3E896}Prefabs/Structures/Industrial/Houses/Warehouse_01/Warehouse_01_Office.et");
+		resname.Insert("{9F0ADF73AD4259AE}Prefabs/Structures/Industrial/Houses/Warehouse_01/CTI_Warehouse_01_Office.et");
 		name.Insert("Ammo Depot");
 		price.Insert(1000);
 		buildtime.Insert(10);
@@ -94,7 +94,7 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{05446F713779A94D}Prefabs/Structures/Military/Houses/GuardHouse_02/GuardHouse_02.et");
+		resname.Insert("{0148FBB09395D786}Prefabs/Structures/Military/Houses/GuardHouse_02/CTI_GuardHouse_02.et");
 		name.Insert("Naval");
 		price.Insert(1000);
 		buildtime.Insert(10);

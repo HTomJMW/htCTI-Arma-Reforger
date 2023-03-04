@@ -425,7 +425,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
     protected void RpcDo_RecieveHint(int playerId, string message, string messageTitle, int hintTime)
     {
         int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
-        if(playerId != localPlayerId) return;
+        if (playerId != localPlayerId) return;
         
         SCR_HintManagerComponent.ShowCustomHint(message, messageTitle, hintTime);
     }
@@ -441,7 +441,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
     protected void RpcDo_RecievePopUpNotif(int playerId, string message, float duration, string message2, int prio)
     {
         int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
-        if(playerId != localPlayerId) return;
+        if (playerId != localPlayerId) return;
 
 		SCR_PopUpNotification popUpNotif = SCR_PopUpNotification.GetInstance();
 		popUpNotif.PopupMsg(message, duration, message2);

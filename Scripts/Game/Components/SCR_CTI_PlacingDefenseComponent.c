@@ -9,7 +9,10 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 	protected RplComponent m_RplComponent;
 	
 	protected ResourceName m_resName;
-	protected IEntity m_defense = null;
+
+	SCR_BasePreviewEntity m_defense = null;
+	//protected IEntity m_defense = null;
+	
 	protected vector finalMat[4];
 	
 	protected bool m_startPlacing = false;
@@ -73,16 +76,20 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		
 		Resource resource = Resource.Load(resName);
 
-		m_defense = GetGame().SpawnEntityPrefabLocal(resource, GetGame().GetWorld(), params);
+		//m_defense = GetGame().SpawnEntityPrefabLocal(resource, GetGame().GetWorld(), params);
+
+		ResourceName material = "{58F07022C12D0CF5}Assets/Editor/PlacingPreview/Preview.emat";
+		m_defense = SCR_PrefabPreviewEntity.SpawnPreviewFromPrefab(resource, "SCR_PrefabPreviewEntity", GetGame().GetWorld(), params, material);
 
 		if (m_defense)
 		{
-			Physics phys = m_defense.GetPhysics();
-			phys.ChangeSimulationState(SimulationState.NONE);
+			//Physics phys = m_defense.GetPhysics();
+			//phys.ChangeSimulationState(SimulationState.NONE);
 
 			PrintFormat("CTI :: Created Def preview: %1", m_defense);
 
 			m_canceled = false;
+			m_confirmed = false;
 			m_startPlacing = startPlacing;
 		}
 	}
@@ -129,7 +136,8 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_PlayerController.FindComponent(SCR_CTI_NetWorkComponent));
 		netComp.buildDefenseServer(m_resName, finalMat, m_PlayerController.GetPlayerId());
-		
+
+		m_canceled = false;
 		m_confirmed = false;
 	}
 
@@ -140,7 +148,9 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		menuManager.CloseAllMenus();
 		
 		m_startPlacing = false;
+		m_confirmed = false;
 		m_canceled = false;
+		
 		if (m_defense) SCR_EntityHelper.DeleteEntityAndChildren(m_defense);
 	}
 

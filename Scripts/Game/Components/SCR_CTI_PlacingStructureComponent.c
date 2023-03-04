@@ -10,7 +10,10 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 	
 	protected FactionKey m_fk;
 	protected ResourceName m_resName;
-	protected IEntity m_structure = null;
+	
+	//protected IEntity m_structure = null;
+	SCR_BasePreviewEntity m_structure = null;
+	
 	protected vector finalMat[4];
 	
 	protected bool m_startPlacing = false;
@@ -76,16 +79,20 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		
 		Resource resource = Resource.Load(resName);
 
-		m_structure = GetGame().SpawnEntityPrefabLocal(resource, GetGame().GetWorld(), params);
+		//m_structure = GetGame().SpawnEntityPrefabLocal(resource, GetGame().GetWorld(), params);
+		
+		ResourceName material = "{58F07022C12D0CF5}Assets/Editor/PlacingPreview/Preview.emat";
+		m_structure = SCR_PrefabPreviewEntity.SpawnPreviewFromPrefab(resource, "SCR_PrefabPreviewEntity", GetGame().GetWorld(), params, material);
 
 		if (m_structure)
 		{
-			Physics phys = m_structure.GetPhysics();
-			phys.ChangeSimulationState(SimulationState.NONE);
+			//Physics phys = m_structure.GetPhysics();
+			//phys.ChangeSimulationState(SimulationState.NONE);
 
 			PrintFormat("CTI :: Created Structure preview: %1", m_structure);
 
 			m_canceled = false;
+			m_confirmed = false;
 			m_startPlacing = startPlacing;
 		}
 	}
@@ -132,7 +139,8 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_PlayerController.FindComponent(SCR_CTI_NetWorkComponent));
 		netComp.buildStructureServer(m_fk, m_resName, finalMat);
-		
+
+		m_canceled = false;
 		m_confirmed = false;
 	}
 
@@ -143,7 +151,9 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		menuManager.CloseAllMenus();
 		
 		m_startPlacing = false;
+		m_confirmed = false;
 		m_canceled = false;
+
 		if (m_structure) SCR_EntityHelper.DeleteEntityAndChildren(m_structure);
 	}
 

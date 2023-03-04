@@ -52,6 +52,12 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		m_normalnv = ButtonWidget.Cast(m_wRoot.FindAnyWidget("NormalNV"));
 		m_satellite = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Satellite"));
 
+		m_unflip.SetColor(Color.Orange);
+		m_unflip.AddHandler(m_unitCamButtonEventHandler);
+
+		//m_ironsight.SetColor(Color.Orange);
+		//m_ironsight.AddHandler(m_unitCamButtonEventHandler);
+
 		m_external.SetColor(Color.Orange);
 		m_external.AddHandler(m_unitCamButtonEventHandler);
 		

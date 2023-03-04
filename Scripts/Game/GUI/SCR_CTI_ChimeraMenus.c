@@ -8,5 +8,6 @@ modded enum ChimeraMenuPreset
 	CTI_GUI_UnitCamMenu,
 	CTI_GUI_OnlineHelpMenu,
 	CTI_GUI_TransferResourcesMenu,
-	CTI_GUI_GearMenu
+	CTI_GUI_GearMenu,
+	CTI_GUI_ServiceMenu
 };

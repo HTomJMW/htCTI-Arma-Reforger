@@ -1,6 +1,7 @@
 class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 {
 	protected SCR_CTI_GameMode m_gameMode;
+	protected InputManager m_inputManager;
 	protected PlayerController m_pc;
 	protected ChimeraCharacter m_ch;
 	
@@ -8,7 +9,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 	protected SCR_CTI_PlacingStructureComponent m_psc;
 
 	protected float m_timeDelta;
-	protected const float TIMESTEP = 0.05;
+	protected const float TIMESTEP = 0.02;
 
 	protected ButtonWidget m_confirm;
 	protected ButtonWidget m_cancel;
@@ -27,7 +28,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 
 		m_confirm.SetColor(Color.Orange);
 		m_confirm.SetState(false);
-		
+
 		m_cancel.SetColor(Color.White);
 		m_cancel.SetState(true);
 		
@@ -61,23 +62,15 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 			if (!menuOpen && (m_pdc.getStartPlacing() || m_psc.getStartPlacing()))
 			{
 				m_wRoot.SetVisible(true);
-			} else {
-				m_wRoot.SetVisible(false);
 				
-				m_pdc.cancelPlacement(true);
-				m_psc.cancelPlacement(true);
-			}
-			
-			m_ch = ChimeraCharacter.Cast(m_pc.GetControlledEntity());
-			if (m_ch.IsInVehicle())
-			{
-				m_pdc.cancelPlacement(true);
-				m_psc.cancelPlacement(true);
-			}
-
-			if (m_wRoot.IsVisible())
-			{
-				bool mw = GetGame().GetInputManager().GetActionValue("MouseWheel"); // need disable moving speed change on scroll
+				m_ch = ChimeraCharacter.Cast(m_pc.GetControlledEntity());
+				if (m_ch.IsInVehicle())
+				{
+					m_pdc.cancelPlacement(true);
+					m_psc.cancelPlacement(true);
+				}
+				
+				bool mw = m_inputManager.GetActionValue("MouseWheel"); // need disable moving speed change on scroll
 				if (mw)
 				{
 					if (m_cancel.GetState())
@@ -90,7 +83,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 					}
 				}
 
-				bool wheeldown = GetGame().GetInputManager().GetActionValue("MouseMiddle");
+				bool wheeldown = m_inputManager.GetActionValue("MouseMiddle");
 				if (wheeldown)
 				{
 					if (m_confirm.GetState())
@@ -101,6 +94,14 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 						m_pdc.cancelPlacement(true);
 						m_psc.cancelPlacement(true);
 					}
+				}
+			} else {
+				m_wRoot.SetVisible(false);
+				
+				if (!m_cancel.GetState())
+				{
+					m_confirm.SetState(false); m_confirm.SetColor(Color.Orange); m_confirmText.SetText("Confirm");
+					m_cancel.SetState(true); m_cancel.SetColor(Color.White); m_cancelText.SetText("[ - Cancel - ]");
 				}
 			}
 			m_timeDelta = 0;
@@ -113,6 +114,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 		if (m_LayoutPath == "") m_LayoutPath = "{8C4B0F3E158814B4}UI/layouts/ConfirmMenu.layout";
 		
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_inputManager = GetGame().GetInputManager();
 		m_pc = GetGame().GetPlayerController();
 		
 		m_pdc = SCR_CTI_PlacingDefenseComponent.Cast(m_pc.FindComponent(SCR_CTI_PlacingDefenseComponent));

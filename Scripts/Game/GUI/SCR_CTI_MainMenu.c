@@ -46,7 +46,6 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected ButtonWidget m_clearpriority;
 	
 	protected ButtonWidget m_exit;
-	protected RichTextWidget m_exittext;
 	
 	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
 	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
@@ -98,7 +97,6 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_clearpriority = ButtonWidget.Cast(m_wRoot.FindAnyWidget("ClearPriorityButton"));
 
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
-		m_exittext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ExitText"));
 
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
@@ -148,10 +146,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_unflipnearestvehicle.SetColor(Color.Orange);
 		m_unflipnearestvehicle.AddHandler(m_buttonEventHandler);
 		
-		//m_servicemenu.SetColor(Color.Orange);
-		//m_servicemenu.AddHandler(m_buttonEventHandler);
-		m_servicemenu.SetColor(Color.Gray);
-		m_servicemenu.SetEnabled(false);
+		m_servicemenu.SetColor(Color.Orange);
+		m_servicemenu.AddHandler(m_buttonEventHandler);
 		
 		//m_aimanagement.SetColor(Color.Orange);
 		//m_aimanagement.AddHandler(m_buttonEventHandler);

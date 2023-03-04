@@ -6,6 +6,7 @@ class SCR_CTI_Constants
 	static const int MAXBASES = 2;
 	static const int BASERADIUS = 100;
 	static const int BUILDRANGE = 100;
+	static const int SERVICERANGE = 70;
 	static const bool ECOWIN = true;
 	static const int WINRATE = 75;
 	static const int CAPTURERANGE = 75;
@@ -15,7 +16,7 @@ class SCR_CTI_Constants
 	static const int RECAPTUREDELAY = 180;
 	static const int STARTFUNDS = 2400;
 	static const int STARTCOMMFUNDS = 7500;
-	static const int MGQREPAIRPRICE = 20000;
+	static const int MHQREPAIRPRICE = 20000;
 	static const int BASEINCOME = 50;
 	static const float AISKILL = 0.75;
 	static const int MAXVD = 4000;

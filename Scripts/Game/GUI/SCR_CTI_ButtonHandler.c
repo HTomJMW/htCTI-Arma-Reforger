@@ -130,6 +130,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				Widget root = openedMenu.GetRootWidget();
 				OverlayWidget listbox = OverlayWidget.Cast(root.FindAnyWidget("ListBoxLeft"));
 				SCR_ListBoxComponent listboxcomp = SCR_ListBoxComponent.Cast(listbox.FindHandler(SCR_ListBoxComponent));
+				menuManager.CloseAllMenus(); // close this menu before confirm menu show up
 				int selected = listboxcomp.GetSelectedItem();
 				if (selected == -1) break;
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
@@ -183,8 +184,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 
 				SCR_CTI_PlacingStructureComponent placingStructureComp = SCR_CTI_PlacingStructureComponent.Cast(pc.FindComponent(SCR_CTI_PlacingStructureComponent));
 				if (!placingStructureComp.getStartPlacing()) placingStructureComp.createStructurePreview(fk, res, dist, placement, true);
-				
-				menuManager.CloseAllMenus();
+
 				break;
 			}
 			case "BuildDefense":
@@ -194,6 +194,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				Widget root = openedMenu.GetRootWidget();
 				OverlayWidget listbox = OverlayWidget.Cast(root.FindAnyWidget("ListBoxRight"));
 				SCR_ListBoxComponent listboxcomp = SCR_ListBoxComponent.Cast(listbox.FindHandler(SCR_ListBoxComponent));
+				menuManager.CloseAllMenus(); // close this menu before confirm menu show up
 				int selected = listboxcomp.GetSelectedItem();
 				if (selected == -1) break;
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
@@ -255,8 +256,6 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				}
 				
 				if (funds < cost) break;
-
-				menuManager.CloseAllMenus(); // close this menu before confirm menu show up
 				
 				SCR_CTI_PlacingDefenseComponent placingDefComp = SCR_CTI_PlacingDefenseComponent.Cast(pc.FindComponent(SCR_CTI_PlacingDefenseComponent));
 				if (!placingDefComp.getStartPlacing()) placingDefComp.createDefPreview(res, dist, placement, true);
@@ -408,6 +407,14 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
+				
+				break;
+			}
+			case "ServiceMenuButton":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_ServiceMenu);
 				
 				break;
 			}

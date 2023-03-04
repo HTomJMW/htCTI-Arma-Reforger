@@ -36,6 +36,7 @@ class SCR_CTI_GetSideFactories
 	}
 
 	//------------------------------------------------------------------------------------------------
+	// Factory Types equal to Factory Names
 	static array<IEntity> GetSideFactoriesByType(FactionKey factionkey, string factorytype)
 	{
 		array<IEntity> list = {};

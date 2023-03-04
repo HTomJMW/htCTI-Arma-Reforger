@@ -242,6 +242,127 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 
 		arsenalManager.SetPlayerArsenalLoadout(playerId, GameEntity.Cast(ent));
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	void repairVehicleServer(RplId rplid)
+	{
+		Rpc(RpcAsk_RepairVehicleServer, rplid);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_RepairVehicleServer(RplId rplid)
+	{
+		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
+		IEntity ent = rplComp.GetEntity();
+		if (!ent) return;
+
+		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
+		if (!vehicleDamageManager.IsDestroyed()) vehicleDamageManager.FullHeal();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void refuelVehicleServer(RplId rplid)
+	{
+		Rpc(RpcAsk_RefuelVehicleServer, rplid);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_RefuelVehicleServer(RplId rplid)
+	{
+		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
+		IEntity ent = rplComp.GetEntity();
+		if (!ent) return;
+		
+		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
+		if (!vehicleDamageManager.IsDestroyed())
+		{
+			FuelManagerComponent fuelManagerComp = FuelManagerComponent.Cast(ent.FindComponent(FuelManagerComponent));
+			array<BaseFuelNode> outNodes = {};
+			fuelManagerComp.GetFuelNodesList(outNodes);
+			
+			foreach(BaseFuelNode node : outNodes)
+			{
+				node.SetFuel(node.GetMaxFuel());
+			}
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void rearmVehicleServer(RplId rplid)
+	{
+		Rpc(RpcAsk_RearmVehicleServer, rplid);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_RearmVehicleServer(RplId rplid)
+	{
+		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
+		IEntity ent = rplComp.GetEntity();
+		if (!ent) return;
+		
+		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
+		if (!vehicleDamageManager.IsDestroyed())
+		{
+			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(ent.FindComponent(SCR_BaseCompartmentManagerComponent));
+			
+			array<BaseCompartmentSlot> outCompartments = {};
+			bcmc.GetCompartments(outCompartments);
+					
+			foreach(BaseCompartmentSlot slot : outCompartments)
+			{
+				if (slot.Type() == TurretCompartmentSlot)
+				{
+					TurretControllerComponent tcc = TurretControllerComponent.Cast(slot.GetController());
+					BaseWeaponManagerComponent bwmc = tcc.GetWeaponManager();
+
+					array<IEntity> outWeapons = {};
+					bwmc.GetWeaponsList(outWeapons);
+					
+					if (outWeapons.IsEmpty()) return;
+
+					foreach(IEntity weapon : outWeapons)
+					{
+						WeaponComponent wc = WeaponComponent.Cast(weapon.FindComponent(WeaponComponent));
+						BaseMagazineComponent bmc = wc.GetCurrentMagazine();
+
+						bmc.SetAmmoCount(bmc.GetMaxAmmoCount());
+					}
+				}
+			}
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void healVehicleCrewServer(RplId rplid)
+	{
+		Rpc(RpcAsk_HealVehicleCrewServer, rplid);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_HealVehicleCrewServer(RplId rplid)
+	{
+		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
+		IEntity ent = rplComp.GetEntity();
+		if (!ent) return;
+		
+		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
+		if (!vehicleDamageManager.IsDestroyed())
+		{
+			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(ent.FindComponent(SCR_BaseCompartmentManagerComponent));
+			array<IEntity> occupants = {};
+			bcmc.GetOccupants(occupants);
+			
+			foreach(IEntity crew : occupants)
+			{
+				SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(crew.FindComponent(SCR_CharacterDamageManagerComponent));
+				cdmc.FullHeal();
+			}
+		}
+	}
 
 	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)

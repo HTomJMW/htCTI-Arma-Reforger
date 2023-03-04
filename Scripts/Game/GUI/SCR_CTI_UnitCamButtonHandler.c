@@ -23,8 +23,6 @@ class SCR_CTI_UnitCamButtonHandler : ScriptedWidgetEventHandler
 		{
 			case "IronSight":
 			{
-				
-				
 				break;
 			}
 			case "Internal":
@@ -47,7 +45,19 @@ class SCR_CTI_UnitCamButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Unflip":
 			{
-				
+				// todo check team members
+				PlayerController pc = GetGame().GetPlayerController();
+				IEntity player = pc.GetControlledEntity();
+				SCR_CompartmentAccessComponent cac = SCR_CompartmentAccessComponent.Cast(player.FindComponent(SCR_CompartmentAccessComponent));
+				IEntity vehicle = cac.GetVehicle();
+				if (vehicle)
+				{
+					RplComponent vehRplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
+					RplId rplid = vehRplComp.Id();
+
+					SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+					netComp.unflipNearestVehicleServer(rplid);
+				}
 				
 				break;
 			}
