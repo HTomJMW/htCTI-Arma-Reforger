@@ -17,8 +17,6 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 	protected vector finalMat[4];
 	
 	protected bool m_startPlacing = false;
-	protected bool m_confirmed = false;
-	protected bool m_canceled = false;
 	
 	protected float m_dist;
 	protected int m_placement;
@@ -32,19 +30,6 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		return m_startPlacing;
 	}
 
-	//------------------------------------------------------------------------------------------------
-	void confirmPlacement(bool value)
-	{
-		m_confirmed = value;
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	void cancelPlacement(bool value)
-	{
-		m_canceled = value;
-	}
-	
-	
 	//------------------------------------------------------------------------------------------------
 	void createStructurePreview(FactionKey fk, ResourceName resName, float distance, int placement, bool startPlacing)
 	{
@@ -91,8 +76,6 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 
 			PrintFormat("CTI :: Created Structure preview: %1", m_structure);
 
-			m_canceled = false;
-			m_confirmed = false;
 			m_startPlacing = startPlacing;
 		}
 	}
@@ -139,9 +122,6 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_PlayerController.FindComponent(SCR_CTI_NetWorkComponent));
 		netComp.buildStructureServer(m_fk, m_resName, finalMat);
-
-		m_canceled = false;
-		m_confirmed = false;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -151,8 +131,6 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		menuManager.CloseAllMenus();
 		
 		m_startPlacing = false;
-		m_confirmed = false;
-		m_canceled = false;
 
 		if (m_structure) SCR_EntityHelper.DeleteEntityAndChildren(m_structure);
 	}

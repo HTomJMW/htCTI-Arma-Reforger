@@ -16,8 +16,6 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 	protected vector finalMat[4];
 	
 	protected bool m_startPlacing = false;
-	protected bool m_confirmed = false;
-	protected bool m_canceled = false;
 	
 	protected float m_dist;
 	protected float m_placement;
@@ -29,18 +27,6 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 	bool getStartPlacing()
 	{
 		return m_startPlacing;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void confirmPlacement(bool value)
-	{
-		m_confirmed = value;
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	void cancelPlacement(bool value)
-	{
-		m_canceled = value;
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -88,8 +74,6 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 
 			PrintFormat("CTI :: Created Def preview: %1", m_defense);
 
-			m_canceled = false;
-			m_confirmed = false;
 			m_startPlacing = startPlacing;
 		}
 	}
@@ -136,9 +120,6 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_PlayerController.FindComponent(SCR_CTI_NetWorkComponent));
 		netComp.buildDefenseServer(m_resName, finalMat, m_PlayerController.GetPlayerId());
-
-		m_canceled = false;
-		m_confirmed = false;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -148,8 +129,6 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		menuManager.CloseAllMenus();
 		
 		m_startPlacing = false;
-		m_confirmed = false;
-		m_canceled = false;
 		
 		if (m_defense) SCR_EntityHelper.DeleteEntityAndChildren(m_defense);
 	}

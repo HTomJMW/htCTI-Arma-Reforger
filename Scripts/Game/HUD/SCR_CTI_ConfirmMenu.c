@@ -66,9 +66,6 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				m_ch = ChimeraCharacter.Cast(m_pc.GetControlledEntity());
 				if (m_ch.IsInVehicle())
 				{
-					m_pdc.cancelPlacement(true);
-					m_psc.cancelPlacement(true);
-					
 					if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
 					if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
 				}
@@ -91,15 +88,9 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				{
 					if (m_confirm.GetState())
 					{
-						m_pdc.confirmPlacement(true);
-						m_psc.confirmPlacement(true);
-						
 						if (m_pdc.getStartPlacing()) m_pdc.performBuilding();
 						if (m_psc.getStartPlacing()) m_psc.performBuilding();
 					} else {
-						m_pdc.cancelPlacement(true);
-						m_psc.cancelPlacement(true);
-						
 						if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
 						if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
 					}
