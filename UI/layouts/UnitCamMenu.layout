@@ -40,12 +40,52 @@ FrameWidgetClass {
     OffsetTop 440
     SizeX 300
     OffsetRight 20
-    SizeY 200
-    OffsetBottom -640
+    SizeY 300
+    OffsetBottom -740
+   }
+   {
+    OverlayWidgetClass "{5CD54CE088B3F18B}" {
+     Name "ListBoxTeamMembers"
+     Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
+      Anchor 0 0 0 0
+      PositionX 5
+      OffsetLeft 5
+      PositionY 5
+      OffsetTop 5
+      SizeX 290
+      OffsetRight -295
+      SizeY 290
+      OffsetBottom -295
+     }
+     components {
+      SCR_ListBoxComponent "{566C9415BAA54E1B}" {
+       m_sElementLayout "{3121BDD71C35E46D}UI/layouts/ListBox/ListBoxElement_Text.layout"
+      }
+     }
+     {
+      ScrollLayoutWidgetClass "{5CD54CE088B3F18A}" {
+       Name "ScrollLayout0"
+       Slot OverlayWidgetSlot "{56691148E692437F}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+       Color 0.761 0.386 0.08 1
+       {
+        VerticalLayoutWidgetClass "{5CD54CE088B3F195}" {
+         Name "List"
+         Slot AlignableSlot "{56691148E013D9A9}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+        }
+       }
+      }
+     }
+    }
    }
   }
   WindowWidgetClass "{5ACCEA9FC749F58D}" {
-   Name "TeamsWindow"
+   Name "MapWindow"
    Slot FrameWidgetSlot "{5ACCEA9FC749F5A4}" {
     Anchor 1 0 1 0
     PositionX -320
@@ -59,7 +99,7 @@ FrameWidgetClass {
    }
   }
   WindowWidgetClass "{5ACCEA9FDC37EC71}" {
-   Name "MapWindow"
+   Name "TeamsWindow"
    Slot FrameWidgetSlot "{5ACCEA9FDC37EC94}" {
     Anchor 1 0 1 0
     PositionX -320
@@ -70,6 +110,46 @@ FrameWidgetClass {
     OffsetRight 20
     SizeY 400
     OffsetBottom -420
+   }
+   {
+    OverlayWidgetClass "{5CD54CE08A55A707}" {
+     Name "ListBoxTeams"
+     Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
+      Anchor 0 0 0 0
+      PositionX 5
+      OffsetLeft 5
+      PositionY 5
+      OffsetTop 5
+      SizeX 290
+      OffsetRight -295
+      SizeY 390
+      OffsetBottom -395
+     }
+     components {
+      SCR_ListBoxComponent "{566C9415BAA54E1B}" {
+       m_sElementLayout "{3121BDD71C35E46D}UI/layouts/ListBox/ListBoxElement_Text.layout"
+      }
+     }
+     {
+      ScrollLayoutWidgetClass "{5CD54CE08A55A706}" {
+       Name "ScrollLayout0"
+       Slot OverlayWidgetSlot "{56691148E692437F}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+       Color 0.761 0.386 0.08 1
+       {
+        VerticalLayoutWidgetClass "{5CD54CE08A55A701}" {
+         Name "List"
+         Slot AlignableSlot "{56691148E013D9A9}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+        }
+       }
+      }
+     }
+    }
    }
   }
   WindowWidgetClass "{5ACCEA9E4FCD6E3F}" {

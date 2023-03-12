@@ -222,6 +222,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_BaseComponent "{5AA31079657C4391}" {
   }
+  SCR_CTI_BuildStructureComponent "{5CD6E2C41BB7346C}" {
+  }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
   SCR_CTI_UpdateResourcesComponent "{5C4920D164E382C7}" {
@@ -366,6 +368,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    Streamable Disabled
   }
  }
+ coords 0 0 0
  m_eTestGameFlags 6
  m_fAutoReloadTime 30
  {
