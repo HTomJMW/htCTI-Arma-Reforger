@@ -24,7 +24,7 @@ class SCR_CTI_BuildStructure
 				if (basecount < 1)
 				{
 					m_baseComp.addBase(factionkey, mat[3], basecount);
-					structure = GetGame().SpawnEntityPrefabLocal(resource, GetGame().GetWorld(), params);
+					structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 					structure.Update();
 					m_baseComp.getBase(factionkey, basecount).addStructure(structure);
 

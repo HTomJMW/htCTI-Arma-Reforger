@@ -128,7 +128,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	protected void performBuilding()
+	void performBuilding()
 	{
 		auto menuManager = GetGame().GetMenuManager();
 		menuManager.CloseAllMenus();
@@ -145,7 +145,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void cancelBuilding()
+	void cancelBuilding()
 	{
 		auto menuManager = GetGame().GetMenuManager();
 		menuManager.CloseAllMenus();
@@ -190,8 +190,6 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 			if (m_timeDelta > TIMESTEP)
 			{
 				updatePreiew();
-				if (m_confirmed) performBuilding();
-				if (m_canceled) cancelBuilding();
 			}
 		}
 	}

@@ -68,6 +68,9 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				{
 					m_pdc.cancelPlacement(true);
 					m_psc.cancelPlacement(true);
+					
+					if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
+					if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
 				}
 				
 				bool mw = m_inputManager.GetActionValue("MouseWheel"); // need disable moving speed change on scroll
@@ -90,9 +93,15 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 					{
 						m_pdc.confirmPlacement(true);
 						m_psc.confirmPlacement(true);
+						
+						if (m_pdc.getStartPlacing()) m_pdc.performBuilding();
+						if (m_psc.getStartPlacing()) m_psc.performBuilding();
 					} else {
 						m_pdc.cancelPlacement(true);
 						m_psc.cancelPlacement(true);
+						
+						if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
+						if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
 					}
 				}
 			} else {
