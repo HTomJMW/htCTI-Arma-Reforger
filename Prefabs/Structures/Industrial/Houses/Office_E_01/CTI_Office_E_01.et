@@ -9,8 +9,238 @@ SCR_DestructibleBuildingEntity : "{74CBD673D67C58FF}Prefabs/Structures/Industria
   }
  }
  {
+  Building {
+   ID "56E4EDAF81F0210A"
+   components {
+    RplComponent "{5CCAC432BA86A05B}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F0210B"
+   components {
+    RplComponent "{5CCAC432B6DEE506}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F097C3"
+   components {
+    RplComponent "{5CCAC4335980011C}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F10380"
+   components {
+    RplComponent "{5CCAC433542698F6}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F10381"
+   components {
+    RplComponent "{5CCAC43350412528}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F10382"
+   components {
+    RplComponent "{5CCAC4334D81E0EB}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F10383"
+   components {
+    RplComponent "{5CCAC43349B48890}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F10386"
+   components {
+    RplComponent "{5CCAC43345FC3ACE}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F1038D"
+   components {
+    RplComponent "{5CCAC43341036E53}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F13257"
+   components {
+    RplComponent "{5CCAC432BD635E92}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2D7BC"
+   components {
+    RplComponent "{5CCAC43375160623}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2D7BE"
+   components {
+    RplComponent "{5CCAC43370600A94}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2D7BF"
+   components {
+    RplComponent "{5CCAC4336D8A05BC}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2EB40"
+   components {
+    RplComponent "{5CCAC43302E26E52}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2EB41"
+   components {
+    RplComponent "{5CCAC43367257D2A}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2EB42"
+   components {
+    RplComponent "{5CCAC4337D7D1050}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2EB43"
+   components {
+    RplComponent "{5CCAC433791AE79A}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2EB4E"
+   components {
+    RplComponent "{5CCAC43362B99D68}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F2EB4F"
+   components {
+    RplComponent "{5CCAC4335DEAA498}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F3384C"
+   components {
+    RplComponent "{5CCAC433061E7D6F}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F39560"
+   components {
+    RplComponent "{5CCAC433269A0F39}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F39561"
+   components {
+    RplComponent "{5CCAC4331F5D6E39}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F3956C"
+   components {
+    RplComponent "{5CCAC4331BB78304}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F3956E"
+   components {
+    RplComponent "{5CCAC4331531914D}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F3956F"
+   components {
+    RplComponent "{5CCAC433119D2065}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F4ED7A"
+   components {
+    RplComponent "{5CCAC4333BB64BE2}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81F4ED7B"
+   components {
+    RplComponent "{5CCAC43334E5691B}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81FF5AA8"
+   components {
+    RplComponent "{5CCAC432B0D60ACD}" {
+    }
+   }
+  }
+  Building {
+   ID "56E4EDAF81FF5AAF"
+   components {
+    RplComponent "{5CCAC432ACE9F7DA}" {
+    }
+   }
+  }
+  GenericEntity {
+   ID "56E4EDAF81F3384B"
+   components {
+    RplComponent "{5CCAC4330A86EF39}" {
+    }
+   }
+  }
+  GenericEntity {
+   ID "56E4EDAF81FE3578"
+   components {
+    RplComponent "{5CCAC432A60A6EE7}" {
+    }
+   }
+  }
+  GenericEntity {
+   ID "56E4EDAF81FEA9A4"
+   components {
+    RplComponent "{5CCAC432A2EEB146}" {
+    }
+   }
+  }
   GenericEntity : "{8C1817BB43391597}Prefabs/Structures/Industrial/Houses/Office_E_01/Office_E_01_furniture_01.et" {
    ID "5CC9076AF718A9BA"
+   components {
+    Hierarchy "{5CCAC433D3BA8F05}" {
+    }
+    RplComponent "{5CCAC433D0A8C5DB}" {
+    }
+   }
   }
  }
 }
