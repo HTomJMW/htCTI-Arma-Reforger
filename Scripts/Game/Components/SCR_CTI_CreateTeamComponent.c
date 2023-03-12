@@ -70,7 +70,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		}
 		
 		EntitySpawnParams spawnParams = new EntitySpawnParams();
-		spawnParams.TransformMode = ETransformMode.WORLD;		
+		spawnParams.TransformMode = ETransformMode.WORLD;
 		GetSpawnTransform(spawnParams.Transform);
 		
 		IEntity spawnedEntity = GetGame().SpawnEntityPrefab(agentPrefab, GetOwner().GetWorld(), spawnParams);

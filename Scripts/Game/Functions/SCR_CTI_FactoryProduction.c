@@ -6,7 +6,7 @@ class SCR_CTI_FactoryProduction
 	void build(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4], int playerId)
 	{
 		IEntity entity = null;
-		
+
 		Resource resource = Resource.Load(resourcename);
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;

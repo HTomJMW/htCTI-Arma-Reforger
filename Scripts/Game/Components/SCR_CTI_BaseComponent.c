@@ -32,12 +32,17 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	// Proxys
 	void OnStructureAdded()
 	{
+		GetGame().GetCallqueue().CallLater(delayedCall, 1000, false);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void delayedCall()
+	{
 		RplComponent rplComp;
 		IEntity struct;
-		int last = 0;
-		
-		last = ussrStructureRplIds.Count();
-		
+
+		int last = ussrStructureRplIds.Count();
+
 		if (last > 0)
 		{
 			last = last - 1;

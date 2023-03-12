@@ -162,10 +162,10 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
 	protected void RpcAsk_BuildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4])
 	{
-		SCR_CTI_BuildStructure BuildStructure = new SCR_CTI_BuildStructure;
-		BuildStructure.build(factionkey, resourcename, mat);
+		SCR_CTI_BuildStructure builder = new SCR_CTI_BuildStructure;
+		builder.build(factionkey, resourcename, mat);
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	void factoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4], int playerId)
 	{

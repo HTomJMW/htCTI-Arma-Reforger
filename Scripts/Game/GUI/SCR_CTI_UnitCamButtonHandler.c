@@ -23,10 +23,21 @@ class SCR_CTI_UnitCamButtonHandler : ScriptedWidgetEventHandler
 		{
 			case "IronSight":
 			{
+				auto menuManager = GetGame().GetMenuManager();
+				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
+				Widget root = openedMenu.GetRootWidget();
+				OverlayWidget listboxTeams = OverlayWidget.Cast(root.FindAnyWidget("ListBoxTeams"));
+				SCR_ListBoxComponent listboxTeamsComp = SCR_ListBoxComponent.Cast(listboxTeams.FindHandler(SCR_ListBoxComponent));
+				if (listboxTeamsComp.GetSelectedItem() == -1) break;
+				
+				PlayerCamera pCam = PlayerCamera.Cast(listboxTeamsComp.GetItemData(listboxTeamsComp.GetSelectedItem()));
+				//TODO
+
 				break;
 			}
 			case "Internal":
 			{
+				//if player selected
 				PlayerController pc = GetGame().GetPlayerController();
 				IEntity player = pc.GetControlledEntity();
 				SCR_CharacterCameraHandlerComponent cchc = SCR_CharacterCameraHandlerComponent.Cast(player.FindComponent(SCR_CharacterCameraHandlerComponent));

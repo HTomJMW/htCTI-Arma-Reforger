@@ -110,7 +110,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			WeatherAndTimeComponent.Deactivate(this);
 			UpdateVictoryComponent.Deactivate(this);
 			UpdateResourcesComponent.Deactivate(this);
-			
+
 			loadUserSettings();
 		}
 	}
@@ -388,7 +388,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		
 		Replication.BumpMe();
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	SCR_CTI_ClientData getClientData(int playerId)
 	{
@@ -413,7 +413,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		Replication.BumpMe();
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	void SendHint(int playerId, string message = "", string messageTitle = "", int hintTime = 5.0)
     {

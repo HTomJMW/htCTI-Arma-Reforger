@@ -5,7 +5,7 @@ class SCR_CTI_PlacingStructureComponentClass: ScriptComponentClass
 
 class SCR_CTI_PlacingStructureComponent : ScriptComponent
 {
-	protected SCR_PlayerController m_PlayerController;
+	protected PlayerController m_PlayerController;
 	protected RplComponent m_RplComponent;
 	
 	protected FactionKey m_fk;
@@ -121,7 +121,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		mat[3][1] = GetGame().GetWorld().GetSurfaceY(mat[3][0], mat[3][2]);
 		
 		//m_structure.SetTransform(mat);
-		SetHierarchyTransform(m_structure, mat);
+		SCR_CTI_HierarchyTransform.SetHierarchyTransform(m_structure, mat);
 		m_structure.Update();
 
 		finalMat = mat;
@@ -158,42 +158,6 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	//SCR_EntityHelper's function without dynamic physics test
-	void SetHierarchyTransform(notnull IEntity ent, vector newTransform[4])
-	{
-		vector oldTransform[4];
-		ent.GetTransform(oldTransform);
-		ent.SetTransform(newTransform);
-
-		IEntity child = ent.GetChildren();
-		while (child)
-		{
-			SetHierarchyChildTransform(child, oldTransform, newTransform, true);
-			child = child.GetSibling();
-		}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected static void SetHierarchyChildTransform(notnull IEntity ent, vector oldTransform[4], vector newTransform[4], bool recursive = true)
-	{
-		vector mat[4];
-		ent.GetTransform(mat);
-
-		vector diffMat[4];
-		Math3D.MatrixInvMultiply4(oldTransform, mat, diffMat);
-		Math3D.MatrixMultiply4(newTransform, diffMat, mat);
-
-		ent.SetTransform(mat);
-
-		IEntity child = ent.GetChildren();
-		while (child)
-		{
-			SetHierarchyChildTransform(child, oldTransform, newTransform, recursive);
-			child = child.GetSibling();
-		}
-	}
-
-	//------------------------------------------------------------------------------------------------
 	protected bool IsProxy()
 	{
 		return (m_RplComponent && m_RplComponent.IsProxy());
@@ -202,14 +166,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
 	{
-		m_PlayerController = SCR_PlayerController.Cast(PlayerController.Cast(owner));
-		
-		if (!m_PlayerController)
-		{
-			Print("SCR_CTI_PlacingStructureComponent must be attached to PlayerController!", LogLevel.ERROR);
-			return;
-		}
-		
+		m_PlayerController = PlayerController.Cast(owner);
 		m_RplComponent = RplComponent.Cast(owner.FindComponent(RplComponent));
 	}
 
@@ -217,16 +174,17 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 	override void OnPostInit(IEntity owner)
 	{
 		super.OnPostInit(owner);
+
 		SetEventMask(owner, EntityEvent.INIT | EntityEvent.FIXEDFRAME);
 		owner.SetFlags(EntityFlags.ACTIVE, true);
-		
+
 		m_timeDelta = 0;
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
-		if (m_startPlacing)
+		if ((m_startPlacing && IsProxy()) || (m_startPlacing && m_RplComponent.IsMaster()))
 		{
 			m_timeDelta += timeSlice;
 			if (m_timeDelta > TIMESTEP)

@@ -155,7 +155,6 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				int placement;
 				int cost;
 
-				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				switch (fk)
 				{
 					case "USSR":

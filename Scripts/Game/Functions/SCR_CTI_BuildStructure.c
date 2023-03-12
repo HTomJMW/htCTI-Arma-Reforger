@@ -7,11 +7,13 @@ class SCR_CTI_BuildStructure
 	void build(FactionKey factionkey, ResourceName resourcename, vector mat[4])
 	{
 		Resource resource = Resource.Load(resourcename);
+
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		params.Transform = mat;
-
+		
 		IEntity structure = null;
+
 		int basecount = m_baseComp.getBaseCount(factionkey);
 		switch (factionkey)
 		{
@@ -22,8 +24,10 @@ class SCR_CTI_BuildStructure
 				if (basecount < 1)
 				{
 					m_baseComp.addBase(factionkey, mat[3], basecount);
-					structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+					structure = GetGame().SpawnEntityPrefabLocal(resource, GetGame().GetWorld(), params);
+					structure.Update();
 					m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+
 					break;
 				}
 
@@ -35,10 +39,11 @@ class SCR_CTI_BuildStructure
 					if (!inside)
 					{
 						float distance = m_baseComp.getAreaDistances(mat[3], m_baseComp.getBase(factionkey, i).getBasePos());
-		
+
 						if (distance <= SCR_CTI_Constants.BASERADIUS)
 						{
 							structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+							structure.Update();
 							m_baseComp.getBase(factionkey, i).addStructure(structure);
 							inside = true;
 						}
@@ -49,11 +54,12 @@ class SCR_CTI_BuildStructure
 				// Step 3:
 				// if pos not inside base area and max base count reached
 				if (basecount >= SCR_CTI_Constants.MAXBASES) break;
-				
+
 				// Step 4:
 				// not first and not inside other area so make new base
 				m_baseComp.addBase(factionkey, mat[3], basecount);
 				structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+				structure.Update();
 				m_baseComp.getBase(factionkey, basecount).addStructure(structure);
 
 				break;
@@ -66,7 +72,9 @@ class SCR_CTI_BuildStructure
 				{
 					m_baseComp.addBase(factionkey, mat[3], basecount);
 					structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+					structure.Update();
 					m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+
 					break;
 				}
 
@@ -78,10 +86,11 @@ class SCR_CTI_BuildStructure
 					if (!inside)
 					{
 						float distance = m_baseComp.getAreaDistances(mat[3], m_baseComp.getBase(factionkey, i).getBasePos());
-		
+
 						if (distance <= SCR_CTI_Constants.BASERADIUS)
 						{
 							structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+							structure.Update();
 							m_baseComp.getBase(factionkey, i).addStructure(structure);
 							inside = true;
 						}
@@ -92,11 +101,12 @@ class SCR_CTI_BuildStructure
 				// Step 3:
 				// if pos not inside base area and max base count reached
 				if (basecount >= SCR_CTI_Constants.MAXBASES) break;
-				
+
 				// Step 4:
 				// not first and not inside other area so make new base
 				m_baseComp.addBase(factionkey, mat[3], basecount);
 				structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+				structure.Update();
 				m_baseComp.getBase(factionkey, basecount).addStructure(structure);
 
 				break;
@@ -105,21 +115,19 @@ class SCR_CTI_BuildStructure
 
 		if (structure)
 		{
-			structure.Update();
-			
 			// set faction of building
 			FactionAffiliationComponent faffcomp = FactionAffiliationComponent.Cast(structure.FindComponent(FactionAffiliationComponent));
 			faffcomp.SetAffiliatedFactionByKey(factionkey);
-			
+
 			// set marker of building
 			SCR_CTI_BuildingMapDescriptorComponent bmdc = SCR_CTI_BuildingMapDescriptorComponent.Cast(structure.FindComponent(SCR_CTI_BuildingMapDescriptorComponent));
 			bmdc.init(factionkey);
-			
+
 			// store structure IDs for searching
 			RplComponent rplComp = RplComponent.Cast(structure.FindComponent(RplComponent));
 			RplId rplid = rplComp.Id();
 			m_baseComp.addStuctureRplId(factionkey, rplid);
-			
+
 			// create spawn point
 			ResourceName resname = "{987991DCED3DC197}PrefabsEditable/SpawnPoints/E_SpawnPoint.et";
 			Resource res = Resource.Load(resname);
