@@ -16,6 +16,8 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 	
 	protected RichTextWidget m_confirmText;
 	protected RichTextWidget m_cancelText;
+	
+	protected ref ScriptInvoker m_OnMouseMiddleUsed = new ScriptInvoker();
 
 	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
@@ -25,15 +27,12 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 		
 		m_confirmText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ConfirmText"));
 		m_cancelText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("CancelText"));
-
+		
 		m_confirm.SetColor(Color.Orange);
-		m_confirm.SetState(false);
-
 		m_cancel.SetColor(Color.White);
-		m_cancel.SetState(true);
-		
-		m_cancelText.SetText("[ - Cancel - ]");
-		
+
+		m_cancelText.SetText("[ - Cancel - ]"); // default
+
 		m_wRoot.SetVisible(false);
 	}
 
@@ -59,53 +58,54 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				return;
 
 			bool menuOpen = GetGame().GetMenuManager().IsAnyMenuOpen();
-			if (!menuOpen && (m_pdc.getStartPlacing() || m_psc.getStartPlacing()))
+			m_ch = ChimeraCharacter.Cast(m_pc.GetControlledEntity());
+			if (!menuOpen && !m_ch.IsInVehicle() && (m_pdc.getStartPlacing() || m_psc.getStartPlacing()))
 			{
 				m_wRoot.SetVisible(true);
-				
-				m_ch = ChimeraCharacter.Cast(m_pc.GetControlledEntity());
-				if (m_ch.IsInVehicle())
-				{
-					if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
-					if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
-				}
-				
+
 				bool mw = m_inputManager.GetActionValue("MouseWheel"); // need disable moving speed change on scroll
 				if (mw)
 				{
-					if (m_cancel.GetState())
+					if (m_confirmText.GetText() == "Confirm")
 					{
-						m_confirm.SetState(true); m_confirm.SetColor(Color.White); m_confirmText.SetText("[ - Confirm - ]");
-						m_cancel.SetState(false); m_cancel.SetColor(Color.Orange); m_cancelText.SetText("Cancel");
+						m_confirm.SetColor(Color.White);
+						m_confirmText.SetText("[ - Confirm - ]");
+						
+						m_cancel.SetColor(Color.Orange);
+						m_cancelText.SetText("Cancel");
 					} else {
-						m_confirm.SetState(false); m_confirm.SetColor(Color.Orange); m_confirmText.SetText("Confirm");
-						m_cancel.SetState(true); m_cancel.SetColor(Color.White); m_cancelText.SetText("[ - Cancel - ]");
+						m_confirm.SetColor(Color.Orange);
+						m_confirmText.SetText("Confirm");
+						
+						m_cancel.SetColor(Color.White);
+						m_cancelText.SetText("[ - Cancel - ]");
 					}
 				}
 
 				bool wheeldown = m_inputManager.GetActionValue("MouseMiddle");
 				if (wheeldown)
 				{
-					if (m_confirm.GetState())
-					{
-						if (m_pdc.getStartPlacing()) m_pdc.performBuilding();
-						if (m_psc.getStartPlacing()) m_psc.performBuilding();
-					} else {
-						if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
-						if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
-					}
+					PrintFormat("WHEELDOWN: %1", wheeldown.ToString());
+					m_OnMouseMiddleUsed.Invoke();
 				}
 			} else {
 				m_wRoot.SetVisible(false);
+
+				m_confirm.SetColor(Color.Orange);
+				m_confirmText.SetText("Confirm");
 				
-				if (!m_cancel.GetState())
-				{
-					m_confirm.SetState(false); m_confirm.SetColor(Color.Orange); m_confirmText.SetText("Confirm");
-					m_cancel.SetState(true); m_cancel.SetColor(Color.White); m_cancelText.SetText("[ - Cancel - ]");
-				}
+				m_cancel.SetColor(Color.White);
+				m_cancelText.SetText("[ - Cancel - ]");
 			}
 			m_timeDelta = 0;
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void OnMouseMiddleDown()
+	{
+		//if (m_pdc.getStartPlacing()) m_pdc.performBuilding();
+		//if (m_psc.getStartPlacing()) m_psc.performBuilding();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -134,6 +134,8 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 		}
 
 		CreateHud(owner);
+		
+		m_OnMouseMiddleUsed.Insert(OnMouseMiddleDown);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -146,6 +148,8 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 	//------------------------------------------------------------------------------------------------
 	override void DisplayStopDraw(IEntity owner)
 	{
+		m_OnMouseMiddleUsed.Remove(OnMouseMiddleDown);
+		
 		DestroyHud();
 	}
 };
