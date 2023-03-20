@@ -1,6 +1,6 @@
 FrameWidgetClass {
  Name "rootFrame"
- "Is Visible" 0
+ "Ignore Cursor" 0
  {
   ImageWidgetClass "{5C7B1CE1B897B3AE}" {
    Name "BackGround"
@@ -48,7 +48,6 @@ FrameWidgetClass {
       OffsetBottom -45
      }
      "no focus" 1
-     Switch toggle
      {
       RichTextWidgetClass "{5C7B1CE1B897B6F3}" {
        Name "ConfirmText"
@@ -72,7 +71,6 @@ FrameWidgetClass {
       OffsetBottom -90
      }
      "no focus" 1
-     Switch toggle
      {
       RichTextWidgetClass "{5C7B1CE1B8979D6A}" {
        Name "CancelText"

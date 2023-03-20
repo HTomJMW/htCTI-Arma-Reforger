@@ -222,8 +222,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_BaseComponent "{5AA31079657C4391}" {
   }
-  SCR_CTI_BuildStructureComponent "{5CD6E2C41BB7346C}" {
-  }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
   SCR_CTI_UpdateResourcesComponent "{5C4920D164E382C7}" {
@@ -309,7 +307,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger CTI [htCTI 0.5.2.0]"
+     Name "Arma Reforger CTI [htCTI 0.5.4.0]"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -581,6 +579,7 @@ ScriptedChatEntity {
  "Default channel" "Faction"
 }
 TagManager {
+ coords 0 0 0
 }
 BasePreloadManager BasePreloadManager1 {
  PrefabsToPreload {
