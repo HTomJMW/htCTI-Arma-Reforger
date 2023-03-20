@@ -11,8 +11,7 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 	protected ResourceName m_resName;
 
 	SCR_BasePreviewEntity m_defense = null;
-	//protected IEntity m_defense = null;
-	
+
 	protected vector finalMat[4];
 	
 	protected bool m_startPlacing = false;
@@ -21,14 +20,26 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 	protected float m_placement;
 	
 	protected float m_timeDelta;
-	protected const float TIMESTEP = 0.01;
+	protected const float TIMESTEP = 0.02;
+	
+	protected ResourceName m_material = "{58F07022C12D0CF5}Assets/Editor/PlacingPreview/Preview.emat";
+	protected ResourceName m_materialRed = "{F34CA01A59FDBED4}Assets/Editor/PlacingPreview/PreviewRed.emat";
+	
+	protected bool m_blocked = false;
+	protected float m_radius;
+	protected float m_maxDifference;
+	
+	ref protected TraceOBB m_paramOBB = new TraceOBB();
+	
+	protected vector m_boundmins;
+	protected vector m_boundmaxs;
 
 	//------------------------------------------------------------------------------------------------
 	bool getStartPlacing()
 	{
 		return m_startPlacing;
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	void createDefPreview(ResourceName resName, float distance, float placement, bool startPlacing)
 	{
@@ -43,15 +54,9 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		m_player.GetTransform(mat);
 		dir = m_player.GetWorldTransformAxis(2);
 
-		//PlayerCamera playerCam = GetGame().GetPlayerController().GetPlayerCamera();
-		//playerCam.GetTransform(mat);
-
-		//CharacterHeadAimingComponent chac = CharacterHeadAimingComponent.Cast(m_player.FindComponent(CharacterHeadAimingComponent));
-		//dir = chac.GetAimingDirectionWorld();
-
-		vector angles = mat[2].VectorToAngles();
+		vector angles = Math3D.MatrixToAngles(mat);
 		angles[0] = angles[0] + placement;
-		mat[2] = angles.AnglesToVector();
+		Math3D.AnglesToMatrix(angles, mat);
 
 		mat[3] = mat[3] + (dir * m_dist);
 		mat[3][1] = GetGame().GetWorld().GetSurfaceY(mat[3][0], mat[3][2]);
@@ -62,18 +67,23 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		
 		Resource resource = Resource.Load(resName);
 
-		//m_defense = GetGame().SpawnEntityPrefabLocal(resource, GetGame().GetWorld(), params);
-
-		ResourceName material = "{58F07022C12D0CF5}Assets/Editor/PlacingPreview/Preview.emat";
-		m_defense = SCR_PrefabPreviewEntity.SpawnPreviewFromPrefab(resource, "SCR_PrefabPreviewEntity", GetGame().GetWorld(), params, material);
+		m_defense = SCR_PrefabPreviewEntity.SpawnPreviewFromPrefab(resource, "SCR_PrefabPreviewEntity", GetGame().GetWorld(), params, m_material);
 
 		if (m_defense)
 		{
-			//Physics phys = m_defense.GetPhysics();
-			//phys.ChangeSimulationState(SimulationState.NONE);
-
 			PrintFormat("CTI :: Created Def preview: %1", m_defense);
 
+			m_defense.GetPreviewBounds(m_boundmins, m_boundmaxs);
+			m_radius = (vector.DistanceXZ(m_boundmins, m_boundmaxs)) * 0.5;
+			m_maxDifference = m_radius * 0.075;
+			
+			Math3D.MatrixIdentity3(m_paramOBB.Mat);
+			m_paramOBB.Flags = TraceFlags.ENTS;
+			m_paramOBB.Exclude = m_defense;
+			m_paramOBB.LayerMask = EPhysicsLayerPresets.Projectile;
+			m_paramOBB.Mins = m_boundmins;
+			m_paramOBB.Maxs = m_boundmaxs;
+	
 			m_startPlacing = startPlacing;
 		}
 	}
@@ -85,32 +95,49 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		vector dir;
 		
 		IEntity m_player = m_PlayerController.GetControlledEntity();
+		if (!m_player)
+		{
+			cancelBuilding();
+			return;
+		}
 		m_player.GetTransform(mat);
 		dir = m_player.GetWorldTransformAxis(2);
 
-		//PlayerCamera playerCam = GetGame().GetPlayerController().GetPlayerCamera();
-		//playerCam.GetTransform(mat);
-
-		//CharacterHeadAimingComponent chac = CharacterHeadAimingComponent.Cast(m_player.FindComponent(CharacterHeadAimingComponent));
-		//dir = chac.GetAimingDirectionWorld();
-
-		vector angles = mat[2].VectorToAngles();
+		vector angles = Math3D.MatrixToAngles(mat);
 		angles[0] = angles[0] + m_placement;
-		mat[2] = angles.AnglesToVector();
+		Math3D.AnglesToMatrix(angles, mat);
 
 		mat[3] = mat[3] + (dir * m_dist);
 		mat[3][1] = GetGame().GetWorld().GetSurfaceY(mat[3][0], mat[3][2]);
 
-		//m_defense.SetTransform(mat);
 		SCR_CTI_HierarchyTransform.SetHierarchyTransform(m_defense, mat);
+
+		m_paramOBB.Mat[0] = mat[0];
+		m_paramOBB.Mat[1] = mat[1];
+		m_paramOBB.Mat[2] = mat[2];
+		m_paramOBB.Start = mat[3] + "0 0.05 0";
+		
+		GetGame().GetWorld().TracePosition(m_paramOBB, null);
+
+		if (!SCR_CTI_TerrainIsFlat.isFlat(mat[3], m_radius, m_maxDifference) || mat[3][1] < 0 || m_paramOBB.TraceEnt)
+		{
+			SCR_Global.SetMaterial(m_defense, m_materialRed);
+			m_blocked = true;
+		} else {
+			SCR_Global.SetMaterial(m_defense, m_material);
+			m_blocked = false;
+		}
+
 		m_defense.Update();
 
 		finalMat = mat;
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	void performBuilding()
-	{	
+	{
+		if (m_blocked) return;
+
 		auto menuManager = GetGame().GetMenuManager();
 		menuManager.CloseAllMenus();
 

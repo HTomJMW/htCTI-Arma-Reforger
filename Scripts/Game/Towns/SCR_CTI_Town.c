@@ -244,7 +244,7 @@ class SCR_CTI_Town : BaseGameEntity
 		foreach (SCR_ChimeraCharacter character : outCharacters)
 		{
 			int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(character);
-			m_gameMode.SendHint(playerId, m_townName + " captured", "Information", 15);
+			m_gameMode.SendHint(playerId, "<color rgba='255,210,115,255'>" + m_townName + "</color> captured.", "Information", 15);
 			
 			SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 			if (clientData && !clientData.isCommander())
@@ -323,7 +323,7 @@ class SCR_CTI_Town : BaseGameEntity
 		
 		for (int i = 0; i < m_townGroups.Count(); i++)
 		{
-			if (m_townGroups[i] && m_townGroups[i].GetAgentsCount() == 0) break;
+			if (!m_townGroups[i] || m_townGroups[i] && m_townGroups[i].GetAgentsCount() == 0) break;
 			if (!m_townGroups[i].GetCurrentWaypoint())
 			{
 				int rnd = Math.RandomIntInclusive(0, m_townPatrolComponent.waypoints.Count() - 1);

@@ -167,17 +167,17 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void factoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4], int playerId)
+	void factoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime)
 	{
-		Rpc(RpcAsk_FactoryProductionServer, resourcename, factionkey, groupID, mat, playerId);
+		Rpc(RpcAsk_FactoryProductionServer, resourcename, factionkey, groupID, factRplId, mat, playerId, buildTime);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_FactoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4], int playerId)
+	protected void RpcAsk_FactoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime)
 	{
 		SCR_CTI_FactoryProduction FactoryProduction = new SCR_CTI_FactoryProduction;
-		FactoryProduction.build(resourcename, factionkey, groupID, mat, playerId);
+		FactoryProduction.build(resourcename, factionkey, groupID, factRplId, mat, playerId, buildTime);
 	}
 
 	//------------------------------------------------------------------------------------------------

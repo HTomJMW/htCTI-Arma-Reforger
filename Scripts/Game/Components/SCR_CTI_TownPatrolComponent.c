@@ -8,7 +8,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	protected SCR_CTI_Town m_town;
 	protected RplComponent m_RplComponent;
 	
-	protected float m_timeDelta = 30; // first waypoint need faster
+	protected float m_timeDelta = 60;
 	protected const float TIMESTEP = 45;
 	
 	ref array<AIWaypoint> waypoints = {};
@@ -25,7 +25,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 		m_town.GetTransform(mat);
 
 		RandomGenerator randomgen = new RandomGenerator();
-		vector rndpos = randomgen.GenerateRandomPointInRadius(50, 75, mat[3], true);
+		vector rndpos = randomgen.GenerateRandomPointInRadius(25, 75, mat[3], true);
 
 		vector emptyPos;
 		SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, rndpos, 6);
@@ -39,15 +39,15 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 		wp.SetCompletionType(EAIWaypointCompletionType.Any);
 		
 		waypoints.Insert(wp);
-		
-		//PrintFormat("Town pos: %1, WP pos: %2", m_town.getFlagPos(), mat[3]);
+		//PrintFormat("CTI :: Town name: %1, Town pos: %2, WP pos: %3", m_town.getTownName(), m_town.getFlagPos(), mat[3]);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	protected void updateWayPoints()
 	{
-		if (waypoints.Count() < 5)
+		if (waypoints.Count() < 4)
 		{
+			createWayPoint();
 			createWayPoint();
 		}
 	}
@@ -80,7 +80,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	{
 		m_town = SCR_CTI_Town.Cast(ent);
 
-		m_timeDelta = 30;
+		m_timeDelta = 60;
 	}
 
 	//------------------------------------------------------------------------------------------------

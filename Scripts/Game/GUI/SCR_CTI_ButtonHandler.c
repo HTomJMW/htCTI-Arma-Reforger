@@ -255,7 +255,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				}
 				
 				if (funds < cost) break;
-				
+
 				SCR_CTI_PlacingDefenseComponent placingDefComp = SCR_CTI_PlacingDefenseComponent.Cast(pc.FindComponent(SCR_CTI_PlacingDefenseComponent));
 				if (!placingDefComp.getStartPlacing()) placingDefComp.createDefPreview(res, dist, placement, true);
 
@@ -289,14 +289,49 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				SCR_CTI_PurchaseMenu pm = SCR_CTI_PurchaseMenu.Cast(openedMenu);
 				array<IEntity> facts = pm.getSortedFactoriesForCombobox();
 				
-				SCR_CTI_FactorySpawnComponent fscomp = SCR_CTI_FactorySpawnComponent.Cast(facts[combofacitem].FindComponent(SCR_CTI_FactorySpawnComponent));
+				RplComponent factRplComp = RplComponent.Cast(facts[combofacitem].FindComponent(RplComponent));
+				RplId factRplid = factRplComp.Id();
+
+				SCR_CTI_FactoryData factData;
+				int factIndex = -1;
+				switch(fk)
+				{
+					case "USSR":
+					{
+						factIndex = gameMode.FactoriesUSSR.findIndexFromResourcename(facts[combofacitem].GetPrefabData().GetPrefabName());
+						factData = gameMode.FactoriesUSSR.g_USSR_Factories[factIndex];
+						break;
+					}
+					case "US":
+					{
+						factIndex = gameMode.FactoriesUS.findIndexFromResourcename(facts[combofacitem].GetPrefabData().GetPrefabName());
+						factData = gameMode.FactoriesUS.g_US_Factories[factIndex];
+						break;
+					}
+				}
+
+				float dist = factData.getDistance();
+				float placement = factData.getPlacement();
+				vector dir = facts[combofacitem].GetTransformAxis(2);
+
 				vector mat[4];
-				fscomp.GetSpawnTransform(mat);
+				facts[combofacitem].GetTransform(mat);
+
+				vector angles = mat[2].VectorToAngles();
+				angles[0] = angles[0] + placement;
+				mat[2] = angles.AnglesToVector();
+
+				if (placement == 0) mat[3] = mat[3] - (dir * dist);
+				if (placement == 180) mat[3] = mat[3] + (dir * dist);
+				mat[3][1] = GetGame().GetWorld().GetSurfaceY(mat[3][0], mat[3][2]);
 				
-				mat[3] = mat[3] + facts[combofacitem].GetOrigin();
-				
+				vector emptyPos;
+				SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, mat[3], 20, 4, 3);
+				mat[3] = emptyPos;
+
 				SCR_CTI_UnitData unitData = SCR_CTI_UnitData.Cast(listboxcomp.GetItemData(selected));
 				ResourceName res = unitData.getResname();
+				int buildTime = unitData.getBuildtime();
 				int cost = unitData.getPrice();
 				
 				SCR_CTI_ClientData clientData = gameMode.getClientData(pc.GetPlayerId());
@@ -305,7 +340,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				EntityID groupID = pm.getGroupforCombobox().GetID();
 				
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-				netComp.factoryProductionServer(res, fk, groupID, mat, pc.GetPlayerId());
+				netComp.factoryProductionServer(res, fk, groupID, factRplid, mat, pc.GetPlayerId(), buildTime);
 
 				break;
 			}

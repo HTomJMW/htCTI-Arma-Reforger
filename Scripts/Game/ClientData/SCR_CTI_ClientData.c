@@ -5,7 +5,6 @@ class SCR_CTI_ClientData
 	private int m_factionIndex = 0;
 	private bool m_isCommander = false;
 	private int m_funds = 0;
-	private int m_groupId = -1; // maybe not need? GM
 
 	//------------------------------------------------------------------------------------------------
 	int getPlayerId()
@@ -61,37 +60,25 @@ class SCR_CTI_ClientData
 		m_funds += (value);
 		if (m_funds < 0) m_funds = 0;
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	int getGroupId()
-	{
-		return m_groupId;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void setGroupId(int groupId)
-	{
-		m_groupId = groupId;
-	}
 
 	//################################################################################################
 	//! Codec methods
 	//------------------------------------------------------------------------------------------------
 	static void Encode(SSnapSerializerBase snapshot, ScriptCtx ctx, ScriptBitSerializer packet) 
 	{
-		snapshot.Serialize(packet, 17);
+		snapshot.Serialize(packet, 13);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	static bool Decode(ScriptBitSerializer packet, ScriptCtx ctx, SSnapSerializerBase snapshot) 
 	{
-		return snapshot.Serialize(packet, 17);
+		return snapshot.Serialize(packet, 13);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	static bool SnapCompare(SSnapSerializerBase lhs, SSnapSerializerBase rhs, ScriptCtx ctx) 
 	{	
-		return lhs.CompareSnapshots(rhs, 17);
+		return lhs.CompareSnapshots(rhs, 13);
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -100,8 +87,7 @@ class SCR_CTI_ClientData
 		return snapshot.Compare(prop.m_playerId, 4)
 			&& snapshot.Compare(prop.m_factionIndex, 4)
 			&& snapshot.Compare(prop.m_isCommander, 1)
-			&& snapshot.Compare(prop.m_funds, 4)
-			&& snapshot.Compare(prop.m_groupId, 4);
+			&& snapshot.Compare(prop.m_funds, 4);
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -111,7 +97,6 @@ class SCR_CTI_ClientData
 		snapshot.SerializeBytes(prop.m_factionIndex, 4);
 		snapshot.SerializeBytes(prop.m_isCommander, 1);
 		snapshot.SerializeBytes(prop.m_funds, 4);
-		snapshot.SerializeBytes(prop.m_groupId, 4);
 		
 		return true;
 	}
@@ -123,7 +108,6 @@ class SCR_CTI_ClientData
 		snapshot.SerializeBytes(prop.m_factionIndex, 4);
 		snapshot.SerializeBytes(prop.m_isCommander, 1);
 		snapshot.SerializeBytes(prop.m_funds, 4);
-		snapshot.SerializeBytes(prop.m_groupId, 4);
 		
 		return true;
 	}

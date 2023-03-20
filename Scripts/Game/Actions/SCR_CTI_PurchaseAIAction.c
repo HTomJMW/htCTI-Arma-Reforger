@@ -48,7 +48,6 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		vector emptyPos;
 		SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, rndpos, 6);
 		mat[3] = emptyPos;
-
 		params.Transform = mat;
 
 		IEntity spawnedAI = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
@@ -58,24 +57,11 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		
 		AIAgent agent = control.GetControlAIAgent();
 
-		ResourceName wpRes = "{93291E72AC23930F}Prefabs/AI/Waypoints/AIWaypoint_Defend.et";
-		Resource res = Resource.Load(wpRes);
-		IEntity wpEntity = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
-		
-		vector rndwppos = randomgen.GenerateRandomPointInRadius(12, 30, mat[3], true);
-		vector emptywppos;
-		SCR_WorldTools.FindEmptyTerrainPosition(emptywppos, rndwppos, 10);
-		mat[3] = emptywppos;
-		
-		SCR_AIWaypoint wp = SCR_AIWaypoint.Cast(wpEntity);
-		wp.SetTransform(mat);
-		wp.SetCompletionRadius(1);
-		wp.SetCompletionType(EAIWaypointCompletionType.Any);
-		
-		agent.AddWaypoint(wp); // not working atm, maybe need agent group
+		SCR_CTI_TownPatrolComponent tpc = SCR_CTI_TownPatrolComponent.Cast(m_town.FindComponent(SCR_CTI_TownPatrolComponent));
+		if (tpc.waypoints.Count() > 0) agent.AddWaypoint(tpc.waypoints[0]); // not working atm
 
 		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(agent.FindComponent(SCR_AIConfigComponent));
-		aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL;
+		aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL; // ai combat component - skill test?
 
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 
@@ -90,10 +76,14 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 				clientData.changeFunds(-price);
 			}
 		}
-		
+
 		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		SCR_AIGroup playerGroup = gmc.GetPlayerGroup(playerId);
-		playerGroup.AddAgent(agent);
+		SCR_AIGroup playersGroup = gmc.GetPlayerGroup(playerId);
+
+		playersGroup.AddAgent(agent); // slave group system not working yet
+		
+		RplComponent spawnedAIRplComp = RplComponent.Cast(spawnedAI.FindComponent(RplComponent));
+		GetGame().GetCallqueue().CallLater(m_gameMode.addAgentToGroup, 500, false, playerId, spawnedAIRplComp.Id());
 
 		m_gameMode.bumpMeServer();
 	}
@@ -107,13 +97,14 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool CanBePerformedScript(IEntity user)
 	{
-		int playerId = GetGame().GetPlayerController().GetPlayerId();
+		PlayerController pc = GetGame().GetPlayerController();
+		int playerId = pc.GetPlayerId();
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 
 		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		SCR_AIGroup playerGroup = gmc.GetPlayerGroup(playerId);
-			
-		if (playerGroup.GetAgentsCount() >= SCR_CTI_Constants.PLAYERGROUPSIZE)
+		SCR_AIGroup playersGroup = gmc.GetPlayerGroup(playerId);
+		
+		if (playersGroup.GetAgentsCount() >= SCR_CTI_Constants.PLAYERGROUPSIZE) // working only on server atm, slave group needed
 		{
 			SetCannotPerformReason("Group limit reached!");
 			return false;

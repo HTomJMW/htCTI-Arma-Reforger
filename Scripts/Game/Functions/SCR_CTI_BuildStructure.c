@@ -134,7 +134,7 @@ class SCR_CTI_BuildStructure
 			IEntity sp = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
 			SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
 			spawn.SetFactionKey(factionkey);
-			
+
 			// pay the cost
 			SCR_CTI_FactoryData factoryData;
 			int index = -1;

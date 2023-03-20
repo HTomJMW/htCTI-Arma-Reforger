@@ -228,24 +228,13 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected void missionHintsCallLater(int playerId)
 	{
 		SendHint(playerId, "htCTI Eden", "Mission", 30);
-		SendPopUpNotif(playerId, "Arma Reforger CTI", 20, "", -1);
+		SendPopUpNotif(playerId, "Arma Reforger CTI", 15, "", -1);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
 	{
 		super.OnPlayerSpawned(playerId, controlledEntity);
-		
-		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		SCR_AIGroup group = gmc.GetPlayerGroup(playerId);
-		int groupId = group.GetID();
-		
-		SCR_CTI_ClientData clientData = getClientData(playerId);
-		if (clientData && clientData.getGroupId() == -1)
-		{
-			clientData.setGroupId(groupId);
-			Replication.BumpMe();
-		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -417,7 +406,12 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	void SendHint(int playerId, string message = "", string messageTitle = "", int hintTime = 5.0)
     {
-        Rpc(RpcDo_RecieveHint, playerId, message, messageTitle, hintTime);
+		if (RplSession.Mode() == RplMode.Dedicated)
+		{
+        	Rpc(RpcDo_RecieveHint, playerId, message, messageTitle, hintTime);
+		} else {
+			RpcDo_RecieveHint(playerId, message, messageTitle, hintTime);
+		}
     }
    
 	//------------------------------------------------------------------------------------------------
@@ -433,7 +427,12 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	void SendPopUpNotif(int playerId, string message = "", float duration = 5.0, string message2 = "", int prio = -1)
 	{
-        Rpc(RpcDo_RecievePopUpNotif, playerId, message, duration, message2, prio);
+		if (RplSession.Mode() == RplMode.Dedicated)
+		{
+        	Rpc(RpcDo_RecievePopUpNotif, playerId, message, duration, message2, prio);
+		} else {
+			RpcDo_RecievePopUpNotif(playerId, message, duration, message2, prio);
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -459,6 +458,31 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
     {
 		SCR_SpawnPoint sp = SCR_SpawnPoint.Cast(Replication.FindItem(spId));
 		sp.SetOrigin(pos);
+    }
+	
+	//------------------------------------------------------------------------------------------------
+	void addAgentToGroup(int playerId, RplId unitRplId)
+	{
+        Rpc(RpcDo_AddAgentToGroup, playerId, unitRplId);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
+    protected void RpcDo_AddAgentToGroup(int playerId, RplId unitRplId)
+    {
+		int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
+        if (playerId != localPlayerId) return;
+		
+		RplComponent unitRplComp = RplComponent.Cast(Replication.FindItem(unitRplId));
+		IEntity unit = unitRplComp.GetEntity();
+
+		AIControlComponent control = AIControlComponent.Cast(unit.FindComponent(AIControlComponent));
+		AIAgent agent = control.GetControlAIAgent();
+		
+		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		SCR_AIGroup playersGroup = gmc.GetPlayerGroup(playerId);
+		
+		playersGroup.AddAgent(agent);
     }
 
 	//------------------------------------------------------------------------------------------------

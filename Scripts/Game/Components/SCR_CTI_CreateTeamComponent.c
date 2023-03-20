@@ -96,7 +96,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 			
 			//Set AI Skill
 			SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(aiGroup.FindComponent(SCR_AIConfigComponent));
-			aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL;
+			aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL; //ai combat comp skill?
 		}
 		
 		return true;

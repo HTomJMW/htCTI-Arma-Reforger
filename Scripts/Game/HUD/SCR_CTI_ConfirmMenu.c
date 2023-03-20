@@ -10,6 +10,8 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.02;
+	protected int runCounter = 0;
+	protected int scrollCounter = 0;
 
 	protected ButtonWidget m_confirm;
 	protected ButtonWidget m_cancel;
@@ -17,6 +19,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 	protected RichTextWidget m_confirmText;
 	protected RichTextWidget m_cancelText;
 	
+	protected ref ScriptInvoker m_OnMouseScrollUsed = new ScriptInvoker();
 	protected ref ScriptInvoker m_OnMouseMiddleUsed = new ScriptInvoker();
 
 	//------------------------------------------------------------------------------------------------
@@ -66,27 +69,17 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				bool mw = m_inputManager.GetActionValue("MouseWheel"); // need disable moving speed change on scroll
 				if (mw)
 				{
-					if (m_confirmText.GetText() == "Confirm")
-					{
-						m_confirm.SetColor(Color.White);
-						m_confirmText.SetText("[ - Confirm - ]");
-						
-						m_cancel.SetColor(Color.Orange);
-						m_cancelText.SetText("Cancel");
-					} else {
-						m_confirm.SetColor(Color.Orange);
-						m_confirmText.SetText("Confirm");
-						
-						m_cancel.SetColor(Color.White);
-						m_cancelText.SetText("[ - Cancel - ]");
-					}
+					m_OnMouseScrollUsed.Invoke();
+				} else {
+					scrollCounter = 0;
 				}
 
-				bool wheeldown = m_inputManager.GetActionValue("MouseMiddle");
+				bool wheeldown = m_inputManager.GetActionValue("MouseMiddle"); // reset action value not working, its called more than once
 				if (wheeldown)
 				{
-					PrintFormat("WHEELDOWN: %1", wheeldown.ToString());
 					m_OnMouseMiddleUsed.Invoke();
+				} else {
+					runCounter = 0;
 				}
 			} else {
 				m_wRoot.SetVisible(false);
@@ -96,6 +89,9 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				
 				m_cancel.SetColor(Color.White);
 				m_cancelText.SetText("[ - Cancel - ]");
+				
+				runCounter = 0;
+				scrollCounter = 0;
 			}
 			m_timeDelta = 0;
 		}
@@ -104,8 +100,43 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 	//------------------------------------------------------------------------------------------------
 	protected void OnMouseMiddleDown()
 	{
-		//if (m_pdc.getStartPlacing()) m_pdc.performBuilding();
-		//if (m_psc.getStartPlacing()) m_psc.performBuilding();
+		if (runCounter == 0)
+		{
+			runCounter++;
+			
+			if (m_confirmText.GetText() == "[ - Confirm - ]")
+			{
+				if (m_pdc.getStartPlacing()) m_pdc.performBuilding();
+				if (m_psc.getStartPlacing()) m_psc.performBuilding();
+			} else {
+				if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
+				if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
+			}
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void OnMouseScroll()
+	{
+		if (scrollCounter == 0)
+		{
+			scrollCounter++;
+			
+			if (m_confirmText.GetText() == "Confirm")
+			{
+				m_confirm.SetColor(Color.White);
+				m_confirmText.SetText("[ - Confirm - ]");
+	
+				m_cancel.SetColor(Color.Orange);
+				m_cancelText.SetText("Cancel");
+			} else {
+				m_confirm.SetColor(Color.Orange);
+				m_confirmText.SetText("Confirm");
+	
+				m_cancel.SetColor(Color.White);
+				m_cancelText.SetText("[ - Cancel - ]");
+			}
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -136,6 +167,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 		CreateHud(owner);
 		
 		m_OnMouseMiddleUsed.Insert(OnMouseMiddleDown);
+		m_OnMouseScrollUsed.Insert(OnMouseScroll);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -149,6 +181,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 	override void DisplayStopDraw(IEntity owner)
 	{
 		m_OnMouseMiddleUsed.Remove(OnMouseMiddleDown);
+		m_OnMouseScrollUsed.Remove(OnMouseScroll);
 		
 		DestroyHud();
 	}

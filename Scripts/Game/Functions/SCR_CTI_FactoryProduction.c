@@ -3,21 +3,30 @@ class SCR_CTI_FactoryProduction
 	protected SCR_CTI_GameMode m_gameMode;
 
 	//------------------------------------------------------------------------------------------------
-	void build(ResourceName resourcename, FactionKey factionkey, EntityID groupID, vector mat[4], int playerId)
+	void build(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime)
 	{
+		RplComponent factRplComp = RplComponent.Cast(Replication.FindItem(factRplId));
+		IEntity factory = factRplComp.GetEntity();
+
 		IEntity entity = null;
 
 		Resource resource = Resource.Load(resourcename);
+
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		params.Transform = mat;
-		
+
 		entity = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 		
 		if (entity)
 		{
-			PrintFormat("CTI :: Entity spawned: %1", entity);
-
+			PrintFormat("CTI :: Entity spawned: %1, Pos: %2 (GRID: %3)", entity, entity.GetOrigin(), SCR_MapEntity.GetGridPos(entity.GetOrigin()));
+			
+			// TODO temporary -> 180deg turn
+			vector angles = entity.GetAngles();
+			angles[1] = angles[1] + 180;
+			entity.SetAngles(angles);
+			
 			AIControlComponent AgentControlComponent = AIControlComponent.Cast(entity.FindComponent(AIControlComponent));
 			AIAgent agent = null;
 			if (AgentControlComponent)
@@ -58,6 +67,8 @@ class SCR_CTI_FactoryProduction
 					m_gameMode.bumpMeServer();
 				}
 			}
+			
+			m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + unitData.getName() + "</color> has arrived from the <color rgba='255,210,115,255'>" + unitData.getFactory() + "</color> at grid <color rgba='255,210,115,255'>[" + SCR_MapEntity.GetGridPos(mat[3]) + "]</color>.", "Information", 15);
 		}
 	}
 
