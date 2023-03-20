@@ -1,11 +1,9 @@
 SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/Houses/Barracks_01/Barracks_01_military_base.et" {
  ID "F0DBA538AC2A0552"
  components {
-  FactionAffiliationComponent "{5CC9131C38878795}" {
+  FactionAffiliationComponent "{5CDF080DBA78F7E5}" {
   }
-  SCR_CTI_BuildingMapDescriptorComponent "{5CC9131C01479196}" {
-  }
-  SCR_CTI_FactorySpawnComponent "{5CC9131C08019E03}" {
+  SCR_CTI_BuildingMapDescriptorComponent "{5CDF080DB7C17669}" {
   }
  }
  coords 1243.149 0.011 2892.502
@@ -24,7 +22,7 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
  }
  {
   GenericEntity : "{0EE6FE5B2A3ED3F9}Prefabs/Structures/BuildingParts/Doors/DoorSet_Barracks_01_EXT_white.et" {
-   ID "5CC9076B93199B43"
+   ID "5CDF080EDF01A951"
    components {
     Hierarchy "{612AE78C85563E26}" {
      Enabled 1
@@ -42,7 +40,7 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
        components {
         MeshObject "{51C4DA208DB0E200}" {
          Materials {
-          MaterialAssignClass "{5CC9076B931B99BC}" {
+          MaterialAssignClass "{5CDF080EDF078729}" {
            SourceMaterial "common/materials/Glass_generic"
            AssignedMaterial "{95C204D12167FDDE}Assets/Structures/BuildingsParts/Windows/Data/window_glass_INT.emat"
           }
@@ -60,7 +58,7 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
        components {
         MeshObject "{51C4DA208DB0E200}" {
          Materials {
-          MaterialAssignClass "{5CC9076B931B99A6}" {
+          MaterialAssignClass "{5CDF080EDF078727}" {
            SourceMaterial "common/materials/Glass_generic"
            AssignedMaterial "{95C204D12167FDDE}Assets/Structures/BuildingsParts/Windows/Data/window_glass_INT.emat"
           }
@@ -74,73 +72,7 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
   }
   $grp GenericEntity : "{3001595FE0D14B45}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_INT_COV_B.et" {
    {
-    ID "5CC9076B93199B55"
-    components {
-     Hierarchy "{612AE78C85563E26}" {
-      Enabled 1
-      PivotID "socket_door_int_B_04"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B93199B56"
-    components {
-     Hierarchy "{612AE78C85563E26}" {
-      Enabled 1
-      PivotID "socket_door_int_B_06"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B93199B5B"
-    components {
-     Hierarchy "{612AE78C85563E26}" {
-      Enabled 1
-      PivotID "socket_door_int_B_05"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B9319D3D0"
-    components {
-     Hierarchy "{612AE78C85563E26}" {
-      Enabled 1
-      PivotID "socket_door_int_B_02"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B9319D3D3"
-    components {
-     Hierarchy "{612AE78C85563E26}" {
-      Enabled 1
-      PivotID "socket_door_int_B_03"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B9319DA2A"
-    components {
-     Hierarchy "{612AE78C85563E26}" {
-      Enabled 1
-      PivotID "socket_door_int_M1_01"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B9319DA2C"
+    ID "5CDF080EDF0024E4"
     components {
      Hierarchy "{612AE78C85563E26}" {
       Enabled 1
@@ -151,7 +83,7 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B9319DA2D"
+    ID "5CDF080EDF0024E5"
     components {
      Hierarchy "{612AE78C85563E26}" {
       Enabled 1
@@ -161,21 +93,76 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     }
     coords 0 0 0
    }
-  }
-  $grp GenericEntity : "{69A8FFE5527CB776}Prefabs/Structures/BuildingParts/Entry/Entry_Direct_01.et" {
    {
-    ID "5CC9076B9319D3EE"
+    ID "5CDF080EDF0026AC"
     components {
-     Hierarchy "{5488F0388A297CDE}" {
+     Hierarchy "{612AE78C85563E26}" {
       Enabled 1
-      PivotID "socket_entry_02"
+      PivotID "socket_door_int_B_02"
       AutoTransform 1
      }
     }
     coords 0 0 0
    }
    {
-    ID "5CC9076B9319D3EF"
+    ID "5CDF080EDF0026AF"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_int_B_03"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EDF01A8A9"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_int_B_04"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EDF01A8AA"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_int_B_05"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EDF01F4D9"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_int_M1_01"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EDF01F4DF"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_int_B_06"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  $grp GenericEntity : "{69A8FFE5527CB776}Prefabs/Structures/BuildingParts/Entry/Entry_Direct_01.et" {
+   {
+    ID "5CDF080EDF0026A0"
     components {
      Hierarchy "{5488F0388A297CDE}" {
       Enabled 1
@@ -185,16 +172,27 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     }
     coords 0 0 0
    }
+   {
+    ID "5CDF080EDF0026A3"
+    components {
+     Hierarchy "{5488F0388A297CDE}" {
+      Enabled 1
+      PivotID "socket_entry_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
   }
   GenericEntity : "{A7E02C0008C6455E}Prefabs/Structures/Military/Houses/Barracks_01/Barracks_01_military_furniture_01.et" {
-   ID "5CC9076B9319D3E7"
+   ID "5CDF080EDF0026A5"
    coords 0 0 0
   }
   $grp Building : "{AF1C5A0837A03A04}Prefabs/Structures/BuildingParts/Windows/Win_village_e_a_150x72_2_B.et" {
    {
-    ID "5CC9076B93187951"
+    ID "5CDF080EDF002688"
     components {
-     Hierarchy "{5CC9076B931B99C2}" {
+     Hierarchy "{5CDF080EDF078718}" {
       Enabled 1
       PivotID "socket_win_150x72_B_03"
       AutoTransform 1
@@ -203,20 +201,9 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B9319D3F2"
+    ID "5CDF080EDF002689"
     components {
-     Hierarchy "{5CC9076B931B99DB}" {
-      Enabled 1
-      PivotID "socket_win_150x72_B_01"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B9319D40C"
-    components {
-     Hierarchy "{5CC9076B931B99C0}" {
+     Hierarchy "{5CDF080EDF07871A}" {
       Enabled 1
       PivotID "socket_win_150x72_B_04"
       AutoTransform 1
@@ -225,11 +212,22 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B9319D40D"
+    ID "5CDF080EDF0026B6"
     components {
-     Hierarchy "{5CC9076B931B99C6}" {
+     Hierarchy "{5CDF080EDF078704}" {
       Enabled 1
       PivotID "socket_win_150x72_B_02"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EDF0026B7"
+    components {
+     Hierarchy "{5CDF080EDF078706}" {
+      Enabled 1
+      PivotID "socket_win_150x72_B_01"
       AutoTransform 1
      }
     }
@@ -238,7 +236,7 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
   }
   $grp GenericEntity : "{C177267ED6135A9A}Prefabs/Structures/BuildingParts/Doors/DoorSet_Barracks_01_EXT_brown.et" {
    {
-    ID "5CC9076B93187955"
+    ID "5CDF080EDF00268A"
     components {
      Hierarchy "{612AE78C85563E26}" {
       Enabled 1
@@ -249,7 +247,7 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B93187957"
+    ID "5CDF080EDF00268D"
     components {
      Hierarchy "{612AE78C85563E26}" {
       Enabled 1
@@ -262,20 +260,9 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
   }
   $grp Building : "{C719CAF469E11C52}Prefabs/Structures/BuildingParts/Windows/Win_Village_E_A_130x142_2_B.et" {
    {
-    ID "5CC9076B9318795B"
+    ID "5CDF080EDF00268E"
     components {
-     Hierarchy "{5CC9076B931B99C9}" {
-      Enabled 1
-      PivotID "socket_win_130x142_B_14"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B9318795C"
-    components {
-     Hierarchy "{5CC9076B931B99CB}" {
+     Hierarchy "{5CDF080EDF078711}" {
       Enabled 1
       PivotID "socket_win_130x142_B_10"
       AutoTransform 1
@@ -284,20 +271,20 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B9318A5AC"
+    ID "5CDF080EDF00268F"
     components {
-     Hierarchy "{5CC9076B931B99F6}" {
+     Hierarchy "{5CDF080EDF078713}" {
       Enabled 1
-      PivotID "socket_win_130x142_B_11"
+      PivotID "socket_win_130x142_B_14"
       AutoTransform 1
      }
     }
     coords 0 0 0
    }
    {
-    ID "5CC9076B9318A5AD"
+    ID "5CDF080EDF00A543"
     components {
-     Hierarchy "{5CC9076B931B99F4}" {
+     Hierarchy "{5CDF080EDF078716}" {
       Enabled 1
       PivotID "socket_win_130x142_B_09"
       AutoTransform 1
@@ -306,9 +293,20 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B9318A5AF"
+    ID "5CDF080EDF00A54C"
     components {
-     Hierarchy "{5CC9076B931B99F7}" {
+     Hierarchy "{5CDF080EDF078714}" {
+      Enabled 1
+      PivotID "socket_win_130x142_B_11"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EDF00A54D"
+    components {
+     Hierarchy "{5CDF080EDF0787EA}" {
       Enabled 1
       PivotID "socket_win_130x142_B_12"
       AutoTransform 1
@@ -317,20 +315,9 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B931B31E9"
+    ID "5CDF080EDF00E680"
     components {
-     Hierarchy "{5CC9076B931B99FC}" {
-      Enabled 1
-      PivotID "socket_win_130x142_B_06"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B931B31F6"
-    components {
-     Hierarchy "{5CC9076B931B99F2}" {
+     Hierarchy "{5CDF080EDF0787E9}" {
       Enabled 1
       PivotID "socket_win_130x142_B_05"
       AutoTransform 1
@@ -339,9 +326,20 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B931B31F7"
+    ID "5CDF080EDF00E681"
     components {
-     Hierarchy "{5CC9076B931B99F1}" {
+     Hierarchy "{5CDF080EDF0787EE}" {
+      Enabled 1
+      PivotID "socket_win_130x142_B_06"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EDF00E683"
+    components {
+     Hierarchy "{5CDF080EDF0787EB}" {
       Enabled 1
       PivotID "socket_win_130x142_B_13"
       AutoTransform 1
@@ -350,9 +348,9 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B931B5E81"
+    ID "5CDF080EDF0759BA"
     components {
-     Hierarchy "{5CC9076B931B99F8}" {
+     Hierarchy "{5CDF080EDF0787E3}" {
       Enabled 1
       PivotID "socket_win_130x142_B_01"
       AutoTransform 1
@@ -361,9 +359,9 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B931B5E82"
+    ID "5CDF080EDF0759BB"
     components {
-     Hierarchy "{5CC9076B931B99FE}" {
+     Hierarchy "{5CDF080EDF0787ED}" {
       Enabled 1
       PivotID "socket_win_130x142_B_08"
       AutoTransform 1
@@ -372,9 +370,9 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B931B5E83"
+    ID "5CDF080EDF0759BC"
     components {
-     Hierarchy "{5CC9076B931B99FD}" {
+     Hierarchy "{5CDF080EDF0787EC}" {
       Enabled 1
       PivotID "socket_win_130x142_B_07"
       AutoTransform 1
@@ -383,9 +381,20 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B931B9980"
+    ID "5CDF080EDF078744"
     components {
-     Hierarchy "{5CC9076B931B99E4}" {
+     Hierarchy "{5CDF080EDF0787E6}" {
+      Enabled 1
+      PivotID "socket_win_130x142_B_03"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EDF078745"
+    components {
+     Hierarchy "{5CDF080EDF0787E7}" {
       Enabled 1
       PivotID "socket_win_130x142_B_04"
       AutoTransform 1
@@ -394,22 +403,11 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     coords 0 0 0
    }
    {
-    ID "5CC9076B931B9986"
+    ID "5CDF080EDF078747"
     components {
-     Hierarchy "{5CC9076B931B99F9}" {
+     Hierarchy "{5CDF080EDF0787E0}" {
       Enabled 1
       PivotID "socket_win_130x142_B_02"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076B931B9987"
-    components {
-     Hierarchy "{5CC9076B931B99FB}" {
-      Enabled 1
-      PivotID "socket_win_130x142_B_03"
       AutoTransform 1
      }
     }

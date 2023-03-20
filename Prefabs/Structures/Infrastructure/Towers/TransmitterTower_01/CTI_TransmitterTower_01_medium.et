@@ -1,11 +1,12 @@
 StaticModelEntity : "{01E409EF2B75692E}Prefabs/Structures/Infrastructure/Towers/TransmitterTower_01/TransmitterTower_01_medium_base.et" {
  ID "50D67C36F43527FE"
  components {
-  FactionAffiliationComponent "{5CC9131CD21F5395}" {
+  FactionAffiliationComponent "{5CDF080E49A0A1BC}" {
   }
-  SCR_CTI_BuildingMapDescriptorComponent "{5CC9131CC37315DC}" {
+  SCR_CTI_BuildingMapDescriptorComponent "{5CDF080E4A75EF63}" {
   }
-  SCR_CTI_FactorySpawnComponent "{5CC9131CD56CBABB}" {
+  SCR_MapDescriptorComponent "{59F4D7DB7F2C40FE}" {
+   Enabled 0
   }
  }
 }

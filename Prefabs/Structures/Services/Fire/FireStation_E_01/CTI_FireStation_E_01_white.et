@@ -1,23 +1,21 @@
 SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/Fire/FireStation_E_01/FireStation_E_01_base.et" {
  ID "F0DBA538AC2A0552"
  components {
-  FactionAffiliationComponent "{5CC9131C9AAB3E26}" {
+  FactionAffiliationComponent "{5CDF080D8F8E41A2}" {
   }
   MeshObject "{506EDA9D46FC6C06}" {
    Materials {
-    MaterialAssignClass "{5CC9076A76ADAFF4}" {
+    MaterialAssignClass "{5CDF080EF69A7CC4}" {
      SourceMaterial "Firestation_external_walls"
      AssignedMaterial "{C735937D136DBD1F}Assets/Structures/Services/Fire/FireStation_E_01/Data/Firestation_external_walls_white.emat"
     }
-    MaterialAssignClass "{5CC9076A76ADAFF6}" {
+    MaterialAssignClass "{5CDF080EF69A7CD2}" {
      SourceMaterial "Firestation_interior_mLOD"
      AssignedMaterial "{C04037A84EBCECFC}Assets/Structures/Services/Fire/FireStation_E_01/Data/Firestation_MLOD_White.emat"
     }
    }
   }
-  SCR_CTI_BuildingMapDescriptorComponent "{5CC9131C950F6CC6}" {
-  }
-  SCR_CTI_FactorySpawnComponent "{5CC9131C9C182C90}" {
+  SCR_CTI_BuildingMapDescriptorComponent "{5CDF080D8B2F2CD1}" {
   }
  }
  coords 1299.124 0.002 1304.668
@@ -28,7 +26,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
  }
  {
   GenericEntity : "{11ED952FDDAC91BD}Prefabs/Structures/BuildingParts/Eletrical/Firestation_rod.et" {
-   ID "5CC9076A76AA57D3"
+   ID "5CDF080EF6990E2D"
    components {
     Hierarchy "{612AE78C95E98EEB}" {
      Enabled 1
@@ -39,7 +37,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords 0 0 0
   }
   GenericEntity : "{1623DE74CC2B83E5}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_INT_ST_B.et" {
-   ID "5CC9076A76AA57DC"
+   ID "5CDF080EF6990E2A"
    components {
     Hierarchy "{612AE78C85563E26}" {
      PivotID "Socket_DoorSet_Village_E_01_R_INT_B_001"
@@ -47,7 +45,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    }
   }
   GenericEntity : "{18E3F1942F2C8509}Prefabs/Structures/BuildingParts/Entry/Entry_Slope_Platform_01.et" {
-   ID "5CC9076A76AA57DF"
+   ID "5CDF080EF6990E28"
    components {
     Hierarchy "{5488F0388A297CDE}" {
      Enabled 1
@@ -58,7 +56,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords 0 0 0
   }
   GenericEntity : "{3001595FE0D14B45}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_INT_COV_B.et" {
-   ID "5CC9076A76AA07A2"
+   ID "5CDF080EF6990E36"
    components {
     Hierarchy "{612AE78C85563E26}" {
      Enabled 1
@@ -70,64 +68,9 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
   }
   $grp Building : "{3F0A6375DB724BBD}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_90x142_1_B.et" {
    {
-    ID "5CC9076A76AA07A4"
+    ID "5CDF080EF6990E32"
     components {
-     Hierarchy "{5CC9076A76ADAFE0}" {
-      Enabled 1
-      PivotID "Socket_Win_Office_E_90x142_1_B_base_004"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076A76AA8DA2"
-    components {
-     Hierarchy "{5CC9076A76ADAFEE}" {
-      Enabled 1
-      PivotID "Socket_Win_Office_E_90x142_1_B_base_007"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076A76AA8DA3"
-    components {
-     Hierarchy "{5CC9076A76ADAFEC}" {
-      Enabled 1
-      PivotID "Socket_Win_Office_E_90x142_1_B_base_005"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076A76AAB413"
-    components {
-     Hierarchy "{5CC9076A76ADAFE9}" {
-      Enabled 1
-      PivotID "Socket_Win_Office_E_90x142_1_B_base_006"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076A76AAB42C"
-    components {
-     Hierarchy "{5CC9076A76ADAFEB}" {
-      Enabled 1
-      PivotID "Socket_Win_Office_E_90x142_1_B_base_001"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076A76AACD79"
-    components {
-     Hierarchy "{5CC9076A76ADAFE3}" {
+     Hierarchy "{5CDF080EF69A7C27}" {
       Enabled 1
       PivotID "Socket_Win_Office_E_90x142_1_B_base_002"
       AutoTransform 1
@@ -136,11 +79,66 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
     coords 0 0 0
    }
    {
-    ID "5CC9076A76AACD7A"
+    ID "5CDF080EF6990E33"
     components {
-     Hierarchy "{5CC9076A76ADAFED}" {
+     Hierarchy "{5CDF080EF69A7C21}" {
+      Enabled 1
+      PivotID "Socket_Win_Office_E_90x142_1_B_base_004"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EF69A76E0"
+    components {
+     Hierarchy "{5CDF080EF69A7C3A}" {
+      Enabled 1
+      PivotID "Socket_Win_Office_E_90x142_1_B_base_007"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EF69A76EF"
+    components {
+     Hierarchy "{5CDF080EF69A7C39}" {
+      Enabled 1
+      PivotID "Socket_Win_Office_E_90x142_1_B_base_006"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EF69A7C93"
+    components {
+     Hierarchy "{5CDF080EF69A7C3F}" {
+      Enabled 1
+      PivotID "Socket_Win_Office_E_90x142_1_B_base_001"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EF69A98A1"
+    components {
+     Hierarchy "{5CDF080EF69A7C25}" {
       Enabled 1
       PivotID "Socket_Win_Office_E_90x142_1_B_base_003"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080EF69A98A3"
+    components {
+     Hierarchy "{5CDF080EF69A7C24}" {
+      Enabled 1
+      PivotID "Socket_Win_Office_E_90x142_1_B_base_005"
       AutoTransform 1
      }
     }
@@ -149,20 +147,9 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
   }
   $grp Building : "{4D45A79372BFBAC3}Prefabs/Structures/BuildingParts/Windows/Win_village_E_A/Win_village_e_a_195x72_3_B.et" {
    {
-    ID "5CC9076A76AD0408"
+    ID "5CDF080EF69A7C90"
     components {
-     Hierarchy "{5CC9076A76ADAFD4}" {
-      Enabled 1
-      PivotID "Socket_Win_village_e_a_195x72_3_B_base_001"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076A76AD0409"
-    components {
-     Hierarchy "{5CC9076A76ADAFEA}" {
+     Hierarchy "{5CDF080EF69A7C3E}" {
       Enabled 1
       PivotID "Socket_Win_village_e_a_195x72_3_B_base_002"
       AutoTransform 1
@@ -170,9 +157,20 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
     }
     coords 0 0 0
    }
+   {
+    ID "5CDF080EF69A7C97"
+    components {
+     Hierarchy "{5CDF080EF69A7C3C}" {
+      Enabled 1
+      PivotID "Socket_Win_village_e_a_195x72_3_B_base_001"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
   }
   GenericEntity : "{575A6852D1E5CAA6}Prefabs/Structures/Services/Fire/FireStation_E_01/FireStation_E_01_hose_hanger.et" {
-   ID "5CC9076A76AD040B"
+   ID "5CDF080EF69A7C95"
    components {
     Hierarchy "{612AE78C95E98EEB}" {
      Enabled 1
@@ -184,18 +182,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
   }
   $grp GenericEntity : "{66A908B66DC3277A}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_L_INT_COV_B.et" {
    {
-    ID "5CC9076A76AD040A"
-    components {
-     Hierarchy "{612AE78C85563E26}" {
-      Enabled 1
-      PivotID "Socket_DoorSet_Village_E_01_L_INT_B_002"
-      AutoTransform 1
-     }
-    }
-    coords 0 0 0
-   }
-   {
-    ID "5CC9076A76AD040D"
+    ID "5CDF080EF69A7CEA"
     components {
      Hierarchy "{612AE78C85563E26}" {
       Enabled 1
@@ -205,9 +192,20 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
     }
     coords 0 0 0
    }
+   {
+    ID "5CDF080EF69A7CEB"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "Socket_DoorSet_Village_E_01_L_INT_B_002"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
   }
   GenericEntity : "{868C7143DB9A4A36}Prefabs/Structures/BuildingParts/Eletrical/Firestation_siren_01.et" {
-   ID "5CC9076A76AD089B"
+   ID "5CDF080EF69A7CE9"
    components {
     Hierarchy "{612AE78C95E98EEB}" {
      Enabled 1
@@ -218,7 +216,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords 0 0 0
   }
   GenericEntity : "{94021BCA593A8CFF}Prefabs/Structures/BuildingParts/Entry/ConcreteStairs_02_Wide.et" {
-   ID "5CC9076A76AD089A"
+   ID "5CDF080EF69A7CEF"
    components {
     Hierarchy "{5488F0388A297CDE}" {
      Enabled 1
@@ -229,9 +227,9 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords 0 0 0
   }
   Building : "{AF1C5A0837A03A04}Prefabs/Structures/BuildingParts/Windows/Win_village_e_a_150x72_2_B.et" {
-   ID "5CC9076A76AD0899"
+   ID "5CDF080EF69A7CEE"
    components {
-    Hierarchy "{5CC9076A76ADAFDC}" {
+    Hierarchy "{5CDF080EF69A7C34}" {
      Enabled 1
      PivotID "Socket_Win_village_e_a_150x72_2_B_base_001"
      AutoTransform 1
@@ -240,7 +238,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords 0 0 0
   }
   GenericEntity : "{BA579700C5A319BA}Prefabs/Structures/Services/Fire/FireStation_E_01/FireStation_E_01 handrail_roof.et" {
-   ID "5CC9076A76AD0898"
+   ID "5CDF080EF69A7CE3"
    components {
     Hierarchy "{612AE78C95E98EEB}" {
      Enabled 1
@@ -251,7 +249,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords 0 0 0
   }
   GenericEntity : "{BA7E26C84D30DA6A}Prefabs/Structures/BuildingParts/Doors/DoorSet_Garage_E_03_EXT_red.et" {
-   ID "5CC9076A76AD0897"
+   ID "5CDF080EF69A7CE1"
    components {
     Hierarchy "{612AE78C85563E26}" {
      Enabled 1
@@ -262,7 +260,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords 0 0 0
   }
   GenericEntity : "{C0E235CAA01EB8F2}Prefabs/Structures/BuildingParts/Doors/HatchSet_Lightbeacon_Red.et" {
-   ID "5CC9076A76ADD946"
+   ID "5CDF080EF69A7CE6"
    components {
     Hierarchy "{612AE78C85563E26}" {
      Enabled 1
@@ -273,7 +271,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords -0.08 -0.024 0
   }
   GenericEntity : "{CAF8666F26CEB7AD}Prefabs/Structures/BuildingParts/Entry/ConcreteStairs_02_Narrow.et" {
-   ID "5CC9076A76ADD944"
+   ID "5CDF080EF69A7CE5"
    components {
     Hierarchy "{5488F0388A297CDE}" {
      Enabled 1
@@ -284,7 +282,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
    coords 0 0 0
   }
   GenericEntity : "{CC6B92AEE60F0AAC}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_EXT_COV_B_brown.et" {
-   ID "5CC9076A76ADAF9F"
+   ID "5CDF080EF69A7CFB"
    components {
     Hierarchy "{612AE78C85563E26}" {
      PivotID "Socket_DoorSet_Village_E_01_L_INT_B_001"
@@ -293,7 +291,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
   }
   $grp GenericEntity : "{DF2991BF3B29DD46}Prefabs/Structures/BuildingParts/Doors/DoorSet_Industrial_01_EXT_red.et" {
    {
-    ID "5CC9076A76ADAF99"
+    ID "5CDF080EF69A7CF9"
     components {
      Hierarchy "{612AE78C85563E26}" {
       Enabled 1
@@ -304,7 +302,7 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
     coords 0 0 0
    }
    {
-    ID "5CC9076A76ADAF9E"
+    ID "5CDF080EF69A7CFA"
     components {
      MeshObject "{61B367470698533A}" {
       Materials {
