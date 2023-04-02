@@ -207,29 +207,6 @@ FrameWidgetClass {
     }
    }
   }
-  ButtonWidgetClass "{5ACCEA8321046105}" {
-   Name "Satellite"
-   Slot FrameWidgetSlot "{5ACCEA832104611E}" {
-    Anchor 0 1 0 1
-    PositionX 560
-    OffsetLeft 560
-    PositionY -60
-    OffsetTop -60
-    SizeX 250
-    OffsetRight -810
-    SizeY 40
-    OffsetBottom 20
-   }
-   {
-    RichTextWidgetClass "{5ACCEA9D5B956687}" {
-     Name "SatelliteText"
-     Slot ButtonWidgetSlot "{5ACCEA9D5B95669C}" {
-     }
-     Color 0.173 0.129 0 1
-     Text "Satellite Cam"
-    }
-   }
-  }
   ButtonWidgetClass "{5ACCEA8322428BFF}" {
    Name "NormalNV"
    Slot FrameWidgetSlot "{5ACCEA8322428C14}" {

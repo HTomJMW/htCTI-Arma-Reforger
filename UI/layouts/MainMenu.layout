@@ -595,7 +595,7 @@ FrameWidgetClass {
        Slot ButtonWidgetSlot "{5A5D2DA85158A43A}" {
        }
        Color 0.173 0.129 0 1
-       Text "Radio"
+       Text "Radio - None"
       }
      }
     }
@@ -735,7 +735,7 @@ FrameWidgetClass {
      }
     }
     ButtonWidgetClass "{5A5D2DAE81BC10AB}" {
-     Name "ButtonRight3"
+     Name "GearButton"
      Slot FrameWidgetSlot "{5A5D2DAE81BC10C0}" {
       Anchor 1 0 1 0
       PositionX -245
@@ -747,13 +747,13 @@ FrameWidgetClass {
       SizeY 45
       OffsetBottom -197
      }
-     Color 0.467 0.467 0.467 1
      {
       RichTextWidgetClass "{5A5D2DA8478BB916}" {
-       Name "ButtonRight3Text"
+       Name "GearText"
        Slot ButtonWidgetSlot "{5A5D2DA8478BB92D}" {
        }
-       Text ""
+       Color 0.171 0.13 0 1
+       Text "Gear"
       }
      }
     }
