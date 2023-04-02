@@ -245,6 +245,22 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "58689E19F6D84399"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+       }
+      }
+     }
+     GenericEntity {
+      ID "58689E19F6D843D7"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+       }
+      }
+     }
+    }
    }
    {
     ID "5CDF080EDF00268D"
@@ -256,6 +272,22 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "58689E19F6D84399"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+       }
+      }
+     }
+     GenericEntity {
+      ID "58689E19F6D843D7"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+       }
+      }
+     }
+    }
    }
   }
   $grp Building : "{C719CAF469E11C52}Prefabs/Structures/BuildingParts/Windows/Win_Village_E_A_130x142_2_B.et" {

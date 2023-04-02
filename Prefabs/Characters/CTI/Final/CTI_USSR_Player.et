@@ -1,0 +1,46 @@
+SCR_ChimeraCharacter : "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et" {
+ ID "200D264F0EEA1A28"
+ components {
+  SCR_CommunicationSoundComponent "{54FD05D0C92D071F}" {
+   Filenames + {
+    "{FC7A7A9F92D1E225}Sounds/RadioProtocol/RadioProtocol_Campaign_SL_RU.acp" "{7413663A6477A6AE}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_1_RU.acp" "{C6C424D13BD59536}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_2_RU.acp" "{A8891A880EB47BBE}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_3_RU.acp" "{E19A40EC2D7BC495}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_4_RU.acp" "{8FD77EB5181A2A1D}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_5_RU.acp"
+   }
+  }
+  SCR_CharacterInventoryStorageComponent "{520EA1D2DB118DAC}" {
+   components {
+    SCR_EquipmentStorageComponent "{56B49DA9722B635D}" {
+     InitialStorageSlots {
+      SCR_EquipmentStorageSlot BinocularSlot {
+       Prefab "{F2539FA5706E51E4}Prefabs/Items/Equipment/Binoculars/Binoculars_B12.et"
+      }
+     }
+    }
+   }
+  }
+  FactionAffiliationComponent "{520EC9618276DF23}" {
+   "faction affiliation" "USSR"
+  }
+  SCR_CTI_RadioConnectionComponent "{5CF31A78BC2DD129}" {
+  }
+  SCR_CampaignBuildingComponent "{5CF319E99165E318}" {
+   Enabled 0
+   m_fBuildingRadius 300
+   m_fDeletingMultiplier 1.2
+   m_PreviewEntityPrefab "{4FF075A21D258ABE}Prefabs/MP/Campaign/BuildPreview.et"
+   m_PreviewMaterial "{58F07022C12D0CF5}Assets/Editor/PlacingPreview/Preview.emat"
+   m_BuildingEntityPrefab "{15BEE7092B88B67D}Prefabs/MP/Campaign/BuildEntity.et"
+  }
+  SCR_CharacterRankComponent "{528E6D4286AA2D8F}" {
+   m_iRank CAPTAIN
+  }
+  SCR_GadgetManagerComponent "{520EA1D2DB118DF3}" {
+  }
+  SCR_MapDescriptorComponent "{5CF319E99165E327}" {
+   DisplayName ""
+   VisibleOnMap 0
+   MainType Unit
+   UnitType Infantry
+  }
+ }
+ coords 535.865 0.985 843.547
+}
