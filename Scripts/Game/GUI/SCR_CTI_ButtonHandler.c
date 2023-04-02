@@ -58,6 +58,14 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 
 				break;
 			}
+			case "GearButton":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_GearMenu);
+				
+				break;
+			}
 			case "UpgradesButton":
 			{
 				auto menuManager = GetGame().GetMenuManager();
@@ -95,7 +103,7 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				} else {
 					break;
 				}				
-				int upgradeindex = gameMode.Upgrades.findIndexFromName(upgradeData.getName());
+				int upgradeindex = gameMode.Upgrades.findIndexByName(upgradeData.getName());
 				
 				netComp.StartUpgradeServer(fk, upgradeindex);
 				
@@ -450,6 +458,30 @@ class SCR_CTI_ButtonHandler : ScriptedWidgetEventHandler
 				menuManager.CloseAllMenus();
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_ServiceMenu);
 				
+				break;
+			}
+			case "RadioButton":
+			{
+				PlayerController pc = GetGame().GetPlayerController();
+				IEntity player = pc.GetControlledEntity();
+				SCR_CTI_RadioConnectionComponent rcc = SCR_CTI_RadioConnectionComponent.Cast(player.FindComponent(SCR_CTI_RadioConnectionComponent));
+				if (rcc && rcc.hasRadio())
+				{
+					if (rcc.radioIsOn())
+					{
+						rcc.setRadioOn(false);
+					} else {
+						rcc.setRadioOn(true);
+					}
+				}
+				
+				break;
+			}
+			case "SatelliteCameraButton":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_SatCamMenu);
 				break;
 			}
 		}

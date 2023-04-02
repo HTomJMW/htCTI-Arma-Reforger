@@ -6,6 +6,7 @@ class SCR_CTI_RadioConnectionComponentClass : ScriptComponentClass
 class SCR_CTI_RadioConnectionComponent : ScriptComponent
 {
 	protected SCR_CTI_GameMode m_gameMode;
+	protected FactionManager m_factionManager;
 	protected PlayerController m_pc;
 	protected SCR_ChimeraCharacter m_player;
 	protected SCR_MapDescriptorComponent m_mapDescComp;
@@ -13,6 +14,19 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 	protected FactionAffiliationComponent m_factionAffComp;
 	protected DamageManagerComponent m_dmc;
 	protected MapItem m_mapitem;
+	protected bool m_radioOn = true;
+	
+	//------------------------------------------------------------------------------------------------
+	bool radioIsOn()
+	{
+		return m_radioOn;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void setRadioOn(bool value)
+	{
+		m_radioOn = value;
+	}
 
 	//------------------------------------------------------------------------------------------------
 	bool hasRadio()
@@ -62,7 +76,9 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 		}
 
 		m_mapitem = m_mapDescComp.Item();
-		
+
+		m_mapitem.SetVisible(true);
+		m_mapitem.SetFactionIndex(m_factionManager.GetFactionIndex(m_factionAffComp.GetAffiliatedFaction()));
 		m_mapitem.SetDisplayName(GetGame().GetPlayerManager().GetPlayerName(m_pc.GetPlayerId()));
 		m_mapitem.SetBaseType(EMapDescriptorType.MDT_NAME_GENERIC);
 		m_mapitem.SetImageDef("Unit");
@@ -74,8 +90,8 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 			props.SetTextSize(32, 8, 32);
 			props.SetTextColor(Color.Black);
 			props.SetFrontColor(color);
-			props.SetTextVisible(false);
-			props.SetIconVisible(false);
+			props.SetTextVisible(true);
+			props.SetIconVisible(true);
 			props.Activate(true);
 		
 		m_mapitem.SetProps(props);
@@ -85,22 +101,6 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 	void OnMapOpen()
 	{
 		if (!SCR_PlayerController.GetLocalControlledEntity()) return;
-
-		if (m_mapitem && m_dmc)
-		{
-			MapDescriptorProps props = m_mapitem.GetProps();
-	
-			if (hasRadio() && !m_dmc.IsDestroyed())
-			{
-					props.SetTextVisible(true);
-					props.SetIconVisible(true);
-			} else {
-					props.SetTextVisible(false);
-					props.SetIconVisible(false);
-			}
-			
-			m_mapitem.SetProps(props);
-		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 			m_factionAffComp = FactionAffiliationComponent.Cast(owner.FindComponent(FactionAffiliationComponent));
 			m_dmc = DamageManagerComponent.Cast(owner.FindComponent(DamageManagerComponent));
 	
-			GetGame().GetCallqueue().CallLater(initMapDescriptor, 3000);
+			GetGame().GetCallqueue().CallLater(initMapDescriptor, 1000);
 		}
 	}
 
@@ -124,15 +124,16 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 	void SCR_CTI_RadioConnectionComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_factionManager = GetGame().GetFactionManager();
 		m_player = SCR_ChimeraCharacter.Cast(ent);
 		m_pc = GetGame().GetPlayerController();
 
-		if (m_pc) SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
+		//if (m_pc) SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_RadioConnectionComponent()
 	{
-		if (m_pc) SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);
+		//if (m_pc) SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);
 	}
 };

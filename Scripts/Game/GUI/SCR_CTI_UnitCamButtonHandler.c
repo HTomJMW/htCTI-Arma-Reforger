@@ -25,32 +25,29 @@ class SCR_CTI_UnitCamButtonHandler : ScriptedWidgetEventHandler
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
-				Widget root = openedMenu.GetRootWidget();
-				OverlayWidget listboxTeams = OverlayWidget.Cast(root.FindAnyWidget("ListBoxTeams"));
-				SCR_ListBoxComponent listboxTeamsComp = SCR_ListBoxComponent.Cast(listboxTeams.FindHandler(SCR_ListBoxComponent));
-				if (listboxTeamsComp.GetSelectedItem() == -1) break;
+				SCR_CTI_UnitCamMenu ucm = SCR_CTI_UnitCamMenu.Cast(openedMenu);
 				
-				PlayerCamera pCam = PlayerCamera.Cast(listboxTeamsComp.GetItemData(listboxTeamsComp.GetSelectedItem()));
-				//TODO
+				ucm.setIronSight();
 
 				break;
 			}
 			case "Internal":
 			{
-				//if player selected
-				PlayerController pc = GetGame().GetPlayerController();
-				IEntity player = pc.GetControlledEntity();
-				SCR_CharacterCameraHandlerComponent cchc = SCR_CharacterCameraHandlerComponent.Cast(player.FindComponent(SCR_CharacterCameraHandlerComponent));
-				cchc.SetThirdPerson(false);
+				auto menuManager = GetGame().GetMenuManager();
+				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
+				SCR_CTI_UnitCamMenu ucm = SCR_CTI_UnitCamMenu.Cast(openedMenu);
 				
+				ucm.setInternal();
+	
 				break;
 			}
 			case "External":
 			{
-				PlayerController pc = GetGame().GetPlayerController();
-				IEntity player = pc.GetControlledEntity();
-				SCR_CharacterCameraHandlerComponent cchc = SCR_CharacterCameraHandlerComponent.Cast(player.FindComponent(SCR_CharacterCameraHandlerComponent));
-				cchc.SetThirdPerson(true);
+				auto menuManager = GetGame().GetMenuManager();
+				MenuBase openedMenu = MenuBase.Cast(menuManager.GetTopMenu());
+				SCR_CTI_UnitCamMenu ucm = SCR_CTI_UnitCamMenu.Cast(openedMenu);
+				
+				ucm.setExternal();
 
 				break;
 			}
@@ -85,12 +82,6 @@ class SCR_CTI_UnitCamButtonHandler : ScriptedWidgetEventHandler
 				break;
 			}
 			case "NormalNV":
-			{
-				
-				
-				break;
-			}
-			case "Satellite":
 			{
 				
 				

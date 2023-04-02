@@ -122,7 +122,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void saveLoadout()
+	void saveLoadout()
 	{
 		// save loadout
 		PlayerController pc = GetGame().GetPlayerController();

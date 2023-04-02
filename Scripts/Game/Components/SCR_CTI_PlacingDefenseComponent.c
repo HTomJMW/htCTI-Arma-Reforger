@@ -10,7 +10,7 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 	
 	protected ResourceName m_resName;
 
-	SCR_BasePreviewEntity m_defense = null;
+	protected SCR_BasePreviewEntity m_defense = null;
 
 	protected vector finalMat[4];
 	
@@ -29,7 +29,7 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 	protected float m_radius;
 	protected float m_maxDifference;
 	
-	ref protected TraceOBB m_paramOBB = new TraceOBB();
+	protected ref TraceOBB m_paramOBB = new TraceOBB();
 	
 	protected vector m_boundmins;
 	protected vector m_boundmaxs;

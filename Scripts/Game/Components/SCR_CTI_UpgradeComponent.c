@@ -14,6 +14,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 {
 	protected SCR_CTI_GameMode m_gameMode;
 	protected RplComponent m_rplComponent;
+	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 5;
 	

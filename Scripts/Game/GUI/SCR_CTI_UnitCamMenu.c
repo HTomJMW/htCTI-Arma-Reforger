@@ -1,16 +1,21 @@
 class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 {
-	protected SCR_CTI_GameMode gameMode;
-	protected PlayerController pc;
-	protected int playerId;
-	protected PlayerManager pm;
-	protected SCR_GroupsManagerComponent gmc;
-	protected FactionAffiliationComponent faffComp;
-	protected CameraManager camMan;
-	protected CameraBase playerCam;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected PlayerController m_pc;
+	protected int m_playerId;
+	protected PlayerManager m_pm;
+	protected SCR_GroupsManagerComponent m_gmc;
+	protected FactionAffiliationComponent m_faffComp;
+	protected CameraManager m_camMan;
+	protected CameraBase m_playerCam;
+	protected SCR_ManualCamera m_manualCam = null;
+	
+	protected bool ironsightView = false;
+	protected bool internalView = false;
+	protected bool externalView = false;
 	
 	protected float m_timeDelta;
-	protected const float TIMESTEP = 0.5;
+	protected const float TIMESTEP = 0.1;
 	
 	protected Widget m_wRoot;
 	
@@ -24,7 +29,6 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 	protected ButtonWidget m_ironsight;
 	protected ButtonWidget m_exit;
 	protected ButtonWidget m_normalnv;
-	protected ButtonWidget m_satellite;
 	
 	protected OverlayWidget m_listboxTeams;
 	protected OverlayWidget m_listboxTeamMembers;
@@ -37,14 +41,14 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		pc = GetGame().GetPlayerController();
-		playerId = pc.GetPlayerId();
-		pm = GetGame().GetPlayerManager();
-		gmc = SCR_GroupsManagerComponent.GetInstance();
-		faffComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_pc = GetGame().GetPlayerController();
+		m_playerId = m_pc.GetPlayerId();
+		m_pm = GetGame().GetPlayerManager();
+		m_gmc = SCR_GroupsManagerComponent.GetInstance();
+		m_faffComp = FactionAffiliationComponent.Cast(m_pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 		
-		camMan = GetGame().GetCameraManager();
+		m_camMan = GetGame().GetCameraManager();
 		
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_unitCamButtonEventHandler = new SCR_CTI_UnitCamButtonHandler();
@@ -61,7 +65,6 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		m_ironsight = ButtonWidget.Cast(m_wRoot.FindAnyWidget("IronSight"));
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 		m_normalnv = ButtonWidget.Cast(m_wRoot.FindAnyWidget("NormalNV"));
-		m_satellite = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Satellite"));
 
 		m_unflip.SetColor(Color.Orange);
 		m_unflip.AddHandler(m_unitCamButtonEventHandler);
@@ -74,6 +77,11 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		
 		m_internal.SetColor(Color.Orange);
 		m_internal.AddHandler(m_unitCamButtonEventHandler);
+		
+		//m_normalnv.SetColor(Color.Orange);
+		//m_normalnv.AddHandler(m_unitCamButtonEventHandler);
+		m_normalnv.SetColor(Color.Gray);
+		m_normalnv.SetEnabled(false);
 
 		m_exit.SetColor(Color.Orange);
 		m_exit.AddHandler(m_commonButtonHandler);
@@ -84,41 +92,102 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		m_listboxTeamsComp = SCR_ListBoxComponent.Cast(m_listboxTeams.FindHandler(SCR_ListBoxComponent));
 		m_listboxTeamMembersComp = SCR_ListBoxComponent.Cast(m_listboxTeamMembers.FindHandler(SCR_ListBoxComponent));
 		
-		IEntity player = pc.GetControlledEntity();
-		SCR_CharacterCameraHandlerComponent cchc = SCR_CharacterCameraHandlerComponent.Cast(player.FindComponent(SCR_CharacterCameraHandlerComponent));
-		cchc.SetThirdPerson(true);
-		
-		playerCam = camMan.CurrentCamera();
+		IEntity player = m_pc.GetControlledEntity();
+		//m_playerCam = m_camMan.CurrentCamera();
+		m_playerCam = m_pc.GetPlayerCamera();
 	
 		array<int> sidePlayers = {};
-		pm.GetPlayers(sidePlayers);
+		m_pm.GetPlayers(sidePlayers);
 		
 		foreach(int pId : sidePlayers)
 		{
-			PlayerController pPc = pm.GetPlayerController(pId);
-			IEntity ent = pPc.GetControlledEntity();
+			IEntity ent = m_pm.GetPlayerControlledEntity(pId);
 			FactionAffiliationComponent faffCompPlayer = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
-			if (faffCompPlayer.GetDefaultAffiliatedFaction() != faffComp.GetDefaultAffiliatedFaction())
+			if (faffCompPlayer.GetDefaultAffiliatedFaction() != m_faffComp.GetDefaultAffiliatedFaction())
 			{
 				sidePlayers.RemoveItem(pId);
 				break;
 			}
-			PlayerCamera pCam = pPc.GetPlayerCamera();
-			m_listboxTeamsComp.AddItem(pm.GetPlayerName(pId), pCam);
+
+			m_listboxTeamsComp.AddItem(m_pm.GetPlayerName(pId), ent);
 		}
 
-		m_unit.SetText("Unit: " + pm.GetPlayerName(playerId) + " " + gmc.GetPlayerGroup(playerId).GetCustomName());
+		m_unit.SetText("Unit: " + m_pm.GetPlayerName(m_playerId) + " " + m_gmc.GetPlayerGroup(m_playerId).GetCustomName());
+
+		vector transform[4];
+		m_playerCam.GetTransform(transform);
+		EntitySpawnParams spawnParams = new EntitySpawnParams();
+		vector dir = m_playerCam.GetWorldTransformAxis(2);
+		transform[3] = transform[3] + (dir * 0.3);
+		spawnParams.Transform = transform;
+	
+		m_manualCam = SCR_ManualCamera.Cast(GetGame().SpawnEntityPrefabLocal(Resource.Load("{D6DE32D1C0FCC1C7}Prefabs/Editor/Camera/ManualCameraBase.et"), GetGame().GetWorld(), spawnParams));
+		if (m_manualCam)
+		{
+			m_camMan.SetCamera(m_manualCam);
+		}
+
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	SCR_ManualCamera getManualCam()
+	{
+		return m_manualCam;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	bool isIronSight()
+	{
+		return ironsightView;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void setIronSight()
+	{
+		ironsightView = true;
+		internalView = false;
+		externalView = false;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	bool isInternal()
+	{
+		return internalView;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void setInternal()
+	{
+		ironsightView = false;
+		internalView = true;
+		externalView = false;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	bool isExternal()
+	{
+		return externalView;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void setExternal()
+	{
+		ironsightView = false;
+		internalView = false;
+		externalView = true;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		setInternal();
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuClose()
 	{
-		camMan.SetCamera(playerCam);
+		m_camMan.SetCamera(m_playerCam);
+		SCR_EntityHelper.DeleteEntityAndChildren(m_manualCam);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -127,12 +196,69 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			if (m_listboxTeamsComp.GetSelectedItem() != -1)
+			if (m_manualCam)
 			{
-				PlayerCamera cam = PlayerCamera.Cast(m_listboxTeamsComp.GetItemData(m_listboxTeamsComp.GetSelectedItem()));
-				camMan.SetCamera(cam);
+				if (m_listboxTeamsComp.GetSelectedItem() != -1)
+				{
+					vector transform[4];
+					IEntity ent = IEntity.Cast(m_listboxTeamsComp.GetItemData(m_listboxTeamsComp.GetSelectedItem()));
+					ent.GetTransform(transform);
+					vector dir = ent.GetTransformAxis(2);
+					
+					switch(true)
+					{
+						case (isIronSight()):
+						{
+							transform[3] = transform[3] + (dir * 0.3);
+							transform[3][1] = transform[3][1] + 1.2;
+							break;
+						}
+						case (isInternal()):
+						{
+							transform[3] = transform[3] + (dir * 0.3);
+							transform[3][1] = transform[3][1] + 1.6;
+							break;
+						}
+						case (isExternal()):
+						{
+							transform[3] = transform[3] + (dir * -1.3);
+							transform[3][1] = transform[3][1] + 2.2;
+							break;
+						}
+					}
+					
+					m_manualCam.SetTransform(transform);
+				} else {
+					vector transform[4];
+					IEntity ent = m_pc.GetControlledEntity();
+					ent.GetTransform(transform);
+					vector dir = ent.GetTransformAxis(2);
+					
+					switch(true)
+					{
+						case (isIronSight()):
+						{
+							transform[3] = transform[3] + (dir * 0.3);
+							transform[3][1] = transform[3][1] + 1.2;
+							break;
+						}
+						case (isInternal()):
+						{
+							transform[3] = transform[3] + (dir * 0.3);
+							transform[3][1] = transform[3][1] + 1.6;
+							break;
+						}
+						case (isExternal()):
+						{
+							transform[3] = transform[3] + (dir * -1.3);
+							transform[3][1] = transform[3][1] + 2.2;
+							break;
+						}
+					}
+					
+					m_manualCam.SetTransform(transform);
+				}
 			}
-			
 			m_timeDelta = 0;
 		}
 	}

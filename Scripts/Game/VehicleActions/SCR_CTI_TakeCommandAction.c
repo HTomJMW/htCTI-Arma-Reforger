@@ -21,8 +21,9 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void PerformScriptedContinuousAction(IEntity pOwnerEntity, IEntity pUserEntity, float timeSlice)
+	override bool CanBePerformedScript(IEntity user)
 	{
+		return true;
 	}
 
 	//------------------------------------------------------------------------------------------------

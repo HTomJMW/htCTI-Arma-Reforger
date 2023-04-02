@@ -13,7 +13,7 @@ class SCR_CTI_Upgrades
 	private ref array<int> 				times		 = {}; // Time
 
 	//------------------------------------------------------------------------------------------------
-	int findIndexFromName(string name)
+	int findIndexByName(string name)
 	{
 		SCR_CTI_UpgradeData upgradeData;
 		for (int i = 0; i < g_Upgrades.Count(); i++)

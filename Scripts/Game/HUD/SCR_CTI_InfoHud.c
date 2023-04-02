@@ -15,6 +15,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 	protected DamageManagerComponent m_dmc;
 	protected BaseStaminaComponent m_bsc;
 	protected SCR_InventoryStorageManagerComponent m_ismc;
+	protected SCR_CTI_RadioConnectionComponent m_rcc;
 
 	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
@@ -57,37 +58,9 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			m_bsc = BaseStaminaComponent.Cast(m_ent.FindComponent(BaseStaminaComponent));
 			int st = m_bsc.GetStamina() * 100;
 			
+			m_rcc = SCR_CTI_RadioConnectionComponent.Cast(m_ent.FindComponent(SCR_CTI_RadioConnectionComponent));
+			
 			FactionAffiliationComponent side = FactionAffiliationComponent.Cast(m_ent.FindComponent(FactionAffiliationComponent));
-
-			m_ismc = SCR_InventoryStorageManagerComponent.Cast(m_ent.FindComponent(SCR_InventoryStorageManagerComponent));
-			SCR_PrefabNamePredicate predicate = new SCR_PrefabNamePredicate();
-			array<IEntity> radios = {};
-			switch (side.GetAffiliatedFaction().GetFactionKey())
-			{
-				case "USSR":
-				{
-					predicate.prefabName = SCR_CTI_Constants.USSR_RADIO1;
-					m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
-					if (radios.IsEmpty())
-						{
-							predicate.prefabName = SCR_CTI_Constants.USSR_RADIO2;
-							m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
-						}
-					break;
-				}
-				case "US":
-				{
-					predicate.prefabName = SCR_CTI_Constants.US_RADIO1;
-					m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
-					if (radios.IsEmpty())
-						{
-							predicate.prefabName = SCR_CTI_Constants.US_RADIO2;
-							m_ismc.FindItems(radios, predicate, EStoragePurpose.PURPOSE_ANY);
-						}
-					break;
-				}
-			}
-
 			SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(m_gameMode.FindComponent(SCR_CTI_BaseComponent));
 			FactionKey sidekey = side.GetAffiliatedFaction().GetFactionKey();
 			int baseCount = 0;
@@ -143,7 +116,8 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			}
 
 			string rad = "None";
-			if (!radios.IsEmpty()) rad = "Live";
+			if (m_rcc.hasRadio() && m_rcc.radioIsOn()) rad = "ON";
+			if (m_rcc.hasRadio() && !m_rcc.radioIsOn()) rad = "OFF";
 
 			string health;
 			switch (true)

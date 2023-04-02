@@ -1,11 +1,13 @@
 class SCR_CTI_MainMenu : ChimeraMenuBase
 {
-	protected SCR_CTI_GameMode gameMode;
-	protected PlayerController pc;
-	protected SCR_CTI_ClientData clientData;
-	protected IEntity ent;
-	protected FactionAffiliationComponent userAffiliationComponent;
-	protected int playerId;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected PlayerController m_pc;
+	protected SCR_CTI_ClientData m_clientData;
+	protected IEntity m_ent;
+	protected FactionAffiliationComponent m_userAffiliationComponent;
+	protected SCR_CTI_RadioConnectionComponent m_rcc;
+	protected SCR_CTI_UpgradeComponent m_upgradeComp;
+	protected int m_playerId;
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.5;
@@ -25,7 +27,10 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected ButtonWidget m_halo;
 	protected ButtonWidget m_build;
 	
+	protected RichTextWidget m_radioText;
+	
 	protected ButtonWidget m_leavecom;
+	protected ButtonWidget m_gear;
 	
 	protected ButtonWidget m_onlinehelp;
 	protected ButtonWidget m_videosettings;
@@ -53,13 +58,13 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		pc = GetGame().GetPlayerController();
-		ent = pc.GetControlledEntity();
-		userAffiliationComponent = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
-		playerId = pc.GetPlayerId();
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_pc = GetGame().GetPlayerController();
+		m_ent = m_pc.GetControlledEntity();
+		m_userAffiliationComponent = FactionAffiliationComponent.Cast(m_ent.FindComponent(FactionAffiliationComponent));
+		m_playerId = m_pc.GetPlayerId();
 		
-		ChimeraCharacter ch = ChimeraCharacter.Cast(ent);
+		ChimeraCharacter ch = ChimeraCharacter.Cast(m_ent);
 		
 		m_wRoot = GetRootWidget();
 		
@@ -76,7 +81,10 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_halo = ButtonWidget.Cast(m_wRoot.FindAnyWidget("HALOButton"));
 		m_build = ButtonWidget.Cast(m_wRoot.FindAnyWidget("BuildButton"));
 		
+		m_radioText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("RadioText"));
+		
 		m_leavecom = ButtonWidget.Cast(m_wRoot.FindAnyWidget("LeaveComButton"));
+		m_gear = ButtonWidget.Cast(m_wRoot.FindAnyWidget("GearButton"));
 		
 		m_onlinehelp = ButtonWidget.Cast(m_wRoot.FindAnyWidget("OnlineHelpButton"));
 		m_videosettings = ButtonWidget.Cast(m_wRoot.FindAnyWidget("VideoSettingsButton"));
@@ -101,10 +109,19 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 
-		//m_radio.SetColor(Color.Orange);
-		//m_radio.AddHandler(m_buttonEventHandler);
-		m_radio.SetColor(Color.Gray);
-		m_radio.SetEnabled(false);
+		m_radio.SetColor(Color.Orange);
+		m_radio.AddHandler(m_buttonEventHandler);
+		
+		m_rcc = SCR_CTI_RadioConnectionComponent.Cast(m_ent.FindComponent(SCR_CTI_RadioConnectionComponent));
+		if (m_rcc)
+		{
+			switch(true)
+			{
+				case (!m_rcc.hasRadio()): m_radioText.SetText("Radio - None"); break;
+				case (m_rcc.hasRadio() && m_rcc.radioIsOn()): m_radioText.SetText("Radio - OFF"); break;
+				case (m_rcc.hasRadio() && !m_rcc.radioIsOn()): m_radioText.SetText("Radio - ON"); break;
+			}
+		}
 		
 		m_units.SetColor(Color.Orange);
 		m_units.AddHandler(m_buttonEventHandler);
@@ -123,9 +140,9 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			m_build.SetEnabled(false);
 		}
 			
-		clientData = gameMode.getClientData(playerId);
+		m_clientData = m_gameMode.getClientData(m_playerId);
 
-		if (clientData && clientData.isCommander())
+		if (m_clientData && m_clientData.isCommander())
 		{
 			m_leavecom.SetColor(Color.Orange);
 			m_leavecom.AddHandler(m_buttonEventHandler);
@@ -133,6 +150,10 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			m_leavecom.SetColor(Color.Gray);
 			m_leavecom.SetEnabled(false);
 		}
+		
+		// Todo barrack distance dependent
+		m_gear.SetColor(Color.Orange);
+		m_gear.AddHandler(m_buttonEventHandler);
 
 		m_onlinehelp.SetColor(Color.Orange);
 		m_onlinehelp.AddHandler(m_buttonEventHandler);
@@ -157,10 +178,18 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_unitscamera.SetColor(Color.Orange);
 		m_unitscamera.AddHandler(m_buttonEventHandler);
 		
-		//m_satellitecamera.SetColor(Color.Orange);
-		//m_satellitecamera.AddHandler(m_buttonEventHandler);
-		m_satellitecamera.SetColor(Color.Gray);
-		m_satellitecamera.SetEnabled(false);
+		m_upgradeComp = SCR_CTI_UpgradeComponent.Cast(m_gameMode.FindComponent(SCR_CTI_UpgradeComponent));
+		int upgradeIndex = m_gameMode.Upgrades.findIndexByName("Satellite Camera level 1");
+		UpgradeStatus upgradeStatus = m_upgradeComp.getUpgradeStatus(m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), upgradeIndex);
+		
+		if (upgradeStatus == UpgradeStatus.FINISHED)
+		{
+			m_satellitecamera.SetColor(Color.Orange);
+			m_satellitecamera.AddHandler(m_buttonEventHandler);
+		} else {
+			m_satellitecamera.SetColor(Color.Gray);
+			m_satellitecamera.SetEnabled(false);
+		}
 
 		//m_teams.SetColor(Color.Orange);
 		//m_teams.AddHandler(m_buttonEventHandler);
@@ -190,7 +219,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_artillery.SetColor(Color.Gray);
 		m_artillery.SetEnabled(false);
 
-		if (clientData && clientData.isCommander())
+		if (m_clientData && m_clientData.isCommander())
 		{
 			m_setprioritytown.SetColor(Color.Orange);
 			m_setprioritytown.AddHandler(m_buttonEventHandler);
@@ -220,7 +249,17 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			int missiontime = gameMode.GetElapsedTime();
+			if (m_rcc)
+			{
+				switch(true)
+				{
+					case (!m_rcc.hasRadio()): m_radioText.SetText("Radio - None"); break;
+					case (m_rcc.hasRadio() && m_rcc.radioIsOn()): m_radioText.SetText("Radio - OFF"); break;
+					case (m_rcc.hasRadio() && !m_rcc.radioIsOn()): m_radioText.SetText("Radio - ON"); break;
+				}
+			}
+			
+			int missiontime = m_gameMode.GetElapsedTime();
 			int days = missiontime / 86400;
 			int hours = (missiontime - (days * 86400)) / 3600;
 			int mins = (missiontime - (hours * 3600) - (days * 86400)) / 60;
@@ -234,17 +273,17 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			
 			m_missiontime.SetText("Mission Time: " + d + h + ":" + m + ":" + s);
 			
-			int timelimit = gameMode.GetTimeLimit();
+			int timelimit = m_gameMode.GetTimeLimit();
 			m_maxmissiontime.SetText("Max Mission Time: " + timelimit.ToString());
 	
 			int funds = 0;
-			if (clientData)
+			if (m_clientData)
 			{
-				if (clientData.isCommander())
+				if (m_clientData.isCommander())
 				{
-					funds = gameMode.getCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey());
+					funds = m_gameMode.getCommanderFunds(m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey());
 				} else {
-					funds = clientData.getFunds();
+					funds = m_clientData.getFunds();
 				}
 			}
 
@@ -252,13 +291,13 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			
 			int allvalue = 0;
 			int sidevalue = 0;
-			int townsCNT = gameMode.CTI_Towns.Count();
+			int townsCNT = m_gameMode.CTI_Towns.Count();
 			for (int i = 0; i < townsCNT; i++)
 			{
-				allvalue += gameMode.CTI_Towns[i].getTownValue();
-				if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == gameMode.CTI_Towns[i].getFactionKey())
+				allvalue += m_gameMode.CTI_Towns[i].getTownValue();
+				if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == m_gameMode.CTI_Towns[i].getFactionKey())
 				{
-					sidevalue += gameMode.CTI_Towns[i].getTownValue();
+					sidevalue += m_gameMode.CTI_Towns[i].getTownValue();
 				}
 			}
 			

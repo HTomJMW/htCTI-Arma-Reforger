@@ -86,7 +86,7 @@ class SCR_CTI_GearUS
 
 		// Bayonet
 		resname.Insert("{A4AF9C38A4179880}Prefabs/Weapons/Attachments/Bayonets/Bayonet_M9.et");
-		name.Insert("");
+		name.Insert("M9 Bayonet");
 		uplevel.Insert(1);
 		price.Insert(50);
 		
@@ -289,7 +289,7 @@ class SCR_CTI_GearUS
                 for (int c = components.Count() - 1; c >= 0; c--)
                 {
                     meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
+                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent" || meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "UniversalInventoryStorageComponent")
 						break;
         
                     meshComponent = null;
@@ -311,6 +311,30 @@ class SCR_CTI_GearUS
 							break;
 						}
 						case "InventoryItemComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
+							infoContainer = infoContainer.GetObject("ItemDisplayName");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+						
+							name[i] = displayName;
+							
+							break;
+						}
+						case "InventoryMagazineComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
+							infoContainer = infoContainer.GetObject("ItemDisplayName");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+						
+							name[i] = displayName;
+							
+							break;
+						}
+						case "UniversalInventoryStorageComponent":
 						{
 							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
 							infoContainer = infoContainer.GetObject("ItemDisplayName");

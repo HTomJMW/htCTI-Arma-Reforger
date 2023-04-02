@@ -91,7 +91,7 @@ class SCR_CTI_GearUSSR
 		
 		// Bayonet
 		resname.Insert("{C7534F7A79EA3331}Prefabs/Weapons/Attachments/Bayonets/Bayonet_6Kh4.et");
-		name.Insert("");
+		name.Insert("6Kh4 Bayonet");
 		uplevel.Insert(1);
 		price.Insert(50);
 		
@@ -283,7 +283,7 @@ class SCR_CTI_GearUSSR
 		price.Insert(10);
 		
 		resname.Insert("{ED5574EA7F63B457}Prefabs/Characters/Vests/Vest_Type56/Vest_Type56.et");
-		name.Insert("");
+		name.Insert("Type 56 Chest Rig"); // missing name error
 		uplevel.Insert(0);
 		price.Insert(20);
 	}
@@ -304,7 +304,7 @@ class SCR_CTI_GearUSSR
                 for (int c = components.Count() - 1; c >= 0; c--)
                 {
                     meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
+                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent" || meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "SCR_UniversalInventoryStorageComponent")
 						break;
         
                     meshComponent = null;
@@ -326,6 +326,30 @@ class SCR_CTI_GearUSSR
 							break;
 						}
 						case "InventoryItemComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
+							infoContainer = infoContainer.GetObject("ItemDisplayName");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+						
+							name[i] = displayName;
+							
+							break;
+						}
+						case "InventoryMagazineComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
+							infoContainer = infoContainer.GetObject("ItemDisplayName");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+						
+							name[i] = displayName;
+							
+							break;
+						}
+						case "SCR_UniversalInventoryStorageComponent":
 						{
 							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
 							infoContainer = infoContainer.GetObject("ItemDisplayName");

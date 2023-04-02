@@ -189,9 +189,9 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		m_town.m_townGroups.Clear();
 
 		SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(m_gameMode.FindComponent(SCR_CTI_UpgradeComponent));
-		int TO1index = m_gameMode.Upgrades.findIndexFromName("Towns Occupation Level 1");
-		int TO2index = m_gameMode.Upgrades.findIndexFromName("Towns Occupation Level 2");
-		int TO3index = m_gameMode.Upgrades.findIndexFromName("Towns Occupation Level 3");
+		int TO1index = m_gameMode.Upgrades.findIndexByName("Towns Occupation Level 1");
+		int TO2index = m_gameMode.Upgrades.findIndexByName("Towns Occupation Level 2");
+		int TO3index = m_gameMode.Upgrades.findIndexByName("Towns Occupation Level 3");
 
 		int rnd = Math.RandomIntInclusive(0,5);
 		switch (m_town.getFactionKey())

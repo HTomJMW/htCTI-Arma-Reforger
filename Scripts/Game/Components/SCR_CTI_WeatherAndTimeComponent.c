@@ -25,7 +25,7 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 		System.GetHourMinuteSecond(h, m, s);
 		randomgen.SetSeed(s * 100000);
 
-		int random_hour = randomgen.RandIntInclusive(6, 17);
+		int random_hour = randomgen.RandIntInclusive(6, 18);
 
 		m_manager.SetHoursMinutesSeconds(random_hour, 0, 0, true);
 		
