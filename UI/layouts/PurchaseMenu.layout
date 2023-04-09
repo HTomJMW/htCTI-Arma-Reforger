@@ -108,7 +108,7 @@ FrameWidgetClass {
         SizeY 40
         OffsetBottom -115
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE945747E0DACC6}" {
          Name "ImageCrew"
@@ -132,7 +132,7 @@ FrameWidgetClass {
         SizeY 40
         OffsetBottom -115
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE945747F73C3FE}" {
          Name "ImageCommander"
@@ -156,7 +156,7 @@ FrameWidgetClass {
         SizeY 40
         OffsetBottom -115
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE9457401751D87}" {
          Name "ImageGunner"
@@ -180,7 +180,7 @@ FrameWidgetClass {
         SizeY 40
         OffsetBottom -115
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE945738D8FBBC9}" {
          Name "ImageDriver"
@@ -195,16 +195,16 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8C540265C1}" {
        Name "ButtonAmmo"
        Slot FrameWidgetSlot "{5ACCEA8C540265D8}" {
-        PositionX 252
-        OffsetLeft 252
+        PositionX 247
+        OffsetLeft 247
         PositionY 5
         OffsetTop 5
         SizeX 45
-        OffsetRight -297
+        OffsetRight -292
         SizeY 45
         OffsetBottom -50
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE9457473036B4B}" {
          Name "ImageAmmo"
@@ -219,16 +219,16 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8C5511016B}" {
        Name "ButtonFlag"
        Slot FrameWidgetSlot "{5ACCEA8C55110189}" {
-        PositionX 352
-        OffsetLeft 352
+        PositionX 343
+        OffsetLeft 343
         PositionY 5
         OffsetTop 5
         SizeX 45
-        OffsetRight -397
+        OffsetRight -388
         SizeY 45
         OffsetBottom -50
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE9457471B11837}" {
          Name "ImageFlag"
@@ -243,16 +243,16 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8C563B742E}" {
        Name "ButtonNaval"
        Slot FrameWidgetSlot "{5ACCEA8C563B7442}" {
-        PositionX 302
-        OffsetLeft 302
+        PositionX 295
+        OffsetLeft 295
         PositionY 5
         OffsetTop 5
         SizeX 45
-        OffsetRight -347
+        OffsetRight -340
         SizeY 45
         OffsetBottom -50
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE9457472E78350}" {
          Name "ImageNaval"
@@ -267,16 +267,16 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8C57643009}" {
        Name "ButtonRep"
        Slot FrameWidgetSlot "{5ACCEA8C57643022}" {
-        PositionX 202
-        OffsetLeft 202
+        PositionX 199
+        OffsetLeft 199
         PositionY 5
         OffsetTop 5
         SizeX 45
-        OffsetRight -247
+        OffsetRight -244
         SizeY 45
         OffsetBottom -50
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE945747463CAEB}" {
          Name "ImageRep"
@@ -291,16 +291,16 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8C5987BDB1}" {
        Name "ButtonAir"
        Slot FrameWidgetSlot "{5ACCEA8C5987BDC8}" {
-        PositionX 152
-        OffsetLeft 152
+        PositionX 151
+        OffsetLeft 151
         PositionY 5
         OffsetTop 5
         SizeX 45
-        OffsetRight -197
+        OffsetRight -196
         SizeY 45
         OffsetBottom -50
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE9457476CEF0B6}" {
          Name "ImageAir"
@@ -315,16 +315,16 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8C5AB84533}" {
        Name "ButtonHeavy"
        Slot FrameWidgetSlot "{5ACCEA8C5AB84557}" {
-        PositionX 102
-        OffsetLeft 102
+        PositionX 103
+        OffsetLeft 103
         PositionY 5
         OffsetTop 5
         SizeX 45
-        OffsetRight -147
+        OffsetRight -148
         SizeY 45
         OffsetBottom -50
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE9457477076A98}" {
          Name "ImageHeavy"
@@ -339,16 +339,16 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8C5BFAF550}" {
        Name "ButtonInf"
        Slot FrameWidgetSlot "{5ACCEA8C5BFAF56B}" {
-        PositionX 2
-        OffsetLeft 2
+        PositionX 7
+        OffsetLeft 7
         PositionY 5
         OffsetTop 5
         SizeX 45
-        OffsetRight -47
+        OffsetRight -52
         SizeY 45
         OffsetBottom -50
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE945747AC6125D}" {
          Name "ImageInf"
@@ -363,16 +363,16 @@ FrameWidgetClass {
       ButtonWidgetClass "{5ACCEA8C5EC407BF}" {
        Name "ButtonLight"
        Slot FrameWidgetSlot "{5ACCEA8C5EC407DF}" {
-        PositionX 52
-        OffsetLeft 52
+        PositionX 55
+        OffsetLeft 55
         PositionY 5
         OffsetTop 5
         SizeX 45
-        OffsetRight -97
+        OffsetRight -100
         SizeY 45
         OffsetBottom -50
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE945747878AF26}" {
          Name "ImageLight"
@@ -457,7 +457,7 @@ FrameWidgetClass {
         SizeY 40
         OffsetBottom -115
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE945747DB1AF1E}" {
          Name "ImageLock"
@@ -481,7 +481,7 @@ FrameWidgetClass {
         SizeY 40
         OffsetBottom -115
        }
-       Color 0.761 0.384 0.078 1
+       Color 1 0.456 0 1
        {
         ImageWidgetClass "{5AE945747B410F3B}" {
          Name "ImageUnlock"

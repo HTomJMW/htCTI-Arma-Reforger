@@ -102,7 +102,7 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
-     Color 0.761 0.384 0.078 1
+     Color 1 0.456 0 1
      {
       ImageWidgetClass "{5B09398ED844FBDF}" {
        Name "TemplatesImg"
@@ -126,7 +126,7 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
-     Color 0.761 0.384 0.078 1
+     Color 1 0.456 0 1
      {
       ImageWidgetClass "{5B09398EDBDDEAC7}" {
        Name "UniformsImg"
@@ -149,7 +149,7 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
-     Color 0.761 0.384 0.078 1
+     Color 1 0.456 0 1
      {
       ImageWidgetClass "{5B09398EDDECB106}" {
        Name "ItemsImg"
@@ -172,7 +172,7 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
-     Color 0.761 0.384 0.078 1
+     Color 1 0.456 0 1
      {
       ImageWidgetClass "{5B09398EDFDF5D8D}" {
        Name "AmmosImg"
@@ -195,7 +195,7 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
-     Color 0.761 0.384 0.078 1
+     Color 1 0.456 0 1
      {
       ImageWidgetClass "{5B09398EE1B7E0E5}" {
        Name "AccessoriesImg"
@@ -218,7 +218,7 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
-     Color 0.761 0.384 0.078 1
+     Color 1 0.456 0 1
      {
       ImageWidgetClass "{5B09398EE2777D88}" {
        Name "PistolsImg"
@@ -241,7 +241,7 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
-     Color 0.761 0.384 0.078 1
+     Color 1 0.456 0 1
      {
       ImageWidgetClass "{5B09398EE5AC81B6}" {
        Name "LaunchersImg"
@@ -264,7 +264,7 @@ FrameWidgetClass {
       SizeY 75
       OffsetBottom -95
      }
-     Color 0.761 0.384 0.078 1
+     Color 1 0.456 0 1
      {
       ImageWidgetClass "{5B09398ED156B6F7}" {
        Name "RiflesImg"

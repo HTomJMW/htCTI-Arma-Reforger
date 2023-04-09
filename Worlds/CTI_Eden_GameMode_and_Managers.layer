@@ -283,7 +283,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_PlayerPenaltyComponent "{599D2332EB47F0E5}" {
    m_iFriendlyPlayerKillPenalty 3
-   m_iFriendlyAIKillPenalty 3
+   m_iFriendlyAIKillPenalty 5
    m_iKickPenaltyLimit 6
    m_iBanDuration 1800
    m_iPenaltySubstractionPeriod 900
@@ -307,7 +307,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger CTI [htCTI 0.5.7.0]"
+     Name "Arma Reforger CTI [htCTI 0.5.7.4]"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
