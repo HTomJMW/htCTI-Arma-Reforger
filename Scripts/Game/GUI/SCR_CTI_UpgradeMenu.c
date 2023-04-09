@@ -79,10 +79,10 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		array<IEntity> ccList = SCR_CTI_GetSideFactories.GetSideFactoriesByType(playerFaction.GetFactionKey(), "Control Center");
 		if (clientData && clientData.isCommander() && ccList)
 		{
-			m_cancelupgrade.SetColor(Color.Orange);
+			m_cancelupgrade.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_cancelupgrade.AddHandler(m_buttonEventHandler);
 
-			m_upgrade.SetColor(Color.Orange);
+			m_upgrade.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_upgrade.AddHandler(m_buttonEventHandler);
 		} else {
 			m_cancelupgrade.SetColor(Color.Gray);
@@ -92,10 +92,10 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 			m_upgrade.SetEnabled(false);
 		}
 
-		m_back.SetColor(Color.Orange);
+		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 		
 		FactionKey fk = playerFaction.GetFactionKey();

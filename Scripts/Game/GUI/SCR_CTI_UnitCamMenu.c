@@ -66,24 +66,24 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 		m_normalnv = ButtonWidget.Cast(m_wRoot.FindAnyWidget("NormalNV"));
 
-		m_unflip.SetColor(Color.Orange);
+		m_unflip.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_unflip.AddHandler(m_unitCamButtonEventHandler);
 
-		m_ironsight.SetColor(Color.Orange);
+		m_ironsight.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_ironsight.AddHandler(m_unitCamButtonEventHandler);
 
-		m_external.SetColor(Color.Orange);
+		m_external.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_external.AddHandler(m_unitCamButtonEventHandler);
 		
-		m_internal.SetColor(Color.Orange);
+		m_internal.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_internal.AddHandler(m_unitCamButtonEventHandler);
 		
-		//m_normalnv.SetColor(Color.Orange);
+		//m_normalnv.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_normalnv.AddHandler(m_unitCamButtonEventHandler);
 		m_normalnv.SetColor(Color.Gray);
 		m_normalnv.SetEnabled(false);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 		
 		// listboxes
@@ -228,6 +228,8 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 					}
 					
 					m_manualCam.SetTransform(transform);
+
+					m_unit.SetText("Unit"); // TODO get name from entity?
 				} else {
 					vector transform[4];
 					IEntity ent = m_pc.GetControlledEntity();

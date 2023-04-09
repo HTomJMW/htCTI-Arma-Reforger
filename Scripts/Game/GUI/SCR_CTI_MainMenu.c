@@ -9,7 +9,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected SCR_CTI_UpgradeComponent m_upgradeComp;
 	protected int m_playerId;
 	
-	protected float m_timeDelta;
+	protected float m_timeDelta = 1;
 	protected const float TIMESTEP = 0.5;
 	
 	protected Widget m_wRoot;
@@ -109,7 +109,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 
-		m_radio.SetColor(Color.Orange);
+		m_radio.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_radio.AddHandler(m_buttonEventHandler);
 		
 		m_rcc = SCR_CTI_RadioConnectionComponent.Cast(m_ent.FindComponent(SCR_CTI_RadioConnectionComponent));
@@ -118,22 +118,31 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			switch(true)
 			{
 				case (!m_rcc.hasRadio()): m_radioText.SetText("Radio - None"); break;
-				case (m_rcc.hasRadio() && m_rcc.radioIsOn()): m_radioText.SetText("Radio - OFF"); break;
-				case (m_rcc.hasRadio() && !m_rcc.radioIsOn()): m_radioText.SetText("Radio - ON"); break;
+				case (m_rcc.hasRadio() && m_rcc.radioIsOn()): m_radioText.SetText("Radio: OFF"); break;
+				case (m_rcc.hasRadio() && !m_rcc.radioIsOn()): m_radioText.SetText("Radio: ON"); break;
 			}
 		}
 		
-		m_units.SetColor(Color.Orange);
+		m_units.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_units.AddHandler(m_buttonEventHandler);
 		
-		//m_halo.SetColor(Color.Orange);
+		//m_halo.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_halo.AddHandler(m_buttonEventHandler);
 		m_halo.SetColor(Color.Gray);
 		m_halo.SetEnabled(false);
 
-		if (!ch.IsInVehicle())
+		bool mhqInRange = false;
+		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey());
+		if (mhq)
 		{
-			m_build.SetColor(Color.Orange);
+			SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(mhq.FindComponent(SCR_VehicleDamageManagerComponent));
+			float dist = vector.Distance(mhq.GetOrigin(), m_ent.GetOrigin());
+			if (dist <= SCR_CTI_Constants.BUILDRANGE && !vdmc.IsDestroyed()) mhqInRange = true;
+		}
+		
+		if (!ch.IsInVehicle() && mhqInRange)
+		{
+			m_build.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_build.AddHandler(m_buttonEventHandler);
 		} else {
 			m_build.SetColor(Color.Gray);
@@ -144,38 +153,58 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 
 		if (m_clientData && m_clientData.isCommander())
 		{
-			m_leavecom.SetColor(Color.Orange);
+			m_leavecom.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_leavecom.AddHandler(m_buttonEventHandler);
 		} else {
 			m_leavecom.SetColor(Color.Gray);
 			m_leavecom.SetEnabled(false);
 		}
-		
-		// Todo barrack distance dependent
-		m_gear.SetColor(Color.Orange);
-		m_gear.AddHandler(m_buttonEventHandler);
 
-		m_onlinehelp.SetColor(Color.Orange);
+		bool barInRange = false;
+		array<IEntity> barracks = SCR_CTI_GetSideFactories.GetSideFactoriesByType(m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), "Barracks");
+		if (barracks)
+		{
+			foreach(IEntity building : barracks)
+			{
+				float dist = vector.Distance(building.GetOrigin(), m_ent.GetOrigin());
+				if (dist <= SCR_CTI_Constants.SERVICERANGE)
+				{
+					barInRange = true;
+					break;
+				}
+			}
+		}
+		
+		if (barInRange)
+		{
+			m_gear.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+			m_gear.AddHandler(m_buttonEventHandler);
+		} else {
+			m_gear.SetColor(Color.Gray);
+			m_gear.SetEnabled(false);
+		}
+
+		m_onlinehelp.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_onlinehelp.AddHandler(m_buttonEventHandler);
 		
-		m_videosettings.SetColor(Color.Orange);
+		m_videosettings.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_videosettings.AddHandler(m_buttonEventHandler);
 		
-		m_transferresources.SetColor(Color.Orange);
+		m_transferresources.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_transferresources.AddHandler(m_buttonEventHandler);
 
-		m_unflipnearestvehicle.SetColor(Color.Orange);
+		m_unflipnearestvehicle.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_unflipnearestvehicle.AddHandler(m_buttonEventHandler);
 		
-		m_servicemenu.SetColor(Color.Orange);
+		m_servicemenu.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_servicemenu.AddHandler(m_buttonEventHandler);
 		
-		//m_aimanagement.SetColor(Color.Orange);
+		//m_aimanagement.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_aimanagement.AddHandler(m_buttonEventHandler);
 		m_aimanagement.SetColor(Color.Gray);
 		m_aimanagement.SetEnabled(false);
 		
-		m_unitscamera.SetColor(Color.Orange);
+		m_unitscamera.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_unitscamera.AddHandler(m_buttonEventHandler);
 		
 		m_upgradeComp = SCR_CTI_UpgradeComponent.Cast(m_gameMode.FindComponent(SCR_CTI_UpgradeComponent));
@@ -184,47 +213,47 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		
 		if (upgradeStatus == UpgradeStatus.FINISHED)
 		{
-			m_satellitecamera.SetColor(Color.Orange);
+			m_satellitecamera.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_satellitecamera.AddHandler(m_buttonEventHandler);
 		} else {
 			m_satellitecamera.SetColor(Color.Gray);
 			m_satellitecamera.SetEnabled(false);
 		}
 
-		//m_teams.SetColor(Color.Orange);
+		//m_teams.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_teams.AddHandler(m_buttonEventHandler);
 		m_teams.SetColor(Color.Gray);
 		m_teams.SetEnabled(false);
 		
-		//m_mapcommanding.SetColor(Color.Orange);
+		//m_mapcommanding.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_mapcommanding.AddHandler(m_buttonEventHandler);
 		m_mapcommanding.SetColor(Color.Gray);
 		m_mapcommanding.SetEnabled(false);
 		
-		m_upgrades.SetColor(Color.Orange);
+		m_upgrades.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_upgrades.AddHandler(m_buttonEventHandler);
 		
-		//m_basemanagement.SetColor(Color.Orange);
+		//m_basemanagement.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_basemanagement.AddHandler(m_buttonEventHandler);
 		m_basemanagement.SetColor(Color.Gray);
 		m_basemanagement.SetEnabled(false);
 
-		//m_teamrequests.SetColor(Color.Orange);
+		//m_teamrequests.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_teamrequests.AddHandler(m_buttonEventHandler);
 		m_teamrequests.SetColor(Color.Gray);
 		m_teamrequests.SetEnabled(false);
 
-		//m_artillery.SetColor(Color.Orange);
+		//m_artillery.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_artillery.AddHandler(m_buttonEventHandler);
 		m_artillery.SetColor(Color.Gray);
 		m_artillery.SetEnabled(false);
 
 		if (m_clientData && m_clientData.isCommander())
 		{
-			m_setprioritytown.SetColor(Color.Orange);
+			m_setprioritytown.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_setprioritytown.AddHandler(m_buttonEventHandler);
 			
-			m_clearpriority.SetColor(Color.Orange);
+			m_clearpriority.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_clearpriority.AddHandler(m_buttonEventHandler);
 		} else {
 			m_setprioritytown.SetColor(Color.Gray);
@@ -234,7 +263,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			m_clearpriority.SetEnabled(false);
 		}
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 	}
 
@@ -254,8 +283,8 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 				switch(true)
 				{
 					case (!m_rcc.hasRadio()): m_radioText.SetText("Radio - None"); break;
-					case (m_rcc.hasRadio() && m_rcc.radioIsOn()): m_radioText.SetText("Radio - OFF"); break;
-					case (m_rcc.hasRadio() && !m_rcc.radioIsOn()): m_radioText.SetText("Radio - ON"); break;
+					case (m_rcc.hasRadio() && m_rcc.radioIsOn()): m_radioText.SetText("Radio: OFF"); break;
+					case (m_rcc.hasRadio() && !m_rcc.radioIsOn()): m_radioText.SetText("Radio: ON"); break;
 				}
 			}
 			

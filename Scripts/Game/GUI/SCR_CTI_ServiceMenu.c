@@ -59,28 +59,28 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 
 		//m_repair.SetColor(Color.Gray);
 		//m_repair.SetEnabled(false);
-		m_repair.SetColor(Color.Orange);
+		m_repair.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_repair.AddHandler(m_serviceMenubuttonEventHandler);
 
 		//m_rearm.SetColor(Color.Gray);
 		//m_rearm.SetEnabled(false);
-		m_rearm.SetColor(Color.Orange);
+		m_rearm.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_rearm.AddHandler(m_serviceMenubuttonEventHandler);
 
 		//m_refuel.SetColor(Color.Gray);
 		//m_refuel.SetEnabled(false);
-		m_refuel.SetColor(Color.Orange);
+		m_refuel.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_refuel.AddHandler(m_serviceMenubuttonEventHandler);
 
 		//m_heal.SetColor(Color.Gray);
 		//m_heal.SetEnabled(false);
-		m_heal.SetColor(Color.Orange);
+		m_heal.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_heal.AddHandler(m_serviceMenubuttonEventHandler);
 
-		m_back.SetColor(Color.Orange);
+		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 
 		array<IEntity> repDepots = SCR_CTI_GetSideFactories.GetSideFactoriesByType(factionkey, "Repair Depot");

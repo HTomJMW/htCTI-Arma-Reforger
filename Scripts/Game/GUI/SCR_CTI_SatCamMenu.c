@@ -49,12 +49,12 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 		
 		m_infoWindowText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("InfoWindowText"));
 		
-		//m_normalnv.SetColor(Color.Orange);
+		//m_normalnv.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_normalnv.AddHandler(m_satCamButtonHandler);
 		m_normalnv.SetColor(Color.Gray);
 		m_normalnv.SetEnabled(false);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 
 		IEntity player = m_pc.GetControlledEntity();

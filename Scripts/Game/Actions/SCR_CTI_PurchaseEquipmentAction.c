@@ -71,6 +71,8 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		}
 
 		m_gameMode.bumpMeServer();
+		
+		m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + "Ammo Crate" + "</color> has arrived at the <color rgba='255,210,115,255'>" + "Flag" + "</color> at grid <color rgba='255,210,115,255'>[" + SCR_MapEntity.GetGridPos(mat[3]) + "]</color>.", "Information", 15);
 	}
 
 	//------------------------------------------------------------------------------------------------

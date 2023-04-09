@@ -121,18 +121,18 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_lock.AddHandler(m_iconbuttonEventHandler);
 		m_unlock.AddHandler(m_iconbuttonEventHandler);
 
-		m_back.SetColor(Color.Orange);
+		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 		
-		m_purchase.SetColor(Color.Orange);
+		m_purchase.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_purchase.AddHandler(m_buttonEventHandler);
 		
-		//m_cancelqueue.SetColor(Color.Orange);
+		//m_cancelqueue.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_cancelqueue.AddHandler(m_buttonEventHandler);
-		//m_buyindsalvager.SetColor(Color.Orange);
+		//m_buyindsalvager.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_buyindsalvager.AddHandler(m_buttonEventHandler);
 		
 		clientData = gameMode.getClientData(playerId);

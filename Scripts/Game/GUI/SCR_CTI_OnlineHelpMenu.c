@@ -64,10 +64,10 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		m_oHButtonEventHandler = new SCR_CTI_OnlineHelpButtonHandler();
 
-		m_back.SetColor(Color.Orange);
+		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 		
 		m_welcomescreen.AddHandler(m_oHButtonEventHandler);

@@ -9,6 +9,7 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 	protected FactionManager m_factionManager;
 	protected PlayerController m_pc;
 	protected SCR_ChimeraCharacter m_player;
+	protected SCR_CharacterControllerComponent m_characterControllerComp;
 	protected SCR_MapDescriptorComponent m_mapDescComp;
 	protected SCR_InventoryStorageManagerComponent m_ismc;
 	protected FactionAffiliationComponent m_factionAffComp;
@@ -95,13 +96,22 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 			props.Activate(true);
 		
 		m_mapitem.SetProps(props);
+		
+		m_characterControllerComp.m_OnPlayerDeath.Insert(OnDeath);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void OnDeath()
+	{
+		m_mapitem.SetVisible(false);
+		m_characterControllerComp.m_OnPlayerDeath.Remove(OnDeath);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void OnMapOpen()
+	/*void OnMapOpen()
 	{
 		if (!SCR_PlayerController.GetLocalControlledEntity()) return;
-	}
+	}*/
 
 	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
@@ -111,6 +121,7 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 		// disabled on dedicated server with playercontroller check
 		if (m_pc)
 		{
+			m_characterControllerComp = SCR_CharacterControllerComponent.Cast(owner.FindComponent(SCR_CharacterControllerComponent));
 			m_mapDescComp = SCR_MapDescriptorComponent.Cast(owner.FindComponent(SCR_MapDescriptorComponent));
 			m_ismc = SCR_InventoryStorageManagerComponent.Cast(owner.FindComponent(SCR_InventoryStorageManagerComponent));
 			m_factionAffComp = FactionAffiliationComponent.Cast(owner.FindComponent(FactionAffiliationComponent));

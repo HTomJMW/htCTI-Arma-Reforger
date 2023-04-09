@@ -35,6 +35,8 @@ class SCR_CTI_Town : BaseGameEntity
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 20;
+	
+	ref ScriptInvoker m_onTimeOutInvoker = new ScriptInvoker();
 
 	//------------------------------------------------------------------------------------------------
 	string getTownName()
@@ -277,7 +279,7 @@ class SCR_CTI_Town : BaseGameEntity
 	//------------------------------------------------------------------------------------------------
 	protected void removeEmptyGroups()
 	{
-		for (int i = 0; i < m_townGroups.Count(); i++)
+		for (int i = m_townGroups.Count() - 1; i >= 0; i--)
 		{
 			if (!m_townGroups[i]) m_townGroups.Remove(i);
 		}
@@ -295,19 +297,19 @@ class SCR_CTI_Town : BaseGameEntity
 				case "FIA": if (m_activationArea.GetOccupantsCount(m_factionManager.GetFactionByKey("USSR")) < 1 && m_activationArea.GetOccupantsCount(m_factionManager.GetFactionByKey("US")) < 1)
 							{
 								setActive(false);
-								removeTownGroups();
+								m_onTimeOutInvoker.Invoke();
 							}
 							break;
 				case "US": if (m_activationArea.GetOccupantsCount(m_factionManager.GetFactionByKey("USSR")) < 1 && m_activationArea.GetOccupantsCount(m_factionManager.GetFactionByKey("FIA")) < 1)
 							{
 								setActive(false);
-								removeTownGroups();
+								m_onTimeOutInvoker.Invoke();
 							}
 							break;
 				case "USSR": if (m_activationArea.GetOccupantsCount(m_factionManager.GetFactionByKey("US")) < 1 && m_activationArea.GetOccupantsCount(m_factionManager.GetFactionByKey("FIA")) < 1)
 							{
 								setActive(false);
-								removeTownGroups();
+								m_onTimeOutInvoker.Invoke();
 							}
 							break;
 			}
@@ -323,7 +325,7 @@ class SCR_CTI_Town : BaseGameEntity
 		
 		for (int i = 0; i < m_townGroups.Count(); i++)
 		{
-			if (!m_townGroups[i] || m_townGroups[i] && m_townGroups[i].GetAgentsCount() == 0) break;
+			if (!m_townGroups[i]) break;
 			if (!m_townGroups[i].GetCurrentWaypoint())
 			{
 				int rnd = Math.RandomIntInclusive(0, m_townPatrolComponent.waypoints.Count() - 1);
@@ -354,29 +356,42 @@ class SCR_CTI_Town : BaseGameEntity
 	//------------------------------------------------------------------------------------------------
 	protected void removeTownGroups()
 	{
-		foreach (AIGroup group : m_townGroups)
+		for (int i = m_townGroups.Count() - 1; i >= 0; i--)
 		{
-			if (!group) continue;
+			AIGroup group = m_townGroups[i];
 			array<AIAgent> outAgents = {};
 			group.GetAgents(outAgents);
-			foreach (AIAgent agent : outAgents)
+			
+			for (int j = outAgents.Count() - 1; j >= 0; j--)
 			{
-				IEntity ent = agent.GetControlledEntity();
+				IEntity ent = outAgents[j].GetControlledEntity();
 				SCR_EntityHelper.DeleteEntityAndChildren(ent);
 			}
 		}
+
 		m_townGroups.Clear();
 		PrintFormat("CTI :: Town %1 Groups: %2", m_townName, m_townGroups);
 	}
 
 	//------------------------------------------------------------------------------------------------
+	protected void OnTimeOut()
+	{
+		if (m_rplComponent.IsProxy()) return;
+		
+		 removeTownGroups();
+	}
+
+	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_Town(IEntitySource src, IEntity parent)
 	{
+		m_onTimeOutInvoker.Insert(OnTimeOut);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_Town()
 	{
+		m_onTimeOutInvoker.Remove(OnTimeOut);
+		
 		m_townGroups.Clear();
 		m_townGroups = null;
 	}

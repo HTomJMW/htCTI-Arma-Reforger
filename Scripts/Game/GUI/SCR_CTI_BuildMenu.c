@@ -83,7 +83,7 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
 		
 		//m_addworker.SetName("ADDWORKER");
-		//m_addworker.SetColor(Color.Orange);
+		//m_addworker.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_addworker.AddHandler(m_buttonEventHandler);
 		m_addworker.SetColor(Color.Gray);
 		m_addworker.SetEnabled(false);
@@ -92,43 +92,43 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 
 		if (clientData && clientData.isCommander())
 		{
-			m_buildstructure.SetColor(Color.Orange);
+			m_buildstructure.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_buildstructure.AddHandler(m_buttonEventHandler);
 		} else {
 			m_buildstructure.SetColor(Color.Gray);
 			m_buildstructure.SetEnabled(false);
 		}
 
-		//m_undostructure.SetColor(Color.Orange);
+		//m_undostructure.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_undostructure.AddHandler(m_buttonEventHandler);
 		m_undostructure.SetColor(Color.Gray);
 		m_undostructure.SetEnabled(false);
 		
-		//m_defautomanning.SetColor(Color.Orange);
+		//m_defautomanning.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_defautomanning.AddHandler(m_buttonEventHandler);
 		m_defautomanning.SetColor(Color.Gray);
 		m_defautomanning.SetEnabled(false);
 
-		//m_autoalignwalls.SetColor(Color.Orange);
+		//m_autoalignwalls.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_autoalignwalls.AddHandler(m_buttonEventHandler);
 		m_autoalignwalls.SetColor(Color.Gray);
 		m_autoalignwalls.SetEnabled(false);
 
-		m_builddefense.SetColor(Color.Orange);
+		m_builddefense.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_builddefense.AddHandler(m_buttonEventHandler);
 		
-		//m_undodefense.SetColor(Color.Orange);
+		//m_undodefense.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_undodefense.AddHandler(m_buttonEventHandler);
 		m_undodefense.SetColor(Color.Gray);
 		m_undodefense.SetEnabled(false);
 		
-		m_autoalignwalls.SetColor(Color.Gray);
+		m_autoalignwalls.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_autoalignwalls.SetEnabled(false);
 		
-		m_back.SetColor(Color.Orange);
+		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 
 		FactionKey fk = playerFaction.GetFactionKey();

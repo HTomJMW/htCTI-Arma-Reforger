@@ -31,7 +31,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 		m_confirmText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ConfirmText"));
 		m_cancelText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("CancelText"));
 		
-		m_confirm.SetColor(Color.Orange);
+		m_confirm.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_cancel.SetColor(Color.White);
 
 		m_cancelText.SetText("[ - Cancel - ]"); // default
@@ -84,7 +84,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 			} else {
 				m_wRoot.SetVisible(false);
 
-				m_confirm.SetColor(Color.Orange);
+				m_confirm.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 				m_confirmText.SetText("Confirm");
 				
 				m_cancel.SetColor(Color.White);
@@ -127,10 +127,10 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				m_confirm.SetColor(Color.White);
 				m_confirmText.SetText("[ - Confirm - ]");
 	
-				m_cancel.SetColor(Color.Orange);
+				m_cancel.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 				m_cancelText.SetText("Cancel");
 			} else {
-				m_confirm.SetColor(Color.Orange);
+				m_confirm.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 				m_confirmText.SetText("Confirm");
 	
 				m_cancel.SetColor(Color.White);

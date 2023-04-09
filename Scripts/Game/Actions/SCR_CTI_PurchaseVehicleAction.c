@@ -68,6 +68,8 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		}
 
 		m_gameMode.bumpMeServer();
+		
+		m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + "Vehicle" + "</color> has arrived at the <color rgba='255,210,115,255'>" + "Flag" + "</color> at grid <color rgba='255,210,115,255'>[" + SCR_MapEntity.GetGridPos(mat[3]) + "]</color>.", "Information", 15);
 	}
 
 	//------------------------------------------------------------------------------------------------

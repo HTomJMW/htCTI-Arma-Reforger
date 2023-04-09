@@ -120,8 +120,17 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		m_paramOBB.Start = mat[3] + "0 0.05 0";
 		
 		GetGame().GetWorld().TracePosition(m_paramOBB, null);
+		
+		bool mhqInRange = false;
+		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(m_fk);
+		if (mhq)
+		{
+			SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(mhq.FindComponent(SCR_VehicleDamageManagerComponent));
+			float dist = vector.Distance(mhq.GetOrigin(), m_player.GetOrigin());
+			if (dist <= SCR_CTI_Constants.BUILDRANGE && !vdmc.IsDestroyed()) mhqInRange = true;
+		}
 
-		if (!SCR_CTI_TerrainIsFlat.isFlat(mat[3], m_radius, m_maxDifference) || mat[3][1] < 0 || m_paramOBB.TraceEnt)
+		if (!SCR_CTI_TerrainIsFlat.isFlat(mat[3], m_radius, m_maxDifference) || mat[3][1] < 0 || m_paramOBB.TraceEnt || !mhqInRange)
 		{
 			SCR_Global.SetMaterial(m_structure, m_materialRed);
 			m_blocked = true;

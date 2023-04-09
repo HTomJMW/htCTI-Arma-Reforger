@@ -24,6 +24,9 @@ class SCR_CTI_Constants
 	static const int MAXTG = 150;
 	static const int MINTG = 80;
 	
+	// Colors
+	static const ref Color CTI_ORANGE = new Color(1.000000, 0.456336, 0.000000, 1.000000);
+	
 	// General ResouceNames
 	static const ResourceName USSR_MHQ = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
 	static const ResourceName US_MHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";

@@ -11,7 +11,7 @@ class SCR_CTI_CommonButtonHandler : ScriptedWidgetEventHandler
 	//------------------------------------------------------------------------------------------------
 	override bool OnMouseLeave(Widget w, Widget enterW, int x, int y)
 	{
-		w.SetColor(Color.Orange);
+		w.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		
 		return true;
 	}

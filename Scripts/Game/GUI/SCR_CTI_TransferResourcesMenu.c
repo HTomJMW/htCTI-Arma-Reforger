@@ -74,13 +74,13 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 		
 		m_slider.AddHandler(m_sliderEventHandler);
 
-		m_back.SetColor(Color.Orange);
+		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 		
-		m_transfer.SetColor(Color.Orange);
+		m_transfer.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_transfer.AddHandler(m_buttonEventHandler);
 		
 		clientData = gameMode.getClientData(playerId);

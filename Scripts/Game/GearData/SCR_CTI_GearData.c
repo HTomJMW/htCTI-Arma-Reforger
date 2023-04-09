@@ -3,14 +3,16 @@ class SCR_CTI_GearData
 {
 	protected ResourceName resname;	// Resource name
 	protected string name;			// Display name
+	protected string category;		// Category
 	protected int uplevel;			// Upgrade level
 	protected int price;			// Price
 
 	//------------------------------------------------------------------------------------------------
-	void setData(ResourceName newresname, string newname, int newuplevel, int newprice)
+	void setData(ResourceName newresname, string newname, string newcategory, int newuplevel, int newprice)
 	{
 		resname = newresname;
 		name = newname;
+		category = newcategory;
 		uplevel = newuplevel;
 		price = newprice;
 	}
@@ -25,6 +27,12 @@ class SCR_CTI_GearData
 	string getName()
 	{
 		return name;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	string getCategory()
+	{
+		return category;
 	}
 	
 	//------------------------------------------------------------------------------------------------

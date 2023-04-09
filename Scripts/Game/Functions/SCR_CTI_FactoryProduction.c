@@ -31,6 +31,7 @@ class SCR_CTI_FactoryProduction
 			AIAgent agent = null;
 			if (AgentControlComponent)
 			{
+				AgentControlComponent.ActivateAI();
 				agent = AgentControlComponent.GetControlAIAgent();
 			}
 			

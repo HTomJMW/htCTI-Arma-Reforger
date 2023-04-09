@@ -258,9 +258,9 @@ class SCR_CTI_IconButtonHandler : ScriptedWidgetEventHandler
 		if (selected)
 		{
 			w.SetColor(Color.White);
-			children.SetColor(Color.Orange);
+			children.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		} else {
-			w.SetColor(Color.Orange);
+			w.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			children.SetColor(Color.White);
 		}
 	}

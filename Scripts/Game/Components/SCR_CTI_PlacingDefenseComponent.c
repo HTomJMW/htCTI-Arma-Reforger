@@ -7,6 +7,7 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 {
 	protected PlayerController m_PlayerController;
 	protected RplComponent m_RplComponent;
+	protected FactionKey m_fk;
 	
 	protected ResourceName m_resName;
 
@@ -51,6 +52,10 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		vector dir;
 		
 		IEntity m_player = m_PlayerController.GetControlledEntity();
+		
+		FactionAffiliationComponent faffComp = FactionAffiliationComponent.Cast(m_PlayerController.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+		m_fk = faffComp.GetAffiliatedFaction().GetFactionKey();
+		
 		m_player.GetTransform(mat);
 		dir = m_player.GetWorldTransformAxis(2);
 
@@ -118,8 +123,17 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		m_paramOBB.Start = mat[3] + "0 0.05 0";
 		
 		GetGame().GetWorld().TracePosition(m_paramOBB, null);
+		
+		bool mhqInRange = false;
+		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(m_fk);
+		if (mhq)
+		{
+			SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(mhq.FindComponent(SCR_VehicleDamageManagerComponent));
+			float dist = vector.Distance(mhq.GetOrigin(), m_player.GetOrigin());
+			if (dist <= SCR_CTI_Constants.BUILDRANGE && !vdmc.IsDestroyed()) mhqInRange = true;
+		}
 
-		if (!SCR_CTI_TerrainIsFlat.isFlat(mat[3], m_radius, m_maxDifference) || mat[3][1] < 0 || m_paramOBB.TraceEnt)
+		if (!SCR_CTI_TerrainIsFlat.isFlat(mat[3], m_radius, m_maxDifference) || mat[3][1] < 0 || m_paramOBB.TraceEnt || !mhqInRange)
 		{
 			SCR_Global.SetMaterial(m_defense, m_materialRed);
 			m_blocked = true;

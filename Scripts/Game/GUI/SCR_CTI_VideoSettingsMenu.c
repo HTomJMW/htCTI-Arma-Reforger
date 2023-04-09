@@ -39,10 +39,10 @@ class SCR_CTI_VideoSettingsMenu : ChimeraMenuBase
 		m_back = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Back"));
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 		
-		m_back.SetColor(Color.Orange);
+		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
-		m_exit.SetColor(Color.Orange);
+		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 		
 		m_vdText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("ViewDistance"));
