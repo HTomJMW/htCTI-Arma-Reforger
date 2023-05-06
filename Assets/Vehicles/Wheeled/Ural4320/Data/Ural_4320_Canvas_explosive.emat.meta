@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{55C2D1897B44EF9A}Assets/Vehicles/Wheeled/Ural4320/Data/Ural_4320_Canvas_explosive.emat"
+ Configurations {
+  EMATResourceClass PC {
+  }
+  EMATResourceClass XBOX_ONE : PC {
+  }
+  EMATResourceClass XBOX_SERIES : PC {
+  }
+  EMATResourceClass PS4 : PC {
+  }
+  EMATResourceClass HEADLESS : PC {
+  }
+ }
+}

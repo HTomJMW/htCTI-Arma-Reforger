@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{43AFBCACDF577CA0}Assets/Vehicles/Wheeled/M923A1/Data/M923A1_canvas_explosive.emat"
+ Configurations {
+  EMATResourceClass PC {
+  }
+  EMATResourceClass XBOX_ONE : PC {
+  }
+  EMATResourceClass XBOX_SERIES : PC {
+  }
+  EMATResourceClass PS4 : PC {
+  }
+  EMATResourceClass HEADLESS : PC {
+  }
+ }
+}
