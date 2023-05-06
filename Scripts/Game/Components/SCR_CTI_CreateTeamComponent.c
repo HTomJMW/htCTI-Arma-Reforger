@@ -29,7 +29,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 	{
 		if (m_SpawnPos == "0 0 0")
 		{
-			Print("AI Spawn position is not set! Flag's position will be default");
+			PrintFormat("CTI :: AI Spawn position is not set at %1! Flag's position will be default", m_town.getTownName());
 			return defaultCoords();
 		}
 		
@@ -96,7 +96,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 			
 			//Set AI Skill
 			SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(aiGroup.FindComponent(SCR_AIConfigComponent));
-			aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL; //ai combat comp skill?
+			aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL; // AI combat component skill better?
 		}
 		
 		return true;
@@ -197,67 +197,54 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 		switch (m_town.getFactionKey())
 		{
 			case "FIA":
+			{
 				DoSpawn(SCR_CTI_Constants.FIA_FireTeam);
 				switch (rnd)
 				{
-					case 0: DoSpawn(SCR_CTI_Constants.FIA_MGTeam);
-							break;
-					case 1:	DoSpawn(SCR_CTI_Constants.FIA_SniperTeam);
-							break;
-					case 2:	DoSpawn(SCR_CTI_Constants.FIA_ATTeam);
-							break;
-					case 3:	DoSpawn(SCR_CTI_Constants.FIA_MedicalSection);
-							break;
-					case 4:	DoSpawn(SCR_CTI_Constants.FIA_ReconTeam);
-							break;
-					case 5:	DoSpawn(SCR_CTI_Constants.FIA_ATTeam);
-							break;
+					case 0: DoSpawn(SCR_CTI_Constants.FIA_MGTeam); break;
+					case 1:	DoSpawn(SCR_CTI_Constants.FIA_SniperTeam); break;
+					case 2:	DoSpawn(SCR_CTI_Constants.FIA_ATTeam); break;
+					case 3:	DoSpawn(SCR_CTI_Constants.FIA_MedicalSection); break;
+					case 4:	DoSpawn(SCR_CTI_Constants.FIA_ReconTeam); break;
+					case 5:	DoSpawn(SCR_CTI_Constants.FIA_ATTeam); break;
 				}
 				break;
+			}
 			case "USSR":
+			{
 				UpgradeStatus status = upgradeComp.getUpgradeStatus("USSR", TO1index);
 				if (status != UpgradeStatus.FINISHED) break;
 
 				DoSpawn(SCR_CTI_Constants.USSR_FireGroup);
 				switch (rnd)
 				{
-					case 0: DoSpawn(SCR_CTI_Constants.USSR_MGTeam);
-							break;
-					case 1:	DoSpawn(SCR_CTI_Constants.USSR_GLTeam);
-							break;
-					case 2:	DoSpawn(SCR_CTI_Constants.USSR_ATTeam);
-							break;
-					case 3:	DoSpawn(SCR_CTI_Constants.USSR_MedicalSection);
-							break;
-					case 4:	DoSpawn(SCR_CTI_Constants.USSR_ManeuverGroup);
-							break;
-					case 5:	DoSpawn(SCR_CTI_Constants.USSR_ATTeam);
-							break;
+					case 0: DoSpawn(SCR_CTI_Constants.USSR_MGTeam); break;
+					case 1:	DoSpawn(SCR_CTI_Constants.USSR_GLTeam); break;
+					case 2:	DoSpawn(SCR_CTI_Constants.USSR_ATTeam); break;
+					case 3:	DoSpawn(SCR_CTI_Constants.USSR_MedicalSection); break;
+					case 4:	DoSpawn(SCR_CTI_Constants.USSR_ManeuverGroup); break;
+					case 5:	DoSpawn(SCR_CTI_Constants.USSR_ATTeam); break;
 				}
 
 				status = upgradeComp.getUpgradeStatus("USSR", TO2index);
 				if (status == UpgradeStatus.FINISHED) SpawnVehicle(SCR_CTI_Constants.USSR_BTR70);
-			 
+
 				break;
+			}
 			case "US":
+			{
 				UpgradeStatus status = upgradeComp.getUpgradeStatus("US", TO1index);
 				if (status != UpgradeStatus.FINISHED) break;
 
 				DoSpawn(SCR_CTI_Constants.US_FireTeam);
 				switch (rnd)
 				{
-					case 0: DoSpawn(SCR_CTI_Constants.US_MGTeam);
-							break;
-					case 1:	DoSpawn(SCR_CTI_Constants.US_GLTeam);
-							break;
-					case 2:	DoSpawn(SCR_CTI_Constants.US_ATTeam);
-							break;
-					case 3:	DoSpawn(SCR_CTI_Constants.US_MedicalSection);
-							break;
-					case 4:	DoSpawn(SCR_CTI_Constants.US_SniperTeam);
-							break;
-					case 5:	DoSpawn(SCR_CTI_Constants.US_ATTeam);
-							break;
+					case 0: DoSpawn(SCR_CTI_Constants.US_MGTeam); break;
+					case 1:	DoSpawn(SCR_CTI_Constants.US_GLTeam); break;
+					case 2:	DoSpawn(SCR_CTI_Constants.US_ATTeam); break;
+					case 3:	DoSpawn(SCR_CTI_Constants.US_MedicalSection); break;
+					case 4:	DoSpawn(SCR_CTI_Constants.US_SniperTeam); break;
+					case 5:	DoSpawn(SCR_CTI_Constants.US_ATTeam); break;
 				}
 
 				status = upgradeComp.getUpgradeStatus("US", TO2index);
@@ -265,6 +252,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 
 				break;
 			}
+		}
 		PrintFormat("CTI :: Town %1 (%2) - Spawned groups: %3", m_town.getTownName(), m_town.getFactionKey(), m_town.m_townGroups);
 	}
 

@@ -42,9 +42,8 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("USSR", rplId);
 
-				SCR_CTI_MHQSpawnPointComponent spcomp = SCR_CTI_MHQSpawnPointComponent.Cast(newEnt.FindComponent(SCR_CTI_MHQSpawnPointComponent));
-				spcomp.init();
-				
+				garbagemanager.Insert(newEnt, 360000);
+				garbagemanager.Withdraw(newEnt);
 				break;
 			}
 			case SCR_CTI_Constants.US_MHQ:
@@ -52,21 +51,23 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 				// Keep out of garbage manager
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("US", rplId);
-				
-				SCR_CTI_MHQSpawnPointComponent spcomp = SCR_CTI_MHQSpawnPointComponent.Cast(newEnt.FindComponent(SCR_CTI_MHQSpawnPointComponent));
-				spcomp.init();
-				
+
+				garbagemanager.Insert(newEnt);
+				garbagemanager.Withdraw(newEnt);
 				break;
 			}
 			default:
 			{
-				garbagemanager.Insert(newEnt, 3600);
+				garbagemanager.Insert(newEnt, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
 				//PrintFormat("CTI :: Default vehicle: %1", m_rnPrefab);
 				break;
 			}
 		}
 		//PrintFormat("CTI :: Vehicle in garbage manager: %1 (%2)", garbagemanager.IsInserted(newEnt).ToString(), m_rnPrefab);
 		//PrintFormat("CTI :: Lifetime: %1 (%2)", garbagemanager.GetLifetime(newEnt), m_rnPrefab);
+
+		m_items.Clear();
+		m_items = null;
 
 		Deactivate(); // Deactivate after vehicle spawned
 	}

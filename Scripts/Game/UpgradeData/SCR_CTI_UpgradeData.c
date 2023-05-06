@@ -5,21 +5,23 @@ class SCR_CTI_UpgradeData
 	protected string name;		// Name
 	protected string desc;		// Description
 	protected int level;		// Level
+	protected string history;	// History
 	protected int cost;			// Cost
 	protected string link;		// Link
-	protected int linklevel;	// Link Level
+	protected string link2;		// Link
 	protected int time;			// Time
 
 	//------------------------------------------------------------------------------------------------
-	void setData(string newlabel, string newname, string newdesc, int newlevel, int newcost, string newlink, int newlinklevel, int newtime)
+	void setData(string newlabel, string newname, string newdesc, int newlevel, string newhistory, int newcost, string newlink, string newlink2, int newtime)
 	{
 		label = newlabel;
 		name = newname;
 		desc = newdesc;
 		level = newlevel;
+		history = newhistory;
 		cost = newcost;
 		link = newlink;
-		linklevel = newlinklevel;
+		link2 = newlink2;
 		time = newtime;
 	}
 
@@ -40,11 +42,17 @@ class SCR_CTI_UpgradeData
 	{
 		return desc;
 	}
-
+	
 	//------------------------------------------------------------------------------------------------
 	int getLevel()
 	{
 		return level;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	string getHistrory()
+	{
+		return history;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -60,9 +68,9 @@ class SCR_CTI_UpgradeData
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getLinkLevel()
+	string getLink2()
 	{
-		return linklevel;
+		return link2;
 	}
 
 	//------------------------------------------------------------------------------------------------

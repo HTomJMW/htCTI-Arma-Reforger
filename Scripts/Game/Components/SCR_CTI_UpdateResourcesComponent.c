@@ -8,7 +8,7 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 	protected SCR_CTI_GameMode m_gameMode;
 	
 	protected float m_timeDelta;
-	protected const float TIMESTEP = 45; // economy cycle
+	protected const float TIMESTEP = 45; // Economy cycle
 
 	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)

@@ -5,16 +5,9 @@ class SCR_CTI_RadioConnectionComponentClass : ScriptComponentClass
 
 class SCR_CTI_RadioConnectionComponent : ScriptComponent
 {
-	protected SCR_CTI_GameMode m_gameMode;
-	protected FactionManager m_factionManager;
 	protected PlayerController m_pc;
-	protected SCR_ChimeraCharacter m_player;
-	protected SCR_CharacterControllerComponent m_characterControllerComp;
-	protected SCR_MapDescriptorComponent m_mapDescComp;
 	protected SCR_InventoryStorageManagerComponent m_ismc;
 	protected FactionAffiliationComponent m_factionAffComp;
-	protected DamageManagerComponent m_dmc;
-	protected MapItem m_mapitem;
 	protected bool m_radioOn = true;
 	
 	//------------------------------------------------------------------------------------------------
@@ -64,54 +57,6 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 
 		return false;
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	void initMapDescriptor()
-	{
-		Color color = Color.Black;
-		switch (m_factionAffComp.GetAffiliatedFaction().GetFactionKey())
-		{
-			case "USSR": color = Color.Red; break;
-			case "US": color = Color.Blue; break;
-			//case "FIA": color = Color.Green; break;
-		}
-
-		m_mapitem = m_mapDescComp.Item();
-
-		m_mapitem.SetVisible(true);
-		m_mapitem.SetFactionIndex(m_factionManager.GetFactionIndex(m_factionAffComp.GetAffiliatedFaction()));
-		m_mapitem.SetDisplayName(GetGame().GetPlayerManager().GetPlayerName(m_pc.GetPlayerId()));
-		m_mapitem.SetBaseType(EMapDescriptorType.MDT_NAME_GENERIC);
-		m_mapitem.SetImageDef("Unit");
-		m_mapitem.SetPriority(3);
-		
-		MapDescriptorProps props = m_mapitem.GetProps();
-			props.SetDetail(96);
-			props.SetIconSize(0.125, 0.05, 0.125);
-			props.SetTextSize(32, 8, 32);
-			props.SetTextColor(Color.Black);
-			props.SetFrontColor(color);
-			props.SetTextVisible(true);
-			props.SetIconVisible(true);
-			props.Activate(true);
-		
-		m_mapitem.SetProps(props);
-		
-		m_characterControllerComp.m_OnPlayerDeath.Insert(OnDeath);
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void OnDeath()
-	{
-		m_mapitem.SetVisible(false);
-		m_characterControllerComp.m_OnPlayerDeath.Remove(OnDeath);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	/*void OnMapOpen()
-	{
-		if (!SCR_PlayerController.GetLocalControlledEntity()) return;
-	}*/
 
 	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
@@ -121,30 +66,19 @@ class SCR_CTI_RadioConnectionComponent : ScriptComponent
 		// disabled on dedicated server with playercontroller check
 		if (m_pc)
 		{
-			m_characterControllerComp = SCR_CharacterControllerComponent.Cast(owner.FindComponent(SCR_CharacterControllerComponent));
-			m_mapDescComp = SCR_MapDescriptorComponent.Cast(owner.FindComponent(SCR_MapDescriptorComponent));
 			m_ismc = SCR_InventoryStorageManagerComponent.Cast(owner.FindComponent(SCR_InventoryStorageManagerComponent));
 			m_factionAffComp = FactionAffiliationComponent.Cast(owner.FindComponent(FactionAffiliationComponent));
-			m_dmc = DamageManagerComponent.Cast(owner.FindComponent(DamageManagerComponent));
-	
-			GetGame().GetCallqueue().CallLater(initMapDescriptor, 1000);
 		}
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_RadioConnectionComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
-		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		m_factionManager = GetGame().GetFactionManager();
-		m_player = SCR_ChimeraCharacter.Cast(ent);
 		m_pc = GetGame().GetPlayerController();
-
-		//if (m_pc) SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_RadioConnectionComponent()
 	{
-		//if (m_pc) SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);
 	}
 };

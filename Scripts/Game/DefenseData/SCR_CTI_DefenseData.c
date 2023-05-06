@@ -4,18 +4,18 @@ class SCR_CTI_DefenseData
 	protected ResourceName resname;	// Resource name
 	protected string name;			// Display name
 	protected int price;			// Price
-	protected int buildtime;		// Build time
+	protected string category;		// Category
 	protected int distance;			// Distance
 	protected int placement;		// Placement
 	protected string script;		// Script
 
 	//------------------------------------------------------------------------------------------------
-	void setData(ResourceName newresname, string newname, int newprice, int newbuildtime, int newdistance, int newplacement, string newscript)
+	void setData(ResourceName newresname, string newname, int newprice, string newcategory, int newdistance, int newplacement, string newscript)
 	{
 		resname = newresname;
 		name = newname;
 		price = newprice;
-		buildtime = newbuildtime;
+		category = newcategory;
 		distance = newdistance;
 		placement = newplacement;
 		script = newscript;
@@ -40,9 +40,9 @@ class SCR_CTI_DefenseData
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getBuildtime()
+	int getCategory()
 	{
-		return buildtime;
+		return category;
 	}
 
 	//------------------------------------------------------------------------------------------------

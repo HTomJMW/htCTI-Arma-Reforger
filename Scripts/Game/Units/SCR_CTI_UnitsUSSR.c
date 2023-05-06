@@ -39,7 +39,7 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Flag");
 		script.Insert("");
-		
+
 		// Soldiers
 		resname.Insert("{98EB9CDD85B8C92C}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Unarmed.et");
 		picture.Insert("");
@@ -49,25 +49,25 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{5436629450D8387A}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_SL.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(120);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(1);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{AB9726163EC1BD81}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Medic.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(100);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(1);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et");
 		picture.Insert("");
 		name.Insert("");
@@ -76,79 +76,79 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{23ADBBC31B6A3DC6}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AR.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(150);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(1);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{96C784C502AC37DA}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_MG.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(150);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(2);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{1C78331E156A3D65}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AT.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(200);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(2);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{976AC400219898FA}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Sharpshooter.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(200);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(3);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{8E0FE664CE7D1CA9}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_GL.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(120);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(1);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{612F43A4D5AE765F}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_RTO.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(100);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(1);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{E9AEEF2D9E41321B}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AMG.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(110);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(2);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		resname.Insert("{631158F6898738A4}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AAT.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(110);
 		buildtime.Insert(10);
-		uplevel.Insert(0);
+		uplevel.Insert(2);
 		factory.Insert("Barracks");
 		script.Insert("");
-		
+
 		// Vehicles
 		resname.Insert("{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et");
 		picture.Insert("");
@@ -158,7 +158,7 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Light Factory");
 		script.Insert("");
-		
+
 		resname.Insert("{16C1F16C9B053801}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et");
 		picture.Insert("");
 		name.Insert("");
@@ -167,7 +167,7 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Light Factory");
 		script.Insert("");
-		
+
 		resname.Insert("{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
 		picture.Insert("");
 		name.Insert("");
@@ -176,8 +176,17 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Light Factory");
 		script.Insert("");
-		
-		resname.Insert("{4C81D7ED8F8C0D87}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_tanker.et");
+
+		resname.Insert("{B39D34B9D0DCB9A9}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_medical.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(2500);
+		buildtime.Insert(30);
+		uplevel.Insert(1);
+		factory.Insert("Light Factory");
+		script.Insert("");
+
+		resname.Insert("{A5647958579A4149}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_repair.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -185,7 +194,25 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Repair Depot");
 		script.Insert("");
-		
+
+		resname.Insert("{3336BE330C4F355B}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_ammo.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(1500);
+		buildtime.Insert(30);
+		uplevel.Insert(0);
+		factory.Insert("Ammo Depot");
+		script.Insert("");
+
+		resname.Insert("{80065564D96D231C}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_fuel.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(1500);
+		buildtime.Insert(30);
+		uplevel.Insert(0);
+		factory.Insert("Repair Depot");
+		script.Insert("");
+
 		resname.Insert("{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et"); // MHQ
 		picture.Insert("");
 		name.Insert("");
@@ -194,13 +221,13 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("");
 		script.Insert("");
-		
+
 		resname.Insert("{C012BB3488BEA0C2}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(2500);
 		buildtime.Insert(45);
-		uplevel.Insert(1);
+		uplevel.Insert(0);
 		factory.Insert("Heavy Factory");
 		script.Insert("");
 	}

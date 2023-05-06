@@ -25,23 +25,30 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		SCR_CTI_UnitData unitData;
 		
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
-		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+		switch (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
 		{
-			resource = Resource.Load(SCR_CTI_Constants.USSR_SOLDIER);
-			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_SOLDIER);
-			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-			price = unitData.getPrice();
-		} else {
-			resource = Resource.Load(SCR_CTI_Constants.US_SOLDIER);
-			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_SOLDIER);
-			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-			price = unitData.getPrice();
+			case "USSR":
+			{
+				resource = Resource.Load(SCR_CTI_Constants.USSR_SOLDIER);
+				unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_SOLDIER);
+				unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+				price = unitData.getPrice();
+				break;
+			}
+			case "US":
+			{
+				resource = Resource.Load(SCR_CTI_Constants.US_SOLDIER);
+				unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_SOLDIER);
+				unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+				price = unitData.getPrice();
+				break;
+			}
 		}
 			
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		vector mat[4];
-		m_town.GetTransform(mat); // flagpos
+		m_town.GetTransform(mat); // FlagPos
 		
 		RandomGenerator randomgen = new RandomGenerator();
 		vector rndpos = randomgen.GenerateRandomPointInRadius(3, 8, mat[3], true);
@@ -51,10 +58,11 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		params.Transform = mat;
 
 		IEntity spawnedAI = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+		if (!spawnedAI) return;
 
 		AIControlComponent control = AIControlComponent.Cast(spawnedAI.FindComponent(AIControlComponent));
 		control.ActivateAI();
-		
+
 		AIAgent agent = control.GetControlAIAgent();
 
 		SCR_CTI_TownPatrolComponent tpc = SCR_CTI_TownPatrolComponent.Cast(m_town.FindComponent(SCR_CTI_TownPatrolComponent));
@@ -64,9 +72,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL; // ai combat component - skill test?
 
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
-
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
-		
 		if (clientData)
 		{
 			if (clientData.isCommander())
@@ -112,7 +118,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 			return false;
 		}
 
-		int funds = 0;
+		int funds;
 		if (clientData)
 		{
 			if (clientData.isCommander())
@@ -129,28 +135,35 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		int unitPrice;
 		
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
-		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+		switch (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
 		{
-			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_SOLDIER);
-			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-			unitPrice = unitData.getPrice();
-			if (funds > unitPrice)
+			case "USSR":
 			{
-				return true;
-			} else {
-				SetCannotPerformReason("Insufficent funds!");
-				return false;
+				unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_SOLDIER);
+				unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+				unitPrice = unitData.getPrice();
+				if (funds > unitPrice)
+				{
+					return true;
+				} else {
+					SetCannotPerformReason("Insufficent funds!");
+					return false;
+				}
+				break;
 			}
-		} else {
-			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_SOLDIER);
-			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-			unitPrice = unitData.getPrice();
-			if (funds > unitPrice)
+			case "US":
 			{
-				return true;
-			} else {
-				SetCannotPerformReason("Insufficent funds!");
-				return false;
+				unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_SOLDIER);
+				unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+				unitPrice = unitData.getPrice();
+				if (funds > unitPrice)
+				{
+					return true;
+				} else {
+					SetCannotPerformReason("Insufficent funds!");
+					return false;
+				}
+				break;
 			}
 		}
 

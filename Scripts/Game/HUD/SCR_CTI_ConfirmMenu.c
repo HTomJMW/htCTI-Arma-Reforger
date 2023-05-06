@@ -103,7 +103,7 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 		if (runCounter == 0)
 		{
 			runCounter++;
-			
+
 			if (m_confirmText.GetText() == "[ - Confirm - ]")
 			{
 				if (m_pdc.getStartPlacing()) m_pdc.performBuilding();

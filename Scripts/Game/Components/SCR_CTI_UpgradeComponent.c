@@ -17,7 +17,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 5;
-	
+
 	[RplProp()]
 	protected int ussrRunningUpgradeIndex = -1;
 	[RplProp()]
@@ -36,11 +36,11 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	{
 		m_gameMode = SCR_CTI_GameMode.Cast(GetOwner());
 		m_rplComponent = RplComponent.Cast(m_gameMode.FindComponent(RplComponent));
-		fillUpStatuses();
+		initUpdateStatuses();
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void fillUpStatuses()
+	protected void initUpdateStatuses()
 	{
 		for (int i = 0; i < m_gameMode.Upgrades.g_Upgrades.Count(); i++)
 		{
@@ -77,6 +77,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 				break;
 			}
 		}
+
 		Replication.BumpMe();
 	}
 
@@ -115,6 +116,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 				break;
 			}
 		}
+
 		Replication.BumpMe();
 	}
 
@@ -138,6 +140,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 					break;
 				}
 			}
+
 			Replication.BumpMe();
 		}
 	}
@@ -148,28 +151,38 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 		if (!m_rplComponent.IsProxy())
 		{
 			m_timeDelta += timeSlice;
-			if (ussrRunningUpgradeIndex != -1)
-			{
-				if (ussrRemainingUpgradeTime > 0)
-				{
-					ussrRemainingUpgradeTime -= timeSlice;
-				} else {
-					ussrRemainingUpgradeTime = 0;
-					finish("USSR", ussrRunningUpgradeIndex);
-				}
-			}
-			if (usRunningUpgradeIndex != -1)
-				{
-				if (usRemainingUpgradeTime > 0)
-				{
-					usRemainingUpgradeTime -= timeSlice;
-				} else {
-					usRemainingUpgradeTime = 0;
-					finish("US", usRunningUpgradeIndex);
-				}
-			}
 			if (m_timeDelta > TIMESTEP)
 			{
+				if (ussrRunningUpgradeIndex != -1)
+				{
+					if (ussrRemainingUpgradeTime > 0)
+					{
+						ussrRemainingUpgradeTime -= m_timeDelta;
+						if (ussrRemainingUpgradeTime < 0)
+						{
+							ussrRemainingUpgradeTime = 0;
+							finish("USSR", ussrRunningUpgradeIndex);
+						}
+					} else {
+						ussrRemainingUpgradeTime = 0;
+						finish("USSR", ussrRunningUpgradeIndex);
+					}
+				}
+				if (usRunningUpgradeIndex != -1)
+				{
+					if (usRemainingUpgradeTime > 0)
+					{
+						usRemainingUpgradeTime -= m_timeDelta;
+						if (usRemainingUpgradeTime < 0)
+						{
+							ussrRemainingUpgradeTime = 0;
+							finish("US", usRunningUpgradeIndex);
+						}
+					} else {
+						usRemainingUpgradeTime = 0;
+						finish("US", usRunningUpgradeIndex);
+					}
+				}
 				if (ussrRunningUpgradeIndex != -1 || usRunningUpgradeIndex != -1)
 				{
 					Replication.BumpMe(); // refresh upgrades to proxys
@@ -181,28 +194,42 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	float getRemainingTime(FactionKey fk)
+	int getRunningUpgradeIndex(FactionKey factionkey)
+	{
+		int index = -1;
+
+		switch (factionkey)
+		{
+			case "USSR": index = ussrRunningUpgradeIndex; break;
+			case "US": index = usRunningUpgradeIndex; break;
+		}
+
+		return index;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	float getRemainingTime(FactionKey factionkey)
 	{
 		float time = -1;
-		if (fk == "USSR")
+
+		switch (factionkey)
 		{
-			time = ussrRemainingUpgradeTime;
-		} else {
-			time = usRemainingUpgradeTime;
+			case "USSR": time = ussrRemainingUpgradeTime; break;
+			case "US": time = usRemainingUpgradeTime; break;
 		}
-		
+
 		return time;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	UpgradeStatus getUpgradeStatus(FactionKey fk, int upgradeindex)
+	UpgradeStatus getUpgradeStatus(FactionKey factionkey, int upgradeindex)
 	{
 		UpgradeStatus status = UpgradeStatus.NONE;
-		if (fk == "USSR")
+		
+		switch (factionkey)
 		{
-			status = ussrUpgradeStatuses[upgradeindex];
-		} else {
-			status = usUpgradeStatuses[upgradeindex];
+			case "USSR": status = ussrUpgradeStatuses[upgradeindex]; break;
+			case "US": status = usUpgradeStatuses[upgradeindex]; break;
 		}
 		
 		return status;

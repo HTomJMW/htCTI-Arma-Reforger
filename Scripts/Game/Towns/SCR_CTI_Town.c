@@ -144,14 +144,30 @@ class SCR_CTI_Town : BaseGameEntity
 
 		m_townGroups.Clear();
 
-		this.SetEventMask(EntityEvent.FIXEDFRAME);
-		m_timeDelta = 0;
+		//this.SetEventMask(EntityEvent.FIXEDFRAME);
+		//m_timeDelta = 0;
+		
+		RandomGenerator randomgen = new RandomGenerator();
+		int rnd = randomgen.RandIntInclusive(18000, 22000);
+		if (!m_rplComponent.IsProxy()) GetGame().GetCallqueue().CallLater(townLoop, rnd, true);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
+	protected void townLoop()
+	{
+		if (isActive())
+		{
+			removeEmptyGroups();
+			addWayPointToGroups();
+			checkCapture();
+			timeOutCheck();
+		}
+	}
+
 	//------------------------------------------------------------------------------------------------
 	override void EOnFixedFrame(IEntity owner, float timeSlice)
 	{
-		if (!m_rplComponent.IsProxy() && isActive())
+		/*if (!m_rplComponent.IsProxy() && isActive())
 		{
 			m_timeDelta += timeSlice;
 			if (m_timeDelta > TIMESTEP)
@@ -163,7 +179,7 @@ class SCR_CTI_Town : BaseGameEntity
 
 				m_timeDelta = 0;
 			}
-		}
+		}*/
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -176,19 +192,11 @@ class SCR_CTI_Town : BaseGameEntity
 		
 		if (fia < 1 && ussr < 1 && us < 1) return;
 		
-		if (ussr > 0 && us == 0 && fia == 0 && m_factionKey != "USSR")
+		switch (true)
 		{
-			OnTownCapturedServer("USSR", "US", "FIA");
-		}
-		
-		if (us > 0 && ussr == 0 && fia == 0 && m_factionKey != "US")
-		{
-			OnTownCapturedServer("US", "USSR", "FIA");
-		}
-		
-		if (fia > 0 && ussr == 0 && us == 0 && m_factionKey != "FIA")
-		{
-			OnTownCapturedServer("FIA", "USSR", "US");
+			case (ussr > 0 && us == 0 && fia == 0 && m_factionKey != "USSR"): OnTownCapturedServer("USSR", "US", "FIA"); break;
+			case (us > 0 && ussr == 0 && fia == 0 && m_factionKey != "US"):	OnTownCapturedServer("US", "USSR", "FIA"); break;
+			case (fia > 0 && ussr == 0 && us == 0 && m_factionKey != "FIA"): OnTownCapturedServer("FIA", "USSR", "US"); break;
 		}
 	}
 	
@@ -263,6 +271,11 @@ class SCR_CTI_Town : BaseGameEntity
 		m_gameMode.bumpMeServer();
 
 		m_capTimes.Set(newSide, m_gameMode.GetElapsedTime());
+
+		int townIndex = m_gameMode.CTI_Towns.Find(this);
+		m_gameMode.sendFactionNotifT(newSide, ENotification.CTI_NOTIF_TOWN_CAPTURED, townIndex);
+		
+		if (m_oldFactionKey != "FIA") m_gameMode.sendFactionNotifT(m_oldFactionKey, ENotification.CTI_NOTIF_TOWN_LOST, townIndex);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -317,7 +330,7 @@ class SCR_CTI_Town : BaseGameEntity
 			if (!m_isActive) PrintFormat("CTI :: Town %1 is Inactive", m_townName);
 		}
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	protected void addWayPointToGroups()
 	{
@@ -341,7 +354,7 @@ class SCR_CTI_Town : BaseGameEntity
 	{
 		ResourceName sp = "{987991DCED3DC197}PrefabsEditable/SpawnPoints/E_SpawnPoint.et";
 		Resource spRes = Resource.Load(sp);
-		
+
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		vector mat[4];
@@ -349,7 +362,7 @@ class SCR_CTI_Town : BaseGameEntity
 		params.Transform = mat;
 		
 		IEntity spEnt = GetGame().SpawnEntityPrefab(spRes, GetWorld(), params);
-		
+
 		return SCR_SpawnPoint.Cast(spEnt);
 	}
 	
@@ -359,14 +372,7 @@ class SCR_CTI_Town : BaseGameEntity
 		for (int i = m_townGroups.Count() - 1; i >= 0; i--)
 		{
 			AIGroup group = m_townGroups[i];
-			array<AIAgent> outAgents = {};
-			group.GetAgents(outAgents);
-			
-			for (int j = outAgents.Count() - 1; j >= 0; j--)
-			{
-				IEntity ent = outAgents[j].GetControlledEntity();
-				SCR_EntityHelper.DeleteEntityAndChildren(ent);
-			}
+			SCR_EntityHelper.DeleteEntityAndChildren(group);
 		}
 
 		m_townGroups.Clear();

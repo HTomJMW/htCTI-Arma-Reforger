@@ -26,7 +26,7 @@ class SCR_CTI_FactoryProduction
 			vector angles = entity.GetAngles();
 			angles[1] = angles[1] + 180;
 			entity.SetAngles(angles);
-			
+
 			AIControlComponent AgentControlComponent = AIControlComponent.Cast(entity.FindComponent(AIControlComponent));
 			AIAgent agent = null;
 			if (AgentControlComponent)

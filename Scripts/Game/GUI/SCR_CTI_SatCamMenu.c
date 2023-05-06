@@ -23,7 +23,7 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 	protected RichTextWidget m_infoWindowText;
 
 	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
-	protected ref SCR_CTI_SatCamButtonHandler m_satCamButtonHandler;
+	protected ref SCR_CTI_SatCamMenuButtonHandler m_satCamButtonHandler;
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
@@ -39,7 +39,7 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 		m_camMan = GetGame().GetCameraManager();
 		
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
-		m_satCamButtonHandler = new SCR_CTI_SatCamButtonHandler();
+		m_satCamButtonHandler = new SCR_CTI_SatCamMenuButtonHandler();
 
 		m_wRoot = GetRootWidget();
 		
@@ -175,6 +175,7 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 		{
 			if (m_manualCam)
 			{
+				// TODO if MHQ down satcam OFF
 				string info = "Info:\n";
 				string weekday = m_timeAndWeatherManager.GetWeekDayString() + "\n";
 				int year, month, day, hour, min, sec;

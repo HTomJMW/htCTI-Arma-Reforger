@@ -12,16 +12,8 @@ class SCR_CTI_GetSideFactories
 		array<RplId> structureRplIdArray = {};
 		switch (factionkey)
 		{
-			case "USSR":
-			{
-				structureRplIdArray = baseComp.getUSSRStructureRplIdArray();
-				break;
-			}
-			case "US":
-			{
-				structureRplIdArray = baseComp.getUSStructureRplIdArray();
-				break;
-			}
+			case "USSR": structureRplIdArray = baseComp.getUSSRStructureRplIdArray(); break;
+			case "US": structureRplIdArray = baseComp.getUSStructureRplIdArray(); break;
 		}
 		
 		for (int i = 0; i < structureRplIdArray.Count(); i++)
@@ -29,8 +21,6 @@ class SCR_CTI_GetSideFactories
 			ent = GetGame().GetWorld().FindEntityByID(structureRplIdArray[i]);
 			list.Insert(ent);
 		}
-		
-		if (list.Count() < 1) return null;
 
 		return list;
 	}
@@ -83,8 +73,6 @@ class SCR_CTI_GetSideFactories
 				break;
 			}
 		}
-		
-		if (list.Count() < 1) return null;
 
 		return list;
 	}

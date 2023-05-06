@@ -1,6 +1,6 @@
 class SCR_RepairVehicleAction : ScriptedUserAction
 {
-	protected ECharacterHitZoneGroup m_eHitZoneGroup;
+	//protected ECharacterHitZoneGroup m_eHitZoneGroup;
 
 	//------------------------------------------------------------------------------------------------
 	override void OnActionStart(IEntity pUserEntity)

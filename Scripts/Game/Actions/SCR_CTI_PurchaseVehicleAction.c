@@ -25,23 +25,30 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		int price;
 		
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
-		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+		switch (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
 		{
-			resource = Resource.Load(SCR_CTI_Constants.USSR_UAZ);
-			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_UAZ);
-			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-			price = unitData.getPrice();
-		} else {
-			resource = Resource.Load(SCR_CTI_Constants.US_JEEP);
-			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_JEEP);
-			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-			price = unitData.getPrice();
+			case "USSR":
+			{
+				resource = Resource.Load(SCR_CTI_Constants.USSR_UAZ);
+				unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_UAZ);
+				unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+				price = unitData.getPrice();
+				break;
+			}
+			case "US":
+			{
+				resource = Resource.Load(SCR_CTI_Constants.US_JEEP);
+				unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_JEEP);
+				unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+				price = unitData.getPrice();
+				break;
+			}
 		}
-			
+
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		vector mat[4];
-		m_town.GetTransform(mat); // flagpos
+		m_town.GetTransform(mat); // FlagPos
 		
 		RandomGenerator randomgen = new RandomGenerator();
 		vector rndpos = randomgen.GenerateRandomPointInRadius(3, 8, mat[3], true);
@@ -51,12 +58,14 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 
 		params.Transform = mat;
 
-		GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+		IEntity spawnedVehicle = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
+		if (!spawnedVehicle) return;
+		
+		GarbageManager garbagemanager = GetGame().GetGarbageManager();
+		garbagemanager.Insert(spawnedVehicle, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
 		
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
-
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
-
 		if (clientData)
 		{
 			if (clientData.isCommander())
@@ -84,7 +93,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		int playerId = GetGame().GetPlayerController().GetPlayerId();
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 
-		int funds = 0;
+		int funds;
 		if (clientData)
 		{
 			if (clientData.isCommander())
@@ -101,29 +110,36 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		int unitPrice;
 		
 		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(user.FindComponent(FactionAffiliationComponent));
-		if (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == "USSR")
+		switch (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
 		{
-			unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_UAZ);
-			unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-			unitPrice = unitData.getPrice();
-			if (funds > unitPrice)
+			case "USSR":
 			{
-				return true;
-			} else {
-				SetCannotPerformReason("Insufficent funds!");
-				return false;
+				unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_UAZ);
+				unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
+				unitPrice = unitData.getPrice();
+				if (funds > unitPrice)
+				{
+					return true;
+				} else {
+					SetCannotPerformReason("Insufficent funds!");
+					return false;
+				}
+				break;
 			}
-		} else {
-			unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_JEEP);
-			unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-			unitPrice = unitData.getPrice();
-			if (funds > unitPrice)
+			case "US":
 			{
-				return true;
-			} else {
-				SetCannotPerformReason("Insufficent funds!");
-				return false;
-			}
+				unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_JEEP);
+				unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
+				unitPrice = unitData.getPrice();
+				if (funds > unitPrice)
+				{
+					return true;
+				} else {
+					SetCannotPerformReason("Insufficent funds!");
+					return false;
+				}
+				break;
+			}		
 		}
 
 		return true;

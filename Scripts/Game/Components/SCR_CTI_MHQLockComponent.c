@@ -13,7 +13,7 @@ class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 	override void EOnInit(IEntity owner)
 	{
 		ClearEventMask(owner, EntityEvent.INIT);
-		
+
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
 	
@@ -23,7 +23,6 @@ class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 		SetEventMask(owner, EntityEvent.INIT);
 
 		m_vehFactionAffComp = SCR_VehicleFactionAffiliationComponent.Cast(owner.FindComponent(SCR_VehicleFactionAffiliationComponent));
-		
 		m_vehSpawnProtection = SCR_VehicleSpawnProtectionComponent.Cast(owner.FindComponent(SCR_VehicleSpawnProtectionComponent));
 		m_vehSpawnProtection.SetVehicleOwner(-2);
 		m_vehSpawnProtection.SetProtectionTime(0); // unlimited protection time

@@ -27,16 +27,9 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 		m_damage = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Damage"));
 		m_occupants = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Occupants"));
 
-		m_name.SetText("Vehicle Name");
 		m_name.SetVisible(true);
-		
-		m_fuel.SetText("Vehicle Fuel");
 		m_fuel.SetVisible(true);
-		
-		m_damage.SetText("Vehicle Damage");
 		m_damage.SetVisible(true);
-
-		m_occupants.SetText("");
 		m_occupants.SetVisible(true);
 	}
 
@@ -72,6 +65,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 			} else {
 				m_wRoot.SetVisible(false);
 			}
+
 			if (m_vehicle)
 			{
 				//EntityPrefabData data = m_vehicle.GetPrefabData();
@@ -138,7 +132,6 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 					}
 				}
 				m_occupants.SetText(occupants);
-
 			}
 			m_timeDelta = 0;
 		}

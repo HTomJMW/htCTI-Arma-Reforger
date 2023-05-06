@@ -53,7 +53,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	protected ButtonWidget m_exit;
 	
 	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
-	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
+	protected ref SCR_CTI_MainMenuButtonHandler m_buttonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
@@ -107,7 +107,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
 
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
-		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
+		m_buttonEventHandler = new SCR_CTI_MainMenuButtonHandler();
 
 		m_radio.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_radio.AddHandler(m_buttonEventHandler);
@@ -162,7 +162,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 
 		bool barInRange = false;
 		array<IEntity> barracks = SCR_CTI_GetSideFactories.GetSideFactoriesByType(m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), "Barracks");
-		if (barracks)
+		if (!barracks.IsEmpty())
 		{
 			foreach(IEntity building : barracks)
 			{

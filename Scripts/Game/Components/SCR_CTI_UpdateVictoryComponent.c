@@ -12,34 +12,33 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 	protected int m_usIndex;
 	protected FactionManager m_factionmanager;
 	protected SCR_CTI_GameMode m_gamemode;
-	
-	protected IEntity m_ussrMHQ = null;
-	protected IEntity m_usMHQ = null;
 
 	//------------------------------------------------------------------------------------------------
 	void update()
 	{
 		if (m_gamemode.IsRunning())
 		{
-			if (!m_ussrMHQ) m_ussrMHQ = SCR_CTI_GetSideMHQ.GetSideMHQ("USSR");
-			if (!m_usMHQ) m_usMHQ = SCR_CTI_GetSideMHQ.GetSideMHQ("US");
+			IEntity m_ussrMHQ = SCR_CTI_GetSideMHQ.GetSideMHQ("USSR");
+			IEntity m_usMHQ = SCR_CTI_GetSideMHQ.GetSideMHQ("US");
 			
 			SCR_VehicleDamageManagerComponent vdmcUSSR = SCR_VehicleDamageManagerComponent.Cast(m_ussrMHQ.FindComponent(SCR_VehicleDamageManagerComponent));
 			SCR_VehicleDamageManagerComponent vdmcUS = SCR_VehicleDamageManagerComponent.Cast(m_usMHQ.FindComponent(SCR_VehicleDamageManagerComponent));
 			
-			bool ussrMHQdown = vdmcUSSR.IsDestroyed();
-			bool usMHQdown = vdmcUS.IsDestroyed();
-			
+			bool ussrMHQdown = false;
+			if (vdmcUSSR) ussrMHQdown = vdmcUSSR.IsDestroyed();
+			bool usMHQdown = false;
+			if (vdmcUS) usMHQdown = vdmcUS.IsDestroyed();
+
 			SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(m_gamemode.FindComponent(SCR_CTI_BaseComponent));
-			// NO DRAW?
-			if (baseComp.getBaseCount("USSR") == 0 && ussrMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_usIndex));
-			if (baseComp.getBaseCount("US") == 0 && usMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_ussrIndex));
-			
+			// NO DRAW? need add draw for rarely case
+			if (baseComp.getBaseCount("USSR") == 0 && ussrMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_SCORELIMIT, -1, m_usIndex));
+			if (baseComp.getBaseCount("US") == 0 && usMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_SCORELIMIT, -1, m_ussrIndex));
+
 			if (SCR_CTI_Constants.ECOWIN)
 			{
 				float ussr = 0.0;
 				float us = 0.0;
-	
+
 				for (int i = 0; i < m_gamemode.CTI_Towns.Count(); i++)
 				{
 					SCR_CTI_Town town = m_gamemode.CTI_Towns[i];
@@ -49,14 +48,19 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 
 				if (ussr >= (m_gamemode.CTI_Towns.Count() * (SCR_CTI_Constants.WINRATE / 100)))
 				{
-					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_ussrIndex));
+					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_SCORELIMIT, -1, m_ussrIndex));
 				}
-				
+
 				if (us >= (m_gamemode.CTI_Towns.Count() * (SCR_CTI_Constants.WINRATE / 100)))
 				{
-					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_EDITOR_FACTION_VICTORY, -1, m_usIndex));
+					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_SCORELIMIT, -1, m_usIndex));
 				}
 			}
+
+			// Temporary GM FIX for MHQ Lifetime problem
+			GarbageManager gm = GetGame().GetGarbageManager();
+			if (gm.GetLifetime(m_ussrMHQ) < 3600) gm.Bump(m_ussrMHQ, 65);
+			if (gm.GetLifetime(m_usMHQ) < 3600) gm.Bump(m_usMHQ, 65);
 		}
 	}
 

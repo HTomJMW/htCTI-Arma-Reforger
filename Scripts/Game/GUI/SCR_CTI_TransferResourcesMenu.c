@@ -1,15 +1,15 @@
 class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 {
-	protected SCR_CTI_GameMode gameMode;
-	protected PlayerController pc;
-	protected SCR_CTI_ClientData clientData;
-	protected int playerId;
-	protected Faction playerFaction;
-	protected FactionAffiliationComponent affiliationComp;
-	protected PlayerManager pm;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected PlayerController m_pc;
+	protected SCR_CTI_ClientData m_clientData;
+	protected int m_playerId;
+	protected Faction m_playerFaction;
+	protected FactionAffiliationComponent m_affiliationComp;
+	protected PlayerManager m_pm;
 	
-	protected ref array<int> players = {};
-	protected int playerCount;
+	protected ref array<int> m_players = {};
+	protected int m_playerCount;
 
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.3;
@@ -21,7 +21,7 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 	
 	protected EditBoxWidget m_editbox;
 	
-	protected int ask = 0;
+	protected int m_ask = 0;
 	
 	protected SliderWidget m_slider;
 	
@@ -33,18 +33,18 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 	protected TextWidget m_yourresources;
 	
 	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
-	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
-	protected ref SCR_CTI_TransferMenuSliderHandler m_sliderEventHandler;
+	protected ref SCR_CTI_TransferResourcesMenuButtonHandler m_buttonEventHandler;
+	protected ref SCR_CTI_TransferResourcesMenuSliderHandler m_sliderEventHandler;
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		pc = GetGame().GetPlayerController();
-		playerId = pc.GetPlayerId();
-		affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-		playerFaction = affiliationComp.GetAffiliatedFaction();
-		pm = GetGame().GetPlayerManager();
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_pc = GetGame().GetPlayerController();
+		m_playerId = m_pc.GetPlayerId();
+		m_affiliationComp = FactionAffiliationComponent.Cast(m_pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+		m_playerFaction = m_affiliationComp.GetAffiliatedFaction();
+		m_pm = GetGame().GetPlayerManager();
 		
 		m_wRoot = GetRootWidget();
 		
@@ -69,8 +69,8 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 
 		// handlers
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
-		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
-		m_sliderEventHandler = new SCR_CTI_TransferMenuSliderHandler();
+		m_buttonEventHandler = new SCR_CTI_TransferResourcesMenuButtonHandler();
+		m_sliderEventHandler = new SCR_CTI_TransferResourcesMenuSliderHandler();
 		
 		m_slider.AddHandler(m_sliderEventHandler);
 
@@ -83,25 +83,30 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 		m_transfer.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_transfer.AddHandler(m_buttonEventHandler);
 		
-		clientData = gameMode.getClientData(playerId);
+		m_clientData = m_gameMode.getClientData(m_playerId);
 
 		int funds = 0;
-		if (clientData) funds = clientData.getFunds();
-		
+		if (m_clientData && m_clientData.isCommander())
+		{
+			funds = m_gameMode.getCommanderFunds(m_playerFaction.GetFactionKey());
+		} else {
+			funds = m_clientData.getFunds();
+		}
+
 		m_yourresources.SetText("Your Resources: " + funds.ToString() + "$");
 		
-		pm.GetPlayers(players);
-		playerCount = players.Count();
-		for (int i = 0; i < playerCount; i++)
+		m_pm.GetPlayers(m_players);
+		m_playerCount = m_players.Count();
+		for (int i = 0; i < m_playerCount; i++)
 		{
-			IEntity playerEnt = pm.GetPlayerControlledEntity(players[i]);
+			IEntity playerEnt = m_pm.GetPlayerControlledEntity(m_players[i]);
 			FactionAffiliationComponent affcomp = FactionAffiliationComponent.Cast(playerEnt.FindComponent(FactionAffiliationComponent));
 
-			if (affcomp.GetAffiliatedFaction() == playerFaction)
+			if (affcomp.GetAffiliatedFaction() == m_playerFaction)
 			{
 				RplComponent rplComp = RplComponent.Cast(playerEnt.FindComponent(RplComponent));
 				
-				m_listboxcomp.AddItem(pm.GetPlayerName(players[i]), rplComp);
+				m_listboxcomp.AddItem(m_pm.GetPlayerName(m_players[i]), rplComp);
 			}
 		}
 	}
@@ -117,9 +122,9 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			// if playerlist changed just reload menu (temporary)
-			pm.GetPlayers(players);
-			if (players.Count() != playerCount)
+			// if playerlist changed just reload menu (temporary) TODO
+			m_pm.GetPlayers(m_players);
+			if (m_players.Count() != m_playerCount)
 			{
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
@@ -127,26 +132,31 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 			}
 
 			int funds = 0;
-			if (clientData) funds = clientData.getFunds();
+			if (m_clientData && m_clientData.isCommander())
+			{
+				funds = m_gameMode.getCommanderFunds(m_playerFaction.GetFactionKey());
+			} else {
+				funds = m_clientData.getFunds();
+			}
 
 			m_yourresources.SetText("Your Resources: " + funds.ToString() + "$");
 				
 			m_slider.SetMax(funds);
 				
 			string ebox = m_editbox.GetText();
-			ask = ebox.ToInt();
-			if (ask > funds)
+			m_ask = ebox.ToInt();
+			if (m_ask > funds)
 			{
-				ask = funds;
-				m_editbox.SetText(ask.ToString());
+				m_ask = funds;
+				m_editbox.SetText(m_ask.ToString());
 			}
-			if (ask < 0)
+			if (m_ask < 0)
 			{
-				ask = 0;
-				m_editbox.SetText(ask.ToString());
+				m_ask = 0;
+				m_editbox.SetText(m_ask.ToString());
 			}
 				
-			m_slider.SetCurrent(ask);
+			m_slider.SetCurrent(m_ask);
 			
 			if (m_listboxcomp.GetSelectedItem() != -1)
 			{
@@ -155,7 +165,7 @@ class SCR_CTI_TransferResourcesMenu : ChimeraMenuBase
 				int receiverId = GetGame().GetPlayerManager().GetPlayerIdFromEntityRplId(rplid);
 				PlayerController pcrec = PlayerController.Cast(GetGame().GetPlayerManager().GetPlayerController(receiverId));
 				
-				SCR_CTI_ClientData receiverClientData = gameMode.getClientData(receiverId);
+				SCR_CTI_ClientData receiverClientData = m_gameMode.getClientData(receiverId);
 				
 				m_playerresources.SetText("Player Resources: " + receiverClientData.getFunds().ToString() + "$");
 			}

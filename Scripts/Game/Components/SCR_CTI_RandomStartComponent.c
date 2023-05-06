@@ -5,7 +5,6 @@ class SCR_CTI_RandomStartComponentClass : ScriptComponentClass
 
 class SCR_CTI_RandomStartComponent : ScriptComponent
 {
-	//protected SCR_CTI_GameMode m_gameMode;
 	protected bool m_ussrAtNorth = false;
 
 	//------------------------------------------------------------------------------------------------	
@@ -31,9 +30,6 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 	protected void setupStart()
 	{
 		BaseWorld world = GetGame().GetWorld();
-		
-		SCR_SpawnPoint spNorth = SCR_SpawnPoint.Cast(world.FindEntityByName("SpawnPointNorth"));
-		SCR_SpawnPoint spSouth = SCR_SpawnPoint.Cast(world.FindEntityByName("SpawnPointSouth"));
 
 		SCR_CTI_VehicleSpawn svNorth1 = SCR_CTI_VehicleSpawn.Cast(world.FindEntityByName("SpawnVehicleNorth1"));
 		SCR_CTI_VehicleSpawn svNorth2 = SCR_CTI_VehicleSpawn.Cast(world.FindEntityByName("SpawnVehicleNorth2"));
@@ -83,10 +79,6 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		
 		if (m_ussrAtNorth)
 		{
-			// USSR on North
-			spNorth.SetFactionKey("USSR");
-			spSouth.SetFactionKey("US");
-
 			// UAZ + equipment
 			svNorth1.setPrefab(SCR_CTI_Constants.USSR_UAZ);
 			svNorth1.addItemsPrefab(itemMapUaz);
@@ -110,13 +102,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			// US MHQ + equipment
 			svSouth3.setPrefab(SCR_CTI_Constants.US_MHQ);
 			svSouth3.addItemsPrefab(intemMapM923MHQ);
-			
 		} else {
-			
-			// USSR on South
-			spNorth.SetFactionKey("US");
-			spSouth.SetFactionKey("USSR");
-			
 			// Jeep + equipment
 			svNorth1.setPrefab(SCR_CTI_Constants.US_JEEP);
 			svNorth1.addItemsPrefab(itemMapM151);
@@ -146,7 +132,6 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_RandomStartComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
-		//m_gameMode = SCR_CTI_GameMode.Cast(ent);
 	}
 
 	//------------------------------------------------------------------------------------------------

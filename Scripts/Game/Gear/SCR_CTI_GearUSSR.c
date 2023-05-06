@@ -35,6 +35,13 @@ class SCR_CTI_GearUSSR
 		uplevel.Insert(0);
 		price.Insert(100);
 		
+		// Map
+		resname.Insert("{13772C903CB5E4F7}Prefabs/Items/Equipment/Maps/PaperMap_01_folded.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
 		// Radios
 		resname.Insert("{E1A5D4B878AA8980}Prefabs/Items/Equipment/Radios/Radio_R148.et");
 		name.Insert("");
@@ -76,7 +83,7 @@ class SCR_CTI_GearUSSR
 		uplevel.Insert(0);
 		price.Insert(150);
 		
-		// Backpack
+		// Backpacks
 		resname.Insert("{6A39B5843B3F36DA}Prefabs/Items/Equipment/Backpacks/Backpack_RPG_Assistant.et");
 		name.Insert("");
 		category.Insert("");
@@ -101,6 +108,12 @@ class SCR_CTI_GearUSSR
 		uplevel.Insert(0);
 		price.Insert(200);
 		
+		resname.Insert("{7AC107CA7AFC9B59}Prefabs/Items/Equipment/Backpacks/Backpack_Medical_Soviet.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(100);
+		
 		// Bayonet
 		resname.Insert("{C7534F7A79EA3331}Prefabs/Weapons/Attachments/Bayonets/Bayonet_6Kh4.et");
 		name.Insert("6Kh4 Bayonet");
@@ -116,7 +129,7 @@ class SCR_CTI_GearUSSR
 		price.Insert(200);
 		
 		resname.Insert("{63E8322E2ADD4AA7}Prefabs/Weapons/Rifles/AK74/Rifle_AK74_GP25.et");
-		name.Insert("");
+		name.Insert("AK74 GP25");
 		category.Insert("");
 		uplevel.Insert(1);
 		price.Insert(300);
@@ -128,7 +141,7 @@ class SCR_CTI_GearUSSR
 		price.Insert(300);
 		
 		resname.Insert("{6415B7923DE28C1B}Prefabs/Weapons/Rifles/SVD/Rifle_SVD_PSO.et");
-		name.Insert("");
+		name.Insert("SVD PSO");
 		category.Insert("");
 		uplevel.Insert(2);
 		price.Insert(400);
@@ -292,7 +305,19 @@ class SCR_CTI_GearUSSR
 		uplevel.Insert(0);
 		price.Insert(20);
 		
+		resname.Insert("{3523CB7D5961246B}Prefabs/Characters/HeadGear/Hat_PeakedCap_USSR_01/Hat_PeakedCap_USSR_01.et");
+		name.Insert("Peaked Cap"); // missing name
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(20);
+
 		resname.Insert("{A7E6D7ECD5F684D7}Prefabs/Characters/HeadGear/Helmet_SSh68_01/Helmet_SSh68_01.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+
+		resname.Insert("{22963D69CA50EB9E}Prefabs/Characters/HeadGear/Helmet_SSh68_01/Helmet_SSh68_01_net.et");
 		name.Insert("");
 		category.Insert("");
 		uplevel.Insert(0);
@@ -323,6 +348,18 @@ class SCR_CTI_GearUSSR
 		uplevel.Insert(0);
 		price.Insert(50);
 		
+		resname.Insert("{D262D2102B9931C6}Prefabs/Characters/Uniforms/Jacket_M88_rolledup.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
+		resname.Insert("{DCF980831E880F6A}Prefabs/Characters/Uniforms/Pants_M88.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
 		// Vests
 		resname.Insert("{9713FE6DDCC9510D}Prefabs/Characters/Vests/Vest_Lifchik/Vest_Lifchik.et");
 		name.Insert("");
@@ -330,8 +367,56 @@ class SCR_CTI_GearUSSR
 		uplevel.Insert(0);
 		price.Insert(10);
 		
+		resname.Insert("{C8516078375CBE45}Prefabs/Characters/Vests/Vest_Lifchik/Vest_Lifchik_GL.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		/*resname.Insert("{AB84E597273FAECA}Prefabs/Characters/Vests/Vest_Lifchik/Vest_Lifchik_GrenadeBelt.et"); // bugged
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);*/
+		
+		resname.Insert("{4711A4CAF64C4CEE}Prefabs/Characters/Vests/Vest_SovietHarness/Variants/Vest_SovietHarness_AR.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{D562ED744D4BFB7E}Prefabs/Characters/Vests/Vest_SovietHarness/Variants/Vest_SovietHarness_assembled.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{6726C63F4F56F12F}Prefabs/Characters/Vests/Vest_SovietHarness/Variants/Vest_SovietHarness_medic.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{15067AD09803580D}Prefabs/Characters/Vests/Vest_SovietHarness/Variants/Vest_SovietHarness_MG.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{08155E701A949620}Prefabs/Characters/Vests/Vest_SovietHarness/Variants/Vest_SovietHarness_rifleman.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{12C8933903D18885}Prefabs/Characters/Vests/Vest_SovietHarness/Variants/Vest_SovietHarness_sharpshooter.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
 		resname.Insert("{ED5574EA7F63B457}Prefabs/Characters/Vests/Vest_Type56/Vest_Type56.et");
-		name.Insert("Type 56 Chest Rig"); // missing name error
+		name.Insert("Type 56 Chest Rig"); // missing name
 		category.Insert("");
 		uplevel.Insert(0);
 		price.Insert(20);
@@ -353,7 +438,7 @@ class SCR_CTI_GearUSSR
                 for (int c = components.Count() - 1; c >= 0; c--)
                 {
                     meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent" || meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "SCR_UniversalInventoryStorageComponent")
+                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent" || meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "SCR_UniversalInventoryStorageComponent" || meshComponent.GetClassName() == "ClothNodeStorageComponent")
 						break;
         
                     meshComponent = null;
@@ -399,6 +484,18 @@ class SCR_CTI_GearUSSR
 							break;
 						}
 						case "SCR_UniversalInventoryStorageComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
+							infoContainer = infoContainer.GetObject("ItemDisplayName");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+						
+							name[i] = displayName;
+							
+							break;
+						}
+						case "ClothNodeStorageComponent":
 						{
 							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
 							infoContainer = infoContainer.GetObject("ItemDisplayName");

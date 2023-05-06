@@ -7,8 +7,8 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 {
 	protected PlayerController m_PlayerController;
 	protected RplComponent m_RplComponent;
-	protected FactionKey m_fk;
-	
+	protected FactionKey m_factionkey;
+
 	protected ResourceName m_resName;
 
 	protected SCR_BasePreviewEntity m_defense = null;
@@ -54,7 +54,7 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		IEntity m_player = m_PlayerController.GetControlledEntity();
 		
 		FactionAffiliationComponent faffComp = FactionAffiliationComponent.Cast(m_PlayerController.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-		m_fk = faffComp.GetAffiliatedFaction().GetFactionKey();
+		m_factionkey = faffComp.GetAffiliatedFaction().GetFactionKey();
 		
 		m_player.GetTransform(mat);
 		dir = m_player.GetWorldTransformAxis(2);
@@ -125,7 +125,7 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 		GetGame().GetWorld().TracePosition(m_paramOBB, null);
 		
 		bool mhqInRange = false;
-		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(m_fk);
+		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(m_factionkey);
 		if (mhq)
 		{
 			SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(mhq.FindComponent(SCR_VehicleDamageManagerComponent));

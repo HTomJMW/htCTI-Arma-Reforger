@@ -1,13 +1,20 @@
 class SCR_CTI_ServiceMenu : ChimeraMenuBase
 {
-	protected SCR_CTI_GameMode gameMode;
-	protected PlayerController pc;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected PlayerController m_pc;
+	protected IEntity m_player;
+	protected FactionAffiliationComponent m_userAffiliationComponent;
+	protected FactionKey m_factionkey;
+	protected int m_playerId;
 	protected SCR_CTI_ClientData clientData;
-	protected IEntity ent;
-	protected FactionAffiliationComponent userAffiliationComponent;
-	protected FactionKey factionkey;
-	protected int playerId;
-	
+
+	protected BaseWorld m_world;
+	protected ref array<IEntity> m_vehiclesNearRepDepot = {};
+	protected ref array<IEntity> m_vehiclesNearAmmoDepot = {};
+	protected ref array<IEntity> m_vehiclesNearRepairTruck = {};
+	protected ref array<IEntity> m_vehiclesNearAmmoTruck = {};
+	protected ref array<IEntity> m_vehiclesNearFuelTruck = {};
+
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.5;
 	
@@ -30,15 +37,13 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		pc = GetGame().GetPlayerController();
-		ent = pc.GetControlledEntity();
-		userAffiliationComponent = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
-		factionkey = userAffiliationComponent.GetAffiliatedFaction().GetFactionKey();
-		playerId = pc.GetPlayerId();
-		
-		ChimeraCharacter ch = ChimeraCharacter.Cast(ent);
-		
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_pc = GetGame().GetPlayerController();
+		m_player = m_pc.GetControlledEntity();
+		m_userAffiliationComponent = FactionAffiliationComponent.Cast(m_player.FindComponent(FactionAffiliationComponent));
+		m_factionkey = m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey();
+		m_playerId = m_pc.GetPlayerId();
+
 		m_wRoot = GetRootWidget();
 
 		m_repair = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Repair"));
@@ -54,8 +59,6 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_serviceMenubuttonEventHandler = new SCR_CTI_ServiceMenuButtonHandler();
-
-		clientData = gameMode.getClientData(playerId);
 
 		//m_repair.SetColor(Color.Gray);
 		//m_repair.SetEnabled(false);
@@ -83,136 +86,318 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
 
-		array<IEntity> repDepots = SCR_CTI_GetSideFactories.GetSideFactoriesByType(factionkey, "Repair Depot");
-		array<IEntity> ammoDepots = SCR_CTI_GetSideFactories.GetSideFactoriesByType(factionkey, "Ammo Depot");
+		m_world = GetGame().GetWorld();
 
-		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		SCR_AIGroup playerGroup = gmc.GetPlayerGroup(pc.GetPlayerId());
+		array<IEntity> repDepots = SCR_CTI_GetSideFactories.GetSideFactoriesByType(m_factionkey, "Repair Depot");
+		array<IEntity> ammoDepots = SCR_CTI_GetSideFactories.GetSideFactoriesByType(m_factionkey, "Ammo Depot");
 
-		array<AIAgent> outAgents = {};
-		playerGroup.GetAgents(outAgents);
+		SCR_CTI_GetSupportVehicles getSupportVehiclesRep = new SCR_CTI_GetSupportVehicles();
+		array<IEntity> repairTrucks = getSupportVehiclesRep.GetSupportVehiclesInRangeByType(m_factionkey, m_player.GetOrigin(), SCR_CTI_Constants.SERVICERANGE, CTI_SupportVehicleTypes.REPAIR);
+		
+		SCR_CTI_GetSupportVehicles getSupportVehiclesAmmo = new SCR_CTI_GetSupportVehicles();
+		array<IEntity> ammoTrucks = getSupportVehiclesAmmo.GetSupportVehiclesInRangeByType(m_factionkey, m_player.GetOrigin(), SCR_CTI_Constants.SERVICERANGE, CTI_SupportVehicleTypes.AMMO);
 
-		array<IEntity> vehicles = {};
+		SCR_CTI_GetSupportVehicles getSupportVehiclesFuel = new SCR_CTI_GetSupportVehicles();
+		array<IEntity> fuelTrucks = getSupportVehiclesFuel.GetSupportVehiclesInRangeByType(m_factionkey, m_player.GetOrigin(), SCR_CTI_Constants.SERVICERANGE, CTI_SupportVehicleTypes.FUEL);
 
-		foreach(AIAgent agent : outAgents)
+		bool mhqIsWreck = false;
+		bool mhqWreckInRange = false;
+		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(m_factionkey);
+		SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(mhq.FindComponent(SCR_VehicleDamageManagerComponent));
+		if (vdmc && vdmc.IsDestroyed()) mhqIsWreck = true;
+
+		// Vehicles near player if repair truck available
+		if (!repairTrucks.IsEmpty())
 		{
-			IEntity unit = agent.GetControlledEntity();
-			SCR_CompartmentAccessComponent cac = SCR_CompartmentAccessComponent.Cast(unit.FindComponent(SCR_CompartmentAccessComponent));
-			IEntity vehicle = cac.GetVehicle();
-
-			if (vehicle && !vehicles.Contains(vehicle) && vehicle.Type().ToString() == "Vehicle")
+			for (int k = 0; k < repairTrucks.Count(); k++)
 			{
-				vehicles.Insert(vehicle);
+				m_world.QueryEntitiesBySphere(repairTrucks[k].GetOrigin(), SCR_CTI_Constants.SERVICERANGE, GetEntityNearRepTruck, FilterEntities, EQueryEntitiesFlags.DYNAMIC);
 
-				if (repDepots)
+				if (mhqIsWreck)
 				{
-					foreach(IEntity repDepot : repDepots)
-					{
-						float dist = vector.Distance(repDepot.GetOrigin(), vehicle.GetOrigin());
-						if (dist > SCR_CTI_Constants.SERVICERANGE) repDepots.RemoveItem(repDepot);
-					}
+					float distance = vector.Distance(mhq.GetOrigin(), repairTrucks[k].GetOrigin());
+					if (distance <= SCR_CTI_Constants.SERVICERANGE) mhqWreckInRange = true;
 				}
+			}
 
-				if (ammoDepots)
+			if (!m_vehiclesNearRepairTruck.IsEmpty())
+			{
+				m_listboxcomp.AddSeparator("Vehicles near closest Repair Truck:");
+
+				foreach (IEntity vehicle : m_vehiclesNearRepairTruck)
 				{
-					foreach(IEntity ammoDepot : ammoDepots)
-					{
-						float dist = vector.Distance(ammoDepot.GetOrigin(), vehicle.GetOrigin());
-						if (dist > SCR_CTI_Constants.SERVICERANGE) repDepots.RemoveItem(ammoDepot);
-					}
-				}
-
-				if ((repDepots && !repDepots.IsEmpty()) || (ammoDepots && !ammoDepots.IsEmpty()))
-				{
-					SCR_EditableVehicleComponent vehComp = SCR_EditableVehicleComponent.Cast(vehicle.FindComponent(SCR_EditableVehicleComponent));
-					SCR_UIInfo info = vehComp.GetInfo();
-					string displayName = WidgetManager.Translate(info.GetName());
-
-					SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(vehicle.FindComponent(SCR_VehicleDamageManagerComponent));
-					array<HitZone> hitZones = {};
-					vehicleDamageManager.GetAllHitZones(hitZones);
-					float hp = 0.0;
-					float maxhp = 0.0;
-
-					foreach (HitZone hitzone : hitZones)
-					{
-						hp += hitzone.GetHealth();
-						maxhp += hitzone.GetMaxHealth();
-					}
-					float damage = 100 - (Math.Round((hp / maxhp) * 100));
-					string dam = damage.ToString() + "%";
-
-					FuelManagerComponent fuelManagerComp = FuelManagerComponent.Cast(vehicle.FindComponent(FuelManagerComponent));
-					int fuel = (fuelManagerComp.GetTotalFuel() / fuelManagerComp.GetTotalMaxFuel()) * 100;
-					string fu = fuel.ToString() + "%";
-					
-					SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(vehicle.FindComponent(SCR_BaseCompartmentManagerComponent));
-
-					array<IEntity> occupants = {};
-					bcmc.GetOccupants(occupants);
-
-					string health = "Good"; // Todo: veh Empty
-
-					foreach(IEntity crew : occupants)
-					{
-						if (health == "Injurned") break;
-
-						SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(crew.FindComponent(SCR_CharacterDamageManagerComponent));
-						array<HitZone> outHitZones = {};
-						cdmc.GetAllHitZones(outHitZones);
-
-						foreach(HitZone hitzone : outHitZones)
-						{
-							if (hitzone.GetMaxHealth() * 0.75 > hitzone.GetHealth())
-							{
-								health = "Injurned";
-								break;
-							}
-						}
-					}
-
-					string ammo = "Unarmed";
-					string ammoInfo = "";
-					
-					array<BaseCompartmentSlot> outCompartments = {};
-					bcmc.GetCompartments(outCompartments);
-					
-					foreach(BaseCompartmentSlot slot : outCompartments)
-					{
-						if (slot.Type() == TurretCompartmentSlot)
-						{
-							TurretControllerComponent tcc = TurretControllerComponent.Cast(slot.GetController());
-							BaseWeaponManagerComponent bwmc = tcc.GetWeaponManager();
-							
-							array<IEntity> outWeapons = {};
-							bwmc.GetWeaponsList(outWeapons);
-
-							foreach(IEntity weapon : outWeapons)
-							{
-								WeaponComponent wc = WeaponComponent.Cast(weapon.FindComponent(WeaponComponent));
-								BaseMagazineComponent bmc = wc.GetCurrentMagazine();
-
-								int maxAmmo = bmc.GetMaxAmmoCount();
-								int currentAmmo = bmc.GetAmmoCount();
-
-								ammoInfo = wc.GetUIInfo().GetName();
-								
-								switch(true)
-								{
-									case (maxAmmo == currentAmmo): ammoInfo += ": Full"; break;
-									case (maxAmmo * 0.75 < currentAmmo && maxAmmo != currentAmmo): ammoInfo += ": Enough"; break;
-									case (maxAmmo * 0.75 > currentAmmo): ammoInfo += ": Few"; break;
-									case (currentAmmo == 0): ammoInfo += ": Empty"; break;
-								}
-							}
-						}
-					}
-					
-					if (ammoInfo) ammo = ammoInfo;
-
-					RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
+					string displayName, dam, ammo, fu, health;
+					getVehicleInformations(vehicle, displayName, dam, fu, ammo, health);
 	
+					// Get vehicle rplcomp for data
+					RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
+
 					m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+				}
+				
+				m_listboxcomp.AddSeparator("_______________________________________________________________________________");
+			}
+		}
+		
+		// Vehicles near player if ammo truck available
+		if (!ammoTrucks.IsEmpty())
+		{
+			for (int l = 0; l < ammoTrucks.Count(); l++)
+			{
+				m_world.QueryEntitiesBySphere(ammoTrucks[l].GetOrigin(), SCR_CTI_Constants.SERVICERANGE, GetEntityNearAmmoTruck, FilterEntities, EQueryEntitiesFlags.DYNAMIC);
+			}
+
+			if (!m_vehiclesNearAmmoTruck.IsEmpty())
+			{
+				m_listboxcomp.AddSeparator("Vehicles near closest Ammo Truck:");
+
+				foreach (IEntity vehicle : m_vehiclesNearAmmoTruck)
+				{
+					string displayName, dam, ammo, fu, health;
+					getVehicleInformations(vehicle, displayName, dam, fu, ammo, health);
+	
+					// Get vehicle rplcomp for data
+					RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
+
+					m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+				}
+				
+				m_listboxcomp.AddSeparator("_______________________________________________________________________________");
+			}
+		}
+		
+		// Vehicles near player if fuel truck available
+		if (!fuelTrucks.IsEmpty())
+		{
+			for (int m = 0; m < fuelTrucks.Count(); m++)
+			{
+				m_world.QueryEntitiesBySphere(fuelTrucks[m].GetOrigin(), SCR_CTI_Constants.SERVICERANGE, GetEntityNearFuelTruck, FilterEntities, EQueryEntitiesFlags.DYNAMIC);
+			}
+
+			if (!m_vehiclesNearFuelTruck.IsEmpty())
+			{
+				m_listboxcomp.AddSeparator("Vehicles near closest Fuel Truck:");
+
+				foreach (IEntity vehicle : m_vehiclesNearFuelTruck)
+				{
+					string displayName, dam, ammo, fu, health;
+					getVehicleInformations(vehicle, displayName, dam, fu, ammo, health);
+	
+					// Get vehicle rplcomp for data
+					RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
+
+					m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+				}
+				
+				m_listboxcomp.AddSeparator("_______________________________________________________________________________");
+			}
+		}
+
+		// Vehicles near repair depots
+		for (int i = 0; i < repDepots.Count(); i++)
+		{
+			m_world.QueryEntitiesBySphere(repDepots[i].GetOrigin(), SCR_CTI_Constants.SERVICERANGE, GetEntityNearRepDepot, FilterEntities, EQueryEntitiesFlags.DYNAMIC);
+		
+			if (mhqIsWreck)
+			{
+				float distance = vector.Distance(mhq.GetOrigin(), repDepots[i].GetOrigin());
+				if (distance <= SCR_CTI_Constants.SERVICERANGE) mhqWreckInRange = true;
+			}
+		}
+
+		// Vehicles near ammo depots
+		for (int j = 0; j < ammoDepots.Count(); j++)
+		{
+			m_world.QueryEntitiesBySphere(ammoDepots[j].GetOrigin(), SCR_CTI_Constants.SERVICERANGE, GetEntityNearAmmoDepot, FilterEntities, EQueryEntitiesFlags.DYNAMIC);
+		}
+
+		if (!m_vehiclesNearRepDepot.IsEmpty())
+		{
+			m_listboxcomp.AddSeparator("Vehicles Near Repair Depot:");
+			
+			foreach (IEntity vehicle : m_vehiclesNearRepDepot)
+			{
+				string displayName, dam, ammo, fu, health;
+				getVehicleInformations(vehicle, displayName, dam, fu, ammo, health);
+
+				// Get vehicle rplcomp for data
+				RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
+
+				m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+			}
+			
+			m_listboxcomp.AddSeparator("_______________________________________________________________________________");
+		}
+		
+		if (!m_vehiclesNearAmmoDepot.IsEmpty())
+		{
+			m_listboxcomp.AddSeparator("Vehicles near Ammo Depot:");
+
+			foreach (IEntity vehicle : m_vehiclesNearAmmoDepot)
+			{
+				string displayName, dam, ammo, fu, health;
+				getVehicleInformations(vehicle, displayName, dam, fu, ammo, health);
+
+				// Get vehicle rplcomp for data
+				RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
+
+				m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+			}
+
+			m_listboxcomp.AddSeparator("_______________________________________________________________________________");
+		}
+
+		// Only Comm can repair MHQ
+		clientData = m_gameMode.getClientData(m_playerId);
+		if (mhqWreckInRange && clientData && clientData.isCommander())
+		{
+			m_listboxcomp.AddSeparator("MHQ Wreck [Repair Cost: " + SCR_CTI_Constants.MHQREPAIRCOST.ToString() + "$]:");
+			RplComponent rplComp = RplComponent.Cast(mhq.FindComponent(RplComponent));
+			m_listboxcomp.AddItem("MHQ Wreck", rplComp);
+			m_listboxcomp.AddSeparator("_______________________________________________________________________________");
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected bool GetEntityNearRepDepot(IEntity ent)
+	{
+		if (!m_vehiclesNearRepDepot.Contains(ent)) m_vehiclesNearRepDepot.Insert(ent);
+
+		return true;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected bool GetEntityNearRepTruck(IEntity ent)
+	{
+		if (!m_vehiclesNearRepairTruck.Contains(ent)) m_vehiclesNearRepairTruck.Insert(ent);
+
+		return true;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected bool GetEntityNearAmmoDepot(IEntity ent)
+	{
+		if (!m_vehiclesNearAmmoDepot.Contains(ent)) m_vehiclesNearAmmoDepot.Insert(ent);
+
+		return true;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected bool GetEntityNearAmmoTruck(IEntity ent)
+	{
+		if (!m_vehiclesNearAmmoTruck.Contains(ent)) m_vehiclesNearAmmoTruck.Insert(ent);
+
+		return true;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected bool GetEntityNearFuelTruck(IEntity ent)
+	{
+		if (!m_vehiclesNearFuelTruck.Contains(ent)) m_vehiclesNearFuelTruck.Insert(ent);
+
+		return true;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected bool FilterEntities(IEntity ent)
+	{
+		SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
+		if (vdmc && !vdmc.IsDestroyed()) return true;
+
+		return false;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void getVehicleInformations(IEntity vehicle, out string displayName, out string dam, out string fu, out string ammo, out string health)
+	{
+		// TODO check vehicle fire
+
+		// Get vehicle name
+		SCR_EditableVehicleComponent vehComp = SCR_EditableVehicleComponent.Cast(vehicle.FindComponent(SCR_EditableVehicleComponent));
+		SCR_UIInfo info = vehComp.GetInfo();
+		displayName = WidgetManager.Translate(info.GetName());
+
+		// Get vehicle damages
+		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(vehicle.FindComponent(SCR_VehicleDamageManagerComponent));
+		array<HitZone> hitZones = {};
+		vehicleDamageManager.GetAllHitZones(hitZones);
+		float hp = 0.0;
+		float maxhp = 0.0;
+
+		foreach (HitZone hitzone : hitZones)
+		{
+			hp += hitzone.GetHealth();
+			maxhp += hitzone.GetMaxHealth();
+		}
+		float damage = 100 - (Math.Round((hp / maxhp) * 100));
+		dam = damage.ToString() + "%";
+				
+		// Get vehicle fuel
+		FuelManagerComponent fuelManagerComp = FuelManagerComponent.Cast(vehicle.FindComponent(FuelManagerComponent));
+		int fuel = (fuelManagerComp.GetTotalFuel() / fuelManagerComp.GetTotalMaxFuel()) * 100;
+		fu = fuel.ToString() + "%";
+
+		// Get vehicle ammo
+		SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(vehicle.FindComponent(SCR_BaseCompartmentManagerComponent));
+		ammo = "Unarmed";
+		string ammoInfo = "";
+
+		array<BaseCompartmentSlot> outCompartments = {};
+		bcmc.GetCompartments(outCompartments);
+
+		foreach(BaseCompartmentSlot slot : outCompartments)
+		{
+			if (slot.Type() == TurretCompartmentSlot)
+			{
+				TurretControllerComponent tcc = TurretControllerComponent.Cast(slot.GetController());
+				BaseWeaponManagerComponent bwmc = tcc.GetWeaponManager();
+
+				array<IEntity> outWeapons = {};
+				bwmc.GetWeaponsList(outWeapons);
+
+				foreach(IEntity weapon : outWeapons)
+				{
+					WeaponComponent wc = WeaponComponent.Cast(weapon.FindComponent(WeaponComponent));
+					BaseMagazineComponent bmc = wc.GetCurrentMagazine();
+
+					int maxAmmo = bmc.GetMaxAmmoCount();
+					int currentAmmo = bmc.GetAmmoCount();
+
+					ammoInfo = wc.GetUIInfo().GetName();
+
+					switch(true)
+					{
+						case (maxAmmo == currentAmmo): ammoInfo += ": Full"; break;
+						case (maxAmmo * 0.75 < currentAmmo && maxAmmo != currentAmmo): ammoInfo += ": Enough"; break;
+						case (maxAmmo * 0.75 > currentAmmo): ammoInfo += ": Few"; break;
+						case (currentAmmo == 0): ammoInfo += ": Empty"; break;
+					}
+				}
+			}
+		}
+		if (ammoInfo) ammo = ammoInfo;
+
+		// Get vehicle crew condition
+		array<IEntity> occupants = {};
+		bcmc.GetOccupants(occupants);
+
+		health = "No Crew";
+		if (!occupants.IsEmpty()) health = "Good";
+
+		foreach(IEntity crew : occupants)
+		{
+			if (health == "Injurned") break;
+
+			SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(crew.FindComponent(SCR_CharacterDamageManagerComponent));
+			array<HitZone> outHitZones = {};
+			cdmc.GetAllHitZones(outHitZones);
+
+			foreach(HitZone hitzone : outHitZones)
+			{
+				if (hitzone.GetMaxHealth() * 0.75 > hitzone.GetHealth())
+				{
+					health = "Injurned";
+					break;
 				}
 			}
 		}
@@ -222,6 +407,21 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 	override void OnMenuOpen()
 	{
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	override void OnMenuClose()
+	{
+		m_vehiclesNearRepDepot.Clear();
+		m_vehiclesNearRepDepot = null;
+		m_vehiclesNearAmmoDepot.Clear();
+		m_vehiclesNearAmmoDepot = null;
+		m_vehiclesNearRepairTruck.Clear();
+		m_vehiclesNearRepairTruck = null;
+		m_vehiclesNearAmmoTruck.Clear();
+		m_vehiclesNearAmmoTruck = null;
+		m_vehiclesNearFuelTruck.Clear();
+		m_vehiclesNearFuelTruck = null;
+	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
@@ -229,72 +429,8 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			/*array<IEntity> repDepots = SCR_CTI_GetSideFactories.GetSideFactoriesByType(factionkey, "Repair Depot");
-			array<IEntity> ammoDepots = SCR_CTI_GetSideFactories.GetSideFactoriesByType(factionkey, "Ammo Depot");
-	
-			if (repDepots || ammoDepots)
-			{
-				SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-				SCR_AIGroup playerGroup = gmc.GetPlayerGroup(pc.GetPlayerId());
-				
-				array<AIAgent> outAgents = {};
-				playerGroup.GetAgents(outAgents);
-				
-				array<IEntity> vehicles = {};
-				
-				foreach(AIAgent agent : outAgents)
-				{
-					IEntity unit = agent.GetControlledEntity();
-					SCR_CompartmentAccessComponent cac = SCR_CompartmentAccessComponent.Cast(unit.FindComponent(SCR_CompartmentAccessComponent));
-					IEntity vehicle = cac.GetVehicle();
-		
-					if (vehicle && !vehicles.Contains(vehicle) && vehicle.Type().ToString() == "Vehicle")
-					{
-						vehicles.Insert(vehicle);
-	
-						foreach(IEntity repDepot : repDepots)
-						{
-							float dist = vector.Distance(repDepot.GetOrigin(), vehicle.GetOrigin());
-							if (dist > SCR_CTI_Constants.SERVICERANGE) repDepots.RemoveItem(repDepot);
-						}
-						
-						foreach(IEntity ammoDepot : ammoDepots)
-						{
-							float dist = vector.Distance(ammoDepot.GetOrigin(), vehicle.GetOrigin());
-							if (dist > SCR_CTI_Constants.SERVICERANGE) repDepots.RemoveItem(ammoDepot);
-						}
-		
-						if (!repDepots.IsEmpty() || !ammoDepots.IsEmpty())
-						{
-							SCR_EditableVehicleComponent vehComp = SCR_EditableVehicleComponent.Cast(vehicle.FindComponent(SCR_EditableVehicleComponent));
-							SCR_UIInfo info = vehComp.GetInfo();
-							string displayName = WidgetManager.Translate(info.GetName());
-							
-							SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(vehicle.FindComponent(SCR_VehicleDamageManagerComponent));
-							array<HitZone> hitZones = {};
-							vehicleDamageManager.GetAllHitZones(hitZones);
-							float hp = 0.0;
-							float maxhp = 0.0;
-		
-							foreach (HitZone hitzone : hitZones)
-							{
-								hp += hitzone.GetHealth();
-								maxhp += hitzone.GetMaxHealth();
-							}
-							float damage = 100 - (Math.Round((hp / maxhp) * 100));
-							string dam = damage.ToString() + "%";
-		
-							FuelManagerComponent fuelManagerComp = FuelManagerComponent.Cast(vehicle.FindComponent(FuelManagerComponent));
-							int fuel = (fuelManagerComp.GetTotalFuel() / fuelManagerComp.GetTotalMaxFuel()) * 100;
-							string fu = fuel.ToString() + "%";
-		
-							RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
-		
-							m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + "AMMO" + " | Fuel: " + fu + " | Heal: " + "HEAL", rplComp);
-						}
-					}
-				}
-			}*/
+			//TODO
+
 			m_timeDelta = 0;
 		}
 	}

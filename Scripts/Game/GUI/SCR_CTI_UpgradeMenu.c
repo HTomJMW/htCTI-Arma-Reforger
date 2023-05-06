@@ -1,12 +1,12 @@
 class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 {
-	protected SCR_CTI_GameMode gameMode;
-	protected SCR_CTI_UpgradeComponent upgradeComp;
-	protected PlayerController pc;
-	protected int playerId;
-	protected Faction playerFaction;
-	protected FactionAffiliationComponent affiliationComp;
-	protected SCR_CTI_ClientData clientData;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected SCR_CTI_UpgradeComponent m_upgradeComp;
+	protected PlayerController m_pc;
+	protected int m_playerId;
+	protected FactionKey m_factionKey;
+	protected FactionAffiliationComponent m_affiliationComp;
+	protected SCR_CTI_ClientData m_clientData;
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.3;
@@ -29,22 +29,25 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 	protected RichTextWidget m_dependencetext;
 	protected RichTextWidget m_descriptionlabeltext;
 	protected RichTextWidget m_descriptiontext;
-	
+	protected RichTextWidget m_currentupgradetext;
+
+	string currentText = "Current Upgrade: No Running Upgrade!";
+
 	protected RichTextWidget m_backtext;
 	protected RichTextWidget m_exittext;
 
 	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
-	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
+	protected ref SCR_CTI_UpgradeMenuButtonHandler m_buttonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		upgradeComp = SCR_CTI_UpgradeComponent.Cast(gameMode.FindComponent(SCR_CTI_UpgradeComponent));
-		pc = GetGame().GetPlayerController();
-		playerId = pc.GetPlayerId();
-		affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-		playerFaction = affiliationComp.GetAffiliatedFaction();
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_upgradeComp = SCR_CTI_UpgradeComponent.Cast(m_gameMode.FindComponent(SCR_CTI_UpgradeComponent));
+		m_pc = GetGame().GetPlayerController();
+		m_playerId = m_pc.GetPlayerId();
+		m_affiliationComp = FactionAffiliationComponent.Cast(m_pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+		m_factionKey = m_affiliationComp.GetAffiliatedFaction().GetFactionKey();
 		
 		m_wRoot = GetRootWidget();
 		
@@ -70,14 +73,15 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		m_dependencetext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("DependenceText"));
 		m_descriptionlabeltext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("UpgradeDescription"));
 		m_descriptiontext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("DescriptionText"));
+		m_currentupgradetext = RichTextWidget.Cast(m_wRoot.FindAnyWidget("CurrentUpgrade"));
 
 		// handlers
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
-		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
+		m_buttonEventHandler = new SCR_CTI_UpgradeMenuButtonHandler();
 		
-		clientData = gameMode.getClientData(playerId);
-		array<IEntity> ccList = SCR_CTI_GetSideFactories.GetSideFactoriesByType(playerFaction.GetFactionKey(), "Control Center");
-		if (clientData && clientData.isCommander() && ccList)
+		m_clientData = m_gameMode.getClientData(m_playerId);
+		array<IEntity> ccList = SCR_CTI_GetSideFactories.GetSideFactoriesByType(m_factionKey, "Control Center");
+		if (m_clientData && m_clientData.isCommander() && !ccList.IsEmpty())
 		{
 			m_cancelupgrade.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_cancelupgrade.AddHandler(m_buttonEventHandler);
@@ -97,38 +101,74 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 
 		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
-		
-		FactionKey fk = playerFaction.GetFactionKey();
+
+		listboxLoad();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void listboxLoad()
+	{
 		SCR_CTI_UpgradeData upgradeData;
-		switch (fk)
+		switch (m_factionKey)
 		{
 			case "USSR":
 			{
-				for (int i = 0; i < gameMode.Upgrades.g_Upgrades.Count(); i++)
+				for (int i = 0; i < m_gameMode.Upgrades.g_Upgrades.Count(); i++)
 				{
-					if (upgradeComp.getUpgradeStatus(fk, i) != UpgradeStatus.FINISHED)
+					upgradeData = m_gameMode.Upgrades.g_Upgrades[i];
+					if (m_upgradeComp.getUpgradeStatus(m_factionKey, i) != UpgradeStatus.FINISHED)
 					{
-						upgradeData = gameMode.Upgrades.g_Upgrades[i];				
-						m_listboxcomp.AddItem(upgradeData.getName(), upgradeData);
+						int historyIndex = m_gameMode.Upgrades.findIndexByName(upgradeData.getHistrory());
+						if (historyIndex == -1 || (historyIndex > -1 && m_upgradeComp.getUpgradeStatus(m_factionKey, historyIndex) == UpgradeStatus.FINISHED))
+						{
+							m_listboxcomp.AddItem(upgradeData.getName(), upgradeData);
+						}
 					}
+				}
+				if (m_upgradeComp.getRunningUpgradeIndex(m_factionKey) != -1)
+				{
+					upgradeData = m_gameMode.Upgrades.g_Upgrades[m_upgradeComp.getRunningUpgradeIndex(m_factionKey)];
+					int remaringTime = m_upgradeComp.getRemainingTime(m_factionKey);
+					m_currentupgradetext.SetText("Current Upgrade: " + upgradeData.getName() + " :: " + remaringTime + "s");
+				} else {
+					m_currentupgradetext.SetText(currentText);
 				}
 				break;
 			}
-			
 			case "US":
 			{
-				for (int i = 0; i < gameMode.Upgrades.g_Upgrades.Count(); i++)
+				for (int i = 0; i < m_gameMode.Upgrades.g_Upgrades.Count(); i++)
 				{
-					if (upgradeComp.getUpgradeStatus(fk, i) != UpgradeStatus.FINISHED)
+					upgradeData = m_gameMode.Upgrades.g_Upgrades[i];
+					if (m_upgradeComp.getUpgradeStatus(m_factionKey, i) != UpgradeStatus.FINISHED)
 					{
-						upgradeData = gameMode.Upgrades.g_Upgrades[i];		
-						m_listboxcomp.AddItem(upgradeData.getName(), upgradeData);
+						int historyIndex = m_gameMode.Upgrades.findIndexByName(upgradeData.getHistrory());
+						if (historyIndex == -1 || (historyIndex > -1 && m_upgradeComp.getUpgradeStatus(m_factionKey, historyIndex) == UpgradeStatus.FINISHED))
+						{
+							m_listboxcomp.AddItem(upgradeData.getName(), upgradeData);
+						}
 					}
 				}
+				if (m_upgradeComp.getRunningUpgradeIndex(m_factionKey) != -1)
+				{
+					upgradeData = m_gameMode.Upgrades.g_Upgrades[m_upgradeComp.getRunningUpgradeIndex(m_factionKey)];
+					int remaringTime = m_upgradeComp.getRemainingTime(m_factionKey);
+					m_currentupgradetext.SetText("Current Upgrade: " + upgradeData.getName() + " :: " + remaringTime + "s");
+				} else {
+					m_currentupgradetext.SetText(currentText);
+				}
 				break;
-			}		
+			}
 		}
-		m_listboxcomp.SetItemSelected(0, true); // not working? 0 not selected by default (false marker)
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void listboxClear()
+	{
+		for (int i = m_listboxcomp.GetItemCount() - 1; i >= 0; i--)
+		{
+			m_listboxcomp.RemoveItem(i);
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -142,52 +182,75 @@ class SCR_CTI_UpgradeMenu : ChimeraMenuBase
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			int selected = m_listboxcomp.GetSelectedItem();
-			if (selected == -1) return;
-
-			FactionKey fk = playerFaction.GetFactionKey();
-
-			int funds = 0;
-			if (clientData)
-			{
-				if (clientData.isCommander())
-				{
-					funds = gameMode.getCommanderFunds(fk);
-				} else {
-					funds = clientData.getFunds();
-				}
-			}
-
-			SCR_CTI_UpgradeData upgradeData = SCR_CTI_UpgradeData.Cast(m_listboxcomp.GetItemData(selected));
-			switch (fk)
+			bool needListboxChange = false;
+			SCR_CTI_UpgradeData upgradeData;
+			switch (m_factionKey)
 			{
 				case "USSR":
 				{
-					m_labeltext.SetText(upgradeData.getLabel());
-					m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
-					m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$ / " + funds.ToString() + "$");
-					m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
-					
-					m_dependencetext.SetText(upgradeData.getLink());
-					m_descriptiontext.SetText(upgradeData.getDesc());
-					
+					if (m_upgradeComp.getRunningUpgradeIndex(m_factionKey) != -1)
+					{
+						upgradeData = m_gameMode.Upgrades.g_Upgrades[m_upgradeComp.getRunningUpgradeIndex(m_factionKey)];
+						int remaringTime = m_upgradeComp.getRemainingTime(m_factionKey);
+						m_currentupgradetext.SetText("Current Upgrade: " + upgradeData.getName() + " :: " + remaringTime + "s");
+					} else {
+						m_currentupgradetext.SetText(currentText);
+					}
+					for (int i = 0; i < m_listboxcomp.GetItemCount(); i++)
+					{
+						upgradeData = SCR_CTI_UpgradeData.Cast(m_listboxcomp.GetItemData(i));
+ 						int upgradeIndex = m_gameMode.Upgrades.findIndexByName(upgradeData.getName());
+						if (m_upgradeComp.getUpgradeStatus(m_factionKey, upgradeIndex) == UpgradeStatus.FINISHED) needListboxChange = true;
+					}
 					break;
-				}
-				
+				}	
 				case "US":
 				{
-					m_labeltext.SetText(upgradeData.getLabel());
-					m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
-					m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$ / " + funds.ToString() + "$");
-					m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
-					
-					m_dependencetext.SetText(upgradeData.getLink());
-					m_descriptiontext.SetText(upgradeData.getDesc());
-					
+					if (m_upgradeComp.getRunningUpgradeIndex(m_factionKey) != -1)
+					{
+						upgradeData = m_gameMode.Upgrades.g_Upgrades[m_upgradeComp.getRunningUpgradeIndex(m_factionKey)];
+						int remaringTime = m_upgradeComp.getRemainingTime(m_factionKey);
+						m_currentupgradetext.SetText("Current Upgrade: " + upgradeData.getName() + " :: " + remaringTime + "s");
+					} else {
+						m_currentupgradetext.SetText(currentText);
+					}
+					for (int i = 0; i < m_listboxcomp.GetItemCount(); i++)
+					{
+						upgradeData = SCR_CTI_UpgradeData.Cast(m_listboxcomp.GetItemData(i));
+ 						int upgradeIndex = m_gameMode.Upgrades.findIndexByName(upgradeData.getName());
+						if (m_upgradeComp.getUpgradeStatus(m_factionKey, upgradeIndex) == UpgradeStatus.FINISHED) needListboxChange = true;
+					}
 					break;
-				}		
+				}
 			}
-			// need remove finished upgrades from list when complete
+			
+			if (needListboxChange)
+			{
+				listboxClear();
+				listboxLoad();
+			}
+
+			int selected = m_listboxcomp.GetSelectedItem();
+			if (selected == -1) return;
+
+			int funds = 0;
+			if (m_clientData)
+			{
+				if (m_clientData.isCommander())
+				{
+					funds = m_gameMode.getCommanderFunds(m_factionKey);
+				} else {
+					funds = m_clientData.getFunds();
+				}
+			}
+
+			upgradeData = SCR_CTI_UpgradeData.Cast(m_listboxcomp.GetItemData(selected));
+			m_labeltext.SetText(upgradeData.getLabel());
+			m_upgradeleveltext.SetText("Upgrade Level: " + upgradeData.getLevel().ToString());
+			m_neededfundstext.SetText("Needed Funds: " + upgradeData.getCost().ToString() + "$ / " + funds.ToString() + "$");
+			m_neededtimetext.SetText("Needed Time: " + upgradeData.getTime().ToString() + "s");
+			m_dependencetext.SetText(upgradeData.getLink() + "\n" + upgradeData.getLink2());
+			m_descriptiontext.SetText(upgradeData.getDesc());
 
 			m_timeDelta = 0;
 		}

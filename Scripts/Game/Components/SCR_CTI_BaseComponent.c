@@ -42,7 +42,6 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		IEntity struct;
 
 		int last = ussrStructureRplIds.Count();
-
 		if (last > 0)
 		{
 			last = last - 1;
@@ -52,7 +51,6 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		}
 
 		last = usStructureRplIds.Count();
-		
 		if (last > 0)
 		{
 			last = last - 1;
@@ -102,7 +100,9 @@ class SCR_CTI_BaseComponent : ScriptComponent
 				break;
 			}
 		}
+
 		Replication.BumpMe();
+		
 		createBaseMarker(position, factionkey);
 	}
 
@@ -128,19 +128,12 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	int getBaseCount(FactionKey factionkey)
 	{
-		int result = 0;
+		int result;
+
 		switch (factionkey)
 		{
-			case "USSR":
-			{
-				result = ussrBaseCount;
-				break;
-			}
-			case "US":
-			{
-				result = usBaseCount;
-				break;
-			}
+			case "USSR": result = ussrBaseCount; break;
+			case "US": result = usBaseCount; break;
 		}
 		
 		return result;
@@ -160,18 +153,11 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	SCR_CTI_Base getBase(FactionKey factionkey, int baseId)
 	{
 		SCR_CTI_Base base;
+
 		switch (factionkey)
 		{
-			case "USSR":
-			{
-				base = ussrBases[baseId];
-				break;
-			}
-			case "US":
-			{
-				base = usBases[baseId];
-				break;
-			}
+			case "USSR": base = ussrBases[baseId]; break;
+			case "US": base = usBases[baseId]; break;
 		}
 		
 		return base;
@@ -182,17 +168,10 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	{
 		switch (factionkey)
 		{
-			case "USSR":
-			{
-				ussrStructureRplIds.Insert(rplid);
-				break;
-			}
-			case "US":
-			{
-				usStructureRplIds.Insert(rplid);
-				break;
-			}
+			case "USSR": ussrStructureRplIds.Insert(rplid); break;
+			case "US": usStructureRplIds.Insert(rplid); break;
 		}
+
 		Replication.BumpMe();
 	}
 	

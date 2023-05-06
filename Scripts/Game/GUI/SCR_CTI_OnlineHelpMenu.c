@@ -15,13 +15,14 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 	protected ButtonWidget m_back;
 	protected ButtonWidget m_exit;
 	
+	protected RichTextWidget m_description;
+	
 	protected XComboBoxWidget m_combokey;
 	
 	protected int m_lastItemIndex = -1;
 
 	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
-	protected ref SCR_CTI_ButtonHandler m_buttonEventHandler;
-	protected ref SCR_CTI_OnlineHelpButtonHandler m_oHButtonEventHandler;
+	protected ref SCR_CTI_OnlineHelpMenuButtonHandler m_oHButtonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
@@ -42,6 +43,8 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 
 		m_back = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Back"));
 		m_exit = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Exit"));
+		
+		m_description = RichTextWidget.Cast(m_wRoot.FindAnyWidget("Description"));
 
 		// xcombobox
 		m_combokey = XComboBoxWidget.Cast(m_wRoot.FindAnyWidget("KeyChangerComboBox"));
@@ -61,26 +64,33 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 
 		// handlers
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
-		m_buttonEventHandler = new SCR_CTI_ButtonHandler();
-		m_oHButtonEventHandler = new SCR_CTI_OnlineHelpButtonHandler();
+		m_oHButtonEventHandler = new SCR_CTI_OnlineHelpMenuButtonHandler();
 
 		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
 		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);
-		
+
+		m_welcomescreen.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_welcomescreen.AddHandler(m_oHButtonEventHandler);
+		m_base.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_base.AddHandler(m_oHButtonEventHandler);
+		m_commander.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_commander.AddHandler(m_oHButtonEventHandler);
+		m_economy.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_economy.AddHandler(m_oHButtonEventHandler);
+		m_map.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_map.AddHandler(m_oHButtonEventHandler);
+		m_credits.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_credits.AddHandler(m_oHButtonEventHandler);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		string desc = "Welcome to Arma Reforger HTCTI mission\n\nThe Mission:\n\nThis mission based on original MF/CR/BE and BECTI Zerty mod. missions.\n\nObjective:\n\nTake towns, destroy enemy facilities and MHQ.\nCommander setting the team strategy, build bases, run upgrades.\nWith more controlled towns the team eran more money.";
+		m_description.SetText(desc);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -97,14 +107,10 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 				m_binding.StartCapture("CTI_OpenMainMenu", EInputDeviceType.KEYBOARD, "primary:click", false);
 				array<string> bind = {};
 
-				if (currentItem == 0)
+				switch (currentItem)
 				{
-					bind.Insert("keyboard:KC_NUMPAD0");
-				}
-			
-				if (currentItem == 1)
-				{
-					bind.Insert("keyboard:KC_RCONTROL");
+					case 0: bind.Insert("keyboard:KC_NUMPAD0"); break;
+					case 1: bind.Insert("keyboard:KC_RCONTROL"); break;
 				}
 				
 				if (!bind.IsEmpty())

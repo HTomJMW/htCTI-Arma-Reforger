@@ -35,6 +35,13 @@ class SCR_CTI_GearUS
 		uplevel.Insert(0);
 		price.Insert(100);
 		
+		// Map
+		resname.Insert("{13772C903CB5E4F7}Prefabs/Items/Equipment/Maps/PaperMap_01_folded.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
 		// Radios
 		resname.Insert("{73950FBA2D7DB5C5}Prefabs/Items/Equipment/Radios/Radio_ANPRC68.et");
 		name.Insert("");
@@ -76,20 +83,20 @@ class SCR_CTI_GearUS
 		uplevel.Insert(0);
 		price.Insert(150);
 		
-		// Backpack
-		resname.Insert("{06B68C58B72EAAC6}Prefabs/Items/Equipment/Backpacks/Backpack_ALICE_Medium.et");
-		name.Insert("");
-		category.Insert("");
-		uplevel.Insert(0);
-		price.Insert(200);
-		
+		// Backpacks
 		resname.Insert("{5C5C6EE05EE2FF1A}Prefabs/Items/Equipment/Backpacks/Backpack_ALICE_Medium_assembled.et");
-		name.Insert("");
+		name.Insert("ALICE Medium Backpack");
 		category.Insert("");
 		uplevel.Insert(0);
 		price.Insert(200);
 		
 		resname.Insert("{841162A79157C494}Prefabs/Items/Equipment/Backpacks/Backpack_ALICE_Medium_frame.et");
+		name.Insert("ALICE Medium Wireframe");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(100);
+		
+		resname.Insert("{4805E67E2AE30F8D}Prefabs/Items/Equipment/Backpacks/Backpack_Medical_M5.et");
 		name.Insert("");
 		category.Insert("");
 		uplevel.Insert(0);
@@ -109,8 +116,14 @@ class SCR_CTI_GearUS
 		uplevel.Insert(0);
 		price.Insert(200);
 		
+		resname.Insert("{B1482FB64E3D2D45}Prefabs/Weapons/Rifles/M16/Rifle_M16A2_4x20.et");
+		name.Insert("M16A2 4x20");
+		category.Insert("");
+		uplevel.Insert(1);
+		price.Insert(250);
+		
 		resname.Insert("{5A987A8A13763769}Prefabs/Weapons/Rifles/M16/Rifle_M16A2_M203.et");
-		name.Insert("");
+		name.Insert("M16A2 M203");
 		category.Insert("");
 		uplevel.Insert(1);
 		price.Insert(300);
@@ -122,7 +135,7 @@ class SCR_CTI_GearUS
 		price.Insert(300);
 		
 		resname.Insert("{81EB948E6414BD6F}Prefabs/Weapons/Rifles/M14/Rifle_M21_ARTII.et");
-		name.Insert("");
+		name.Insert("M21 SWS ARTII");
 		category.Insert("");
 		uplevel.Insert(2);
 		price.Insert(400);
@@ -247,11 +260,11 @@ class SCR_CTI_GearUS
 		price.Insert(30);
 		
 		// Rocket
-		resname.Insert("{79FA751EEBE25DDE}Prefabs/Weapons/Ammo/Ammo_Rocket_M72A3.et");
+		/*resname.Insert("{79FA751EEBE25DDE}Prefabs/Weapons/Ammo/Ammo_Rocket_M72A3.et"); // need it?
 		name.Insert("");
 		category.Insert("");
 		uplevel.Insert(1);
-		price.Insert(100);
+		price.Insert(100);*/
 		
 		// GL ammo
 		resname.Insert("{5375FA7CB1F68573}Prefabs/Weapons/Ammo/Ammo_Grenade_HE_M406.et");
@@ -312,8 +325,44 @@ class SCR_CTI_GearUS
 		uplevel.Insert(0);
 		price.Insert(50);
 		
+		resname.Insert("{604BB72BE8E023C2}Prefabs/Characters/Uniforms/Pants_US_BDU.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
 		// Vests
 		resname.Insert("{0BC230E08CEA02B6}Prefabs/Characters/Vests/Vest_ALICE/Vest_ALICE_belt.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{156DC7109CEE6F69}Prefabs/Characters/Vests/Vest_ALICE/Variants/Vest_ALICE_AR.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{18B8B9316B590643}Prefabs/Characters/Vests/Vest_ALICE/Variants/Vest_ALICE_GL.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{477A190AF2A17B8A}Prefabs/Characters/Vests/Vest_ALICE/Variants/Vest_ALICE_MG.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{2835A0EA3B79E63E}Prefabs/Characters/Vests/Vest_ALICE/Variants/Vest_ALICE_rifleman.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(10);
+		
+		resname.Insert("{9CEA24A1A9CC2675}Prefabs/Characters/Vests/Vest_ALICE/Variants/Vest_ALICE_sniper.et");
 		name.Insert("");
 		category.Insert("");
 		uplevel.Insert(0);
@@ -342,7 +391,7 @@ class SCR_CTI_GearUS
                 for (int c = components.Count() - 1; c >= 0; c--)
                 {
                     meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent" || meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "UniversalInventoryStorageComponent")
+                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent" || meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "SCR_UniversalInventoryStorageComponent" || meshComponent.GetClassName() == "ClothNodeStorageComponent")
 						break;
         
                     meshComponent = null;
@@ -387,7 +436,19 @@ class SCR_CTI_GearUS
 							
 							break;
 						}
-						case "UniversalInventoryStorageComponent":
+						case "SCR_UniversalInventoryStorageComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
+							infoContainer = infoContainer.GetObject("ItemDisplayName");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+						
+							name[i] = displayName;
+							
+							break;
+						}
+						case "ClothNodeStorageComponent":
 						{
 							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
 							infoContainer = infoContainer.GetObject("ItemDisplayName");

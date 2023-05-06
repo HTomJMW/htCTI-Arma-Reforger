@@ -38,7 +38,8 @@ class SCR_CTI_ServiceMenuButtonHandler : ScriptedWidgetEventHandler
 				
 				RplComponent rplComp = RplComponent.Cast(listboxcomp.GetItemData(selected));
 				RplId rplid = rplComp.Id();
-				
+
+				// TODO repair prices, MHQ repair price
 				netComp.repairVehicleServer(rplid);
 
 				break;

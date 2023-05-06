@@ -19,8 +19,7 @@ class SCR_CTI_BuildStructure
 		{
 			case "USSR":
 			{
-				// Step 1:
-				// if no base yet
+				// Step 1: If no base yet
 				if (basecount < 1)
 				{
 					m_baseComp.addBase(factionkey, mat[3], basecount);
@@ -31,8 +30,7 @@ class SCR_CTI_BuildStructure
 					break;
 				}
 
-				// Step 2: 
-				// if pos inside base area (base area unions not handled, add structure to first possible base)
+				// Step 2: If pos inside base area (base area unions not handled, add structure to first possible base)
 				bool inside = false;
 				for (int i = 0; i < basecount; i++)
 				{
@@ -51,12 +49,10 @@ class SCR_CTI_BuildStructure
 				}
 				if (inside) break;
 
-				// Step 3:
-				// if pos not inside base area and max base count reached
+				// Step 3: If pos not inside base area and max base count reached
 				if (basecount >= SCR_CTI_Constants.MAXBASES) break;
 
-				// Step 4:
-				// not first and not inside other area so make new base
+				// Step 4: Not first and not inside other area so make new base
 				m_baseComp.addBase(factionkey, mat[3], basecount);
 				structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 				structure.Update();
@@ -66,8 +62,7 @@ class SCR_CTI_BuildStructure
 			}
 			case "US":
 			{
-				// Step 1:
-				// if no base yet
+				// Step 1: If no base yet
 				if (basecount < 1)
 				{
 					m_baseComp.addBase(factionkey, mat[3], basecount);
@@ -78,8 +73,7 @@ class SCR_CTI_BuildStructure
 					break;
 				}
 
-				// Step 2: 
-				// if pos inside base area (base area unions not handled, add structure to first possible base)
+				// Step 2: If pos inside base area (base area unions not handled, add structure to first possible base)
 				bool inside = false;
 				for (int i = 0; i < basecount; i++)
 				{
@@ -98,12 +92,10 @@ class SCR_CTI_BuildStructure
 				}
 				if (inside) break;
 
-				// Step 3:
-				// if pos not inside base area and max base count reached
+				// Step 3: If pos not inside base area and max base count reached
 				if (basecount >= SCR_CTI_Constants.MAXBASES) break;
 
-				// Step 4:
-				// not first and not inside other area so make new base
+				// Step 4: Not first and not inside other area so make new base
 				m_baseComp.addBase(factionkey, mat[3], basecount);
 				structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 				structure.Update();
@@ -118,10 +110,6 @@ class SCR_CTI_BuildStructure
 			// set faction of building
 			FactionAffiliationComponent faffcomp = FactionAffiliationComponent.Cast(structure.FindComponent(FactionAffiliationComponent));
 			faffcomp.SetAffiliatedFactionByKey(factionkey);
-
-			// set marker of building
-			SCR_CTI_BuildingMapDescriptorComponent bmdc = SCR_CTI_BuildingMapDescriptorComponent.Cast(structure.FindComponent(SCR_CTI_BuildingMapDescriptorComponent));
-			bmdc.init(factionkey);
 
 			// store structure IDs for searching
 			RplComponent rplComp = RplComponent.Cast(structure.FindComponent(RplComponent));

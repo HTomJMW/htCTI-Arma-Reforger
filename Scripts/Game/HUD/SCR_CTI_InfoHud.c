@@ -66,37 +66,38 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			int baseCount = 0;
 			int commanderId = -2;
 			string upgrade = string.Format("<color rgba='255,0,0,255'>No Upgrade Running</color>");
-			SCR_CTI_UpgradeData upgradedata;
-			if (sidekey == "USSR")
-			{
-				baseCount = baseComp.getBaseCount(sidekey);
-				
-				commanderId = m_gameMode.getCommanderId(sidekey);
-				
-				for (int j = 0; j < m_gameMode.Upgrades.g_Upgrades.Count(); j++)
-				{
-					upgradedata = m_gameMode.Upgrades.g_Upgrades[j];
-					if (m_upComp.getUpgradeStatus(sidekey, j) == UpgradeStatus.RUNNING)
-					{
-						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(m_upComp.getRemainingTime(sidekey)).ToString() + "s";
-						break;
-					}
-				}
-			} else {
-				baseCount = baseComp.getBaseCount(sidekey);
-				
-				commanderId = m_gameMode.getCommanderId(sidekey);
 
-				for (int j = 0; j < m_gameMode.Upgrades.g_Upgrades.Count(); j++)
+			SCR_CTI_UpgradeData upgradedata;
+			switch (sidekey)
+			{
+				case "USSR":
 				{
-					upgradedata = m_gameMode.Upgrades.g_Upgrades[j];
-					if (m_upComp.getUpgradeStatus(sidekey, j) == UpgradeStatus.RUNNING)
+					baseCount = baseComp.getBaseCount(sidekey);
+					commanderId = m_gameMode.getCommanderId(sidekey);
+
+					int upgradeIndex = m_upComp.getRunningUpgradeIndex(sidekey);
+					if (upgradeIndex > -1)
 					{
+						upgradedata = SCR_CTI_UpgradeData.Cast(m_gameMode.Upgrades.g_Upgrades[upgradeIndex]);
 						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(m_upComp.getRemainingTime(sidekey)).ToString() + "s";
-						break;
 					}
+					break;
+				}
+				case "US":
+				{
+					baseCount = baseComp.getBaseCount(sidekey);
+					commanderId = m_gameMode.getCommanderId(sidekey);
+
+					int upgradeIndex = m_upComp.getRunningUpgradeIndex(sidekey);
+					if (upgradeIndex > -1)
+					{
+						upgradedata = SCR_CTI_UpgradeData.Cast(m_gameMode.Upgrades.g_Upgrades[upgradeIndex]);
+						upgrade = "Running Upgrade: " + upgradedata.getName() + " :: " + Math.Round(m_upComp.getRemainingTime(sidekey)).ToString() + "s";
+					}
+					break;
 				}
 			}
+
 			string comm = "None";
 			if (commanderId != -2) comm = GetGame().GetPlayerManager().GetPlayerName(commanderId);
 			

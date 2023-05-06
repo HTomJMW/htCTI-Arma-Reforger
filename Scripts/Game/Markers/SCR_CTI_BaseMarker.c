@@ -5,56 +5,53 @@ class SCR_CTI_BaseMarkerClass : BaseGameEntityClass
 
 class SCR_CTI_BaseMarker : BaseGameEntity
 {
-	protected vector m_pos;
-	protected FactionKey m_factionkey;
-	
-	[RplProp()]
-	protected int m_factionindex;
-	
-	protected Color m_color;
-	protected Color m_textcolor;
-	protected string m_name;
-	
+	protected IEntity m_baseMarker;
 	protected SCR_MapDescriptorComponent m_mapComponent;
+	[RplProp()]
+	protected int m_factionIndex;
+	protected MapItem m_mapItem;
+	protected Color m_color;
+	protected Color m_textcolor = Color.Black;
+	protected string m_name;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected PlayerController m_pc;
 
 	//------------------------------------------------------------------------------------------------
-	void setOwnerFaction(FactionKey fk)
+	void setOwnerFaction(FactionKey factionkey)
 	{
-		Faction faction = GetGame().GetFactionManager().GetFactionByKey(fk);
-		m_factionindex = GetGame().GetFactionManager().GetFactionIndex(faction);
-
-		Replication.BumpMe();
+		Faction faction = GetGame().GetFactionManager().GetFactionByKey(factionkey);
+		m_factionIndex = GetGame().GetFactionManager().GetFactionIndex(faction);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	protected void initMarker()
 	{
-		m_mapComponent = SCR_MapDescriptorComponent.Cast(this.FindComponent(SCR_MapDescriptorComponent));
-
-		m_pos = this.GetOrigin();
-		m_name = "Base";
-		m_textcolor = Color.Black;
-		
-		switch(m_factionindex)
+		SCR_CTI_ClientData clientData = m_gameMode.getClientData(m_pc.GetPlayerId());
+		if (clientData && clientData.getFactionIndex() != 0 && m_factionIndex > 0)
 		{
-			case 2: m_color = Color.Red; break;
-			case 1: m_color = Color.Blue; break;
-		}
+			switch(m_factionIndex)
+			{
+				case 2: m_color = Color.Red; break;
+				case 1: m_color = Color.Blue; break;
+			}
 
-		createMarker();
+			if (m_factionIndex == clientData.getFactionIndex()) createMarker();
+		} else {
+			GetGame().GetCallqueue().CallLater(initMarker, 3000, false);
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	protected void createMarker()
 	{
-		MapItem mapitem = m_mapComponent.Item();
+		m_mapItem = m_mapComponent.Item();
 		
-		mapitem.SetDisplayName(m_name);
-		mapitem.SetBaseType(EMapDescriptorType.MDT_ICON);
-		mapitem.SetFactionIndex(m_factionindex);
-		
-		MapDescriptorProps props = mapitem.GetProps();
-			mapitem.SetImageDef("Flag");
+		m_mapItem.SetDisplayName(m_name);
+		m_mapItem.SetBaseType(EMapDescriptorType.MDT_ICON);
+		m_mapItem.SetFactionIndex(m_factionIndex);
+
+		MapDescriptorProps props = m_mapItem.GetProps();
+			m_mapItem.SetImageDef("Flag");
 			props.SetDetail(96);
 			props.SetIconSize(32, 1, 4);
 			props.SetTextSize(32, 16, 64);
@@ -65,14 +62,20 @@ class SCR_CTI_BaseMarker : BaseGameEntity
 			props.SetIconVisible(true);
 			props.Activate(true);
 		
-		mapitem.SetProps(props);
+		m_mapItem.SetProps(props);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
 	{
 		super.EOnInit(owner);
-		
-		GetGame().GetCallqueue().CallLater(initMarker, 1000, false);
+
+		m_baseMarker = owner.GetParent();
+		m_mapComponent = SCR_MapDescriptorComponent.Cast(this.FindComponent(SCR_MapDescriptorComponent));
+
+		// Client or Master
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_pc = GetGame().GetPlayerController();
+		if (m_gameMode && m_pc) GetGame().GetCallqueue().CallLater(initMarker, 1000, false);
 	}
 };

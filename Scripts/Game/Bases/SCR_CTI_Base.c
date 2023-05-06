@@ -5,7 +5,7 @@ class SCR_CTI_Base
 	protected int m_baseId;
 	protected vector m_basePos;
 	protected bool m_destroyed = false;
-	
+
 	ref array<IEntity> structures = {};
 
 	//------------------------------------------------------------------------------------------------

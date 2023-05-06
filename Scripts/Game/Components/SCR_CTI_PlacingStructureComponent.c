@@ -7,8 +7,8 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 {
 	protected PlayerController m_PlayerController;
 	protected RplComponent m_RplComponent;
-	
-	protected FactionKey m_fk;
+
+	protected FactionKey m_factionkey;
 	protected ResourceName m_resName;
 
 	protected SCR_BasePreviewEntity m_structure = null;
@@ -42,9 +42,9 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void createStructurePreview(FactionKey fk, ResourceName resName, float distance, int placement, bool startPlacing)
+	void createStructurePreview(FactionKey factionkey, ResourceName resName, float distance, int placement, bool startPlacing)
 	{
-		m_fk = fk;
+		m_factionkey = factionkey;
 		m_resName = resName;
 		m_dist = distance;
 		m_placement = placement;
@@ -122,7 +122,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		GetGame().GetWorld().TracePosition(m_paramOBB, null);
 		
 		bool mhqInRange = false;
-		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(m_fk);
+		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(m_factionkey);
 		if (mhq)
 		{
 			SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(mhq.FindComponent(SCR_VehicleDamageManagerComponent));
@@ -157,7 +157,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 		SCR_EntityHelper.DeleteEntityAndChildren(m_structure);
 		
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_PlayerController.FindComponent(SCR_CTI_NetWorkComponent));
-		netComp.buildStructureServer(m_fk, m_resName, finalMat);
+		netComp.buildStructureServer(m_factionkey, m_resName, finalMat);
 	}
 
 	//------------------------------------------------------------------------------------------------

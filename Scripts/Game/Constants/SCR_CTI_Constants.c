@@ -2,11 +2,15 @@
 class SCR_CTI_Constants
 {
 	// Global constants
+	static const int VEHICLECOLLECTIONTIME = 3600;
+	static const int ITEMCOLLECTIONTIME = 3600;
 	static const int PLAYERGROUPSIZE = 8;
 	static const int MAXBASES = 2;
 	static const int BASERADIUS = 100;
 	static const int BUILDRANGE = 100;
 	static const int SERVICERANGE = 70;
+	static const int WORKERSLIMIT = 10;
+	static const int WORKERPRICE = 300;
 	static const bool ECOWIN = true;
 	static const int WINRATE = 75;
 	static const int CAPTURERANGE = 75;
@@ -16,7 +20,7 @@ class SCR_CTI_Constants
 	static const int RECAPTUREDELAY = 180;
 	static const int STARTFUNDS = 2400;
 	static const int STARTCOMMFUNDS = 7500;
-	static const int MHQREPAIRPRICE = 20000;
+	static const int MHQREPAIRCOST = 20000;
 	static const int BASEINCOME = 50;
 	static const float AISKILL = 0.75;
 	static const int MAXVD = 4000;
@@ -28,6 +32,8 @@ class SCR_CTI_Constants
 	static const ref Color CTI_ORANGE = new Color(1.000000, 0.456336, 0.000000, 1.000000);
 	
 	// General ResouceNames
+	static const ResourceName USSR_WORKER = "{98EB9CDD85B8C92C}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Unarmed.et";
+	static const ResourceName US_WORKER = "{2F912ED6E399FF47}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Unarmed.et";
 	static const ResourceName USSR_MHQ = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
 	static const ResourceName US_MHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 	static const ResourceName USSR_BOX = "{B728C4AE0E6EB1E8}Prefabs/Systems/Arsenal/AmmoBoxes/USSR/AmmoBoxArsenal_Equipment_USSR.et";
@@ -35,7 +41,7 @@ class SCR_CTI_Constants
 	static const ResourceName USSR_SOLDIER = "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et";
 	static const ResourceName US_SOLDIER = "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et";
 	static const ResourceName USSR_UAZ = "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et";
-	static const ResourceName US_JEEP = "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et";
+	static const ResourceName US_JEEP = "{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et";
 	
 	// Radios
 	static const ResourceName USSR_RADIO1 = "{E1A5D4B878AA8980}Prefabs/Items/Equipment/Radios/Radio_R148.et"; // start equipment

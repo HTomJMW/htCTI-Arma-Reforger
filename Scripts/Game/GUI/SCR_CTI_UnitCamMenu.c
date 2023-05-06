@@ -36,7 +36,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 	protected SCR_ListBoxComponent m_listboxTeamMembersComp;
 
 	protected ref SCR_CTI_CommonButtonHandler m_commonButtonHandler;
-	protected ref SCR_CTI_UnitCamButtonHandler m_unitCamButtonEventHandler;
+	protected ref SCR_CTI_UnitCamMenuButtonHandler m_unitCamButtonEventHandler;
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
@@ -51,7 +51,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		m_camMan = GetGame().GetCameraManager();
 		
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
-		m_unitCamButtonEventHandler = new SCR_CTI_UnitCamButtonHandler();
+		m_unitCamButtonEventHandler = new SCR_CTI_UnitCamMenuButtonHandler();
 
 		m_wRoot = GetRootWidget();
 
@@ -198,6 +198,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		{
 			if (m_manualCam)
 			{
+				// TODO update listbox
 				if (m_listboxTeamsComp.GetSelectedItem() != -1)
 				{
 					vector transform[4];

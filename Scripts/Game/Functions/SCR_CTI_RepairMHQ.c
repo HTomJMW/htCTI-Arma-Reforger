@@ -1,7 +1,7 @@
 class SCR_CTI_RepairMHQ
 {
-	//Server only
 	//------------------------------------------------------------------------------------------------
+	//Server only
 	static void repairMHQ(FactionKey factionkey)
 	{
 		IEntity mhq = SCR_CTI_GetSideMHQ.GetSideMHQ(factionkey);
@@ -28,13 +28,18 @@ class SCR_CTI_RepairMHQ
 			spawnParams.Transform = mat;		
 		
 			IEntity spawnedEntity = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), spawnParams);
-			
+			if (!spawnedEntity) return;
+
+			GarbageManager garbagemanager = GetGame().GetGarbageManager();
+			garbagemanager.Insert(spawnedEntity);
+			garbagemanager.Withdraw(spawnedEntity);
+
 			RplId rplId = Replication.FindId(spawnedEntity);
 			SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 			gameMode.setMHQrplId(factionkey, rplId);
-			
-			// TODO check garbage collector
-			// TODO send notif
+
+			gameMode.sendFactionNotifP(factionkey, ENotification.CTI_NOTIF_MHQ_REPAIRED);
+			// TODO init map descriptor on side players
 		}
 	}
 };

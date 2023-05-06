@@ -60,7 +60,7 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		if (affComp.GetAffiliatedFaction().GetFactionKey() == "USSR" && res != SCR_CTI_Constants.USSR_MHQ) return false; // check hq in user side
 		if (affComp.GetAffiliatedFaction().GetFactionKey() == "US" && res != SCR_CTI_Constants.US_MHQ) return false; // check hq in user side
 		if (m_gameMode.getCommanderId(affComp.GetAffiliatedFaction().GetFactionKey()) == playerId) return false; // check player is comm (after side check)
-		
+
 		return true;
 	}
 	

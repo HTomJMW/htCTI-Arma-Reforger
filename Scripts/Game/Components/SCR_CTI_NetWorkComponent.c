@@ -41,59 +41,59 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void StartUpgradeServer(FactionKey fk, int selected)
+	void StartUpgradeServer(FactionKey factionkey, int selected)
 	{
-		Rpc(RpcAsk_StartUpgrade, fk, selected);
+		Rpc(RpcAsk_StartUpgrade, factionkey, selected);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_StartUpgrade(FactionKey fk, int selected)
+	protected void RpcAsk_StartUpgrade(FactionKey factionkey, int selected)
 	{
 		SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_CTI_UpgradeComponent));
-		upgradeComp.runUpgrade(fk, selected);
+		upgradeComp.runUpgrade(factionkey, selected);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void StopUpgradeServer(FactionKey fk)
+	void StopUpgradeServer(FactionKey factionkey)
 	{
-		Rpc(RpcAsk_StopUpgrade, fk);
+		Rpc(RpcAsk_StopUpgrade, factionkey);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_StopUpgrade(FactionKey fk)
+	protected void RpcAsk_StopUpgrade(FactionKey factionkey)
 	{
 		SCR_CTI_UpgradeComponent upgradeComp = SCR_CTI_UpgradeComponent.Cast(GetGame().GetGameMode().FindComponent(SCR_CTI_UpgradeComponent));
-		upgradeComp.stopUpgrade(fk);
+		upgradeComp.stopUpgrade(factionkey);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void setCommanderIdRpl(FactionKey fk, int playerId)
+	void setCommanderIdRpl(FactionKey factionkey, int playerId)
 	{
-		Rpc(RpcAsk_SetCommanderId, fk, playerId);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_SetCommanderId(FactionKey fk, int playerId)
-	{
-		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		gameMode.setCommanderId(fk, playerId);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void clearCommanderIdRpl(FactionKey fk)
-	{
-		Rpc(RpcAsk_ClearCommanderId, fk);
+		Rpc(RpcAsk_SetCommanderId, factionkey, playerId);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_ClearCommanderId(FactionKey fk)
+	protected void RpcAsk_SetCommanderId(FactionKey factionkey, int playerId)
 	{
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		gameMode.clearCommanderId(fk);
+		gameMode.setCommanderId(factionkey, playerId);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void clearCommanderIdRpl(FactionKey factionkey)
+	{
+		Rpc(RpcAsk_ClearCommanderId, factionkey);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_ClearCommanderId(FactionKey factionkey)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		gameMode.clearCommanderId(factionkey);
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -197,17 +197,17 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void changeCommanderFundsServer(FactionKey fk, int value)
+	void changeCommanderFundsServer(FactionKey factionkey, int value)
 	{
-		Rpc(RpcAsk_changeCommanderFundsServer, fk, value);
+		Rpc(RpcAsk_changeCommanderFundsServer, factionkey, value);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_changeCommanderFundsServer(FactionKey fk, int value)
+	protected void RpcAsk_changeCommanderFundsServer(FactionKey factionkey, int value)
 	{
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		gameMode.changeCommanderFunds(fk, value);
+		gameMode.changeCommanderFunds(factionkey, value);
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -256,6 +256,14 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
 		IEntity ent = rplComp.GetEntity();
 		if (!ent) return;
+		
+		SCR_CTI_VehicleCustomVariablesComponent vcvc = SCR_CTI_VehicleCustomVariablesComponent.Cast(ent.FindComponent(SCR_CTI_VehicleCustomVariablesComponent));
+		if (vcvc && vcvc.getSupportVehicleType() == CTI_SupportVehicleTypes.MHQ)
+		{
+			FactionAffiliationComponent faffComp = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
+			SCR_CTI_RepairMHQ.repairMHQ(faffComp.GetDefaultAffiliatedFaction().GetFactionKey());
+			return;
+		}
 
 		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
 		if (!vehicleDamageManager.IsDestroyed()) vehicleDamageManager.FullHeal();
@@ -365,13 +373,28 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
+	void addWorkerServer(FactionKey factionkey)
+	{
+		Rpc(RpcAsk_addWorkerServer, factionkey);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_addWorkerServer(FactionKey factionkey)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		SCR_CTI_UpdateWorkersComponent uwc = SCR_CTI_UpdateWorkersComponent.Cast(gameMode.FindComponent(SCR_CTI_UpdateWorkersComponent));
+		if (uwc) uwc.addWorker(factionkey);
+	}
+
+	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)
 	{
 		m_PlayerController = SCR_PlayerController.Cast(PlayerController.Cast(owner));
 		
 		if (!m_PlayerController)
 		{
-			Print("SCR_CTI_NetworkComponent must be attached to PlayerController!", LogLevel.ERROR);
+			Print("CTI :: SCR_CTI_NetworkComponent must be attached to PlayerController!", LogLevel.ERROR);
 			return;
 		}
 		

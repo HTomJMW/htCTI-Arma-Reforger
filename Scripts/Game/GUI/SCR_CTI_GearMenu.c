@@ -1,21 +1,21 @@
 class SCR_CTI_GearMenu : ChimeraMenuBase
 {
-	protected SCR_CTI_GameMode gameMode;
-	protected PlayerController pc;
-	protected int playerId;
-	protected Faction playerFaction;
-	protected FactionAffiliationComponent affiliationComp;
+	protected SCR_CTI_GameMode m_gameMode;
+	protected PlayerController m_pc;
+	protected int m_playerId;
+	protected Faction m_playerFaction;
+	protected FactionAffiliationComponent m_affiliationComp;
 
-	protected BaseLoadoutManagerComponent blmc;
-	protected SCR_InventoryStorageManagerComponent ismc;
-	protected SCR_CharacterInventoryStorageComponent cisc;
-	protected EquipedWeaponStorageComponent ewsc;
-	protected SCR_EquipmentStorageComponent esc;
-	protected SCR_TourniquetStorageComponent tsc;
-	protected SCR_CharacterControllerComponent ccc;
+	protected BaseLoadoutManagerComponent m_blmc;
+	protected SCR_InventoryStorageManagerComponent m_ismc;
+	protected SCR_CharacterInventoryStorageComponent m_cisc;
+	protected EquipedWeaponStorageComponent m_ewsc;
+	protected SCR_EquipmentStorageComponent m_esc;
+	protected SCR_TourniquetStorageComponent m_tsc;
+	protected SCR_CharacterControllerComponent m_ccc;
 
-	protected ref array<Managed> cwscArray = {};
-	protected ref array<Managed> cgscArray = {};
+	protected ref array<Managed> m_cwscArray = {};
+	protected ref array<Managed> m_cgscArray = {};
 	
 	protected Widget m_wRoot;
 
@@ -171,25 +171,25 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuInit()
 	{
-		gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		pc = GetGame().GetPlayerController();
-		playerId = pc.GetPlayerId();
-		affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-		playerFaction = affiliationComp.GetAffiliatedFaction();
+		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_pc = GetGame().GetPlayerController();
+		m_playerId = m_pc.GetPlayerId();
+		m_affiliationComp = FactionAffiliationComponent.Cast(m_pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+		m_playerFaction = m_affiliationComp.GetAffiliatedFaction();
 
-		blmc = BaseLoadoutManagerComponent.Cast(pc.GetControlledEntity().FindComponent(BaseLoadoutManagerComponent));
-		ismc = SCR_InventoryStorageManagerComponent.Cast(pc.GetControlledEntity().FindComponent(SCR_InventoryStorageManagerComponent));
-		cisc = SCR_CharacterInventoryStorageComponent.Cast(pc.GetControlledEntity().FindComponent(SCR_CharacterInventoryStorageComponent)); // 2 child
-		ewsc = EquipedWeaponStorageComponent.Cast(pc.GetControlledEntity().FindComponent(EquipedWeaponStorageComponent));
-		esc = SCR_EquipmentStorageComponent.Cast(pc.GetControlledEntity().FindComponent(SCR_EquipmentStorageComponent));
-		tsc = SCR_TourniquetStorageComponent.Cast(pc.GetControlledEntity().FindComponent(SCR_TourniquetStorageComponent));
-		ccc = SCR_CharacterControllerComponent.Cast(pc.GetControlledEntity().FindComponent(SCR_CharacterControllerComponent));
+		m_blmc = BaseLoadoutManagerComponent.Cast(m_pc.GetControlledEntity().FindComponent(BaseLoadoutManagerComponent));
+		m_ismc = SCR_InventoryStorageManagerComponent.Cast(m_pc.GetControlledEntity().FindComponent(SCR_InventoryStorageManagerComponent));
+		m_cisc = SCR_CharacterInventoryStorageComponent.Cast(m_pc.GetControlledEntity().FindComponent(SCR_CharacterInventoryStorageComponent)); // 2 child
+		m_ewsc = EquipedWeaponStorageComponent.Cast(m_pc.GetControlledEntity().FindComponent(EquipedWeaponStorageComponent));
+		m_esc = SCR_EquipmentStorageComponent.Cast(m_pc.GetControlledEntity().FindComponent(SCR_EquipmentStorageComponent));
+		m_tsc = SCR_TourniquetStorageComponent.Cast(m_pc.GetControlledEntity().FindComponent(SCR_TourniquetStorageComponent));
+		m_ccc = SCR_CharacterControllerComponent.Cast(m_pc.GetControlledEntity().FindComponent(SCR_CharacterControllerComponent));
 		
-		ccc.SelectWeapon(null);
-		ismc.SetInventoryLocked(true);
+		m_ccc.SelectWeapon(null);
+		m_ismc.SetInventoryLocked(true);
 		
-		pc.GetControlledEntity().FindComponents(CharacterWeaponSlotComponent, cwscArray);
-		pc.GetControlledEntity().FindComponents(CharacterGrenadeSlotComponent, cgscArray);
+		m_pc.GetControlledEntity().FindComponents(CharacterWeaponSlotComponent, m_cwscArray);
+		m_pc.GetControlledEntity().FindComponents(CharacterGrenadeSlotComponent, m_cgscArray);
 		
 		m_wRoot = GetRootWidget();
 		
@@ -332,15 +332,15 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_listbox = OverlayWidget.Cast(m_wRoot.FindAnyWidget("ListBox"));
 		m_listboxcomp = SCR_ListBoxComponent.Cast(m_listbox.FindHandler(SCR_ListBoxComponent));
 
-		FactionKey fk = playerFaction.GetFactionKey();
+		FactionKey fk = m_playerFaction.GetFactionKey();
 		SCR_CTI_GearData gearData;
 		switch (fk)
 		{
 			case "USSR":
 			{
-				for (int i = 0; i < gameMode.GearUSSR.g_USSR_Gear.Count(); i++)
+				for (int i = 0; i < m_gameMode.GearUSSR.g_USSR_Gear.Count(); i++)
 				{
-					gearData = gameMode.GearUSSR.g_USSR_Gear[i];
+					gearData = m_gameMode.GearUSSR.g_USSR_Gear[i];
 					m_listboxcomp.AddItem(gearData.getPrice().ToString() + "$ " + gearData.getName(), gearData);
 				}
 				break;
@@ -348,9 +348,9 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			
 			case "US":
 			{
-				for (int i = 0; i < gameMode.GearUS.g_US_Gear.Count(); i++)
+				for (int i = 0; i < m_gameMode.GearUS.g_US_Gear.Count(); i++)
 				{
-					gearData = gameMode.GearUS.g_US_Gear[i];
+					gearData = m_gameMode.GearUS.g_US_Gear[i];
 					m_listboxcomp.AddItem(gearData.getPrice().ToString() + "$ " + gearData.getName(), gearData);
 				}
 				break;
@@ -358,7 +358,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		}
 
 		// character weapon slots
-		foreach(Managed managed : cwscArray)
+		foreach(Managed managed : m_cwscArray)
 		{
 			CharacterWeaponSlotComponent cwsc = CharacterWeaponSlotComponent.Cast(managed);
 
@@ -398,7 +398,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		}
 
 		// character grenade slots
-		foreach(Managed managed : cgscArray)
+		foreach(Managed managed : m_cgscArray)
 		{
 			CharacterGrenadeSlotComponent cgsc = CharacterGrenadeSlotComponent.Cast(managed);
 
@@ -427,7 +427,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		}
 
 		// clothes
-		m_helmetEnt = blmc.GetClothByArea(LoadoutHeadCoverArea);
+		m_helmetEnt = m_blmc.GetClothByArea(LoadoutHeadCoverArea);
 		if (m_helmetEnt)
 		{
 			m_iconHelmet.SetVisible(false);
@@ -435,7 +435,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_helmet.SetResolutionScale(1, 1);
 		}
 		
-		m_upperitemEnt = blmc.GetClothByArea(LoadoutGooglesArea);
+		m_upperitemEnt = m_blmc.GetClothByArea(LoadoutGooglesArea);
 		if (m_upperitemEnt)
 		{
 			m_iconUpperitem.SetVisible(false);
@@ -443,7 +443,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_upperitem.SetResolutionScale(1, 1);
 		}
 		
-		m_backpackEnt = blmc.GetClothByArea(LoadoutBackpackArea);
+		m_backpackEnt = m_blmc.GetClothByArea(LoadoutBackpackArea);
 		if (m_backpackEnt)
 		{
 			m_iconBackpack.SetVisible(false);
@@ -451,7 +451,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_backpack.SetResolutionScale(1, 1);
 		}
 		
-		m_jacketEnt = blmc.GetClothByArea(LoadoutJacketArea);
+		m_jacketEnt = m_blmc.GetClothByArea(LoadoutJacketArea);
 		if (m_jacketEnt)
 		{
 			m_iconJacket.SetVisible(false);
@@ -459,7 +459,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_jacket.SetResolutionScale(1, 1);
 		}
 		
-		m_vestEnt = blmc.GetClothByArea(LoadoutVestArea);
+		m_vestEnt = m_blmc.GetClothByArea(LoadoutVestArea);
 		if (m_vestEnt)
 		{
 			m_iconVest.SetVisible(false);
@@ -467,7 +467,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_vest.SetResolutionScale(1, 1);
 		}
 		
-		m_trousersEnt = blmc.GetClothByArea(LoadoutPantsArea);
+		m_trousersEnt = m_blmc.GetClothByArea(LoadoutPantsArea);
 		if (m_trousersEnt)
 		{
 			m_iconTrousers.SetVisible(false);
@@ -475,7 +475,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_trousers.SetResolutionScale(1, 1);
 		}
 		
-		m_bootsEnt = blmc.GetClothByArea(LoadoutBootsArea);
+		m_bootsEnt = m_blmc.GetClothByArea(LoadoutBootsArea);
 		if (m_bootsEnt)
 		{
 			m_iconBoots.SetVisible(false);
@@ -484,7 +484,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		}
 
 		// ESC slot 0 is watch, slot 1 is binocular
-		InventoryStorageSlot iss_0 = esc.GetSlot(0);
+		InventoryStorageSlot iss_0 = m_esc.GetSlot(0);
 		m_bottomItemEnt = iss_0.GetAttachedEntity();
 		if (m_bottomItemEnt)
 		{
@@ -493,7 +493,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_bottomitem.SetResolutionScale(1, 1);
 		}
 
-		InventoryStorageSlot iss_1 = esc.GetSlot(1);
+		InventoryStorageSlot iss_1 = m_esc.GetSlot(1);
 		m_itemEnt = iss_1.GetAttachedEntity();
 		if (m_itemEnt)
 		{
@@ -507,7 +507,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		{
 			BaseLoadoutClothComponent LoadoutCloth = BaseLoadoutClothComponent.Cast(m_jacketEnt.FindComponent(BaseLoadoutClothComponent));
 			LoadoutAreaType loadoutAreaType = LoadoutCloth.GetAreaType();
-			m_jacketStorage = cisc.GetStorageFromLoadoutSlot(loadoutAreaType);
+			m_jacketStorage = m_cisc.GetStorageFromLoadoutSlot(loadoutAreaType);
 			array<IEntity> items = {};
 			m_jacketStorage.GetAll(items);
 			
@@ -525,7 +525,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		{
 			BaseLoadoutClothComponent LoadoutCloth = BaseLoadoutClothComponent.Cast(m_backpackEnt.FindComponent(BaseLoadoutClothComponent));
 			LoadoutAreaType loadoutAreaType = LoadoutCloth.GetAreaType();
-			m_backpackStorage = cisc.GetStorageFromLoadoutSlot(loadoutAreaType);
+			m_backpackStorage = m_cisc.GetStorageFromLoadoutSlot(loadoutAreaType);
 			array<IEntity> items = {};
 			m_backpackStorage.GetAll(items);
 
@@ -543,7 +543,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		{
 			BaseLoadoutClothComponent LoadoutCloth = BaseLoadoutClothComponent.Cast(m_vestEnt.FindComponent(BaseLoadoutClothComponent));
 			LoadoutAreaType loadoutAreaType = LoadoutCloth.GetAreaType();
-			m_vestStorage = cisc.GetStorageFromLoadoutSlot(loadoutAreaType);
+			m_vestStorage = m_cisc.GetStorageFromLoadoutSlot(loadoutAreaType);
 			array<IEntity> items = {};
 			m_vestStorage.GetAll(items);
 
@@ -561,7 +561,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		{
 			BaseLoadoutClothComponent LoadoutCloth = BaseLoadoutClothComponent.Cast(m_trousersEnt.FindComponent(BaseLoadoutClothComponent));
 			LoadoutAreaType loadoutAreaType = LoadoutCloth.GetAreaType();
-			m_trousersStorage = cisc.GetStorageFromLoadoutSlot(loadoutAreaType);
+			m_trousersStorage = m_cisc.GetStorageFromLoadoutSlot(loadoutAreaType);
 			array<IEntity> items = {};
 			m_trousersStorage.GetAll(items);
 
@@ -576,8 +576,8 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		}
 		
 		// add invokers
-		ismc.m_OnItemAddedInvoker.Insert(OnItemAdded);
-		ismc.m_OnItemRemovedInvoker.Insert(OnItemRemoved);
+		m_ismc.m_OnItemAddedInvoker.Insert(OnItemAdded);
+		m_ismc.m_OnItemRemovedInvoker.Insert(OnItemRemoved);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -1250,20 +1250,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		{
 			case "PreViewHelmet":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1280,20 +1267,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewUpperItem":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1310,20 +1284,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewBackPack":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1340,20 +1301,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewJacket":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1370,20 +1318,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewVest":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1400,20 +1335,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewTrousers":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1430,20 +1352,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewBoots":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1460,20 +1369,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewBottomItem":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1490,20 +1386,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewItem":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
                 if (meshComponent)
                 {
 					LoadoutAreaType lat;
@@ -1520,20 +1403,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewPrimary1":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "WeaponComponent");
                 if (meshComponent)
                 {
 					EWeaponType weaponType;
@@ -1550,20 +1420,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewPrimary2":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "WeaponComponent");
                 if (meshComponent)
                 {
 					EWeaponType weaponType;
@@ -1580,20 +1437,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewSecondary":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "WeaponComponent");
                 if (meshComponent)
                 {
 					EWeaponType weaponType;
@@ -1610,20 +1454,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewGrenade1":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "WeaponComponent");
                 if (meshComponent)
                 {
 					EWeaponType weaponType;
@@ -1640,20 +1471,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 			case "PreViewGrenade2":
 			{
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "WeaponComponent");
                 if (meshComponent)
                 {
 					EWeaponType weaponType;
@@ -1674,21 +1492,8 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 				
 				// if no trousers in gear menu
 				if (m_iconTrousers.IsVisible()) break;
-				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
 
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1702,20 +1507,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1729,20 +1521,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1756,20 +1535,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1783,20 +1549,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1810,20 +1563,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1837,20 +1577,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1864,20 +1591,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1891,20 +1605,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1918,20 +1619,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1945,20 +1633,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -1972,20 +1647,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconTrousers.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2048,21 +1710,8 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			case "ItemPVJ0":
 			{
 				if (m_iconJacket.IsVisible()) break;
-				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
 
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2076,20 +1725,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2103,20 +1739,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2130,20 +1753,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2157,20 +1767,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2184,20 +1781,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2211,20 +1795,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2238,20 +1809,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2265,20 +1823,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2292,20 +1837,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2319,20 +1851,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2346,20 +1865,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconJacket.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2373,20 +1879,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2400,20 +1893,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2427,20 +1907,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2454,20 +1921,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2481,20 +1935,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2508,20 +1949,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2535,20 +1963,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2562,20 +1977,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2589,20 +1991,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2616,20 +2005,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2643,20 +2019,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2670,20 +2033,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconBackpack.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2697,20 +2047,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2724,20 +2061,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2751,20 +2075,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2778,20 +2089,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2805,20 +2103,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2832,20 +2117,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2859,20 +2131,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2886,20 +2145,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2913,20 +2159,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2940,20 +2173,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2967,20 +2187,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -2994,20 +2201,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			{
 				if (m_iconVest.IsVisible()) break;
 				
-				Resource resource = Resource.Load(gearData.getResname());
-                BaseResourceObject prefabBase = resource.GetResource();
-                BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-                BaseContainerList components = prefabSrc.GetObjectArray("components");
-
-                BaseContainer meshComponent = null;
-                for (int c = components.Count() - 1; c >= 0; c--)
-                {
-                    meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "InventoryItemComponent")
-						break;
-        
-                    meshComponent = null;
-                }
+				BaseContainer meshComponent = getMeshComponentByClassNames(gearData.getResname(), "InventoryMagazineComponent", "InventoryItemComponent");
                 if (meshComponent)
                 {
 					m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
@@ -3026,156 +2220,156 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		uniqueRun = true;
 		
 		// if item removed by RMB and slot empty, delete old
-		if (m_oldHelmetEnt && !m_newHelmetResName) ismc.TryDeleteItem(m_helmetEnt);
-		if (m_oldUpperitemEnt && !m_newUpperitemResName) ismc.TryDeleteItem(m_upperitemEnt);
+		if (m_oldHelmetEnt && !m_newHelmetResName) m_ismc.TryDeleteItem(m_helmetEnt);
+		if (m_oldUpperitemEnt && !m_newUpperitemResName) m_ismc.TryDeleteItem(m_upperitemEnt);
 		if (m_oldBackpackEnt && !m_newBackpackResName)
 		{
-			ismc.TryDeleteItem(m_backpackEnt); // need test childs deleted or not
+			m_ismc.TryDeleteItem(m_backpackEnt); // need test childs deleted or not
 			m_backpackStorage = null;
 		}
 		if (m_oldJacketEnt && !m_newJacketResName)
 		{
-			ismc.TryDeleteItem(m_jacketEnt);
+			m_ismc.TryDeleteItem(m_jacketEnt);
 			m_jacketStorage = null;
 		}
 		if (m_oldVestEnt && !m_newVestResName)
 		{
-			ismc.TryDeleteItem(m_vestEnt);
+			m_ismc.TryDeleteItem(m_vestEnt);
 			m_vestStorage = null;
 		}
 		if (m_oldTrousersEnt && !m_newTrousersResName)
 		{
-			ismc.TryDeleteItem(m_trousersEnt);
+			m_ismc.TryDeleteItem(m_trousersEnt);
 			m_trousersStorage = null;
 		}
-		if (m_oldBootsEnt && !m_newBootsResName) ismc.TryDeleteItem(m_bootsEnt);
-		if (m_oldBottomItemEnt && !m_newBottomItemResName) ismc.TryDeleteItem(m_bottomItemEnt);
-		if (m_oldItemEnt && !m_newItemResName) ismc.TryDeleteItem(m_itemEnt);
+		if (m_oldBootsEnt && !m_newBootsResName) m_ismc.TryDeleteItem(m_bootsEnt);
+		if (m_oldBottomItemEnt && !m_newBottomItemResName) m_ismc.TryDeleteItem(m_bottomItemEnt);
+		if (m_oldItemEnt && !m_newItemResName) m_ismc.TryDeleteItem(m_itemEnt);
 		
-		if (m_oldPrimaryWeapon1Ent && !m_newPrimaryWeapon1ResName) ismc.TryDeleteItem(m_primaryWeapon1Ent);
-		if (m_oldPrimaryWeapon2Ent && !m_newPrimaryWeapon2ResName) ismc.TryDeleteItem(m_primaryWeapon2Ent);
-		if (m_oldSecondaryWeaponEnt && !m_newSecondaryWeaponResName) ismc.TryDeleteItem(m_secondaryWeaponEnt);
-		if (m_oldGrenadeEnt && !m_newGrenadeResName) ismc.TryDeleteItem(m_grenadeEnt);
-		if (m_oldThrowableEnt && !m_newThrowableResName) ismc.TryDeleteItem(m_throwableEnt);
+		if (m_oldPrimaryWeapon1Ent && !m_newPrimaryWeapon1ResName) m_ismc.TryDeleteItem(m_primaryWeapon1Ent);
+		if (m_oldPrimaryWeapon2Ent && !m_newPrimaryWeapon2ResName) m_ismc.TryDeleteItem(m_primaryWeapon2Ent);
+		if (m_oldSecondaryWeaponEnt && !m_newSecondaryWeaponResName) m_ismc.TryDeleteItem(m_secondaryWeaponEnt);
+		if (m_oldGrenadeEnt && !m_newGrenadeResName) m_ismc.TryDeleteItem(m_grenadeEnt);
+		if (m_oldThrowableEnt && !m_newThrowableResName) m_ismc.TryDeleteItem(m_throwableEnt);
 		
 		for(int i = 0; i < itemSlots; i++)
 		{
-			if (m_jacketEnt && m_oldJacketItems[i] && !m_newJacketItemsResName[i]) ismc.TryDeleteItem(m_jacketItems[i]);
-			if (m_vestEnt && m_oldVestItems[i] && !m_newVestItemsResName[i]) ismc.TryDeleteItem(m_vestItems[i]);
-			if (m_backpackEnt && m_oldBackpackItems[i] && !m_newBackpackItemsResName[i]) ismc.TryDeleteItem(m_backpackItems[i]);
-			if (m_trousersEnt && m_oldTrousersItems[i] && !m_newTrousersItemsResName[i]) ismc.TryDeleteItem(m_trousersItems[i]);
+			if (m_jacketEnt && m_oldJacketItems[i] && !m_newJacketItemsResName[i]) m_ismc.TryDeleteItem(m_jacketItems[i]);
+			if (m_vestEnt && m_oldVestItems[i] && !m_newVestItemsResName[i]) m_ismc.TryDeleteItem(m_vestItems[i]);
+			if (m_backpackEnt && m_oldBackpackItems[i] && !m_newBackpackItemsResName[i]) m_ismc.TryDeleteItem(m_backpackItems[i]);
+			if (m_trousersEnt && m_oldTrousersItems[i] && !m_newTrousersItemsResName[i]) m_ismc.TryDeleteItem(m_trousersItems[i]);
 		}
 
 		// if added new item, delete old
 		if (m_newHelmetResName && m_helmetEnt && m_helmetEnt.GetPrefabData().GetPrefabName() != m_newHelmetResName)
 		{
-			ismc.TryDeleteItem(m_helmetEnt); // bug, need unwear after delete, TrySpawnPrefabToStorage not working on client without this
-			blmc.Unwear(m_helmetEnt);
+			m_ismc.TryDeleteItem(m_helmetEnt); // bug, need unwear after delete, TrySpawnPrefabToStorage not working on client without this
+			m_blmc.Unwear(m_helmetEnt);
 		}
 		
 		if (m_newUpperitemResName && m_upperitemEnt && m_upperitemEnt.GetPrefabData().GetPrefabName() != m_newUpperitemResName)
 		{
-			ismc.TryDeleteItem(m_upperitemEnt);
-			blmc.Unwear(m_upperitemEnt);
+			m_ismc.TryDeleteItem(m_upperitemEnt);
+			m_blmc.Unwear(m_upperitemEnt);
 		}
 		
 		if (m_newBackpackResName && m_backpackEnt && m_backpackEnt.GetPrefabData().GetPrefabName() != m_newBackpackResName)
 		{
-			ismc.TryDeleteItem(m_backpackEnt);
-			blmc.Unwear(m_backpackEnt);
+			m_ismc.TryDeleteItem(m_backpackEnt);
+			m_blmc.Unwear(m_backpackEnt);
 		}
 		
 		if (m_newJacketResName && m_jacketEnt && m_jacketEnt.GetPrefabData().GetPrefabName() != m_newJacketResName)
 		{
-			ismc.TryDeleteItem(m_jacketEnt);
-			blmc.Unwear(m_jacketEnt);
+			m_ismc.TryDeleteItem(m_jacketEnt);
+			m_blmc.Unwear(m_jacketEnt);
 		}
 		
 		if (m_newVestResName && m_vestEnt && m_vestEnt.GetPrefabData().GetPrefabName() != m_newVestResName)
 		{
-			ismc.TryDeleteItem(m_vestEnt);
-			blmc.Unwear(m_vestEnt);
+			m_ismc.TryDeleteItem(m_vestEnt);
+			m_blmc.Unwear(m_vestEnt);
 		}
 		
 		if (m_newTrousersResName && m_trousersEnt && m_trousersEnt.GetPrefabData().GetPrefabName() != m_newTrousersResName)
 		{
-			ismc.TryDeleteItem(m_trousersEnt);
-			blmc.Unwear(m_trousersEnt);
+			m_ismc.TryDeleteItem(m_trousersEnt);
+			m_blmc.Unwear(m_trousersEnt);
 		}
 		
 		if (m_newBootsResName && m_bootsEnt && m_bootsEnt.GetPrefabData().GetPrefabName() != m_newBootsResName)
 		{
-			ismc.TryDeleteItem(m_bootsEnt);
-			blmc.Unwear(m_bootsEnt);
+			m_ismc.TryDeleteItem(m_bootsEnt);
+			m_blmc.Unwear(m_bootsEnt);
 		}
 		
 		if (m_newBottomItemResName && m_bottomItemEnt && m_bottomItemEnt.GetPrefabData().GetPrefabName() != m_newBottomItemResName)
 		{
-			ismc.TryDeleteItem(m_bottomItemEnt);
-			blmc.Unwear(m_bottomItemEnt);
+			m_ismc.TryDeleteItem(m_bottomItemEnt);
+			m_blmc.Unwear(m_bottomItemEnt);
 		}
 		
 		if (m_newItemResName && m_itemEnt && m_itemEnt.GetPrefabData().GetPrefabName() != m_newItemResName)
 		{
-			ismc.TryDeleteItem(m_itemEnt);
-			blmc.Unwear(m_itemEnt);
+			m_ismc.TryDeleteItem(m_itemEnt);
+			m_blmc.Unwear(m_itemEnt);
 		}
 		
 		if (m_newPrimaryWeapon1ResName && m_primaryWeapon1Ent && m_primaryWeapon1Ent.GetPrefabData().GetPrefabName() != m_newPrimaryWeapon1ResName)
 		{		
-			ismc.TryDeleteItem(m_primaryWeapon1Ent);
+			m_ismc.TryDeleteItem(m_primaryWeapon1Ent);
 		}
 		
 		if (m_newPrimaryWeapon2ResName && m_primaryWeapon2Ent && m_primaryWeapon2Ent.GetPrefabData().GetPrefabName() != m_newPrimaryWeapon2ResName)
 		{
-			ismc.TryDeleteItem(m_primaryWeapon2Ent);
+			m_ismc.TryDeleteItem(m_primaryWeapon2Ent);
 		}
 		
 		if (m_newSecondaryWeaponResName && m_secondaryWeaponEnt && m_secondaryWeaponEnt.GetPrefabData().GetPrefabName() != m_newSecondaryWeaponResName)
 		{
-			ismc.TryDeleteItem(m_secondaryWeaponEnt);
+			m_ismc.TryDeleteItem(m_secondaryWeaponEnt);
 		}
 		
 		if (m_newGrenadeResName && m_grenadeEnt && m_grenadeEnt.GetPrefabData().GetPrefabName() != m_newGrenadeResName)
 		{
-			ismc.TryDeleteItem(m_grenadeEnt);
+			m_ismc.TryDeleteItem(m_grenadeEnt);
 		}
 		
 		if (m_newThrowableResName && m_throwableEnt && m_throwableEnt.GetPrefabData().GetPrefabName() != m_newThrowableResName)
 		{
-			ismc.TryDeleteItem(m_throwableEnt);
+			m_ismc.TryDeleteItem(m_throwableEnt);
 		}
 		
 		for(int j = 0; j < itemSlots; j++)
 		{
-			if ((m_newJacketResName && m_jacketEnt) || !m_jacketEnt) ismc.TryDeleteItem(m_jacketItems[j]);
-			if ((m_newVestResName && m_vestEnt) || !m_vestEnt) ismc.TryDeleteItem(m_vestItems[j]);
-			if ((m_newBackpackResName && m_backpackEnt) || !m_backpackEnt) ismc.TryDeleteItem(m_backpackItems[j]);
-			if ((m_newTrousersResName && m_trousersEnt) || !m_trousersEnt) ismc.TryDeleteItem(m_trousersItems[j]);
+			if ((m_newJacketResName && m_jacketEnt) || !m_jacketEnt) m_ismc.TryDeleteItem(m_jacketItems[j]);
+			if ((m_newVestResName && m_vestEnt) || !m_vestEnt) m_ismc.TryDeleteItem(m_vestItems[j]);
+			if ((m_newBackpackResName && m_backpackEnt) || !m_backpackEnt) m_ismc.TryDeleteItem(m_backpackItems[j]);
+			if ((m_newTrousersResName && m_trousersEnt) || !m_trousersEnt) m_ismc.TryDeleteItem(m_trousersItems[j]);
 		}
 		
 		// if add to empty slot
-		if (m_newHelmetResName && !m_oldHelmetEnt) ismc.TrySpawnPrefabToStorage(m_newHelmetResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newUpperitemResName && !m_oldUpperitemEnt) ismc.TrySpawnPrefabToStorage(m_newUpperitemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newBackpackResName && !m_oldBackpackEnt) ismc.TrySpawnPrefabToStorage(m_newBackpackResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newJacketResName && !m_oldJacketEnt) ismc.TrySpawnPrefabToStorage(m_newJacketResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newVestResName && !m_oldVestEnt) ismc.TrySpawnPrefabToStorage(m_newVestResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newTrousersResName && !m_oldTrousersEnt) ismc.TrySpawnPrefabToStorage(m_newTrousersResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newBootsResName && !m_oldBootsEnt) ismc.TrySpawnPrefabToStorage(m_newBootsResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newBottomItemResName && !m_oldBottomItemEnt) ismc.TrySpawnPrefabToStorage(m_newBottomItemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newItemResName && !m_oldItemEnt) ismc.TrySpawnPrefabToStorage(m_newItemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
-		if (m_newPrimaryWeapon1ResName && !m_primaryWeapon1Ent) ismc.TrySpawnPrefabToStorage(m_newPrimaryWeapon1ResName, ewsc, 0, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
-		if (m_newPrimaryWeapon2ResName && !m_primaryWeapon2Ent) ismc.TrySpawnPrefabToStorage(m_newPrimaryWeapon2ResName, ewsc, 1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
-		if (m_newSecondaryWeaponResName && !m_secondaryWeaponEnt) ismc.TrySpawnPrefabToStorage(m_newSecondaryWeaponResName, ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
-		if (m_newGrenadeResName && !m_grenadeEnt) ismc.TrySpawnPrefabToStorage(m_newGrenadeResName, ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
-		if (m_newThrowableResName && !m_throwableEnt) ismc.TrySpawnPrefabToStorage(m_newThrowableResName, ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+		if (m_newHelmetResName && !m_oldHelmetEnt) m_ismc.TrySpawnPrefabToStorage(m_newHelmetResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newUpperitemResName && !m_oldUpperitemEnt) m_ismc.TrySpawnPrefabToStorage(m_newUpperitemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newBackpackResName && !m_oldBackpackEnt) m_ismc.TrySpawnPrefabToStorage(m_newBackpackResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newJacketResName && !m_oldJacketEnt) m_ismc.TrySpawnPrefabToStorage(m_newJacketResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newVestResName && !m_oldVestEnt) m_ismc.TrySpawnPrefabToStorage(m_newVestResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newTrousersResName && !m_oldTrousersEnt) m_ismc.TrySpawnPrefabToStorage(m_newTrousersResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newBootsResName && !m_oldBootsEnt) m_ismc.TrySpawnPrefabToStorage(m_newBootsResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newBottomItemResName && !m_oldBottomItemEnt) m_ismc.TrySpawnPrefabToStorage(m_newBottomItemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newItemResName && !m_oldItemEnt) m_ismc.TrySpawnPrefabToStorage(m_newItemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newPrimaryWeapon1ResName && !m_primaryWeapon1Ent) m_ismc.TrySpawnPrefabToStorage(m_newPrimaryWeapon1ResName, m_ewsc, 0, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+		if (m_newPrimaryWeapon2ResName && !m_primaryWeapon2Ent) m_ismc.TrySpawnPrefabToStorage(m_newPrimaryWeapon2ResName, m_ewsc, 1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+		if (m_newSecondaryWeaponResName && !m_secondaryWeaponEnt) m_ismc.TrySpawnPrefabToStorage(m_newSecondaryWeaponResName, m_ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+		if (m_newGrenadeResName && !m_grenadeEnt) m_ismc.TrySpawnPrefabToStorage(m_newGrenadeResName, m_ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+		if (m_newThrowableResName && !m_throwableEnt) m_ismc.TrySpawnPrefabToStorage(m_newThrowableResName, m_ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
 		
 		for(int i = 0; i < itemSlots; i++)
 		{
-			if (!m_newBackpackResName && m_newBackpackItemsResName[i]) ismc.TrySpawnPrefabToStorage(m_newBackpackItemsResName[i], m_backpackStorage, i, EStoragePurpose.PURPOSE_ANY, null); // maybe need test slotid
-			if (!m_newJacketResName && m_newJacketItemsResName[i]) ismc.TrySpawnPrefabToStorage(m_newJacketItemsResName[i], m_jacketStorage, i, EStoragePurpose.PURPOSE_ANY, null);
-			if (!m_newVestItemsResName && m_newVestItemsResName[i]) ismc.TrySpawnPrefabToStorage(m_newVestItemsResName[i], m_vestStorage, i, EStoragePurpose.PURPOSE_ANY, null);
-			if (!m_newTrousersItemsResName && m_newTrousersItemsResName[i]) ismc.TrySpawnPrefabToStorage(m_newTrousersItemsResName[i], m_trousersStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+			if (!m_newBackpackResName && m_newBackpackItemsResName[i]) m_ismc.TrySpawnPrefabToStorage(m_newBackpackItemsResName[i], m_backpackStorage, i, EStoragePurpose.PURPOSE_ANY, null); // maybe need test slotid
+			if (!m_newJacketResName && m_newJacketItemsResName[i]) m_ismc.TrySpawnPrefabToStorage(m_newJacketItemsResName[i], m_jacketStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+			if (!m_newVestItemsResName && m_newVestItemsResName[i]) m_ismc.TrySpawnPrefabToStorage(m_newVestItemsResName[i], m_vestStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+			if (!m_newTrousersItemsResName && m_newTrousersItemsResName[i]) m_ismc.TrySpawnPrefabToStorage(m_newTrousersItemsResName[i], m_trousersStorage, i, EStoragePurpose.PURPOSE_ANY, null);
 		}
 	}
 
@@ -3186,72 +2380,72 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		{
 			case m_helmetEnt:
 			{
-				if (m_newHelmetResName) ismc.TrySpawnPrefabToStorage(m_newHelmetResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newHelmetResName) m_ismc.TrySpawnPrefabToStorage(m_newHelmetResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_upperitemEnt: 
 			{
-				if (m_newUpperitemResName) ismc.TrySpawnPrefabToStorage(m_newUpperitemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newUpperitemResName) m_ismc.TrySpawnPrefabToStorage(m_newUpperitemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_backpackEnt:
 			{
-				if (m_newBackpackResName) ismc.TrySpawnPrefabToStorage(m_newBackpackResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newBackpackResName) m_ismc.TrySpawnPrefabToStorage(m_newBackpackResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_jacketEnt:
 			{
-				if (m_newJacketResName) ismc.TrySpawnPrefabToStorage(m_newJacketResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newJacketResName) m_ismc.TrySpawnPrefabToStorage(m_newJacketResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_vestEnt:
 			{
-				if (m_newVestResName) ismc.TrySpawnPrefabToStorage(m_newVestResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newVestResName) m_ismc.TrySpawnPrefabToStorage(m_newVestResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_trousersEnt:
 			{
-				if (m_newTrousersResName) ismc.TrySpawnPrefabToStorage(m_newTrousersResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newTrousersResName) m_ismc.TrySpawnPrefabToStorage(m_newTrousersResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_bootsEnt:
 			{
-				if (m_newBootsResName) ismc.TrySpawnPrefabToStorage(m_newBootsResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newBootsResName) m_ismc.TrySpawnPrefabToStorage(m_newBootsResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_bottomItemEnt:
 			{
-				if (m_newBottomItemResName) ismc.TrySpawnPrefabToStorage(m_newBottomItemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newBottomItemResName) m_ismc.TrySpawnPrefabToStorage(m_newBottomItemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_itemEnt:
 			{
-				if (m_newItemResName) ismc.TrySpawnPrefabToStorage(m_newItemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				if (m_newItemResName) m_ismc.TrySpawnPrefabToStorage(m_newItemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_primaryWeapon1Ent:
 			{
-				if (m_newPrimaryWeapon1ResName) ismc.TrySpawnPrefabToStorage(m_newPrimaryWeapon1ResName, ewsc, 0, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+				if (m_newPrimaryWeapon1ResName) m_ismc.TrySpawnPrefabToStorage(m_newPrimaryWeapon1ResName, m_ewsc, 0, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
 				break;
 			}
 			case m_primaryWeapon2Ent:
 			{
-				if (m_newPrimaryWeapon2ResName) ismc.TrySpawnPrefabToStorage(m_newPrimaryWeapon2ResName, ewsc, 1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+				if (m_newPrimaryWeapon2ResName) m_ismc.TrySpawnPrefabToStorage(m_newPrimaryWeapon2ResName, m_ewsc, 1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
 				break;
 			}
 			case m_secondaryWeaponEnt:
 			{
-				if (m_newSecondaryWeaponResName) ismc.TrySpawnPrefabToStorage(m_newSecondaryWeaponResName, ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+				if (m_newSecondaryWeaponResName) m_ismc.TrySpawnPrefabToStorage(m_newSecondaryWeaponResName, m_ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
 				break;
 			}
 			case m_grenadeEnt:
 			{
-				if (m_newGrenadeResName) ismc.TrySpawnPrefabToStorage(m_newGrenadeResName, ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+				if (m_newGrenadeResName) m_ismc.TrySpawnPrefabToStorage(m_newGrenadeResName, m_ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
 				break;
 			}
 			case m_throwableEnt:
 			{
-				if (m_newThrowableResName) ismc.TrySpawnPrefabToStorage(m_newThrowableResName, ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
+				if (m_newThrowableResName) m_ismc.TrySpawnPrefabToStorage(m_newThrowableResName, m_ewsc, -1, EStoragePurpose.PURPOSE_WEAPON_PROXY, null);
 				break;
 			}
 		}
@@ -3261,10 +2455,10 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		{
 			for(int i = 0; i < itemSlots; i++)
 			{
-				if (!m_newBackpackResName && m_newBackpackItemsResName[i]) ismc.TrySpawnPrefabToStorage(m_newBackpackItemsResName[i], m_backpackStorage, i, EStoragePurpose.PURPOSE_ANY, null); // maybe need test slotid
-				if (!m_newJacketResName && m_newJacketItemsResName[i]) ismc.TrySpawnPrefabToStorage(m_newJacketItemsResName[i], m_jacketStorage, i, EStoragePurpose.PURPOSE_ANY, null);
-				if (!m_newVestItemsResName && m_newVestItemsResName[i]) ismc.TrySpawnPrefabToStorage(m_newVestItemsResName[i], m_vestStorage, i, EStoragePurpose.PURPOSE_ANY, null);
-				if (!m_newTrousersItemsResName && m_newTrousersItemsResName[i]) ismc.TrySpawnPrefabToStorage(m_newTrousersItemsResName[i], m_trousersStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+				if (!m_newBackpackResName && m_newBackpackItemsResName[i]) m_ismc.TrySpawnPrefabToStorage(m_newBackpackItemsResName[i], m_backpackStorage, i, EStoragePurpose.PURPOSE_ANY, null); // maybe need test slotid
+				if (!m_newJacketResName && m_newJacketItemsResName[i]) m_ismc.TrySpawnPrefabToStorage(m_newJacketItemsResName[i], m_jacketStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+				if (!m_newVestItemsResName && m_newVestItemsResName[i]) m_ismc.TrySpawnPrefabToStorage(m_newVestItemsResName[i], m_vestStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+				if (!m_newTrousersItemsResName && m_newTrousersItemsResName[i]) m_ismc.TrySpawnPrefabToStorage(m_newTrousersItemsResName[i], m_trousersStorage, i, EStoragePurpose.PURPOSE_ANY, null);
 			}
 			uniqueRun = false;
 		}
@@ -3275,20 +2469,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	{
 		if (entity.GetPrefabData().GetPrefabName() == m_newBackpackResName || entity.GetPrefabData().GetPrefabName() == m_newJacketResName || entity.GetPrefabData().GetPrefabName() == m_newVestResName || entity.GetPrefabData().GetPrefabName() == m_newTrousersResName)
 		{
-			Resource resource = Resource.Load(entity.GetPrefabData().GetPrefabName());
-			BaseResourceObject prefabBase = resource.GetResource();
-			BaseContainer prefabSrc = prefabBase.ToBaseContainer();
-			BaseContainerList components = prefabSrc.GetObjectArray("components");
-	
-			BaseContainer meshComponent = null;
-			for (int c = components.Count() - 1; c >= 0; c--)
-			{
-				meshComponent = components.Get(c);
-				if (meshComponent.GetClassName() == "BaseLoadoutClothComponent")
-					break;
-	
-				meshComponent = null;
-			}
+			BaseContainer meshComponent = getMeshComponentByClassName(entity.GetPrefabData().GetPrefabName(), "BaseLoadoutClothComponent");
 			if (meshComponent)
 			{
 				LoadoutAreaType lat;
@@ -3298,46 +2479,88 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 					case LoadoutBackpackArea:
 					{
 						m_newBackpackEnt = entity;
-						m_backpackStorage = cisc.GetStorageFromLoadoutSlot(lat);
+						m_backpackStorage = m_cisc.GetStorageFromLoadoutSlot(lat);
 						for(int i = 0; i < itemSlots; i++)
 						{
-							ismc.TrySpawnPrefabToStorage(m_newBackpackItemsResName[i], m_backpackStorage, i, EStoragePurpose.PURPOSE_ANY, null); // maybe need test slotid
+							m_ismc.TrySpawnPrefabToStorage(m_newBackpackItemsResName[i], m_backpackStorage, i, EStoragePurpose.PURPOSE_ANY, null); // maybe need test slotid
 						}
 						break;
 					}
 					case LoadoutJacketArea:
 					{
 						m_newJacketEnt = entity;
-						m_jacketStorage = cisc.GetStorageFromLoadoutSlot(lat);
+						m_jacketStorage = m_cisc.GetStorageFromLoadoutSlot(lat);
 						for(int i = 0; i < itemSlots; i++)
 						{
-							ismc.TrySpawnPrefabToStorage(m_newJacketItemsResName[i], m_jacketStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+							m_ismc.TrySpawnPrefabToStorage(m_newJacketItemsResName[i], m_jacketStorage, i, EStoragePurpose.PURPOSE_ANY, null);
 						}
 						break;
 					}
 					case LoadoutVestArea:
 					{
 						m_newVestEnt = entity;
-						m_vestStorage = cisc.GetStorageFromLoadoutSlot(lat);
+						m_vestStorage = m_cisc.GetStorageFromLoadoutSlot(lat);
 						for(int i = 0; i < itemSlots; i++)
 						{
-							ismc.TrySpawnPrefabToStorage(m_newVestItemsResName[i], m_vestStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+							m_ismc.TrySpawnPrefabToStorage(m_newVestItemsResName[i], m_vestStorage, i, EStoragePurpose.PURPOSE_ANY, null);
 						}
 						break;
 					}
 					case LoadoutPantsArea:
 					{
 						m_newTrousersEnt = entity;
-						m_trousersStorage = cisc.GetStorageFromLoadoutSlot(lat);
+						m_trousersStorage = m_cisc.GetStorageFromLoadoutSlot(lat);
 						for(int i = 0; i < itemSlots; i++)
 						{
-							ismc.TrySpawnPrefabToStorage(m_newTrousersItemsResName[i], m_trousersStorage, i, EStoragePurpose.PURPOSE_ANY, null);
+							m_ismc.TrySpawnPrefabToStorage(m_newTrousersItemsResName[i], m_trousersStorage, i, EStoragePurpose.PURPOSE_ANY, null);
 						}
 						break;
 					}
 				}
 			}
 		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected BaseContainer getMeshComponentByClassName(ResourceName resName, string className)
+	{
+		Resource resource = Resource.Load(resName);
+		BaseResourceObject prefabBase = resource.GetResource();
+		BaseContainer prefabSrc = prefabBase.ToBaseContainer();
+		BaseContainerList components = prefabSrc.GetObjectArray("components");
+
+		BaseContainer meshComponent = null;
+		for (int c = components.Count() - 1; c >= 0; c--)
+		{
+			meshComponent = components.Get(c);
+			if (meshComponent.GetClassName() == className)
+				break;
+
+			meshComponent = null;
+		}
+
+		return meshComponent;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected BaseContainer getMeshComponentByClassNames(ResourceName resName, string classNameA, string classnameB)
+	{
+		Resource resource = Resource.Load(resName);
+		BaseResourceObject prefabBase = resource.GetResource();
+		BaseContainer prefabSrc = prefabBase.ToBaseContainer();
+		BaseContainerList components = prefabSrc.GetObjectArray("components");
+
+		BaseContainer meshComponent = null;
+		for (int c = components.Count() - 1; c >= 0; c--)
+		{
+			meshComponent = components.Get(c);
+			if (meshComponent.GetClassName() == classNameA || meshComponent.GetClassName() == classnameB)
+				break;
+
+			meshComponent = null;
+		}
+
+		return meshComponent;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -3349,12 +2572,12 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	override void OnMenuClose()
 	{
 		// remove invokers
-		ismc.m_OnItemAddedInvoker.Remove(OnItemAdded);
-		ismc.m_OnItemRemovedInvoker.Remove(OnItemRemoved);
+		m_ismc.m_OnItemAddedInvoker.Remove(OnItemAdded);
+		m_ismc.m_OnItemRemovedInvoker.Remove(OnItemRemoved);
 		
-		ismc.SetInventoryLocked(false);
+		m_ismc.SetInventoryLocked(false);
 		
-		gameMode.saveLoadout();
+		m_gameMode.saveLoadout();
 		
 		m_oldPrimaryWeapon1Ent = null;
 		m_oldPrimaryWeapon2Ent = null;
@@ -3436,5 +2659,6 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
+		// TODO close menu when bars or med down
 	}
 };

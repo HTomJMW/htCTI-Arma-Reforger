@@ -3,6 +3,10 @@ class SCR_CTI_GameModeClass: SCR_BaseGameModeClass
 {
 };
 
+// CTI mission faction keys, indexes:
+//	FIA: 0
+//	US: 1
+//	USSR: 2
 class SCR_CTI_GameMode : SCR_BaseGameMode
 {
 	ref array<SCR_CTI_Town> CTI_Towns = {};
@@ -13,6 +17,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_UpgradeComponent UpgradeComponent;
 	protected SCR_CTI_BaseComponent BaseComponent;
 	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
+	
+	protected bool firstMapOpen = true;
 
 	[RplProp()]
 	protected int ussrCommanderId = -2;
@@ -124,17 +130,16 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	void saveLoadout()
 	{
-		// save loadout
+		// Save loadout
 		PlayerController pc = GetGame().GetPlayerController();
-		IEntity controlledEnt = pc.GetControlledEntity();
-		RplComponent rplComp = RplComponent.Cast(controlledEnt.FindComponent(RplComponent));
-		if (!rplComp) return;
+		RplComponent rplComp = RplComponent.Cast(pc.GetControlledEntity().FindComponent(RplComponent));
+		SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(pc.GetControlledEntity().FindComponent(SCR_CharacterDamageManagerComponent));
+		if (!rplComp || !cdmc) return;
+		if (cdmc.IsDestroyed()) return;
+
 		RplId rplid = rplComp.Id();
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-		if (netComp)
-		{
-			netComp.savePlayerLoadout(pc.GetPlayerId(), rplid);
-		}
+		if (netComp) netComp.savePlayerLoadout(pc.GetPlayerId(), rplid);
 
 		// set saved loadout for use at next respawn
 		SCR_RespawnComponent respawnComp = SCR_RespawnComponent.GetInstance();
@@ -154,7 +159,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			SCR_BasePlayerLoadout savedLoadout = loadoutManager.GetLoadoutByName(loadoutName);
 			respawnComp.RequestPlayerLoadout(savedLoadout);
 		} else {
-			SCR_RespawnComponent.GetInstance().RequestClearPlayerLoadout();
+			respawnComp.RequestClearPlayerLoadout();
 		}
 	}
 
@@ -164,16 +169,12 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		super.OnPlayerDisconnected(playerId, cause, timeout);
 
 		SCR_CTI_ClientData clientData = getClientData(playerId);
-		
 		if (clientData && clientData.isCommander()) clientData.setCommander(false);
 
-		if (playerId == ussrCommanderId)
+		switch (playerId)
 		{
-			clearCommanderId("USSR");
-		}
-		if (playerId == usCommanderId)
-		{
-			clearCommanderId("US");
+			case ussrCommanderId: clearCommanderId("USSR"); break;
+			case usCommanderId: clearCommanderId("US"); break;
 		}
 		
 		PlayerManager pm = GetGame().GetPlayerManager();
@@ -185,10 +186,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		super.OnPlayerRegistered(playerId);
 
-		SCR_CTI_ClientData clientData = getClientData(playerId);
-		
 		SCR_RespawnSystemComponent respawnSystem = SCR_RespawnSystemComponent.Cast(GetRespawnSystemComponent());
-
+		SCR_CTI_ClientData clientData = getClientData(playerId);
 		if (!clientData)
 		{
 			clientData = new SCR_CTI_ClientData;
@@ -207,20 +206,20 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	override void HandleOnFactionAssigned(int playerID, Faction assignedFaction)
 	{
 		super.HandleOnFactionAssigned(playerID, assignedFaction);
-		
+
 		if (!m_RplComponent.IsProxy())
 		{
 			SCR_CTI_ClientData clientData = getClientData(playerID);
-
 			if (clientData && assignedFaction)
 			{
 				int factionIndex = GetGame().GetFactionManager().GetFactionIndex(assignedFaction);
 				clientData.setFactionIndex(factionIndex);
+				
 				Replication.BumpMe();
 			}
 		}
 
-		// necessary delay due to proxy playercontroller check
+		// Necessary delay due to proxy playercontroller check
 		GetGame().GetCallqueue().CallLater(missionHintsCallLater, 20000, false, playerID);
 	}
 	
@@ -228,14 +227,14 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected void missionHintsCallLater(int playerId)
 	{
 		SendHint(playerId, "htCTI Eden", "Mission", 30);
-		SendPopUpNotif(playerId, "Arma Reforger CTI", 15, "", -1);
+		SendPopUpNotif(playerId, "<h1 align='left' scale='2'> Arma Reforger CTI</h1>", 15, "", -1);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
+	/*override void OnPlayerSpawned(int playerId, IEntity controlledEntity)
 	{
 		super.OnPlayerSpawned(playerId, controlledEntity);
-	}
+	}*/
 
 	//------------------------------------------------------------------------------------------------
 	protected void uploadTownsArray()
@@ -269,18 +268,13 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		switch (factionkey)
 		{
-			case "USSR":
-			{
-				ussrCommanderId = playerId;
-				break;
-			}
-			case "US":
-			{
-				usCommanderId = playerId;
-				break;
-			}
+			case "USSR": ussrCommanderId = playerId; break;
+			case "US": usCommanderId = playerId; break;
 		}
+		
 		Replication.BumpMe();
+
+		sendFactionNotifPAndF(factionkey, ENotification.CTI_NOTIF_COMMANDER_ASSIGNED, playerId);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -288,25 +282,21 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		switch (factionkey)
 		{
-			case "USSR":
-			{
-				ussrCommanderId = -2;
-				break;
-			}
-			case "US":
-			{
-				usCommanderId = -2;
-				break;
-			}
+			case "USSR": ussrCommanderId = -2; break;
+			case "US": usCommanderId = -2; break;
 		}
+
 		Replication.BumpMe();
+
+		sendFactionNotifP(factionkey, ENotification.CTI_NOTIF_COMMANDER_LEFT);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	int getCommanderFunds(FactionKey fk)
+	int getCommanderFunds(FactionKey factionkey)
 	{
 		int funds;
-		switch (fk)
+
+		switch (factionkey)
 		{
 			case "USSR": funds = ussrCommanderFunds; break;
 			case "US": funds = usCommanderFunds; break;
@@ -317,21 +307,23 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 	//------------------------------------------------------------------------------------------------
 	// Only on server
-	void changeCommanderFunds(FactionKey fk, int value)
+	void changeCommanderFunds(FactionKey factionKey, int value)
 	{
-		switch (fk)
+		switch (factionKey)
 		{
 			case "USSR": ussrCommanderFunds += value; break;
 			case "US": usCommanderFunds += value; break;
 		}
+		
 		Replication.BumpMe();
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	RplId getMHQrplId(FactionKey fk)
+	RplId getMHQrplId(FactionKey factionKey)
 	{
 		RplId mhqId = null;
-		switch (fk)
+		
+		switch (factionKey)
 		{
 			case "USSR": mhqId = ussrMHQrplId; break;
 			case "US": mhqId = usMHQrplId; break;
@@ -342,40 +334,44 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	
 	//------------------------------------------------------------------------------------------------
 	// Only on Server
-	void setMHQrplId(FactionKey fk, RplId id)
+	void setMHQrplId(FactionKey factionKey, RplId id)
 	{
-		switch (fk)
+		switch (factionKey)
 		{
 			case "USSR": ussrMHQrplId = id; break;
 			case "US": usMHQrplId = id; break;
 		}
+
 		Replication.BumpMe();
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	string getPriority(FactionKey fk)
+	string getPriority(FactionKey factionKey)
 	{
 		string priority;
-		switch (fk)
+
+		switch (factionKey)
 		{
 			case "USSR": priority = ussrPriority; break;
 			case "US": priority = usPriority; break;
 		}
-		
+
 		return priority;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	// Only on Server
-	void setPriority(FactionKey fk, string townName)
+	void setPriority(FactionKey factionKey, string townName)
 	{
-		switch (fk)
+		switch (factionKey)
 		{
 			case "USSR": ussrPriority = townName; break;
 			case "US": usPriority = townName; break;
 		}
 		
 		Replication.BumpMe();
+		
+		sendFactionNotifP(factionKey, ENotification.CTI_NOTIF_TOWN_PRIORITY_CHANGED);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -401,6 +397,48 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	void bumpMeServer()
 	{
 		Replication.BumpMe();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void sendFactionNotifPAndF(FactionKey factionkey, ENotification notification, int param1)
+	{
+		array<int> outPlayers = {};
+		GetGame().GetPlayerManager().GetPlayers(outPlayers);
+
+		SCR_RespawnSystemComponent respSystemComp = SCR_RespawnSystemComponent.GetInstance();
+		foreach (int pid : outPlayers)
+		{
+			FactionKey playerFactionKey = respSystemComp.GetPlayerFaction(pid).GetFactionKey();
+			if (playerFactionKey == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1);
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void sendFactionNotifP(FactionKey factionkey, ENotification notification)
+	{
+		array<int> outPlayers = {};
+		GetGame().GetPlayerManager().GetPlayers(outPlayers);
+
+		SCR_RespawnSystemComponent respSystemComp = SCR_RespawnSystemComponent.GetInstance();
+		foreach (int pid : outPlayers)
+		{
+			FactionKey playerFactionKey = respSystemComp.GetPlayerFaction(pid).GetFactionKey();
+			if (playerFactionKey == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification);
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void sendFactionNotifT(FactionKey factionkey, ENotification notification, int param1)
+	{
+		array<int> outPlayers = {};
+		GetGame().GetPlayerManager().GetPlayers(outPlayers);
+
+		SCR_RespawnSystemComponent respSystemComp = SCR_RespawnSystemComponent.GetInstance();
+		foreach (int pid : outPlayers)
+		{
+			FactionKey playerFactionKey = respSystemComp.GetPlayerFaction(pid).GetFactionKey();
+			if (playerFactionKey == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1);
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -445,21 +483,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		SCR_PopUpNotification popUpNotif = SCR_PopUpNotification.GetInstance();
 		popUpNotif.PopupMsg(message, duration, message2);
     }
-	
-	//------------------------------------------------------------------------------------------------
-	void UpdateMHQSpawnPoint(RplId spId, vector pos)
-	{
-        Rpc(RpcDo_UpdateMHQSpawnPoint, spId, pos);
-	}
 
-	//------------------------------------------------------------------------------------------------
-	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcDo_UpdateMHQSpawnPoint(RplId spId, vector pos)
-    {
-		SCR_SpawnPoint sp = SCR_SpawnPoint.Cast(Replication.FindItem(spId));
-		sp.SetOrigin(pos);
-    }
-	
 	//------------------------------------------------------------------------------------------------
 	void addAgentToGroup(int playerId, RplId unitRplId)
 	{
@@ -511,8 +535,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		
 		PlayerController pc = GetGame().GetPlayerController();
 		FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 		
-		setPriority(affiliationComp.GetAffiliatedFaction().GetFactionKey(), town.getTownName());
+		netComp.setPriorityServer(affiliationComp.GetAffiliatedFaction().GetFactionKey(), town.getTownName());
 
 		auto menuManager = GetGame().GetMenuManager();
 		menuManager.CloseAllMenus();
