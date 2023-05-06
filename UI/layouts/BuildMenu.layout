@@ -67,7 +67,7 @@ FrameWidgetClass {
          Slot ButtonWidgetSlot "{5A570611CC524AED}" {
          }
          Color 0.173 0.129 0 1
-         Text "Add Worker [$300]"
+         Text "Add Worker"
         }
        }
       }

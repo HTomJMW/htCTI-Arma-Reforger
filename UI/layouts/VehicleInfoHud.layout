@@ -31,6 +31,7 @@ FrameWidgetClass {
       SizeY 110
       OffsetBottom -120
      }
+     Text "Vehicle Name"
      "Font Size" 18
      "Min Font Size" 18
      "Horizontal Alignment" Right
@@ -47,6 +48,7 @@ FrameWidgetClass {
       SizeY 25
       OffsetBottom -150
      }
+     Text "Vehicle Fuel"
      "Font Size" 18
      "Min Font Size" 18
      "Horizontal Alignment" Right
@@ -64,6 +66,7 @@ FrameWidgetClass {
       SizeY 25
       OffsetBottom -175
      }
+     Text "Vehicle Damage"
      "Font Size" 18
      "Min Font Size" 18
      "Horizontal Alignment" Right
@@ -81,6 +84,7 @@ FrameWidgetClass {
       SizeY 155
       OffsetBottom -340
      }
+     Text ""
      "Font Size" 14
      "Min Font Size" 10
      "Horizontal Alignment" Right

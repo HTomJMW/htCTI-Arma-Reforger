@@ -48,6 +48,23 @@ FrameWidgetClass {
       OffsetBottom -600
      }
      {
+      RichTextWidgetClass "{5D391200D20114F4}" {
+       Name "CurrentUpgrade"
+       Slot FrameWidgetSlot "{5D391200D2011511}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 560
+        OffsetTop 560
+        SizeX 380
+        OffsetRight -390
+        OffsetBottom -590
+       }
+       Clipping True
+       Text "Current Upgrade: No Running Upgrade!"
+       "Font Size" 20
+       "Min Font Size" 20
+       "Vertical Alignment" Center
+      }
       OverlayWidgetClass "{5A8F1305463D7A0A}" {
        Name "ListBox"
        Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
@@ -58,8 +75,8 @@ FrameWidgetClass {
         OffsetTop 10
         SizeX 380
         OffsetRight -390
-        SizeY 580
-        OffsetBottom -590
+        SizeY 540
+        OffsetBottom -550
        }
        components {
         SCR_ListBoxComponent "{566C9415BAA54E1B}" {

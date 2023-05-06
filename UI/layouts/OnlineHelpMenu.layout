@@ -59,13 +59,13 @@ FrameWidgetClass {
         OffsetRight -395
         OffsetBottom -285
        }
-       Color 1 1 1 0.039
        {
         RichTextWidgetClass "{5B090B9FCBAF52E0}" {
          Name "CreditsText"
          Slot ButtonWidgetSlot "{5B090B9FCBAF52F9}" {
           HorizontalAlign 0
          }
+         Color 0.171 0.13 0 1
          Text "Credits"
          "Font Size" 22
          "Min Font Size" 22
@@ -84,13 +84,13 @@ FrameWidgetClass {
         OffsetRight -395
         OffsetBottom -250
        }
-       Color 1 1 1 0.039
        {
         RichTextWidgetClass "{5B090B9766B7183C}" {
          Name "MapText"
          Slot ButtonWidgetSlot "{5B090B9766B71851}" {
           HorizontalAlign 0
          }
+         Color 0.171 0.13 0 1
          Text "Map"
          "Font Size" 22
          "Min Font Size" 22
@@ -110,13 +110,13 @@ FrameWidgetClass {
         SizeY 30
         OffsetBottom -215
        }
-       Color 1 1 1 0.039
        {
         RichTextWidgetClass "{5B08071B067A2C3F}" {
          Name "EconomyText"
          Slot ButtonWidgetSlot "{5B08071B067A2C53}" {
           HorizontalAlign 0
          }
+         Color 0.171 0.13 0 1
          Text "Economy"
          "Font Size" 22
          "Min Font Size" 22
@@ -136,13 +136,13 @@ FrameWidgetClass {
         SizeY 30
         OffsetBottom -180
        }
-       Color 1 1 1 0.039
        {
         RichTextWidgetClass "{5B08071B0803FBDD}" {
          Name "CommanderText"
          Slot ButtonWidgetSlot "{5B08071B0803FBF5}" {
           HorizontalAlign 0
          }
+         Color 0.171 0.13 0 1
          Text "Commander"
          "Font Size" 22
          "Min Font Size" 22
@@ -162,13 +162,13 @@ FrameWidgetClass {
         SizeY 30
         OffsetBottom -145
        }
-       Color 1 1 1 0.039
        {
         RichTextWidgetClass "{5B08071B0AF62B23}" {
          Name "BaseText"
          Slot ButtonWidgetSlot "{5B08071B0AF62B44}" {
           HorizontalAlign 0
          }
+         Color 0.171 0.13 0 1
          Text "Base"
          "Font Size" 22
          "Min Font Size" 22
@@ -187,13 +187,13 @@ FrameWidgetClass {
         OffsetRight -395
         OffsetBottom -110
        }
-       Color 1 1 1 0.039
        {
         RichTextWidgetClass "{5B08071B0CF458A9}" {
          Name "WelcomeScreenText"
          Slot ButtonWidgetSlot "{5B08071B0CF458C9}" {
           HorizontalAlign 0
          }
+         Color 0.171 0.13 0 1
          Text "Welcome Screen"
          "Font Size" 22
          "Min Font Size" 18

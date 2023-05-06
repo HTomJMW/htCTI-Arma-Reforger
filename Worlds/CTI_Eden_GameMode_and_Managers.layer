@@ -228,6 +228,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_UpdateVictoryComponent "{59C56020BFAD9417}" {
   }
+  SCR_CTI_UpdateWorkersComponent "{5D491BCB8B2A53E7}" {
+  }
   SCR_CTI_UpgradeComponent "{5A994C801F61E5A6}" {
   }
   SCR_CTI_WeatherAndTimeComponent "{59F94111F4BBAD91}" {
@@ -238,25 +240,35 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_DestructionManagerComponent "{599D2332BE7B4618}" {
   }
-  SCR_GameOverScreenManagerComponent "{599D2332B59C3B6D}" {
-   m_GameOverScreenConfig SCR_GameOverScreenConfig "{5C4F5C4EEA408BEC}" {
+  SCR_GameOverScreenManagerComponent "{5D2333A2A387D4E3}" {
+   m_GameOverScreenConfig SCR_GameOverScreenConfig "{5D2333A2926A7F0E}" {
     m_aGameOverScreens {
-     SCR_FactionGameOverScreenInfo "{5C4F5C4EE58F9B39}" {
-      m_GameOverScreenId EDITOR_FACTION_VICTORY
-      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
-      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5C5D2A2F99B72664}" {
-      }
-      m_OptionalEditorParams SCR_BaseGameOverScreenInfoEditor "{5C5D2A2F97CB3524}" {
-       m_MirroredState EDITOR_FACTION_DEFEAT
+     SCR_FactionGameOverScreenInfo "{5D250EFB129F83A0}" {
+      m_GameOverContentLayout "{E04021BC742BE432}UI/layouts/HUD/GameOver/EndScreen/EndScreenContent_Default.layout"
+      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5D250EFB08758783}" {
+       m_sTitle "GAME OVER"
       }
      }
-     SCR_FactionGameOverScreenInfo "{5C4F5C4FA7B320E2}" {
-      m_GameOverScreenId EDITOR_FACTION_DEFEAT
-      m_GameOverContentLayout "{2436D0BF3FCE6C84}UI/layouts/HUD/GameOver/GameOver_Base.layout"
-      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5C5D2A2F8763F632}" {
+     SCR_FactionGameOverScreenInfo "{5D250EFB768E27E7}" {
+      m_GameOverScreenId FACTION_VICTORY_SCORE
+      m_GameOverContentLayout "{E04021BC742BE432}UI/layouts/HUD/GameOver/EndScreen/EndScreenContent_Default.layout"
+      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5D250EFB51D12F6B}" {
+       m_sTitle "TEAM WON!"
+       m_sSubtitle "GAME OVER"
       }
-      m_OptionalEditorParams SCR_BaseGameOverScreenInfoEditor "{5C5D2A2F8691EB06}" {
-       m_MirroredState EDITOR_FACTION_VICTORY
+      m_OptionalEditorParams SCR_BaseGameOverScreenInfoEditor "{5D250EFCB50F2DD8}" {
+       m_MirroredState FACTION_DEFEAT_SCORE
+      }
+     }
+     SCR_FactionGameOverScreenInfo "{5D250EFB6656CA5A}" {
+      m_GameOverScreenId FACTION_DEFEAT_SCORE
+      m_GameOverContentLayout "{E04021BC742BE432}UI/layouts/HUD/GameOver/EndScreen/EndScreenContent_Default.layout"
+      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5D250EFB4F0BA802}" {
+       m_sTitle "TEAM WON!"
+       m_sSubtitle "GAME OVER"
+      }
+      m_OptionalEditorParams SCR_BaseGameOverScreenInfoEditor "{5D250EFCB8F7E945}" {
+       m_MirroredState FACTION_VICTORY_SCORE
       }
      }
     }
@@ -307,7 +319,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger CTI [htCTI 0.5.7.4]"
+     Name "Arma Reforger CTI [htCTI 0.5.8.0]"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -418,42 +430,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
     }
     coords 4431.466 5.781 11225.717
     angleY 180
-   }
-  }
-  $grp SCR_SpawnPoint {
-   SpawnPointSouth {
-    components {
-     Hierarchy "{599D232B8EFA58E1}" {
-     }
-     SCR_MapDescriptorComponent "{599D232B8ABFA257}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{599D232B87E7AC11}" {
-     }
-    }
-    coords 10052.016 2.54 1566.471
-    m_fSpawnRadius 8
-    m_fNoPlayerRadius 0.5
-    m_fNoSightRadius 0
-    m_sFaction "USSR"
-   }
-   SpawnPointNorth {
-    components {
-     Hierarchy "{599D232BEFD89A08}" {
-     }
-     SCR_MapDescriptorComponent "{599D232BEA17C855}" {
-      DisplayName "Spawn Point"
-      MainType Spawnpoint
-     }
-     RplComponent "{599D232BED1FD16A}" {
-     }
-    }
-    coords 4446.115 5.749 11189.89
-    m_fSpawnRadius 8
-    m_fNoPlayerRadius 0.5
-    m_fNoSightRadius 0
-    m_sFaction "US"
    }
   }
  }
@@ -583,7 +559,7 @@ TagManager {
 }
 BasePreloadManager BasePreloadManager1 {
  PrefabsToPreload {
-  "{A67BF65F89A1905B}Prefabs/Characters/CTI/Final/CTI_USSR_Player.et" "{9CD96027671E949D}Prefabs/Characters/CTI/Final/CTI_US_Player.et" "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et" "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et" "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" "{4A71F755A4513227}Prefabs/Vehicles/Wheeled/M998/M1025.et" "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et" "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" "{C012BB3488BEA0C2}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et"
+  "{A67BF65F89A1905B}Prefabs/Characters/CTI/Final/CTI_USSR_Player.et" "{9CD96027671E949D}Prefabs/Characters/CTI/Final/CTI_US_Player.et" "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et" "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et" "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" "{4A71F755A4513227}Prefabs/Vehicles/Wheeled/M998/M1025.et" "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et" "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" "{C012BB3488BEA0C2}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et" "{3336BE330C4F355B}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_ammo.et" "{80065564D96D231C}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_fuel.et" "{A5647958579A4149}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_repair.et" "{B39D34B9D0DCB9A9}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_medical.et" "{92264FF932676C13}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo.et" "{2116A4AEE7457A54}Prefabs/Vehicles/Wheeled/M923A1/M923A1_fuel.et" "{A042ACE5C2B13206}Prefabs/Vehicles/Wheeled/M923A1/M923A1_repair.et" "{9E8B0E825C072CE5}Prefabs/Vehicles/Wheeled/M923A1/M923A1_medical.et"
  }
 }
 GarbageManager {
