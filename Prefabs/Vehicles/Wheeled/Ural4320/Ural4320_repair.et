@@ -1,0 +1,172 @@
+Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  MeshObject "{51DAA09FEFBFC0E7}" {
+   Materials {
+    MaterialAssignClass "{5D1F2DDCCDD49731}" {
+     SourceMaterial "Ural_Body"
+     AssignedMaterial "{0D53374A13A22A05}Assets/Vehicles/Wheeled/Ural4320/Data/Ural_4320_repair_cabin.emat"
+    }
+   }
+   LODFactors {
+    4 1 0.5 0.1 0.1
+   }
+  }
+  RigidBody "{51DAA09FECF52BBF}" {
+   Mass 9570
+   CenterOfMass 0 0.2 -0.3
+  }
+  SCR_CTI_VehicleCustomVariablesComponent "{5D20D99D95E4118A}" {
+   supportVehicleType REPAIR
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
+    Name "Ural-4320 Repair Truck"
+    Icon "{69691B5E759C0362}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Truck_Command.edds"
+    m_Image "{50433C12B67E23CB}UI/Textures/EditorPreviews/Vehicles/Wheeled/Ural4320/Ural4320_command.edds"
+    m_sFaction "USSR"
+    m_aAuthoredLabels + {
+     35
+    }
+    m_aAutoLabels +{
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{56FCFAC023BAA80E}" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{5D1F2DDCA2881D65}" {
+     m_iParentID -1
+     m_Mesh "{06C865EC0B9277E5}Assets/Vehicles/Wheeled/Ural4320/Ural_4320_base.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA2881D67}" {
+     m_iParentID 0
+     m_Mesh "{FD87CC456FF18EAB}Assets/Vehicles/Wheeled/Ural4320/Ural_4320_com.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA2881D61}" {
+     m_iParentID 0
+     m_Mesh "{A25F28B1C7E3AB02}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA2881D63}" {
+     m_iParentID 0
+     m_Mesh "{3B419128DA049A92}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_02.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_l01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA2881D62}" {
+     m_iParentID 0
+     m_Mesh "{4C4BF9A02EA675E2}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_03.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_l01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA2888493}" {
+     m_iParentID 0
+     m_Mesh "{4B8C03F14820CF21}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_04.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA288849E}" {
+     m_iParentID 0
+     m_Mesh "{3C866B79BC822051}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_05.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA288849F}" {
+     m_iParentID 0
+     m_Mesh "{29F85CB88D55707A}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_06.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA2888498}" {
+     m_iParentID 0
+     m_Mesh "{5EF2343079F79F0A}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_07.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA2888499}" {
+     m_iParentID 0
+     m_Mesh "{AA1726426C686447}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_08.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_r01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1F2DDCA288849A}" {
+     m_iParentID 0
+     m_Mesh "{DD1D4ECA98CA8B37}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_09.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_r01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  VehiclePerceivableComponent "{566CD04B8A6107DD}" {
+   "Additional aim points" {
+    AimPoint "{5A44DB0B1645E80A}" : "{94ED6806120FB600}Prefabs/Vehicles/Core/Configs/AimPoints/AimPoint_Hull_Truck.conf" {
+     AimPointPosition PointInfo "{5A44DB148C16BF03}" {
+      Offset 0 2.25 -1.5
+     }
+    }
+   }
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo Radio {
+     Prefab "{D9C7B82F567BA500}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_combox.et"
+     RegisterActions 1
+     RegisterDamage 1
+     RegisterCompartments 1
+     RegisterLights 1
+    }
+   }
+  }
+ }
+ m_eVehicleType COMM_TRUCK
+}

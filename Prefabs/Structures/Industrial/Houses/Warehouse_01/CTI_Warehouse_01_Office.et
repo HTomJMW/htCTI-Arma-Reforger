@@ -3,7 +3,12 @@ SCR_DestructibleBuildingEntity : "{E35EA41864A3B0ED}Prefabs/Structures/Industria
  components {
   FactionAffiliationComponent "{5CDF080E5F09B67B}" {
   }
-  SCR_CTI_BuildingMapDescriptorComponent "{5CDF080E5960B256}" {
+  SlotManagerComponent "{5D2E000BE7FD46DF}" {
+   Slots {
+    EntitySlotInfo BuildingMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+   }
   }
  }
  coords -24.095 -17.191 79.787

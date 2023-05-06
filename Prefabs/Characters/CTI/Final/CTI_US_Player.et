@@ -36,9 +36,17 @@ SCR_ChimeraCharacter : "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_
   SCR_GadgetManagerComponent "{520EA1D2DB118DF3}" {
   }
   SCR_MapDescriptorComponent "{5CF319E9A3D62F36}" {
+   Enabled 0
    VisibleOnMap 0
    MainType Unit
    UnitType Infantry
+  }
+  SlotManagerComponent "{5D2D62AF1ADF2C80}" {
+   Slots {
+    EntitySlotInfo CTI_PlayerMarker {
+     Prefab "{BCCE785A6FFC300B}Prefabs/Markers/CTI_PlayerMarker.et"
+    }
+   }
   }
  }
  coords 536.391 0.985 843.914

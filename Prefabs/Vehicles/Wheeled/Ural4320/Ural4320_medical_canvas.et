@@ -1,0 +1,22 @@
+GenericEntity : "{58B3FB7F102A8B1B}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_cargo.et" {
+ ID "4B42E71698F5739C"
+ components {
+  SlotManagerComponent "{5D1EEC38303B8402}" {
+   Slots {
+    RegisteringComponentSlotInfo Canvas {
+     Prefab "{646748182FC86782}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_medical_canvas_redcross.et"
+     RegisterDamage 1
+    }
+   }
+   SlotMappers {
+    CompartmentToSlotMapping Canvas {
+     SlotName "Canvas"
+     Coverage 0.6
+     Compartments {
+      "Passenger_l02" "Passenger_r02" "Passenger_l03" "Passenger_r03" "Passenger_l04" "Passenger_r04" "Passenger_l05" "Passenger_r05" "Passenger_l06" "Passenger_r06" "Passenger_l07" "Passenger_r07"
+     }
+    }
+   }
+  }
+ }
+}

@@ -44,7 +44,12 @@ SCR_DestructibleBuildingEntity : "{A43A100E3C377DB2}Prefabs/Structures/Core/Buil
    ModelGeometry 1
    Static 1
   }
-  SCR_CTI_BuildingMapDescriptorComponent "{5CDF080E16F4E8B4}" {
+  SlotManagerComponent "{5D2E000A775264BD}" {
+   Slots {
+    EntitySlotInfo BuildingMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+   }
   }
  }
  coords 1400.296 9.892 2887.337

@@ -3,10 +3,15 @@ StaticModelEntity : "{01E409EF2B75692E}Prefabs/Structures/Infrastructure/Towers/
  components {
   FactionAffiliationComponent "{5CDF080E49A0A1BC}" {
   }
-  SCR_CTI_BuildingMapDescriptorComponent "{5CDF080E4A75EF63}" {
-  }
   SCR_MapDescriptorComponent "{59F4D7DB7F2C40FE}" {
    Enabled 0
+  }
+  SlotManagerComponent "{5D2E000BC72EE487}" {
+   Slots {
+    EntitySlotInfo BuildingMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+   }
   }
  }
 }

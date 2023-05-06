@@ -6,12 +6,22 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
   }
   SCR_CTI_MHQLockComponent "{5AE568D7E21912C5}" {
   }
-  SCR_CTI_MHQMapDescriptorComponent "{5ADF3C1C3E62A92E}" {
-   DisplayName "MHQ"
-   Faction 1
-   Priority 0
+  SCR_CTI_VehicleCustomVariablesComponent "{5D20D99DAECBEAAB}" {
+   supportVehicleType MHQ
   }
-  SCR_CTI_MHQSpawnPointComponent "{5B2297F4B7804B8D}" {
+  SCR_CTI_VehicleSpawnPointHandlerComponent "{5D215320EC3C673B}" {
+  }
+  SCR_MapDescriptorComponent "{5D2B29C363D0B141}" {
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo SpawnPoint {
+     Prefab "{4FEA25583D0975F7}Prefabs/MP/Spawning/SpawnPoint_USSR.et"
+    }
+    EntitySlotInfo MHQMarker {
+     Prefab "{B0E1C0F7839C3F24}Prefabs/Markers/CTI_MHQMarker.et"
+    }
+   }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {

@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{A5A2704A95BDE8FC}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_ammo_canvas_explosive.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

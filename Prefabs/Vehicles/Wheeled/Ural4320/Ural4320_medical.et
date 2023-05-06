@@ -1,0 +1,165 @@
+Vehicle : "{16C1F16C9B053801}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  SCR_CTI_VehicleCustomVariablesComponent "{5D20D065822A0239}" {
+   supportVehicleType MEDICAL
+  }
+  SCR_CTI_VehicleSpawnPointHandlerComponent "{5D2153241D340E5B}" {
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
+    Name "Ural-4320 Medical Truck"
+    m_Image "{28228C9DFBB5FEAB}UI/Textures/EditorPreviews/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.edds"
+    m_sFaction "USSR"
+    m_aAuthoredLabels +{
+    }
+    m_aAutoLabels +{
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{56FCFAC023BAA80E}" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{5D1EEC38EE105D1A}" {
+     m_iParentID -1
+     m_Mesh "{06C865EC0B9277E5}Assets/Vehicles/Wheeled/Ural4320/Ural_4320_base.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D24}" {
+     m_iParentID 0
+     m_Mesh "{25E0A2F2CC535076}Assets/Vehicles/Wheeled/Ural4320/Ural_4320_cargo.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D27}" {
+     m_iParentID 1
+     m_Mesh "{E4D72AFA916A4396}Assets/Vehicles/Wheeled/Ural4320/Ural_4320_canvas.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D26}" {
+     m_iParentID 0
+     m_Mesh "{A25F28B1C7E3AB02}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D21}" {
+     m_iParentID 0
+     m_Mesh "{3B419128DA049A92}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_02.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_l01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D20}" {
+     m_iParentID 0
+     m_Mesh "{4C4BF9A02EA675E2}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_03.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_l01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D23}" {
+     m_iParentID 0
+     m_Mesh "{4B8C03F14820CF21}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_04.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D22}" {
+     m_iParentID 0
+     m_Mesh "{3C866B79BC822051}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_05.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D2D}" {
+     m_iParentID 0
+     m_Mesh "{29F85CB88D55707A}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_06.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE105D2C}" {
+     m_iParentID 0
+     m_Mesh "{5EF2343079F79F0A}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_07.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE1062B2}" {
+     m_iParentID 0
+     m_Mesh "{AA1726426C686447}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_08.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_r01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1EEC38EE1062B7}" {
+     m_iParentID 0
+     m_Mesh "{DD1D4ECA98CA8B37}Assets/Vehicles/Wheeled/Ural4320/Dst/Ural4320_window_09.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_r01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  SCR_UniversalInventoryStorageComponent "{5916C58171230A92}" {
+   Attributes SCR_ItemAttributeCollection "{5916C58172622508}" {
+    CustomAttributes {
+     PreviewRenderAttributes "{5916C5816492028E}" {
+     }
+    }
+   }
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo Cargo {
+     Prefab "{D18E112DF252A5AD}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_medical_canvas.et"
+     RegisterLights 1
+    }
+    RegisteringComponentSlotInfo SpawnPoint {
+     Prefab "{4FEA25583D0975F7}Prefabs/MP/Spawning/SpawnPoint_USSR.et"
+    }
+   }
+  }
+ }
+}

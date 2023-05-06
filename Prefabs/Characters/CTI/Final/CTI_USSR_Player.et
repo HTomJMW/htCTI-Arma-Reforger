@@ -36,10 +36,18 @@ SCR_ChimeraCharacter : "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR
   SCR_GadgetManagerComponent "{520EA1D2DB118DF3}" {
   }
   SCR_MapDescriptorComponent "{5CF319E99165E327}" {
+   Enabled 0
    DisplayName ""
    VisibleOnMap 0
    MainType Unit
    UnitType Infantry
+  }
+  SlotManagerComponent "{5D2D62AF7F302290}" {
+   Slots {
+    EntitySlotInfo CTI_PlayerMarker {
+     Prefab "{BCCE785A6FFC300B}Prefabs/Markers/CTI_PlayerMarker.et"
+    }
+   }
   }
  }
  coords 535.865 0.985 843.547

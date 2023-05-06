@@ -1,0 +1,146 @@
+Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  MeshObject "{51DAA09FEFBFC0E7}" {
+   Materials {
+    MaterialAssignClass "{5D1F42744850CFEA}" {
+     SourceMaterial "M923A1_Base"
+     AssignedMaterial "{839FC697791AB3EB}Assets/Vehicles/Wheeled/M923A1/Data/M923A1_Base_repair.emat"
+    }
+    MaterialAssignClass "{5D1F42744850F00C}" {
+     SourceMaterial "M923A1_Base_Details"
+     AssignedMaterial "{B76F30EFC857FEDA}Assets/Vehicles/Wheeled/M923A1/Data/M923A1_Base_Details_repair.emat"
+    }
+   }
+  }
+  RigidBody "{51DAA09FECF52BBF}" {
+   Mass 11402
+   CenterOfMass 0 0.2 -1.4
+   LinearDamping 0.011
+   AngularDamping 0.011
+  }
+  SCR_CTI_VehicleCustomVariablesComponent "{5D20D89DE9398166}" {
+   supportVehicleType REPAIR
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
+    Name "M934A1 Repair Truck"
+    Icon "{69691B5E759C0362}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Truck_Command.edds"
+    IconSetName ""
+    m_Image "{ADF5342179CB2029}UI/Textures/EditorPreviews/Vehicles/Wheeled/M923A1/M923A1_command.edds"
+    m_sFaction "US"
+    m_aAuthoredLabels + {
+     35
+    }
+    m_aAutoLabels +{
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{56FCFAC01565651D}" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{5D1E994B03EEEF05}" {
+     m_iParentID -1
+     m_Mesh "{DF7CF60669EFC7E5}Assets/Vehicles/Wheeled/M923A1/M923A1_BASE.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1E994B03EEEF00}" {
+     m_iParentID 0
+     m_Mesh "{4EE69C10EAB64B35}Assets/Vehicles/Wheeled/M923A1/M923A1_COM.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1E994B03EEEF03}" {
+     m_iParentID 0
+     m_Mesh "{3EDD13326D1756CA}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Right.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_r01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1E994B03EEEF0D}" {
+     m_iParentID 0
+     m_Mesh "{815BAF9547C41A48}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Left.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_l01"
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1E994B03EEEF0C}" {
+     m_iParentID 0
+     m_Mesh "{CF5DA3DD8C0F1630}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Back_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1E994B03EEEF0F}" {
+     m_iParentID 0
+     m_Mesh "{56431A4491E827A0}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Back_02.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1E994B03EEEF09}" {
+     m_iParentID 0
+     m_Mesh "{2084927666A41EA9}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Front_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D1E994B03EEEF0B}" {
+     m_iParentID 0
+     m_Mesh "{B99A2BEF7B432F39}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Front_02.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_fScale 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  VehiclePerceivableComponent "{566CD04B8A6107DD}" {
+   "Additional aim points" {
+    AimPoint "{5A44DB098ADDB55E}" : "{94ED6806120FB600}Prefabs/Vehicles/Core/Configs/AimPoints/AimPoint_Hull_Truck.conf" {
+     AimPointPosition PointInfo "{5A44DB148C16BF03}" {
+      Offset 0 2.25 -2.25
+     }
+    }
+   }
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo Radio {
+     Prefab "{DCE16D92C350D64F}Prefabs/Vehicles/Wheeled/M923A1/M923A1_combox.et"
+     RegisterActions 1
+     RegisterDamage 1
+     RegisterCompartments 1
+     RegisterLights 1
+    }
+   }
+  }
+ }
+ m_eVehicleType COMM_TRUCK
+}

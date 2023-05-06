@@ -3,7 +3,12 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
  components {
   FactionAffiliationComponent "{5CDF080DBA78F7E5}" {
   }
-  SCR_CTI_BuildingMapDescriptorComponent "{5CDF080DB7C17669}" {
+  SlotManagerComponent "{5D2E000B2B668903}" {
+   Slots {
+    EntitySlotInfo BuildingMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+   }
   }
  }
  coords 1243.149 0.011 2892.502

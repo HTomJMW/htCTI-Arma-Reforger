@@ -6,12 +6,22 @@ Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
   }
   SCR_CTI_MHQLockComponent "{5AE568D7D646A473}" {
   }
-  SCR_CTI_MHQMapDescriptorComponent "{5ADF3C1CDF970E0D}" {
-   DisplayName "MHQ"
-   Faction 2
-   Priority 0
+  SCR_CTI_VehicleCustomVariablesComponent "{5D20D89D8CB3F804}" {
+   supportVehicleType MHQ
   }
-  SCR_CTI_MHQSpawnPointComponent "{5B2297F4A70D04F3}" {
+  SCR_CTI_VehicleSpawnPointHandlerComponent "{5D21532478600D89}" {
+  }
+  SCR_MapDescriptorComponent "{5D2B29C372C85E7D}" {
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo SpawnPoint {
+     Prefab "{5A2220DD0C16958B}Prefabs/MP/Spawning/SpawnPoint_US.et"
+    }
+    EntitySlotInfo MHQMarker {
+     Prefab "{B0E1C0F7839C3F24}Prefabs/Markers/CTI_MHQMarker.et"
+    }
+   }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {

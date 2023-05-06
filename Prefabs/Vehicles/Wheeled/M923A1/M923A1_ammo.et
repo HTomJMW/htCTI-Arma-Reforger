@@ -1,0 +1,20 @@
+Vehicle : "{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  SCR_CTI_VehicleCustomVariablesComponent "{5D20D89DA491E516}" {
+   supportVehicleType AMMO
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
+    Name "M923A1 Ammo Truck"
+   }
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo Cargo {
+     Prefab "{420D8812D22F5398}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo_canvas.et"
+    }
+   }
+  }
+ }
+}

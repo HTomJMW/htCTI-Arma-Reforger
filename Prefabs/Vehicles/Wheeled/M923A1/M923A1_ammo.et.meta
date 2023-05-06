@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{92264FF932676C13}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

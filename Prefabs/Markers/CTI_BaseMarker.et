@@ -6,6 +6,7 @@ SCR_CTI_BaseMarker {
   SCR_MapDescriptorComponent "{5CAF1EBFF478246A}" {
   }
   RplComponent "{5ADB3816A9C73B12}" {
+   Streamable Disabled
   }
  }
 }

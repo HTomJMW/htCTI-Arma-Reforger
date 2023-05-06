@@ -1,0 +1,12 @@
+SCR_CTI_MHQMarker {
+ ID "5D2D4BCA21AD805F"
+ components {
+  Hierarchy "{5D2D4BCA21AD8065}" {
+  }
+  SCR_MapDescriptorComponent "{5D2D4BCA21AD8060}" {
+  }
+  RplComponent "{5D2D4BCA21AD8062}" {
+   Streamable Disabled
+  }
+ }
+}

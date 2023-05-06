@@ -3,7 +3,12 @@ SCR_DestructibleBuildingEntity : "{74CBD673D67C58FF}Prefabs/Structures/Industria
  components {
   FactionAffiliationComponent "{5CDF080E70998AE7}" {
   }
-  SCR_CTI_BuildingMapDescriptorComponent "{5CDF080E6BB498AA}" {
+  SlotManagerComponent "{5D2E000B8216F188}" {
+   Slots {
+    EntitySlotInfo BuildingMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+   }
   }
  }
  {

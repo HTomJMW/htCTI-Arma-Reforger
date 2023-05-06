@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{9E8B0E825C072CE5}Prefabs/Vehicles/Wheeled/M923A1/M923A1_medical.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

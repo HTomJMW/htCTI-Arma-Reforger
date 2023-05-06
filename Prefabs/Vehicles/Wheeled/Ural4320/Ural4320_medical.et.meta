@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{B39D34B9D0DCB9A9}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_medical.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}
