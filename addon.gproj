@@ -1,8 +1,20 @@
 GameProject {
- ID "htCTI"
+ ID "HTCTI"
  GUID "599D1730B8DC8B51"
- TITLE "htCTI"
+ TITLE "Arma Reforger HTCTI"
  Dependencies {
   "58D0FB3206B6F859"
+ }
+ Configurations {
+  GameProjectConfig PC {
+  }
+  GameProjectConfig XBOX_ONE {
+  }
+  GameProjectConfig XBOX_SERIES {
+  }
+  GameProjectConfig PS4 {
+  }
+  GameProjectConfig HEADLESS {
+  }
  }
 }

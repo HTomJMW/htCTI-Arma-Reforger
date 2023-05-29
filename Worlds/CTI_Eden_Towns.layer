@@ -69,10 +69,12 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 9696.289 13.559 1546.774
   m_townName "ST. Pierre"
+  m_townValue 300
   {
    SCR_CTI_ActivationArea ActivationArea0 {
     components {
@@ -177,6 +179,7 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 4928.005 36.157 9125.537
@@ -284,6 +287,7 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 4132.306 36.308 7833.822
@@ -391,10 +395,12 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 4713.431 161.677 6978.969
   m_townName "Montignac"
+  m_townValue 350
   {
    SCR_CTI_ActivationArea ActivationArea4 {
     components {
@@ -498,10 +504,12 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 1299.932 38.09 6033.668
   m_townName "Lamentin"
+  m_townValue 300
   {
    SCR_CTI_ActivationArea ActivationArea5 {
     components {
@@ -605,6 +613,7 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 2605.381 94.163 5415.463
@@ -712,6 +721,7 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 5477.503 95.806 6087.412
@@ -819,6 +829,7 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 7082.966 118.979 6020.249
@@ -926,10 +937,12 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 5123.634 15.628 3992.189
   m_townName "Morton"
+  m_townValue 350
   {
    SCR_CTI_ActivationArea ActivationArea9 {
     components {
@@ -1033,6 +1046,7 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 7460.326 136.995 4737.408
@@ -1140,6 +1154,7 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 7193.561 136.957 2333.68
@@ -1247,10 +1262,12 @@ $grp SCR_CTI_Town {
     }
    }
    RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
    }
   }
   coords 4517.271 13.726 10892.203
   m_townName "ST. Philippe"
+  m_townValue 300
   {
    SCR_CTI_ActivationArea ActivationArea1 {
     components {

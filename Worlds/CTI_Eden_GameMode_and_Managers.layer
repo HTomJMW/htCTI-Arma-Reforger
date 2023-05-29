@@ -213,6 +213,11 @@ SCR_AIWorld SCR_AIWorld_1 {
 PerceptionManager PerceptionManager1 {
 }
 RadioManagerEntity {
+ components {
+  RplComponent "{5D512360B60F961C}" {
+   Streamable Disabled
+  }
+ }
 }
 SCR_CTI_GameMode SCR_CTI_GameMode1 {
  components {
@@ -221,6 +226,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_ArsenalManagerComponent "{5ABEACFA6416EBAE}" {
   }
   SCR_CTI_BaseComponent "{5AA31079657C4391}" {
+  }
+  SCR_CTI_BuildQueueComponent "{5D6F4D21A5010334}" {
   }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
@@ -243,12 +250,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_GameOverScreenManagerComponent "{5D2333A2A387D4E3}" {
    m_GameOverScreenConfig SCR_GameOverScreenConfig "{5D2333A2926A7F0E}" {
     m_aGameOverScreens {
-     SCR_FactionGameOverScreenInfo "{5D250EFB129F83A0}" {
-      m_GameOverContentLayout "{E04021BC742BE432}UI/layouts/HUD/GameOver/EndScreen/EndScreenContent_Default.layout"
-      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5D250EFB08758783}" {
-       m_sTitle "GAME OVER"
-      }
-     }
      SCR_FactionGameOverScreenInfo "{5D250EFB768E27E7}" {
       m_GameOverScreenId FACTION_VICTORY_SCORE
       m_GameOverContentLayout "{E04021BC742BE432}UI/layouts/HUD/GameOver/EndScreen/EndScreenContent_Default.layout"
@@ -284,21 +285,24 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    m_initialWeatherDurationMin 0.5
    m_initialWeatherDurationMax 1
   }
+  SCR_MapConfigComponent "{5D5B284A9D986625}" {
+  }
   SCR_NametagConfigComponent "{599D233287C00C43}" {
    m_sConfigPath "{09F7AAA14A642683}Configs/NameTags/NametagFriendlies.conf"
   }
   SCR_NotificationSenderComponent "{599D2332FB47300E}" {
    m_iKillFeedType FULL
    m_iReceiveKillFeedType ALL
+   m_PlayerKickReasonsConfig SCR_ConfigurableDialogUiPresets "{5D5B37907751A19E}" {
+   }
   }
   SCR_NotificationsComponent "{59FCE5766A58DA26}" {
   }
   SCR_PlayerPenaltyComponent "{599D2332EB47F0E5}" {
-   m_iFriendlyPlayerKillPenalty 3
-   m_iFriendlyAIKillPenalty 5
-   m_iKickPenaltyLimit 6
-   m_iBanDuration 1800
-   m_iPenaltySubstractionPeriod 900
+   m_iFriendlyPlayerKillPenalty 1
+   m_iFriendlyAIKillPenalty 1
+   m_iBanDuration 900
+   m_iPenaltySubstractionPeriod 600
    m_iPenaltySubstractionPoints 2
   }
   SCR_PlayerProfileManagerComponent "{599D2332D6B40944}" {
@@ -306,6 +310,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_PlayerSpawnPointManagerComponent "{599D2332C84C980E}" {
    Enabled 0
    m_SpawnPointPrefab "{F6CAD21EDD2D1964}Prefabs/MP/Spawning/PlayerSpawnPoint.et"
+   m_bEnablePlayerSpawnPoints 0
   }
   SCR_PlayersRestrictionZoneManagerComponent "{599D23321AF91056}" {
    Enabled 0
@@ -319,7 +324,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger CTI [htCTI 0.5.8.0]"
+     Name "Arma Reforger HTCTI v0.5.15"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -335,14 +340,13 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_RespawnMenuHandlerComponent "{599D2332059DB42D}" {
    m_bAllowFactionChange 0
    m_sRespawnUnavailable "No Spawn Points"
-   m_sFactionMenuMessage "Permanent Faction"
   }
   SCR_RespawnSystemComponent "{5ABD5768B956B1B8}" {
   }
   SCR_RespawnTimerComponent "{599D233269C13252}" {
   }
   SCR_SaveLoadComponent "{599D233263F4490B}" {
-   m_iAutosavePeriod 120
+   m_iAutosavePeriod 180
   }
   SCR_ScoringSystemComponent "{59DD0D587CD66AF0}" {
    m_iObjectiveScoreMultiplier 3
@@ -384,50 +388,26 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
  {
   $grp SCR_CTI_VehicleSpawn {
    SpawnVehicleSouth1 {
-    components {
-     RplComponent "{59A919823217702D}" {
-     }
-    }
     coords 10040.9 2.687 1586.133
     angleY -160
    }
    SpawnVehicleSouth2 {
-    components {
-     RplComponent "{59A919822BDB025D}" {
-     }
-    }
     coords 10050.465 2.739 1582.721
     angleY -160
    }
    SpawnVehicleSouth3 {
-    components {
-     RplComponent "{59A919822749B86F}" {
-     }
-    }
     coords 10059.909 2.803 1579.401
     angleY 200
    }
    SpawnVehicleNorth1 {
-    components {
-     RplComponent "{59A91982C0F3E23E}" {
-     }
-    }
     coords 4456.013 5.781 11218.104
     angleY -180
    }
    SpawnVehicleNorth2 {
-    components {
-     RplComponent "{59A919823B89C69D}" {
-     }
-    }
     coords 4446.495 5.812 11217.188
     angleY 180
    }
    SpawnVehicleNorth3 {
-    components {
-     RplComponent "{59A91982356FD0AE}" {
-     }
-    }
     coords 4431.466 5.781 11225.717
     angleY 180
    }
@@ -466,8 +446,6 @@ SCR_FactionManager SCR_FactionManager1 {
    m_sFactionFlag "{B784E694BA4A7D40}UI/Textures/Flags/Everon-flag-base-3it.edds"
    m_CallsignInfo SCR_FactionCallsignInfo "{599D23286B7BEA87}" {
    }
-   m_ArsenalConfig SCR_ArsenalItemListConfig "{599D23286998B211}" {
-   }
   }
   SCR_Faction "{599D233B986EAF40}" {
    FactionKey "USSR"
@@ -495,8 +473,6 @@ SCR_FactionManager SCR_FactionManager1 {
    m_sFactionFlag "{50824EB9F2C215AB}UI/Textures/Flags/USSR-flag-base-3it.edds"
    m_CallsignInfo SCR_FactionCallsignInfo "{599D23285FA119FD}" {
    }
-   m_ArsenalConfig SCR_ArsenalItemListConfig "{599D23285EAFFC0D}" {
-   }
   }
   SCR_Faction "{599D233B904CBDEF}" {
    FactionKey "US"
@@ -523,8 +499,6 @@ SCR_FactionManager SCR_FactionManager1 {
    m_OutlineFactionColor 0.004 0.043 0.114 1
    m_sFactionFlag "{46FB2FB2C2125A3C}UI/Textures/Flags/US-flag-base-3it.edds"
    m_CallsignInfo SCR_FactionCallsignInfo "{599D23285B0ADCA1}" {
-   }
-   m_ArsenalConfig SCR_ArsenalItemListConfig "{599D23285A0E9430}" {
    }
   }
  }
@@ -573,6 +547,11 @@ GarbageManager {
  ItemLifetime 300
 }
 HitRegistrationManager HitRegistrationManager1 {
+ components {
+  RplComponent "{5D5123616844F5FE}" {
+   Streamable Disabled
+  }
+ }
 }
 ItemPreviewManagerEntity ItemPreviewManagerEntity1 {
  PreviewWorld "{4391FE7994EE6FE2}Prefabs/World/Game/InventoryPreviewWorld.et"
@@ -604,6 +583,11 @@ SCR_LoadoutManager {
  }
 }
 SCR_MPDestructionManager {
+ components {
+  RplComponent "{5D51236106A97B48}" {
+   Streamable Disabled
+  }
+ }
 }
 SCR_MapLocator {
 }
