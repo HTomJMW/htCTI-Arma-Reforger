@@ -132,7 +132,7 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 					// Get vehicle rplcomp for data
 					RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
 
-					m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+					m_listboxcomp.AddItem(displayName + " | Damage: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
 				}
 				
 				m_listboxcomp.AddSeparator("_______________________________________________________________________________");
@@ -159,7 +159,7 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 					// Get vehicle rplcomp for data
 					RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
 
-					m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+					m_listboxcomp.AddItem(displayName + " | Damage: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
 				}
 				
 				m_listboxcomp.AddSeparator("_______________________________________________________________________________");
@@ -186,7 +186,7 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 					// Get vehicle rplcomp for data
 					RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
 
-					m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+					m_listboxcomp.AddItem(displayName + " | Damage: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
 				}
 				
 				m_listboxcomp.AddSeparator("_______________________________________________________________________________");
@@ -223,7 +223,7 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 				// Get vehicle rplcomp for data
 				RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
 
-				m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+				m_listboxcomp.AddItem(displayName + " | Damage: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
 			}
 			
 			m_listboxcomp.AddSeparator("_______________________________________________________________________________");
@@ -241,7 +241,7 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 				// Get vehicle rplcomp for data
 				RplComponent rplComp = RplComponent.Cast(vehicle.FindComponent(RplComponent));
 
-				m_listboxcomp.AddItem(displayName + " | Damege: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
+				m_listboxcomp.AddItem(displayName + " | Damage: " + dam + " | Ammo: " + ammo + " | Fuel: " + fu + " | Health: " + health, rplComp);
 			}
 
 			m_listboxcomp.AddSeparator("_______________________________________________________________________________");

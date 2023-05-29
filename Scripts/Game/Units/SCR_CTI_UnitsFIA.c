@@ -208,6 +208,7 @@ class SCR_CTI_UnitsFIA
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UnitsFIA()
 	{
+		if (!g_FIA_Units) return;
 		g_FIA_Units.Clear();
 		g_FIA_Units = null;
 	}

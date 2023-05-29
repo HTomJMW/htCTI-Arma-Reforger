@@ -335,6 +335,7 @@ class SCR_CTI_UnitsUS
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UnitsUS()
 	{
+		if (!g_US_Units) return;
 		g_US_Units.Clear();
 		g_US_Units = null;
 	}

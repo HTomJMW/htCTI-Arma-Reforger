@@ -116,24 +116,28 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_buttonflag.SetEnabled(false);
 		//m_buttonflag.AddHandler(m_buttonEventHandler);
 
-		m_driver.SetEnabled(false);
-		m_driver.SetColor(Color.Gray);
-		//m_driver.AddHandler(m_buttonEventHandler);
-		m_gunner.SetEnabled(false);
-		m_gunner.SetColor(Color.Gray);
-		//m_gunner.AddHandler(m_buttonEventHandler);
-		m_commander.SetEnabled(false);
-		m_commander.SetColor(Color.Gray);
-		//m_commander.AddHandler(m_buttonEventHandler);
-		m_crew.SetEnabled(false);
-		m_crew.SetColor(Color.Gray);
-		//m_crew.AddHandler(m_buttonEventHandler);
-		m_lock.SetEnabled(false);
-		m_lock.SetColor(Color.Gray);
-		//m_lock.AddHandler(m_buttonEventHandler);
-		m_unlock.SetEnabled(false);
-		m_unlock.SetColor(Color.Gray);
-		//m_unlock.AddHandler(m_buttonEventHandler);
+		//m_driver.SetEnabled(false);
+		m_driver.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_driver.AddHandler(m_buttonEventHandler);
+		//m_gunner.SetEnabled(false);
+		m_gunner.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_gunner.AddHandler(m_buttonEventHandler);
+		//m_commander.SetEnabled(false);
+		m_commander.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_commander.AddHandler(m_buttonEventHandler);
+		//m_crew.SetEnabled(false);
+		m_crew.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_crew.AddHandler(m_buttonEventHandler);
+		//m_lock.SetEnabled(false);
+		m_lock.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_lock.AddHandler(m_buttonEventHandler);
+		
+		// Unlock default picked
+		//m_unlock.SetEnabled(false);
+		m_unlock.SetColor(Color.White);
+		ImageWidget children = ImageWidget.Cast(m_unlock.GetChildren());
+		children.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_unlock.AddHandler(m_buttonEventHandler);
 
 		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);

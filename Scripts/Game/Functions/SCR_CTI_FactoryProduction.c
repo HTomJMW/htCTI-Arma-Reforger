@@ -3,8 +3,14 @@ class SCR_CTI_FactoryProduction
 	protected SCR_CTI_GameMode m_gameMode;
 
 	//------------------------------------------------------------------------------------------------
-	void build(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime)
+	void build(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime, CTI_PurchaseInfos purchaseInfo)
 	{
+		SCR_CTI_PurchaseInfoCoder infoCoder = new SCR_CTI_PurchaseInfoCoder();
+		bool driver, gunner, commander, crew, locked;
+		infoCoder.deCode(driver, gunner, commander, crew, locked, purchaseInfo);
+		PrintFormat("%1, %2, %3, %4, %5", driver.ToString(), gunner.ToString(), commander.ToString(), crew.ToString(), locked.ToString());
+		//TODO Man vehicle if need
+
 		RplComponent factRplComp = RplComponent.Cast(Replication.FindItem(factRplId));
 		IEntity factory = factRplComp.GetEntity();
 

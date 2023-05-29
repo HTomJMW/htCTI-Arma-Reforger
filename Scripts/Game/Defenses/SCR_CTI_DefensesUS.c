@@ -125,6 +125,14 @@ class SCR_CTI_DefensesUS
 		distance.Insert(5);
 		placement.Insert(90);
 		script.Insert("");
+		
+		resname.Insert("{EC13D4E934B2ADD8}Prefabs/Items/Demining/MineFlags/MineFlag_US.et");
+		name.Insert("Mine Flag");
+		price.Insert(50);
+		category.Insert("");
+		distance.Insert(4);
+		placement.Insert(0);
+		script.Insert("");
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -150,6 +158,7 @@ class SCR_CTI_DefensesUS
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_DefensesUS()
 	{
+		if (!g_US_Defenses) return;
 		g_US_Defenses.Clear();
 		g_US_Defenses = null;
 	}

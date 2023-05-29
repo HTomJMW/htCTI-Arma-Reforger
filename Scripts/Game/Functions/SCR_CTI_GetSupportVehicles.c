@@ -50,6 +50,7 @@ class SCR_CTI_GetSupportVehicles
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_GetSupportVehicles()
 	{
+		if (!m_supportVehicles) return;
 		m_supportVehicles.Clear();
 		m_supportVehicles = null;
 	}

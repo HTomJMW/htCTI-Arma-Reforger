@@ -27,7 +27,7 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(vehRplId));
 		IEntity vehicle = rplComp.GetEntity();
 		VehicleWheeledSimulation simulation = VehicleWheeledSimulation.Cast(vehicle.FindComponent(VehicleWheeledSimulation));
-		
+
 		if (Math.AbsFloat(simulation.GetSpeedKmh()) < 5)
 		{
 			Physics physics = vehicle.GetPhysics();
@@ -95,7 +95,26 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		gameMode.clearCommanderId(factionkey);
 	}
-	
+
+	//------------------------------------------------------------------------------------------------
+	void updateClientDataCommanderServer(int playerId)
+	{
+		Rpc(RpcAsk_UpdateClientDataCommanderServer, playerId);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_UpdateClientDataCommanderServer(int playerId)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
+		if (clientData)
+		{
+			clientData.setCommander(false);
+			gameMode.bumpMeServer();
+		}
+	}
+
 	//------------------------------------------------------------------------------------------------
 	void buildDefenseServer(ResourceName resourcename, vector mat[4], int playerId)
 	{
@@ -162,22 +181,23 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
 	protected void RpcAsk_BuildStructureServer(FactionKey factionkey, ResourceName resourcename, vector mat[4])
 	{
-		SCR_CTI_BuildStructure builder = new SCR_CTI_BuildStructure;
+		SCR_CTI_BuildStructureWIP builder = new SCR_CTI_BuildStructureWIP;
 		builder.build(factionkey, resourcename, mat);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void factoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime)
+	void addBuildRequestServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime, CTI_PurchaseInfos purchaseInfo)
 	{
-		Rpc(RpcAsk_FactoryProductionServer, resourcename, factionkey, groupID, factRplId, mat, playerId, buildTime);
+		Rpc(RpcAsk_AddBuildRequestServer, resourcename, factionkey, groupID, factRplId, mat, playerId, buildTime, purchaseInfo);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_FactoryProductionServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime)
+	protected void RpcAsk_AddBuildRequestServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime, CTI_PurchaseInfos purchaseInfo)
 	{
-		SCR_CTI_FactoryProduction FactoryProduction = new SCR_CTI_FactoryProduction;
-		FactoryProduction.build(resourcename, factionkey, groupID, factRplId, mat, playerId, buildTime);
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		SCR_CTI_BuildQueueComponent bqcomp = SCR_CTI_BuildQueueComponent.Cast(gameMode.FindComponent(SCR_CTI_BuildQueueComponent));
+		bqcomp.addRequest(resourcename, factionkey, groupID, factRplId, mat, playerId, buildTime, purchaseInfo);
 	}
 
 	//------------------------------------------------------------------------------------------------

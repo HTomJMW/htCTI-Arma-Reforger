@@ -59,8 +59,8 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 
 			// Temporary GM FIX for MHQ Lifetime problem
 			GarbageManager gm = GetGame().GetGarbageManager();
-			if (gm.GetLifetime(m_ussrMHQ) < 3600) gm.Bump(m_ussrMHQ, 65);
-			if (gm.GetLifetime(m_usMHQ) < 3600) gm.Bump(m_usMHQ, 65);
+			if (gm.GetLifetime(m_ussrMHQ) < 3600) gm.Bump(m_ussrMHQ, 3600);
+			if (gm.GetLifetime(m_usMHQ) < 3600) gm.Bump(m_usMHQ, 3600);
 		}
 	}
 

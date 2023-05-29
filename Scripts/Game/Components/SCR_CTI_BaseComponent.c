@@ -21,6 +21,11 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	protected ref array<RplId> ussrStructureRplIds = {};
 	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
 	protected ref array<RplId> usStructureRplIds = {};
+	
+	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
+	protected ref array<RplId> ussrWIPStructureRplIds = {};
+	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
+	protected ref array<RplId> usWIPStructureRplIds = {};
 
 	//------------------------------------------------------------------------------------------------
 	bool RpcConditionMethod()
@@ -32,32 +37,6 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	// Proxys
 	void OnStructureAdded()
 	{
-		GetGame().GetCallqueue().CallLater(delayedCall, 1000, false);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void delayedCall()
-	{
-		RplComponent rplComp;
-		IEntity struct;
-
-		int last = ussrStructureRplIds.Count();
-		if (last > 0)
-		{
-			last = last - 1;
-			rplComp = RplComponent.Cast(Replication.FindItem(ussrStructureRplIds[last]));
-			struct = rplComp.GetEntity();
-			struct.Update();
-		}
-
-		last = usStructureRplIds.Count();
-		if (last > 0)
-		{
-			last = last - 1;
-			rplComp = RplComponent.Cast(Replication.FindItem(usStructureRplIds[last]));
-			struct = rplComp.GetEntity();
-			struct.Update();
-		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -174,6 +153,29 @@ class SCR_CTI_BaseComponent : ScriptComponent
 
 		Replication.BumpMe();
 	}
+
+	//------------------------------------------------------------------------------------------------
+	void addWIPStuctureRplId(FactionKey factionkey, RplId rplid)
+	{
+		switch (factionkey)
+		{
+			case "USSR": ussrWIPStructureRplIds.Insert(rplid); break;
+			case "US": usWIPStructureRplIds.Insert(rplid); break;
+		}
+
+		Replication.BumpMe();
+	}
+	
+	void removeWIPStructureRplId(FactionKey factionkey, RplId rplid)
+	{
+		switch (factionkey)
+		{
+			case "USSR": ussrWIPStructureRplIds.RemoveItem(rplid); break;
+			case "US": usWIPStructureRplIds.RemoveItem(rplid); break;
+		}
+
+		Replication.BumpMe();
+	}
 	
 	//------------------------------------------------------------------------------------------------
 	array<RplId> getUSSRStructureRplIdArray()
@@ -185,6 +187,18 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	array<RplId> getUSStructureRplIdArray()
 	{
 		return usStructureRplIds;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	array<RplId> getUSSRWIPStructureRplIdArray()
+	{
+		return ussrWIPStructureRplIds;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	array<RplId> getUSWIPStructureRplIdArray()
+	{
+		return usWIPStructureRplIds;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -206,20 +220,19 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void SCR_CTI_BaseComponent()
-	{
-	}
-
-	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_BaseComponent()
 	{
-		ussrBases.Clear();
+		if (ussrBases) ussrBases.Clear();
 		ussrBases = null;
-		usBases.Clear();
+		if (usBases) usBases.Clear();
 		usBases = null;
-		ussrStructureRplIds.Clear();
+		if (ussrStructureRplIds) ussrStructureRplIds.Clear();
 		ussrStructureRplIds = null;
-		usStructureRplIds.Clear();
+		if (usStructureRplIds) usStructureRplIds.Clear();
 		usStructureRplIds = null;
+		if (ussrWIPStructureRplIds) ussrWIPStructureRplIds.Clear();
+		ussrWIPStructureRplIds = null;
+		if (usWIPStructureRplIds) usWIPStructureRplIds.Clear();
+		usWIPStructureRplIds = null;
 	}
 };

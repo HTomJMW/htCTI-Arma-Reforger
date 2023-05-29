@@ -11,6 +11,8 @@ class SCR_CTI_Constants
 	static const int SERVICERANGE = 70;
 	static const int WORKERSLIMIT = 10;
 	static const int WORKERPRICE = 300;
+	static const int WORKERSERVICERANGE = 200;
+	static const int WORKERBUILDRANGE = 30;
 	static const bool ECOWIN = true;
 	static const int WINRATE = 75;
 	static const int CAPTURERANGE = 75;

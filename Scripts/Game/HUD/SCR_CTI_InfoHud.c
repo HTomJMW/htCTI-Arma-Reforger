@@ -124,7 +124,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			switch (true)
 			{
 				case (hp < 75 && hp > 25): health = string.Format("<color rgba='255,255,0,255'>%1</color>", hp.ToString()); break;
-				case (hp < 25): health = string.Format("<color rgba='255,0,0,255'>%1</color>", hp.ToString()); break;
+				case (hp <= 25): health = string.Format("<color rgba='255,0,0,255'>%1</color>", hp.ToString()); break;
 				default: health = string.Format("<color rgba='0,255,0,255'>%1</color>", hp.ToString()); break;
 			}
 
@@ -132,7 +132,7 @@ class SCR_CTI_InfoHud : SCR_InfoDisplayExtended
 			switch (true)
 			{
 				case (st < 75 && st > 25): stamina = string.Format("<color rgba='255,255,0,255'>%1</color>", st.ToString()); break;
-				case (st < 25): stamina = string.Format("<color rgba='255,0,0,255'>%1</color>", st.ToString()); break;
+				case (st <= 25): stamina = string.Format("<color rgba='255,0,0,255'>%1</color>", st.ToString()); break;
 				default: stamina = string.Format("<color rgba='0,0,255,255'>%1</color>", st.ToString()); break;
 			}
 			

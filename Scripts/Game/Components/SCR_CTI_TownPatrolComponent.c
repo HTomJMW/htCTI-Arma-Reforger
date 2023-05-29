@@ -86,6 +86,7 @@ class SCR_CTI_TownPatrolComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_TownPatrolComponent()
 	{
+		if (!waypoints) return;
 		waypoints.Clear();
 		waypoints = null;
 	}

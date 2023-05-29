@@ -19,6 +19,18 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	{
 		if (m_rplComponent && m_rplComponent.IsProxy()) return;
 
+		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
+		
+		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
+		SCR_AIGroup playersGroup = gmc.GetPlayerGroup(playerId);
+		//SCR_AIGroup slaveGroup = playersGroup.GetSlave();
+		
+		if (playersGroup.GetAgentsCount() >= SCR_CTI_Constants.PLAYERGROUPSIZE)
+		{
+			m_gameMode.SendHint(playerId, "Your Group is full!", "Information", 15);
+			return;
+		}
+		
 		Resource resource;
 		int price;
 		int unitIndex;
@@ -65,13 +77,9 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 
 		AIAgent agent = control.GetControlAIAgent();
 
-		SCR_CTI_TownPatrolComponent tpc = SCR_CTI_TownPatrolComponent.Cast(m_town.FindComponent(SCR_CTI_TownPatrolComponent));
-		if (tpc.waypoints.Count() > 0) agent.AddWaypoint(tpc.waypoints[0]); // not working atm
-
 		SCR_AIConfigComponent aiConfigComponent = SCR_AIConfigComponent.Cast(agent.FindComponent(SCR_AIConfigComponent));
 		aiConfigComponent.m_Skill = SCR_CTI_Constants.AISKILL; // ai combat component - skill test?
 
-		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 		if (clientData)
 		{
@@ -83,13 +91,16 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 			}
 		}
 
-		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		SCR_AIGroup playersGroup = gmc.GetPlayerGroup(playerId);
-
-		playersGroup.AddAgent(agent); // slave group system not working yet
+		/*if (slaveGroup) 
+		{
+			slaveGroup.AddAgent(agent);
+		} else {
+			SCR_AIGroup newGroup = gmc.CreateNewPlayableGroup(userAffiliationComponent.GetAffiliatedFaction());
+			playersGroup.SetSlave(newGroup);
+			if (playersGroup.GetSlave()) playersGroup.GetSlave().AddAgent(agent);
+		}*/
 		
-		RplComponent spawnedAIRplComp = RplComponent.Cast(spawnedAI.FindComponent(RplComponent));
-		GetGame().GetCallqueue().CallLater(m_gameMode.addAgentToGroup, 500, false, playerId, spawnedAIRplComp.Id());
+		playersGroup.AddAgent(agent);
 
 		m_gameMode.bumpMeServer();
 		

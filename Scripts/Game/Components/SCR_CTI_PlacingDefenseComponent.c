@@ -76,6 +76,7 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 
 		if (m_defense)
 		{
+			m_defense.Update();
 			PrintFormat("CTI :: Created Def preview: %1", m_defense);
 
 			m_defense.GetPreviewBounds(m_boundmins, m_boundmaxs);
@@ -90,6 +91,8 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 			m_paramOBB.Maxs = m_boundmaxs;
 	
 			m_startPlacing = startPlacing;
+
+			SCR_HintManagerComponent.ShowCustomHint("Use mouse wheel button for confirm or cancel placing. Area must be empty and flat.", "Information", 10);
 		}
 	}
 

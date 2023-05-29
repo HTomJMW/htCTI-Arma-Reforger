@@ -237,6 +237,7 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_PurchaseEquipmentAction()
 	{
+		if (!m_items) return;
 		m_items.Clear();
 		m_items = null;
 	}

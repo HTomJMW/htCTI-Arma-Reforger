@@ -199,6 +199,8 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 			case "FIA":
 			{
 				DoSpawn(SCR_CTI_Constants.FIA_FireTeam);
+				if (m_town.getTownValue() > 250) DoSpawn(SCR_CTI_Constants.FIA_ATTeam);
+				if (m_town.getTownValue() > 300) DoSpawn(SCR_CTI_Constants.FIA_SniperTeam);
 				switch (rnd)
 				{
 					case 0: DoSpawn(SCR_CTI_Constants.FIA_MGTeam); break;
@@ -216,6 +218,8 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 				if (status != UpgradeStatus.FINISHED) break;
 
 				DoSpawn(SCR_CTI_Constants.USSR_FireGroup);
+				if (m_town.getTownValue() > 250 && upgradeComp.getUpgradeStatus("USSR", TO2index) == UpgradeStatus.FINISHED) DoSpawn(SCR_CTI_Constants.USSR_ATTeam);
+				if (m_town.getTownValue() > 300 && upgradeComp.getUpgradeStatus("USSR", TO3index) == UpgradeStatus.FINISHED) DoSpawn(SCR_CTI_Constants.USSR_MGTeam);
 				switch (rnd)
 				{
 					case 0: DoSpawn(SCR_CTI_Constants.USSR_MGTeam); break;
@@ -237,6 +241,8 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 				if (status != UpgradeStatus.FINISHED) break;
 
 				DoSpawn(SCR_CTI_Constants.US_FireTeam);
+				if (m_town.getTownValue() > 250 && upgradeComp.getUpgradeStatus("US", TO2index) == UpgradeStatus.FINISHED) DoSpawn(SCR_CTI_Constants.US_ATTeam);
+				if (m_town.getTownValue() > 300 && upgradeComp.getUpgradeStatus("US", TO3index) == UpgradeStatus.FINISHED) DoSpawn(SCR_CTI_Constants.US_MGTeam);
 				switch (rnd)
 				{
 					case 0: DoSpawn(SCR_CTI_Constants.US_MGTeam); break;

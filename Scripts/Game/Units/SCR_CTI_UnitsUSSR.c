@@ -290,6 +290,7 @@ class SCR_CTI_UnitsUSSR
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UnitsUSSR()
 	{
+		if (!g_USSR_Units) return;
 		g_USSR_Units.Clear();
 		g_USSR_Units = null;
 	}

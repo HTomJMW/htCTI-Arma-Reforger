@@ -277,13 +277,20 @@ class SCR_CTI_GearUSSR
 		category.Insert("");
 		uplevel.Insert(1);
 		price.Insert(100);
-		
+
 		// GL ammo
 		resname.Insert("{262F0D09C4130826}Prefabs/Weapons/Ammo/Ammo_Grenade_HE_VOG25.et");
 		name.Insert("");
 		category.Insert("");
 		uplevel.Insert(1);
 		price.Insert(50);
+		
+		// Mine
+		resname.Insert("{D6EF54367CECE1D9}Prefabs/Weapons/Explosives/Mine_TM62M/Mine_TM62M.et");
+		name.Insert("");
+		category.Insert("Ammo");
+		uplevel.Insert(1);
+		price.Insert(100);
 		
 		// Boots
 		resname.Insert("{C7923961D7235D70}Prefabs/Characters/Footwear/CombatBoots_Soviet_01.et");
@@ -438,7 +445,7 @@ class SCR_CTI_GearUSSR
                 for (int c = components.Count() - 1; c >= 0; c--)
                 {
                     meshComponent = components.Get(c);
-                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent" || meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "SCR_UniversalInventoryStorageComponent" || meshComponent.GetClassName() == "ClothNodeStorageComponent")
+                    if (meshComponent.GetClassName() == "WeaponComponent" || meshComponent.GetClassName() == "InventoryItemComponent" || meshComponent.GetClassName() == "InventoryMagazineComponent" || meshComponent.GetClassName() == "SCR_UniversalInventoryStorageComponent" || meshComponent.GetClassName() == "ClothNodeStorageComponent" || meshComponent.GetClassName() == "SCR_MineInventoryItemComponent")
 						break;
         
                     meshComponent = null;
@@ -505,6 +512,18 @@ class SCR_CTI_GearUSSR
 						
 							name[i] = displayName;
 							
+							break;
+						}
+						case "SCR_MineInventoryItemComponent":
+						{
+							BaseContainer infoContainer = meshComponent.GetObject("Attributes");
+							infoContainer = infoContainer.GetObject("ItemDisplayName");
+							string displayName;
+							infoContainer.Get("Name", displayName);
+							displayName = WidgetManager.Translate(displayName);
+
+							name[i] = displayName;
+
 							break;
 						}
 					}
@@ -599,6 +618,7 @@ class SCR_CTI_GearUSSR
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_GearUSSR()
 	{
+		if (!g_USSR_Gear) return;
 		g_USSR_Gear.Clear();
 		g_USSR_Gear = null;
 	}

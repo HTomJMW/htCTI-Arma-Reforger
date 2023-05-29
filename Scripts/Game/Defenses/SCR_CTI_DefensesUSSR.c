@@ -125,6 +125,14 @@ class SCR_CTI_DefensesUSSR
 		distance.Insert(5);
 		placement.Insert(90);
 		script.Insert("");
+		
+		resname.Insert("{AC67BAB9763A3977}Prefabs/Items/Demining/MineFlags/MineFlag_USSR.et");
+		name.Insert("Mine Flag");
+		price.Insert(50);
+		category.Insert("");
+		distance.Insert(4);
+		placement.Insert(0);
+		script.Insert("");
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -150,6 +158,7 @@ class SCR_CTI_DefensesUSSR
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_DefensesUSSR()
 	{
+		if (!g_USSR_Defenses) return;
 		g_USSR_Defenses.Clear();
 		g_USSR_Defenses = null;
 	}

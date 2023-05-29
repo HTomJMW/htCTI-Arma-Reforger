@@ -73,6 +73,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 
 		if (m_structure)
 		{
+			m_structure.Update();
 			PrintFormat("CTI :: Created Structure preview: %1", m_structure);
 
 			m_structure.GetPreviewBounds(m_boundmins, m_boundmaxs);
@@ -87,6 +88,8 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 			m_paramOBB.Maxs = m_boundmaxs;
 
 			m_startPlacing = startPlacing;
+
+			SCR_HintManagerComponent.ShowCustomHint("Use mouse wheel button for confirm or cancel placing. Area must be empty and flat.", "Information", 10);
 		}
 	}
 	

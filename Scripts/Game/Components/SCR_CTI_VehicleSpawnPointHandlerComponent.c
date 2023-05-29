@@ -41,7 +41,7 @@ class SCR_CTI_VehicleSpawnPointHandlerComponent : ScriptComponent
 			gameMode.sendFactionNotifP(faffComp.GetDefaultAffiliatedFaction().GetFactionKey(), ENotification.CTI_NOTIF_MHQ_DESTROYED);
 		}
 	}
-
+	
 	//------------------------------------------------------------------------------------------------
 	protected override void OnPostInit(IEntity owner)
 	{

@@ -6,6 +6,7 @@ class SCR_CTI_Base
 	protected vector m_basePos;
 	protected bool m_destroyed = false;
 
+	ref array<IEntity> wipSturctures = {};
 	ref array<IEntity> structures = {};
 
 	//------------------------------------------------------------------------------------------------
@@ -63,6 +64,12 @@ class SCR_CTI_Base
 	}
 
 	//------------------------------------------------------------------------------------------------
+	void addWIPStructure(IEntity wipStructure)
+	{
+		wipSturctures.Insert(wipStructure);
+	}
+
+	//------------------------------------------------------------------------------------------------
 	void destroyStructure(IEntity structure)
 	{
 	}
@@ -77,5 +84,7 @@ class SCR_CTI_Base
 	{
 		structures.Clear();
 		structures = null;
+		wipSturctures.Clear();
+		wipSturctures = null;
 	}
 };

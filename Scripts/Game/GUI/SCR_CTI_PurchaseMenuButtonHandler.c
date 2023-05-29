@@ -13,8 +13,8 @@ class SCR_CTI_PurchaseMenuButtonHandler : ScriptedWidgetEventHandler
 	protected bool gunnerSelected = false;
 	protected bool commanderSelected = false;
 	protected bool crewSelected = false;
-	protected bool lockSelected = true; // default lock - maybe not need for AIs
-	protected bool unlockSelected = false;
+	protected bool lockSelected = false;
+	protected bool unlockSelected = true; // default open
 	
 	//------------------------------------------------------------------------------------------------
 	string getSelectedFactoryTypeIcon()
@@ -331,6 +331,9 @@ class SCR_CTI_PurchaseMenuButtonHandler : ScriptedWidgetEventHandler
 				SCR_WorldTools.FindEmptyTerrainPosition(emptyPos, mat[3], 20, 4, 3);
 				mat[3] = emptyPos;
 
+				SCR_CTI_PurchaseInfoCoder infoCoder = new SCR_CTI_PurchaseInfoCoder();
+				CTI_PurchaseInfos purchaseInfo = infoCoder.enCode(driverSelected, gunnerSelected, commanderSelected, crewSelected, lockSelected);
+
 				SCR_CTI_UnitData unitData = SCR_CTI_UnitData.Cast(listboxcomp.GetItemData(selected));
 				ResourceName res = unitData.getResname();
 				int buildTime = unitData.getBuildtime();
@@ -350,7 +353,7 @@ class SCR_CTI_PurchaseMenuButtonHandler : ScriptedWidgetEventHandler
 				EntityID groupID = pm.getGroupforCombobox().GetID();
 				
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
-				netComp.factoryProductionServer(res, factionkey, groupID, factRplid, mat, pc.GetPlayerId(), buildTime);
+				netComp.addBuildRequestServer(res, factionkey, groupID, factRplid, mat, pc.GetPlayerId(), buildTime, purchaseInfo);
 
 				break;
 			}

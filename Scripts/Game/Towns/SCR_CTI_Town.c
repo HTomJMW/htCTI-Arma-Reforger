@@ -132,24 +132,22 @@ class SCR_CTI_Town : BaseGameEntity
 			
 			child = child.GetSibling();
 		}
-		
+
+		m_spawnPoint = createSpawnPoint();
+		m_spawnPoint.SetFactionKey(m_factionKey);
+
 		if (m_rplComponent.IsProxy())
 		{
 			m_activationArea.Deactivate();
 			m_captureArea.Deactivate();
+		} else {
+			//this.SetEventMask(EntityEvent.FIXEDFRAME);
+			//m_timeDelta = 0;
+
+			RandomGenerator randomgen = new RandomGenerator();
+			int rnd = randomgen.RandIntInclusive(18000, 22000);
+			GetGame().GetCallqueue().CallLater(townLoop, rnd, true);
 		}
-		
-		m_spawnPoint = createSpawnPoint();
-		m_spawnPoint.SetFactionKey(m_factionKey);
-
-		m_townGroups.Clear();
-
-		//this.SetEventMask(EntityEvent.FIXEDFRAME);
-		//m_timeDelta = 0;
-		
-		RandomGenerator randomgen = new RandomGenerator();
-		int rnd = randomgen.RandIntInclusive(18000, 22000);
-		if (!m_rplComponent.IsProxy()) GetGame().GetCallqueue().CallLater(townLoop, rnd, true);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -397,7 +395,8 @@ class SCR_CTI_Town : BaseGameEntity
 	void ~SCR_CTI_Town()
 	{
 		m_onTimeOutInvoker.Remove(OnTimeOut);
-		
+
+		if (!m_townGroups) return;
 		m_townGroups.Clear();
 		m_townGroups = null;
 	}

@@ -58,29 +58,13 @@ class SCR_CTI_TownMapDescriptorComponent : SCR_MapDescriptorComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void OnMapOpen()
-	{
-		//if (!SCR_PlayerController.GetLocalControlledEntity()) return;
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void OnMapClose()
-	{
-	}
-
-	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_TownMapDescriptorComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 		m_owner = SCR_CTI_Town.Cast(ent);
-		
-		//SCR_MapEntity.GetOnMapOpen().Insert(OnMapOpen);
-		//SCR_MapEntity.GetOnMapClose().Insert(OnMapClose);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_TownMapDescriptorComponent()
 	{
-		//SCR_MapEntity.GetOnMapOpen().Remove(OnMapOpen);
-		//SCR_MapEntity.GetOnMapClose().Remove(OnMapClose);
 	}
 };

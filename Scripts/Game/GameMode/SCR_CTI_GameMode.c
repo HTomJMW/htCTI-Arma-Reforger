@@ -17,8 +17,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_UpgradeComponent UpgradeComponent;
 	protected SCR_CTI_BaseComponent BaseComponent;
 	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
-	
-	protected bool firstMapOpen = true;
+	protected SCR_CTI_BuildQueueComponent BuildQueueComponent;
 
 	[RplProp()]
 	protected int ussrCommanderId = -2;
@@ -53,6 +52,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	ref SCR_CTI_GearUS GearUS = new SCR_CTI_GearUS();
 
 	ref SCR_CTI_Upgrades Upgrades = new SCR_CTI_Upgrades();
+	
+	ref map<int, int> playersDeathTimes = new map<int, int>();
 
 	//------------------------------------------------------------------------------------------------
 	protected override void EOnInit(IEntity owner)
@@ -76,6 +77,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
+			Print("CTI :: Mission version: 0.5.15");
 			
 			if (RplSession.Mode() == RplMode.Dedicated)
 			{
@@ -116,6 +118,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			WeatherAndTimeComponent.Deactivate(this);
 			UpdateVictoryComponent.Deactivate(this);
 			UpdateResourcesComponent.Deactivate(this);
+			BuildQueueComponent.Deactivate(this);
 
 			loadUserSettings();
 		}
@@ -176,6 +179,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			case ussrCommanderId: clearCommanderId("USSR"); break;
 			case usCommanderId: clearCommanderId("US"); break;
 		}
+
+		playersDeathTimes.Remove(playerId);
 		
 		PlayerManager pm = GetGame().GetPlayerManager();
 		PrintFormat("CTI :: Player %1 disconnected", pm.GetPlayerName(playerId));
@@ -226,8 +231,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	protected void missionHintsCallLater(int playerId)
 	{
-		SendHint(playerId, "htCTI Eden", "Mission", 30);
-		SendPopUpNotif(playerId, "<h1 align='left' scale='2'> Arma Reforger CTI</h1>", 15, "", -1);
+		SendHint(playerId, "htCTI Eden\nDefault menu key: Numpad 0", "Mission", 30);
+		SendPopUpNotif(playerId, "<h1 align='left' scale='2'>  Arma Reforger CTI</h1>", 15, "", -1);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -235,6 +240,27 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		super.OnPlayerSpawned(playerId, controlledEntity);
 	}*/
+
+	//------------------------------------------------------------------------------------------------
+	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
+	{
+		super.OnPlayerKilled(playerId, player, killer);
+
+		int lastDeath;
+		playersDeathTimes.Find(playerId, lastDeath);
+		int currentMissionTime = GetElapsedTime();
+		playersDeathTimes.Set(playerId, currentMissionTime);
+		SCR_RespawnTimerComponent rtc = SCR_RespawnTimerComponent.Cast(this.FindComponent(SCR_RespawnTimerComponent));
+		if (rtc)
+		{
+			switch (true)
+			{
+				case (currentMissionTime - lastDeath < 15): rtc.SetRespawnTime(playerId, 30); break;
+				case (currentMissionTime - lastDeath < 30): rtc.SetRespawnTime(playerId, 20); break;
+				default: rtc.SetRespawnTime(playerId, 10); break;
+			}
+		}
+	}
 
 	//------------------------------------------------------------------------------------------------
 	protected void uploadTownsArray()
@@ -440,6 +466,20 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			if (playerFactionKey == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1);
 		}
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	void sendFactionNotifF(FactionKey factionkey, ENotification notification, int param1, int param2, int param3, int param4, int param5)
+	{
+		array<int> outPlayers = {};
+		GetGame().GetPlayerManager().GetPlayers(outPlayers);
+
+		SCR_RespawnSystemComponent respSystemComp = SCR_RespawnSystemComponent.GetInstance();
+		foreach (int pid : outPlayers)
+		{
+			FactionKey playerFactionKey = respSystemComp.GetPlayerFaction(pid).GetFactionKey();
+			if (playerFactionKey == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1, param2, param3, param4, param5);
+		}
+	}
 
 	//------------------------------------------------------------------------------------------------
 	void SendHint(int playerId, string message = "", string messageTitle = "", int hintTime = 5.0)
@@ -482,31 +522,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 		SCR_PopUpNotification popUpNotif = SCR_PopUpNotification.GetInstance();
 		popUpNotif.PopupMsg(message, duration, message2);
-    }
-
-	//------------------------------------------------------------------------------------------------
-	void addAgentToGroup(int playerId, RplId unitRplId)
-	{
-        Rpc(RpcDo_AddAgentToGroup, playerId, unitRplId);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-    protected void RpcDo_AddAgentToGroup(int playerId, RplId unitRplId)
-    {
-		int localPlayerId = GetGame().GetPlayerController().GetPlayerId();
-        if (playerId != localPlayerId) return;
-		
-		RplComponent unitRplComp = RplComponent.Cast(Replication.FindItem(unitRplId));
-		IEntity unit = unitRplComp.GetEntity();
-
-		AIControlComponent control = AIControlComponent.Cast(unit.FindComponent(AIControlComponent));
-		AIAgent agent = control.GetControlAIAgent();
-		
-		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
-		SCR_AIGroup playersGroup = gmc.GetPlayerGroup(playerId);
-		
-		playersGroup.AddAgent(agent);
     }
 
 	//------------------------------------------------------------------------------------------------
@@ -576,7 +591,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_GameMode()
 	{
-		CTI_Towns.Clear();
+		if (CTI_Towns) CTI_Towns.Clear();
 		CTI_Towns = null;
 		
 		UnitsFIA = null;
@@ -590,7 +605,10 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		
 		Upgrades = null;
 
-		ClientDataArray.Clear();
+		if (ClientDataArray) ClientDataArray.Clear();
 		ClientDataArray = null;
+		
+		if (playersDeathTimes) playersDeathTimes.Clear();
+		playersDeathTimes = null;
 	}
 };

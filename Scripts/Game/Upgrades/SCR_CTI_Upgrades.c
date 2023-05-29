@@ -135,7 +135,7 @@ class SCR_CTI_Upgrades
 		links2.Insert("");
 		times.Insert(500);
 		
-		labels.Insert("Air Factory");
+		/*labels.Insert("Air Factory");
 		names.Insert("Air Factory level 1");
 		descriptions.Insert("Unlocks better Air Vehicles");
 		levels.Insert(1);
@@ -143,7 +143,7 @@ class SCR_CTI_Upgrades
 		costs.Insert(10000);
 		links.Insert("None");
 		links2.Insert("");
-		times.Insert(600);
+		times.Insert(600);*/
 		
 		labels.Insert("Radio");
 		names.Insert("Radio level 1");
@@ -175,7 +175,7 @@ class SCR_CTI_Upgrades
 		links2.Insert("");
 		times.Insert(180);
 		
-		labels.Insert("Halo Jump");
+		/*labels.Insert("Halo Jump");
 		names.Insert("Halo Jump level 1");
 		descriptions.Insert("Enables Halo Jump");
 		levels.Insert(1);
@@ -183,7 +183,7 @@ class SCR_CTI_Upgrades
 		costs.Insert(5000);
 		links.Insert("Barracks level 1");
 		links2.Insert("");
-		times.Insert(300);
+		times.Insert(300);*/
 		
 		labels.Insert("Respawn Truck");
 		names.Insert("Respawn Truck level 1");
@@ -299,6 +299,7 @@ class SCR_CTI_Upgrades
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_Upgrades()
 	{
+		if (!g_Upgrades) return;
 		g_Upgrades.Clear();
 		g_Upgrades = null;
 	}

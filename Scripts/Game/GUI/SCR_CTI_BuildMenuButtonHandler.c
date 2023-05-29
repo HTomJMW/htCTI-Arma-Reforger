@@ -84,7 +84,7 @@ class SCR_CTI_BuildMenuButtonHandler : ScriptedWidgetEventHandler
 					case "USSR":
 					{
 						facData = gameMode.FactoriesUSSR.g_USSR_Factories[selected];
-						res = facData.getResname();
+						res = facData.getResName();
 						dist = facData.getDistance();
 						placement = facData.getPlacement();
 						cost = facData.getPrice();
@@ -94,7 +94,7 @@ class SCR_CTI_BuildMenuButtonHandler : ScriptedWidgetEventHandler
 					case "US":
 					{
 						facData = gameMode.FactoriesUS.g_US_Factories[selected];
-						res = facData.getResname();
+						res = facData.getResName();
 						dist = facData.getDistance();
 						placement = facData.getPlacement();
 						cost = facData.getPrice();

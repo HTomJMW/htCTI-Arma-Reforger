@@ -49,9 +49,7 @@ class SCR_CTI_MainMenuButtonHandler : ScriptedWidgetEventHandler
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				netComp.clearCommanderIdRpl(affiliationComp.GetAffiliatedFaction().GetFactionKey());
-
-				SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
-				if (clientData) clientData.setCommander(false);
+				netComp.updateClientDataCommanderServer(playerId);
 				
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();

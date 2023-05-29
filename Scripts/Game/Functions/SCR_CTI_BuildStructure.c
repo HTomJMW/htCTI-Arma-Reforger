@@ -6,100 +6,38 @@ class SCR_CTI_BuildStructure
 	//------------------------------------------------------------------------------------------------
 	void build(FactionKey factionkey, ResourceName resourcename, vector mat[4])
 	{
-		Resource resource = Resource.Load(resourcename);
-
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
 		params.Transform = mat;
 		
 		IEntity structure = null;
+		Resource resource;
+		SCR_CTI_FactoryData factoryData;
+		int index = -1;
 
-		int basecount = m_baseComp.getBaseCount(factionkey);
 		switch (factionkey)
 		{
 			case "USSR":
 			{
-				// Step 1: If no base yet
-				if (basecount < 1)
-				{
-					m_baseComp.addBase(factionkey, mat[3], basecount);
-					structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
-					structure.Update();
-					m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+				index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(resourcename);
+				factoryData = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
+				resource = Resource.Load(factoryData.getResName());
 
-					break;
-				}
-
-				// Step 2: If pos inside base area (base area unions not handled, add structure to first possible base)
-				bool inside = false;
-				for (int i = 0; i < basecount; i++)
-				{
-					if (!inside)
-					{
-						float distance = m_baseComp.getAreaDistances(mat[3], m_baseComp.getBase(factionkey, i).getBasePos());
-
-						if (distance <= SCR_CTI_Constants.BASERADIUS)
-						{
-							structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
-							structure.Update();
-							m_baseComp.getBase(factionkey, i).addStructure(structure);
-							inside = true;
-						}
-					}
-				}
-				if (inside) break;
-
-				// Step 3: If pos not inside base area and max base count reached
-				if (basecount >= SCR_CTI_Constants.MAXBASES) break;
-
-				// Step 4: Not first and not inside other area so make new base
-				m_baseComp.addBase(factionkey, mat[3], basecount);
 				structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 				structure.Update();
-				m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+				//m_baseComp.getBase(factionkey, basecount).addStructure(structure); //TODO get base and add struct 
 
 				break;
 			}
 			case "US":
 			{
-				// Step 1: If no base yet
-				if (basecount < 1)
-				{
-					m_baseComp.addBase(factionkey, mat[3], basecount);
-					structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
-					structure.Update();
-					m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+				index = m_gameMode.FactoriesUS.findIndexFromResourcename(resourcename);
+				factoryData = m_gameMode.FactoriesUS.g_US_Factories[index];
+				resource = Resource.Load(factoryData.getResName());
 
-					break;
-				}
-
-				// Step 2: If pos inside base area (base area unions not handled, add structure to first possible base)
-				bool inside = false;
-				for (int i = 0; i < basecount; i++)
-				{
-					if (!inside)
-					{
-						float distance = m_baseComp.getAreaDistances(mat[3], m_baseComp.getBase(factionkey, i).getBasePos());
-
-						if (distance <= SCR_CTI_Constants.BASERADIUS)
-						{
-							structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
-							structure.Update();
-							m_baseComp.getBase(factionkey, i).addStructure(structure);
-							inside = true;
-						}
-					}
-				}
-				if (inside) break;
-
-				// Step 3: If pos not inside base area and max base count reached
-				if (basecount >= SCR_CTI_Constants.MAXBASES) break;
-
-				// Step 4: Not first and not inside other area so make new base
-				m_baseComp.addBase(factionkey, mat[3], basecount);
 				structure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 				structure.Update();
-				m_baseComp.getBase(factionkey, basecount).addStructure(structure);
+				//m_baseComp.getBase(factionkey, basecount).addStructure(structure);
 
 				break;
 			}
@@ -123,28 +61,12 @@ class SCR_CTI_BuildStructure
 			SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
 			spawn.SetFactionKey(factionkey);
 
-			// pay the cost
-			SCR_CTI_FactoryData factoryData;
-			int index = -1;
-			switch (factionkey)
-			{
-				case "USSR":
-				{
-					index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(resourcename);
-					factoryData = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
-					break;
-				}
-				case "US":
-				{
-					index = m_gameMode.FactoriesUS.findIndexFromResourcename(resourcename);
-					factoryData = m_gameMode.FactoriesUS.g_US_Factories[index];
-					break;
-				}
-			}
-			int cost = factoryData.getPrice();
-			m_gameMode.changeCommanderFunds(factionkey, -cost);
+			// Notification
+			FactionManager fm = GetGame().GetFactionManager();
+			int factionIndex = fm.GetFactionIndex(fm.GetFactionByKey(factionkey));
+			m_gameMode.sendFactionNotifF(factionkey, ENotification.CTI_NOTIF_FACTORY_CONSTRUCTED, index, factionIndex, mat[3][0], mat[3][1], mat[3][2]);
 		} else {
-			PrintFormat("CTI :: Side %1 reached Base limit", factionkey);
+			PrintFormat("CTI :: Side %1 Structure build Failed!", factionkey);
 		}
 	}
 

@@ -1,66 +1,74 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Factory Data Structure")]
 class SCR_CTI_FactoryData
 {
-	protected ResourceName resname;	// Resource name
-	protected string name;			// Display name
-	protected int price;			// Price
-	protected int buildtime;		// Build time
-	protected int distance;			// Distance
-	protected int placement;		// Placement degree
-	protected string script;		// Script
+	protected ResourceName m_resname;	// Resource name
+	protected ResourceName m_wipname;	// WIP resource name
+	protected string m_name;			// Display name
+	protected int m_price;				// Price
+	protected int m_buildtime;			// Build time
+	protected int m_distance;			// Distance
+	protected int m_placement;			// Placement degree
+	protected string m_script;			// Script
 
 	//------------------------------------------------------------------------------------------------
-	void setData(ResourceName newresname, string newname, int newprice, int newbuildtime, int newdistance, int newplacement, string newscript)
+	void setData(ResourceName newresname, ResourceName newwipname, string newname, int newprice, int newbuildtime, int newdistance, int newplacement, string newscript)
 	{
-		resname = newresname;
-		name = newname;
-		price = newprice;
-		buildtime = newbuildtime;
-		distance = newdistance;
-		placement = newplacement;
-		script = newscript;
+		m_resname = newresname;
+		m_wipname = newwipname;
+		m_name = newname;
+		m_price = newprice;
+		m_buildtime = newbuildtime;
+		m_distance = newdistance;
+		m_placement = newplacement;
+		m_script = newscript;
 	}
 
 	//------------------------------------------------------------------------------------------------
-	ResourceName getResname()
+	ResourceName getResName()
 	{
-		return resname;
+		return m_resname;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	ResourceName getWIPName()
+	{
+		return m_wipname;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	string getName()
 	{
-		return name;
+		return m_name;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	int getPrice()
 	{
-		return price;
+		return m_price;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	int getBuildtime()
 	{
-		return buildtime;
+		return m_buildtime;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	int getDistance()
 	{
-		return distance;
+		return m_distance;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	int getPlacement()
 	{
-		return placement;
+		return m_placement;
 	}
 
 	//------------------------------------------------------------------------------------------------
 	string getScript()
 	{
-		return script;
+		return m_script;
 	}
 
 	//------------------------------------------------------------------------------------------------

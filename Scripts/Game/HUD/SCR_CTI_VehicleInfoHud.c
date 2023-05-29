@@ -94,7 +94,7 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 				switch (true)
 				{
 					case (hp < 75 && hp > 25): cond = string.Format("<color rgba='255,255,0,255'>%1%2</color>", condition.ToString(), "%"); break;
-					case (hp < 25): cond = string.Format("<color rgba='255,0,0,255'>%1%2</color>", condition.ToString(), "%"); break;
+					case (hp <= 25): cond = string.Format("<color rgba='255,0,0,255'>%1%2</color>", condition.ToString(), "%"); break;
 					default: cond = string.Format("<color rgba='0,255,0,255'>%1%2</color>", condition.ToString(), "%"); break;
 				}
 				m_damage.SetText("Condition: " + cond);
@@ -105,8 +105,8 @@ class SCR_CTI_VehicleInfoHud : SCR_InfoDisplayExtended
 				string fu;
 				switch (true)
 				{
-					case (fuel < 75 && fuel > 25): fu = string.Format("<color rgba='255,255,0,255'>%1%2</color>", fuel.ToString(), "%"); break;
-					case (fuel < 25): fu = string.Format("<color rgba='255,0,0,255'>%1%2</color>", fuel.ToString(), "%"); break;
+					case (fuel < 25 && fuel > 10): fu = string.Format("<color rgba='255,255,0,255'>%1%2</color>", fuel.ToString(), "%"); break;
+					case (fuel <= 10): fu = string.Format("<color rgba='255,0,0,255'>%1%2</color>", fuel.ToString(), "%"); break;
 					default: fu = string.Format("<color rgba='0,255,0,255'>%1%2</color>", fuel.ToString(), "%"); break;
 				}
 				m_fuel.SetText("Fuel: " + fu);

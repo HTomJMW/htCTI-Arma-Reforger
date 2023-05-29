@@ -64,6 +64,10 @@ class SCR_CTI_UnflipNearestVehicle
 			bcmc.GetOccupants(occupants);
 			if (occupants.Count() > 0) return;
 			
+			vector pos = nearest.GetOrigin();
+			float y = GetGame().GetWorld().GetSurfaceY(pos[0], pos[2]);
+			if (y + 2 < pos[1]) return;
+			
 			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_pc.FindComponent(SCR_CTI_NetWorkComponent));
 			RplComponent rplComp = RplComponent.Cast(nearest.FindComponent(RplComponent));
 			RplId vehRplId = rplComp.Id();
@@ -83,6 +87,7 @@ class SCR_CTI_UnflipNearestVehicle
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UnflipNearestVehicle()
 	{
+		if (!m_vehicles) return;
 		m_vehicles.Clear();
 		m_vehicles = null;
 	}

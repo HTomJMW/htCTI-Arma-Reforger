@@ -6,5 +6,6 @@ modded enum ENotification
 	CTI_NOTIF_TOWN_CAPTURED, // Town Notification (Param1: Town index)
 	CTI_NOTIF_TOWN_LOST, // Town Notification (Param1: Town index)
 	CTI_NOTIF_MHQ_DESTROYED, // Notification display data
-	CTI_NOTIF_MHQ_REPAIRED// Notification display data
+	CTI_NOTIF_MHQ_REPAIRED, // Notification display data
+	CTI_NOTIF_FACTORY_CONSTRUCTED // Factory Notification (Param1: Factory index, Param2: Faction index, Param3: X, Param4: Y, Param5: Z coords)
 };

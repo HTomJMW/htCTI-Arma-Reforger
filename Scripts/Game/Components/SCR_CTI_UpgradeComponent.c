@@ -242,16 +242,11 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void SCR_CTI_UpgradeComponent()
-	{
-	}
-
-	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_UpgradeComponent()
 	{
-		ussrUpgradeStatuses.Clear();
+		if (ussrUpgradeStatuses) ussrUpgradeStatuses.Clear();
 		ussrUpgradeStatuses = null;
-		usUpgradeStatuses.Clear();
+		if (usUpgradeStatuses) usUpgradeStatuses.Clear();
 		usUpgradeStatuses = null;
 	}
 };
