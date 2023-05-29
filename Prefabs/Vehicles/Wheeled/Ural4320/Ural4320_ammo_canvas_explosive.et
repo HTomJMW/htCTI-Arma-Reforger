@@ -1,4 +1,4 @@
-GenericEntity : "{5D1E10B35D37BA44}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_canvas.et" {
+GenericEntity : "{5D1E10B35D37BA44}Prefabs/Vehicles/Wheeled/Ural4320/VehParts/Ural4320_canvas.et" {
  ID "7782E7168503CFC1"
  components {
   MeshObject "{4B42E716914465B9}" {

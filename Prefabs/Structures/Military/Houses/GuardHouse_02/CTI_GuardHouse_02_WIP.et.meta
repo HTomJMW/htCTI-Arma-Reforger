@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{7685EDFEB663C136}Prefabs/Structures/Military/Houses/GuardHouse_02/CTI_GuardHouse_02_WIP_2.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

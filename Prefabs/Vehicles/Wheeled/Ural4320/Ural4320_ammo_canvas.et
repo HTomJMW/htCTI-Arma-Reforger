@@ -1,4 +1,4 @@
-GenericEntity : "{5F533EBE61514610}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_cargo_canvas.et" {
+GenericEntity : "{5F533EBE61514610}Prefabs/Vehicles/Wheeled/Ural4320/VehParts/Ural4320_cargo_canvas.et" {
  ID "4B42E71698F5739C"
  components {
   SlotManagerComponent "{55BCE45E438E4CFF}" {

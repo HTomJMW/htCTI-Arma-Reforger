@@ -1,0 +1,147 @@
+SCR_DestructibleBuildingEntity {
+ ID "5D7929DEC8AD7F29"
+ components {
+  FactionAffiliationComponent "{5D7929DE2AF96BCB}" {
+  }
+  MeshObject "{5D7929DE30EDAED2}" {
+   Object "{0C626B5272C69A11}Assets/CTI/empty.xob"
+  }
+  Hierarchy "{5D7929DE392EEF37}" {
+  }
+  RigidBody "{5D7929DE3228072F}" {
+   ModelGeometry 1
+   Static 1
+  }
+  SCR_CTI_StructureCompletionComponent "{5D7929DE27B8F40E}" {
+  }
+  SlotManagerComponent "{5D7929DE205C873A}" {
+   Slots {
+    EntitySlotInfo CTI_StructureMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+    EntitySlotInfo CTI_WorkerWaypoint {
+     Prefab "{22A875E30470BD4F}Prefabs/AI/Waypoints/AIWaypoint_Patrol.et"
+    }
+   }
+  }
+  RplComponent "{5D7929DE35F06CF0}" {
+  }
+ }
+ {
+  SCR_PowerPole : "{0F4569CE231DF603}Prefabs/Structures/Infrastructure/Power/Powerlines/LightningRod_01/LightningRod_01.et" {
+   ID "5D7701B0FC0DA102"
+   components {
+    Hierarchy "{5D795CF003B714A4}" {
+    }
+   }
+   coords 1.886 -1 -1.471
+  }
+  $grp SCR_DestructibleEntity : "{1E2011567EAE09B4}Prefabs/Structures/Walls/Metal/TinWall_01/TinWall_01_6m_Pole.et" {
+   {
+    ID "5D76C486D74132D4"
+    components {
+     Hierarchy "{5D795CF001B1C423}" {
+     }
+    }
+    coords -0.6 -0.2 -1.5
+   }
+   {
+    ID "5D76C486D83BB708"
+    components {
+     Hierarchy "{5D795CF07E6D6ECA}" {
+     }
+    }
+    coords 0.301 -0.2 -1.5
+   }
+   {
+    ID "5D76C486D949539B"
+    components {
+     Hierarchy "{5D795CF07C420648}" {
+     }
+    }
+    coords -0.3 -0.2 -1.5
+   }
+   {
+    ID "5D76C486E290F51E"
+    components {
+     Hierarchy "{5D795CF07A4C448A}" {
+     }
+    }
+    coords 0 -0.2 -1.5
+   }
+  }
+  StaticModelEntity : "{2BC7C6DE43AC49E2}Prefabs/Structures/Military/Radar/ApproachRadar_RPL5_01/ApproachRadar_RPL5_01_short.et" {
+   ID "5D76C4846E5C14F2"
+   components {
+    Hierarchy "{5D795CF0785F4563}" {
+    }
+   }
+   coords 0 0 0
+   scale 0.8
+  }
+  GenericEntity : "{47F8D83F71EB2B74}Prefabs/Structures/Infrastructure/Lamps/LampStreet_E_02/LampStreet_E_02_addon.et" {
+   ID "5D76C486E1B3F55D"
+   components {
+    Hierarchy "{5D795CF076694CF1}" {
+    }
+   }
+   coords 1.82 11.133 -1.376
+   angleY -45
+  }
+  GenericEntity : "{50A752B7D5E679A2}Prefabs/Props/Industrial/Repair/GasWelder_01.et" {
+   ID "5D795CF0224BD588"
+   components {
+    Hierarchy "{5D795CF06AFAF98C}" {
+    }
+   }
+   coords -2.19 0 -1.292
+   angleY 10
+  }
+  GenericEntity : "{7C238BF394D26FBD}Prefabs/Structures/BuildingParts/Eletrical/ElectricityBox_Base.et" {
+   ID "5D76C486144F70B8"
+   coords -1.344 0 2.549
+  }
+  GenericEntity : "{7D52C517720EF2F5}Prefabs/Props/Industrial/BarrelMetal_01_blue.et" {
+   ID "5D76C481A94B2BA2"
+   components {
+    Hierarchy "{5D795CF072710A69}" {
+    }
+   }
+   coords 2.121 0 -0.774
+  }
+  $grp SCR_DestructibleEntity : "{CAF8FA04EF02C6CF}Prefabs/Structures/Walls/Net/NetFence_01/NetFence_01_Pole_Metal.et" {
+   {
+    ID "5D76C486DC7D1418"
+    components {
+     Hierarchy "{5D795CF071C2793F}" {
+     }
+    }
+    coords 2.3 2 -2.4
+   }
+   {
+    ID "5D76C486DF9C56CF"
+    components {
+     Hierarchy "{5D795CF06F0AF5F1}" {
+     }
+    }
+    coords 2.3 2 2.4
+   }
+   {
+    ID "5D76C486E09E5B41"
+    components {
+     Hierarchy "{5D795CF06D44D6A8}" {
+     }
+    }
+    coords -2.6 2 -2.4
+   }
+   {
+    ID "5D76C486E39FC0BD"
+    components {
+     Hierarchy "{5D795CF06C93F107}" {
+     }
+    }
+    coords -2.6 2 2.4
+   }
+  }
+ }
+}

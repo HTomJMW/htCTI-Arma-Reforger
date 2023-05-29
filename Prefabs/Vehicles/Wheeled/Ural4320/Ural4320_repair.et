@@ -159,7 +159,7 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
   SlotManagerComponent "{55BCE45E438E4CFF}" {
    Slots {
     RegisteringComponentSlotInfo Radio {
-     Prefab "{D9C7B82F567BA500}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_combox.et"
+     Prefab "{D9C7B82F567BA500}Prefabs/Vehicles/Wheeled/Ural4320/VehParts/Ural4320_combox.et"
      RegisterActions 1
      RegisterDamage 1
      RegisterCompartments 1

@@ -159,7 +159,7 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
   SlotManagerComponent "{55BCE45E438E4CFF}" {
    Slots {
     RegisteringComponentSlotInfo Tank {
-     Prefab "{D946310D0CE44123}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_fuel_tank.et"
+     Prefab "{D946310D0CE44123}Prefabs/Vehicles/Wheeled/Ural4320/VehParts/Ural4320_fuel_tank.et"
      RegisterActions 1
      RegisterDamage 1
      RegisterControllers 1
