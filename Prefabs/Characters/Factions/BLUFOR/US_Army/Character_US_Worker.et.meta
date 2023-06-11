@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{CAB33F392613EA85}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Worker.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}
