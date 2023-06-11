@@ -270,6 +270,20 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, close);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	override void OnMenuClose()
+	{
+		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, close);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void close()
+	{
+		auto menuManager = GetGame().GetMenuManager();
+		menuManager.CloseAllMenus();
 	}
 
 	//------------------------------------------------------------------------------------------------

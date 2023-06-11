@@ -148,6 +148,15 @@ class SCR_CTI_UnitsFIA
 		uplevel.Insert(0);
 		factory.Insert("");
 		script.Insert("");
+		
+		resname.Insert("{B47110AA1A806556}Prefabs/Vehicles/Wheeled/BTR70/BTR70_FIA.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(2500);
+		buildtime.Insert(45);
+		uplevel.Insert(0);
+		factory.Insert("");
+		script.Insert("");
 	}
 
 	//------------------------------------------------------------------------------------------------

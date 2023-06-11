@@ -89,8 +89,25 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, back);
+
 		string desc = "Welcome to Arma Reforger HTCTI mission\n\nThe Mission:\n\nThis mission based on original MF/CR/BE and BECTI Zerty mod. missions.\n\nObjective:\n\nTake towns, destroy enemy facilities and MHQ.\nCommander setting the team strategy, build bases, run upgrades.\nWith more controlled towns the team eran more money.";
 		m_description.SetText(desc);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	override void OnMenuClose()
+	{
+		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, back);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void back()
+	{
+		auto menuManager = GetGame().GetMenuManager();
+		menuManager.CloseAllMenus();
+
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
 
 	//------------------------------------------------------------------------------------------------

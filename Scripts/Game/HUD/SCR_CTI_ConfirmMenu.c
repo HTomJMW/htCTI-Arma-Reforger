@@ -90,6 +90,8 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				m_cancel.SetColor(Color.White);
 				m_cancelText.SetText("[ - Cancel - ]");
 				
+				// TODO cancel placing if other menu open
+				
 				runCounter = 0;
 				scrollCounter = 0;
 			}

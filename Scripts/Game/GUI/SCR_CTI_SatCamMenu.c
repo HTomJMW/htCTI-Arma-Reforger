@@ -87,6 +87,8 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, back);
+
 		GetGame().GetInputManager().AddActionListener("MenuUp", EActionTrigger.UP, moveCamNorth);
 		GetGame().GetInputManager().AddActionListener("MenuDown", EActionTrigger.UP, moveCamSouth);
 		GetGame().GetInputManager().AddActionListener("MenuLeft", EActionTrigger.UP, moveCamWest);
@@ -98,6 +100,8 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuClose()
 	{
+		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, back);
+
 		GetGame().GetInputManager().RemoveActionListener("MenuUp", EActionTrigger.UP, moveCamNorth);
 		GetGame().GetInputManager().RemoveActionListener("MenuDown", EActionTrigger.UP, moveCamSouth);
 		GetGame().GetInputManager().RemoveActionListener("MenuLeft", EActionTrigger.UP, moveCamWest);
@@ -107,6 +111,15 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 
 		m_camMan.SetCamera(m_playerCam);
 		SCR_EntityHelper.DeleteEntityAndChildren(m_manualCam);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void back()
+	{
+		auto menuManager = GetGame().GetMenuManager();
+		menuManager.CloseAllMenus();
+
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
 	
 	//------------------------------------------------------------------------------------------------

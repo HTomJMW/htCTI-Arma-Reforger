@@ -67,7 +67,7 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
-		outName = "Take Command";
+		outName = "[Hold] Take Command";
 
 		return true;
 	}

@@ -23,7 +23,6 @@ class SCR_CTI_BuildMenuButtonHandler : ScriptedWidgetEventHandler
 		{
 			case "AddWorker":
 			{
-				// TODO Information notification if need
 				SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 				PlayerController pc = GetGame().GetPlayerController();
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
@@ -32,7 +31,11 @@ class SCR_CTI_BuildMenuButtonHandler : ScriptedWidgetEventHandler
 				if (!mhq) break;
 				
 				SCR_CTI_UpdateWorkersComponent uwc = SCR_CTI_UpdateWorkersComponent.Cast(gameMode.FindComponent(SCR_CTI_UpdateWorkersComponent));
-				if (uwc.getWorkersCount(affiliationComp.GetAffiliatedFaction().GetFactionKey()) >= SCR_CTI_Constants.WORKERSLIMIT) break;
+				if (uwc.getWorkersCount(affiliationComp.GetAffiliatedFaction().GetFactionKey()) >= SCR_CTI_Constants.WORKERSLIMIT)
+				{
+					SCR_HintManagerComponent.ShowCustomHint("Worker limit reached!", "Information", 5);
+					break;
+				}
 
 				int funds = 0;
 				SCR_CTI_ClientData clientData = gameMode.getClientData(pc.GetPlayerId());
@@ -40,7 +43,11 @@ class SCR_CTI_BuildMenuButtonHandler : ScriptedWidgetEventHandler
 				{
 					funds = gameMode.getCommanderFunds(affiliationComp.GetAffiliatedFaction().GetFactionKey());
 				}
-				if (funds < SCR_CTI_Constants.WORKERPRICE) break;
+				if (funds < SCR_CTI_Constants.WORKERPRICE)
+				{
+					SCR_HintManagerComponent.ShowCustomHint("Not enough funds!", "Information", 5);
+					break;
+				}
 
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				netComp.addWorkerServer(affiliationComp.GetAffiliatedFaction().GetFactionKey());
@@ -103,7 +110,11 @@ class SCR_CTI_BuildMenuButtonHandler : ScriptedWidgetEventHandler
 					}
 				}
 				
-				if (gameMode.getCommanderFunds(fk) < cost) break;
+				if (gameMode.getCommanderFunds(fk) < cost)
+				{
+					SCR_HintManagerComponent.ShowCustomHint("Not enough funds!", "Information", 5);
+					break;
+				}
 
 				SCR_CTI_PlacingStructureComponent placingStructureComp = SCR_CTI_PlacingStructureComponent.Cast(pc.FindComponent(SCR_CTI_PlacingStructureComponent));
 				if (!placingStructureComp.getStartPlacing()) placingStructureComp.createStructurePreview(fk, res, dist, placement, true);
@@ -178,7 +189,11 @@ class SCR_CTI_BuildMenuButtonHandler : ScriptedWidgetEventHandler
 					}
 				}
 				
-				if (funds < cost) break;
+				if (funds < cost)
+				{
+					SCR_HintManagerComponent.ShowCustomHint("Not enough funds!", "Information", 5);
+					break;
+				}
 
 				SCR_CTI_PlacingDefenseComponent placingDefComp = SCR_CTI_PlacingDefenseComponent.Cast(pc.FindComponent(SCR_CTI_PlacingDefenseComponent));
 				if (!placingDefComp.getStartPlacing()) placingDefComp.createDefPreview(res, dist, placement, true);

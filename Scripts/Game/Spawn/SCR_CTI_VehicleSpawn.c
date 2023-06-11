@@ -6,6 +6,7 @@ class SCR_CTI_VehicleSpawnClass : SCR_BasePrefabSpawnerClass
 class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 {
 	protected Vehicle m_spawnedVehicle;
+	protected bool m_used = false;
 	protected FactionKey m_factionkey;
 	protected ref array<IEntity> m_items = {};
 	protected SCR_CTI_GameMode m_gameMode;
@@ -21,7 +22,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	//------------------------------------------------------------------------------------------------
 	protected override bool CanSpawn()
 	{
-		return !m_spawnedVehicle;
+		return !m_spawnedVehicle && !m_used;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -42,7 +43,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("USSR", rplId);
 
-				garbagemanager.Insert(newEnt, 360000);
+				garbagemanager.Insert(newEnt);
 				garbagemanager.Withdraw(newEnt);
 				break;
 			}
@@ -66,9 +67,10 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		//PrintFormat("CTI :: Vehicle in garbage manager: %1 (%2)", garbagemanager.IsInserted(newEnt).ToString(), m_rnPrefab);
 		//PrintFormat("CTI :: Lifetime: %1 (%2)", garbagemanager.GetLifetime(newEnt), m_rnPrefab);
 
-		m_items.Clear();
+		if (m_items) m_items.Clear();
 		m_items = null;
 
+		m_used = true;
 		Deactivate(); // Deactivate after vehicle spawned
 	}
 

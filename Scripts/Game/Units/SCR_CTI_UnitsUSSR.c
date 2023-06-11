@@ -31,7 +31,7 @@ class SCR_CTI_UnitsUSSR
 	private void fillUp()
 	{
 		// Equipment box
-		resname.Insert("{B728C4AE0E6EB1E8}Prefabs/Systems/Arsenal/AmmoBoxes/USSR/AmmoBoxArsenal_Equipment_USSR.et");
+		resname.Insert(SCR_CTI_Constants.USSR_BOX);
 		picture.Insert("");
 		name.Insert("Equipment Box");
 		price.Insert(500);
@@ -41,6 +41,15 @@ class SCR_CTI_UnitsUSSR
 		script.Insert("");
 
 		// Soldiers
+		resname.Insert(SCR_CTI_Constants.USSR_WORKER);
+		picture.Insert("");
+		name.Insert("Worker");
+		price.Insert(SCR_CTI_Constants.WORKERPRICE);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("MHQ");
+		script.Insert("");
+
 		resname.Insert("{98EB9CDD85B8C92C}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Unarmed.et");
 		picture.Insert("");
 		name.Insert("");
@@ -150,16 +159,25 @@ class SCR_CTI_UnitsUSSR
 		script.Insert("");
 
 		// Vehicles
-		resname.Insert("{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et");
+		resname.Insert("{16A674FE31B0921D}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_uncovered.et");
 		picture.Insert("");
-		name.Insert("");
+		name.Insert("UAZ-469 Off-road - Open Top"); // missing open top name
 		price.Insert(700);
 		buildtime.Insert(20);
 		uplevel.Insert(0);
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{16C1F16C9B053801}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et");
+		resname.Insert("{CF00CF725A31B872}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(750);
+		buildtime.Insert(20);
+		uplevel.Insert(0);
+		factory.Insert("Light Factory");
+		script.Insert("");
+
+		resname.Insert("{B6BA0C8D6FF01C43}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1200);
@@ -168,7 +186,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
+		resname.Insert("{3B4A2C1ED5DBB0B8}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1300);
@@ -213,16 +231,16 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Repair Depot");
 		script.Insert("");
 
-		resname.Insert("{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et"); // MHQ
+		resname.Insert(SCR_CTI_Constants.USSR_MHQ);
 		picture.Insert("");
 		name.Insert("");
-		price.Insert(20000);
+		price.Insert(2000); // For reward need use other price, its only for service menu
 		buildtime.Insert(60);
 		uplevel.Insert(0);
 		factory.Insert("");
 		script.Insert("");
 
-		resname.Insert("{C012BB3488BEA0C2}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et");
+		resname.Insert("{0700E1528AEAC774}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(2500);

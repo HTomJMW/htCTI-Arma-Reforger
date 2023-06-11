@@ -29,7 +29,7 @@ class SCR_CTI_UpgradeMenuButtonHandler : ScriptedWidgetEventHandler
 
 				SCR_CTI_ClientData clientData = gameMode.getClientData(playerId);
 				if (!clientData && !clientData.isCommander()) break;
-				
+
 				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
@@ -75,17 +75,25 @@ class SCR_CTI_UpgradeMenuButtonHandler : ScriptedWidgetEventHandler
 					}
 				}
 
+				if (!dependencesReady)
+				{
+					SCR_HintManagerComponent.ShowCustomHint("Not all dependencies are met to start this upgrade.", "Information", 5);
+					break;
+				}
+
 				int cost = upgradeData.getCost();
 				int commanderFunds = gameMode.getCommanderFunds(fk);
-				if ((cost <= commanderFunds) && dependencesReady)
+				if (cost <= commanderFunds)
 				{
 					netComp.changeCommanderFundsServer(fk, -cost);
 				} else {
+					SCR_HintManagerComponent.ShowCustomHint("You do not have enough funds to perform this operation.", "Information", 5);
 					break;
 				}				
 				int upgradeindex = gameMode.Upgrades.findIndexByName(upgradeData.getName());
 				
 				netComp.StartUpgradeServer(fk, upgradeindex);
+				SCR_HintManagerComponent.ShowCustomHint("Upgrade started.", "Information", 5);
 				
 				//menuManager.CloseAllMenus();
 				
@@ -105,6 +113,7 @@ class SCR_CTI_UpgradeMenuButtonHandler : ScriptedWidgetEventHandler
 				FactionKey fk = affiliationComp.GetAffiliatedFaction().GetFactionKey();
 
 				netComp.StopUpgradeServer(fk);
+				SCR_HintManagerComponent.ShowCustomHint("Upgrade cancelled.", "Information", 5);
 
 				//auto menuManager = GetGame().GetMenuManager();
 				//menuManager.CloseAllMenus();

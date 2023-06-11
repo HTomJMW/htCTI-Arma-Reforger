@@ -31,7 +31,7 @@ class SCR_CTI_UnitsUS
 	private void fillUp()
 	{
 		// Equipment box
-		resname.Insert("{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et");
+		resname.Insert(SCR_CTI_Constants.US_BOX);
 		picture.Insert("");
 		name.Insert("Equipment Box");
 		price.Insert(500);
@@ -41,6 +41,15 @@ class SCR_CTI_UnitsUS
 		script.Insert("");
 
 		// Soldiers
+		resname.Insert(SCR_CTI_Constants.US_WORKER);
+		picture.Insert("");
+		name.Insert("Worker");
+		price.Insert(SCR_CTI_Constants.WORKERPRICE);
+		buildtime.Insert(10);
+		uplevel.Insert(0);
+		factory.Insert("MHQ");
+		script.Insert("");
+
 		resname.Insert("{2F912ED6E399FF47}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Unarmed.et");
 		picture.Insert("");
 		name.Insert("");
@@ -159,7 +168,7 @@ class SCR_CTI_UnitsUS
 		script.Insert("");
 
 		// Vehicles
-		resname.Insert("{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et");
+		resname.Insert("{24C2DDAB6129F316}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(700);
@@ -168,7 +177,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et");
+		resname.Insert("{0406BEC84D81A89E}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(750);
@@ -177,7 +186,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{F6B23D17D5067C11}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et");
+		resname.Insert("{6F01946EE0B0A8B8}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(900);
@@ -186,7 +195,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{F1FBD0972FA5FE09}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et");
+		resname.Insert("{4E2F7BE504E64AD9}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1200);
@@ -195,7 +204,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
+		resname.Insert("{084A168713BD0D21}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1300);
@@ -240,16 +249,16 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Repair Depot");
 		script.Insert("");
 
-		resname.Insert("{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"); // MHQ
+		resname.Insert(SCR_CTI_Constants.US_MHQ);
 		picture.Insert("");
 		name.Insert("");
-		price.Insert(20000);
+		price.Insert(2000); // For reward need use other price, its only for service menu
 		buildtime.Insert(60);
 		uplevel.Insert(0);
 		factory.Insert("");
 		script.Insert("");
 
-		resname.Insert("{B55C6990A6A9411B}Prefabs/Vehicles/Wheeled/M998/M998_covered.et");
+		resname.Insert("{AD1557D294604BF9}Prefabs/Vehicles/Wheeled/M998/M998_covered.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1000);
@@ -258,7 +267,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{4A71F755A4513227}Prefabs/Vehicles/Wheeled/M998/M1025.et");
+		resname.Insert("{33DD0A925A38A2EA}Prefabs/Vehicles/Wheeled/M998/M1025.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1000);
@@ -267,7 +276,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et");
+		resname.Insert("{3EA6F47D95867115}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);

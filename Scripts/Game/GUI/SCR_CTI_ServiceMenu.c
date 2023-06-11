@@ -25,6 +25,11 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 	protected ButtonWidget m_refuel;
 	protected ButtonWidget m_heal;
 	
+	protected RichTextWidget m_repairText;
+	protected RichTextWidget m_rearmText;
+	protected RichTextWidget m_refuelText;
+	protected RichTextWidget m_healText;
+	
 	protected OverlayWidget m_listbox;
 	protected SCR_ListBoxComponent m_listboxcomp;
 
@@ -50,7 +55,12 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 		m_rearm = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Rearm"));
 		m_refuel = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Refuel"));
 		m_heal = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Heal"));
-		
+
+		m_repairText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("RepairText")); // TODO use for show prices
+		m_rearmText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("RearmText"));
+		m_refuelText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("RefuelText"));
+		m_healText = RichTextWidget.Cast(m_wRoot.FindAnyWidget("HealText"));
+
 		m_listbox = OverlayWidget.Cast(m_wRoot.FindAnyWidget("ListBox"));
 		m_listboxcomp = SCR_ListBoxComponent.Cast(m_listbox.FindHandler(SCR_ListBoxComponent));
 		
@@ -60,24 +70,20 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 		m_commonButtonHandler = new SCR_CTI_CommonButtonHandler();
 		m_serviceMenubuttonEventHandler = new SCR_CTI_ServiceMenuButtonHandler();
 
-		//m_repair.SetColor(Color.Gray);
-		//m_repair.SetEnabled(false);
-		m_repair.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_repair.SetColor(Color.Gray);
+		m_repair.SetEnabled(false);
 		m_repair.AddHandler(m_serviceMenubuttonEventHandler);
 
-		//m_rearm.SetColor(Color.Gray);
-		//m_rearm.SetEnabled(false);
-		m_rearm.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_rearm.SetColor(Color.Gray);
+		m_rearm.SetEnabled(false);
 		m_rearm.AddHandler(m_serviceMenubuttonEventHandler);
 
-		//m_refuel.SetColor(Color.Gray);
-		//m_refuel.SetEnabled(false);
-		m_refuel.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_refuel.SetColor(Color.Gray);
+		m_refuel.SetEnabled(false);
 		m_refuel.AddHandler(m_serviceMenubuttonEventHandler);
 
-		//m_heal.SetColor(Color.Gray);
-		//m_heal.SetEnabled(false);
-		m_heal.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_heal.SetColor(Color.Gray);
+		m_heal.SetEnabled(false);
 		m_heal.AddHandler(m_serviceMenubuttonEventHandler);
 
 		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
@@ -310,7 +316,7 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	protected void getVehicleInformations(IEntity vehicle, out string displayName, out string dam, out string fu, out string ammo, out string health)
 	{
-		// TODO check vehicle fire
+		// TODO check vehicle fire!!!
 
 		// Get vehicle name
 		SCR_EditableVehicleComponent vehComp = SCR_EditableVehicleComponent.Cast(vehicle.FindComponent(SCR_EditableVehicleComponent));
@@ -406,11 +412,14 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, back);
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuClose()
 	{
+		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, back);
+
 		m_vehiclesNearRepDepot.Clear();
 		m_vehiclesNearRepDepot = null;
 		m_vehiclesNearAmmoDepot.Clear();
@@ -424,13 +433,223 @@ class SCR_CTI_ServiceMenu : ChimeraMenuBase
 	}
 
 	//------------------------------------------------------------------------------------------------
+	protected void back()
+	{
+		auto menuManager = GetGame().GetMenuManager();
+		menuManager.CloseAllMenus();
+
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
+	}
+
+	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
 		m_timeDelta += tDelta;
 		if (m_timeDelta > TIMESTEP)
 		{
-			//TODO
+			int selected = m_listboxcomp.GetSelectedItem();
+			if (selected != -1)
+			{
+				RplComponent rplComp = RplComponent.Cast(m_listboxcomp.GetItemData(selected));
+				if (rplComp)
+				{
+					IEntity vehicle = rplComp.GetEntity();
+					if (vehicle)
+					{
+						SCR_VehicleFactionAffiliationComponent vehFaffComp = SCR_VehicleFactionAffiliationComponent.Cast(vehicle.FindComponent(SCR_VehicleFactionAffiliationComponent));
+						FactionKey vehFactionKey = vehFaffComp.GetDefaultAffiliatedFaction().GetFactionKey();
+						SCR_CTI_UnitData unitData;
+						switch (vehFactionKey)
+						{
+							case "USSR":
+							{
+								int index = m_gameMode.UnitsUSSR.findIndexFromResourcename(vehicle.GetPrefabData().GetPrefabName());
+								if (index > -1) unitData = m_gameMode.UnitsUSSR.g_USSR_Units[index];
+								break;
+							}
+							case "US":
+							{
+								int index = m_gameMode.UnitsUS.findIndexFromResourcename(vehicle.GetPrefabData().GetPrefabName());
+								if (index > -1) unitData = m_gameMode.UnitsUS.g_US_Units[index];
+								break;
+							}
+							case "FIA":
+							{
+								int index = m_gameMode.UnitsFIA.findIndexFromResourcename(vehicle.GetPrefabData().GetPrefabName());
+								if (index > -1) unitData = m_gameMode.UnitsFIA.g_FIA_Units[index];
+								break;
+							}
+						}
+						
+						if (unitData)
+						{
+							SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(vehicle.FindComponent(SCR_VehicleDamageManagerComponent));
+							// Maybe need destroyed check?
 
+							array<HitZone> hitZones = {};
+							vehicleDamageManager.GetAllHitZones(hitZones);
+							
+							bool damaged = false;
+							foreach (HitZone hitzone : hitZones)
+							{
+								if (hitzone.GetDamageState() != EDamageState.UNDAMAGED)
+								{
+									damaged = true;
+									break;
+								}
+							}
+
+							if (damaged)
+							{
+								if (!m_repair.IsEnabled())
+								{
+									m_repair.SetEnabled(true);
+									m_repair.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+									m_repairText.SetText("Repair [" + (unitData.getPrice() * SCR_CTI_Constants.REPAIRMULTIPLIER).ToString() + "$]");
+								}
+							} else {
+								if (m_repair.IsEnabled())
+								{
+									m_repairText.SetText("Repair");				
+									m_repair.SetEnabled(false);
+									m_repair.SetColor(Color.Gray);
+								}
+							}
+
+							SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(vehicle.FindComponent(SCR_BaseCompartmentManagerComponent));
+							bool needRearm = false;
+
+							array<BaseCompartmentSlot> outCompartments = {};
+							bcmc.GetCompartments(outCompartments);
+
+							foreach(BaseCompartmentSlot slot : outCompartments)
+							{
+								if (slot.Type() == TurretCompartmentSlot)
+								{
+									TurretControllerComponent tcc = TurretControllerComponent.Cast(slot.GetController());
+									BaseWeaponManagerComponent bwmc = tcc.GetWeaponManager();
+
+									array<IEntity> outWeapons = {};
+									bwmc.GetWeaponsList(outWeapons);
+									
+									if (outWeapons.IsEmpty()) needRearm = false;
+
+									foreach(IEntity weapon : outWeapons)
+									{
+										WeaponComponent wc = WeaponComponent.Cast(weapon.FindComponent(WeaponComponent));
+										BaseMagazineComponent bmc = wc.GetCurrentMagazine();
+
+										int maxAmmo = bmc.GetMaxAmmoCount();
+										int currentAmmo = bmc.GetAmmoCount();
+
+										if (maxAmmo > currentAmmo)
+										{
+											needRearm = true;
+											break;
+										}
+									}
+								}
+							}
+
+							if (needRearm)
+							{
+								if (!m_rearm.IsEnabled())
+								{
+									m_rearm.SetEnabled(true);
+									m_rearm.SetColor(SCR_CTI_Constants.CTI_ORANGE);							
+									m_rearmText.SetText("Rearm [" + (unitData.getPrice() * SCR_CTI_Constants.REARMMULTIPLIER).ToString() + "$]");
+								}
+							} else {
+								if (m_rearm.IsEnabled())
+								{
+									m_rearm.SetEnabled(false);
+									m_rearm.SetColor(Color.Gray);
+									m_refuelText.SetText("Refuel");
+								}
+							}
+
+							FuelManagerComponent fuelManagerComp = FuelManagerComponent.Cast(vehicle.FindComponent(FuelManagerComponent));
+							bool needRefuel = ((fuelManagerComp.GetTotalMaxFuel() / fuelManagerComp.GetTotalFuel()) != 1);
+							
+							if (needRefuel)
+							{
+								if (!m_refuel.IsEnabled())
+								{
+									m_refuel.SetEnabled(true);
+									m_refuel.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+									m_refuelText.SetText("Refuel [" + (unitData.getPrice() * SCR_CTI_Constants.REFUELMULTIPLIER).ToString() + "$]");
+								}
+							} else {
+								if (m_refuel.IsEnabled())
+								{
+									m_refuelText.SetText("Refuel");
+									m_refuel.SetEnabled(false);
+									m_refuel.SetColor(Color.Gray);
+								}
+							}
+						}
+
+						SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(vehicle.FindComponent(SCR_BaseCompartmentManagerComponent));
+						array<IEntity> occupants = {};
+						bcmc.GetOccupants(occupants);
+						
+						bool needHeal = false;
+						if (!occupants.IsEmpty())
+						{
+							foreach (IEntity crew : occupants)
+							{
+								SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(crew.FindComponent(SCR_CharacterDamageManagerComponent));
+								array<HitZone> outHitZones = {};
+								cdmc.GetAllHitZones(outHitZones);
+
+								foreach(HitZone hitzone : outHitZones)
+								{
+									if (hitzone.GetMaxHealth() != hitzone.GetHealth())
+									{
+										needHeal = true;
+										break;
+									}
+								}
+							}
+						}
+
+						if (needHeal)
+						{
+							if (!m_heal.IsEnabled())
+							{
+								m_heal.SetEnabled(true);
+								m_heal.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+								m_healText.SetText("Heal [" + (occupants.Count() * 50).ToString() + "$]");
+							}
+						} else {
+							if (m_heal.IsEnabled())
+							{
+								m_healText.SetText("Heal");
+								m_heal.SetEnabled(false);
+								m_heal.SetColor(Color.Gray);
+							}
+						}
+					}
+				}
+			} else {
+				m_repairText.SetText("Repair");
+				m_repair.SetEnabled(false);
+				m_repair.SetColor(Color.Gray);
+				
+				m_rearmText.SetText("Rearm");
+				m_rearm.SetEnabled(false);
+				m_rearm.SetColor(Color.Gray);
+				
+				m_refuelText.SetText("Refuel");
+				m_refuel.SetEnabled(false);
+				m_refuel.SetColor(Color.Gray);
+				
+				m_healText.SetText("Heal");
+				m_heal.SetEnabled(false);
+				m_heal.SetColor(Color.Gray);
+			}
+			
+			// TODO REFRESH LIST
 			m_timeDelta = 0;
 		}
 	}

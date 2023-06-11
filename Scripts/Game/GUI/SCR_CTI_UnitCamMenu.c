@@ -179,15 +179,28 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
-	{
+	{		
+		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, back);
+
 		setInternal();
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuClose()
 	{
+		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, back);
+		
 		m_camMan.SetCamera(m_playerCam);
 		SCR_EntityHelper.DeleteEntityAndChildren(m_manualCam);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void back()
+	{
+		auto menuManager = GetGame().GetMenuManager();
+		menuManager.CloseAllMenus();
+
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
 
 	//------------------------------------------------------------------------------------------------

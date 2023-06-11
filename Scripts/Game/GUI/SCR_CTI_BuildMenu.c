@@ -113,9 +113,6 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 		m_undodefense.SetColor(Color.Gray);
 		m_undodefense.SetEnabled(false);
 		
-		m_autoalignwalls.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-		m_autoalignwalls.SetEnabled(false);
-		
 		m_back.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_back.AddHandler(m_commonButtonHandler);
 
@@ -166,6 +163,22 @@ class SCR_CTI_BuildMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, back);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	override void OnMenuClose()
+	{
+		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, back);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void back()
+	{
+		auto menuManager = GetGame().GetMenuManager();
+		menuManager.CloseAllMenus();
+
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
 
 	//------------------------------------------------------------------------------------------------

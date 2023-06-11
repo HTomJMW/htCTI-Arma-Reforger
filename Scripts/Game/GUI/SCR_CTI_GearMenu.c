@@ -2584,11 +2584,14 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, back);
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuClose()
 	{
+		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, back);
+
 		// remove invokers
 		m_ismc.m_OnItemAddedInvoker.Remove(OnItemAdded);
 		m_ismc.m_OnItemRemovedInvoker.Remove(OnItemRemoved);
@@ -2672,6 +2675,15 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_newVestEnt = null;
 		m_newBackpackEnt = null;
 		m_newTrousersEnt = null;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void back()
+	{
+		auto menuManager = GetGame().GetMenuManager();
+		menuManager.CloseAllMenus();
+
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
 	
 	//------------------------------------------------------------------------------------------------

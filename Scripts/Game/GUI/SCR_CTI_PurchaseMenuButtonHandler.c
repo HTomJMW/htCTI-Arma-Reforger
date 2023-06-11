@@ -340,19 +340,35 @@ class SCR_CTI_PurchaseMenuButtonHandler : ScriptedWidgetEventHandler
 				int cost = unitData.getPrice();
 
 				int funds = 0;
+				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 				SCR_CTI_ClientData clientData = gameMode.getClientData(pc.GetPlayerId());
-				if (clientData && clientData.isCommander())
+				if (clientData)
 				{
-					funds = gameMode.getCommanderFunds(factionkey);
-				} else {
-					funds = clientData.getFunds();
+					if (clientData.isCommander())
+					{
+						FactionKey playerFactionkey = GetGame().GetFactionManager().GetFactionByIndex(clientData.getFactionIndex()).GetFactionKey();
+						funds = gameMode.getCommanderFunds(playerFactionkey);
+						if (funds < cost)
+						{
+							SCR_HintManagerComponent.ShowCustomHint("Not enough funds!", "Information", 5);
+							break;
+						} else {
+							netComp.changeCommanderFundsServer(playerFactionkey, -cost);
+						}
+					} else {
+						funds = clientData.getFunds();
+						if (funds < cost)
+						{
+							SCR_HintManagerComponent.ShowCustomHint("Not enough funds!", "Information", 5);
+							break;
+						} else {
+							netComp.changeFundsServer(pc.GetPlayerId(), -cost);
+						}
+					}
 				}
 
-				if (funds < cost) break; // TODO make warning?
-
 				EntityID groupID = pm.getGroupforCombobox().GetID();
-				
-				SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
+
 				netComp.addBuildRequestServer(res, factionkey, groupID, factRplid, mat, pc.GetPlayerId(), buildTime, purchaseInfo);
 
 				break;

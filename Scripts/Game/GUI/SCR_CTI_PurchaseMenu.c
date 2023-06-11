@@ -116,18 +116,21 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 		m_buttonflag.SetEnabled(false);
 		//m_buttonflag.AddHandler(m_buttonEventHandler);
 
-		//m_driver.SetEnabled(false);
-		m_driver.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-		m_driver.AddHandler(m_buttonEventHandler);
+		m_driver.SetEnabled(false);
+		m_driver.SetColor(Color.Gray);
+		//m_driver.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		//m_driver.AddHandler(m_buttonEventHandler);
 		//m_gunner.SetEnabled(false);
 		m_gunner.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_gunner.AddHandler(m_buttonEventHandler);
-		//m_commander.SetEnabled(false);
-		m_commander.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-		m_commander.AddHandler(m_buttonEventHandler);
-		//m_crew.SetEnabled(false);
-		m_crew.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-		m_crew.AddHandler(m_buttonEventHandler);
+		m_commander.SetEnabled(false);
+		m_commander.SetColor(Color.Gray);
+		//m_commander.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		//m_commander.AddHandler(m_buttonEventHandler);
+		m_crew.SetEnabled(false);
+		m_crew.SetColor(Color.Gray);
+		//m_crew.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		//m_crew.AddHandler(m_buttonEventHandler);
 		//m_lock.SetEnabled(false);
 		m_lock.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_lock.AddHandler(m_buttonEventHandler);
@@ -190,6 +193,22 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
 	{
+		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, back);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	override void OnMenuClose()
+	{
+		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, back);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void back()
+	{
+		auto menuManager = GetGame().GetMenuManager();
+		menuManager.CloseAllMenus();
+
+		GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_MainMenu);
 	}
 
 	//------------------------------------------------------------------------------------------------
