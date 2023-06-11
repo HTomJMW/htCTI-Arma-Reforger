@@ -227,8 +227,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_BaseComponent "{5AA31079657C4391}" {
   }
-  SCR_CTI_BuildQueueComponent "{5D6F4D21A5010334}" {
-  }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
   SCR_CTI_UpdateResourcesComponent "{5C4920D164E382C7}" {
@@ -324,7 +322,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger HTCTI v0.5.15"
+     Name "Arma Reforger HTCTI v0.6.0"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -358,6 +356,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_TimeAndWeatherHandlerComponent "{5CB73490BB6A346C}" {
    Enabled 0
    m_bRandomStartingDaytime 1
+   m_fNightTimeAcceleration 4
+   m_bRandomStartingWeather 1
   }
   SCR_TimedSpawnPointComponent "{599D23324D9764F0}" {
    m_fRespawnTime 10
