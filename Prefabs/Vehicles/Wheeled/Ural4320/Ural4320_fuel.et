@@ -168,6 +168,15 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
     }
    }
   }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   additionalActions {
+    SCR_CTI_LockAndUnlockVehicleAction "{5D90B4B01F1EF3C9}" {
+     ParentContextList {
+      "door_l01" "door_r01"
+     }
+    }
+   }
+  }
  }
  m_eVehicleType FUEL_TRUCK
 }

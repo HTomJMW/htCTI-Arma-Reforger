@@ -167,6 +167,15 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
     }
    }
   }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   additionalActions {
+    SCR_CTI_LockAndUnlockVehicleAction "{5D90D292C21A2A0A}" {
+     ParentContextList {
+      "door_l01" "door_r01"
+     }
+    }
+   }
+  }
  }
  m_eVehicleType COMM_TRUCK
 }

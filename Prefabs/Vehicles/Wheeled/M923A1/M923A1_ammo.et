@@ -16,5 +16,14 @@ Vehicle : "{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_co
     }
    }
   }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   additionalActions {
+    SCR_CTI_LockAndUnlockVehicleAction "{5D90D29470E58020}" {
+     ParentContextList {
+      "door_r01" "door_l01"
+     }
+    }
+   }
+  }
  }
 }

@@ -39,6 +39,7 @@ Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
       "take_command"
      }
      VisibilityRange 5
+     Duration 2
      m_sActionStateOn ""
      m_sActionStateOff ""
     }
