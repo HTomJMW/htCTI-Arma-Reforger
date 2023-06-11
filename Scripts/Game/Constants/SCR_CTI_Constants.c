@@ -29,21 +29,24 @@ class SCR_CTI_Constants
 	static const int MINVD = 2500;
 	static const int MAXTG = 150;
 	static const int MINTG = 80;
+	static const float REPAIRMULTIPLIER = 0.35;
+	static const float REARMMULTIPLIER = 0.40;
+	static const float REFUELMULTIPLIER = 0.40;
 	
 	// Colors
 	static const ref Color CTI_ORANGE = new Color(1.000000, 0.456336, 0.000000, 1.000000);
 	
 	// General ResouceNames
-	static const ResourceName USSR_WORKER = "{98EB9CDD85B8C92C}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Unarmed.et";
-	static const ResourceName US_WORKER = "{2F912ED6E399FF47}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Unarmed.et";
+	static const ResourceName USSR_WORKER = "{AF27781647A1B461}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Worker.et";
+	static const ResourceName US_WORKER = "{CAB33F392613EA85}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Worker.et";
 	static const ResourceName USSR_MHQ = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
 	static const ResourceName US_MHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 	static const ResourceName USSR_BOX = "{B728C4AE0E6EB1E8}Prefabs/Systems/Arsenal/AmmoBoxes/USSR/AmmoBoxArsenal_Equipment_USSR.et";
 	static const ResourceName US_BOX = "{0FC1D6E9B592F75D}Prefabs/Systems/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et";
 	static const ResourceName USSR_SOLDIER = "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et";
 	static const ResourceName US_SOLDIER = "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et";
-	static const ResourceName USSR_UAZ = "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et";
-	static const ResourceName US_JEEP = "{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et";
+	static const ResourceName USSR_UAZ = "{CF00CF725A31B872}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et";
+	static const ResourceName US_JEEP = "{0406BEC84D81A89E}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et";
 	
 	// Radios
 	static const ResourceName USSR_RADIO1 = "{E1A5D4B878AA8980}Prefabs/Items/Equipment/Radios/Radio_R148.et"; // start equipment
@@ -78,6 +81,8 @@ class SCR_CTI_Constants
 	static const ResourceName FIA_SniperTeam = "{6307F42403E9B8A4}Prefabs/Groups/INDFOR/Group_FIA_SharpshooterTeam.et";
 	static const ResourceName FIA_ATTeam = "{2CC26054775FBA2C}Prefabs/Groups/INDFOR/Group_FIA_Team_AT.et";
 
+	static const ResourceName FIA_BTR70 = "{B47110AA1A806556}Prefabs/Vehicles/Wheeled/BTR70/BTR70_FIA.et";
+
 	static const ResourceName USSR_FireGroup = "{30ED11AA4F0D41E5}Prefabs/Groups/OPFOR/Group_USSR_FireGroup.et";
 	static const ResourceName USSR_LightFireTeam = "{657590C1EC9E27D3}Prefabs/Groups/OPFOR/Group_USSR_LightFireTeam.et";
 	static const ResourceName USSR_MGTeam = "{A2F75E45C66B1C0A}Prefabs/Groups/OPFOR/Group_USSR_MachineGunTeam.et";
@@ -89,7 +94,7 @@ class SCR_CTI_Constants
 	static const ResourceName USSR_ATTeam = "{96BAB56E6558788E}Prefabs/Groups/OPFOR/Group_USSR_Team_AT.et";
 	static const ResourceName USSR_SuppressTeam = "{1C0502B5729E7231}Prefabs/Groups/OPFOR/Group_USSR_Team_Suppress.et";
 	
-	static const ResourceName USSR_BTR70 = "{C012BB3488BEA0C2}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et";
+	static const ResourceName USSR_BTR70 = "{0700E1528AEAC774}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et";
 
 	static const ResourceName US_FireTeam = "{84E5BBAB25EA23E5}Prefabs/Groups/BLUFOR/Group_US_FireTeam.et";
 	static const ResourceName US_LightFireTeam = "{FCF7F5DC4F83955C}Prefabs/Groups/BLUFOR/Group_US_LightFireTeam.et";
@@ -102,5 +107,5 @@ class SCR_CTI_Constants
 	static const ResourceName US_ATTeam = "{FAEA8B9E1252F56E}Prefabs/Groups/BLUFOR/Group_US_Team_LAT.et";
 	static const ResourceName US_SuppressTeam = "{81B6DBF2B88545F5}Prefabs/Groups/BLUFOR/Group_US_Team_Suppress.et";
 	
-	static const ResourceName US_M1025_M2 = "{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et";
+	static const ResourceName US_M1025_M2 = "{3EA6F47D95867115}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et";
 };

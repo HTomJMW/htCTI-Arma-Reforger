@@ -31,7 +31,7 @@ class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 	//------------------------------------------------------------------------------------------------
 	override LocalizedString GetCannotPerformReason(IEntity user)
 	{
-		return "Only for Commander";
+		return "Only for Commander!";
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ class SCR_CTI_MHQLockComponent : SCR_BaseLockComponent
 		SCR_ChimeraCharacter character = SCR_ChimeraCharacter.Cast(user);
 		Faction characterFaction = character.GetFaction();
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
-		if (playerId != m_gameMode.getCommanderId(characterFaction.GetFactionKey()) && compartmentSlot.Type() == PilotCompartmentSlot)
+		if (playerId != m_gameMode.getCommanderId(characterFaction.GetFactionKey()) /*&& compartmentSlot.Type() == PilotCompartmentSlot*/)
 		{
 			return true;
 		}

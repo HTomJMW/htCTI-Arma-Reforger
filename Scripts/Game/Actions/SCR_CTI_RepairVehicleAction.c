@@ -1,7 +1,6 @@
+[EntityEditorProps(category: "GameScripted/CTI", description: "Repair Vehicle User Action")]
 class SCR_RepairVehicleAction : ScriptedUserAction
 {
-	//protected ECharacterHitZoneGroup m_eHitZoneGroup;
-
 	//------------------------------------------------------------------------------------------------
 	override void OnActionStart(IEntity pUserEntity)
 	{
@@ -20,5 +19,11 @@ class SCR_RepairVehicleAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------	
 	override bool CanBeShownScript(IEntity user)
 	{
+	}
+
+	//------------------------------------------------------------------------------------------------
+	override bool HasLocalEffectOnlyScript()
+	{
+		return false;
 	}
 };

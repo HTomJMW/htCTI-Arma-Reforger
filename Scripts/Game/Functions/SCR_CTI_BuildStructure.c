@@ -60,6 +60,9 @@ class SCR_CTI_BuildStructure
 			IEntity sp = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
 			SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
 			spawn.SetFactionKey(factionkey);
+			vector spPos = mat[3];
+			spPos[1] = spPos[1] + 0.2; // Elevate SP
+			spawn.SetOrigin(spPos);
 
 			// Notification
 			FactionManager fm = GetGame().GetFactionManager();

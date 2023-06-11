@@ -195,8 +195,9 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
 	protected void RpcAsk_AddBuildRequestServer(ResourceName resourcename, FactionKey factionkey, EntityID groupID, RplId factRplId, vector mat[4], int playerId, int buildTime, CTI_PurchaseInfos purchaseInfo)
 	{
-		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		SCR_CTI_BuildQueueComponent bqcomp = SCR_CTI_BuildQueueComponent.Cast(gameMode.FindComponent(SCR_CTI_BuildQueueComponent));
+		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(factRplId));
+		IEntity factory = rplComp.GetEntity();
+		SCR_CTI_BuildQueueComponent bqcomp = SCR_CTI_BuildQueueComponent.Cast(factory.FindComponent(SCR_CTI_BuildQueueComponent));
 		bqcomp.addRequest(resourcename, factionkey, groupID, factRplId, mat, playerId, buildTime, purchaseInfo);
 	}
 
@@ -264,132 +265,59 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void repairVehicleServer(RplId rplid)
+	void repairVehicleServer(int playerId, RplId rplid, int delay)
 	{
-		Rpc(RpcAsk_RepairVehicleServer, rplid);
+		Rpc(RpcAsk_RepairVehicleServer, playerId, rplid, delay);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_RepairVehicleServer(RplId rplid)
+	protected void RpcAsk_RepairVehicleServer(int playerId, RplId rplid, int delay)
 	{
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
-		IEntity ent = rplComp.GetEntity();
-		if (!ent) return;
-		
-		SCR_CTI_VehicleCustomVariablesComponent vcvc = SCR_CTI_VehicleCustomVariablesComponent.Cast(ent.FindComponent(SCR_CTI_VehicleCustomVariablesComponent));
-		if (vcvc && vcvc.getSupportVehicleType() == CTI_SupportVehicleTypes.MHQ)
-		{
-			FactionAffiliationComponent faffComp = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
-			SCR_CTI_RepairMHQ.repairMHQ(faffComp.GetDefaultAffiliatedFaction().GetFactionKey());
-			return;
-		}
-
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
-		if (!vehicleDamageManager.IsDestroyed()) vehicleDamageManager.FullHeal();
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		GetGame().GetCallqueue().CallLater(gameMode.delayedRepair, delay * 1000, false, playerId, rplid);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void refuelVehicleServer(RplId rplid)
+	void rearmVehicleServer(int playerId, RplId rplid, int delay)
 	{
-		Rpc(RpcAsk_RefuelVehicleServer, rplid);
+		Rpc(RpcAsk_RearmVehicleServer, playerId, rplid, delay);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_RefuelVehicleServer(RplId rplid)
+	protected void RpcAsk_RearmVehicleServer(int playerId, RplId rplid, int delay)
 	{
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
-		IEntity ent = rplComp.GetEntity();
-		if (!ent) return;
-		
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
-		if (!vehicleDamageManager.IsDestroyed())
-		{
-			FuelManagerComponent fuelManagerComp = FuelManagerComponent.Cast(ent.FindComponent(FuelManagerComponent));
-			array<BaseFuelNode> outNodes = {};
-			fuelManagerComp.GetFuelNodesList(outNodes);
-			
-			foreach(BaseFuelNode node : outNodes)
-			{
-				node.SetFuel(node.GetMaxFuel());
-			}
-		}
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		GetGame().GetCallqueue().CallLater(gameMode.delayedRearm, delay * 1000, false, playerId, rplid);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void rearmVehicleServer(RplId rplid)
+	void refuelVehicleServer(int playerId, RplId rplid, int delay)
 	{
-		Rpc(RpcAsk_RearmVehicleServer, rplid);
+		Rpc(RpcAsk_RefuelVehicleServer, playerId, rplid, delay);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_RearmVehicleServer(RplId rplid)
+	protected void RpcAsk_RefuelVehicleServer(int playerId, RplId rplid, int delay)
 	{
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
-		IEntity ent = rplComp.GetEntity();
-		if (!ent) return;
-		
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
-		if (!vehicleDamageManager.IsDestroyed())
-		{
-			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(ent.FindComponent(SCR_BaseCompartmentManagerComponent));
-			
-			array<BaseCompartmentSlot> outCompartments = {};
-			bcmc.GetCompartments(outCompartments);
-					
-			foreach(BaseCompartmentSlot slot : outCompartments)
-			{
-				if (slot.Type() == TurretCompartmentSlot)
-				{
-					TurretControllerComponent tcc = TurretControllerComponent.Cast(slot.GetController());
-					BaseWeaponManagerComponent bwmc = tcc.GetWeaponManager();
-
-					array<IEntity> outWeapons = {};
-					bwmc.GetWeaponsList(outWeapons);
-					
-					if (outWeapons.IsEmpty()) return;
-
-					foreach(IEntity weapon : outWeapons)
-					{
-						WeaponComponent wc = WeaponComponent.Cast(weapon.FindComponent(WeaponComponent));
-						BaseMagazineComponent bmc = wc.GetCurrentMagazine();
-
-						bmc.SetAmmoCount(bmc.GetMaxAmmoCount());
-					}
-				}
-			}
-		}
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		GetGame().GetCallqueue().CallLater(gameMode.delayedRefuel, delay * 1000, false, playerId, rplid);
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void healVehicleCrewServer(RplId rplid)
+	void healVehicleCrewServer(int playerId, RplId rplid, int delay)
 	{
-		Rpc(RpcAsk_HealVehicleCrewServer, rplid);
+		Rpc(RpcAsk_HealVehicleCrewServer, playerId, rplid, delay);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	protected void RpcAsk_HealVehicleCrewServer(RplId rplid)
+	protected void RpcAsk_HealVehicleCrewServer(int playerId, RplId rplid, int delay)
 	{
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
-		IEntity ent = rplComp.GetEntity();
-		if (!ent) return;
-		
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
-		if (!vehicleDamageManager.IsDestroyed())
-		{
-			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(ent.FindComponent(SCR_BaseCompartmentManagerComponent));
-			array<IEntity> occupants = {};
-			bcmc.GetOccupants(occupants);
-			
-			foreach(IEntity crew : occupants)
-			{
-				SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(crew.FindComponent(SCR_CharacterDamageManagerComponent));
-				cdmc.FullHeal();
-			}
-		}
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		GetGame().GetCallqueue().CallLater(gameMode.delayedHeal, delay * 1000, false, playerId, rplid);
 	}
 
 	//------------------------------------------------------------------------------------------------

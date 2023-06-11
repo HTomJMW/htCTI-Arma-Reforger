@@ -84,7 +84,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svNorth1.addItemsPrefab(itemMapUaz);
 			
 			// Ural truck + equipment
-			svNorth2.setPrefab("{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
+			svNorth2.setPrefab("{3B4A2C1ED5DBB0B8}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
 			svNorth2.addItemsPrefab(itemMapUral);
 			
 			// USSR MHQ + equipment
@@ -96,7 +96,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth1.addItemsPrefab(itemMapM151);
 			
 			// M923A1 truck + equipment
-			svSouth2.setPrefab("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
+			svSouth2.setPrefab("{084A168713BD0D21}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
 			svSouth2.addItemsPrefab(itemMapM923);
 			
 			// US MHQ + equipment
@@ -108,7 +108,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svNorth1.addItemsPrefab(itemMapM151);
 
 			// M923A1 truck + equipment
-			svNorth2.setPrefab("{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
+			svNorth2.setPrefab("{084A168713BD0D21}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
 			svNorth2.addItemsPrefab(itemMapM923);
 			
 			// US MHQ + equipment
@@ -120,7 +120,7 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 			svSouth1.addItemsPrefab(itemMapUaz);
 			
 			// Ural truck + equipment
-			svSouth2.setPrefab("{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
+			svSouth2.setPrefab("{3B4A2C1ED5DBB0B8}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
 			svSouth2.addItemsPrefab(itemMapUral);
 			
 			// USSR MHQ + equipment

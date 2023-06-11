@@ -82,9 +82,9 @@ class SCR_CTI_Base
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_Base()
 	{
-		structures.Clear();
+		if (structures) structures.Clear();
 		structures = null;
-		wipSturctures.Clear();
+		if (wipSturctures) wipSturctures.Clear();
 		wipSturctures = null;
 	}
 };

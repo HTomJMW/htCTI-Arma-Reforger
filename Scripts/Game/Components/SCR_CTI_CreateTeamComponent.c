@@ -201,6 +201,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 				DoSpawn(SCR_CTI_Constants.FIA_FireTeam);
 				if (m_town.getTownValue() > 250) DoSpawn(SCR_CTI_Constants.FIA_ATTeam);
 				if (m_town.getTownValue() > 300) DoSpawn(SCR_CTI_Constants.FIA_SniperTeam);
+				if (m_town.getTownValue() > 300) SpawnVehicle(SCR_CTI_Constants.FIA_BTR70);
 				switch (rnd)
 				{
 					case 0: DoSpawn(SCR_CTI_Constants.FIA_MGTeam); break;

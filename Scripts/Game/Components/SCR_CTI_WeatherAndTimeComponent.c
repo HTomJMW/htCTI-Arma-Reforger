@@ -30,6 +30,21 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 		
 		PrintFormat("CTI :: Time: %1h", m_manager.GetTime().m_iHours);
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	void randomWeather()
+	{
+		if (!m_manager) return;
+
+		array<ref WeatherState> weatherStates = {};
+		m_manager.GetWeatherStatesList(weatherStates);
+			
+		if (!weatherStates.IsEmpty())
+		{
+			Math.Randomize(-1);
+			m_manager.ForceWeatherTo(false, weatherStates.GetRandomElement().GetStateName());
+		}
+	}
 
 	//------------------------------------------------------------------------------------------------
 	protected void timeAcceleration()

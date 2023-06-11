@@ -158,7 +158,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 					if (ussrRemainingUpgradeTime > 0)
 					{
 						ussrRemainingUpgradeTime -= m_timeDelta;
-						if (ussrRemainingUpgradeTime < 0)
+						if (ussrRemainingUpgradeTime <= 0)
 						{
 							ussrRemainingUpgradeTime = 0;
 							finish("USSR", ussrRunningUpgradeIndex);
@@ -173,7 +173,7 @@ class SCR_CTI_UpgradeComponent : ScriptComponent
 					if (usRemainingUpgradeTime > 0)
 					{
 						usRemainingUpgradeTime -= m_timeDelta;
-						if (usRemainingUpgradeTime < 0)
+						if (usRemainingUpgradeTime <= 0)
 						{
 							ussrRemainingUpgradeTime = 0;
 							finish("US", usRunningUpgradeIndex);

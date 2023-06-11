@@ -9,10 +9,9 @@ class SCR_CTI_FactoryProduction
 		bool driver, gunner, commander, crew, locked;
 		infoCoder.deCode(driver, gunner, commander, crew, locked, purchaseInfo);
 		PrintFormat("%1, %2, %3, %4, %5", driver.ToString(), gunner.ToString(), commander.ToString(), crew.ToString(), locked.ToString());
-		//TODO Man vehicle if need
 
 		RplComponent factRplComp = RplComponent.Cast(Replication.FindItem(factRplId));
-		IEntity factory = factRplComp.GetEntity();
+		IEntity factory = factRplComp.GetEntity(); // TODO Is alive?
 
 		IEntity entity = null;
 
@@ -43,7 +42,30 @@ class SCR_CTI_FactoryProduction
 			
 			AIGroup group = AIGroup.Cast(GetGame().GetWorld().FindEntityByID(groupID));
 			if (agent && group) group.AddAgent(agent);
+
+			SCR_VehicleSpawnProtectionComponent vspc = SCR_VehicleSpawnProtectionComponent.Cast(entity.FindComponent(SCR_VehicleSpawnProtectionComponent));
+			if (vspc)
+			{
+				vspc.SetVehicleOwner(playerId);
+			}
 			
+			SCR_BaseLockComponent blc = SCR_BaseLockComponent.Cast(entity.FindComponent(SCR_BaseLockComponent));
+			if (blc)
+			{
+				if (locked) blc.lockVehicle(true);
+			}
+			
+			if (gunner)
+			{
+				//Temporary, need check turrent on client.
+				SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(entity.FindComponent(SCR_BaseCompartmentManagerComponent));
+				if (bcmc)
+				{
+					array<ECompartmentType> compartmentTypes = {ECompartmentType.Turret};
+					bcmc.SpawnDefaultOccupants(compartmentTypes);
+				}
+			}
+
 			SCR_CTI_UnitData unitData;
 			int index = -1;
 			switch (factionkey)
@@ -61,20 +83,7 @@ class SCR_CTI_FactoryProduction
 					break;
 				}
 			}
-			int cost = unitData.getPrice();
-			
-			SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
-			if (clientData)
-			{
-				if (clientData.isCommander())
-				{
-					m_gameMode.changeCommanderFunds(factionkey, -cost);
-				} else {
-					clientData.changeFunds(-cost);
-					m_gameMode.bumpMeServer();
-				}
-			}
-			
+
 			m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + unitData.getName() + "</color> has arrived from the <color rgba='255,210,115,255'>" + unitData.getFactory() + "</color> at grid <color rgba='255,210,115,255'>[" + SCR_MapEntity.GetGridPos(mat[3]) + "]</color>.", "Information", 15);
 		}
 	}

@@ -193,7 +193,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{			
-		outName = "Purchase AI";
+		outName = "[Hold] Purchase AI";
 		
 		return true;
 	}

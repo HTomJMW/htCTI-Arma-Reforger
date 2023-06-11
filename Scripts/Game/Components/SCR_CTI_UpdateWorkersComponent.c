@@ -17,8 +17,7 @@ class SCR_CTI_UpdateWorkersComponent : ScriptComponent
 	[RplProp()]
 	protected int m_usWorkersCount = 0;
 	
-	//protected float m_timeDelta;
-	//protected const float TIMESTEP = 30;
+	protected const float TIMESTEP = 20;
 	
 	//------------------------------------------------------------------------------------------------
 	//server only
@@ -118,88 +117,41 @@ class SCR_CTI_UpdateWorkersComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	override void EOnFixedFrame(IEntity owner, float timeSlice)
-	{
-		/*m_timeDelta += timeSlice;
-		if (m_timeDelta > TIMESTEP)
-		{
-			if (m_ussrWorkersCount > 0)
-			{
-				if (m_baseComponent.getUSSRWIPStructureRplIdArray().Count() > 0)
-				{
-					foreach (RplId wipRplId : m_baseComponent.getUSSRWIPStructureRplIdArray())
-					{
-						RplComponent rplComp = RplComponent.Cast(Replication.FindItem(wipRplId));
-						IEntity wipStructure = rplComp.GetEntity();
-						
-						foreach (IEntity worker : m_ussrWorkers)
-						{
-							int distance = vector.Distance(worker.GetOrigin(), wipStructure.GetOrigin());
-							if (distance <= SCR_CTI_Constants.WORKERRANGE)
-							{
-								Print("WORKER IN RANGE");
-								SCR_CTI_StructureCompletionComponent scc = SCR_CTI_StructureCompletionComponent.Cast(wipStructure.FindComponent(SCR_CTI_StructureCompletionComponent));
-								if (scc.getCompletionValue() < 100)
-								{
-									cc.setCompletionValue(scc.getCompletionValue() + 10);
-								} else {
-									// TODO remove from wip list
-									// TODO BUILD normal building
-									Print("BUILDING READY");
-								}
-							}
-						}
-					}
-				}
-			}
-
-			if (m_usWorkersCount > 0)
-			{
-				if (m_baseComponent.getUSWIPStructureRplIdArray().Count() > 0)
-				{
-					// TODO
-				}
-			}
-
-			m_timeDelta = 0;
-		}
-		*/
-	}
-
-	//------------------------------------------------------------------------------------------------
 	protected void workersLoop()
 	{
 		if (m_ussrWorkersCount > 0)
 		{
-			if (m_baseComponent.getUSSRWIPStructureRplIdArray().Count() > 0)
+			array<RplId> ussrWIPStructures = m_baseComponent.getUSSRWIPStructureRplIdArray();
+			if (!ussrWIPStructures.IsEmpty())
 			{
-				foreach (RplId wipRplId : m_baseComponent.getUSSRWIPStructureRplIdArray())
+				RplComponent rplComp = RplComponent.Cast(Replication.FindItem(ussrWIPStructures[0]));
+				IEntity wipStructure = rplComp.GetEntity();
+			
+				foreach (IEntity worker : m_ussrWorkers)
 				{
-					if (!wipRplId) break;
-					RplComponent rplComp = RplComponent.Cast(Replication.FindItem(wipRplId));
-					IEntity wipStructure = rplComp.GetEntity();
+					if (!wipStructure || !worker) break;
 
-					foreach (IEntity worker : m_ussrWorkers)
+					CharacterControllerComponent ccc = CharacterControllerComponent.Cast(worker.FindComponent(CharacterControllerComponent));
+
+					int distance = vector.Distance(worker.GetOrigin(), wipStructure.GetOrigin());
+
+					switch (true)
 					{
-						if (!wipStructure || !worker) break;
-
-						CharacterControllerComponent ccc = CharacterControllerComponent.Cast(worker.FindComponent(CharacterControllerComponent));
-
-						int distance = vector.Distance(worker.GetOrigin(), wipStructure.GetOrigin());
-						if (distance <= SCR_CTI_Constants.WORKERSERVICERANGE && distance > SCR_CTI_Constants.WORKERBUILDRANGE)
+						case (distance <= SCR_CTI_Constants.WORKERSERVICERANGE && distance > SCR_CTI_Constants.WORKERBUILDRANGE):
 						{
-							Print("CTI :: DISTANCE < 250, NOT IN BUILDRANGE!");
+							Print("CTI :: Distance < 250m, Not in BuildRange!");
 							IEntity child = wipStructure.GetChildren();
 							while (child)
 							{
 								SCR_AIWaypoint waypoint = SCR_AIWaypoint.Cast(child);
 								if (waypoint)
 								{
-									waypoint.SetCompletionRadius(20);
+									waypoint.SetCompletionRadius(25);
 
 									AIControlComponent AIController = AIControlComponent.Cast(worker.FindComponent(AIControlComponent));
 									AIController.ActivateAI();
 									AIAgent agent = AIAgent.Cast(AIController.GetControlAIAgent());
+									if (!agent) break;
 									SCR_AIGroup group = SCR_AIGroup.Cast(agent.GetParentGroup());
 									group.Activate();
 									if (!group.GetCurrentWaypoint()) group.AddWaypoint(waypoint);
@@ -208,11 +160,21 @@ class SCR_CTI_UpdateWorkersComponent : ScriptComponent
 									child = child.GetSibling();
 								}
 							}
+							break;
 						}
-						if (distance <= SCR_CTI_Constants.WORKERBUILDRANGE)
+						case (distance <= SCR_CTI_Constants.WORKERBUILDRANGE):
 						{
-							Print("CTI :: WORKER IN RANGE!");
-							ccc.TryStartCharacterGesture(ECharacterGestures.POINT_WITH_FINGER, 20000);
+							Print("CTI :: Worker in Range!");
+							RandomGenerator randomgen = new RandomGenerator();
+							Math.Randomize(-1);
+							int random = randomgen.RandIntInclusive(0, 1);
+							if (random == 0)
+							{
+								ccc.TryStartCharacterGesture(ECharacterGestures.POINT_WITH_FINGER, 10000);
+							} else {
+								ccc.SetStanceChange(2);
+								ccc.TryPlayItemGesture(EItemGesture.EItemGesturePickUp);
+							}
 
 							SCR_CTI_StructureCompletionComponent scc = SCR_CTI_StructureCompletionComponent.Cast(wipStructure.FindComponent(SCR_CTI_StructureCompletionComponent));
 							if (scc.getCompletionValue() < 100)
@@ -227,13 +189,126 @@ class SCR_CTI_UpdateWorkersComponent : ScriptComponent
 								int index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(wipStructure.GetPrefabData().GetPrefabName());
 								SCR_CTI_FactoryData factoryData = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
 
+								foreach (IEntity ussrWorker : m_ussrWorkers)
+								{
+									if (!ussrWorker) break;
+									AIControlComponent AIController = AIControlComponent.Cast(ussrWorker.FindComponent(AIControlComponent));
+									AIAgent agent = AIAgent.Cast(AIController.GetControlAIAgent());
+									if (!agent) break;
+									SCR_AIGroup group = SCR_AIGroup.Cast(agent.GetParentGroup());
+									AIWaypoint waypoint = group.GetCurrentWaypoint();
+									if (waypoint) group.RemoveWaypoint(waypoint);
+									
+									CharacterControllerComponent workerccc = CharacterControllerComponent.Cast(ussrWorker.FindComponent(CharacterControllerComponent));
+									workerccc.SetStanceChange(1);
+								}
+
 								SCR_EntityHelper.DeleteEntityAndChildren(wipStructure);
-								m_baseComponent.removeWIPStructureRplId("USSR", wipRplId);
+								m_baseComponent.removeWIPStructureRplId("USSR", ussrWIPStructures[0]);
 
 								SCR_CTI_BuildStructure buildstructure = new SCR_CTI_BuildStructure();
 								buildstructure.build("USSR", factoryData.getResName(), mat);
-								Print("CTI :: CONSTRUCTION COMPLETE!");
+								Print("CTI :: Construction Complete!");
 							}
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		if (m_usWorkersCount > 0)
+		{
+			array<RplId> usWIPStructures = m_baseComponent.getUSWIPStructureRplIdArray();
+			if (!usWIPStructures.IsEmpty())
+			{
+				RplComponent rplComp = RplComponent.Cast(Replication.FindItem(usWIPStructures[0]));
+				IEntity wipStructure = rplComp.GetEntity();
+			
+				foreach (IEntity worker : m_usWorkers)
+				{
+					if (!wipStructure || !worker) break;
+
+					CharacterControllerComponent ccc = CharacterControllerComponent.Cast(worker.FindComponent(CharacterControllerComponent));
+
+					int distance = vector.Distance(worker.GetOrigin(), wipStructure.GetOrigin());
+
+					switch (true)
+					{
+						case (distance <= SCR_CTI_Constants.WORKERSERVICERANGE && distance > SCR_CTI_Constants.WORKERBUILDRANGE):
+						{
+							Print("CTI :: Distance < 250m, Not in BuildRange!");
+							IEntity child = wipStructure.GetChildren();
+							while (child)
+							{
+								SCR_AIWaypoint waypoint = SCR_AIWaypoint.Cast(child);
+								if (waypoint)
+								{
+									waypoint.SetCompletionRadius(25);
+
+									AIControlComponent AIController = AIControlComponent.Cast(worker.FindComponent(AIControlComponent));
+									AIController.ActivateAI();
+									AIAgent agent = AIAgent.Cast(AIController.GetControlAIAgent());
+									if (!agent) break;
+									SCR_AIGroup group = SCR_AIGroup.Cast(agent.GetParentGroup());
+									group.Activate();
+									if (!group.GetCurrentWaypoint()) group.AddWaypoint(waypoint);
+									break;
+								} else {
+									child = child.GetSibling();
+								}
+							}
+							break;
+						}
+						case (distance <= SCR_CTI_Constants.WORKERBUILDRANGE):
+						{
+							Print("CTI :: Worker in Range!");
+							RandomGenerator randomgen = new RandomGenerator();
+							Math.Randomize(-1);
+							int random = randomgen.RandIntInclusive(0, 1);
+							if (random == 0)
+							{
+								ccc.TryStartCharacterGesture(ECharacterGestures.POINT_WITH_FINGER, 10000);
+							} else {
+								ccc.SetStanceChange(2);
+								ccc.TryPlayItemGesture(EItemGesture.EItemGesturePickUp);
+							}
+							
+							SCR_CTI_StructureCompletionComponent scc = SCR_CTI_StructureCompletionComponent.Cast(wipStructure.FindComponent(SCR_CTI_StructureCompletionComponent));
+							if (scc.getCompletionValue() < 100)
+							{
+								PrintFormat("CTI :: Completion: %1", scc.getCompletionValue());
+								scc.setCompletionValue(scc.getCompletionValue() + 5);
+								Replication.BumpMe();
+							} else {
+								vector mat[4];
+								wipStructure.GetTransform(mat);
+
+								int index = m_gameMode.FactoriesUS.findIndexFromResourcename(wipStructure.GetPrefabData().GetPrefabName());
+								SCR_CTI_FactoryData factoryData = m_gameMode.FactoriesUS.g_US_Factories[index];
+
+								foreach (IEntity usWorker : m_usWorkers)
+								{
+									if (!usWorker) break;
+									AIControlComponent AIController = AIControlComponent.Cast(usWorker.FindComponent(AIControlComponent));
+									AIAgent agent = AIAgent.Cast(AIController.GetControlAIAgent());
+									if (!agent) break;
+									SCR_AIGroup group = SCR_AIGroup.Cast(agent.GetParentGroup());
+									AIWaypoint waypoint = group.GetCurrentWaypoint();
+									if (waypoint) group.RemoveWaypoint(waypoint);
+
+									CharacterControllerComponent workerccc = CharacterControllerComponent.Cast(usWorker.FindComponent(CharacterControllerComponent));
+									workerccc.SetStanceChange(1);
+								}
+
+								SCR_EntityHelper.DeleteEntityAndChildren(wipStructure);
+								m_baseComponent.removeWIPStructureRplId("US", usWIPStructures[0]);
+
+								SCR_CTI_BuildStructure buildstructure = new SCR_CTI_BuildStructure();
+								buildstructure.build("US", factoryData.getResName(), mat);
+								Print("CTI :: Construction Complete!");
+							}
+							break;
 						}
 					}
 				}
@@ -247,16 +322,13 @@ class SCR_CTI_UpdateWorkersComponent : ScriptComponent
 		m_rplComponent = RplComponent.Cast(m_gameMode.FindComponent(RplComponent));
 		m_baseComponent = SCR_CTI_BaseComponent.Cast(m_gameMode.FindComponent(SCR_CTI_BaseComponent));
 
-		//SetEventMask(owner, EntityEvent.FIXEDFRAME);
-		GetGame().GetCallqueue().CallLater(workersLoop, 30000, true);
+		GetGame().GetCallqueue().CallLater(workersLoop, TIMESTEP * 1000, true);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_UpdateWorkersComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
 		m_gameMode = SCR_CTI_GameMode.Cast(ent);
-
-		//m_timeDelta = 0;
 	}
 
 	//------------------------------------------------------------------------------------------------
