@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{6AF8C94550B05D1A}Prefabs/Structures/Military/Camps/Canvas_Covers/Soviet/CTI_CanvasCover_Large_Soviet.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

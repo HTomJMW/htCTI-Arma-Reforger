@@ -339,6 +339,16 @@ SCR_DestructibleBuildingEntity : "{A43A100E3C377DB2}Prefabs/Structures/Core/Buil
         }
        }
       }
+      ActionsManagerComponent "{F32B667C3C823800}" {
+       additionalActions {
+        SCR_CTI_TakeCommandBuildingAction "{5D9B3187FF7FE1AE}" {
+         ParentContextList {
+          "SCR_DoorUserAction"
+         }
+         Duration 2
+        }
+       }
+      }
      }
     }
    }
@@ -517,6 +527,38 @@ SCR_DestructibleBuildingEntity : "{A43A100E3C377DB2}Prefabs/Structures/Core/Buil
     }
    }
    coords 0 0 -0.051
+   {
+    GenericEntity {
+     ID "568ABA535969BBD5"
+     components {
+      ActionsManagerComponent "{F32B667C3C823800}" {
+       additionalActions {
+        SCR_CTI_TakeCommandBuildingAction "{5D9B31864B711DE4}" {
+         ParentContextList {
+          "SCR_DoorUserAction"
+         }
+         Duration 2
+        }
+       }
+      }
+     }
+    }
+    GenericEntity {
+     ID "568ABA535969BBEE"
+     components {
+      ActionsManagerComponent "{F32B667C3C823800}" {
+       additionalActions {
+        SCR_CTI_TakeCommandBuildingAction "{5D9B3187A0BDE712}" {
+         ParentContextList {
+          "SCR_DoorUserAction"
+         }
+         Duration 2
+        }
+       }
+      }
+     }
+    }
+   }
   }
   Building : "{CA6F31FA82BD537F}Prefabs/Structures/BuildingParts/Windows/Win_Office_E_A/Win_Office_E_90x72_1_B.et" {
    ID "5CDF080F0B506F1F"

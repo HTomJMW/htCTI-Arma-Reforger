@@ -295,6 +295,23 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
      PivotID "Socket_DoorSet_Village_E_01_L_INT_B_001"
     }
    }
+   {
+    GenericEntity {
+     ID "5564931ADBF597B6"
+     components {
+      ActionsManagerComponent "{F32B667C3C823800}" {
+       additionalActions {
+        SCR_CTI_TakeCommandBuildingAction "{5D9B318586EB2EF8}" {
+         ParentContextList {
+          "SCR_DoorUserAction"
+         }
+         Duration 2
+        }
+       }
+      }
+     }
+    }
+   }
   }
   $grp GenericEntity : "{DF2991BF3B29DD46}Prefabs/Structures/BuildingParts/Doors/DoorSet_Industrial_01_EXT_red.et" {
    {
@@ -307,6 +324,38 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "5868A440C9B6E700"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3185F1F48C4D}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+     GenericEntity {
+      ID "5868A440C9B6E7E2"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3185E9EE9F24}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+    }
    }
    {
     ID "5CDF080EF69A7CFA"

@@ -257,6 +257,14 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
       ID "58689E19F6D84399"
       components {
        ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B318446458932}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
        }
       }
      }
@@ -264,6 +272,14 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
       ID "58689E19F6D843D7"
       components {
        ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3185BFA5A33A}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
        }
       }
      }
@@ -284,6 +300,14 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
       ID "58689E19F6D84399"
       components {
        ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3185B6116836}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
        }
       }
      }
@@ -291,6 +315,14 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
       ID "58689E19F6D843D7"
       components {
        ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3185AC6BC2B6}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
        }
       }
      }

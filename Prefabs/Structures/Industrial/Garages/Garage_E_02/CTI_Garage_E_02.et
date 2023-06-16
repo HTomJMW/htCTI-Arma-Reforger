@@ -82,6 +82,28 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "58689E1BBDDF09AD"
+      {
+       GenericEntity {
+        ID "58689E1B767FC979"
+        components {
+         ActionsManagerComponent "{F32B667C3C823800}" {
+          additionalActions {
+           SCR_CTI_TakeCommandBuildingAction "{5D9B31872732D835}" {
+            ParentContextList {
+             "SCR_DoorUserAction"
+            }
+            Duration 2
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
    }
    {
     ID "5CDF080F6511B1D5"
@@ -93,6 +115,28 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "58689E1BBDDF09AD"
+      {
+       GenericEntity {
+        ID "58689E1B767FC979"
+        components {
+         ActionsManagerComponent "{F32B667C3C823800}" {
+          additionalActions {
+           SCR_CTI_TakeCommandBuildingAction "{5D9B3187116DC984}" {
+            ParentContextList {
+             "SCR_DoorUserAction"
+            }
+            Duration 2
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
    }
   }
   GenericEntity : "{7F1730DFAAEA1B8B}Prefabs/Structures/BuildingParts/Doors/DoorSet_Garage_E_02_EXT_03.et" {
@@ -105,6 +149,28 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
     }
    }
    coords 0 0 0
+   {
+    GenericEntity {
+     ID "58689E1BBDDF09AD"
+     {
+      GenericEntity {
+       ID "58689E1B767FC979"
+       components {
+        ActionsManagerComponent "{F32B667C3C823800}" {
+         additionalActions {
+          SCR_CTI_TakeCommandBuildingAction "{5D9B318705CA01FB}" {
+           ParentContextList {
+            "SCR_DoorUserAction"
+           }
+           Duration 2
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
   }
   GenericEntity : "{8BDEAB5E86E4F021}Prefabs/Structures/Industrial/Garages/Garage_E_02/Garage_E_02_furniture_01.et" {
    ID "5CDF080F6511B1D8"
@@ -120,6 +186,28 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
     }
    }
    coords 0 0 0
+   {
+    GenericEntity {
+     ID "58689E1BBDDF09AD"
+     {
+      GenericEntity {
+       ID "58689E1B767FC979"
+       components {
+        ActionsManagerComponent "{F32B667C3C823800}" {
+         additionalActions {
+          SCR_CTI_TakeCommandBuildingAction "{5D9B3187528403B3}" {
+           ParentContextList {
+            "SCR_DoorUserAction"
+           }
+           Duration 2
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
   }
   $grp GenericEntity : "{CC6B92AEE60F0AAC}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_EXT_COV_B_brown.et" {
    {
@@ -132,6 +220,23 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "5564931ADBF597B6"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3187D6C29546}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+    }
    }
    {
     ID "5CDF080F6511B1EB"
@@ -143,6 +248,23 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "5564931ADBF597B6"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3187C88BB3CB}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+    }
    }
   }
   $grp Building : "{E68D2802A8DB8DB2}Prefabs/Structures/BuildingParts/Windows/Win_Garage_E/win_garage_e_02_1300x1400_444_B.et" {

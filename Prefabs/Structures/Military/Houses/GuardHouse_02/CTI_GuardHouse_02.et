@@ -23,6 +23,16 @@ SCR_DestructibleBuildingEntity : "{906CB40C3D7DBA68}Prefabs/Structures/Military/
       PivotID "socket_door_ext_right_01"
       AutoTransform 1
      }
+     ActionsManagerComponent "{F32B667C3C823800}" {
+      additionalActions {
+       SCR_CTI_TakeCommandBuildingAction "{5D9B3185382F1559}" {
+        ParentContextList {
+         "SCR_DoorUserAction"
+        }
+        Duration 2
+       }
+      }
+     }
     }
     coords 0 0 0
    }
@@ -33,6 +43,16 @@ SCR_DestructibleBuildingEntity : "{906CB40C3D7DBA68}Prefabs/Structures/Military/
       Enabled 1
       PivotID "socket_door_ext_right_02"
       AutoTransform 1
+     }
+     ActionsManagerComponent "{F32B667C3C823800}" {
+      additionalActions {
+       SCR_CTI_TakeCommandBuildingAction "{5D9B3185CF35F90C}" {
+        ParentContextList {
+         "SCR_DoorUserAction"
+        }
+        Duration 2
+       }
+      }
      }
     }
     coords 0 0 0
@@ -161,6 +181,16 @@ SCR_DestructibleBuildingEntity : "{906CB40C3D7DBA68}Prefabs/Structures/Military/
       PivotID "socket_door_ext_left_02"
       AutoTransform 1
      }
+     ActionsManagerComponent "{F32B667C3C823800}" {
+      additionalActions {
+       SCR_CTI_TakeCommandBuildingAction "{5D9B3185C7620CD4}" {
+        ParentContextList {
+         "SCR_DoorUserAction"
+        }
+        Duration 2
+       }
+      }
+     }
     }
     coords 0 0 0
    }
@@ -171,6 +201,16 @@ SCR_DestructibleBuildingEntity : "{906CB40C3D7DBA68}Prefabs/Structures/Military/
       Enabled 1
       PivotID "socket_door_ext_left_01"
       AutoTransform 1
+     }
+     ActionsManagerComponent "{F32B667C3C823800}" {
+      additionalActions {
+       SCR_CTI_TakeCommandBuildingAction "{5D9B31853062A797}" {
+        ParentContextList {
+         "SCR_DoorUserAction"
+        }
+        Duration 2
+       }
+      }
      }
     }
     coords 0 0 0

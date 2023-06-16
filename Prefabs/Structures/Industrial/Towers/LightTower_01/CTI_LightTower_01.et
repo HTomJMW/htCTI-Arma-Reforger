@@ -1,0 +1,101 @@
+StaticModelEntity : "{A64C66196086B206}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01_base.et" {
+ ID "50D67C36F43527FE"
+ components {
+  ActionsManagerComponent "{591A8592E6D58CC1}" {
+   additionalActions {
+    SCR_CTI_RemoveDefenseAction "{5D9D26E4CE0B415F}" {
+     ParentContextList {
+      "bottom"
+     }
+     Duration 10
+     "Sort Priority" 3
+    }
+   }
+  }
+ }
+ {
+  $grp GenericEntity : "{E7FD0B8019E96F73}Prefabs/Structures/BuildingParts/Lights/LampTower_01.et" {
+   {
+    ID "5D9D26E8278C4BB4"
+    components {
+     Hierarchy "{612AE78C95E98EEB}" {
+      PivotID "socket_light_04"
+     }
+    }
+    {
+     LightEntity : "{5BF23CDF9B8FB366}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01_light.et" {
+      ID "5D9D26E8278C4BB6"
+      components {
+       RplComponent "{585699AC653DD54C}" {
+        Enabled 1
+       }
+      }
+      coords -0.016 0.202 0.182
+      angleX -30
+      angleY -5
+     }
+    }
+   }
+   {
+    ID "5D9D26E8278CC561"
+    components {
+     Hierarchy "{612AE78C95E98EEB}" {
+      PivotID "socket_light_02"
+     }
+    }
+    {
+     LightEntity : "{5BF23CDF9B8FB366}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01_light.et" {
+      ID "5D9D26E8278CC562"
+      components {
+       RplComponent "{585699AC653DD54C}" {
+        Enabled 1
+       }
+      }
+      coords -0.004 0.2 0.179
+      angleX -30
+     }
+    }
+   }
+   {
+    ID "5D9D26E8278CCF95"
+    components {
+     Hierarchy "{612AE78C95E98EEB}" {
+      PivotID "socket_light_03"
+     }
+    }
+    {
+     LightEntity : "{5BF23CDF9B8FB366}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01_light.et" {
+      ID "5D9D26E8278CC5A6"
+      components {
+       RplComponent "{585699AC653DD54C}" {
+        Enabled 1
+       }
+      }
+      coords -0.003 0.203 0.195
+      angleX -30
+     }
+    }
+   }
+   {
+    ID "5D9D26E8278CCF9A"
+    components {
+     Hierarchy "{612AE78C95E98EEB}" {
+      PivotID "socket_light_01"
+     }
+    }
+    {
+     LightEntity : "{5BF23CDF9B8FB366}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01_light.et" {
+      ID "5D9D26E8278CCF94"
+      components {
+       RplComponent "{585699AC653DD54C}" {
+        Enabled 1
+       }
+      }
+      coords 0 0.196 0.178
+      angleX -30
+     }
+    }
+   }
+  }
+ }
+}

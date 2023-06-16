@@ -1,0 +1,58 @@
+StaticModelEntity : "{ADF2602E1AAA8591}Prefabs/Structures/Airport/LightRunway_01/LightRunway_01_base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  MeshObject "{56ACD1C4DC78C87B}" {
+   Materials {
+    MaterialAssignClass "{5D9D26E99CBB69EA}" {
+     SourceMaterial "LightRunway_01_Light_Green"
+     AssignedMaterial "{9855BC1C6B73711A}Assets/Structures/Airport/LightRunway_01/Data/LightRunway_01_Light_White.emat"
+    }
+    MaterialAssignClass "{5D9D26E99CBB69E1}" {
+     SourceMaterial "LightRunway_01_Light_Red"
+     AssignedMaterial "{9855BC1C6B73711A}Assets/Structures/Airport/LightRunway_01/Data/LightRunway_01_Light_White.emat"
+    }
+   }
+  }
+  RigidBody "{56ACD1C4D3E9DDF0}" {
+   ResponseIndex "TinyDestructible"
+  }
+  SCR_DestructionMultiPhaseComponent "{56D0E5E06436D140}" {
+   m_DestroySpawnObjects {
+    SCR_PrefabSpawnable "{5A7C7B9E906637B6}" {
+     m_Prefabs {
+      "{020938AD5164B15C}Prefabs/Structures/Airport/LightRunway_01/Dst/LightRunway_01_dst_white.et"
+     }
+    }
+   }
+  }
+  ActionsManagerComponent "{5D9D26E61299EEB4}" {
+   ActionContexts {
+    UserActionContext "{5D9D26E611CDA5CB}" {
+     ContextName "CTI_Remove"
+     Position PointInfo "{5D9D26E60C244B3E}" {
+      Offset 0 0.3286 0
+     }
+     Radius 0.5
+    }
+   }
+   additionalActions {
+    SCR_CTI_RemoveDefenseAction "{5D9D26E607BF29FB}" {
+     ParentContextList {
+      "CTI_Remove"
+     }
+     Duration 10
+     "Sort Priority" 3
+    }
+   }
+  }
+ }
+ {
+  GenericEntity {
+   ID "5A046B03610CC35C"
+   components {
+    LightSourceVisualizationObject "{5A02839A0D5BE210}" {
+    }
+   }
+  }
+ }
+}

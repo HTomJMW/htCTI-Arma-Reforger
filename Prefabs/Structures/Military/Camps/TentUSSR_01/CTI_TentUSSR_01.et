@@ -1,0 +1,30 @@
+SCR_DestructibleBuildingEntity : "{BE5D5CFA90224646}Prefabs/Structures/Military/Camps/TentUSSR_01/TentUSSR_01_base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  ActionsManagerComponent "{5D9D26E5232374F7}" {
+   ActionContexts {
+    UserActionContext "{5D9D26E522B6CC10}" {
+     ContextName "CTI_Remove"
+     Position PointInfo "{5D9D26E510B062E3}" {
+      Offset 2.8952 1.4 2.8482
+     }
+     Radius 0.5
+    }
+   }
+   additionalActions {
+    SCR_CTI_RemoveDefenseAction "{5D9D26E51ADC78EE}" {
+     ParentContextList {
+      "CTI_Remove"
+     }
+     Duration 10
+     "Sort Priority" 3
+    }
+   }
+  }
+ }
+ {
+  GenericEntity : "{69D6BDFC872F8BE4}Prefabs/Structures/Military/Camps/TentUSSR_01/TentUSSR_01_floor.et" {
+   ID "5D9D26E91E53CA9D"
+  }
+ }
+}

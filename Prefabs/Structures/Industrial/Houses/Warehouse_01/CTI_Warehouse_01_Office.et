@@ -68,6 +68,38 @@ SCR_DestructibleBuildingEntity : "{E35EA41864A3B0ED}Prefabs/Structures/Industria
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "5864884E7120121A"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3184298600E4}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+     GenericEntity {
+      ID "5864884E712012FA"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3184325B5705}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+    }
    }
    {
     ID "5CDF080EAE340152"
@@ -79,6 +111,38 @@ SCR_DestructibleBuildingEntity : "{E35EA41864A3B0ED}Prefabs/Structures/Industria
      }
     }
     coords 0 0 0
+    {
+     GenericEntity {
+      ID "5864884E7120121A"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B318419DED379}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+     GenericEntity {
+      ID "5864884E712012FA"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B318421CDBF38}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+    }
    }
   }
   Building : "{1457552CD9B5346A}Prefabs/Structures/BuildingParts/Windows/Win_village_e_a_70x72_1_B.et" {
@@ -187,6 +251,23 @@ SCR_DestructibleBuildingEntity : "{E35EA41864A3B0ED}Prefabs/Structures/Industria
     }
    }
    coords 0 0 0
+   {
+    GenericEntity {
+     ID "5564931ADBF597B6"
+     components {
+      ActionsManagerComponent "{F32B667C3C823800}" {
+       additionalActions {
+        SCR_CTI_TakeCommandBuildingAction "{5D9B3184D7351EAC}" {
+         ParentContextList {
+          "SCR_DoorUserAction"
+         }
+         Duration 2
+        }
+       }
+      }
+     }
+    }
+   }
   }
   $grp Building : "{F88356BA8490D112}Prefabs/Structures/BuildingParts/Windows/Win_Warehouse_E_A/Win_Warehouse_E_A_420x142_4_B.et" {
    {
