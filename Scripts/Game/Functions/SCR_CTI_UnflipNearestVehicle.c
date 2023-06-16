@@ -62,8 +62,16 @@ class SCR_CTI_UnflipNearestVehicle
 			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(nearest.FindComponent(SCR_BaseCompartmentManagerComponent));
 			array<IEntity> occupants = {};
 			bcmc.GetOccupants(occupants);
-			if (occupants.Count() > 0) return;
-			
+			//if (occupants.Count() > 0) return; // Disabled until wait ai commanding. Unflip disabled only if player inside vehicle.
+			foreach (IEntity crew : occupants)
+			{
+				if (SCR_EntityHelper.IsPlayer(crew))
+				{
+					SCR_HintManagerComponent.ShowCustomHint("Unflip not allowed, player in vehicle!", "Information", 5);
+					return;
+				}
+			}
+
 			vector pos = nearest.GetOrigin();
 			float y = GetGame().GetWorld().GetSurfaceY(pos[0], pos[2]);
 			if (y + 2 < pos[1]) return;

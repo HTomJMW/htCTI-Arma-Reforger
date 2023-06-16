@@ -33,33 +33,31 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		if (m_items) insertItem(m_spawnedVehicle);
 
 		GarbageManager garbagemanager = GetGame().GetGarbageManager();
-		// todo add lifetime for support vehicles
 
 		switch (m_rnPrefab)
 		{
 			case SCR_CTI_Constants.USSR_MHQ:
 			{
-				// Keep out of garbage manager
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("USSR", rplId);
 
 				garbagemanager.Insert(newEnt);
-				garbagemanager.Withdraw(newEnt);
+				garbagemanager.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
 				break;
 			}
 			case SCR_CTI_Constants.US_MHQ:
 			{
-				// Keep out of garbage manager
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("US", rplId);
 
 				garbagemanager.Insert(newEnt);
-				garbagemanager.Withdraw(newEnt);
+				garbagemanager.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
 				break;
 			}
 			default:
 			{
 				garbagemanager.Insert(newEnt, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
+				garbagemanager.Withdraw(newEnt); // First GetIn event will start GM countdown timer
 				//PrintFormat("CTI :: Default vehicle: %1", m_rnPrefab);
 				break;
 			}

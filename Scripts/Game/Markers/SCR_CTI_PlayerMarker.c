@@ -57,7 +57,7 @@ class SCR_CTI_PlayerMarker : BaseGameEntity
 		
 		MapDescriptorProps props = m_mapItem.GetProps();
 			props.SetDetail(96);
-			props.SetIconSize(0.05, 0.04, 3);
+			props.SetIconSize(0.1, 0.2, 3);
 			props.SetTextSize(32, 4, 32);
 			props.SetTextColor(Color.Black);
 			props.SetFrontColor(m_color);

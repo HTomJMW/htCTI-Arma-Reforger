@@ -337,7 +337,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			int townsCNT = m_gameMode.CTI_Towns.Count();
 			for (int i = 0; i < townsCNT; i++)
 			{
-				allvalue += m_gameMode.CTI_Towns[i].getTownValue();
+				allvalue += m_gameMode.CTI_Towns[i].getTownValue(); // TODO not need on every update
 				if (m_userAffiliationComponent.GetAffiliatedFaction().GetFactionKey() == m_gameMode.CTI_Towns[i].getFactionKey())
 				{
 					sidevalue += m_gameMode.CTI_Towns[i].getTownValue();
@@ -346,7 +346,7 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 			
 			m_townsheldvalue.SetText("Town Held Value: " + sidevalue.ToString() + "/" + allvalue.ToString());
 			
-			float victoryvalue = allvalue * (SCR_CTI_Constants.WINRATE / 100);
+			float victoryvalue = Math.Ceil(allvalue * (SCR_CTI_Constants.WINRATE / 100));
 			m_victory.SetText("Victory: " + victoryvalue.ToString());
 			
 			m_timeDelta = 0;

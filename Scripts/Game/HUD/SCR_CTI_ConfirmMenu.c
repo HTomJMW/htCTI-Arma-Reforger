@@ -10,17 +10,15 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 0.02;
-	protected int runCounter = 0;
-	protected int scrollCounter = 0;
 
 	protected ButtonWidget m_confirm;
 	protected ButtonWidget m_cancel;
 	
 	protected RichTextWidget m_confirmText;
 	protected RichTextWidget m_cancelText;
-	
-	protected ref ScriptInvoker m_OnMouseScrollUsed = new ScriptInvoker();
-	protected ref ScriptInvoker m_OnMouseMiddleUsed = new ScriptInvoker();
+
+	protected bool listenerAdded = false;
+	protected float scrollValue;
 
 	//------------------------------------------------------------------------------------------------
 	protected void CreateHud(IEntity owner)
@@ -41,7 +39,9 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 
 	//------------------------------------------------------------------------------------------------
 	protected void DestroyHud()
-	{		
+	{	
+		removeListener();
+			
 		if (!m_wRoot)
 			return;		
 
@@ -65,24 +65,10 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 			if (!menuOpen && !m_ch.IsInVehicle() && (m_pdc.getStartPlacing() || m_psc.getStartPlacing()))
 			{
 				m_wRoot.SetVisible(true);
-
-				bool mw = m_inputManager.GetActionValue("MouseWheel"); // need disable moving speed change on scroll
-				if (mw)
-				{
-					m_OnMouseScrollUsed.Invoke();
-				} else {
-					scrollCounter = 0;
-				}
-
-				bool wheeldown = m_inputManager.GetActionValue("MouseMiddle"); // reset action value not working, its called more than once
-				if (wheeldown)
-				{
-					m_OnMouseMiddleUsed.Invoke();
-				} else {
-					runCounter = 0;
-				}
+				if (!listenerAdded) addListener();
 			} else {
 				m_wRoot.SetVisible(false);
+				if (listenerAdded) removeListener();
 
 				m_confirm.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 				m_confirmText.SetText("Confirm");
@@ -91,53 +77,8 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 				m_cancelText.SetText("[ - Cancel - ]");
 				
 				// TODO cancel placing if other menu open
-				
-				runCounter = 0;
-				scrollCounter = 0;
 			}
 			m_timeDelta = 0;
-		}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void OnMouseMiddleDown()
-	{
-		if (runCounter == 0)
-		{
-			runCounter++;
-
-			if (m_confirmText.GetText() == "[ - Confirm - ]")
-			{
-				if (m_pdc.getStartPlacing()) m_pdc.performBuilding();
-				if (m_psc.getStartPlacing()) m_psc.performBuilding();
-			} else {
-				if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
-				if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
-			}
-		}
-	}
-
-	//------------------------------------------------------------------------------------------------
-	protected void OnMouseScroll()
-	{
-		if (scrollCounter == 0)
-		{
-			scrollCounter++;
-			
-			if (m_confirmText.GetText() == "Confirm")
-			{
-				m_confirm.SetColor(Color.White);
-				m_confirmText.SetText("[ - Confirm - ]");
-	
-				m_cancel.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-				m_cancelText.SetText("Cancel");
-			} else {
-				m_confirm.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-				m_confirmText.SetText("Confirm");
-	
-				m_cancel.SetColor(Color.White);
-				m_cancelText.SetText("[ - Cancel - ]");
-			}
 		}
 	}
 
@@ -167,9 +108,6 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 		}
 
 		CreateHud(owner);
-		
-		m_OnMouseMiddleUsed.Insert(OnMouseMiddleDown);
-		m_OnMouseScrollUsed.Insert(OnMouseScroll);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -181,10 +119,77 @@ class SCR_CTI_ConfirmMenu : SCR_InfoDisplayExtended
 
 	//------------------------------------------------------------------------------------------------
 	override void DisplayStopDraw(IEntity owner)
-	{
-		m_OnMouseMiddleUsed.Remove(OnMouseMiddleDown);
-		m_OnMouseScrollUsed.Remove(OnMouseScroll);
-		
+	{		
 		DestroyHud();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void addListener()
+	{
+		m_inputManager.AddActionListener("MouseWheel", EActionTrigger.VALUE, onScroll);
+		m_inputManager.AddActionListener("MouseMiddle", EActionTrigger.UP, onClick);
+		
+		listenerAdded = true;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void removeListener()
+	{
+		m_inputManager.RemoveActionListener("MouseWheel", EActionTrigger.VALUE, onScroll);
+		m_inputManager.RemoveActionListener("MouseMiddle", EActionTrigger.UP, onClick);
+
+		listenerAdded = false;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void onScroll(float value)
+	{
+		if (value != 0)
+		{
+			if (value != scrollValue)
+			{
+				scrollValue = value;
+
+				SCR_CharacterControllerComponent ccc = SCR_CharacterControllerComponent.Cast(m_ch.FindComponent(SCR_CharacterControllerComponent));			
+				
+				if (value > 0)
+				{
+					ccc.SetDynamicSpeed(ccc.GetDynamicSpeed() - 0.05);
+
+					if (m_confirmText.GetText() == "Confirm")
+					{
+						m_confirm.SetColor(Color.White);
+						m_confirmText.SetText("[ - Confirm - ]");
+
+						m_cancel.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+						m_cancelText.SetText("Cancel");
+					}
+				} else {
+					ccc.SetDynamicSpeed(ccc.GetDynamicSpeed() + 0.05);
+
+					if (m_cancelText.GetText() == "Cancel")
+					{
+						m_confirm.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+						m_confirmText.SetText("Confirm");
+
+						m_cancel.SetColor(Color.White);
+						m_cancelText.SetText("[ - Cancel - ]");
+					}
+				}
+			}
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void onClick()
+	{
+		if (m_confirmText.GetText() == "[ - Confirm - ]")
+		{
+			if (m_pdc.getStartPlacing()) m_pdc.performBuilding();
+			if (m_psc.getStartPlacing()) m_psc.performBuilding();
+		} else {
+			if (m_pdc.getStartPlacing()) m_pdc.cancelBuilding();
+			if (m_psc.getStartPlacing()) m_psc.cancelBuilding();
+		}
 	}
 };

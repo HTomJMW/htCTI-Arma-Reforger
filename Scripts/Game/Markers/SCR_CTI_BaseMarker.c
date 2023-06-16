@@ -5,7 +5,6 @@ class SCR_CTI_BaseMarkerClass : BaseGameEntityClass
 
 class SCR_CTI_BaseMarker : BaseGameEntity
 {
-	protected IEntity m_baseMarker;
 	protected SCR_MapDescriptorComponent m_mapComponent;
 	[RplProp()]
 	protected int m_factionIndex;
@@ -70,7 +69,6 @@ class SCR_CTI_BaseMarker : BaseGameEntity
 	{
 		super.EOnInit(owner);
 
-		m_baseMarker = owner.GetParent();
 		m_mapComponent = SCR_MapDescriptorComponent.Cast(this.FindComponent(SCR_MapDescriptorComponent));
 
 		// Client or Master

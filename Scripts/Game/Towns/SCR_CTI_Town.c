@@ -274,6 +274,8 @@ class SCR_CTI_Town : BaseGameEntity
 		m_gameMode.sendFactionNotifT(newSide, ENotification.CTI_NOTIF_TOWN_CAPTURED, townIndex);
 		
 		if (m_oldFactionKey != "FIA") m_gameMode.sendFactionNotifT(m_oldFactionKey, ENotification.CTI_NOTIF_TOWN_LOST, townIndex);
+		
+		if (m_gameMode.getPriority(newSide) == m_townName) m_gameMode.setPriority(newSide, "");
 	}
 
 	//------------------------------------------------------------------------------------------------

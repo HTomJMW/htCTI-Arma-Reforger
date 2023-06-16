@@ -77,7 +77,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
-			Print("CTI :: Mission version: 0.6.0");
+			Print("CTI :: Mission version: 0.5.31");
 			
 			if (RplSession.Mode() == RplMode.Dedicated)
 			{
@@ -398,7 +398,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		
 		Replication.BumpMe();
 		
-		sendFactionNotifP(factionKey, ENotification.CTI_NOTIF_TOWN_PRIORITY_CHANGED);
+		if (townName != "") sendFactionNotifP(factionKey, ENotification.CTI_NOTIF_TOWN_PRIORITY_CHANGED);
 	}
 
 	//------------------------------------------------------------------------------------------------
