@@ -30,7 +30,7 @@ class SCR_CTI_DefensesUSSR
 	private void fillUp()
 	{
 		// Defenses
-		resname.Insert("{723870DBB19D30B0}Prefabs/Weapons/Tripods/Tripod_6T5_PKM.et");
+		resname.Insert("{74D4D08878ACBD99}Prefabs/Weapons/Tripods/CTI_Tripod_6T5_PKM.et");
 		name.Insert("PKM - Tripod");
 		price.Insert(1000);
 		category.Insert("");
@@ -38,15 +38,15 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(0);
 		script.Insert("");
 		
-		resname.Insert("{B90CA0BEF3CC1D19}Prefabs/Structures/Military/CamoNets/Soviet/CamoNet_Medium_Soviet.et");
+		resname.Insert("{2A4E7F1BA362AEAF}Prefabs/Structures/Military/CamoNets/Soviet/CTI_CamoNet_Medium_Soviet.et");
 		name.Insert("Camo Net - Medium");
 		price.Insert(500);
 		category.Insert("");
-		distance.Insert(15);
-		placement.Insert(0);
+		distance.Insert(12);
+		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{FBCE1861B987EA68}Prefabs/Structures/Military/Houses/GuardTower_01/GuardTower_01.et");
+		resname.Insert("{F41D3F71C486575C}Prefabs/Structures/Military/Houses/GuardTower_01/CTI_GuardTower_01.et");
 		name.Insert("Guard Tower");
 		price.Insert(1000);
 		category.Insert("");
@@ -54,15 +54,15 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(0);
 		script.Insert("");
 		
-		resname.Insert("{80DF3BD810D032AF}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01.et");
+		resname.Insert("{9D538521251CD0CA}Prefabs/Structures/Industrial/Towers/LightTower_01/CTI_LightTower_01.et");
 		name.Insert("Light Tower");
 		price.Insert(700);
 		category.Insert("");
 		distance.Insert(10);
-		placement.Insert(0);
+		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{FCCB91AC2A242FE5}Prefabs/Structures/Military/Camps/Canvas_Covers/Soviet/CanvasCover_Large_Soviet.et");
+		resname.Insert("{6AF8C94550B05D1A}Prefabs/Structures/Military/Camps/Canvas_Covers/Soviet/CTI_CanvasCover_Large_Soviet.et");
 		name.Insert("Canvas Cover");
 		price.Insert(300);
 		category.Insert("");
@@ -70,7 +70,7 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{4E331E7D8DAD1EAD}Prefabs/Structures/Military/Camps/TentUSSR_01/TentUSSR_01.et");
+		resname.Insert("{5C826F3B6807C726}Prefabs/Structures/Military/Camps/TentUSSR_01/CTI_TentUSSR_01.et");
 		name.Insert("Tent");
 		price.Insert(500);
 		category.Insert("");
@@ -78,7 +78,7 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{18822FB3F0D2ED00}Prefabs/Structures/Walls/BarbedWire/BarbedTape_01/BarbedTape_01_Long.et");
+		resname.Insert("{BEB48B461EA778F0}Prefabs/Structures/Walls/BarbedWire/BarbedTape_01/CTI_BarbedTape_01_Long.et");
 		name.Insert("Barbed Wire");
 		price.Insert(300);
 		category.Insert("");
@@ -86,7 +86,7 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(90);
 		script.Insert("");
 		
-		resname.Insert("{DA1B42FB9AEC02BE}Prefabs/Structures/Military/Fortifications/Dragontooth_01/Dragontooth_01_V3.et");
+		resname.Insert("{3CBE18859ECD6B26}Prefabs/Structures/Military/Fortifications/Dragontooth_01/CTI_Dragontooth_01_V3.et");
 		name.Insert("Dragon Tooth");
 		price.Insert(500);
 		category.Insert("");
@@ -94,7 +94,7 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(0);
 		script.Insert("");
 		
-		resname.Insert("{A968F1BDCB2595BD}Prefabs/Structures/Walls/Concrete/ConcreteWall_01/ConcreteWall_01_camo_6m_B.et");
+		resname.Insert("{9B8809719E076CBD}Prefabs/Structures/Walls/Concrete/ConcreteWall_01/CTI_ConcreteWall_01_camo_6m_B.et");
 		name.Insert("Concrate Wall");
 		price.Insert(500);
 		category.Insert("");
@@ -102,7 +102,7 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(0);
 		script.Insert("");
 		
-		resname.Insert("{8746DE528BA26F02}Prefabs/Structures/Airport/LightRunway_01/LightRunway_01_white.et");
+		resname.Insert("{2E31F50BD0685D63}Prefabs/Structures/Airport/LightRunway_01/CTI_LightRunway_01_white.et");
 		name.Insert("Runway Light");
 		price.Insert(200);
 		category.Insert("");
@@ -110,7 +110,7 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(0);
 		script.Insert("");
 		
-		resname.Insert("{B9003EF716A534D4}Prefabs/Structures/Infrastructure/Lamps/LampStreet_E_02/LampStreet_E_02_single.et");
+		resname.Insert("{1B1209BA807B60D2}Prefabs/Structures/Infrastructure/Lamps/LampStreet_E_02/CTI_LampStreet_E_02_single.et");
 		name.Insert("Lamp Post");
 		price.Insert(200);
 		category.Insert("");
@@ -118,7 +118,7 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		resname.Insert("{647C8407E399D6BB}Prefabs/Structures/Infrastructure/Lamps/LampStreet_E_02/LampStreet_E_02_doubleStraight.et");
+		resname.Insert("{7FF02943FB7CDCE4}Prefabs/Structures/Infrastructure/Lamps/LampStreet_E_02/CTI_LampStreet_E_02_doubleStraight.et");
 		name.Insert("Dual Lamp Post");
 		price.Insert(200);
 		category.Insert("");
@@ -126,7 +126,7 @@ class SCR_CTI_DefensesUSSR
 		placement.Insert(90);
 		script.Insert("");
 		
-		resname.Insert("{AC67BAB9763A3977}Prefabs/Items/Demining/MineFlags/MineFlag_USSR.et");
+		resname.Insert("{950DF64892A0B707}Prefabs/Items/Demining/MineFlags/CTI_MineFlag_USSR.et");
 		name.Insert("Mine Flag");
 		price.Insert(50);
 		category.Insert("");

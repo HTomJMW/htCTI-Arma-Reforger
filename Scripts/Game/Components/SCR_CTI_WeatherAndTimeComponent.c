@@ -8,7 +8,7 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	protected TimeAndWeatherManagerEntity m_manager;
 	protected float m_lenghtofday = 24 * 60 * 60;
 	protected float m_daytimeduration = m_lenghtofday / 1;
-	protected float m_nightduration = m_lenghtofday / 4; //Night 4x faster than Daytime
+	protected float m_nightduration = m_lenghtofday / 6; //Night 6x faster than Daytime
 	
 	protected float m_timeDelta;
 	protected const float TIMESTEP = 60;

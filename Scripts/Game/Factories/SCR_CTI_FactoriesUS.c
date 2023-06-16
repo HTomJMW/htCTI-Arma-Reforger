@@ -76,14 +76,14 @@ class SCR_CTI_FactoriesUS
 		placement.Insert(180);
 		script.Insert("");*/
 		
-		/*resname.Insert("{629CD40ABAEA6CF9}Prefabs/Structures/Infrastructure/Towers/TransmitterTower_01/CTI_TransmitterTower_01_medium.et");
+		resname.Insert("{629CD40ABAEA6CF9}Prefabs/Structures/Infrastructure/Towers/TransmitterTower_01/CTI_TransmitterTower_01_medium.et");
 		wipname.Insert("{D693709149EC77D3}Prefabs/Structures/Infrastructure/Towers/TransmitterTower_01/CTI_TransmitterTower_01_medium_WIP.et");
 		name.Insert("Radar Tower");
 		price.Insert(2000);
 		buildtime.Insert(10);
 		distance.Insert(15);
 		placement.Insert(0);
-		script.Insert("");*/
+		script.Insert("");
 		
 		resname.Insert("{706F5D7B89075C8E}Prefabs/Structures/Services/Fire/FireStation_E_01/CTI_FireStation_E_01_white.et");
 		wipname.Insert("{96FFA1A00062A85A}Prefabs/Structures/Services/Fire/FireStation_E_01/CTI_FireStation_E_01_white_WIP.et");
