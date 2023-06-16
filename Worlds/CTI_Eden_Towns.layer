@@ -35,7 +35,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{59FF3E192EA6E6A3}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{59FF3E194EFC0EC6}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -148,7 +148,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616A8D904FF}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616C3C930E6}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -259,7 +259,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616AB5B9436}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6163B162331}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -370,7 +370,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616AF8CD54B}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616344B0850}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -482,7 +482,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616B2A3E98E}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6162E4EBFE3}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -594,7 +594,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616B5F56981}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6162783FC42}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -705,7 +705,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616B841EA6C}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6161FF3FFA3}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -816,7 +816,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616BC95FCF0}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF61617F77EFB}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -927,7 +927,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616BFD6B242}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF6161121C093}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -1039,7 +1039,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF61749B6543C}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616D3ADDFAA}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -1150,7 +1150,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF616A5B998D1}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616CA4C7B92}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }
@@ -1261,7 +1261,7 @@ $grp SCR_CTI_Town {
      UserActionContext "{5A0EF617D2626586}" {
       ContextName "PurchaseOnFlag"
       Position PointInfo "{5A0EF616EF5E9E2B}" {
-       Offset 0 0.7 0
+       Offset 0 0.8 0
       }
       Radius 2
      }

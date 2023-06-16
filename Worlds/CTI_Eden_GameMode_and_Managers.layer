@@ -322,7 +322,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger HTCTI v0.6.0"
+     Name "Arma Reforger HTCTI v0.5.31"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }

@@ -53,10 +53,11 @@ FrameWidgetClass {
        Slot FrameWidgetSlot "{5D391200D2011511}" {
         PositionX 10
         OffsetLeft 10
-        PositionY 560
-        OffsetTop 560
+        PositionY 540
+        OffsetTop 540
         SizeX 380
         OffsetRight -390
+        SizeY 50
         OffsetBottom -590
        }
        Clipping True
@@ -64,6 +65,7 @@ FrameWidgetClass {
        "Font Size" 20
        "Min Font Size" 20
        "Vertical Alignment" Center
+       Wrap 1
       }
       OverlayWidgetClass "{5A8F1305463D7A0A}" {
        Name "ListBox"
@@ -75,8 +77,8 @@ FrameWidgetClass {
         OffsetTop 10
         SizeX 380
         OffsetRight -390
-        SizeY 540
-        OffsetBottom -550
+        SizeY 520
+        OffsetBottom -530
        }
        components {
         SCR_ListBoxComponent "{566C9415BAA54E1B}" {
