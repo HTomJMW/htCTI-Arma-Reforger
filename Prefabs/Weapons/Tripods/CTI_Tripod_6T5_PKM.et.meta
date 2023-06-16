@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{74D4D08878ACBD99}Prefabs/Weapons/Tripods/CTI_Tripod_6T5_PKM.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

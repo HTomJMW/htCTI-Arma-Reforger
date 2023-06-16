@@ -29,6 +29,7 @@ Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
      ContextName "take_command"
      Position PointInfo "{5AA931A09582FA26}" {
       PivotID "v_body"
+      Offset 0 0.05 0
      }
      Radius 5
     }
