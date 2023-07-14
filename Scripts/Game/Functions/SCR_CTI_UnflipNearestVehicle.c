@@ -72,10 +72,14 @@ class SCR_CTI_UnflipNearestVehicle
 				}
 			}
 
-			vector pos = nearest.GetOrigin();
-			float y = GetGame().GetWorld().GetSurfaceY(pos[0], pos[2]);
-			if (y + 2 < pos[1]) return;
-			
+			//vector pos = nearest.GetOrigin();
+			//float y = GetGame().GetWorld().GetSurfaceY(pos[0], pos[2]);
+			//if (y + 2.5 < pos[1]) return;
+
+			Physics physics = nearest.GetPhysics();
+			vector velocity = physics.GetVelocity();
+			if (Math.AbsFloat(velocity[1]) > 0.1) return;
+
 			SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(m_pc.FindComponent(SCR_CTI_NetWorkComponent));
 			RplComponent rplComp = RplComponent.Cast(nearest.FindComponent(RplComponent));
 			RplId vehRplId = rplComp.Id();

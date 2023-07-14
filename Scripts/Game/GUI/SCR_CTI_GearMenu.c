@@ -5,6 +5,9 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	protected int m_playerId;
 	protected Faction m_playerFaction;
 	protected FactionAffiliationComponent m_affiliationComp;
+	
+	protected float m_timeDelta;
+	protected const float TIMESTEP = 0.5;
 
 	//protected BaseLoadoutManagerComponent m_blmc; //disabled on update
 	protected SCR_InventoryStorageManagerComponent m_ismc;
@@ -164,6 +167,16 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	protected ResourceName m_newBackpackItemsResName[itemSlots];
 	protected ResourceName m_newTrousersItemsResName[itemSlots];
 
+	protected RichTextWidget m_weaponsHeader;
+	protected RichTextWidget m_jacketHeader;
+	protected RichTextWidget m_attachmentsHeader;
+	protected RichTextWidget m_vestHeader;
+	protected RichTextWidget m_backpackHeader;
+	protected RichTextWidget m_trousersHeader;
+	
+	protected ItemPreviewWidget m_selectedItemPreview;
+	protected ResourceName m_lastPreviewResName;
+
 	protected OverlayWidget m_listbox;
 	protected SCR_ListBoxComponent m_listboxcomp;
 
@@ -197,7 +210,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		
 		m_preViewManager = GetGame().GetItemPreviewManager();
 		
-		// handler
+		// Handler
 		m_gearButtonHandler = new SCR_CTI_GearMenuButtonHandler();
 
 		m_buy = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Buy"));
@@ -577,7 +590,22 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			}
 		}
 		
-		// add invokers
+		m_weaponsHeader = RichTextWidget.Cast(m_wRoot.FindAnyWidget("WeaponsHeader"));
+		m_jacketHeader = RichTextWidget.Cast(m_wRoot.FindAnyWidget("JacketHeader"));
+		m_attachmentsHeader = RichTextWidget.Cast(m_wRoot.FindAnyWidget("AttachmentsHeader"));
+		m_vestHeader = RichTextWidget.Cast(m_wRoot.FindAnyWidget("VestHeader"));
+		m_backpackHeader = RichTextWidget.Cast(m_wRoot.FindAnyWidget("BackpackHeader"));
+		m_trousersHeader = RichTextWidget.Cast(m_wRoot.FindAnyWidget("TrousersHeader"));
+		
+		if (m_jacketEnt) m_jacketHeader.SetText("[Jacket: " + getDisplayNameByResourceName(m_jacketEnt.GetPrefabData().GetPrefabName()) + "]");
+		if (m_vestEnt) m_vestHeader.SetText("[Vest: " + getDisplayNameByResourceName(m_vestEnt.GetPrefabData().GetPrefabName()) + "]");
+		if (m_backpackEnt) m_backpackHeader.SetText("[Backpack: " + getDisplayNameByResourceName(m_backpackEnt.GetPrefabData().GetPrefabName()) + "]");
+		if (m_trousersEnt) m_trousersHeader.SetText("[Trousers: " + getDisplayNameByResourceName(m_trousersEnt.GetPrefabData().GetPrefabName()) + "]");
+		
+		// Selected Item Preview
+		m_selectedItemPreview = ItemPreviewWidget.Cast(m_wRoot.FindAnyWidget("SelectedItemPreview"));
+
+		// Add invokers
 		m_ismc.m_OnItemAddedInvoker.Insert(OnItemAdded);
 		m_ismc.m_OnItemRemovedInvoker.Insert(OnItemRemoved);
 	}
@@ -2580,6 +2608,36 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 
 		return meshComponent;
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected string getDisplayNameByResourceName(ResourceName resourcename)
+	{
+		SCR_CTI_GearData gearData;
+		int index = m_gameMode.GearUSSR.findIndexFromResourcename(resourcename);
+		if (index > -1)
+		{
+			gearData = m_gameMode.GearUSSR.g_USSR_Gear[index];
+			return gearData.getName();
+		} else {
+			index = m_gameMode.GearUS.findIndexFromResourcename(resourcename);
+			if (index > -1)
+			{
+				gearData = m_gameMode.GearUS.g_US_Gear[index];
+				return gearData.getName();
+			} else {
+				index = m_gameMode.GearFIA.findIndexFromResourcename(resourcename);
+				if (index > -1)
+				{
+					gearData = m_gameMode.GearFIA.g_FIA_Gear[index];
+					return gearData.getName();
+				} else {
+					PrintFormat("CTI :: ERROR: Unkown item in gearmenu: %1", resourcename);
+				}
+			}
+		}
+
+		return "";
+	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuOpen()
@@ -2689,6 +2747,49 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	//------------------------------------------------------------------------------------------------
 	override void OnMenuUpdate(float tDelta)
 	{
-		// TODO close menu when bars or med down
+		m_timeDelta += tDelta;
+		if (m_timeDelta > TIMESTEP)
+		{
+			if (m_listboxcomp.GetSelectedItem() > -1)
+			{
+				SCR_CTI_GearData gd = SCR_CTI_GearData.Cast(m_listboxcomp.GetItemData(m_listboxcomp.GetSelectedItem()));
+				if (m_lastPreviewResName != gd.getResname())
+				{
+					m_lastPreviewResName = gd.getResname();
+					m_preViewManager.SetPreviewItemFromPrefab(m_selectedItemPreview, m_lastPreviewResName);
+					m_selectedItemPreview.SetResolutionScale(1, 1);
+				}
+			}
+
+			if (m_newJacketResName)
+			{
+				m_jacketHeader.SetText("[Jacket: " + getDisplayNameByResourceName(m_newJacketResName) + "]");
+			} else {
+				if (m_oldJacketEnt && !m_newJacketResName) m_jacketHeader.SetText("[Jacket]");
+			}
+
+			if (m_newVestResName)
+			{
+				m_vestHeader.SetText("[Vest: " + getDisplayNameByResourceName(m_newVestResName) + "]");
+			} else {
+				if (m_oldVestEnt && !m_newVestResName) m_vestHeader.SetText("[Vest]");
+			}
+
+			if (m_newBackpackResName)
+			{
+				m_backpackHeader.SetText("[Backpack: " + getDisplayNameByResourceName(m_newBackpackResName) + "]");
+			} else {
+				if (m_oldBackpackEnt && !m_newBackpackResName) m_backpackHeader.SetText("[Backpack]");
+			}
+
+			if (m_newTrousersResName)
+			{
+				m_trousersHeader.SetText("[Trousers: " + getDisplayNameByResourceName(m_newTrousersResName) + "]");
+			} else {
+				if (m_oldTrousersEnt && !m_newTrousersResName) m_trousersHeader.SetText("[Trousers]");
+			}
+
+			m_timeDelta = 0;
+		}
 	}
 };

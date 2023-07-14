@@ -44,16 +44,10 @@ class SCR_CTI_FactoryProduction
 			if (agent && group) group.AddAgent(agent);
 
 			SCR_VehicleSpawnProtectionComponent vspc = SCR_VehicleSpawnProtectionComponent.Cast(entity.FindComponent(SCR_VehicleSpawnProtectionComponent));
-			if (vspc)
-			{
-				vspc.SetVehicleOwner(playerId);
-			}
+			if (vspc) vspc.SetVehicleOwner(playerId);
 			
 			SCR_BaseLockComponent blc = SCR_BaseLockComponent.Cast(entity.FindComponent(SCR_BaseLockComponent));
-			if (blc)
-			{
-				if (locked) blc.lockVehicle(true);
-			}
+			if (blc) if (locked) blc.lockVehicle(true);
 			
 			if (gunner)
 			{

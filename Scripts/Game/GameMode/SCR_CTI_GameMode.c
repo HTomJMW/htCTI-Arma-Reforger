@@ -4,9 +4,9 @@ class SCR_CTI_GameModeClass: SCR_BaseGameModeClass
 };
 
 // CTI mission faction keys, indexes:
-//	FIA: 0
-//	US: 1
-//	USSR: 2
+// FIA: 0
+// US: 1
+// USSR: 2
 class SCR_CTI_GameMode : SCR_BaseGameMode
 {
 	ref array<SCR_CTI_Town> CTI_Towns = {};
@@ -17,7 +17,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	protected SCR_CTI_UpgradeComponent UpgradeComponent;
 	protected SCR_CTI_BaseComponent BaseComponent;
 	protected SCR_CTI_UpdateResourcesComponent UpdateResourcesComponent;
-	protected SCR_CTI_BuildQueueComponent BuildQueueComponent;
+	protected SCR_CTI_UpdateWorkersComponent UpdateWorkersComponent;
 
 	[RplProp()]
 	protected int ussrCommanderId = -2;
@@ -47,7 +47,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	ref SCR_CTI_FactoriesUS FactoriesUS = new SCR_CTI_FactoriesUS();
 	ref SCR_CTI_DefensesUSSR DefensesUSSR = new SCR_CTI_DefensesUSSR();
 	ref SCR_CTI_DefensesUS DefensesUS = new SCR_CTI_DefensesUS();
-	
+
+	ref SCR_CTI_GearFIA GearFIA = new SCR_CTI_GearFIA();
 	ref SCR_CTI_GearUSSR GearUSSR = new SCR_CTI_GearUSSR();
 	ref SCR_CTI_GearUS GearUS = new SCR_CTI_GearUS();
 
@@ -66,6 +67,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		UpgradeComponent = SCR_CTI_UpgradeComponent.Cast(owner.FindComponent(SCR_CTI_UpgradeComponent));
 		BaseComponent = SCR_CTI_BaseComponent.Cast(owner.FindComponent(SCR_CTI_BaseComponent));
 		UpdateResourcesComponent = SCR_CTI_UpdateResourcesComponent.Cast(owner.FindComponent(SCR_CTI_UpdateResourcesComponent));
+		UpdateWorkersComponent = SCR_CTI_UpdateWorkersComponent.Cast(owner.FindComponent(SCR_CTI_UpdateWorkersComponent));
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -77,7 +79,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
-			Print("CTI :: Mission version: 0.5.31");
+			Print("CTI :: Mission version: 0.6.15");
 			
 			if (RplSession.Mode() == RplMode.Dedicated)
 			{
@@ -89,11 +91,11 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 		// Common
 		uploadTownsArray();
-		
+
 		foreach (SCR_CTI_Town town : CTI_Towns)
 		{
 			SCR_CTI_TownMapDescriptorComponent mdc = SCR_CTI_TownMapDescriptorComponent.Cast(town.FindComponent(SCR_CTI_TownMapDescriptorComponent));
-			if (mdc) mdc.createMarker(town.getFactionKey());
+			if (mdc) mdc.createMarker("FIA"); // Set all towns to green by default
 		}
 
 		BaseComponent.init();
@@ -119,7 +121,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			WeatherAndTimeComponent.Deactivate(this);
 			UpdateVictoryComponent.Deactivate(this);
 			UpdateResourcesComponent.Deactivate(this);
-			BuildQueueComponent.Deactivate(this);
 
 			loadUserSettings();
 		}
@@ -225,8 +226,30 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			}
 		}
 
-		// Necessary delay due to proxy playercontroller check
+		// Necessary delay
 		GetGame().GetCallqueue().CallLater(missionHintsCallLater, 20000, false, playerID);
+
+		// Client or Master, Update town markers for JIPs
+		PlayerController pc = GetGame().GetPlayerController();
+		if (pc && pc.GetPlayerId() == playerID)
+		{
+			foreach (SCR_CTI_Town town : CTI_Towns)
+			{
+				SCR_CTI_TownMapDescriptorComponent mdc = SCR_CTI_TownMapDescriptorComponent.Cast(town.FindComponent(SCR_CTI_TownMapDescriptorComponent));
+				if (mdc)
+				{
+					if (town.getFactionKey() == assignedFaction.GetFactionKey())
+					{
+						mdc.changeMarker(assignedFaction.GetFactionKey());
+						continue;
+					}
+					if (town.getFactionKey() != "FIA" && town.getOldFactionKey() != "FIA")
+					{
+						mdc.changeMarker(town.getFactionKey());
+					}
+				}
+			}
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -258,7 +281,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			{
 				case (currentMissionTime - lastDeath < 15): rtc.SetRespawnTime(playerId, 30); break;
 				case (currentMissionTime - lastDeath < 30): rtc.SetRespawnTime(playerId, 20); break;
-				default: rtc.SetRespawnTime(playerId, 10); break;
+				default: rtc.SetRespawnTime(playerId, 15); break;
 			}
 		}
 	}
@@ -433,16 +456,17 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
 		IEntity ent = rplComp.GetEntity();
 		if (!ent) return;
-		
+
+		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
 		SCR_CTI_VehicleCustomVariablesComponent vcvc = SCR_CTI_VehicleCustomVariablesComponent.Cast(ent.FindComponent(SCR_CTI_VehicleCustomVariablesComponent));
-		if (vcvc && vcvc.getSupportVehicleType() == CTI_SupportVehicleTypes.MHQ)
+
+		if (vcvc && vcvc.getSupportVehicleType() == CTI_SupportVehicleTypes.MHQ && vehicleDamageManager.IsDestroyed())
 		{
 			FactionAffiliationComponent faffComp = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
 			SCR_CTI_RepairMHQ.repairMHQ(faffComp.GetDefaultAffiliatedFaction().GetFactionKey());
 			return;
 		}
 
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
 		if (!vehicleDamageManager.IsDestroyed()) vehicleDamageManager.FullHeal();
 
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
@@ -553,8 +577,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		SCR_RespawnSystemComponent respSystemComp = SCR_RespawnSystemComponent.GetInstance();
 		foreach (int pid : outPlayers)
 		{
-			FactionKey playerFactionKey = respSystemComp.GetPlayerFaction(pid).GetFactionKey();
-			if (playerFactionKey == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1);
+			Faction playerFaction = respSystemComp.GetPlayerFaction(pid);
+			if (!playerFaction) continue;
+			if (playerFaction.GetFactionKey() == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1);
 		}
 	}
 
@@ -568,7 +593,8 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		foreach (int pid : outPlayers)
 		{
 			Faction playerFaction = respSystemComp.GetPlayerFaction(pid);
-			if (playerFaction && playerFaction.GetFactionKey() == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification);
+			if (!playerFaction) continue;
+			if (playerFaction.GetFactionKey() == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification);
 		}
 	}
 
@@ -581,8 +607,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		SCR_RespawnSystemComponent respSystemComp = SCR_RespawnSystemComponent.GetInstance();
 		foreach (int pid : outPlayers)
 		{
-			FactionKey playerFactionKey = respSystemComp.GetPlayerFaction(pid).GetFactionKey();
-			if (playerFactionKey == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1);
+			Faction playerFaction = respSystemComp.GetPlayerFaction(pid);
+			if (!playerFaction) continue;
+			if (playerFaction.GetFactionKey() == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1);
 		}
 	}
 	
@@ -595,8 +622,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		SCR_RespawnSystemComponent respSystemComp = SCR_RespawnSystemComponent.GetInstance();
 		foreach (int pid : outPlayers)
 		{
-			FactionKey playerFactionKey = respSystemComp.GetPlayerFaction(pid).GetFactionKey();
-			if (playerFactionKey == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1, param2, param3, param4, param5);
+			Faction playerFaction = respSystemComp.GetPlayerFaction(pid);
+			if (!playerFaction) continue;
+			if (playerFaction.GetFactionKey() == factionkey) SCR_NotificationsComponent.SendToPlayer(pid, notification, param1, param2, param3, param4, param5);
 		}
 	}
 

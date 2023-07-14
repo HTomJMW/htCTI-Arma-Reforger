@@ -29,7 +29,7 @@ class SCR_CTI_Town : BaseGameEntity
 	protected FactionManager m_factionManager;
 	protected RplComponent m_rplComponent;
 	protected SCR_SpawnPoint m_spawnPoint;
-	
+
 	protected SCR_CTI_ActivationArea m_activationArea;
 	protected SCR_CTI_CaptureArea m_captureArea;
 	
@@ -133,8 +133,11 @@ class SCR_CTI_Town : BaseGameEntity
 			child = child.GetSibling();
 		}
 
+		changeFlag(m_factionKey); // For running missions and JIPs (TODO: maybe RplProp better?)
+		
 		m_spawnPoint = createSpawnPoint();
 		m_spawnPoint.SetFactionKey(m_factionKey);
+		m_spawnPoint.setDisplayName("Town: " + m_townName);
 
 		if (m_rplComponent.IsProxy())
 		{
@@ -209,7 +212,25 @@ class SCR_CTI_Town : BaseGameEntity
 	protected void OnTownCapturedClient()
 	{
 		changeFlag(m_factionKey);
-		m_mapComponent.changeMarker(m_factionKey);
+
+		PlayerController pc = GetGame().GetPlayerController();
+		if (pc)
+		{
+			FactionAffiliationComponent affiliationComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+			switch (true)
+			{
+				case (affiliationComp.GetAffiliatedFaction().GetFactionKey() == m_factionKey):
+				{
+					m_mapComponent.changeMarker(m_factionKey);
+					break;
+				}
+				case (affiliationComp.GetAffiliatedFaction().GetFactionKey() == m_oldFactionKey):
+				{
+					m_mapComponent.changeMarker(m_factionKey);
+					break;
+				}
+			}
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -352,7 +373,7 @@ class SCR_CTI_Town : BaseGameEntity
 	//------------------------------------------------------------------------------------------------
 	protected SCR_SpawnPoint createSpawnPoint()
 	{
-		ResourceName sp = "{987991DCED3DC197}PrefabsEditable/SpawnPoints/E_SpawnPoint.et";
+		ResourceName sp = "{E7F4D5562F48DDE4}Prefabs/MP/Spawning/SpawnPoint_Base.et";
 		Resource spRes = Resource.Load(sp);
 
 		EntitySpawnParams params = new EntitySpawnParams();

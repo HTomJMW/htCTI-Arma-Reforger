@@ -11,7 +11,7 @@ class SCR_CTI_StructureMarker : BaseGameEntity
 	protected SCR_MapDescriptorComponent m_mapComponent;
 	[RplProp()]
 	protected int m_factionIndex;
-	protected MapItem mapItem;
+	protected MapItem m_mapItem;
 	protected Color m_textcolor = Color.Black;
 	protected string m_name = "Building";
 	protected PlayerController m_pc;
@@ -37,24 +37,25 @@ class SCR_CTI_StructureMarker : BaseGameEntity
 	//------------------------------------------------------------------------------------------------
 	protected void createMarker()
 	{
-		mapItem = m_mapComponent.Item();
+		m_mapItem = m_mapComponent.Item();
 
-		mapItem.SetDisplayName(m_name);
-		mapItem.SetBaseType(EMapDescriptorType.MDT_UNIT);
-		mapItem.SetFactionIndex(m_factionIndex);
+		m_mapItem.SetDisplayName(m_name);
+		m_mapItem.SetBaseType(EMapDescriptorType.MDT_ICON);
+		m_mapItem.SetImageDef("USSR_Base_Small_Respawn_Bg");
+		m_mapItem.SetFactionIndex(m_factionIndex);
 
-		MapDescriptorProps props = mapItem.GetProps();
+		MapDescriptorProps props = m_mapItem.GetProps();
 			props.SetDetail(96);
-			//props.SetIconSize(2, 1, 2);
+			props.SetIconSize(0.2, 0.3, 3);
 			props.SetTextSize(16, 8, 32);
 			props.SetTextColor(m_textcolor);
 			m_textcolor.SetA(0.8);
-			//props.SetFrontColor(m_textcolor);
+			props.SetFrontColor(m_textcolor);
 			props.SetTextVisible(true);
-			props.SetIconVisible(false);
+			props.SetIconVisible(true);
 			props.Activate(true);
 
-		mapItem.SetProps(props);
+		m_mapItem.SetProps(props);
 	}
 
 	//------------------------------------------------------------------------------------------------

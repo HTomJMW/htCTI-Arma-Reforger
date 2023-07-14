@@ -155,9 +155,27 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		{
 			m_leavecom.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 			m_leavecom.AddHandler(m_buttonEventHandler);
+			
+			m_setprioritytown.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+			m_setprioritytown.AddHandler(m_buttonEventHandler);
+			
+			m_clearpriority.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+			m_clearpriority.AddHandler(m_buttonEventHandler);
+			
+			m_basemanagement.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+			m_basemanagement.AddHandler(m_buttonEventHandler);	
 		} else {
 			m_leavecom.SetColor(Color.Gray);
 			m_leavecom.SetEnabled(false);
+			
+			m_setprioritytown.SetColor(Color.Gray);
+			m_setprioritytown.SetEnabled(false);
+			
+			m_clearpriority.SetColor(Color.Gray);
+			m_clearpriority.SetEnabled(false);
+
+			m_basemanagement.SetColor(Color.Gray);
+			m_basemanagement.SetEnabled(false);
 		}
 
 		bool barInRange = false;
@@ -232,11 +250,6 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		
 		m_upgrades.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_upgrades.AddHandler(m_buttonEventHandler);
-		
-		//m_basemanagement.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-		//m_basemanagement.AddHandler(m_buttonEventHandler);
-		m_basemanagement.SetColor(Color.Gray);
-		m_basemanagement.SetEnabled(false);
 
 		//m_teamrequests.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		//m_teamrequests.AddHandler(m_buttonEventHandler);
@@ -247,21 +260,6 @@ class SCR_CTI_MainMenu : ChimeraMenuBase
 		//m_artillery.AddHandler(m_buttonEventHandler);
 		m_artillery.SetColor(Color.Gray);
 		m_artillery.SetEnabled(false);
-
-		if (m_clientData && m_clientData.isCommander())
-		{
-			m_setprioritytown.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-			m_setprioritytown.AddHandler(m_buttonEventHandler);
-			
-			m_clearpriority.SetColor(SCR_CTI_Constants.CTI_ORANGE);
-			m_clearpriority.AddHandler(m_buttonEventHandler);
-		} else {
-			m_setprioritytown.SetColor(Color.Gray);
-			m_setprioritytown.SetEnabled(false);
-			
-			m_clearpriority.SetColor(Color.Gray);
-			m_clearpriority.SetEnabled(false);
-		}
 
 		m_exit.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_exit.AddHandler(m_commonButtonHandler);

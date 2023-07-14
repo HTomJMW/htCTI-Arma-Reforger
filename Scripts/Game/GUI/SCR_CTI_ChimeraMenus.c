@@ -10,5 +10,6 @@ modded enum ChimeraMenuPreset
 	CTI_GUI_TransferResourcesMenu,
 	CTI_GUI_GearMenu,
 	CTI_GUI_ServiceMenu,
-	CTI_GUI_SatCamMenu
+	CTI_GUI_SatCamMenu,
+	CTI_GUI_BaseManagementMenu
 };

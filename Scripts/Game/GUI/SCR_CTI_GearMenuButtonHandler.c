@@ -116,11 +116,12 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 		int selected = listboxcomp.GetSelectedItem();
 		SCR_CTI_GearData gearData;
 		if (selected != -1) gearData = SCR_CTI_GearData.Cast(listboxcomp.GetItemData(selected));
-		
+
 		switch (w.GetName())
 		{
 			case "Rifles":
 			{
+				listboxcomp.SetItemSelected(listboxcomp.GetSelectedItem(), false);
 				gearData = null;
 				
 				for (int i = listboxcomp.GetItemCount() - 1; i >= 0; i--)
@@ -167,6 +168,7 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Launchers":
 			{
+				listboxcomp.SetItemSelected(listboxcomp.GetSelectedItem(), false);
 				gearData = null;
 				
 				for (int i = listboxcomp.GetItemCount() - 1; i >= 0; i--)
@@ -213,6 +215,7 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Pistols":
 			{
+				listboxcomp.SetItemSelected(listboxcomp.GetSelectedItem(), false);
 				gearData = null;
 				
 				for (int i = listboxcomp.GetItemCount() - 1; i >= 0; i--)
@@ -259,6 +262,7 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Accessories":
 			{
+				listboxcomp.SetItemSelected(listboxcomp.GetSelectedItem(), false);
 				gearData = null;
 				
 				for (int i = listboxcomp.GetItemCount() - 1; i >= 0; i--)
@@ -305,6 +309,7 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Ammos":
 			{
+				listboxcomp.SetItemSelected(listboxcomp.GetSelectedItem(), false);
 				gearData = null;
 				
 				for (int i = listboxcomp.GetItemCount() - 1; i >= 0; i--)
@@ -351,6 +356,7 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Items":
 			{
+				listboxcomp.SetItemSelected(listboxcomp.GetSelectedItem(), false);
 				gearData = null;
 				
 				for (int i = listboxcomp.GetItemCount() - 1; i >= 0; i--)
@@ -397,6 +403,7 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Uniforms":
 			{
+				listboxcomp.SetItemSelected(listboxcomp.GetSelectedItem(), false);
 				gearData = null;
 				
 				for (int i = listboxcomp.GetItemCount() - 1; i >= 0; i--)
@@ -758,14 +765,14 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 			{
 				if (button == 0 && gearData) gearMenu.tryAddItem(w, gearData);
 				if (button == 1) gearMenu.removeItem(w);
-				
+
 				break;
 			}
 			case "ItemPVJ7":
 			{
 				if (button == 0 && gearData) gearMenu.tryAddItem(w, gearData);
 				if (button == 1) gearMenu.removeItem(w);
-				
+
 				break;
 			}
 			case "ItemPVJ8":

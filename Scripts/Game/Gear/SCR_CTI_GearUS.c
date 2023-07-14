@@ -172,6 +172,31 @@ class SCR_CTI_GearUS
 		category.Insert("");
 		uplevel.Insert(0);
 		price.Insert(50);
+		
+		// Marker Grenades - all on M18 name, need edit
+		resname.Insert("{D41D22DD1B8E921E}Prefabs/Weapons/Grenades/M18/Smoke_M18_Green.et");
+		name.Insert("M18 - Green");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+
+		resname.Insert("{3343A055A83CB30D}Prefabs/Weapons/Grenades/M18/Smoke_M18_Red.et");
+		name.Insert("M18 - Red");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+
+		resname.Insert("{14C1A0F061D9DDEE}Prefabs/Weapons/Grenades/M18/Smoke_M18_Violet.et");
+		name.Insert("M18 - Violet");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+
+		resname.Insert("{9BBDEE253A16CC66}Prefabs/Weapons/Grenades/M18/Smoke_M18_Yellow.et");
+		name.Insert("M18 - Yellow");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
 
 		// Launcher
 		resname.Insert("{9C5C20FB0E01E64F}Prefabs/Weapons/Launchers/M72/Launcher_M72A3.et");
@@ -338,7 +363,7 @@ class SCR_CTI_GearUS
 		uplevel.Insert(0);
 		price.Insert(50);
 		
-		// Vests
+		// Vests - M79 grenade carrier maybe need
 		resname.Insert("{0BC230E08CEA02B6}Prefabs/Characters/Vests/Vest_ALICE/Vest_ALICE_belt.et");
 		name.Insert("");
 		category.Insert("");

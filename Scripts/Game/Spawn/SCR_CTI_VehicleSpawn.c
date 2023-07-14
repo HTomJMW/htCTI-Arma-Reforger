@@ -43,6 +43,20 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 
 				garbagemanager.Insert(newEnt);
 				garbagemanager.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
+
+				IEntity child = newEnt.GetChildren();
+				while (child)
+				{
+					SCR_SpawnPoint spawnPoint = SCR_SpawnPoint.Cast(child);
+					if (spawnPoint)
+					{
+						spawnPoint.setDisplayName("USSR MHQ");
+						break;
+					}
+					
+					child = child.GetSibling();
+				}
+
 				break;
 			}
 			case SCR_CTI_Constants.US_MHQ:
@@ -52,6 +66,20 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 
 				garbagemanager.Insert(newEnt);
 				garbagemanager.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
+
+				IEntity child = newEnt.GetChildren();
+				while (child)
+				{
+					SCR_SpawnPoint spawnPoint = SCR_SpawnPoint.Cast(child);
+					if (spawnPoint)
+					{
+						spawnPoint.setDisplayName("US MHQ");
+						break;
+					}
+					
+					child = child.GetSibling();
+				}
+
 				break;
 			}
 			default:

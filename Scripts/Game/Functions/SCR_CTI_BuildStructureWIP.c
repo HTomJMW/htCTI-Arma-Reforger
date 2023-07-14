@@ -30,7 +30,6 @@ class SCR_CTI_BuildStructureWIP
 					m_baseComp.addBase(factionkey, mat[3], basecount);
 					wipStructure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 					wipStructure.Update();
-					m_baseComp.getBase(factionkey, basecount).addWIPStructure(wipStructure);
 
 					break;
 				}
@@ -47,7 +46,6 @@ class SCR_CTI_BuildStructureWIP
 						{
 							wipStructure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 							wipStructure.Update();
-							m_baseComp.getBase(factionkey, i).addWIPStructure(wipStructure);
 							inside = true;
 						}
 					}
@@ -61,7 +59,6 @@ class SCR_CTI_BuildStructureWIP
 				m_baseComp.addBase(factionkey, mat[3], basecount);
 				wipStructure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 				wipStructure.Update();
-				m_baseComp.getBase(factionkey, basecount).addWIPStructure(wipStructure);
 
 				break;
 			}
@@ -77,7 +74,6 @@ class SCR_CTI_BuildStructureWIP
 					m_baseComp.addBase(factionkey, mat[3], basecount);
 					wipStructure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 					wipStructure.Update();
-					m_baseComp.getBase(factionkey, basecount).addWIPStructure(wipStructure);
 
 					break;
 				}
@@ -94,7 +90,6 @@ class SCR_CTI_BuildStructureWIP
 						{
 							wipStructure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 							wipStructure.Update();
-							m_baseComp.getBase(factionkey, i).addWIPStructure(wipStructure);
 							inside = true;
 						}
 					}
@@ -108,7 +103,6 @@ class SCR_CTI_BuildStructureWIP
 				m_baseComp.addBase(factionkey, mat[3], basecount);
 				wipStructure = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 				wipStructure.Update();
-				m_baseComp.getBase(factionkey, basecount).addWIPStructure(wipStructure);
 
 				break;
 			}
@@ -116,18 +110,35 @@ class SCR_CTI_BuildStructureWIP
 
 		if (wipStructure)
 		{
-			// set faction of building
+			// Set faction of building
 			FactionAffiliationComponent faffcomp = FactionAffiliationComponent.Cast(wipStructure.FindComponent(FactionAffiliationComponent));
 			faffcomp.SetAffiliatedFactionByKey(factionkey);
 
-			// store structure IDs for searching
+			// Store structure IDs for searching
 			RplComponent rplComp = RplComponent.Cast(wipStructure.FindComponent(RplComponent));
 			RplId rplid = rplComp.Id();
 			m_baseComp.addWIPStuctureRplId(factionkey, rplid);
 
-			// pay the cost
+			// Pay the cost
 			int cost = factoryData.getPrice();
 			m_gameMode.changeCommanderFunds(factionkey, -cost);
+
+			// Parts SnapToGround
+			BaseWorld world = GetGame().GetWorld();
+			IEntity child = wipStructure.GetChildren();
+			while (child)
+			{
+				vector orig = child.GetOrigin();
+				float y = SCR_TerrainHelper.GetTerrainY(orig, world);
+				if (orig[1] < y + 2)
+				{
+					orig[1] = y;
+					child.SetOrigin(orig);
+					child.Update();
+				}
+
+				child = child.GetSibling();
+			}
 		} else {
 			PrintFormat("CTI :: Side %1 reached Base limit", factionkey);
 		}

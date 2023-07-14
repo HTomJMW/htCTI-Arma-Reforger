@@ -15,10 +15,11 @@ class SCR_CTI_RepairMHQ
 			RplComponent.DeleteRplEntity(mhq, false);
 			
 			ResourceName resname;
+			string displayname;
 			switch(factionkey)
 			{
-				case "USSR": resname = SCR_CTI_Constants.USSR_MHQ; break;
-				case "US": resname = SCR_CTI_Constants.US_MHQ; break;
+				case "USSR": resname = SCR_CTI_Constants.USSR_MHQ; displayname = "USSR MHQ"; break;
+				case "US": resname = SCR_CTI_Constants.US_MHQ; displayname = "US MHQ"; break;
 			} 
 		
 			Resource res = Resource.Load(resname);
@@ -29,6 +30,19 @@ class SCR_CTI_RepairMHQ
 		
 			IEntity spawnedEntity = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), spawnParams);
 			if (!spawnedEntity) return;
+
+			IEntity child = spawnedEntity.GetChildren();
+			while (child)
+			{
+				SCR_SpawnPoint spawnPoint = SCR_SpawnPoint.Cast(child);
+				if (spawnPoint)
+				{
+					spawnPoint.setDisplayName(displayname);
+					break;
+				}
+
+				child = child.GetSibling();
+			}
 
 			GarbageManager garbagemanager = GetGame().GetGarbageManager();
 			garbagemanager.Insert(spawnedEntity);

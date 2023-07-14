@@ -48,11 +48,11 @@ class SCR_CTI_BaseMarker : BaseGameEntity
 		m_mapItem.SetDisplayName(m_name);
 		m_mapItem.SetBaseType(EMapDescriptorType.MDT_ICON);
 		m_mapItem.SetFactionIndex(m_factionIndex);
+		m_mapItem.SetImageDef("CTI_TOWN");
 
 		MapDescriptorProps props = m_mapItem.GetProps();
-			m_mapItem.SetImageDef("Flag");
 			props.SetDetail(96);
-			props.SetIconSize(32, 1, 4);
+			props.SetIconSize(128, 0.8, 0.8);
 			props.SetTextSize(32, 16, 64);
 			props.SetTextColor(m_textcolor);
 			m_color.SetA(0.8);
@@ -74,6 +74,11 @@ class SCR_CTI_BaseMarker : BaseGameEntity
 		// Client or Master
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		m_pc = GetGame().GetPlayerController();
-		if (m_gameMode && m_pc) GetGame().GetCallqueue().CallLater(initMarker, 1000, false);
+		if (m_pc)
+		{
+			GetGame().GetCallqueue().CallLater(initMarker, 1000, false);
+		} else {
+			GetGame().GetCallqueue().CallLater(EOnInit, 2000, false, owner);
+		}
 	}
 };

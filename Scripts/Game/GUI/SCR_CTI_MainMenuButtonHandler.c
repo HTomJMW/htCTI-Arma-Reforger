@@ -159,6 +159,15 @@ class SCR_CTI_MainMenuButtonHandler : ScriptedWidgetEventHandler
 				auto menuManager = GetGame().GetMenuManager();
 				menuManager.CloseAllMenus();
 				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_SatCamMenu);
+
+				break;
+			}
+			case "BaseManagementButton":
+			{
+				auto menuManager = GetGame().GetMenuManager();
+				menuManager.CloseAllMenus();
+				GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CTI_GUI_BaseManagementMenu);
+
 				break;
 			}
 		}

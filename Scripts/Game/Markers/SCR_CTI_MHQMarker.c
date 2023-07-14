@@ -48,6 +48,8 @@ class SCR_CTI_MHQMarker : BaseGameEntity
 		m_mapItem = m_mapComponent.Item();
 		m_mapItem.SetPriority(1);
 		m_mapItem.SetFactionIndex(m_factionIndex);
+		m_mapItem.SetBaseType(EMapDescriptorType.MDT_ICON);
+		m_mapItem.SetImageDef("USSR_Base_Small_Respawn_Bg");
 		
 		if (mhqDown)
 		{
@@ -55,12 +57,13 @@ class SCR_CTI_MHQMarker : BaseGameEntity
 	
 			MapDescriptorProps props = m_mapItem.GetProps();
 				props.SetDetail(96);
-				props.SetIconSize(16, 1, 2);
+				props.SetIconSize(0.2, 0.3, 3);
 				props.SetTextSize(32, 16, 64);
 				props.SetTextColor(Color.Black);
+				props.SetFrontColor(Color.Black);
 				props.SetTextBold();
 				props.SetTextVisible(true);
-				props.SetIconVisible(false);
+				props.SetIconVisible(true);
 				props.Activate(true);
 
 			m_mapItem.SetProps(props);
@@ -69,12 +72,13 @@ class SCR_CTI_MHQMarker : BaseGameEntity
 	
 			MapDescriptorProps props = m_mapItem.GetProps();
 				props.SetDetail(96);
-				props.SetIconSize(16, 1, 2);
+				props.SetIconSize(0.2, 0.3, 3);
 				props.SetTextSize(32, 16, 64);
 				props.SetTextColor(m_textColor);
+				props.SetFrontColor(m_textColor);
 				props.SetTextBold();
 				props.SetTextVisible(true);
-				props.SetIconVisible(false);
+				props.SetIconVisible(true);
 				props.Activate(true);
 
 			m_mapItem.SetProps(props);

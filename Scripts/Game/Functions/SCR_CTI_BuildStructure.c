@@ -48,14 +48,20 @@ class SCR_CTI_BuildStructure
 			// set faction of building
 			FactionAffiliationComponent faffcomp = FactionAffiliationComponent.Cast(structure.FindComponent(FactionAffiliationComponent));
 			faffcomp.SetAffiliatedFactionByKey(factionkey);
-
+			SCR_CTI_BuildingCustomVariablesComponent bcvc = SCR_CTI_BuildingCustomVariablesComponent.Cast(structure.FindComponent(SCR_CTI_BuildingCustomVariablesComponent));
+			if (bcvc)
+			{
+				bcvc.setFactionKey(factionkey);
+				m_gameMode.bumpMeServer();
+			}
+			
 			// store structure IDs for searching
 			RplComponent rplComp = RplComponent.Cast(structure.FindComponent(RplComponent));
 			RplId rplid = rplComp.Id();
 			m_baseComp.addStuctureRplId(factionkey, rplid);
 
 			// create spawn point
-			ResourceName resname = "{987991DCED3DC197}PrefabsEditable/SpawnPoints/E_SpawnPoint.et";
+			ResourceName resname = "{E7F4D5562F48DDE4}Prefabs/MP/Spawning/SpawnPoint_Base.et";
 			Resource res = Resource.Load(resname);
 			IEntity sp = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
 			SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
@@ -63,6 +69,7 @@ class SCR_CTI_BuildStructure
 			vector spPos = mat[3];
 			spPos[1] = spPos[1] + 0.2; // Elevate SP
 			spawn.SetOrigin(spPos);
+			spawn.setDisplayName(factoryData.getName() + " [" + SCR_MapEntity.GetGridPos(spPos) + "]");
 
 			// Notification
 			FactionManager fm = GetGame().GetFactionManager();
