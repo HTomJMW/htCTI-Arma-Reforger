@@ -20,6 +20,8 @@ $grp SCR_CTI_Town {
    SCR_FlagComponent "{599D1844281D0C93}" {
     m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
+   SCR_MapDescriptorComponent "{5DB10D1E5DEA1291}" {
+   }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
    SlotManagerComponent "{599D184548215480}" {

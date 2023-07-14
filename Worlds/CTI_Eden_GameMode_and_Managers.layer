@@ -322,14 +322,14 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger HTCTI v0.5.31"
+     Name "Arma Reforger HTCTI v0.6.15"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
    }
    m_aWinConditions {
     SCR_BriefingVictoryCondition "{59F744460AF8FB60}" {
-     victoryCondition SEIZE
+     victoryCondition CUSTOM
      name "Victory Conditions"
      description "Capture and hold towns, destroy enemy Bases and MHQ."
     }
@@ -342,6 +342,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_RespawnSystemComponent "{5ABD5768B956B1B8}" {
   }
   SCR_RespawnTimerComponent "{599D233269C13252}" {
+   m_fRespawnTime 15
   }
   SCR_SaveLoadComponent "{599D233263F4490B}" {
    m_iAutosavePeriod 180
