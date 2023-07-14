@@ -1,6 +1,8 @@
 SCR_PlayerController : "{6E2BB64764E3BE9B}Prefabs/Characters/Core/DefaultPlayerController.et" {
  ID "1A9BA6BEFA06E3B1"
  components {
+  SCR_CTI_MapMarkerHandlerComponent "{5DAD147FF0316373}" {
+  }
   SCR_CTI_NetWorkComponent "{5AAD300C3C74846D}" {
   }
   SCR_CTI_PlacingDefenseComponent "{5C6CD48CA0150288}" {

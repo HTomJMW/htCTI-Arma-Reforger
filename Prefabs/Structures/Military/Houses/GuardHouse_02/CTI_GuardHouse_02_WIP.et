@@ -33,6 +33,9 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D795CF33C3C7410}" {
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
    }
    coords -1.378 0 0.259
    scale 0.917
@@ -42,6 +45,8 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D795CF33A0A6E92}" {
     }
+    RplComponent "{5DB282019061D877}" {
+    }
    }
    coords -2.992 -1 -2.499
   }
@@ -49,6 +54,8 @@ SCR_DestructibleBuildingEntity {
    ID "5D7701B3793FC04E"
    components {
     Hierarchy "{5D795CF3381A3BDB}" {
+    }
+    RplComponent "{5DB282018DF71F24}" {
     }
    }
    coords -2.925 10.489 -2.452
@@ -59,6 +66,9 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D795CF336B676C8}" {
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
    }
    coords 0.821 0 6.405
   }
@@ -66,6 +76,9 @@ SCR_DestructibleBuildingEntity {
    ID "5D7701B3FF769A45"
    components {
     Hierarchy "{5D795CF334CCD92C}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
     }
    }
    coords 4.777 0 2.218
@@ -76,6 +89,9 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D795CF332A02DF5}" {
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
    }
    coords 1.972 0 5.57
    angleY 30
@@ -84,6 +100,9 @@ SCR_DestructibleBuildingEntity {
    ID "5D7701B38E83DEC9"
    components {
     Hierarchy "{5D795CF3300B6B9C}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
     }
    }
    coords -0.346 0 -4.739
@@ -94,6 +113,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D795CF32E5A5CDA}" {
      }
+     RplComponent "{5DB28201FC80CB85}" {
+     }
     }
     coords -6.433 -1 -2.25
    }
@@ -101,6 +122,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D7701B210D9545D"
     components {
      Hierarchy "{5D795CF32D84C2E1}" {
+     }
+     RplComponent "{5DB28201F9702A73}" {
      }
     }
     coords -2.619 -1 -5.571
@@ -110,6 +133,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D795CF32BA60636}" {
      }
+     RplComponent "{5DB28201F8C28526}" {
+     }
     }
     coords 5.619 -1 3.723
    }
@@ -117,6 +142,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D7701B21181C16C"
     components {
      Hierarchy "{5D795CF329D6EF0C}" {
+     }
+     RplComponent "{5DB28201F605C815}" {
      }
     }
     coords 5.644 -1 -6.195
@@ -126,6 +153,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D795CF327131930}" {
      }
+     RplComponent "{5DB28201F45B35FD}" {
+     }
     }
     coords 1.832 -1 7.069
    }
@@ -133,6 +162,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D7701B213A14291"
     components {
      Hierarchy "{5D795CF3255B311B}" {
+     }
+     RplComponent "{5DB28201F385B5BB}" {
      }
     }
     coords -6.446 -1 5.7
@@ -143,6 +174,9 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D795CF324A97CCD}" {
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
    }
    coords -4.147 0 4.415
   }
@@ -150,6 +184,9 @@ SCR_DestructibleBuildingEntity {
    ID "5D7701B3EAFCEF74"
    components {
     Hierarchy "{5D795CF322DE5937}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
     }
    }
    coords -5.201 0 4.671

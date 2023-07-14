@@ -46,6 +46,8 @@ SCR_DestructibleBuildingEntity : "{A43A100E3C377DB2}Prefabs/Structures/Core/Buil
   }
   SCR_CTI_BuildQueueComponent "{5D94C90021EAA226}" {
   }
+  SCR_CTI_BuildingCustomVariablesComponent "{5DB2CE116F474CCE}" {
+  }
   SlotManagerComponent "{5D2E000A775264BD}" {
    Slots {
     EntitySlotInfo BuildingMarker {

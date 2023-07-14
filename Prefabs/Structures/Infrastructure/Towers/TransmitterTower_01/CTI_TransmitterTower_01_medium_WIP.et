@@ -33,6 +33,8 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D795CF003B714A4}" {
     }
+    RplComponent "{5DB282000C10AA49}" {
+    }
    }
    coords 1.886 -1 -1.471
   }
@@ -42,6 +44,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D795CF001B1C423}" {
      }
+     RplComponent "{5DB28200094D6FC1}" {
+     }
     }
     coords -0.6 -0.2 -1.5
    }
@@ -49,6 +53,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C486D83BB708"
     components {
      Hierarchy "{5D795CF07E6D6ECA}" {
+     }
+     RplComponent "{5DB282000790378D}" {
      }
     }
     coords 0.301 -0.2 -1.5
@@ -58,6 +64,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D795CF07C420648}" {
      }
+     RplComponent "{5DB2820004C7AD3D}" {
+     }
     }
     coords -0.3 -0.2 -1.5
    }
@@ -65,6 +73,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C486E290F51E"
     components {
      Hierarchy "{5D795CF07A4C448A}" {
+     }
+     RplComponent "{5DB2820002A283D2}" {
      }
     }
     coords 0 -0.2 -1.5
@@ -75,6 +85,8 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D795CF0785F4563}" {
     }
+    RplComponent "{5DB282007F64BDC0}" {
+    }
    }
    coords 0 0 0
    scale 0.8
@@ -83,6 +95,8 @@ SCR_DestructibleBuildingEntity {
    ID "5D76C486E1B3F55D"
    components {
     Hierarchy "{5D795CF076694CF1}" {
+    }
+    RplComponent "{5DB282007C8A7DC2}" {
     }
    }
    coords 1.82 11.133 -1.376
@@ -93,18 +107,29 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D795CF06AFAF98C}" {
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
    }
    coords -2.19 0 -1.292
    angleY 10
   }
   GenericEntity : "{7C238BF394D26FBD}Prefabs/Structures/BuildingParts/Eletrical/ElectricityBox_Base.et" {
    ID "5D76C486144F70B8"
+   components {
+    RplComponent "{58FC7CAC2034C3E2}" {
+     Enabled 1
+    }
+   }
    coords -1.344 0 2.549
   }
   GenericEntity : "{7D52C517720EF2F5}Prefabs/Props/Industrial/BarrelMetal_01_blue.et" {
    ID "5D76C481A94B2BA2"
    components {
     Hierarchy "{5D795CF072710A69}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
     }
    }
    coords 2.121 0 -0.774
@@ -115,6 +140,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D795CF071C2793F}" {
      }
+     RplComponent "{5DB28200703FD630}" {
+     }
     }
     coords 2.3 2 -2.4
    }
@@ -122,6 +149,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C486DF9C56CF"
     components {
      Hierarchy "{5D795CF06F0AF5F1}" {
+     }
+     RplComponent "{5DB282006EF27EE9}" {
      }
     }
     coords 2.3 2 2.4
@@ -131,6 +160,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D795CF06D44D6A8}" {
      }
+     RplComponent "{5DB282006C1C1CBB}" {
+     }
     }
     coords -2.6 2 -2.4
    }
@@ -138,6 +169,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C486E39FC0BD"
     components {
      Hierarchy "{5D795CF06C93F107}" {
+     }
+     RplComponent "{5DB2820069652864}" {
      }
     }
     coords -2.6 2 2.4

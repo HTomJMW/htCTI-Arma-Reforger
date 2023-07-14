@@ -5,6 +5,8 @@ SCR_DestructibleBuildingEntity : "{E35EA41864A3B0ED}Prefabs/Structures/Industria
   }
   SCR_CTI_BuildQueueComponent "{5D94C9000A59FEA7}" {
   }
+  SCR_CTI_BuildingCustomVariablesComponent "{5DB2CE114ADF65E7}" {
+  }
   SlotManagerComponent "{5D2E000BE7FD46DF}" {
    Slots {
     EntitySlotInfo BuildingMarker {

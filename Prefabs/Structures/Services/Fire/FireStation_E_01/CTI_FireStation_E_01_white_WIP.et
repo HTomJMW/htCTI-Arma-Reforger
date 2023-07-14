@@ -33,6 +33,9 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D793072D1D15165}" {
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
    }
    coords 0 0 -6.83
    angleY 180
@@ -42,6 +45,9 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D793072CCF1ECC6}" {
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
    }
    coords -5.939 0 -4.278
   }
@@ -49,6 +55,9 @@ SCR_DestructibleBuildingEntity {
    ID "5D76C49DF90C1B9F"
    components {
     Hierarchy "{5D793072C89D6DE4}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
     }
    }
    coords -1.607 0 4.891
@@ -61,11 +70,47 @@ SCR_DestructibleBuildingEntity {
     }
    }
    coords 0 0 0
+   {
+    GenericEntity {
+     ID "555A8BAA49E0B691"
+     components {
+      RplComponent "{58FC7CAC2034C3E2}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "555A8BAA49E0B752"
+     components {
+      RplComponent "{58FC7CAC2034C3E2}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "555A8BAA49E0B760"
+     components {
+      RplComponent "{58FC7CAC2034C3E2}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "555A8BAA49E0B771"
+     components {
+      RplComponent "{58FC7CAC2034C3E2}" {
+       Enabled 1
+      }
+     }
+    }
+   }
   }
   StaticModelEntity : "{82B378151A9AEF2F}Prefabs/Structures/Military/Fortifications/DirtPile_01/DirtPile_01_large.et" {
    ID "5D76C482393495B0"
    components {
     Hierarchy "{5D7930723987C646}" {
+    }
+    RplComponent "{5DB28201D61F0606}" {
     }
    }
    coords -5.666 1 0
@@ -74,6 +119,9 @@ SCR_DestructibleBuildingEntity {
    ID "5D76C49CA638DC97"
    components {
     Hierarchy "{5D7930723520A977}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
     }
    }
    coords 4.563 0 -5.42
@@ -85,6 +133,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D79307232CAD082}" {
      }
+     RplComponent "{5DB28201D2D136D9}" {
+     }
     }
     coords 1.969 -1 7.416
    }
@@ -92,6 +142,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C48234E05276"
     components {
      Hierarchy "{5D7930722F83D3BF}" {
+     }
+     RplComponent "{5DB28201D0BC1C72}" {
      }
     }
     coords -2.58 -1 7.405
@@ -101,6 +153,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D7930722B7AF4DA}" {
      }
+     RplComponent "{5DB28201CE80BCEB}" {
+     }
     }
     coords -7.812 -1 4.462
    }
@@ -108,6 +162,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C48236FBAF84"
     components {
      Hierarchy "{5D7930722860F5D1}" {
+     }
+     RplComponent "{5DB28201CB5C6456}" {
      }
     }
     coords -7.839 -1 -7.336
@@ -117,6 +173,8 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D793072255461C9}" {
      }
+     RplComponent "{5DB28201CAB44B0A}" {
+     }
     }
     coords 7.143 -1 -7.365
    }
@@ -124,6 +182,8 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C482389849F9"
     components {
      Hierarchy "{5D793072238B72C6}" {
+     }
+     RplComponent "{5DB28201C814BE28}" {
      }
     }
     coords 7.256 -1 4.42
@@ -135,6 +195,9 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D79307220BE5AF1}" {
      }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
     }
     coords 4.578 0 0
     angleY 180
@@ -144,6 +207,9 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D7930721DFF763D}" {
      }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
     }
     coords 3.611 0 0
    }
@@ -151,6 +217,9 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C4823FA63994"
     components {
      Hierarchy "{5D7930721A576997}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
      }
     }
     coords 5.512 0 0
@@ -162,6 +231,9 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D79307218BE4214}" {
      }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
     }
     coords 2.811 0 -2.2
     angleY -90
@@ -170,6 +242,9 @@ SCR_DestructibleBuildingEntity {
     ID "5D76C4823BF36BF3"
     components {
      Hierarchy "{5D7930721515349A}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
      }
     }
     coords 4.047 0 -2.234
@@ -180,6 +255,9 @@ SCR_DestructibleBuildingEntity {
     components {
      Hierarchy "{5D7930721398C9D7}" {
      }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
     }
     coords 5.145 0 -2.046
    }
@@ -189,6 +267,9 @@ SCR_DestructibleBuildingEntity {
    components {
     Hierarchy "{5D79307210A402CB}" {
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
    }
    coords 0.935 0 5.596
   }
@@ -196,6 +277,9 @@ SCR_DestructibleBuildingEntity {
    ID "5D76C49D9E3735D3"
    components {
     Hierarchy "{5D7930720D4B97B0}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
     }
    }
    coords -1.206 0 -4.247

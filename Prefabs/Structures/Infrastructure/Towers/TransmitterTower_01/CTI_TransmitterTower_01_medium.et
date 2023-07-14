@@ -3,6 +3,8 @@ StaticModelEntity : "{01E409EF2B75692E}Prefabs/Structures/Infrastructure/Towers/
  components {
   FactionAffiliationComponent "{5CDF080E49A0A1BC}" {
   }
+  SCR_CTI_BuildingCustomVariablesComponent "{5DB2CE115D989B53}" {
+  }
   SCR_MapDescriptorComponent "{59F4D7DB7F2C40FE}" {
    Enabled 0
   }
