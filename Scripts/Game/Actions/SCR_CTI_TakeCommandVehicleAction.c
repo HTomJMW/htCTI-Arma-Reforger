@@ -44,6 +44,8 @@ class SCR_CTI_TakeCommandAction : SCR_VehicleActionBase
 		
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		gameMode.bumpMeServer();
+		
+		PrintFormat("CTI :: %2 commandship taken by Player %1", GetGame().GetPlayerManager().GetPlayerName(playerId), affComp.GetAffiliatedFaction().GetFactionKey());
 	}
 
 	//------------------------------------------------------------------------------------------------

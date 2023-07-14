@@ -334,6 +334,36 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		SCR_CTI_UpdateWorkersComponent uwc = SCR_CTI_UpdateWorkersComponent.Cast(gameMode.FindComponent(SCR_CTI_UpdateWorkersComponent));
 		if (uwc) uwc.addWorker(factionkey);
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	void disbandWorkerServer(FactionKey factionkey, RplId rplid)
+	{
+		Rpc(RpcAsk_disbandWorkerServer, factionkey, rplid);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_disbandWorkerServer(FactionKey factionkey, RplId rplid)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		SCR_CTI_UpdateWorkersComponent uwc = SCR_CTI_UpdateWorkersComponent.Cast(gameMode.FindComponent(SCR_CTI_UpdateWorkersComponent));
+		if (uwc) uwc.disbandWorker(factionkey, rplid);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void deleteObjectServer(FactionKey factionkey, RplId rplid)
+	{
+		Rpc(RpcAsk_deleteObjectServer, factionkey, rplid);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	protected void RpcAsk_deleteObjectServer(FactionKey factionkey, RplId rplid)
+	{
+		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(gameMode.FindComponent(SCR_CTI_BaseComponent));
+		if (baseComp) baseComp.deleteObject(factionkey, rplid);
+	}
 
 	//------------------------------------------------------------------------------------------------
 	override void EOnInit(IEntity owner)

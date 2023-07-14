@@ -1,7 +1,6 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "Lock and Unlock Vehicle User Action")]
 class SCR_CTI_LockAndUnlockVehicleAction : ScriptedUserAction
 {
-	protected IEntity m_vehicle;
 	protected SCR_VehicleSpawnProtectionComponent m_vehSpawnProtectionComp;
 	protected SCR_BaseCompartmentManagerComponent m_baseCompoartmentManagerComp;
 	protected SCR_BaseLockComponent m_baseLockComp;
@@ -10,7 +9,6 @@ class SCR_CTI_LockAndUnlockVehicleAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
 	{
-		m_vehicle = IEntity.Cast(pOwnerEntity);
 		m_vehSpawnProtectionComp = SCR_VehicleSpawnProtectionComponent.Cast(pOwnerEntity.FindComponent(SCR_VehicleSpawnProtectionComponent));
 		m_baseCompoartmentManagerComp = SCR_BaseCompartmentManagerComponent.Cast(pOwnerEntity.FindComponent(SCR_BaseCompartmentManagerComponent));
 		m_baseLockComp = SCR_BaseLockComponent.Cast(pOwnerEntity.FindComponent(SCR_BaseLockComponent));
@@ -63,7 +61,7 @@ class SCR_CTI_LockAndUnlockVehicleAction : ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{
-		// TODO Commander open all vehicles	
+		// TODO Commander open all side vehicles	
 		int userId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
 		int ownerId = m_vehSpawnProtectionComp.GetVehicleOwner();
 		if (m_vehSpawnProtectionComp.GetVehicleOwner() != userId) return false;

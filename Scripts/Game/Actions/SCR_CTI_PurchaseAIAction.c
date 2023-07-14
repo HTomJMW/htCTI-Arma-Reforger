@@ -23,7 +23,6 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		
 		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
 		SCR_AIGroup playersGroup = gmc.GetPlayerGroup(playerId);
-		//SCR_AIGroup slaveGroup = playersGroup.GetSlave();
 		
 		if (playersGroup.GetAgentsCount() >= SCR_CTI_Constants.PLAYERGROUPSIZE)
 		{
@@ -91,15 +90,6 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 			}
 		}
 
-		/*if (slaveGroup) 
-		{
-			slaveGroup.AddAgent(agent);
-		} else {
-			SCR_AIGroup newGroup = gmc.CreateNewPlayableGroup(userAffiliationComponent.GetAffiliatedFaction());
-			playersGroup.SetSlave(newGroup);
-			if (playersGroup.GetSlave()) playersGroup.GetSlave().AddAgent(agent);
-		}*/
-		
 		playersGroup.AddAgent(agent);
 
 		m_gameMode.bumpMeServer();
@@ -153,11 +143,11 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 				unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_SOLDIER);
 				unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 				unitPrice = unitData.getPrice();
-				if (funds > unitPrice)
+				if (funds >= unitPrice)
 				{
 					return true;
 				} else {
-					SetCannotPerformReason("Insufficent funds!");
+					SetCannotPerformReason("Insufficent funds! [" + unitPrice + "$]");
 					return false;
 				}
 				break;
@@ -167,11 +157,11 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 				unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_SOLDIER);
 				unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 				unitPrice = unitData.getPrice();
-				if (funds > unitPrice)
+				if (funds >= unitPrice)
 				{
 					return true;
 				} else {
-					SetCannotPerformReason("Insufficent funds!");
+					SetCannotPerformReason("Insufficent funds! [" + unitPrice + "$]");
 					return false;
 				}
 				break;

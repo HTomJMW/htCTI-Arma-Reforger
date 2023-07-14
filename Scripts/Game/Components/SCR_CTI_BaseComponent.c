@@ -10,22 +10,26 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	//protected const float TIMESTEP = 5;
 
 	[RplProp()]
-	protected int ussrBaseCount = 0;
+	protected int ussrBaseCount = 0; // Maybe not need anymore... basemarkerid.count can do this.
 	[RplProp()]
 	protected int usBaseCount = 0;
+	[RplProp()]
+	ref array<RplId> ussrBaseMarkerRplIds = {};
+	[RplProp()]
+	ref array<RplId> usBaseMarkerRplIds = {};
 
-	protected ref array<ref SCR_CTI_Base> ussrBases = {};
-	protected ref array<ref SCR_CTI_Base> usBases = {};
+	ref array<ref SCR_CTI_Base> ussrBases = {};
+	ref array<ref SCR_CTI_Base> usBases = {};
 	
 	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
-	protected ref array<RplId> ussrStructureRplIds = {};
+	ref array<RplId> ussrStructureRplIds = {};
 	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
-	protected ref array<RplId> usStructureRplIds = {};
+	ref array<RplId> usStructureRplIds = {};
 	
 	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
-	protected ref array<RplId> ussrWIPStructureRplIds = {};
+	ref array<RplId> ussrWIPStructureRplIds = {};
 	[RplProp(onRplName: "OnStructureAdded", condition: RplCondition.Custom, customConditionName: "RpcConditionMethod")]
-	protected ref array<RplId> usWIPStructureRplIds = {};
+	ref array<RplId> usWIPStructureRplIds = {};
 
 	//------------------------------------------------------------------------------------------------
 	bool RpcConditionMethod()
@@ -101,6 +105,19 @@ class SCR_CTI_BaseComponent : ScriptComponent
 		{
 			SCR_CTI_BaseMarker baseMarker = SCR_CTI_BaseMarker.Cast(marker);
 			baseMarker.setOwnerFaction(factionkey);
+			
+			RplComponent rplComp = RplComponent.Cast(baseMarker.FindComponent(RplComponent));
+			if (rplComp)
+			{
+				RplId rplid = rplComp.Id();
+				switch (factionkey)
+				{
+					case "USSR":ussrBaseMarkerRplIds.Insert(rplid); break;
+					case "US": usBaseMarkerRplIds.Insert(rplid); break;
+				}
+				
+				Replication.BumpMe();
+			}
 		}
 	}
 
@@ -176,29 +193,49 @@ class SCR_CTI_BaseComponent : ScriptComponent
 
 		Replication.BumpMe();
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	array<RplId> getUSSRStructureRplIdArray()
-	{
-		return ussrStructureRplIds;
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	array<RplId> getUSStructureRplIdArray()
-	{
-		return usStructureRplIds;
-	}
 
 	//------------------------------------------------------------------------------------------------
-	array<RplId> getUSSRWIPStructureRplIdArray()
+	// Only on server
+	void deleteObject(FactionKey factionkey, RplId rplid)
 	{
-		return ussrWIPStructureRplIds;
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	array<RplId> getUSWIPStructureRplIdArray()
-	{
-		return usWIPStructureRplIds;
+		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
+		IEntity object = rplComp.GetEntity();
+		
+		switch (factionkey)
+		{
+			case "USSR":
+			{
+				if (ussrWIPStructureRplIds.Contains(rplid))
+				{
+					ussrWIPStructureRplIds.RemoveItem(rplid);
+					break;
+				}
+				
+				if (ussrStructureRplIds.Contains(rplid))
+				{
+					ussrStructureRplIds.RemoveItem(rplid);
+					break;
+				}
+			}
+			case "US":
+			{
+				if (usWIPStructureRplIds.Contains(rplid))
+				{
+					usWIPStructureRplIds.RemoveItem(rplid);
+					break;
+				}
+				
+				if (usStructureRplIds.Contains(rplid))
+				{
+					usStructureRplIds.RemoveItem(rplid);
+					break;
+				}
+			}
+		}
+		
+		Replication.BumpMe();
+		
+		SCR_EntityHelper.DeleteEntityAndChildren(object);
 	}
 
 	//------------------------------------------------------------------------------------------------

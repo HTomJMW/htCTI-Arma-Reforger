@@ -38,7 +38,7 @@ class SCR_CTI_BuildQueueComponent : ScriptComponent
 	
 		GetGame().GetCallqueue().CallLater(executeRequest, delay * 1000, false, index);
 
-		m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>Unit</color> added to building queue!", "Information", 5);
+		m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>Unit</color> added to production queue!", "Information", 5);
 		
 		int last = g_BuildQueue.Count() - 1;
 		if (!g_BuildQueue[last]) g_BuildQueue.Remove(last);

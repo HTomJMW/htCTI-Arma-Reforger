@@ -41,6 +41,13 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 			
 		if (!weatherStates.IsEmpty())
 		{
+			int statesCount = weatherStates.Count();
+			for (int i = 0; i < statesCount; i++)
+			{
+				if (weatherStates[i].GetStateName() == "Clear") {weatherStates.Insert(weatherStates[i]); weatherStates.Insert(weatherStates[i]);}
+				if (weatherStates[i].GetStateName() == "Cloudy") weatherStates.Insert(weatherStates[i]);
+			}
+
 			Math.Randomize(-1);
 			m_manager.ForceWeatherTo(false, weatherStates.GetRandomElement().GetStateName());
 		}

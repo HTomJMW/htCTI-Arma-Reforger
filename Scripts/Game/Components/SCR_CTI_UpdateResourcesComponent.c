@@ -27,7 +27,7 @@ class SCR_CTI_UpdateResourcesComponent : ScriptComponent
 						int factionIndex = clientData.getFactionIndex();
 						m_gameMode.changeCommanderFunds(GetGame().GetFactionManager().GetFactionByIndex(factionIndex).GetFactionKey(), SCR_CTI_Constants.BASEINCOME * 5);
 					} else {
-						clientData.changeFunds(SCR_CTI_Constants.BASEINCOME);
+						if (GetGame().GetPlayerManager().IsPlayerConnected(clientData.getPlayerId())) clientData.changeFunds(SCR_CTI_Constants.BASEINCOME);
 					}
 				}	
 			}

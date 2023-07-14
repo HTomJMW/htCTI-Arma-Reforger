@@ -6,9 +6,6 @@ class SCR_CTI_Base
 	protected vector m_basePos;
 	protected bool m_destroyed = false;
 
-	ref array<IEntity> wipSturctures = {};
-	ref array<IEntity> structures = {};
-
 	//------------------------------------------------------------------------------------------------
 	FactionKey getBaseFactionKey()
 	{
@@ -56,23 +53,6 @@ class SCR_CTI_Base
 	{
 		m_destroyed = value;
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	void addStructure(IEntity structure)
-	{
-		structures.Insert(structure);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void addWIPStructure(IEntity wipStructure)
-	{
-		wipSturctures.Insert(wipStructure);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void destroyStructure(IEntity structure)
-	{
-	}
 
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_Base()
@@ -82,9 +62,5 @@ class SCR_CTI_Base
 	//------------------------------------------------------------------------------------------------
 	void ~SCR_CTI_Base()
 	{
-		if (structures) structures.Clear();
-		structures = null;
-		if (wipSturctures) wipSturctures.Clear();
-		wipSturctures = null;
 	}
 };

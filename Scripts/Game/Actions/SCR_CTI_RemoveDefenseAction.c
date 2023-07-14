@@ -40,7 +40,7 @@ class SCR_CTI_RemoveDefenseAction : ScriptedUserAction
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
 		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
 		
-		// TODO check: already in use
+		// TODO check: already in use (ladder or towers)
 		
 		return true;
 	}

@@ -57,7 +57,7 @@ class SCR_CTI_MapMarkerHandlerComponent : ScriptComponent
 	protected void OnPlayerMapZoom()
 	{
 		float currentZoom = m_mapEntity.GetCurrentZoom(); // 0.0-20.0 ZOOM
-		PrintFormat("MAP :: CurrentZoom: %1", currentZoom);
+		//PrintFormat("MAP :: CurrentZoom: %1", currentZoom);
 
 		foreach (SCR_CTI_Town town : m_gameMode.CTI_Towns)
 		{
@@ -66,10 +66,46 @@ class SCR_CTI_MapMarkerHandlerComponent : ScriptComponent
 			if (item)
 			{
 				MapDescriptorProps props = item.GetProps();
-					props.SetIconSize(512, -currentZoom, -currentZoom);
-					//props.SetTextSize(32, 16, 64);
+					props.SetIconSize(256, -currentZoom * 1.25, -currentZoom * 1.25);
 			
 				item.SetProps(props);
+			}
+		}
+
+		SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(m_gameMode.FindComponent(SCR_CTI_BaseComponent));
+		foreach (RplId rplid : baseComp.ussrBaseMarkerRplIds)
+		{
+			RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
+			if (rplComp)
+			{
+				IEntity marker = rplComp.GetEntity();
+				SCR_MapDescriptorComponent mdc = SCR_MapDescriptorComponent.Cast(marker.FindComponent(SCR_MapDescriptorComponent));
+				MapItem baseMarkerItem = mdc.Item();
+				if (baseMarkerItem)
+				{
+					MapDescriptorProps props = baseMarkerItem.GetProps();
+					props.SetIconSize(256, -currentZoom * 0.8, -currentZoom * 0.8);
+
+					baseMarkerItem.SetProps(props);
+				}
+			}
+		}
+		
+		foreach (RplId rplid : baseComp.usBaseMarkerRplIds)
+		{
+			RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
+			if (rplComp)
+			{
+				IEntity marker = rplComp.GetEntity();
+				SCR_MapDescriptorComponent mdc = SCR_MapDescriptorComponent.Cast(marker.FindComponent(SCR_MapDescriptorComponent));
+				MapItem baseMarkerItem = mdc.Item();
+				if (baseMarkerItem)
+				{
+					MapDescriptorProps props = baseMarkerItem.GetProps();
+					props.SetIconSize(256, -currentZoom * 0.8 , -currentZoom * 0.8);
+
+					baseMarkerItem.SetProps(props);
+				}
 			}
 		}
 	}

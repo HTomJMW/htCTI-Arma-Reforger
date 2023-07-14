@@ -2,16 +2,14 @@
 class SCR_CTI_TakeCommandBuildingAction : ScriptedUserAction
 {
 	protected IEntity m_building;
-	protected FactionAffiliationComponent m_BuildingFactionAffComp;
 	protected SCR_CTI_GameMode m_gameMode;
 	protected RplComponent m_rplComponent;
 
 	//------------------------------------------------------------------------------------------------
-	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent) 
+	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
-		m_building = SCR_EntityHelper.GetMainParent(pOwnerEntity, true);
-		m_BuildingFactionAffComp = FactionAffiliationComponent.Cast(m_building.FindComponent(FactionAffiliationComponent));
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
+		m_building = SCR_EntityHelper.GetMainParent(pOwnerEntity, true);
 		m_rplComponent = RplComponent.Cast(m_building.FindComponent(RplComponent));
 	}
 
@@ -32,6 +30,8 @@ class SCR_CTI_TakeCommandBuildingAction : ScriptedUserAction
 		
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 		gameMode.bumpMeServer();
+		
+		PrintFormat("CTI :: %2 commandship taken by Player %1", GetGame().GetPlayerManager().GetPlayerName(playerId), affComp.GetAffiliatedFaction().GetFactionKey());
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -52,11 +52,17 @@ class SCR_CTI_TakeCommandBuildingAction : ScriptedUserAction
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
 		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
 		FactionAffiliationComponent playerFactionAffComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-		
+
 		if (m_gameMode.getCommanderId(playerFactionAffComp.GetAffiliatedFaction().GetFactionKey()) != -2) return false; // check no comm
-		if (playerFactionAffComp.GetAffiliatedFaction().GetFactionKey() != m_BuildingFactionAffComp.GetAffiliatedFaction().GetFactionKey()) return false; // check side
+
+		IEntity door = m_rplComponent.GetEntity(); // no initialized m_building here
+		IEntity mainBuilding = SCR_EntityHelper.GetMainParent(door, true);
+
+		SCR_CTI_BuildingCustomVariablesComponent m_customVarComp = SCR_CTI_BuildingCustomVariablesComponent.Cast(mainBuilding.FindComponent(SCR_CTI_BuildingCustomVariablesComponent));
+
+		if (playerFactionAffComp.GetAffiliatedFaction().GetFactionKey() != m_customVarComp.getFactionKey()) return false; // check side
 		if (m_gameMode.getCommanderId(playerFactionAffComp.GetAffiliatedFaction().GetFactionKey()) == playerId) return false; // check player is comm (after side check)
-		
+
 		return true;
 	}
 

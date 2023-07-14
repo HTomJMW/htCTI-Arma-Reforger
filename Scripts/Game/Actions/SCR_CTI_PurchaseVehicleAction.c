@@ -15,7 +15,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 
 	//------------------------------------------------------------------------------------------------
 	// Only on Server
-	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
+	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity)
 	{
 		if (m_rplComponent && m_rplComponent.IsProxy()) return;
 
@@ -65,6 +65,10 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		garbagemanager.Insert(spawnedVehicle, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
 		
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
+
+		SCR_VehicleSpawnProtectionComponent vspc = SCR_VehicleSpawnProtectionComponent.Cast(spawnedVehicle.FindComponent(SCR_VehicleSpawnProtectionComponent));
+		if (vspc) vspc.SetVehicleOwner(playerId);
+
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 		if (clientData)
 		{
@@ -117,11 +121,11 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 				unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_UAZ);
 				unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 				unitPrice = unitData.getPrice();
-				if (funds > unitPrice)
+				if (funds >= unitPrice)
 				{
 					return true;
 				} else {
-					SetCannotPerformReason("Insufficent funds!");
+					SetCannotPerformReason("Insufficent funds! [" + unitPrice + "$]");
 					return false;
 				}
 				break;
@@ -131,11 +135,11 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 				unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_JEEP);
 				unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 				unitPrice = unitData.getPrice();
-				if (funds > unitPrice)
+				if (funds >= unitPrice)
 				{
 					return true;
 				} else {
-					SetCannotPerformReason("Insufficent funds!");
+					SetCannotPerformReason("Insufficent funds! [" + unitPrice + "$]");
 					return false;
 				}
 				break;

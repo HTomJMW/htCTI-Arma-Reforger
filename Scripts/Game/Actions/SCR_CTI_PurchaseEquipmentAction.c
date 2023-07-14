@@ -122,11 +122,11 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 				unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_BOX);
 				unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
 				unitPrice = unitData.getPrice();
-				if (funds > unitPrice)
+				if (funds >= unitPrice)
 				{
 					return true;
 				} else {
-					SetCannotPerformReason("Insufficent funds!");
+					SetCannotPerformReason("Insufficent funds! [" + unitPrice + "$]");
 					return false;
 				}
 				break;
@@ -136,11 +136,11 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 				unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_BOX);
 				unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
 				unitPrice = unitData.getPrice();
-				if (funds > unitPrice)
+				if (funds >= unitPrice)
 				{
 					return true;
 				} else {
-					SetCannotPerformReason("Insufficent funds!");
+					SetCannotPerformReason("Insufficent funds! [" + unitPrice + "$]");
 					return false;
 				}
 				break;
