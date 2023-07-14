@@ -31,6 +31,32 @@ FrameWidgetClass {
     OffsetBottom -1060
    }
    {
+    WindowWidgetClass "{5DB2CE0FC8F1AD72}" {
+     Name "SelectedPreviewWindow"
+     Slot FrameWidgetSlot "{5DB2CE0FC8F1AD94}" {
+      PositionX 10
+      OffsetLeft 10
+      PositionY 810
+      OffsetTop 810
+      SizeX 700
+      OffsetRight -710
+      SizeY 220
+      OffsetBottom -1030
+     }
+    }
+    ItemPreviewWidgetClass "{5DB2CE0AF9B30756}" {
+     Name "SelectedItemPreview"
+     Slot FrameWidgetSlot "{5DB2CE0AF9B3076A}" {
+      PositionX 15
+      OffsetLeft 15
+      PositionY 815
+      OffsetTop 815
+      SizeX 690
+      OffsetRight -705
+      SizeY 210
+      OffsetBottom -1025
+     }
+    }
     WindowWidgetClass "{5ACCEA94CED81CE1}" {
      Name "LeftTopWindow"
      Slot FrameWidgetSlot "{5ACCEA94CED81CFB}" {
@@ -285,8 +311,8 @@ FrameWidgetClass {
       OffsetTop 200
       SizeX 700
       OffsetRight -710
-      SizeY 820
-      OffsetBottom -1020
+      SizeY 600
+      OffsetBottom -800
      }
      components {
       SCR_ListBoxComponent "{566C9415BAA54E1B}" {
@@ -748,7 +774,7 @@ FrameWidgetClass {
        }
        {
         RichTextWidgetClass "{5B09442E2D00A505}" {
-         Name "RichText400"
+         Name "TrousersHeader"
          Slot FrameWidgetSlot "{5B09442E2D00A51C}" {
           PositionX 10
           OffsetLeft 10
@@ -1179,7 +1205,7 @@ FrameWidgetClass {
        }
        {
         RichTextWidgetClass "{5B09442E2E5A9B02}" {
-         Name "RichText300"
+         Name "VestHeader"
          Slot FrameWidgetSlot "{5B09442E2E5A9B18}" {
           PositionX 10
           OffsetLeft 10
@@ -1618,7 +1644,7 @@ FrameWidgetClass {
        }
        {
         RichTextWidgetClass "{5B09442E30B38BE5}" {
-         Name "RichText200"
+         Name "JacketHeader"
          Slot FrameWidgetSlot "{5B09442E30B38BFD}" {
           PositionX 10
           OffsetLeft 10
@@ -1661,7 +1687,7 @@ FrameWidgetClass {
        }
        {
         RichTextWidgetClass "{5B09442E325748E5}" {
-         Name "RichText100"
+         Name "AttachmentsHeader"
          Slot FrameWidgetSlot "{5B09442E325748F0}" {
           PositionX 10
           OffsetLeft 10
@@ -2264,7 +2290,7 @@ FrameWidgetClass {
        }
        {
         RichTextWidgetClass "{5B09442E341B0836}" {
-         Name "RichText000"
+         Name "WeaponsHeader"
          Slot FrameWidgetSlot "{5B09442E341B084D}" {
           PositionX 10
           OffsetLeft 10
@@ -2616,7 +2642,7 @@ FrameWidgetClass {
        }
        {
         RichTextWidgetClass "{5CFF15656A886FFE}" {
-         Name "RichText500"
+         Name "BackpackHeader"
          Slot FrameWidgetSlot "{5B09442E325748F0}" {
           PositionX 10
           OffsetLeft 10

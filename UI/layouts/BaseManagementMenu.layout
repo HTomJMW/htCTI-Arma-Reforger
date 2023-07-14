@@ -1,0 +1,200 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  ImageWidgetClass "{5DDA7B5A6C595C02}" {
+   Name "BackGround"
+   Slot FrameWidgetSlot "{5A3D637FFD52AA3B}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -450
+    OffsetLeft -450
+    PositionY -350
+    OffsetTop -350
+    SizeX 900
+    OffsetRight -450
+    SizeY 700
+    OffsetBottom -350
+   }
+   Opacity 0.8
+   Texture "{AE0DAFB0ED1F2B1C}UI/Textures/Menu/background.edds"
+   Image ""
+   Size 64 64
+  }
+  WindowWidgetClass "{5DDA7B5A6C595C0C}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A3D2853D8391800}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -400
+    OffsetLeft -400
+    PositionY -300
+    OffsetTop -300
+    SizeX 800
+    OffsetRight -400
+    SizeY 600
+    OffsetBottom -300
+   }
+   Clipping False
+   "no focus" 1
+   {
+    ButtonWidgetClass "{5DDA7B5A6C595C2D}" {
+     Name "Demolish"
+     Slot FrameWidgetSlot "{5A3F4D65D9FBD4DA}" {
+      Anchor 0 1 0 1
+      PositionX 5
+      OffsetLeft 5
+      PositionY -45
+      OffsetTop -45
+      SizeX 390
+      OffsetRight -395
+      SizeY 40
+      OffsetBottom 5
+     }
+     {
+      RichTextWidgetClass "{5DDA7B5A6C595C2C}" {
+       Name "DemolishText"
+       Slot ButtonWidgetSlot "{5A57061E66E7996E}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "Demolish"
+      }
+     }
+    }
+    ButtonWidgetClass "{5DDA7B54EA68539B}" {
+     Name "Disband"
+     Slot FrameWidgetSlot "{5A3F4D65D9FBD4DA}" {
+      Anchor 0 1 0 1
+      PositionX 5
+      OffsetLeft 5
+      PositionY -90
+      OffsetTop -90
+      SizeX 390
+      OffsetRight -395
+      SizeY 40
+      OffsetBottom 50
+     }
+     {
+      RichTextWidgetClass "{5DDA7B54EA68539A}" {
+       Name "DisbandText"
+       Slot ButtonWidgetSlot "{5A57061E66E7996E}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "Disband"
+      }
+     }
+    }
+    WindowWidgetClass "{5DDA7B5A6C595C0F}" {
+     Name "WindowListbox"
+     Slot FrameWidgetSlot "{5A3D28535422FA6D}" {
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 800
+      OffsetRight -800
+      SizeY 300
+      OffsetBottom -300
+     }
+     {
+      OverlayWidgetClass "{5DDA7B5A6C595C2F}" {
+       Name "ListBox"
+       Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
+        Anchor 0 0 0 0
+        PositionX 5
+        OffsetLeft 5
+        PositionY 5
+        OffsetTop 5
+        SizeX 790
+        OffsetRight -795
+        SizeY 290
+        OffsetBottom -295
+       }
+       components {
+        SCR_ListBoxComponent "{566C9415BAA54E1B}" {
+         m_sElementLayout "{3121BDD71C35E46D}UI/layouts/ListBox/ListBoxElement_Text.layout"
+        }
+       }
+       {
+        ScrollLayoutWidgetClass "{5DDA7B5A6C595C29}" {
+         Name "ScrollLayout0"
+         Slot OverlayWidgetSlot "{56691148E692437F}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+         Color 0.761 0.386 0.08 1
+         {
+          VerticalLayoutWidgetClass "{5DDA7B5A6C595C28}" {
+           Name "List"
+           Slot AlignableSlot "{56691148E013D9A9}" {
+            HorizontalAlign 3
+            VerticalAlign 3
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5DDA7B5A6C595C37}" {
+     Name "WindowMap"
+     Slot FrameWidgetSlot "{5A3D285353B4F95B}" {
+      Anchor 1 1 1 1
+      PositionX -400
+      OffsetLeft -400
+      PositionY -300
+      OffsetTop -300
+      SizeX 400
+      OffsetRight 0
+      SizeY 300
+      OffsetBottom 0
+     }
+    }
+    ButtonWidgetClass "{5DDA7B5A6C595C38}" {
+     Name "Back"
+     Slot FrameWidgetSlot "{5A6D38DAC02C7D8B}" {
+      Anchor 1 0 1 0
+      PositionX -47.5
+      OffsetLeft -47.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight 2.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      TextWidgetClass "{5DDA7B5A6C595C3B}" {
+       Name "BackText"
+       Slot ButtonWidgetSlot "{5A6D38DA34517D6E}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[<]"
+      }
+     }
+    }
+    ButtonWidgetClass "{5DDA7B5A6C595C3A}" {
+     Name "Exit"
+     Slot FrameWidgetSlot "{5A432A4F34902E6B}" {
+      Anchor 1 0 1 0
+      PositionX 2.5
+      OffsetLeft 2.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight -47.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      RichTextWidgetClass "{5DDA7B5A6C595C45}" {
+       Name "ExitText"
+       Slot ButtonWidgetSlot "{5A57061E54D2921C}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[X]"
+      }
+     }
+    }
+   }
+  }
+ }
+}
