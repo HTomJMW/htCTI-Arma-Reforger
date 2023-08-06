@@ -37,8 +37,8 @@ class SCR_CTI_Constants
 	static const ref Color CTI_ORANGE = new Color(1.000000, 0.456336, 0.000000, 1.000000);
 	
 	// General ResouceNames
-	static const ResourceName USSR_WORKER = "{AF27781647A1B461}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Worker.et";
-	static const ResourceName US_WORKER = "{CAB33F392613EA85}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Worker.et";
+	static const ResourceName USSR_WORKER = "{98EB9CDD85B8C92C}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Unarmed.et";
+	static const ResourceName US_WORKER = "{2F912ED6E399FF47}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Unarmed.et";
 	static const ResourceName USSR_MHQ = "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et";
 	static const ResourceName US_MHQ = "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et";
 	static const ResourceName USSR_BOX = "{B728C4AE0E6EB1E8}Prefabs/Systems/Arsenal/AmmoBoxes/USSR/AmmoBoxArsenal_Equipment_USSR.et";
@@ -53,9 +53,17 @@ class SCR_CTI_Constants
 	static const ResourceName USSR_RADIO2 = "{54C68E438DD34265}Prefabs/Items/Equipment/Radios/Radio_R107M.et";
 	static const ResourceName US_RADIO1 = "{73950FBA2D7DB5C5}Prefabs/Items/Equipment/Radios/Radio_ANPRC68.et"; // start equipment
 	static const ResourceName US_RADIO2 = "{9B6B61BB3FE3DFB0}Prefabs/Items/Equipment/Radios/Radio_ANPRC77.et";
+	
+	// Toolkit, Fire extinguisher
+	static const ResourceName TOOLKIT = "{C48A06A48CEB7C83}Prefabs/Props/Industrial/ToolBox_02/CTI_ToolBox.et";
+	static const ResourceName EXTINGUISHER = "{74766A7BE930FE07}Prefabs/Props/Civilian/CTI_FireExtinguisher_01.et";
 
 	// USSR equipment
+	static const ResourceName USSR_BACKPACK = "{41A9C55B61F375F0}Prefabs/Items/Equipment/Backpacks/Backpack_Kolobok.et";
 	static const ResourceName USSR_BANDAGE = "{C3F1FA1E2EC2B345}Prefabs/Items/Medicine/FieldDressing_USSR_01.et";
+	static const ResourceName USSR_TORNIQUET = "{80E75A71C29190DB}Prefabs/Items/Medicine/Tourniquet_01/Tourniquet_USSR_01.et";
+	static const ResourceName USSR_SALINE = "{527D7C5D2E476BDC}Prefabs/Items/Medicine/SalineBag_01/SalineBag_USSR_01.et";
+	static const ResourceName USSR_INJECTION = "{0D9A5DCF89AE7AA9}Prefabs/Items/Medicine/MorphineInjection_01/MorphineInjection_01.et";
 	static const ResourceName USSR_AK_MAG = "{0A84AA5A3884176F}Prefabs/Weapons/Magazines/Magazine_545x39_AK_30rnd_Last_5Tracer.et";
 	static const ResourceName USSR_RPG7 = "{7A82FE978603F137}Prefabs/Weapons/Launchers/RPG7/Launcher_RPG7.et";
 	static const ResourceName USSR_RPG7_AMMO = "{32E12D322E107F1C}Prefabs/Weapons/Ammo/Ammo_Rocket_PG7VM.et";
@@ -64,7 +72,11 @@ class SCR_CTI_Constants
 	static const ResourceName USSR_PM_MAG = "{8B853CDD11BA916E}Prefabs/Weapons/Magazines/Magazine_9x18_PM_8rnd_Ball.et";
 
 	// US equipment	
+	static const ResourceName US_BACKPACK = "{5C5C6EE05EE2FF1A}Prefabs/Items/Equipment/Backpacks/Backpack_ALICE_Medium_assembled.et";
 	static const ResourceName US_BANDAGE = "{A81F501D3EF6F38E}Prefabs/Items/Medicine/FieldDressing_US_01.et";
+	static const ResourceName US_TORNIQUET = "{D70216B1B2889129}Prefabs/Items/Medicine/Tourniquet_01/Tourniquet_US_01.et";
+	static const ResourceName US_SALINE = "{00E36F41CA310E2A}Prefabs/Items/Medicine/SalineBag_01/SalineBag_US_01.et";
+	static const ResourceName US_INJECTION = "{0D9A5DCF89AE7AA9}Prefabs/Items/Medicine/MorphineInjection_01/MorphineInjection_01.et";
 	static const ResourceName US_M16_MAG = "{D8F2CA92583B23D3}Prefabs/Weapons/Magazines/Magazine_556x45_STANAG_30rnd_Last_5Tracer.et";
 	static const ResourceName US_M72 = "{9C5C20FB0E01E64F}Prefabs/Weapons/Launchers/M72/Launcher_M72A3.et";
 	static const ResourceName US_GRENADE = "{E8F00BF730225B00}Prefabs/Weapons/Grenades/Grenade_M67.et";
@@ -94,7 +106,7 @@ class SCR_CTI_Constants
 	static const ResourceName USSR_ATTeam = "{96BAB56E6558788E}Prefabs/Groups/OPFOR/Group_USSR_Team_AT.et";
 	static const ResourceName USSR_SuppressTeam = "{1C0502B5729E7231}Prefabs/Groups/OPFOR/Group_USSR_Team_Suppress.et";
 	
-	static const ResourceName USSR_BTR70 = "{0700E1528AEAC774}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et";
+	static const ResourceName USSR_BTR70 = "{C012BB3488BEA0C2}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et";
 
 	static const ResourceName US_FireTeam = "{84E5BBAB25EA23E5}Prefabs/Groups/BLUFOR/Group_US_FireTeam.et";
 	static const ResourceName US_LightFireTeam = "{FCF7F5DC4F83955C}Prefabs/Groups/BLUFOR/Group_US_LightFireTeam.et";
@@ -107,5 +119,5 @@ class SCR_CTI_Constants
 	static const ResourceName US_ATTeam = "{FAEA8B9E1252F56E}Prefabs/Groups/BLUFOR/Group_US_Team_LAT.et";
 	static const ResourceName US_SuppressTeam = "{81B6DBF2B88545F5}Prefabs/Groups/BLUFOR/Group_US_Team_Suppress.et";
 	
-	static const ResourceName US_M1025_M2 = "{3EA6F47D95867115}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et";
+	static const ResourceName US_M1025_M2 = "{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et";
 };

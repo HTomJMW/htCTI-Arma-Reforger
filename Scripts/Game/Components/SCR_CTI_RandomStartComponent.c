@@ -46,6 +46,9 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		itemMapUaz.Set(SCR_CTI_Constants.USSR_RPG7, 3);
 		itemMapUaz.Set(SCR_CTI_Constants.USSR_RPG7_AMMO, 6);
 		itemMapUaz.Set(SCR_CTI_Constants.USSR_GRENADE, 4);
+		itemMapUaz.Set(SCR_CTI_Constants.TOOLKIT, 1);
+		itemMapUaz.Set(SCR_CTI_Constants.EXTINGUISHER, 1);
+		itemMapUaz.Set(SCR_CTI_Constants.USSR_BACKPACK, 2);
 
 		// Ural items
 		map<ResourceName, int> itemMapUral = new map<ResourceName, int>();
@@ -54,10 +57,16 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		itemMapUral.Set(SCR_CTI_Constants.USSR_RPG7, 3);
 		itemMapUral.Set(SCR_CTI_Constants.USSR_RPG7_AMMO, 6);
 		itemMapUral.Set(SCR_CTI_Constants.USSR_GRENADE, 4);
+		itemMapUral.Set(SCR_CTI_Constants.TOOLKIT, 1);
+		itemMapUral.Set(SCR_CTI_Constants.EXTINGUISHER, 1);
+		itemMapUral.Set(SCR_CTI_Constants.USSR_BACKPACK, 2);
 		
 		// Ural MHQ items
 		map<ResourceName, int> intemMapUralMHQ = new map<ResourceName, int>();
 		intemMapUralMHQ.Set(SCR_CTI_Constants.USSR_BANDAGE, 5);
+		intemMapUralMHQ.Set(SCR_CTI_Constants.TOOLKIT, 1);
+		intemMapUralMHQ.Set(SCR_CTI_Constants.EXTINGUISHER, 1);
+		intemMapUralMHQ.Set(SCR_CTI_Constants.USSR_BACKPACK, 2);
 		
 		// Jeep items
 		map<ResourceName, int> itemMapM151 = new map<ResourceName, int>();
@@ -65,6 +74,9 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		itemMapM151.Set(SCR_CTI_Constants.US_M16_MAG, 10);
 		itemMapM151.Set(SCR_CTI_Constants.US_M72, 9);
 		itemMapM151.Set(SCR_CTI_Constants.US_GRENADE, 4);
+		itemMapM151.Set(SCR_CTI_Constants.TOOLKIT, 1);
+		itemMapM151.Set(SCR_CTI_Constants.EXTINGUISHER, 1);
+		itemMapM151.Set(SCR_CTI_Constants.US_BACKPACK, 2);
 		
 		// M923 Items
 		map<ResourceName, int> itemMapM923 = new map<ResourceName, int>();
@@ -72,10 +84,16 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		itemMapM923.Set(SCR_CTI_Constants.US_M16_MAG, 10);
 		itemMapM923.Set(SCR_CTI_Constants.US_M72, 9);
 		itemMapM923.Set(SCR_CTI_Constants.US_GRENADE, 4);
+		itemMapM923.Set(SCR_CTI_Constants.TOOLKIT, 1);
+		itemMapM923.Set(SCR_CTI_Constants.EXTINGUISHER, 1);
+		itemMapM923.Set(SCR_CTI_Constants.US_BACKPACK, 2);
 		
 		// M923 MHQ items
 		map<ResourceName, int> intemMapM923MHQ = new map<ResourceName, int>();
 		intemMapM923MHQ.Set(SCR_CTI_Constants.US_BANDAGE, 5);
+		intemMapM923MHQ.Set(SCR_CTI_Constants.TOOLKIT, 1);
+		intemMapM923MHQ.Set(SCR_CTI_Constants.EXTINGUISHER, 1);
+		intemMapM923MHQ.Set(SCR_CTI_Constants.US_BACKPACK, 2);
 		
 		if (m_ussrAtNorth)
 		{

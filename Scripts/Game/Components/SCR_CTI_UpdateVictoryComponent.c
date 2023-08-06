@@ -31,8 +31,8 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 
 			SCR_CTI_BaseComponent baseComp = SCR_CTI_BaseComponent.Cast(m_gamemode.FindComponent(SCR_CTI_BaseComponent));
 			// NO DRAW? need add draw for rarely case
-			if (baseComp.getBaseCount("USSR") == 0 && ussrMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_SCORELIMIT, -1, m_usIndex));
-			if (baseComp.getBaseCount("US") == 0 && usMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_SCORELIMIT, -1, m_ussrIndex));
+			if (baseComp.getBaseCount("USSR") == 0 && ussrMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(EGameOverTypes.ENDREASON_SCORELIMIT, -1, m_usIndex));
+			if (baseComp.getBaseCount("US") == 0 && usMHQdown) m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(EGameOverTypes.ENDREASON_SCORELIMIT, -1, m_ussrIndex));
 
 			if (SCR_CTI_Constants.ECOWIN)
 			{
@@ -48,12 +48,12 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 
 				if (ussr >= (m_gamemode.CTI_Towns.Count() * (SCR_CTI_Constants.WINRATE / 100)))
 				{
-					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_SCORELIMIT, -1, m_ussrIndex));
+					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(EGameOverTypes.ENDREASON_SCORELIMIT, -1, m_ussrIndex));
 				}
 
 				if (us >= (m_gamemode.CTI_Towns.Count() * (SCR_CTI_Constants.WINRATE / 100)))
 				{
-					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(SCR_GameModeEndData.ENDREASON_SCORELIMIT, -1, m_usIndex));
+					m_gamemode.EndGameMode(SCR_GameModeEndData.CreateSimple(EGameOverTypes.ENDREASON_SCORELIMIT, -1, m_usIndex));
 				}
 			}
 

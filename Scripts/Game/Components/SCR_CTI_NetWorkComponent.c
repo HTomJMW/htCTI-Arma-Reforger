@@ -26,7 +26,7 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	{
 		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(vehRplId));
 		IEntity vehicle = rplComp.GetEntity();
-		VehicleWheeledSimulation simulation = VehicleWheeledSimulation.Cast(vehicle.FindComponent(VehicleWheeledSimulation));
+		VehicleWheeledSimulation_SA simulation = VehicleWheeledSimulation_SA.Cast(vehicle.FindComponent(VehicleWheeledSimulation_SA));
 
 		if (Math.AbsFloat(simulation.GetSpeedKmh()) < 5)
 		{
@@ -261,7 +261,7 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
 		IEntity ent = rplComp.GetEntity();
 
-		arsenalManager.SetPlayerArsenalLoadout(playerId, GameEntity.Cast(ent));
+		arsenalManager.SetPlayerArsenalLoadout(playerId, GameEntity.Cast(ent), null);
 	}
 	
 	//------------------------------------------------------------------------------------------------

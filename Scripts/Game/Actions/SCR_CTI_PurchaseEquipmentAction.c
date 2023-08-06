@@ -201,6 +201,9 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 			{
 				map<ResourceName, int> itemMapUSSR = new map<ResourceName, int>();
 				itemMapUSSR.Set(SCR_CTI_Constants.USSR_BANDAGE, 5);
+				itemMapUSSR.Set(SCR_CTI_Constants.USSR_TORNIQUET, 2);
+				itemMapUSSR.Set(SCR_CTI_Constants.USSR_SALINE, 2);
+				itemMapUSSR.Set(SCR_CTI_Constants.USSR_INJECTION, 2);
 				itemMapUSSR.Set(SCR_CTI_Constants.USSR_AK_MAG, 10);
 				itemMapUSSR.Set(SCR_CTI_Constants.USSR_RPG7, 2);
 				itemMapUSSR.Set(SCR_CTI_Constants.USSR_RPG7_AMMO, 4);
@@ -216,6 +219,9 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 			{
 				map<ResourceName, int> itemMapUS = new map<ResourceName, int>();
 				itemMapUS.Set(SCR_CTI_Constants.US_BANDAGE, 5);
+				itemMapUS.Set(SCR_CTI_Constants.US_TORNIQUET, 2);
+				itemMapUS.Set(SCR_CTI_Constants.US_SALINE, 2);
+				itemMapUS.Set(SCR_CTI_Constants.US_INJECTION, 2);
 				itemMapUS.Set(SCR_CTI_Constants.US_M16_MAG, 10);
 				itemMapUS.Set(SCR_CTI_Constants.US_M72, 6);
 				itemMapUS.Set(SCR_CTI_Constants.US_GRENADE, 4);
