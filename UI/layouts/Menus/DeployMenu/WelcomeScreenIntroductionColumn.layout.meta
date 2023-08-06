@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{49EEED554D68F43A}UI/layouts/Menus/DeployMenu/WelcomeScreenIntroductionColumn.layout"
+ Configurations {
+  LayoutResourceClass PC {
+  }
+  LayoutResourceClass XBOX_ONE : PC {
+  }
+  LayoutResourceClass XBOX_SERIES : PC {
+  }
+  LayoutResourceClass PS4 : PC {
+  }
+  LayoutResourceClass HEADLESS : PC {
+  }
+ }
+}

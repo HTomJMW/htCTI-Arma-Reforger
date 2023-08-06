@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{0B55E5823B2AF1B7}UI/layouts/Menus/DeployMenu/WelcomeScreenMenu.layout"
+ Configurations {
+  LayoutResourceClass PC {
+  }
+  LayoutResourceClass XBOX_ONE : PC {
+  }
+  LayoutResourceClass XBOX_SERIES : PC {
+  }
+  LayoutResourceClass PS4 : PC {
+  }
+  LayoutResourceClass HEADLESS : PC {
+  }
+ }
+}

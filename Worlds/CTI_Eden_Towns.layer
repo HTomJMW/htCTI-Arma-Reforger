@@ -18,7 +18,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_MapDescriptorComponent "{5DB10D1E5DEA1291}" {
    }
@@ -96,7 +95,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea0 {
     components {
@@ -110,7 +108,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -133,7 +130,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -207,7 +203,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea2 {
     components {
@@ -221,7 +216,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -244,7 +238,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -318,7 +311,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea3 {
     components {
@@ -332,7 +324,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -355,7 +346,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -430,7 +420,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea4 {
     components {
@@ -444,7 +433,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -467,7 +455,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -542,7 +529,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea5 {
     components {
@@ -556,7 +542,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -579,7 +564,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -653,7 +637,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea6 {
     components {
@@ -667,7 +650,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -690,7 +672,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -764,7 +745,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea7 {
     components {
@@ -778,7 +758,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -801,7 +780,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -875,7 +853,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea8 {
     components {
@@ -889,7 +866,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -912,7 +888,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -987,7 +962,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea9 {
     components {
@@ -1001,7 +975,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -1024,7 +997,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_SERIALIZABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -1098,7 +1070,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea10 {
     components {
@@ -1112,7 +1083,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -1135,7 +1105,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -1209,7 +1178,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea11 {
     components {
@@ -1223,7 +1191,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }
@@ -1246,7 +1213,6 @@ $grp SCR_CTI_Town {
     m_Flags NON_DELETABLE
    }
    SCR_FlagComponent "{599D1844281D0C93}" {
-    m_DefaultMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    }
    SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
    }
@@ -1321,7 +1287,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 10
-    ClassFilter "SCR_ChimeraCharacter"
    }
    SCR_CTI_CaptureArea CaptureArea1 {
     components {
@@ -1335,7 +1300,6 @@ $grp SCR_CTI_Town {
     TriggerActivationType "Every query"
     PeriodicQueries 1
     UpdatePeriod 5
-    ClassFilter "SCR_ChimeraCharacter"
    }
   }
  }

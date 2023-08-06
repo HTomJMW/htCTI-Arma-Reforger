@@ -99,9 +99,6 @@ SCR_AIWorld SCR_AIWorld_1 {
   SCR_AIMessage_Attack "{5A0558056D709401}" {
    m_eUIType ATTACK
   }
-  SCR_AIMessage_CoverAdvance "{5A0558056D70940A}" {
-   m_eUIType COVER_ADVANCE
-  }
   SCR_AIMessage_Flee "{5A0558056D70942D}" {
    m_eUIType FLEE
   }
@@ -110,12 +107,6 @@ SCR_AIWorld SCR_AIWorld_1 {
   }
   SCR_AIMessage_GetOut "{5A0558056D709443}" {
    m_eUIType GET_OUT_VEHICLE
-  }
-  SCR_AIMessage_GroupAttack "{5A0558056D70945D}" {
-   m_eUIType GROUP_ATTACK
-  }
-  SCR_AIMessage_GroupAttackDone "{5A0558056D709465}" {
-   m_eUIType GROUP_ATTACK_DONE
   }
   SCR_AIMessage_Heal "{5A0558056D709460}" {
    m_eUIType HEAL
@@ -158,9 +149,6 @@ SCR_AIWorld SCR_AIWorld_1 {
   }
  }
  m_aInfoMessages {
-  SCR_AIMessage_Contact "{5A0558056D709532}" {
-   m_eUIType CONTACT
-  }
   SCR_AIMessage_FoundCorpse "{5A0558056D709546}" {
    m_eUIType FOUND_CORPSE
   }
@@ -169,12 +157,6 @@ SCR_AIWorld SCR_AIWorld_1 {
   }
   SCR_AIMessage_SitRep "{5A0558056D709552}" {
    m_eUIType SIT_REP
-  }
-  SCR_AIMessage_TargetEliminated "{5A0558056D709568}" {
-   m_eUIType TARGET_ELIMINATED
-  }
-  SCR_AIMessage_TargetLost "{5A0558056D709576}" {
-   m_eUIType TARGET_LOST
   }
   SCR_AIMessage_UnderFire "{5A0558056D70957A}" {
    m_eUIType UNDER_FIRE
@@ -213,16 +195,9 @@ SCR_AIWorld SCR_AIWorld_1 {
 PerceptionManager PerceptionManager1 {
 }
 RadioManagerEntity {
- components {
-  RplComponent "{5D512360B60F961C}" {
-   Streamable Disabled
-  }
- }
 }
 SCR_CTI_GameMode SCR_CTI_GameMode1 {
  components {
-  Hierarchy "{59DD0D5A8C3C8B00}" {
-  }
   SCR_ArsenalManagerComponent "{5ABEACFA6416EBAE}" {
   }
   SCR_CTI_BaseComponent "{5AA31079657C4391}" {
@@ -241,9 +216,53 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CallsignManagerComponent "{599D233D62F0CD34}" {
   }
+  SCR_CommandingManagerComponent "{5DEEFCBB2D0D53D0}" {
+   m_sCommandsConfigPath "{54764D4E706F348C}Configs/Commanding/Commands.conf"
+  }
   SCR_CompositionSlotManagerComponent "{599D233D506F9DF5}" {
   }
+  SCR_DataCollectorComponent "{5DEEFCBB02148FAD}" {
+   m_aModules {
+    SCR_DataCollectorBasicActionsModule "{5DEEFCBB45C7EAFD}" {
+    }
+    SCR_DataCollectorDriverModule "{5DEEFCB8BEF9890C}" {
+    }
+    SCR_DataCollectorShootingModule "{5DEEFCB8B828C8B7}" {
+    }
+    SCR_DataCollectorHealingItemsModule "{5DEEFCB8B24BD586}" {
+    }
+   }
+   m_bOptionalKicking 1
+  }
+  SCR_DebriefingScreenComponent "{5DEEFCB89F989F26}" {
+   m_sHeaderTitle "HTCTI"
+   m_BaseLayout SCR_DebriefingScreenUnevenFourTiles "{5DEEFCB88372F4A0}" {
+    m_TopLeftTile SCR_DebriefingScreenBigImageContent "{5DEF0CE9F30C23EC}" {
+    }
+    m_TopRightTile SCR_DebriefingScreenFinishedObjectivesContent "{5DEF0CE9E8D10C0C}" {
+    }
+    m_BottomLeftTile SCR_DebriefingScreenSummaryContent "{5DEF0CE9E1C696C0}" {
+    }
+    m_BottomRightTile SCR_DebriefingScreenStatisticsContent "{5DEF0CE9DBA9C970}" {
+    }
+   }
+  }
   SCR_DestructionManagerComponent "{599D2332BE7B4618}" {
+  }
+  SCR_EntityCatalogManagerComponent "{5DEEFCB8D03517A2}" {
+   m_aEntityCatalogs {
+    SCR_EntityCatalog "{5DEEFCB8CA3B3A66}" {
+     m_eEntityCatalogType CHARACTER
+    }
+    SCR_EntityCatalog "{5DEEFCB8C102450F}" {
+     m_eEntityCatalogType VEHICLE
+    }
+    SCR_EntityCatalog "{5DEEFCB83C4DD7F1}" {
+     m_eEntityCatalogType ITEM
+    }
+   }
+  }
+  SCR_GameModeHealthSettings "{5DEEFCB829038791}" {
   }
   SCR_GameOverScreenManagerComponent "{5D2333A2A387D4E3}" {
    m_GameOverScreenConfig SCR_GameOverScreenConfig "{5D2333A2926A7F0E}" {
@@ -275,33 +294,29 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_GroupsManagerComponent "{599D2332AB75BC0B}" {
    m_sDefaultGroupPrefab "{8B4D49A9F324E7D5}Prefabs/Groups/PlayableGroup.et"
+   m_iPlayableGroupFrequencyOffset 500
   }
   SCR_HintManagerComponent "{599D233299105F50}" {
   }
   SCR_InitWeatherComponent "{599D23329203E935}" {
+   Enabled 0
    m_sInitialStartingWeatherId "Cloudy"
    m_initialWeatherDurationMin 0.5
    m_initialWeatherDurationMax 1
   }
   SCR_MapConfigComponent "{5D5B284A9D986625}" {
+   m_sSpawnMapConfigPath "{901F9ED2088BBCA3}Configs/Map/MapSpawnMenuConflict.conf"
   }
   SCR_NametagConfigComponent "{599D233287C00C43}" {
    m_sConfigPath "{09F7AAA14A642683}Configs/NameTags/NametagFriendlies.conf"
+  }
+  SCR_NightModeGameModeComponent "{5DEEFCB86F5B9026}" {
   }
   SCR_NotificationSenderComponent "{599D2332FB47300E}" {
    m_iKillFeedType FULL
    m_iReceiveKillFeedType ALL
    m_PlayerKickReasonsConfig SCR_ConfigurableDialogUiPresets "{5D5B37907751A19E}" {
    }
-  }
-  SCR_NotificationsComponent "{59FCE5766A58DA26}" {
-  }
-  SCR_PlayerPenaltyComponent "{599D2332EB47F0E5}" {
-   m_iFriendlyPlayerKillPenalty 1
-   m_iFriendlyAIKillPenalty 1
-   m_iBanDuration 900
-   m_iPenaltySubstractionPeriod 600
-   m_iPenaltySubstractionPoints 2
   }
   SCR_PlayerProfileManagerComponent "{599D2332D6B40944}" {
   }
@@ -315,6 +330,18 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_PossessingManagerComponent "{599D2332151E01DC}" {
   }
+  SCR_RadialMenuItemsComponent "{5DEEFCB9AFB76B8A}" {
+   m_MenuController SCR_RadialMenuController "{5DEEFCB9A7EF02B7}" {
+    m_RMControls SCR_RadialMenuControllerInputs "{5DEEFCB9A0BEFA82}" {
+     m_sControllerContext "WeaponSelectionContext"
+     m_sOpenAction "Inventory_WeaponSwitchingRadial"
+     m_bCloseOnPerform 1
+    }
+   }
+  }
+  SCR_ReconnectComponent "{5DEEFCB9EB3494D6}" {
+   m_bEnableReconnect 0
+  }
   SCR_RespawnBriefingComponent "{599D23320E4836BE}" {
    m_Info SCR_UIInfo "{59F74446F6C7A139}" {
     Name "CTI"
@@ -322,7 +349,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger HTCTI v0.6.15"
+     Name "Arma Reforger HTCTI v0.6.22"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -335,16 +362,23 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
     }
    }
   }
-  SCR_RespawnMenuHandlerComponent "{599D2332059DB42D}" {
-   m_bAllowFactionChange 0
-   m_sRespawnUnavailable "No Spawn Points"
-  }
   SCR_RespawnSystemComponent "{5ABD5768B956B1B8}" {
+   components {
+    SCR_FreeSpawnHandlerComponent "{5DEEFCB927EB8286}" {
+    }
+    SCR_PossessSpawnHandlerComponent "{5DEEFCB91DEF8CA4}" {
+    }
+    SCR_SpawnPointSpawnHandlerComponent "{5DEEEE18B8A974E6}" {
+    }
+   }
+   m_SpawnLogic SCR_MenuSpawnLogic "{5DEEEE1B723D0FAB}" {
+   }
   }
   SCR_RespawnTimerComponent "{599D233269C13252}" {
    m_fRespawnTime 15
   }
   SCR_SaveLoadComponent "{599D233263F4490B}" {
+   Enabled 0
    m_iAutosavePeriod 180
   }
   SCR_ScoringSystemComponent "{59DD0D587CD66AF0}" {
@@ -354,6 +388,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    Enabled 0
    m_bDisableOnAttack 0
   }
+  SCR_SpawnerAIGroupManagerComponent "{5DEEFCB900C5F064}" {
+  }
   SCR_TimeAndWeatherHandlerComponent "{5CB73490BB6A346C}" {
    Enabled 0
    m_bRandomStartingDaytime 1
@@ -361,7 +397,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    m_bRandomStartingWeather 1
   }
   SCR_TimedSpawnPointComponent "{599D23324D9764F0}" {
-   m_fRespawnTime 10
+   m_fRespawnTime 15
   }
   SCR_VotingManagerComponent "{599D233243E01369}" {
    m_aVotingTemplates {
@@ -377,6 +413,20 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
     }
    }
   }
+  SCR_WelcomeScreenComponent "{5DEEFCB95B382385}" {
+   m_sHeaderTitle "HTCTI"
+   m_BaseLayout SCR_WelcomeScreenThreeHorizontalColumns "{5DEEFCB952C72209}" {
+    m_LeftColumn SCR_WelcomeScreenFactionContent "{5DEEFCBFA1684215}" {
+    }
+    m_MiddleColumn SCR_WelcomeScreenMissionObjectivesContent "{5DEEFCBF908888B9}" {
+    }
+    m_RightColumn SCR_WelcomeScreenIntroductionContent "{5DEEFCBF85285E02}" {
+    }
+   }
+  }
+  SCR_XPHandlerComponent "{5DEEFCBFEE051E76}" {
+   Enabled 0
+  }
   SerializerInventoryStorageManagerComponent "{5B0348448C9E43FA}" {
   }
   RplComponent "{599D2333BE8DD86F}" {
@@ -384,7 +434,9 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
  }
  coords 0 0 0
+ Flags 0
  m_eTestGameFlags 6
+ m_bAllowFactionChange 0
  m_fAutoReloadTime 30
  {
   $grp SCR_CTI_VehicleSpawn {
@@ -398,19 +450,19 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    SpawnVehicleSouth3 {
     coords 10059.909 2.803 1579.401
-    angleY 200
+    angleY -160
    }
    SpawnVehicleNorth1 {
     coords 4456.013 5.781 11218.104
-    angleY -180
+    angleY 180
    }
    SpawnVehicleNorth2 {
-    coords 4446.495 5.812 11217.188
-    angleY 180
+    coords 4446.495 5.813 11217.188
+    angleY -180
    }
    SpawnVehicleNorth3 {
     coords 4431.466 5.781 11225.717
-    angleY 180
+    angleY -180
    }
   }
  }
@@ -420,7 +472,11 @@ SCR_FactionManager SCR_FactionManager1 {
   SCR_DelegateFactionManagerComponent "{599D233F8BBD4A63}" {
    m_FactionDelegatePrefab "{94D481BAEC3B8573}PrefabsEditable/System/E_FactionDelegate.et"
   }
+  RplComponent "{5DEF2B0A2D0F8E06}" {
+   Streamable Disabled
+  }
  }
+ Flags 0
  Factions {
   SCR_Faction "{599D233BB262F71D}" {
    FactionKey "FIA"
@@ -438,6 +494,22 @@ SCR_FactionManager SCR_FactionManager1 {
       BodyMeshesConfig MeshConfig "{599D2328725CA44C}" {
       }
      }
+     VisualIdentity "{5E0D28E50E37DC17}" {
+      Head "{D7C470712EC4D596}Prefabs/Characters/Heads/Head_White_05.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
+     VisualIdentity "{5E0D28E50CDB75E4}" {
+      Head "{C1F80EE178D948D6}Prefabs/Characters/Heads/Head_White_08.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
+     VisualIdentity "{5E0D28E50B73137C}" {
+      Head "{143245D81F2BAB94}Prefabs/Characters/Heads/Head_White_10.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
+    }
+    SoundIdentityArray {
+     SoundIdentity "{5E0D28E6A675AE6F}" {
+     }
     }
     SocialIdentity SocialIdentity "{599D23286F203E3C}" {
     }
@@ -445,6 +517,7 @@ SCR_FactionManager SCR_FactionManager1 {
    m_OutlineFactionColor 0 0.082 0.024 1
    m_bIsPlayable 0
    m_sFactionFlag "{B784E694BA4A7D40}UI/Textures/Flags/Everon-flag-base-3it.edds"
+   m_FactionFlagMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
    m_CallsignInfo SCR_FactionCallsignInfo "{599D23286B7BEA87}" {
    }
   }
@@ -459,7 +532,19 @@ SCR_FactionManager SCR_FactionManager1 {
    "Identity of soldiers" FactionIdentity "{599D233C58D1B153}" {
     VisualIdentityArray {
      VisualIdentity "{599D2335615AB40F}" {
-      Head "{D7C470712EC4D596}Prefabs/Characters/Heads/Head_White_05.et"
+      Head "{EAF055495BA85CA1}Prefabs/Characters/Heads/Head_White_02.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
+     VisualIdentity "{5E0D28E6ED5DF5C4}" {
+      Head "{32583C88222142FD}Prefabs/Characters/Heads/Head_White_04.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
+     VisualIdentity "{5E0D28E6ED0D2D9F}" {
+      Head "{BB90449192005AB8}Prefabs/Characters/Heads/Head_White_06.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
+     VisualIdentity "{5E0D28E6EDD457F7}" {
+      Head "{C1F80EE178D948D6}Prefabs/Characters/Heads/Head_White_08.et"
       Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
      }
     }
@@ -472,7 +557,140 @@ SCR_FactionManager SCR_FactionManager1 {
    }
    m_OutlineFactionColor 0.169 0.008 0.008 1
    m_sFactionFlag "{50824EB9F2C215AB}UI/Textures/Flags/USSR-flag-base-3it.edds"
+   m_FactionFlagMaterial "{D33A1334B4A3369D}Assets/Props/Fabric/Flags/Data/Flag_1_2_USSR.emat"
    m_CallsignInfo SCR_FactionCallsignInfo "{599D23285FA119FD}" {
+   }
+   m_aPredefinedGroups {
+    SCR_GroupPreset "{5E0D28E2AFF65372}" {
+     m_sGroupName "Alpha"
+     m_iGroupSize 8
+     m_iRadioFrequency 30000
+    }
+    SCR_GroupPreset "{5E0D28E2CDCE568A}" {
+     m_sGroupName "Bravo"
+     m_iGroupSize 8
+     m_iRadioFrequency 32000
+    }
+    SCR_GroupPreset "{5E0D28E2CDA22ECE}" {
+     m_sGroupName "Charlie"
+     m_iGroupSize 8
+     m_iRadioFrequency 34000
+    }
+    SCR_GroupPreset "{5E0D28E2CD9BE00E}" {
+     m_sGroupName "Delta"
+     m_iGroupSize 8
+     m_iRadioFrequency 36000
+    }
+    SCR_GroupPreset "{5E0D28E2CC7D1B00}" {
+     m_sGroupName "Echo"
+     m_iGroupSize 8
+     m_iRadioFrequency 38000
+    }
+    SCR_GroupPreset "{5E0D28E2CC502C0B}" {
+     m_sGroupName "Foxtrot"
+     m_iGroupSize 8
+     m_iRadioFrequency 40000
+    }
+    SCR_GroupPreset "{5E0D28E2CC48C51B}" {
+     m_sGroupName "Golf"
+     m_iGroupSize 8
+     m_iRadioFrequency 42000
+    }
+    SCR_GroupPreset "{5E0D28E2CC2398D9}" {
+     m_sGroupName "Hotel"
+     m_iGroupSize 8
+     m_iRadioFrequency 44000
+    }
+    SCR_GroupPreset "{5E0D28E2CC04084F}" {
+     m_sGroupName "India"
+     m_iGroupSize 8
+     m_iRadioFrequency 46000
+    }
+    SCR_GroupPreset "{5E0D28E2CCF34CD0}" {
+     m_sGroupName "Juliet"
+     m_iGroupSize 8
+     m_iRadioFrequency 48000
+    }
+    SCR_GroupPreset "{5E0D28E2CCE997B6}" {
+     m_sGroupName "Kilo"
+     m_iGroupSize 8
+     m_iRadioFrequency 50000
+    }
+    SCR_GroupPreset "{5E0D28E2CCC1B358}" {
+     m_sGroupName "Lima"
+     m_iGroupSize 8
+     m_iRadioFrequency 52000
+    }
+    SCR_GroupPreset "{5E0D28E2CCB98634}" {
+     m_sGroupName "Mike"
+     m_iGroupSize 8
+     m_iRadioFrequency 54000
+    }
+    SCR_GroupPreset "{5E0D28E2CC926ED2}" {
+     m_sGroupName "November"
+     m_iGroupSize 8
+     m_iRadioFrequency 56000
+    }
+    SCR_GroupPreset "{5E0D28E2CC8AB942}" {
+     m_sGroupName "Oscar"
+     m_iGroupSize 8
+     m_iRadioFrequency 58000
+    }
+    SCR_GroupPreset "{5E0D28E2CB6DB001}" {
+     m_sGroupName "Papa"
+     m_iGroupSize 8
+     m_iRadioFrequency 60000
+    }
+    SCR_GroupPreset "{5E0D28E2CB441178}" {
+     m_sGroupName "Quebec"
+     m_iGroupSize 8
+     m_iRadioFrequency 62000
+    }
+    SCR_GroupPreset "{5E0D28E2CB3D4FBE}" {
+     m_sGroupName "Romeo"
+     m_iGroupSize 8
+     m_iRadioFrequency 64000
+    }
+    SCR_GroupPreset "{5E0D28E2CB15CE02}" {
+     m_sGroupName "Sierra"
+     m_iGroupSize 8
+     m_iRadioFrequency 66000
+    }
+    SCR_GroupPreset "{5E0D28E2CB0DDA82}" {
+     m_sGroupName "Tango"
+     m_iGroupSize 8
+     m_iRadioFrequency 68000
+    }
+    SCR_GroupPreset "{5E0D28E2CBE07AFE}" {
+     m_sGroupName "Uniform"
+     m_iGroupSize 8
+     m_iRadioFrequency 70000
+    }
+    SCR_GroupPreset "{5E0D28E2CBDAC305}" {
+     m_sGroupName "Victor"
+     m_iGroupSize 8
+     m_iRadioFrequency 72000
+    }
+    SCR_GroupPreset "{5E0D28E2CBBC7964}" {
+     m_sGroupName "Whiskey"
+     m_iGroupSize 8
+     m_iRadioFrequency 74000
+    }
+    SCR_GroupPreset "{5E0D28E2CB972B82}" {
+     m_sGroupName "Xray"
+     m_iGroupSize 8
+     m_iRadioFrequency 76000
+    }
+    SCR_GroupPreset "{5E0D28E2CA5878F8}" {
+     m_sGroupName "Yankee"
+     m_iGroupSize 8
+     m_iRadioFrequency 78000
+    }
+    SCR_GroupPreset "{5E0D28E2CA3DC800}" {
+     m_sGroupName "Zulu"
+     m_iGroupSize 8
+     m_iRadioFrequency 80000
+    }
    }
   }
   SCR_Faction "{599D233B904CBDEF}" {
@@ -489,6 +707,18 @@ SCR_FactionManager SCR_FactionManager1 {
       Head "{24644218743CDFBD}Prefabs/Characters/Heads/Head_White_09.et"
       Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
      }
+     VisualIdentity "{5E0D28E62D0EA443}" {
+      Head "{C1F80EE178D948D6}Prefabs/Characters/Heads/Head_White_08.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
+     VisualIdentity "{5E0D28E62DC88FC8}" {
+      Head "{BB90449192005AB8}Prefabs/Characters/Heads/Head_White_06.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
+     VisualIdentity "{5E0D28E62D89D143}" {
+      Head "{D7C470712EC4D596}Prefabs/Characters/Heads/Head_White_05.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+     }
     }
     SoundIdentityArray {
      SoundIdentity "{599D23284F6C68B2}" {
@@ -499,7 +729,140 @@ SCR_FactionManager SCR_FactionManager1 {
    }
    m_OutlineFactionColor 0.004 0.043 0.114 1
    m_sFactionFlag "{46FB2FB2C2125A3C}UI/Textures/Flags/US-flag-base-3it.edds"
+   m_FactionFlagMaterial "{610803CC3F3D6649}Assets/Props/Fabric/Flags/Data/Flag_1_2_USA.emat"
    m_CallsignInfo SCR_FactionCallsignInfo "{599D23285B0ADCA1}" {
+   }
+   m_aPredefinedGroups {
+    SCR_GroupPreset "{5E0D28E2C0188AAA}" {
+     m_sGroupName "Alpha"
+     m_iGroupSize 8
+     m_iRadioFrequency 31000
+    }
+    SCR_GroupPreset "{5E0D28E2C0B3BB12}" {
+     m_sGroupName "Bravo"
+     m_iGroupSize 8
+     m_iRadioFrequency 33000
+    }
+    SCR_GroupPreset "{5E0D28E2C0ABFE3F}" {
+     m_sGroupName "Charlie"
+     m_iGroupSize 8
+     m_iRadioFrequency 35000
+    }
+    SCR_GroupPreset "{5E0D28E2C08C44AB}" {
+     m_sGroupName "Delta"
+     m_iGroupSize 8
+     m_iRadioFrequency 37000
+    }
+    SCR_GroupPreset "{5E0D28E23F6483E5}" {
+     m_sGroupName "Echo"
+     m_iGroupSize 8
+     m_iRadioFrequency 39000
+    }
+    SCR_GroupPreset "{5E0D28E23F5D3721}" {
+     m_sGroupName "Foxtrot"
+     m_iGroupSize 8
+     m_iRadioFrequency 41000
+    }
+    SCR_GroupPreset "{5E0D28E23F35A928}" {
+     m_sGroupName "Golf"
+     m_iGroupSize 8
+     m_iRadioFrequency 43000
+    }
+    SCR_GroupPreset "{5E0D28E23F23428C}" {
+     m_sGroupName "Hotel"
+     m_iGroupSize 8
+     m_iRadioFrequency 45000
+    }
+    SCR_GroupPreset "{5E0D28E23F1B62ED}" {
+     m_sGroupName "India"
+     m_iGroupSize 8
+     m_iRadioFrequency 47000
+    }
+    SCR_GroupPreset "{5E0D28E23FF1A576}" {
+     m_sGroupName "Juliet"
+     m_iGroupSize 8
+     m_iRadioFrequency 49000
+    }
+    SCR_GroupPreset "{5E0D28E23FEFBE5F}" {
+     m_sGroupName "Kilo"
+     m_iGroupSize 8
+     m_iRadioFrequency 51000
+    }
+    SCR_GroupPreset "{5E0D28E23FC738C9}" {
+     m_sGroupName "Lima"
+     m_iGroupSize 8
+     m_iRadioFrequency 53000
+    }
+    SCR_GroupPreset "{5E0D28E23FB85EF6}" {
+     m_sGroupName "Mike"
+     m_iGroupSize 8
+     m_iRadioFrequency 55000
+    }
+    SCR_GroupPreset "{5E0D28E23F952E10}" {
+     m_sGroupName "November"
+     m_iGroupSize 8
+     m_iRadioFrequency 57000
+    }
+    SCR_GroupPreset "{5E0D28E23F8E952B}" {
+     m_sGroupName "Oscar"
+     m_iGroupSize 8
+     m_iRadioFrequency 59000
+    }
+    SCR_GroupPreset "{5E0D28E23E662D53}" {
+     m_sGroupName "Papa"
+     m_iGroupSize 8
+     m_iRadioFrequency 61000
+    }
+    SCR_GroupPreset "{5E0D28E23E5EADA0}" {
+     m_sGroupName "Quebec"
+     m_iGroupSize 8
+     m_iRadioFrequency 63000
+    }
+    SCR_GroupPreset "{5E0D28E23E36FA4E}" {
+     m_sGroupName "Romeo"
+     m_iGroupSize 8
+     m_iRadioFrequency 65000
+    }
+    SCR_GroupPreset "{5E0D28E23E289CF8}" {
+     m_sGroupName "Sierra"
+     m_iGroupSize 8
+     m_iRadioFrequency 67000
+    }
+    SCR_GroupPreset "{5E0D28E23E00E7FF}" {
+     m_sGroupName "Tango"
+     m_iGroupSize 8
+     m_iRadioFrequency 69000
+    }
+    SCR_GroupPreset "{5E0D28E23EF9D827}" {
+     m_sGroupName "Uniform"
+     m_iGroupSize 8
+     m_iRadioFrequency 71000
+    }
+    SCR_GroupPreset "{5E0D28E23EDC747D}" {
+     m_sGroupName "Victor"
+     m_iGroupSize 8
+     m_iRadioFrequency 73000
+    }
+    SCR_GroupPreset "{5E0D28E23EB70740}" {
+     m_sGroupName "Whiskey"
+     m_iGroupSize 8
+     m_iRadioFrequency 75000
+    }
+    SCR_GroupPreset "{5E0D28E23EA91CE0}" {
+     m_sGroupName "Xray"
+     m_iGroupSize 8
+     m_iRadioFrequency 77000
+    }
+    SCR_GroupPreset "{5E0D28E23D6F25A1}" {
+     m_sGroupName "Yankee"
+     m_iGroupSize 8
+     m_iRadioFrequency 79000
+    }
+    SCR_GroupPreset "{5E0D28E23D4313B3}" {
+     m_sGroupName "Zulu"
+     m_iGroupSize 8
+     m_iRadioFrequency 81000
+    }
    }
   }
  }
@@ -527,6 +890,9 @@ ScriptedChatEntity {
    "Channel name" "Local"
   }
  }
+ "Whisper channel" PrivateMessageChannel "{5DF1389C6F9A992F}" {
+  "Channel name" "Whisper"
+ }
  "Default channel" "Faction"
 }
 TagManager {
@@ -540,6 +906,7 @@ BasePreloadManager BasePreloadManager1 {
 GarbageManager {
  components {
   RplComponent "{599D233FEF87801A}" {
+   Streamable Disabled
   }
  }
  CollectorInterval 30
@@ -559,7 +926,19 @@ ItemPreviewManagerEntity ItemPreviewManagerEntity1 {
  DefaultRenderAttributes PreviewRenderAttributes "{599D233E7512032D}" {
  }
 }
+SCR_BaseTaskManager {
+ components {
+  RplComponent "{5DF138976250D7A8}" {
+  }
+ }
+}
 SCR_LoadoutManager {
+ components {
+  RplComponent "{5DEF2B0B2017CE48}" {
+   Streamable Disabled
+  }
+ }
+ Flags 0
  m_aPlayerLoadouts {
   SCR_FactionPlayerLoadout "{599D233EF0E560CE}" {
    m_sLoadoutName "USSR Default Gear"
@@ -589,6 +968,15 @@ SCR_MPDestructionManager {
    Streamable Disabled
   }
  }
+ m_AudioSourceConfiguration SCR_AudioSourceConfiguration "{5DEF2B0CBF23651F}" {
+  m_sSoundProject "{5B79C73C52E6A74A}Sounds/Destruction/Multiphase/Destruction_Multiphase.acp"
+  m_eFlags 6
+ }
 }
 SCR_MapLocator {
+ m_WorldDirections SCR_MapLocationQuadHint "{5DEF2B0BD71085D7}" {
+  m_aQuadHints {
+   "#AR-MapLocationHint_EveronSouthWest" "#AR-MapLocationHint_EveronSouth" "#AR-MapLocationHint_EveronSouthEast" "#AR-MapLocationHint_EveronWest" "#AR-MapLocationHint_EveronCentral" "#AR-MapLocationHint_EveronEast" "#AR-MapLocationHint_EveronNorthWest" "#AR-MapLocationHint_EveronNorth" "#AR-MapLocationHint_EveronNorthEast"
+  }
+ }
 }

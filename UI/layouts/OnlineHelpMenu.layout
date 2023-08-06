@@ -53,11 +53,11 @@ FrameWidgetClass {
        Slot FrameWidgetSlot "{5B090B9FCEC2BD40}" {
         PositionX 5
         OffsetLeft 5
-        PositionY 255
-        OffsetTop 255
+        PositionY 290
+        OffsetTop 290
         SizeX 390
         OffsetRight -395
-        OffsetBottom -285
+        OffsetBottom -320
        }
        {
         RichTextWidgetClass "{5B090B9FCBAF52E0}" {
@@ -226,6 +226,31 @@ FrameWidgetClass {
         OffsetRight -395
         SizeY 30
         OffsetBottom -70
+       }
+      }
+      ButtonWidgetClass "{5E0B03AA435F7BEB}" {
+       Name "Vehicles"
+       Slot FrameWidgetSlot "{5B090B9FCEC2BD40}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 255
+        OffsetTop 255
+        SizeX 390
+        OffsetRight -395
+        OffsetBottom -285
+       }
+       {
+        RichTextWidgetClass "{5E0B03AA435F7BEA}" {
+         Name "VehiclesText"
+         Slot ButtonWidgetSlot "{5B090B9FCBAF52F9}" {
+          HorizontalAlign 0
+         }
+         Color 0.171 0.13 0 1
+         Text "Vehicles"
+         "Font Size" 22
+         "Min Font Size" 22
+         Offset 5 0
+        }
        }
       }
      }
