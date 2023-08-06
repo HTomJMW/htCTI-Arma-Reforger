@@ -10,6 +10,7 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 	protected ButtonWidget m_commander;
 	protected ButtonWidget m_economy;
 	protected ButtonWidget m_map;
+	protected ButtonWidget m_vehicles;
 	protected ButtonWidget m_credits;
 	
 	protected ButtonWidget m_back;
@@ -39,6 +40,7 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 		m_commander = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Commander"));
 		m_economy = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Economy"));
 		m_map = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Map"));
+		m_vehicles = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Vehicles"));
 		m_credits = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Credits"));
 
 		m_back = ButtonWidget.Cast(m_wRoot.FindAnyWidget("Back"));
@@ -82,6 +84,8 @@ class SCR_CTI_OnlineHelpMenu : ChimeraMenuBase
 		m_economy.AddHandler(m_oHButtonEventHandler);
 		m_map.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_map.AddHandler(m_oHButtonEventHandler);
+		m_vehicles.SetColor(SCR_CTI_Constants.CTI_ORANGE);
+		m_vehicles.AddHandler(m_oHButtonEventHandler);
 		m_credits.SetColor(SCR_CTI_Constants.CTI_ORANGE);
 		m_credits.AddHandler(m_oHButtonEventHandler);
 	}

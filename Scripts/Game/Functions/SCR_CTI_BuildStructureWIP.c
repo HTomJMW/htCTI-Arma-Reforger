@@ -114,7 +114,7 @@ class SCR_CTI_BuildStructureWIP
 			FactionAffiliationComponent faffcomp = FactionAffiliationComponent.Cast(wipStructure.FindComponent(FactionAffiliationComponent));
 			faffcomp.SetAffiliatedFactionByKey(factionkey);
 
-			// Store structure IDs for searching
+			// Store wip structure IDs for searching
 			RplComponent rplComp = RplComponent.Cast(wipStructure.FindComponent(RplComponent));
 			RplId rplid = rplComp.Id();
 			m_baseComp.addWIPStuctureRplId(factionkey, rplid);

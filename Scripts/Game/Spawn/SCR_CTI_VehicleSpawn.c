@@ -135,7 +135,7 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 		
 		foreach (IEntity item : m_items)
 		{
-			ismc.TryInsertItem(item);
+			ismc.TryInsertItem(item); // Maybe need spawn Backpack later than tools... 
 		}
 	}
 };

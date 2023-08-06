@@ -28,12 +28,44 @@ class SCR_CTI_GearUS
 	private void fillUp()
 	{
 		// Gear
+		// Toolkit
+		resname.Insert(SCR_CTI_Constants.TOOLKIT);
+		name.Insert("");
+		category.Insert("Item");
+		uplevel.Insert(0);
+		price.Insert(100);
+		
+		// Fire extinguisher
+		resname.Insert(SCR_CTI_Constants.EXTINGUISHER);
+		name.Insert("");
+		category.Insert("Item");
+		uplevel.Insert(0);
+		price.Insert(100);
+		
 		// Medicine
 		resname.Insert("{A81F501D3EF6F38E}Prefabs/Items/Medicine/FieldDressing_US_01.et");
 		name.Insert("");
 		category.Insert("");
 		uplevel.Insert(0);
 		price.Insert(100);
+		
+		resname.Insert("{00E36F41CA310E2A}Prefabs/Items/Medicine/SalineBag_01/SalineBag_US_01.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(100);
+		
+		resname.Insert("{D70216B1B2889129}Prefabs/Items/Medicine/Tourniquet_01/Tourniquet_US_01.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
+		resname.Insert("{0D9A5DCF89AE7AA9}Prefabs/Items/Medicine/MorphineInjection_01/MorphineInjection_01.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
 		
 		// Map
 		resname.Insert("{13772C903CB5E4F7}Prefabs/Items/Equipment/Maps/PaperMap_01_folded.et");
@@ -77,10 +109,10 @@ class SCR_CTI_GearUS
 		price.Insert(30);
 
 		// Bino
-		resname.Insert("{0CF54B9A85D8E0D4}Prefabs/Items/Equipment/Binoculars/Binoculars_M22.et");
+		resname.Insert("{0CF54B9A85D8E0D4}Prefabs/Items/Equipment/Binoculars/Binoculars_M22/Binoculars_M22.et");
 		name.Insert("");
 		category.Insert("");
-		uplevel.Insert(0);
+		uplevel.Insert(1);
 		price.Insert(150);
 		
 		// Backpacks
@@ -107,6 +139,33 @@ class SCR_CTI_GearUS
 		name.Insert("M9 Bayonet");
 		category.Insert("Accessory");
 		uplevel.Insert(1);
+		price.Insert(50);
+		
+		// Underbarrel
+		resname.Insert("{43FDAF3FA0FF2299}Prefabs/Weapons/Attachments/Underbarrel/UGL_M203.et");
+		name.Insert("");
+		category.Insert("Accessory");
+		uplevel.Insert(2);
+		price.Insert(50);
+		
+		// Handguard
+		resname.Insert("{FB1A7F5BC7D935E2}Prefabs/Weapons/Attachments/Handguards/Handguard_M16A2/Handguard_M16.et");
+		name.Insert("M16 Handguard"); // Can't get name from container, need extend...
+		category.Insert("Accessory");
+		uplevel.Insert(1);
+		price.Insert(50);
+		
+		// Optics
+		resname.Insert("{BD496EE1B40DC510}Prefabs/Weapons/Attachments/Optics/Optic_4x20/Optic_4x20.et");
+		name.Insert("");
+		category.Insert("Accessory");
+		uplevel.Insert(2);
+		price.Insert(50);
+		
+		resname.Insert("{D2018EDB1BBF4C88}Prefabs/Weapons/Attachments/Optics/Optic_ARTII/Optic_ARTII.et");
+		name.Insert("");
+		category.Insert("Accessory");
+		uplevel.Insert(3);
 		price.Insert(50);
 		
 		// Rifles

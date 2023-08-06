@@ -35,7 +35,7 @@ class SCR_CTI_OnlineHelpMenuButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Base":
 			{
-				string desc = "Base:\n\nOn Bases, you can buy units, weapons and equipment. You can use factories and depos.";
+				string desc = "Base:\n\nOn Bases, you can buy units, weapons and equipment. You can use factories and depos.\nBase can be build by Workers or manned Repair Trucks.";
 				descRTW.SetText(desc);
 				
 				break;
@@ -56,9 +56,15 @@ class SCR_CTI_OnlineHelpMenuButtonHandler : ScriptedWidgetEventHandler
 			}
 			case "Map":
 			{
-				string desc = "The Map:\n\nThe map contains all of the information what you need.\nFirst of all you need to be aware of the colors.\n\n- US (West) is identified by the blue color.\n- USSR (East) is identified by red color.\n- FIA (Resistance) is identified by green color.";
+				string desc = "The Map:\n\nThe map contains all of the information what you need.\nFirst of all you need to be aware of the colors.\n\n- US (West) is identified by the blue color.\n- USSR (East) is identified by red color.\n- FIA (Resistance) is identified by green color.\n\nPlayer's radio make possible track him on map.";
 				descRTW.SetText(desc);
 				
+				break;
+			}
+			case "Vehicles":
+			{
+				string desc = "Vehicles:\n\nRepair depot, repair trucks, toolkit in inventory make possible repair vehicles.\nFire extinguisher can be useful for burning vehicles.";
+				descRTW.SetText(desc);
 				break;
 			}
 			case "Credits":

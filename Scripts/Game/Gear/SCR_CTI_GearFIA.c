@@ -35,6 +35,19 @@ class SCR_CTI_GearFIA
 		uplevel.Insert(0);
 		price.Insert(150);
 		
+		// Attachments
+		resname.Insert("{2F4BBE174AFAF5E0}Prefabs/Weapons/Attachments/Stocks/Stock_VZ58/Stock_VZ58_fixed.et");
+		name.Insert("VZS8 Fixed Stock"); // Can't get name from container, need extend...
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
+		resname.Insert("{AD045AFAFFC1AB6E}Prefabs/Weapons/Attachments/Stocks/Stock_VZ58/Stock_VZ58_folding.et");
+		name.Insert("VZS8 Folding Stock"); // Can't get name from container, need extend...
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
 		// Rifles
 		resname.Insert("{9C948630078D154D}Prefabs/Weapons/Rifles/VZ58/Rifle_VZ58P.et");
 		name.Insert("");

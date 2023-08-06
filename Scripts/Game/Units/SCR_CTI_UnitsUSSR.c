@@ -176,6 +176,15 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Light Factory");
 		script.Insert("");
+		
+		resname.Insert("{28E08EEDBDE7B89B}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_ambulance.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(1000);
+		buildtime.Insert(25);
+		uplevel.Insert(1);
+		factory.Insert("Light Factory");
+		script.Insert("");
 
 		resname.Insert("{B6BA0C8D6FF01C43}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et");
 		picture.Insert("");

@@ -15,7 +15,8 @@ class SCR_CTI_GetSideFactories
 			{
 				for (int i = 0; i < baseComp.ussrStructureRplIds.Count(); i++)
 				{
-					ent = GetGame().GetWorld().FindEntityByID(baseComp.ussrStructureRplIds[i]);
+					RplComponent rplComp = RplComponent.Cast(Replication.FindItem(baseComp.ussrStructureRplIds[i]));
+					ent = rplComp.GetEntity();
 					list.Insert(ent);
 				}
 				break;
@@ -24,7 +25,8 @@ class SCR_CTI_GetSideFactories
 			{
 				for (int i = 0; i < baseComp.usStructureRplIds.Count(); i++)
 				{
-					ent = GetGame().GetWorld().FindEntityByID(baseComp.usStructureRplIds[i]);
+					RplComponent rplComp = RplComponent.Cast(Replication.FindItem(baseComp.usStructureRplIds[i]));
+					ent = rplComp.GetEntity();
 					list.Insert(ent);
 				}
 				break;

@@ -195,6 +195,15 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
+		resname.Insert("{00C9BBE426F7D45A}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(1000);
+		buildtime.Insert(25);
+		uplevel.Insert(1);
+		factory.Insert("Light Factory");
+		script.Insert("");
+
 		resname.Insert("{4E2F7BE504E64AD9}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et");
 		picture.Insert("");
 		name.Insert("");

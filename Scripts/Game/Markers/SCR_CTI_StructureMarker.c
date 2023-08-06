@@ -39,7 +39,15 @@ class SCR_CTI_StructureMarker : BaseGameEntity
 	{
 		m_mapItem = m_mapComponent.Item();
 
-		m_mapItem.SetDisplayName(m_name);
+		IEntity structure = IEntity.Cast(GetParent());
+		SCR_CTI_StructureCompletionComponent scc = SCR_CTI_StructureCompletionComponent.Cast(structure.FindComponent(SCR_CTI_StructureCompletionComponent));
+		if (!scc)
+		{
+			m_mapItem.SetDisplayName(m_name);
+		} else {
+			m_mapItem.SetDisplayName(m_name + "\nWork in progress");
+		}
+
 		m_mapItem.SetBaseType(EMapDescriptorType.MDT_ICON);
 		m_mapItem.SetImageDef("USSR_Base_Small_Respawn_Bg");
 		m_mapItem.SetFactionIndex(m_factionIndex);

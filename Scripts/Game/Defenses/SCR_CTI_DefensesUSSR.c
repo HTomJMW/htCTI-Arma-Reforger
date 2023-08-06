@@ -93,6 +93,23 @@ class SCR_CTI_DefensesUSSR
 		distance.Insert(5);
 		placement.Insert(0);
 		script.Insert("");
+
+		// Bugged placing (90deg)
+		/*resname.Insert("{DB2FACBA51080419}Prefabs/Compositions/Misc/SubCompositions/CTI_Sandbag_Camo_long_high_USSR.et");
+		name.Insert("Sandbags - Camo");
+		price.Insert(400);
+		category.Insert("");
+		distance.Insert(6);
+		placement.Insert(0);
+		script.Insert("");*/
+		
+		resname.Insert("{AF1C52A95899283B}Prefabs/Compositions/Misc/SubCompositions/CTI_Barricade_Logs_01.et");
+		name.Insert("Barricade");
+		price.Insert(500);
+		category.Insert("");
+		distance.Insert(7);
+		placement.Insert(0);
+		script.Insert("");
 		
 		resname.Insert("{9B8809719E076CBD}Prefabs/Structures/Walls/Concrete/ConcreteWall_01/CTI_ConcreteWall_01_camo_6m_B.et");
 		name.Insert("Concrate Wall");

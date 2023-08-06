@@ -28,12 +28,44 @@ class SCR_CTI_GearUSSR
 	private void fillUp()
 	{
 		// Gear
+		// Toolkit
+		resname.Insert(SCR_CTI_Constants.TOOLKIT);
+		name.Insert("");
+		category.Insert("Item");
+		uplevel.Insert(0);
+		price.Insert(100);
+		
+		// Fire extinguisher
+		resname.Insert(SCR_CTI_Constants.EXTINGUISHER);
+		name.Insert("");
+		category.Insert("Item");
+		uplevel.Insert(0);
+		price.Insert(100);
+		
 		// Medicine
 		resname.Insert("{C3F1FA1E2EC2B345}Prefabs/Items/Medicine/FieldDressing_USSR_01.et");
 		name.Insert("");
 		category.Insert("");
 		uplevel.Insert(0);
 		price.Insert(100);
+		
+		resname.Insert("{527D7C5D2E476BDC}Prefabs/Items/Medicine/SalineBag_01/SalineBag_USSR_01.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(100);
+		
+		resname.Insert("{80E75A71C29190DB}Prefabs/Items/Medicine/Tourniquet_01/Tourniquet_USSR_01.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
+		
+		resname.Insert("{0D9A5DCF89AE7AA9}Prefabs/Items/Medicine/MorphineInjection_01/MorphineInjection_01.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(0);
+		price.Insert(50);
 		
 		// Map
 		resname.Insert("{13772C903CB5E4F7}Prefabs/Items/Equipment/Maps/PaperMap_01_folded.et");
@@ -76,12 +108,18 @@ class SCR_CTI_GearUSSR
 		uplevel.Insert(0);
 		price.Insert(30);
 		
-		// Bino
-		resname.Insert("{F2539FA5706E51E4}Prefabs/Items/Equipment/Binoculars/Binoculars_B12.et");
+		// Binos
+		resname.Insert("{243948B23D90BECB}Prefabs/Items/Equipment/Binoculars/Binoculars_B8/Binoculars_B8.et");
 		name.Insert("");
 		category.Insert("");
-		uplevel.Insert(0);
+		uplevel.Insert(1);
 		price.Insert(150);
+		
+		resname.Insert("{F2539FA5706E51E4}Prefabs/Items/Equipment/Binoculars/Binoculars_B12/Binoculars_B12.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(2);
+		price.Insert(175);
 		
 		// Backpacks
 		resname.Insert("{6A39B5843B3F36DA}Prefabs/Items/Equipment/Backpacks/Backpack_RPG_Assistant.et");
@@ -119,6 +157,20 @@ class SCR_CTI_GearUSSR
 		name.Insert("6Kh4 Bayonet");
 		category.Insert("Accessory");
 		uplevel.Insert(1);
+		price.Insert(50);
+		
+		// Underbarrel
+		resname.Insert("{1ABABE3551512B0A}Prefabs/Weapons/Attachments/Underbarrel/UGL_GP25.et");
+		name.Insert("");
+		category.Insert("Accessory");
+		uplevel.Insert(2);
+		price.Insert(50);
+		
+		// Optics
+		resname.Insert("{C850A33226B8F9C1}Prefabs/Weapons/Attachments/Optics/Optic_PSO1/Optic_PSO1.et");
+		name.Insert("");
+		category.Insert("Accessory");
+		uplevel.Insert(3);
 		price.Insert(50);
 		
 		// Rifles
