@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{C48A06A48CEB7C83}Prefabs/Props/Industrial/ToolBox_02/CTI_ToolBox.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

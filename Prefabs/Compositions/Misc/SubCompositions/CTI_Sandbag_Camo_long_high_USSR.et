@@ -1,0 +1,50 @@
+GenericEntity : "{BE16EE8FAA315FE2}Prefabs/Props/Military/Sandbags/Sandbag_01_long_high_burlap.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  Hierarchy "{5DDC904BB110688D}" {
+   Enabled 1
+  }
+  RigidBody "{5872F0EB7DFB5A9D}" {
+   ResponseIndex "HugeDestructible"
+  }
+  SCR_SlotCompositionComponent "{5706EA5B01B4624A}" : "{F27DCA13BB9C3F3B}Prefabs/Editor/Components/SlotCompositionComponent.ct" {
+   m_bOrientChildrenToTerrain 0
+   m_bEditableChildren 0
+  }
+  ActionsManagerComponent "{5DDC904B263EF2A3}" {
+   ActionContexts {
+    UserActionContext "{5DDC904B24DE4552}" {
+     ContextName "CTI_Remove"
+     Position PointInfo "{5DDC904B1EEC978E}" {
+      Offset 0 1.3 0
+     }
+     Radius 0.5
+    }
+   }
+   additionalActions {
+    SCR_CTI_RemoveDefenseAction "{5DDC904B176C4F17}" {
+     ParentContextList {
+      "CTI_Remove"
+     }
+     Duration 10
+     "Sort Priority" 3
+    }
+   }
+  }
+  RplComponent "{5624A88DC2D9928D}" {
+   Enabled 1
+  }
+ }
+ coords 69.034 0 64.771
+ angleY 90
+ {
+  GenericEntity : "{08313D18309DAC02}Prefabs/Structures/Military/CamoNets/Soviet/CamoNet_Wall_medium_Soviet.et" {
+   ID "5DDC904BB11068B4"
+   components {
+    RplComponent "{5DDC904B315C1870}" {
+    }
+   }
+   coords 0 0 0
+  }
+ }
+}

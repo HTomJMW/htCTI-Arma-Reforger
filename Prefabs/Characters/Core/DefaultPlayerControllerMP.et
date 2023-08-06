@@ -25,6 +25,8 @@ SCR_PlayerController : "{6E2BB64764E3BE9B}Prefabs/Characters/Core/DefaultPlayerC
   SCR_PlayerRestrictionZoneWarningComponent "{56CABD2454AE951F}" {
    Enabled 0
   }
+  SCR_SpawnerRequestComponent "{5DEF0CEBC75506D1}" {
+  }
  }
  DefaultControlledEntity "{854C04F0EA2129CC}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Unarmed.et"
 }

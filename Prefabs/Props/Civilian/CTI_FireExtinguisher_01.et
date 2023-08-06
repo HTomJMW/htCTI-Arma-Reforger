@@ -1,0 +1,61 @@
+GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  InventoryItemComponent "{5E0556F43E51D12C}" {
+   Attributes SCR_ItemAttributeCollection "{5E0556F5ED1A887B}" {
+    ItemDisplayName UIInfo "{5E0556F5EBE1D166}" {
+     Name "Fire Extinguisher"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{5E0556F5D339981B}" {
+     Weight 10
+     SizeSetupStrategy Manual
+     ItemDimensions 20 20 20
+     ItemVolume 1000
+    }
+    ItemAnimationAttributes ItemAnimationAttributes "{5E0556F5C48B901E}" {
+    }
+    CustomAttributes {
+     CharacterModifierAttributes "{5E0556F522A706EB}" {
+     }
+     PreviewRenderAttributes "{5E0556F51A1A13F1}" {
+     }
+    }
+    m_Size SLOT_1x1
+    m_SlotType SLOT_GADGETS_STORAGE
+   }
+  }
+  MeshObject "{5872F0EB7FA40561}" {
+   Object "{8AD43219DA4EDB80}Assets/Props/Civilian/FireExtinguisher_01/FireExtinguisher_01.xob"
+  }
+  RigidBody "{5872F0EB7DFB5A9D}" {
+   Mass 10
+   ResponseIndex "TinyDestructible"
+   Static 0
+  }
+  ActionsManagerComponent "{5E0556F4C348D391}" {
+   ActionContexts {
+    UserActionContext "{5E0556F50F0D0CB9}" {
+     UIInfo UIInfo "{5E0556F50BCEC298}" {
+      Name "Fire Extinguisher"
+     }
+     ContextName "default"
+     Position PointInfo "{5E0556F5750EE469}" {
+     }
+    }
+   }
+   additionalActions {
+    SCR_PickUpItemAction "{5E0556F56F589A0D}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo UIInfo "{5E0556F767538D58}" {
+      Name "#AR-Inventory_PickUp"
+     }
+    }
+   }
+  }
+  RplComponent "{5624A88DC2D9928D}" {
+   Enabled 1
+  }
+ }
+}

@@ -11,7 +11,7 @@ SCR_ChimeraCharacter : "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_
     SCR_EquipmentStorageComponent "{56B49DA9722B635D}" {
      InitialStorageSlots {
       SCR_EquipmentStorageSlot BinocularSlot {
-       Prefab "{0CF54B9A85D8E0D4}Prefabs/Items/Equipment/Binoculars/Binoculars_M22.et"
+       Prefab "{0CF54B9A85D8E0D4}Prefabs/Items/Equipment/Binoculars/Binoculars_M22/Binoculars_M22.et"
       }
      }
     }
@@ -24,16 +24,9 @@ SCR_ChimeraCharacter : "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_
   }
   SCR_CampaignBuildingComponent "{5CF319E9A3D62F28}" {
    Enabled 0
-   m_fBuildingRadius 300
-   m_fDeletingMultiplier 1.2
-   m_PreviewEntityPrefab "{4FF075A21D258ABE}Prefabs/MP/Campaign/BuildPreview.et"
-   m_PreviewMaterial "{58F07022C12D0CF5}Assets/Editor/PlacingPreview/Preview.emat"
-   m_BuildingEntityPrefab "{15BEE7092B88B67D}Prefabs/MP/Campaign/BuildEntity.et"
   }
   SCR_CharacterRankComponent "{528E6D4286AA2D8F}" {
    m_iRank CAPTAIN
-  }
-  SCR_GadgetManagerComponent "{520EA1D2DB118DF3}" {
   }
   SCR_MapDescriptorComponent "{5CF319E9A3D62F36}" {
    Enabled 0
