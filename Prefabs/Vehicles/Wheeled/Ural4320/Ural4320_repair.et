@@ -16,6 +16,8 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
    Mass 9570
    CenterOfMass 0 0.2 -0.3
   }
+  SCR_CTI_UpdateRepairTruckComponent "{5E095AD991E37128}" {
+  }
   SCR_CTI_VehicleCustomVariablesComponent "{5D20D99D95E4118A}" {
    supportVehicleType REPAIR
   }
@@ -41,7 +43,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -51,7 +52,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -61,7 +61,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -71,7 +70,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_l01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -81,7 +79,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_l01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -91,7 +88,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -101,7 +97,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -111,7 +106,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -121,7 +115,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -131,7 +124,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_r01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -141,7 +133,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_r01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -168,11 +159,35 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
    }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5E0B03B46CA89179}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5E0B03B467880FCE}" {
+      PivotID "v_body"
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
+   }
    additionalActions {
     SCR_CTI_LockAndUnlockVehicleAction "{5D90D292C21A2A0A}" {
      ParentContextList {
       "door_l01" "door_r01"
      }
+    }
+    SCR_CTI_RepairAction "{5E0B03B46061709E}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+    SCR_CTI_ExtinguishAction "{5E0B03B45F31EE95}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
     }
    }
   }

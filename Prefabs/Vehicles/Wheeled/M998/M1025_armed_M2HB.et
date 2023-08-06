@@ -68,7 +68,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 -1 0
      m_vAngles 0 0 0
     }
@@ -78,7 +77,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_wheel_L01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -88,7 +86,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_wheel_L02"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -98,7 +95,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_wheel_R01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 180 0
     }
@@ -108,7 +104,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_wheel_R02"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 180 0
     }
@@ -118,7 +113,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -128,7 +122,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -138,7 +131,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -148,7 +140,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -158,7 +149,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "Scene_Root"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -168,7 +158,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -178,7 +167,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -188,7 +176,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_L02"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -198,7 +185,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_R02"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -208,7 +194,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_R01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -218,7 +203,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_L01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -228,7 +212,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -238,7 +221,6 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_gun_possition"
-     m_fScale 1
      m_vPosition 0 0.065 0
      m_vAngles 0 0 0
     }
@@ -289,11 +271,35 @@ Vehicle : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" 
    }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5E0B03B596D39FF7}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5E0B03B5908BD368}" {
+      PivotID "v_body"
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
+   }
    additionalActions {
     SCR_CTI_LockAndUnlockVehicleAction "{5D90D297CD05FD34}" {
      ParentContextList {
       "door_l01" "door_l02" "door_r01" "door_r02"
      }
+    }
+    SCR_CTI_RepairAction "{5E0B03B584615899}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
+    }
+    SCR_CTI_ExtinguishAction "{5E0B03B583F363D4}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
     }
    }
   }

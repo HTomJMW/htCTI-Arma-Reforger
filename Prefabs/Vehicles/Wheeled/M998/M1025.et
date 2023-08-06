@@ -120,7 +120,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 -1 0
      m_vAngles 0 0 0
     }
@@ -130,7 +129,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_wheel_L01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -140,7 +138,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_wheel_L02"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -150,7 +147,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_wheel_R01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 180 0
     }
@@ -160,7 +156,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_wheel_R02"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 180 0
     }
@@ -170,7 +165,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -180,7 +174,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -190,7 +183,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -200,7 +192,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -210,7 +201,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "Scene_Root"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -220,7 +210,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -230,7 +219,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_L02"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -240,7 +228,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_R02"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -250,7 +237,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_R01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -260,7 +246,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_door_L01"
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -270,7 +255,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -280,7 +264,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -332,16 +315,16 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
   }
   SlotManagerComponent "{55BCE45E438E4CFF}" {
    Slots {
-    RegisteringComponentSlotInfo Roof {
-     Prefab "{343EC0126CCD0F58}Prefabs/Vehicles/Wheeled/M998/VehParts/M1025_roof.et"
-     InheritParentSkeleton 1
-     RegisterDamage 1
-    }
     RegisteringComponentSlotInfo Rollbar {
      Enabled 0
     }
     RegisteringComponentSlotInfo Antenna_rear {
      Prefab ""
+    }
+    RegisteringComponentSlotInfo Roof {
+     Prefab "{343EC0126CCD0F58}Prefabs/Vehicles/Wheeled/M998/VehParts/M1025_roof.et"
+     InheritParentSkeleton 1
+     RegisterDamage 1
     }
    }
    SlotMappers {
@@ -411,6 +394,14 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
       Offset 0 0.05 0.3108
      }
     }
+    UserActionContext "{5E0B03B5BE5A7D72}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5E0B03B5B640BC08}" {
+      PivotID "v_body"
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
    }
    additionalActions {
     SCR_OpenVehicleStorageAction "{5916C587945AD3E6}" {
@@ -421,6 +412,20 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      ParentContextList {
       "door_l01" "door_l02" "door_r01" "door_r02"
      }
+    }
+    SCR_CTI_RepairAction "{5E0B03B5B0C92036}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+    SCR_CTI_ExtinguishAction "{5E0B03B5AE466945}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
     }
    }
   }

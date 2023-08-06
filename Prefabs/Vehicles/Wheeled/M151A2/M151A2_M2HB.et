@@ -42,7 +42,6 @@ Vehicle : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 -1 0
      m_vAngles 0 0 0
     }
@@ -52,7 +51,6 @@ Vehicle : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -62,7 +60,6 @@ Vehicle : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -72,7 +69,6 @@ Vehicle : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID "v_gun_01"
-     m_fScale 1
      m_vPosition 0 2 -0.28
      m_vAngles 0 0 0
     }
@@ -82,7 +78,6 @@ Vehicle : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -100,6 +95,9 @@ Vehicle : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
   }
   SlotManagerComponent "{55BCE45E438E4CFF}" {
    Slots {
+    RegisteringComponentSlotInfo Bench {
+     Prefab "{191AA1365C0B8352}Prefabs/Vehicles/Wheeled/M151A2/M151A2_bench.et"
+    }
     RegisteringComponentSlotInfo Weapon {
      Prefab "{8BBB4EEDF8E30C32}Prefabs/Vehicles/Wheeled/M151A2/M151A2_gun_mount_M2HB.et"
      RegisterActions 1
@@ -108,17 +106,37 @@ Vehicle : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
      RegisterWeapons 1
      RegisterCompartments 1
     }
-    RegisteringComponentSlotInfo Bench {
-     Prefab "{191AA1365C0B8352}Prefabs/Vehicles/Wheeled/M151A2/M151A2_bench.et"
-    }
    }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5E0B03B7E7D778FA}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5E0B03B7DEB5A416}" {
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
+   }
    additionalActions {
     SCR_CTI_LockAndUnlockVehicleAction "{5D90D2976681DC7C}" {
      ParentContextList {
       "door_l01" "door_r01"
      }
+    }
+    SCR_CTI_RepairAction "{5E0B03B7D8798867}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+    SCR_CTI_ExtinguishAction "{5E0B03B7D7CDF5F4}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
     }
    }
   }

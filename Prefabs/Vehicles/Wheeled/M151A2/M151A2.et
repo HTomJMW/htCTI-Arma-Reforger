@@ -40,7 +40,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      }
     }
    }
-   m_fRainSoundHeight 1.5
    m_aSignalDefinition {
     SCR_SignalDefinition "{5D90D289C823154F}" {
      m_sSignalName "EngineDamageRPMRevs"
@@ -287,8 +286,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   }
   BaseVehicleNodeComponent "{20FB66C5B2237133}" {
    components {
-    ControllersManagerComponent "{20FB66C5C1BE9DA0}" {
-    }
     SCR_CarControllerComponent "{20FB66C5BC92275B}" {
      AirIntakes {
       PointInfo "{5D90D289C8232837}" {
@@ -339,7 +336,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      }
      m_fInitialFuelTankState 48.75
      m_MaxFlowCapacity VEHICLE_MEDIUM
-     m_fMaxDamageScaled 1
     }
    }
   }
@@ -497,7 +493,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 -1 0
      m_vAngles 0 0 0
     }
@@ -507,7 +502,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -517,7 +511,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      m_Flags 0
      m_Shape MESH
      m_iPivotID ""
-     m_fScale 1
      m_vPosition 0 0 0
      m_vAngles 0 0 0
     }
@@ -585,21 +578,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       "UBX_FG_Gearbox" "UCS_FG_Driveshaft_01" "UCS_FG_Driveshaft_02" "UCX_FG_Differential_01" "UCX_FG_Differential_02"
      }
     }
-    SCR_FuelHitZone FuelTank_01 : "{22263F96C865C75B}Prefabs/Vehicles/Core/Configs/HitZones/FuelTank.conf" {
-     ColliderNames {
-      "UBX_FG_Fueltank_01"
-     }
-    }
-    SCR_BatteryHitZone Battery_01 : "{AA309D7C68080A94}Prefabs/Vehicles/Core/Configs/HitZones/Battery.conf" {
-     ColliderNames {
-      "UBX_FG_Battery_01"
-     }
-    }
-    SCR_BatteryHitZone Battery_02 : "{AA309D7C68080A94}Prefabs/Vehicles/Core/Configs/HitZones/Battery.conf" {
-     ColliderNames {
-      "UBX_FG_Battery_02"
-     }
-    }
     SCR_WheelHitZone Wheel_L01 {
      ColliderNames {
       "UTM_FG_wheel_L01" "UTM_FG_rim_L01"
@@ -618,6 +596,21 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
     SCR_WheelHitZone Wheel_R02 {
      ColliderNames {
       "UTM_FG_wheel_R02" "UTM_FG_rim_R02"
+     }
+    }
+    SCR_FuelHitZone FuelTank_01 : "{22263F96C865C75B}Prefabs/Vehicles/Core/Configs/HitZones/FuelTank.conf" {
+     ColliderNames {
+      "UBX_FG_Fueltank_01"
+     }
+    }
+    SCR_BatteryHitZone Battery_01 : "{AA309D7C68080A94}Prefabs/Vehicles/Core/Configs/HitZones/Battery.conf" {
+     ColliderNames {
+      "UBX_FG_Battery_01"
+     }
+    }
+    SCR_BatteryHitZone Battery_02 : "{AA309D7C68080A94}Prefabs/Vehicles/Core/Configs/HitZones/Battery.conf" {
+     ColliderNames {
+      "UBX_FG_Battery_02"
      }
     }
    }
@@ -1029,6 +1022,14 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       Angles 0 180 0
      }
     }
+    UserActionContext "{5E0B03B7AF0E9068}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5E0B03B7A72F2910}" {
+      PivotID "v_body"
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
    }
    additionalActions {
     SCR_FuelReceiverUserAction "{5D90D289C8216D95}" {
@@ -1052,6 +1053,20 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      ParentContextList {
       "door_l01" "door_r01"
      }
+    }
+    SCR_CTI_RepairAction "{5E0B03B79FFCABA0}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+    SCR_CTI_ExtinguishAction "{5E0B03B791C4C7CC}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
     }
    }
    AllowCrossHierarchy 1

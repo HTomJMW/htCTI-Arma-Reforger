@@ -26,7 +26,7 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{5AA931A023DA6CCF}" {
-     ContextName "take_command"
+     ContextName "CTI_Default"
      Position PointInfo "{5AA931A0145721D0}" {
       PivotID "v_body"
       Offset 0 0.05 0
@@ -37,12 +37,26 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
    additionalActions {
     SCR_CTI_TakeCommandAction "{5AA931A006FF18F4}" {
      ParentContextList {
-      "take_command"
+      "CTI_Default"
      }
      VisibilityRange 5
      Duration 2
      m_sActionStateOn ""
      m_sActionStateOff ""
+    }
+    SCR_CTI_RepairAction "{5E071905FF9E0F44}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 3
+    }
+    SCR_CTI_ExtinguishAction "{5E071905E4BAF591}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
     }
    }
   }
