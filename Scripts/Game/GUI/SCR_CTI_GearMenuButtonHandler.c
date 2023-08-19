@@ -481,6 +481,13 @@ class SCR_CTI_GearMenuButtonHandler : ScriptedWidgetEventHandler
 				
 				break;
 			}
+			case "PreViewArmoredVest":
+			{
+				if (button == 0 && gearData) gearMenu.tryAddItem(w, gearData);
+				if (button == 1) gearMenu.removeItem(w);
+
+				break;
+			}
 			case "PreViewVest":
 			{
 				if (button == 0 && gearData) gearMenu.tryAddItem(w, gearData);

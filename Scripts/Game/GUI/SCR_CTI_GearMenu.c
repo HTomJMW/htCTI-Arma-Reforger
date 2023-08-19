@@ -65,6 +65,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	protected ItemPreviewWidget m_upperitem;
 	protected ItemPreviewWidget m_backpack;
 	protected ItemPreviewWidget m_jacket;
+	protected ItemPreviewWidget m_armoredvest;
 	protected ItemPreviewWidget m_vest;
 	protected ItemPreviewWidget m_trousers;
 	protected ItemPreviewWidget m_boots;
@@ -75,6 +76,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	protected ImageWidget m_iconUpperitem;
 	protected ImageWidget m_iconBackpack;
 	protected ImageWidget m_iconJacket;
+	protected ImageWidget m_iconArmoredvest;
 	protected ImageWidget m_iconVest;
 	protected ImageWidget m_iconTrousers;
 	protected ImageWidget m_iconBoots;
@@ -115,6 +117,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	protected IEntity m_helmetEnt = null;
 	protected IEntity m_upperitemEnt = null;
 	protected IEntity m_jacketEnt = null;
+	protected IEntity m_armoredvestEnt = null;
 	protected IEntity m_vestEnt = null;
 	protected IEntity m_backpackEnt = null;
 	protected IEntity m_trousersEnt = null;
@@ -125,6 +128,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	protected IEntity m_oldHelmetEnt = null;
 	protected IEntity m_oldUpperitemEnt = null;
 	protected IEntity m_oldJacketEnt = null;
+	protected IEntity m_oldArmoredvestEnt = null;
 	protected IEntity m_oldVestEnt = null;
 	protected IEntity m_oldBackpackEnt = null;
 	protected IEntity m_oldTrousersEnt = null;
@@ -133,6 +137,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	protected IEntity m_oldItemEnt = null;
 	
 	protected IEntity m_newJacketEnt = null;
+	protected IEntity m_newArmoredvestEnt = null;
 	protected IEntity m_newVestEnt = null;
 	protected IEntity m_newBackpackEnt = null;
 	protected IEntity m_newTrousersEnt = null;
@@ -140,6 +145,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 	protected ResourceName m_newHelmetResName;
 	protected ResourceName m_newUpperitemResName;
 	protected ResourceName m_newJacketResName;
+	protected ResourceName m_newArmoredvestResName;
 	protected ResourceName m_newVestResName;
 	protected ResourceName m_newBackpackResName;
 	protected ResourceName m_newTrousersResName;
@@ -286,6 +292,8 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_backpack.AddHandler(m_gearButtonHandler);
 		m_jacket = ItemPreviewWidget.Cast(m_wRoot.FindAnyWidget("PreViewJacket"));
 		m_jacket.AddHandler(m_gearButtonHandler);
+		m_armoredvest = ItemPreviewWidget.Cast(m_wRoot.FindAnyWidget("PreViewArmoredVest"));
+		m_armoredvest.AddHandler(m_gearButtonHandler);
 		m_vest = ItemPreviewWidget.Cast(m_wRoot.FindAnyWidget("PreViewVest"));
 		m_vest.AddHandler(m_gearButtonHandler);
 		m_trousers = ItemPreviewWidget.Cast(m_wRoot.FindAnyWidget("PreViewTrousers"));
@@ -301,6 +309,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_iconUpperitem = ImageWidget.Cast(m_wRoot.FindAnyWidget("IconUpperItem"));
 		m_iconBackpack = ImageWidget.Cast(m_wRoot.FindAnyWidget("IconBackPack"));
 		m_iconJacket = ImageWidget.Cast(m_wRoot.FindAnyWidget("IconJacket"));
+		m_iconArmoredvest = ImageWidget.Cast(m_wRoot.FindAnyWidget("IconArmoredVest"));
 		m_iconVest = ImageWidget.Cast(m_wRoot.FindAnyWidget("IconVest"));
 		m_iconTrousers = ImageWidget.Cast(m_wRoot.FindAnyWidget("IconTrousers"));
 		m_iconBoots = ImageWidget.Cast(m_wRoot.FindAnyWidget("IconBoots"));
@@ -473,7 +482,15 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_preViewManager.SetPreviewItem(m_jacket, m_jacketEnt);
 			m_jacket.SetResolutionScale(1, 1);
 		}
-		
+
+		m_armoredvestEnt = m_elsc.GetClothFromArea(LoadoutArmoredVestSlotArea);
+		if (m_armoredvestEnt)
+		{
+			m_iconArmoredvest.SetVisible(false);
+			m_preViewManager.SetPreviewItem(m_armoredvest, m_armoredvestEnt);
+			m_armoredvest.SetResolutionScale(1, 1);
+		}
+
 		m_vestEnt = m_elsc.GetClothFromArea(LoadoutVestArea);
 		if (m_vestEnt)
 		{
@@ -481,7 +498,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_preViewManager.SetPreviewItem(m_vest, m_vestEnt);
 			m_vest.SetResolutionScale(1, 1);
 		}
-		
+
 		m_trousersEnt = m_elsc.GetClothFromArea(LoadoutPantsArea);
 		if (m_trousersEnt)
 		{
@@ -498,8 +515,8 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_boots.SetResolutionScale(1, 1);
 		}
 
-		// ESC slot 0 is watch, slot 1 is binocular
-		InventoryStorageSlot iss_0 = m_esc.GetSlot(0);
+		// ESC slot 1 is watch, slot 0 is binocular
+		InventoryStorageSlot iss_0 = m_esc.GetSlot(1);
 		m_bottomItemEnt = iss_0.GetAttachedEntity();
 		if (m_bottomItemEnt)
 		{
@@ -508,7 +525,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_bottomitem.SetResolutionScale(1, 1);
 		}
 
-		InventoryStorageSlot iss_1 = m_esc.GetSlot(1);
+		InventoryStorageSlot iss_1 = m_esc.GetSlot(0);
 		m_itemEnt = iss_1.GetAttachedEntity();
 		if (m_itemEnt)
 		{
@@ -661,6 +678,15 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 					m_jacketTexts[i].SetVisible(true);
 				}
 				
+				break;
+			}
+			case "PreViewArmoredVest":
+			{
+				m_oldArmoredvestEnt = m_armoredvestEnt;
+				m_newArmoredvestResName = "";
+				m_preViewManager.SetPreviewItem(ItemPreviewWidget.Cast(w), null);
+				m_iconArmoredvest.SetVisible(true);
+
 				break;
 			}
 			case "PreViewVest":
@@ -1341,6 +1367,23 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 						m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
 						m_iconJacket.SetVisible(false);
 						m_newJacketResName = gearData.getResname();
+					}
+				}
+
+				break;
+			}
+			case "PreViewArmoredVest":
+			{
+				BaseContainer meshComponent = getMeshComponentByClassName(gearData.getResname(), "BaseLoadoutClothComponent");
+                if (meshComponent)
+                {
+					LoadoutAreaType lat;
+					meshComponent.Get("AreaType", lat);
+					if (lat.Type() == LoadoutArmoredVestSlotArea)
+					{
+						m_preViewManager.SetPreviewItemFromPrefab(ItemPreviewWidget.Cast(w), gearData.getResname());
+						m_iconArmoredvest.SetVisible(false);
+						m_newArmoredvestResName = gearData.getResname();
 					}
 				}
 
@@ -2278,6 +2321,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			m_ismc.TryDeleteItem(m_jacketEnt);
 			m_jacketStorage = null;
 		}
+		if (m_oldArmoredvestEnt && !m_newArmoredvestResName) m_ismc.TryDeleteItem(m_armoredvestEnt);
 		if (m_oldVestEnt && !m_newVestResName)
 		{
 			m_ismc.TryDeleteItem(m_vestEnt);
@@ -2329,6 +2373,12 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		{
 			m_ismc.TryDeleteItem(m_jacketEnt);
 			//m_blmc.Unwear(m_jacketEnt);
+		}
+
+		if (m_newArmoredvestResName && m_armoredvestEnt && m_armoredvestEnt.GetPrefabData().GetPrefabName() != m_newArmoredvestResName)
+		{
+			m_ismc.TryDeleteItem(m_armoredvestEnt);
+			//m_blmc.Unwear(m_armoredvestEnt);
 		}
 		
 		if (m_newVestResName && m_vestEnt && m_vestEnt.GetPrefabData().GetPrefabName() != m_newVestResName)
@@ -2399,6 +2449,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		if (m_newUpperitemResName && !m_oldUpperitemEnt) m_ismc.TrySpawnPrefabToStorage(m_newUpperitemResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 		if (m_newBackpackResName && !m_oldBackpackEnt) m_ismc.TrySpawnPrefabToStorage(m_newBackpackResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 		if (m_newJacketResName && !m_oldJacketEnt) m_ismc.TrySpawnPrefabToStorage(m_newJacketResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+		if (m_newArmoredvestResName && !m_oldArmoredvestEnt) m_ismc.TrySpawnPrefabToStorage(m_newArmoredvestResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 		if (m_newVestResName && !m_oldVestEnt) m_ismc.TrySpawnPrefabToStorage(m_newVestResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 		if (m_newTrousersResName && !m_oldTrousersEnt) m_ismc.TrySpawnPrefabToStorage(m_newTrousersResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 		if (m_newBootsResName && !m_oldBootsEnt) m_ismc.TrySpawnPrefabToStorage(m_newBootsResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
@@ -2442,6 +2493,11 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 			case m_jacketEnt:
 			{
 				if (m_newJacketResName) m_ismc.TrySpawnPrefabToStorage(m_newJacketResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
+				break;
+			}
+			case m_armoredvestEnt:
+			{
+				if (m_newArmoredvestResName) m_ismc.TrySpawnPrefabToStorage(m_newArmoredvestResName, null, -1, EStoragePurpose.PURPOSE_LOADOUT_PROXY, null);
 				break;
 			}
 			case m_vestEnt:
@@ -2679,6 +2735,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_helmetEnt = null;
 		m_upperitemEnt = null;
 		m_jacketEnt = null;
+		m_armoredvestEnt = null;
 		m_vestEnt = null;
 		m_backpackEnt = null;
 		m_trousersEnt = null;
@@ -2689,6 +2746,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_oldHelmetEnt = null;
 		m_oldUpperitemEnt = null;
 		m_oldJacketEnt = null;
+		m_oldArmoredvestEnt = null;
 		m_oldVestEnt = null;
 		m_oldBackpackEnt = null;
 		m_oldTrousersEnt = null;
@@ -2699,6 +2757,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_newHelmetResName = "";
 		m_newUpperitemResName = "";
 		m_newJacketResName = "";
+		m_newArmoredvestResName = "";
 		m_newVestResName = "";
 		m_newBackpackResName = "";
 		m_newTrousersResName = "";
@@ -2730,6 +2789,7 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_trousersStorage = null;
 		
 		m_newJacketEnt = null;
+		m_newArmoredvestEnt = null;
 		m_newVestEnt = null;
 		m_newBackpackEnt = null;
 		m_newTrousersEnt = null;
