@@ -421,6 +421,19 @@ class SCR_CTI_GearUS
 		category.Insert("");
 		uplevel.Insert(0);
 		price.Insert(50);
+
+		// Armored vests
+		resname.Insert("{725C5E1C75CADAF4}Prefabs/Characters/Vests/Vest_M69/Vest_M69_M81woodland.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(1);
+		price.Insert(30);
+		
+		resname.Insert("{F9ACDDE62D906D61}Prefabs/Characters/Vests/Vest_M69/Vest_M69_olive.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(1);
+		price.Insert(30);
 		
 		// Vests - M79 grenade carrier maybe need
 		resname.Insert("{0BC230E08CEA02B6}Prefabs/Characters/Vests/Vest_ALICE/Vest_ALICE_belt.et");

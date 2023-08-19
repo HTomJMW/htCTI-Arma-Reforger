@@ -419,6 +419,13 @@ class SCR_CTI_GearUSSR
 		uplevel.Insert(0);
 		price.Insert(50);
 		
+		// Armored vests
+		resname.Insert("{ADE19B33DCBB9005}Prefabs/Characters/Vests/Vest_6B2/Vest_6B2.et");
+		name.Insert("");
+		category.Insert("");
+		uplevel.Insert(1);
+		price.Insert(30);
+		
 		// Vests
 		resname.Insert("{9713FE6DDCC9510D}Prefabs/Characters/Vests/Vest_Lifchik/Vest_Lifchik.et");
 		name.Insert("");
