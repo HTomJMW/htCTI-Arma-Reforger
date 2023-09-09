@@ -2306,17 +2306,46 @@ FrameWidgetClass {
       }
      }
     }
+    ImageWidgetClass "{5E192B9B576507CA}" {
+     Name "IconArmoredVest"
+     Slot FrameWidgetSlot "{5E192B9B576507EA}" {
+      PositionX 60
+      OffsetLeft 60
+      PositionY 430
+      OffsetTop 430
+      SizeX 90
+      OffsetRight -150
+      SizeY 90
+      OffsetBottom -520
+     }
+     Texture "{38968D9D6BE9C6DC}UI/Textures/InventoryIcons/InventorySlot_vest.edds"
+     Size 64 64
+    }
+    ItemPreviewWidgetClass "{5E192B98E44784EF}" {
+     Name "PreViewArmoredVest"
+     Slot FrameWidgetSlot "{5E192B98E4478506}" {
+      PositionX 60
+      OffsetLeft 60
+      PositionY 430
+      OffsetTop 430
+      SizeX 90
+      OffsetRight -150
+      SizeY 90
+      OffsetBottom -520
+     }
+     "Ignore Cursor" 0
+    }
     ItemPreviewWidgetClass "{5B094428C8807326}" {
      Name "PreViewItem"
      Slot FrameWidgetSlot "{5B094428C880733E}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 850
-      OffsetTop 850
+      PositionY 930
+      OffsetTop 930
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -940
+      OffsetBottom -1020
      }
      "Ignore Cursor" 0
     }
@@ -2325,14 +2354,14 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B01C907B2}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 850
-      OffsetTop 850
+      PositionY 930
+      OffsetTop 930
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -940
+      OffsetBottom -1020
      }
-     Texture "{7027DDC03DC199C7}UI/Textures/InventoryIcons/InventorySlot_lbs.edds"
+     Texture "{0CDD0FF107787637}UI/Textures/InventoryIcons/InventorySlot_binoculars.edds"
      Size 64 64
     }
     ImageWidgetClass "{5B09442B6FB9F9C9}" {
@@ -2340,12 +2369,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B7D2B255D}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 750
-      OffsetTop 750
+      PositionY 830
+      OffsetTop 830
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -840
+      OffsetBottom -920
      }
      Texture "{43E1D240687C6EFD}UI/Textures/InventoryIcons/InventorySlot_watch.edds"
      Size 64 64
@@ -2355,12 +2384,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5B094428F1E537C4}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 750
-      OffsetTop 750
+      PositionY 830
+      OffsetTop 830
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -840
+      OffsetBottom -920
      }
      "Ignore Cursor" 0
     }
@@ -2369,12 +2398,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5B094428F2034C03}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 650
-      OffsetTop 650
+      PositionY 730
+      OffsetTop 730
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -740
+      OffsetBottom -820
      }
      "Ignore Cursor" 0
     }
@@ -2383,12 +2412,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B7A23A7AB}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 650
-      OffsetTop 650
+      PositionY 730
+      OffsetTop 730
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -740
+      OffsetBottom -820
      }
      Texture "{3BDF4AADE505CFC2}UI/Textures/InventoryIcons/InventorySlot_boots.edds"
      Size 64 64
@@ -2398,12 +2427,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B73BFA48F}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 550
-      OffsetTop 550
+      PositionY 630
+      OffsetTop 630
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -640
+      OffsetBottom -720
      }
      Texture "{24B00F970F8CAF51}UI/Textures/InventoryIcons/InventorySlot_pants.edds"
      Size 64 64
@@ -2413,12 +2442,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5B094428F3512AC0}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 550
-      OffsetTop 550
+      PositionY 630
+      OffsetTop 630
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -640
+      OffsetBottom -720
      }
      "Ignore Cursor" 0
     }
@@ -2427,12 +2456,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5B094428F5A9D0DA}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 450
-      OffsetTop 450
+      PositionY 530
+      OffsetTop 530
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -540
+      OffsetBottom -620
      }
      "Ignore Cursor" 0
     }
@@ -2441,14 +2470,14 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B75573722}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 450
-      OffsetTop 450
+      PositionY 530
+      OffsetTop 530
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -540
+      OffsetBottom -620
      }
-     Texture "{38968D9D6BE9C6DC}UI/Textures/InventoryIcons/InventorySlot_vest.edds"
+     Texture "{7027DDC03DC199C7}UI/Textures/InventoryIcons/InventorySlot_lbs.edds"
      Size 64 64
     }
     ImageWidgetClass "{5B09442B716BE067}" {
@@ -2456,12 +2485,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B0B1D2842}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 350
-      OffsetTop 350
+      PositionY 330
+      OffsetTop 330
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -440
+      OffsetBottom -420
      }
      Texture "{FB0C5ADB0235B940}UI/Textures/InventoryIcons/InventorySlot_blouse.edds"
      Size 64 64
@@ -2471,12 +2500,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5B094428F61E7A46}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 350
-      OffsetTop 350
+      PositionY 330
+      OffsetTop 330
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -440
+      OffsetBottom -420
      }
      "Ignore Cursor" 0
     }
@@ -2485,12 +2514,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5B094428F742120F}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 250
-      OffsetTop 250
+      PositionY 230
+      OffsetTop 230
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -340
+      OffsetBottom -320
      }
      "Ignore Cursor" 0
     }
@@ -2499,12 +2528,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B10605600}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 250
-      OffsetTop 250
+      PositionY 230
+      OffsetTop 230
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -340
+      OffsetBottom -320
      }
      Texture "{044C18D7A0102172}UI/Textures/InventoryIcons/InventorySlot_backpack.edds"
      Size 64 64
@@ -2514,12 +2543,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5B094428F87E331C}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 150
-      OffsetTop 150
+      PositionY 130
+      OffsetTop 130
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -240
+      OffsetBottom -220
      }
      "Ignore Cursor" 0
     }
@@ -2528,12 +2557,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B130662DF}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 150
-      OffsetTop 150
+      PositionY 130
+      OffsetTop 130
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -240
+      OffsetBottom -220
      }
      Texture "{F565C4A388964DBE}UI/Textures/InventoryIcons/InventorySlot_gadget.edds"
      Size 64 64
@@ -2543,12 +2572,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5B094428FACF70F0}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 50
-      OffsetTop 50
+      PositionY 30
+      OffsetTop 30
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -140
+      OffsetBottom -120
      }
      "Ignore Cursor" 0
     }
@@ -2557,12 +2586,12 @@ FrameWidgetClass {
      Slot FrameWidgetSlot "{5CF92A3B2EF90CD6}" {
       PositionX 60
       OffsetLeft 60
-      PositionY 50
-      OffsetTop 50
+      PositionY 30
+      OffsetTop 30
       SizeX 90
       OffsetRight -150
       SizeY 90
-      OffsetBottom -140
+      OffsetBottom -120
      }
      Texture "{0E8DECDCEBD37EFD}UI/Textures/InventoryIcons/InventorySlot_helmet.edds"
      Size 64 64
