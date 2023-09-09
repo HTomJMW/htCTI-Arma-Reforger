@@ -11,7 +11,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 	protected SCR_ManualCamera m_manualCam = null;
 	
 	protected bool ironsightView = false;
-	protected bool internalView = false;
+	protected bool internalView = true;
 	protected bool externalView = false;
 	
 	protected float m_timeDelta;
@@ -117,8 +117,9 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		vector transform[4];
 		m_playerCam.GetTransform(transform);
 		EntitySpawnParams spawnParams = new EntitySpawnParams();
-		vector dir = m_playerCam.GetWorldTransformAxis(2);
-		transform[3] = transform[3] + (dir * 0.3);
+		//vector dir = m_playerCam.GetWorldTransformAxis(2);
+		//transform[3] = transform[3] + (dir * -1.3);
+		//transform[3][1] = transform[3][1] + 2.2;
 		spawnParams.Transform = transform;
 	
 		m_manualCam = SCR_ManualCamera.Cast(GetGame().SpawnEntityPrefabLocal(Resource.Load("{D6DE32D1C0FCC1C7}Prefabs/Editor/Camera/ManualCameraBase.et"), GetGame().GetWorld(), spawnParams));
@@ -126,7 +127,6 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		{
 			m_camMan.SetCamera(m_manualCam);
 		}
-
 	}
 	
 	//------------------------------------------------------------------------------------------------

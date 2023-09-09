@@ -79,7 +79,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
-			Print("CTI :: Mission version: 0.6.22");
+			Print("CTI :: Mission version: 0.6.24");
 			
 			if (RplSession.Mode() == RplMode.Dedicated)
 			{
@@ -306,7 +306,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			GetGame().GetCallqueue().CallLater(missionHintsCallLater, 20000, false, playerID);
 		}
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	protected void OnPlayerFactionResponse_S(SCR_PlayerFactionAffiliationComponent component, int factionIndex, bool response)
 	{
@@ -349,7 +349,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
 	{
 		super.OnPlayerKilled(playerId, player, killer);
-
+		
 		int lastDeath;
 		playersDeathTimes.Find(playerId, lastDeath);
 		int currentMissionTime = GetElapsedTime();
