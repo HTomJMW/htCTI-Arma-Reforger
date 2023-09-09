@@ -1,6 +1,9 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "CTI Constants")]
 class SCR_CTI_Constants
 {
+	// Debug
+	static const bool CTI_DEBUG = true;
+	
 	// Global constants
 	static const int VEHICLECOLLECTIONTIME = 3600;
 	static const int ITEMCOLLECTIONTIME = 3600;
