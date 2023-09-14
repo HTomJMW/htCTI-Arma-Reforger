@@ -591,7 +591,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
    ParticleEffect "{E60F6CCD3E871566}Particles/Vehicle/Vehicle_smoke_car_exhaust_normal.ptc"
    RPMSignal "engineRPM"
    ThrustSignal "engineThrust"
-   SimpleBirthrateByRPM 0
    MaxRPM 3600
    EffectPosition EntitySlotInfo "{50CAF232394F9515}" {
     PivotID "fx_exhaust"

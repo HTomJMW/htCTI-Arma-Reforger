@@ -8,7 +8,7 @@ Vehicle : "{F1FBD0972FA5FE09}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et
   }
   SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
    m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
-    Name "M923A1 Medical Truck"
+    Name "M923A1 Medical Truck [Mobile Respawn]"
     m_Image "{5E480A7934BC2414}UI/Textures/EditorPreviews/Vehicles/Wheeled/M923A1/M923A1_transport_covered.edds"
     m_sFaction "US"
     m_aAuthoredLabels +{
