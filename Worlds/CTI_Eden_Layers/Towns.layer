@@ -1,0 +1,1306 @@
+$grp SCR_CTI_Town {
+ Town0 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408CE2E6D14E}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F0D7C923BBA717}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A554AEFB997ADDE}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_MapDescriptorComponent "{5DB10D1E5DEA1291}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{59FF3E19F8D4ECC7}" {
+    ActionContexts {
+     UserActionContext "{59FF3E192EA6E6A3}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{59FF3E194EFC0EC6}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{59FF3E1BD8B391A6}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{59FF3E1B35234451}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D15265700A395}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D152646C477EF}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346E67A21EDA}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346E623F4951}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 9696.289 13.559 1546.774
+  m_townName "ST. Pierre"
+  m_townValue 300
+  {
+   SCR_CTI_ActivationArea ActivationArea0 {
+    components {
+     Hierarchy "{59DF6D0E29AF4576}" {
+     }
+     SCR_CTI_CreateTeamComponent "{59C701EF12D49AFC}" {
+      m_SpawnPos 9700.854 13.559 1546.774
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    coords 0 0 0
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea0 {
+    components {
+     Hierarchy "{59D3408D8AB35F77}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town2 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DE5497657}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB7ACA7E4A}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A61122823E51E91}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F7A50913B2}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616A8D904FF}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF616C3C930E6}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629BFDE68CB}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF629D6F0D84D}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34680438A810}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D34687FA6286E}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FB5338428}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FB12F369F}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 4928.005 36.157 9125.537
+  m_townName "Tyrone"
+  {
+   SCR_CTI_ActivationArea ActivationArea2 {
+    components {
+     Hierarchy "{59DF6D0E14FA0087}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 4933.47 36.434 9125.537
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea2 {
+    components {
+     Hierarchy "{59D3408D3185DF19}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town3 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DE1358421}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB753F7A9A}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112281FDFC704}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F7A1F602F9}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616AB5B9436}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF6163B162331}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629B90FADF4}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF629CDECD47D}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34687776E864}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346873F90FE0}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FA95E4365}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FA6BD2F21}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 4132.306 36.308 7833.822
+  m_townName "Gravette"
+  {
+   SCR_CTI_ActivationArea ActivationArea3 {
+    components {
+     Hierarchy "{59DF6D0E10E513EA}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 4137.475 36.428 7829.371
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea3 {
+    components {
+     Hierarchy "{59D3408D2D153EE2}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town4 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DDEFC2F27}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB6D8D9DF6}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112281B880487}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F79EBCA1E1}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616AF8CD54B}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF616344B0850}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629B4915E26}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF629C53232A7}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34686C555AD7}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D3468648B0357}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FA0999902}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346F9C8C86C6}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 4713.431 161.677 6978.969
+  m_townName "Montignac"
+  m_townValue 350
+  {
+   SCR_CTI_ActivationArea ActivationArea4 {
+    components {
+     Hierarchy "{59DF6D0E0DC8D24A}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 4713.43 161.824 6983.895
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea4 {
+    components {
+     Hierarchy "{59D3408D2AAC7D0C}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town5 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DDB41E69D}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB6872DDBD}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112281771A235}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F79B1BA5D3}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616B2A3E98E}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF6162E4EBFE3}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629AD752364}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF6293DF0B1C3}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D346855375773}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346850456955}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346F94074304}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346F905804C0}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 1299.932 38.09 6033.668
+  m_townName "Lamentin"
+  m_townValue 300
+  {
+   SCR_CTI_ActivationArea ActivationArea5 {
+    components {
+     Hierarchy "{59DF6D0E09EA34E0}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 1304.288 38.197 6033.668
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea5 {
+    components {
+     Hierarchy "{59D3408D257A38B5}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town6 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DD717357B}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB656A2451}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A61122813D013B1}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F794E4492E}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616B5F56981}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF6162783FC42}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629A8EC2E91}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF6296A73F819}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D346848C54032}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D3468437151AF}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346F8ABB3A7F}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346F865C2E51}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 2605.381 94.163 5415.463
+  m_townName "Le Moule"
+  {
+   SCR_CTI_ActivationArea ActivationArea6 {
+    components {
+     Hierarchy "{59DF6D0E068F1873}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 2605.381 94.266 5409.833
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea6 {
+    components {
+     Hierarchy "{59D3408D2224E95E}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town7 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DD4F22559}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB62FC9DFF}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112280F5E2249}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F78FB3DF93}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616B841EA6C}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF6161FF3FFA3}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF629A3BF78B5}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF6296253446C}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D3469BBDB362C}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D3469B729B66F}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FFFFF0111}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FFB13CC0E}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 5477.503 95.806 6087.412
+  m_townName "Provins"
+  {
+   SCR_CTI_ActivationArea ActivationArea7 {
+    components {
+     Hierarchy "{59DF6D0E0259C0D0}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 5482.085 96.13 6087.41
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea7 {
+    components {
+     Hierarchy "{59D3408D1FB0E9F3}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town8 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DD1A60C20}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB5F359BFD}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112280CDF05B6}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F78C9D4C98}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616BC95FCF0}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF61617F77EFB}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF6299E7C4C96}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF6295A60A28D}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D3469B0B9E94B}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D3469AA7BB5E6}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FF4066FDC}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FEE5CD31E}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 7082.966 118.979 6020.249
+  m_townName "Chotain"
+  {
+   SCR_CTI_ActivationArea ActivationArea8 {
+    components {
+     Hierarchy "{59DF6D0E7E17E628}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 7082.966 119.508 6028.094
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea8 {
+    components {
+     Hierarchy "{59D3408D1BE37569}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town9 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DCD6ADF00}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB5DADDCD2}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A61122808F1BA76}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F78602E5CB}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616BFD6B242}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF6161121C093}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF6299AE38F8A}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF62952C279E1}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34699F03171B}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D34699CA83A6B}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346FE797E995}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FE317EFC4}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 5123.634 15.628 3992.189
+  m_townName "Morton"
+  m_townValue 350
+  {
+   SCR_CTI_ActivationArea ActivationArea9 {
+    components {
+     Hierarchy "{59DF6D0E7BE31E9E}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 5123.634 15.628 3998.239
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea9 {
+    components {
+     Hierarchy "{59D3408D18F084A4}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town10 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DF05074D1}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB057BA792}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112282944B176}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_SERIALIZABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F7B7C3650A}" {
+    ActionContexts {
+     UserActionContext "{5A0EF61749B6543C}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF616D3ADDFAA}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF6164CAFD894}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF629E7B52145}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D34682AFF1E20}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346827143B2E}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346E4FF154A8}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346E4BDF3BE4}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 7460.326 136.995 4737.408
+  m_townName "Levie"
+  {
+   SCR_CTI_ActivationArea ActivationArea10 {
+    components {
+     Hierarchy "{59DF6D0E1D18CBDE}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 7460.325 137.207 4746.033
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea10 {
+    components {
+     Hierarchy "{59D3408DFEE891CB}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town11 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408DEA23A735}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB4219D1BD}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A611228262AF0E4}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F7A9127CB3}" {
+    ActionContexts {
+     UserActionContext "{5A0EF616A5B998D1}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF616CA4C7B92}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF61645C7BF2E}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF629DE7E0AA7}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D346814B67909}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D34680F0ED902}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346E429B38A6}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346FBD4BCFBF}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 7193.561 136.957 2333.68
+  m_townName "Regina"
+  {
+   SCR_CTI_ActivationArea ActivationArea11 {
+    components {
+     Hierarchy "{59DF6D0E18883409}" {
+     }
+     SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
+      m_SpawnPos 7198.713 137.051 2338.676
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea11 {
+    components {
+     Hierarchy "{59D3408D34A336CC}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+ Town1 {
+  components {
+   MeshObject "{599D18449C167C92}" {
+    Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
+   }
+   Hierarchy "{59D3408CD56922D0}" {
+   }
+   RigidBody "{599D1844E99D5AC0}" {
+    ModelGeometry 1
+    Static 1
+   }
+   SCR_CTI_TownMapDescriptorComponent "{59F137AB0EF5D596}" {
+   }
+   SCR_CTI_TownPatrolComponent "{5A6112282D10E79C}" {
+   }
+   SCR_EditableEntityComponent "{599D1844332F9D41}" {
+    m_Flags NON_DELETABLE
+   }
+   SCR_FlagComponent "{599D1844281D0C93}" {
+   }
+   SCR_PreviewEntityComponent "{599D1844512EE9B2}" {
+   }
+   SlotManagerComponent "{599D184548215480}" {
+    Slots {
+     EntitySlotInfo Flag {
+      Offset 0 5.2 -0.2
+      Prefab "{E8FD5DDB2F843B0B}Prefabs/Props/Fabric/Flags/Flag_2_3_Green_01.et"
+     }
+    }
+   }
+   ActionsManagerComponent "{5A0D38F44064BAFC}" {
+    ActionContexts {
+     UserActionContext "{5A0EF617D2626586}" {
+      ContextName "PurchaseOnFlag"
+      Position PointInfo "{5A0EF616EF5E9E2B}" {
+       Offset 0 0.8 0
+      }
+      Radius 2
+     }
+    }
+    additionalActions {
+     SCR_CTI_PurchaseVehicleAction "{5A0EF6165297DDAE}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A0EF629FA423EF9}" {
+      }
+      VisibilityRange 5
+      Duration 5
+     }
+     SCR_CTI_PurchaseAIAction "{5A1D3468C3CBE827}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D34683A0A3BF6}" {
+      }
+      VisibilityRange 5
+      Duration 4
+     }
+     SCR_CTI_PurchaseEquipmentAction "{5A1D346E5BCA28A6}" {
+      ParentContextList {
+       "PurchaseOnFlag"
+      }
+      UIInfo UIInfo "{5A1D346E570228A7}" {
+      }
+      VisibilityRange 5
+      Duration 3
+     }
+    }
+   }
+   RplComponent "{599D1845A67C4BA9}" {
+    Streamable Disabled
+   }
+  }
+  coords 4517.271 13.726 10892.203
+  m_townName "ST. Philippe"
+  m_townValue 300
+  {
+   SCR_CTI_ActivationArea ActivationArea1 {
+    components {
+     Hierarchy "{59DF6D0E21DE917E}" {
+     }
+     SCR_CTI_CreateTeamComponent "{59C701EF03F208D9}" {
+      m_SpawnPos 4523.813 14.489 10892.203
+     }
+     RplComponent "{599F1E08CF916CBC}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 500
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 10
+   }
+   SCR_CTI_CaptureArea CaptureArea1 {
+    components {
+     Hierarchy "{59D3408D86373888}" {
+     }
+     RplComponent "{59A70A756EDE5E10}" {
+     }
+    }
+    TriggerShapeType Sphere
+    SphereRadius 1
+    TriggerActivationType "Every query"
+    PeriodicQueries 1
+    UpdatePeriod 5
+   }
+  }
+ }
+}
