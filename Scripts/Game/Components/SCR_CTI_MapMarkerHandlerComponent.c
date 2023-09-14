@@ -48,13 +48,13 @@ class SCR_CTI_MapMarkerHandlerComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	protected void OnPlayerMapOpen()
+	protected void OnPlayerMapOpen(MapConfiguration config)
 	{
 		m_zoomValue = m_mapEntity.GetCurrentZoom();
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void OnPlayerMapZoom()
+	protected void OnPlayerMapZoom(float pixelPerUnit)
 	{
 		float currentZoom = m_mapEntity.GetCurrentZoom(); // 0.0-20.0 ZOOM
 		//PrintFormat("MAP :: CurrentZoom: %1", currentZoom);
@@ -111,7 +111,7 @@ class SCR_CTI_MapMarkerHandlerComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void OnPlayerMapClose()
+	protected void OnPlayerMapClose(MapConfiguration config)
 	{
 	}
 
