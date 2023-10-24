@@ -1,26 +1,66 @@
-Vehicle : "{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et" {
+Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
  ID "BBCBA43A9778AE21"
  components {
-  SCR_CTI_VehicleCustomVariablesComponent "{5D20D89DA491E516}" {
+  RigidBody "{51DAA09FECF52BBF}" {
+   Mass 11402
+   CenterOfMass 0 0.2 -1.4
+   LinearDamping 0.011
+   AngularDamping 0.011
+  }
+  SCR_CTI_VehicleCustomVariablesComponent "{5EAD0EE3217C7D49}" {
    supportVehicleType AMMO
   }
   SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
    m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
-    Name "M923A1 Ammo Truck"
+    Name "#AR-Vehicle_M923A1_Ammo_Name"
+    Icon "{9EBE212C91B36BBE}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Truck.edds"
+    IconSetName ""
+    m_Image "{4C3B89AE70636D52}UI/Textures/EditorPreviews/Vehicles/Wheeled/M923A1/M923A1_ammo.edds"
+    m_sFaction "US"
+    m_aAuthoredLabels + {
+     27 280 210
+    }
+    m_aAutoLabels +{
+    }
+    m_aOccupantFillCompartmentTypes +{
+    }
+   }
+  }
+  SCR_VehicleDamageManagerComponent "{141326E9FD94FE40}" {
+   m_fVehicleDestroyDamage 17524
+  }
+  VehiclePerceivableComponent "{566CD04B8A6107DD}" {
+   "Additional aim points" {
+    AimPoint "{5A44DB098ADDB55E}" : "{94ED6806120FB600}Prefabs/Vehicles/Core/Configs/AimPoints/AimPoint_Hull_Truck.conf" {
+     AimPointPosition PointInfo "{5A44DB148C16BF03}" {
+      Offset 0 2.25 -2.25
+     }
+    }
    }
   }
   SlotManagerComponent "{55BCE45E438E4CFF}" {
    Slots {
-    RegisteringComponentSlotInfo Cargo {
-     Prefab "{420D8812D22F5398}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo_canvas.et"
+    RegisteringComponentSlotInfo AmmoBox {
+     MergePhysics 1
+     Prefab "{402274CE2FB0720D}Prefabs/Vehicles/Wheeled/M923A1/VehParts/M923A1_ammo_box.et"
+     DisablePhysicsInteraction 1
+     RegisterActions 1
+     RegisterDamage 1
+     RegisterCompartments 1
+     RegisterLights 1
+    }
+    RegisteringComponentSlotInfo AmmoDecal {
+     Prefab "{DEF0930DED57D4B5}Prefabs/Vehicles/Wheeled/M923A1/VehParts/M923A1_ammo_decal.et"
+     InheritParentSkeleton 1
+     RegisterDamage 1
     }
    }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{5E0B03B7042FD61F}" {
+    UserActionContext "{5EAD0EE5BBA1DF95}" {
      ContextName "CTI_Default"
-     Position PointInfo "{5E0B03B77D9E51C9}" {
+     Position PointInfo "{5EAD0EE5B49F858D}" {
       PivotID "v_body"
       Offset 0 0.05 0
      }
@@ -28,24 +68,26 @@ Vehicle : "{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_co
     }
    }
    additionalActions {
-    SCR_CTI_LockAndUnlockVehicleAction "{5D90D29470E58020}" {
-     ParentContextList {
-      "door_r01" "door_l01"
-     }
+    SCR_OpenVehicleStorageAction "{5E58A8A3F402DDF4}" {
     }
-    SCR_CTI_RepairAction "{5E0B03B7775B4668}" {
+    SCR_CTI_ExtinguishAction "{5EAD0EE5A29DC16B}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
+    }
+    SCR_CTI_RepairAction "{5EAD0EE59CEC0397}" {
      ParentContextList {
       "CTI_Default"
      }
      Duration 5
      "Sort Priority" 2
     }
-    SCR_CTI_ExtinguishAction "{5E0B03B776AB91F7}" {
+    SCR_CTI_LockAndUnlockVehicleAction "{5EAD0EE5991DF068}" {
      ParentContextList {
-      "CTI_Default"
+      "door_r01" "door_l01"
      }
-     Duration 5
-     "Sort Priority" 1
     }
    }
   }

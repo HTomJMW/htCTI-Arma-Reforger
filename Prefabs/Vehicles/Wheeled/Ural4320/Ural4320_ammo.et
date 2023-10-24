@@ -1,37 +1,75 @@
-Vehicle : "{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et" {
- ID "BBCBA43A9778AE21"
+Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
+ ID "0000000000000001"
  components {
-  SCR_CTI_VehicleCustomVariablesComponent "{5D20D89DC5201101}" {
+  RigidBody "{51DAA09FECF52BBF}" {
+   Mass 8570
+   CenterOfMass 0 0.15 0.4
+  }
+  SCR_CTI_VehicleCustomVariablesComponent "{5EAD0EEFBFE240EF}" {
    supportVehicleType AMMO
   }
   SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
    m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
-    Name "Ural-4320 Ammo Truck"
+    Name "#AR-Vehicle_Ural4320_Ammo_Name"
+    Icon "{9EBE212C91B36BBE}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Truck.edds"
+    m_Image "{05D6B4F71F80CA25}UI/Textures/EditorPreviews/Vehicles/Wheeled/Ural4320/Ural4320_ammo.edds"
+    m_sFaction "USSR"
+    m_aAuthoredLabels + {
+     27 280 210
+    }
+    m_aAutoLabels +{
+    }
+    m_bEditorPlaceAsOneGroup 0
+    m_aOccupantFillCompartmentTypes +{
+    }
    }
   }
   SCR_UniversalInventoryStorageComponent "{5916C58171230A92}" {
-   Attributes SCR_ItemAttributeCollection "{5916C58172622508}" {
-    CustomAttributes {
-     PreviewRenderAttributes "{5916C5816492028E}" {
+   MaxCumulativeVolume 1000000
+   MaxItemSize 40 40 40
+   m_fMaxWeight 4500
+  }
+  SCR_VehicleDamageManagerComponent "{141326E9FD94FE40}" {
+   m_fVehicleDestroyDamage 17524
+  }
+  VehiclePerceivableComponent "{566CD04B8A6107DD}" {
+   "Additional aim points" {
+    AimPoint "{5A44DB0B1645E80A}" : "{94ED6806120FB600}Prefabs/Vehicles/Core/Configs/AimPoints/AimPoint_Hull_Truck.conf" {
+     AimPointPosition PointInfo "{5A44DB148C16BF03}" {
+      Offset 0 2 -1.75
      }
     }
    }
   }
-  SCR_VehicleDamageManagerComponent "{141326E9FD94FE40}" {
-   m_fVehicleDestroyDamage 21809.699
-  }
   SlotManagerComponent "{55BCE45E438E4CFF}" {
    Slots {
-    RegisteringComponentSlotInfo Cargo {
-     Prefab "{5FCDB815A96F7CC6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_ammo_canvas.et"
+    RegisteringComponentSlotInfo Ammo {
+     MergePhysics 1
+     Prefab "{03FFD2B45BEE8A17}Prefabs/Vehicles/Wheeled/Ural4320/VehParts/Ural4320_ammo_box.et"
+     RegisterActions 1
+     RegisterDamage 1
+     RegisterControllers 1
+     RegisterCompartments 1
+     RegisterLights 1
+    }
+    RegisteringComponentSlotInfo AmmoDecal {
+     Prefab "{A0AB9EDD3932367D}Prefabs/Vehicles/Wheeled/Ural4320/VehParts/Ural4320_ammo_decal.et"
+     InheritParentSkeleton 1
+     RegisterDamage 1
     }
    }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{5E0B03B4F3C9736C}" {
+    UserActionContext "{5EAD0EEC7C38E68A}" {
+     ContextName "cargo_open"
+     Position PointInfo "{5EAD0EEC7C38E690}" {
+      Offset 0 1.8 -3.9
+     }
+    }
+    UserActionContext "{5EAD0EE2B3F70281}" {
      ContextName "CTI_Default"
-     Position PointInfo "{5E0B03B4EE9D4207}" {
+     Position PointInfo "{5EAD0EE2A0E2E37F}" {
       PivotID "v_body"
       Offset 0 0.05 0
      }
@@ -39,26 +77,28 @@ Vehicle : "{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transpor
     }
    }
    additionalActions {
-    SCR_CTI_LockAndUnlockVehicleAction "{5D90D292EB62F8BA}" {
-     ParentContextList {
-      "door_l01" "door_r01"
-     }
-    }
-    SCR_CTI_RepairAction "{5E0B03B4E68AFC73}" {
-     ParentContextList {
-      "CTI_Default"
-     }
-     Duration 5
-     "Sort Priority" 2
-    }
-    SCR_CTI_ExtinguishAction "{5E0B03B4E469D4C3}" {
+    SCR_CTI_ExtinguishAction "{5EAD0EE28640083C}" {
      ParentContextList {
       "CTI_Default"
      }
      Duration 5
      "Sort Priority" 1
     }
+    SCR_CTI_RepairAction "{5EAD0EE280C99A8E}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+    SCR_CTI_LockAndUnlockVehicleAction "{5EAD0EE2F94837FC}" {
+     ParentContextList {
+      "door_l01" "door_r01"
+     }
+    }
    }
   }
  }
+ coords 112.423 1.001 186.905
+ m_eVehicleType SUPPLY_TRUCK
 }

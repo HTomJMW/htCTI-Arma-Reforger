@@ -116,13 +116,13 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   }
   BaseLightManagerComponent "{51E210F17D2534F7}" {
    LightSlots {
-    BaseLightSlot "{51E210F3B1CB7E19}" : "{89853FD0B72E39A1}Prefabs/Vehicles/Core/Lights/Light_Head.conf" {
+    SCR_LightSlot "{51E210F3B1CB7E19}" : "{89853FD0B72E39A1}Prefabs/Vehicles/Core/Lights/Light_Head.conf" {
      LightPositionInfo EntitySlotInfo "{51DAAC8FC2824EEC}" {
       Offset -0.4196 1.0154 1.7054
       Angles -25 -3 0
      }
     }
-    BaseLightSlot "{51E210F3B0547F5D}" : "{89853FD0B72E39A1}Prefabs/Vehicles/Core/Lights/Light_Head.conf" {
+    SCR_LightSlot "{51E210F3B0547F5D}" : "{89853FD0B72E39A1}Prefabs/Vehicles/Core/Lights/Light_Head.conf" {
      LightPositionInfo EntitySlotInfo "{51DAAC8FC2824EEC}" {
       Offset 0.4288 1.0165 1.7054
       Angles -25 10 0
@@ -130,37 +130,37 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      LightRadiusOverride 70
      LightConeAngleOverride 0
     }
-    BaseLightSlot "{51E210F3B5B66F36}" : "{FCCBB28A48232EE4}Prefabs/Vehicles/Core/Lights/Light_HiBeam.conf" {
+    SCR_LightSlot "{51E210F3B5B66F36}" : "{FCCBB28A48232EE4}Prefabs/Vehicles/Core/Lights/Light_HiBeam.conf" {
      LightPositionInfo EntitySlotInfo "{51E17746999D1D6E}" {
       Offset 0.4288 1.0165 1.7054
       Angles -17 7 0
      }
     }
-    BaseLightSlot "{51E210F3B4D32037}" : "{FCCBB28A48232EE4}Prefabs/Vehicles/Core/Lights/Light_HiBeam.conf" {
+    SCR_LightSlot "{51E210F3B4D32037}" : "{FCCBB28A48232EE4}Prefabs/Vehicles/Core/Lights/Light_HiBeam.conf" {
      LightPositionInfo EntitySlotInfo "{51E17746999D1D6E}" {
       Offset -0.4196 1.0154 1.7054
       Angles -17 -2 0
      }
     }
-    BaseLightSlot "{51E210F3B6509160}" : "{88DADCB91DCE5E4A}Prefabs/Vehicles/Core/Lights/Light_Rear.conf" {
+    SCR_LightSlot "{51E210F3B6509160}" : "{88DADCB91DCE5E4A}Prefabs/Vehicles/Core/Lights/Light_Rear.conf" {
      LightPositionInfo EntitySlotInfo "{51E1774683E31D16}" {
       Offset -0.8 0.6 -1.75
       Angles 0 180 0
      }
     }
-    BaseLightSlot "{51E210F3B95B59D0}" : "{88DADCB91DCE5E4A}Prefabs/Vehicles/Core/Lights/Light_Rear.conf" {
+    SCR_LightSlot "{51E210F3B95B59D0}" : "{88DADCB91DCE5E4A}Prefabs/Vehicles/Core/Lights/Light_Rear.conf" {
      LightPositionInfo EntitySlotInfo "{51E1774683E31D16}" {
       Offset 0.8 0.6 -1.75
       Angles 0 180 0
      }
     }
-    BaseLightSlot "{51E210F3BEAB0401}" : "{3F796555FD10152A}Prefabs/Vehicles/Core/Lights/Light_Brake.conf" {
+    SCR_LightSlot "{51E210F3BEAB0401}" : "{3F796555FD10152A}Prefabs/Vehicles/Core/Lights/Light_Brake.conf" {
      LightPositionInfo EntitySlotInfo "{51E177468DA2D7F8}" {
       Offset -0.8 0.6 -1.75
       Angles 0 180 0
      }
     }
-    BaseLightSlot "{51E210F3A1E9D264}" : "{3F796555FD10152A}Prefabs/Vehicles/Core/Lights/Light_Brake.conf" {
+    SCR_LightSlot "{51E210F3A1E9D264}" : "{3F796555FD10152A}Prefabs/Vehicles/Core/Lights/Light_Brake.conf" {
      LightPositionInfo EntitySlotInfo "{51E177468DA2D7F8}" {
       Offset 0.8 0.6 -1.75
       Angles 0 180 0
@@ -335,7 +335,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       Angles -81.267 -90 -180
      }
      m_fInitialFuelTankState 48.75
-     m_MaxFlowCapacity VEHICLE_MEDIUM
     }
    }
   }
@@ -481,7 +480,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
     Offset 0 0 0
     Angles 0 50 0
    }
-   m_DamagedParticle "{AEA751F0BE7FE821}Particles/Vehicle/Vehicle_smoke_car_exhaust_damage.ptc"
   }
   SCR_PreviewEntityComponent "{56FCFAC0179439A1}" : "{6CADA7A88A6265FD}Prefabs/Editor/Components/PreviewEntityComponentClass.ct" {
    m_bRuntime 0
@@ -556,6 +554,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      m_pDestructionHandler SCR_DestructionBaseHandler "{5584C42C773FDFBF}" {
       m_sWreckModel "{565AA9DF658E08F5}Assets/Vehicles/Wheeled/M151A2/m151a2_wreck.xob"
      }
+     m_sDestructionParticle "{0A70EB725D13F963}Particles/Vehicle/Vehicle_explosion_M151A2_01.ptc"
      m_aLightData {
       SCR_BaseLightData "{58DCA4AB8E9C8E22}" {
        m_vLightOffset 0 1.8 1.5
@@ -563,7 +562,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      }
      m_sDamagedParticle "{F855EA6F45F529A4}Particles/Vehicle/Vehicle_smoke_M151A2_damaged_black_01.ptc"
      m_sDamagedParticleHeavy "{614B53F658121834}Particles/Vehicle/Vehicle_smoke_M151A2_damaged_black_02.ptc"
-     m_sDestructionParticle "{0A70EB725D13F963}Particles/Vehicle/Vehicle_explosion_M151A2_01.ptc"
      m_sBurningParticle "{9D937B6C5BAED3AD}Particles/Vehicle/Vehicle_fire_engine_M151A2_01.ptc"
      m_sBurningGroundParticle "{D813E90D2C48478E}Particles/Vehicle/Vehicle_fire_ground_M151A2_01.ptc"
     }
@@ -613,10 +611,10 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      }
     }
    }
-   m_fVehicleDamageSpeedThreshold 20
-   m_fVehicleSpeedDestroy 80
    m_vFrontalImpact 0 1.16 1.84
    m_fVehicleDestroyDamage 10408.7
+   m_fVehicleDamageSpeedThreshold 20
+   m_fVehicleSpeedDestroy 80
   }
   SCR_VehicleFactionAffiliationComponent "{5882CBD9AC741CEC}" {
    "faction affiliation" "US"
@@ -1031,11 +1029,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
     }
    }
    additionalActions {
-    SCR_FuelReceiverUserAction "{5D90D289C8216D95}" {
-     ParentContextList {
-      "fuel_cap"
-     }
-    }
     SCR_EngineAction "{56B3068BA1D0AA82}" : "{FEEF05EC7DFE19F2}Prefabs/Vehicles/Core/Configs/Actions/EngineOnAction.conf" {
     }
     SCR_EngineAction "{56B3068BA61547D4}" : "{B67160046438840C}Prefabs/Vehicles/Core/Configs/Actions/EngineOffAction.conf" {

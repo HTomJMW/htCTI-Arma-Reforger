@@ -182,7 +182,7 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      }
      LightPrefab "{640BCE1BD611FB3E}Prefabs/Vehicles/Core/Lights/VehicleLight_HiBeam_Base.et"
     }
-    BaseLightSlot "{5D8ED31245C522C0}" : "{50D459CD2CEC9DAD}Prefabs/Vehicles/Core/Lights/Light_Dashboard.conf" {
+    SCR_LightSlot "{5D8ED31245C522C0}" : "{50D459CD2CEC9DAD}Prefabs/Vehicles/Core/Lights/Light_Dashboard.conf" {
      LightPositionInfo EntitySlotInfo "{51E2210D04212E5A}" {
       Offset 0.937 2.416 -0.963
       Angles -38.3962 -135 0
@@ -190,21 +190,21 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      LightPrefab "{012DD11A20EBE6B7}Prefabs/Vehicles/Core/Lights/VehicleLight_Dashboard_soft_projecitonmap.et"
      LightRadiusOverride 1.7
     }
-    BaseLightSlot "{5D8ED8B9F488124F}" : "{50D459CD2CEC9DAD}Prefabs/Vehicles/Core/Lights/Light_Dashboard.conf" {
+    SCR_LightSlot "{5D8ED8B9F488124F}" : "{50D459CD2CEC9DAD}Prefabs/Vehicles/Core/Lights/Light_Dashboard.conf" {
      LightPositionInfo EntitySlotInfo "{51E2210D04212E5A}" {
       Offset 0.937 2.416 -2.538
       Angles -41.8998 -63.4058 0
      }
      LightPrefab "{012DD11A20EBE6B7}Prefabs/Vehicles/Core/Lights/VehicleLight_Dashboard_soft_projecitonmap.et"
     }
-    BaseLightSlot "{5D8ED8B9F58F5081}" : "{50D459CD2CEC9DAD}Prefabs/Vehicles/Core/Lights/Light_Dashboard.conf" {
+    SCR_LightSlot "{5D8ED8B9F58F5081}" : "{50D459CD2CEC9DAD}Prefabs/Vehicles/Core/Lights/Light_Dashboard.conf" {
      LightPositionInfo EntitySlotInfo "{51E2210D04212E5A}" {
       Offset -0.99 2.416 -2.58
       Angles -40.325 52.6362 5.7785
      }
      LightPrefab "{012DD11A20EBE6B7}Prefabs/Vehicles/Core/Lights/VehicleLight_Dashboard_soft_projecitonmap.et"
     }
-    BaseLightSlot "{5D8ED8B9F2A7B25C}" : "{50D459CD2CEC9DAD}Prefabs/Vehicles/Core/Lights/Light_Dashboard.conf" {
+    SCR_LightSlot "{5D8ED8B9F2A7B25C}" : "{50D459CD2CEC9DAD}Prefabs/Vehicles/Core/Lights/Light_Dashboard.conf" {
      LightPositionInfo EntitySlotInfo "{51E2210D04212E5A}" {
       Offset -0.982 2.416 -0.963
       Angles -35.1371 128.1143 0
@@ -325,7 +325,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
       Angles -62.58 -90 0
      }
      m_fInitialFuelTankState 70.95
-     m_MaxFlowCapacity VEHICLE_MEDIUM
     }
    }
   }
@@ -556,6 +555,11 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
     }
    }
   }
+  SCR_CTI_VehicleCustomVariablesComponent "{5EAD0EEF7D4F23E5}" {
+   supportVehicleType MEDICAL
+  }
+  SCR_CTI_VehicleSpawnPointHandlerComponent "{5EAD0EEF77312300}" {
+  }
   SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
    m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
     Name "#AR-Vehicle_M997_Name"
@@ -597,7 +601,6 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
     Offset 0 0 0
     Angles 30 75 0
    }
-   m_DamagedParticle "{AEA751F0BE7FE821}Particles/Vehicle/Vehicle_smoke_car_exhaust_damage.ptc"
   }
   SCR_PowerComponent "{55E90D989DD9B211}" {
    m_bShouldApplyNoPowerPenalty 0
@@ -876,6 +879,9 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      Prefab "{B918342272BA512D}Prefabs/Vehicles/Wheeled/M998/VehParts/M997_doors_front.et"
      InheritParentSkeleton 1
      RegisterDamage 1
+    }
+    EntitySlotInfo SpawnPoint {
+     Prefab "{5A2220DD0C16958B}Prefabs/MP/Spawning/SpawnPoint_US.et"
     }
    }
    SlotMappers {

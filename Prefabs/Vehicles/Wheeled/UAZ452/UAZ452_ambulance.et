@@ -177,6 +177,11 @@ Vehicle : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_base.et" {
     }
    }
   }
+  SCR_CTI_VehicleCustomVariablesComponent "{5EAD09EEFBF68760}" {
+   supportVehicleType MEDICAL
+  }
+  SCR_CTI_VehicleSpawnPointHandlerComponent "{5EAD09EEF331D036}" {
+  }
   SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
    m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
     Name "#AR-Vehicle_UAZ452A_Name"
@@ -186,8 +191,7 @@ Vehicle : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_base.et" {
     m_aAuthoredLabels + {
      24
     }
-    m_aAutoLabels {
-     10 122 50
+    m_aAutoLabels +{
     }
    }
   }
@@ -293,6 +297,11 @@ Vehicle : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_base.et" {
    "faction affiliation" "USSR"
   }
   SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo SpawnPoint {
+     Prefab "{4FEA25583D0975F7}Prefabs/MP/Spawning/SpawnPoint_USSR.et"
+    }
+   }
    SlotMappers {
     CompartmentToSlotMapping window_rl {
      SlotName "window_rl"
