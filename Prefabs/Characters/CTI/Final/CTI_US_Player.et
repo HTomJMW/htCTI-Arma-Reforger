@@ -41,6 +41,22 @@ SCR_ChimeraCharacter : "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_
     }
    }
   }
+  SCR_ResourceComponent "{5EAB0CF6DAEE72C0}" {
+   m_aConsumers {
+    SCR_ResourceConsumer "{5EAB0CF6D7DC2DF3}" {
+     m_sDebugName "Self - Consumer"
+     m_eResourceRights SELF
+     m_eGeneratorIdentifier SELF
+     m_ContainerQueue SCR_ResourceConsumerContainerQueue "{5EAB0CF6C5659F4F}" {
+      m_StoragePolicies {
+       SCR_ResourceConsumerStoragePolicy "{5EAB0CF63D024EF1}" {
+        m_eStorageType CARGO_CHARACTER
+       }
+      }
+     }
+    }
+   }
+  }
  }
  coords 536.391 0.985 843.914
 }

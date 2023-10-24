@@ -11,6 +11,9 @@ SCR_PlayerController : "{6E2BB64764E3BE9B}Prefabs/Characters/Core/DefaultPlayerC
   }
   SCR_CTI_PlacingStructureComponent "{5C736513B46C6B7B}" {
   }
+  SCR_CampaignBuildingNetworkComponent "{5E04E7E5536A7204}" {
+   Enabled 0
+  }
   SCR_HUDManagerComponent "{2FDC275D9EBCDB8B}" {
    InfoDisplays {
     SCR_CTI_InfoHud "{5AAD300C3468A1CF}" {

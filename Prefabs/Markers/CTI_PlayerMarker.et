@@ -1,12 +1,12 @@
 SCR_CTI_PlayerMarker {
  ID "5D2D4BCA1A80BA9B"
  components {
-  Hierarchy "{5D2D4BCA1A80BAA1}" {
-  }
   SCR_MapDescriptorComponent "{5D2D4BCA1A80BAAC}" {
   }
   RplComponent "{5D2D4BCA1A80BAAE}" {
    Streamable Disabled
+  }
+  Hierarchy "{5D2D4BCA1A80BAA1}" {
   }
  }
 }

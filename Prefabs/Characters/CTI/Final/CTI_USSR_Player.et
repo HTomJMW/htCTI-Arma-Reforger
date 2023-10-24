@@ -42,6 +42,22 @@ SCR_ChimeraCharacter : "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR
     }
    }
   }
+  SCR_ResourceComponent "{5EAB0CF61ED8D936}" {
+   m_aConsumers {
+    SCR_ResourceConsumer "{5EAB0CF61B64F199}" {
+     m_sDebugName "Self - Consumer"
+     m_eResourceRights SELF
+     m_eGeneratorIdentifier SELF
+     m_ContainerQueue SCR_ResourceConsumerContainerQueue "{5EAB0CF67CC7D360}" {
+      m_StoragePolicies {
+       SCR_ResourceConsumerStoragePolicy "{5EAB0CF67A4C1F45}" {
+        m_eStorageType CARGO_CHARACTER
+       }
+      }
+     }
+    }
+   }
+  }
  }
  coords 535.865 0.985 843.547
 }
