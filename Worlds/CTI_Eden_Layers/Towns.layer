@@ -4,8 +4,6 @@ $grp SCR_CTI_Town {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
    }
-   Hierarchy "{59D3408CE2E6D14E}" {
-   }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
     Static 1
@@ -74,6 +72,8 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408CE2E6D14E}" {
+   }
   }
   coords 9696.289 13.559 1546.774
   m_townName "ST. Pierre"
@@ -81,12 +81,14 @@ $grp SCR_CTI_Town {
   {
    SCR_CTI_ActivationArea ActivationArea0 {
     components {
-     Hierarchy "{59DF6D0E29AF4576}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB02ECE8B35}" {
      }
      SCR_CTI_CreateTeamComponent "{59C701EF12D49AFC}" {
       m_SpawnPos 9700.854 13.559 1546.774
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E29AF4576}" {
      }
     }
     coords 0 0 0
@@ -98,9 +100,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea0 {
     components {
-     Hierarchy "{59D3408D8AB35F77}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D8AB35F77}" {
      }
     }
     TriggerShapeType Sphere
@@ -115,8 +117,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DE5497657}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -184,18 +184,22 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DE5497657}" {
+   }
   }
   coords 4928.005 36.157 9125.537
   m_townName "Tyrone"
   {
    SCR_CTI_ActivationArea ActivationArea2 {
     components {
-     Hierarchy "{59DF6D0E14FA0087}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB01ADA5924}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 4933.47 36.434 9125.537
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E14FA0087}" {
      }
     }
     TriggerShapeType Sphere
@@ -206,9 +210,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea2 {
     components {
-     Hierarchy "{59D3408D3185DF19}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D3185DF19}" {
      }
     }
     TriggerShapeType Sphere
@@ -223,8 +227,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DE1358421}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -292,18 +294,22 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DE1358421}" {
+   }
   }
   coords 4132.306 36.308 7833.822
   m_townName "Gravette"
   {
    SCR_CTI_ActivationArea ActivationArea3 {
     components {
-     Hierarchy "{59DF6D0E10E513EA}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB017480C2C}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 4137.475 36.428 7829.371
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E10E513EA}" {
      }
     }
     TriggerShapeType Sphere
@@ -314,9 +320,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea3 {
     components {
-     Hierarchy "{59D3408D2D153EE2}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D2D153EE2}" {
      }
     }
     TriggerShapeType Sphere
@@ -331,8 +337,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DDEFC2F27}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -400,6 +404,8 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DDEFC2F27}" {
+   }
   }
   coords 4713.431 161.677 6978.969
   m_townName "Montignac"
@@ -407,12 +413,14 @@ $grp SCR_CTI_Town {
   {
    SCR_CTI_ActivationArea ActivationArea4 {
     components {
-     Hierarchy "{59DF6D0E0DC8D24A}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB015BA9362}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 4713.43 161.824 6983.895
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E0DC8D24A}" {
      }
     }
     TriggerShapeType Sphere
@@ -423,9 +431,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea4 {
     components {
-     Hierarchy "{59D3408D2AAC7D0C}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D2AAC7D0C}" {
      }
     }
     TriggerShapeType Sphere
@@ -440,8 +448,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DDB41E69D}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -509,6 +515,8 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DDB41E69D}" {
+   }
   }
   coords 1299.932 38.09 6033.668
   m_townName "Lamentin"
@@ -516,12 +524,14 @@ $grp SCR_CTI_Town {
   {
    SCR_CTI_ActivationArea ActivationArea5 {
     components {
-     Hierarchy "{59DF6D0E09EA34E0}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB01236016C}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 1304.288 38.197 6033.668
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E09EA34E0}" {
      }
     }
     TriggerShapeType Sphere
@@ -532,9 +542,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea5 {
     components {
-     Hierarchy "{59D3408D257A38B5}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D257A38B5}" {
      }
     }
     TriggerShapeType Sphere
@@ -549,8 +559,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DD717357B}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -618,18 +626,22 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DD717357B}" {
+   }
   }
   coords 2605.381 94.163 5415.463
   m_townName "Le Moule"
   {
    SCR_CTI_ActivationArea ActivationArea6 {
     components {
-     Hierarchy "{59DF6D0E068F1873}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB010C00FC6}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 2605.381 94.266 5409.833
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E068F1873}" {
      }
     }
     TriggerShapeType Sphere
@@ -640,9 +652,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea6 {
     components {
-     Hierarchy "{59D3408D2224E95E}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D2224E95E}" {
      }
     }
     TriggerShapeType Sphere
@@ -657,8 +669,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DD4F22559}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -726,18 +736,22 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DD4F22559}" {
+   }
   }
   coords 5477.503 95.806 6087.412
   m_townName "Provins"
   {
    SCR_CTI_ActivationArea ActivationArea7 {
     components {
-     Hierarchy "{59DF6D0E0259C0D0}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB00D404D61}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 5482.085 96.13 6087.41
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E0259C0D0}" {
      }
     }
     TriggerShapeType Sphere
@@ -748,9 +762,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea7 {
     components {
-     Hierarchy "{59D3408D1FB0E9F3}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D1FB0E9F3}" {
      }
     }
     TriggerShapeType Sphere
@@ -765,8 +779,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DD1A60C20}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -834,18 +846,22 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DD1A60C20}" {
+   }
   }
   coords 7082.966 118.979 6020.249
   m_townName "Chotain"
   {
    SCR_CTI_ActivationArea ActivationArea8 {
     components {
-     Hierarchy "{59DF6D0E7E17E628}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB00BFC5E1E}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 7082.966 119.508 6028.094
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E7E17E628}" {
      }
     }
     TriggerShapeType Sphere
@@ -856,9 +872,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea8 {
     components {
-     Hierarchy "{59D3408D1BE37569}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D1BE37569}" {
      }
     }
     TriggerShapeType Sphere
@@ -873,8 +889,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DCD6ADF00}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -942,6 +956,8 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DCD6ADF00}" {
+   }
   }
   coords 5123.634 15.628 3992.189
   m_townName "Morton"
@@ -949,12 +965,14 @@ $grp SCR_CTI_Town {
   {
    SCR_CTI_ActivationArea ActivationArea9 {
     components {
-     Hierarchy "{59DF6D0E7BE31E9E}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB00865A833}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 5123.634 15.628 3998.239
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E7BE31E9E}" {
      }
     }
     TriggerShapeType Sphere
@@ -965,9 +983,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea9 {
     components {
-     Hierarchy "{59D3408D18F084A4}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D18F084A4}" {
      }
     }
     TriggerShapeType Sphere
@@ -982,8 +1000,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DF05074D1}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -1051,18 +1067,22 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DF05074D1}" {
+   }
   }
   coords 7460.326 136.995 4737.408
   m_townName "Levie"
   {
    SCR_CTI_ActivationArea ActivationArea10 {
     components {
-     Hierarchy "{59DF6D0E1D18CBDE}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB01F25D5DB}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 7460.325 137.207 4746.033
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E1D18CBDE}" {
      }
     }
     TriggerShapeType Sphere
@@ -1073,9 +1093,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea10 {
     components {
-     Hierarchy "{59D3408DFEE891CB}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408DFEE891CB}" {
      }
     }
     TriggerShapeType Sphere
@@ -1090,8 +1110,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408DEA23A735}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -1159,18 +1177,22 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408DEA23A735}" {
+   }
   }
   coords 7193.561 136.957 2333.68
   m_townName "Regina"
   {
    SCR_CTI_ActivationArea ActivationArea11 {
     components {
-     Hierarchy "{59DF6D0E18883409}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB01C573E75}" {
      }
      SCR_CTI_CreateTeamComponent "{599F285961FCDFB4}" {
       m_SpawnPos 7198.713 137.051 2338.676
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E18883409}" {
      }
     }
     TriggerShapeType Sphere
@@ -1181,9 +1203,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea11 {
     components {
-     Hierarchy "{59D3408D34A336CC}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D34A336CC}" {
      }
     }
     TriggerShapeType Sphere
@@ -1198,8 +1220,6 @@ $grp SCR_CTI_Town {
   components {
    MeshObject "{599D18449C167C92}" {
     Object "{C41BFB78E6FFFBCB}Assets/Structures/Military/Flags/FlagPole_01/FlagPole_01.xob"
-   }
-   Hierarchy "{59D3408CD56922D0}" {
    }
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
@@ -1267,6 +1287,8 @@ $grp SCR_CTI_Town {
    RplComponent "{599D1845A67C4BA9}" {
     Streamable Disabled
    }
+   Hierarchy "{59D3408CD56922D0}" {
+   }
   }
   coords 4517.271 13.726 10892.203
   m_townName "ST. Philippe"
@@ -1274,12 +1296,14 @@ $grp SCR_CTI_Town {
   {
    SCR_CTI_ActivationArea ActivationArea1 {
     components {
-     Hierarchy "{59DF6D0E21DE917E}" {
+     SCR_CTI_CreateMinesComponent "{5E6EDEB023F3C658}" {
      }
      SCR_CTI_CreateTeamComponent "{59C701EF03F208D9}" {
       m_SpawnPos 4523.813 14.489 10892.203
      }
      RplComponent "{599F1E08CF916CBC}" {
+     }
+     Hierarchy "{59DF6D0E21DE917E}" {
      }
     }
     TriggerShapeType Sphere
@@ -1290,9 +1314,9 @@ $grp SCR_CTI_Town {
    }
    SCR_CTI_CaptureArea CaptureArea1 {
     components {
-     Hierarchy "{59D3408D86373888}" {
-     }
      RplComponent "{59A70A756EDE5E10}" {
+     }
+     Hierarchy "{59D3408D86373888}" {
      }
     }
     TriggerShapeType Sphere
