@@ -21,6 +21,7 @@ class SCR_CTI_Town : BaseGameEntity
 	protected ref map<FactionKey, float> m_capTimes = new map<FactionKey, float>;
 	
 	ref array<AIGroup> m_townGroups = {};
+	ref array<IEntity> m_townMines = {};
 
 	protected SCR_FlagComponent m_flagComponent;
 	protected SCR_CTI_TownMapDescriptorComponent m_mapComponent;
@@ -363,7 +364,7 @@ class SCR_CTI_Town : BaseGameEntity
 			if (!m_townGroups[i].GetCurrentWaypoint())
 			{
 				int rnd = Math.RandomIntInclusive(0, m_townPatrolComponent.waypoints.Count() - 1);
-				m_townGroups[i].FinishCurrentOrder();
+				//m_townGroups[i].FinishCurrentOrder(); // removed by BI
 				m_townGroups[i].AddWaypoint(m_townPatrolComponent.waypoints[rnd]);
 				//PrintFormat("Group: %1, WP: %2", m_townGroups[i], m_townGroups[i].GetCurrentWaypoint());
 			}
@@ -399,13 +400,27 @@ class SCR_CTI_Town : BaseGameEntity
 		m_townGroups.Clear();
 		PrintFormat("CTI :: Town %1 Groups: %2", m_townName, m_townGroups);
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void removeTownMines()
+	{
+		for (int i = m_townMines.Count() - 1; i >= 0; i--)
+		{
+			IEntity mine = m_townMines[i];
+			SCR_EntityHelper.DeleteEntityAndChildren(mine);
+		}
+
+		m_townMines.Clear();
+		PrintFormat("CTI :: Town %1 Mines: %2", m_townName, m_townMines);
+	}
 
 	//------------------------------------------------------------------------------------------------
 	protected void OnTimeOut()
 	{
 		if (m_rplComponent.IsProxy()) return;
 		
-		 removeTownGroups();
+		removeTownGroups();
+		removeTownMines();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -419,8 +434,10 @@ class SCR_CTI_Town : BaseGameEntity
 	{
 		m_onTimeOutInvoker.Remove(OnTimeOut);
 
-		if (!m_townGroups) return;
-		m_townGroups.Clear();
+		if (m_townGroups) m_townGroups.Clear();
 		m_townGroups = null;
+		
+		if (m_townMines) m_townMines.Clear();
+		m_townMines = null;
 	}
 };

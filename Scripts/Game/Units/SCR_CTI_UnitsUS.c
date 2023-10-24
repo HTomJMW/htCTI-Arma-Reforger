@@ -197,8 +197,8 @@ class SCR_CTI_UnitsUS
 
 		resname.Insert("{00C9BBE426F7D45A}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance.et");
 		picture.Insert("");
-		name.Insert("");
-		price.Insert(1000);
+		name.Insert("M997 Ambulance [Mobile Respawn]");
+		price.Insert(2000);
 		buildtime.Insert(25);
 		uplevel.Insert(1);
 		factory.Insert("Light Factory");
@@ -222,16 +222,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{9E8B0E825C072CE5}Prefabs/Vehicles/Wheeled/M923A1/M923A1_medical.et");
-		picture.Insert("");
-		name.Insert("");
-		price.Insert(2500);
-		buildtime.Insert(30);
-		uplevel.Insert(1);
-		factory.Insert("Light Factory");
-		script.Insert("");
-
-		resname.Insert("{A042ACE5C2B13206}Prefabs/Vehicles/Wheeled/M923A1/M923A1_repair.et");
+		resname.Insert("{A042ACE5C2B13207}Prefabs/Vehicles/Wheeled/M923A1/M923A1_repair.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -240,7 +231,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Repair Depot");
 		script.Insert("");
 
-		resname.Insert("{92264FF932676C13}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo.et");
+		resname.Insert("{92264FF932676C14}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -292,6 +283,16 @@ class SCR_CTI_UnitsUS
 		buildtime.Insert(45);
 		uplevel.Insert(1);
 		factory.Insert("Light Factory");
+		script.Insert("");
+		
+		// Air
+		resname.Insert("{49842C04DB51263D}Prefabs/Vehicles/Helicopters/UH1H/UH1H.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(8000);
+		buildtime.Insert(60);
+		uplevel.Insert(0);
+		factory.Insert("Air Factory");
 		script.Insert("");
 	}
 	

@@ -58,7 +58,10 @@ class SCR_CTI_BaseManagementMenu : ChimeraMenuBase
 					RplComponent rplComp = RplComponent.Cast(Replication.FindItem(workerRplId));
 					IEntity worker = rplComp.GetEntity();
 					
-					m_listboxcomp.AddItem("Worker Grid[" + SCR_MapEntity.GetGridPos(worker.GetOrigin()) + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), worker.GetOrigin())) + "m", rplComp);
+					int gridX, gridZ;
+					SCR_MapEntity.GetGridPos(worker.GetOrigin(), gridX, gridZ);
+					
+					m_listboxcomp.AddItem("Worker Grid[" + gridX.ToString() + " " + gridZ.ToString() + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), worker.GetOrigin())) + "m", rplComp);
 				}
 
 				foreach (RplId ussrWIPStructureRplId : m_baseComp.ussrWIPStructureRplIds)
@@ -69,7 +72,10 @@ class SCR_CTI_BaseManagementMenu : ChimeraMenuBase
 					index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(wipStructure.GetPrefabData().GetPrefabName());
 					factoryData = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
 
-					m_listboxcomp.AddItem(factoryData.getName() + " - Work In Progress... Grid[" + SCR_MapEntity.GetGridPos(wipStructure.GetOrigin()) + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), wipStructure.GetOrigin())) + "m", rplComp);
+					int gridX, gridZ;
+					SCR_MapEntity.GetGridPos(wipStructure.GetOrigin(), gridX, gridZ);
+					
+					m_listboxcomp.AddItem(factoryData.getName() + " - Work In Progress... Grid[" + gridX.ToString() + " " + gridZ.ToString() + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), wipStructure.GetOrigin())) + "m", rplComp);
 				}
 					
 				foreach (RplId ussrStructureRplId : m_baseComp.ussrStructureRplIds)
@@ -79,8 +85,11 @@ class SCR_CTI_BaseManagementMenu : ChimeraMenuBase
 					
 					index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(structure.GetPrefabData().GetPrefabName());
 					factoryData = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
+					
+					int gridX, gridZ;
+					SCR_MapEntity.GetGridPos(structure.GetOrigin(), gridX, gridZ);
 						
-					m_listboxcomp.AddItem(factoryData.getName() + " Grid[" + SCR_MapEntity.GetGridPos(structure.GetOrigin()) + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), structure.GetOrigin())) + "m", rplComp);
+					m_listboxcomp.AddItem(factoryData.getName() + " Grid[" + gridX.ToString() + " " + gridZ.ToString() + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), structure.GetOrigin())) + "m", rplComp);
 				}
 
 				break;
@@ -91,8 +100,11 @@ class SCR_CTI_BaseManagementMenu : ChimeraMenuBase
 				{
 					RplComponent rplComp = RplComponent.Cast(Replication.FindItem(workerRplId));
 					IEntity worker = rplComp.GetEntity();
+
+					int gridX, gridZ;
+					SCR_MapEntity.GetGridPos(worker.GetOrigin(), gridX, gridZ);
 					
-					m_listboxcomp.AddItem("Worker Grid[" + SCR_MapEntity.GetGridPos(worker.GetOrigin()) + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), worker.GetOrigin())) + "m", rplComp);
+					m_listboxcomp.AddItem("Worker Grid[" + gridX.ToString() + " " + gridZ.ToString() + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), worker.GetOrigin())) + "m", rplComp);
 				}
 
 				foreach (RplId usWIPStructureRplId : m_baseComp.usWIPStructureRplIds)
@@ -103,7 +115,10 @@ class SCR_CTI_BaseManagementMenu : ChimeraMenuBase
 					index = m_gameMode.FactoriesUS.findIndexFromResourcename(wipStructure.GetPrefabData().GetPrefabName());
 					factoryData = m_gameMode.FactoriesUS.g_US_Factories[index];
 
-					m_listboxcomp.AddItem(factoryData.getName() + " - Work In Progress... Grid[" + SCR_MapEntity.GetGridPos(wipStructure.GetOrigin()) + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), wipStructure.GetOrigin())) + "m", rplComp);
+					int gridX, gridZ;
+					SCR_MapEntity.GetGridPos(wipStructure.GetOrigin(), gridX, gridZ);
+					
+					m_listboxcomp.AddItem(factoryData.getName() + " - Work In Progress... Grid[" + gridX.ToString() + " " + gridZ.ToString() + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), wipStructure.GetOrigin())) + "m", rplComp);
 				}
 
 				foreach (RplId usStructureRplId : m_baseComp.usStructureRplIds)
@@ -114,7 +129,10 @@ class SCR_CTI_BaseManagementMenu : ChimeraMenuBase
 					index = m_gameMode.FactoriesUS.findIndexFromResourcename(structure.GetPrefabData().GetPrefabName());
 					factoryData = m_gameMode.FactoriesUS.g_US_Factories[index];
 
-					m_listboxcomp.AddItem(factoryData.getName() + " Grid[" + SCR_MapEntity.GetGridPos(structure.GetOrigin()) + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), structure.GetOrigin())) + "m", rplComp);
+					int gridX, gridZ;
+					SCR_MapEntity.GetGridPos(structure.GetOrigin(), gridX, gridZ);
+					
+					m_listboxcomp.AddItem(factoryData.getName() + " Grid[" + gridX.ToString() + " " + gridZ.ToString() + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), structure.GetOrigin())) + "m", rplComp);
 				}
 
 				break;
@@ -218,8 +236,11 @@ class SCR_CTI_BaseManagementMenu : ChimeraMenuBase
 
 							int index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(structure.GetPrefabData().GetPrefabName());
 							SCR_CTI_FactoryData factdata = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
+
+							int gridX, gridZ;
+							SCR_MapEntity.GetGridPos(structure.GetOrigin(), gridX, gridZ);
 							
-							m_listboxcomp.AddItem(factdata.getName() + " Grid[" + SCR_MapEntity.GetGridPos(structure.GetOrigin()) + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), structure.GetOrigin())) + "m", rplComp);
+							m_listboxcomp.AddItem(factdata.getName() + " Grid[" + gridX.ToString() + " " + gridZ.ToString() + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), structure.GetOrigin())) + "m", rplComp);
 						}
 					}
 					
@@ -269,8 +290,11 @@ class SCR_CTI_BaseManagementMenu : ChimeraMenuBase
 
 							int index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(structure.GetPrefabData().GetPrefabName());
 							SCR_CTI_FactoryData factdata = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
+
+							int gridX, gridZ;
+							SCR_MapEntity.GetGridPos(structure.GetOrigin(), gridX, gridZ);
 							
-							m_listboxcomp.AddItem(factdata.getName() + " Grid[" + SCR_MapEntity.GetGridPos(structure.GetOrigin()) + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), structure.GetOrigin())) + "m", rplComp);
+							m_listboxcomp.AddItem(factdata.getName() + " Grid[" + gridX.ToString() + " " + gridZ.ToString() + "] Distance: " + Math.Round(vector.Distance(m_pc.GetControlledEntity().GetOrigin(), structure.GetOrigin())) + "m", rplComp);
 						}
 					}
 					

@@ -441,7 +441,10 @@ class SCR_CTI_PurchaseMenu : ChimeraMenuBase
 						if (index > -1)
 						{
 							float distance = vector.Distance(m_pc.GetControlledEntity().GetOrigin(), m_sortedfactories[i].GetOrigin());
-							m_combofactory.AddItem(string.Format(factoryData.getName() + " - " + (Math.Round(distance)).ToString() + "m - Grid [" + SCR_MapEntity.GetGridPos(m_sortedfactories[i].GetOrigin(), 2, 4, ",") + "]"));
+							
+							int gridX, gridZ;
+							SCR_MapEntity.GetGridPos(m_sortedfactories[i].GetOrigin(), gridX, gridZ);
+							m_combofactory.AddItem(string.Format(factoryData.getName() + " - " + (Math.Round(distance)).ToString() + "m - Grid [" + gridX.ToString() + " " + gridZ.ToString() + "]"));
 						}
 					}
 				}

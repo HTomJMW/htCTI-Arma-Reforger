@@ -19,6 +19,7 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 	protected SCR_CTI_Town m_town;
 	protected SCR_CTI_GameMode m_gameMode;
 	protected SCR_CTI_CreateTeamComponent m_createTeamComponent;
+	protected SCR_CTI_CreateMinesComponent m_createMinesComponent;
 	protected RplComponent m_pRplComponent;
 	
 	//! Map of all occupants of this area. key: Faction, value: Array of characters (must be alive)
@@ -83,11 +84,18 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 		foreach (Faction faction : availableFactions)
 			m_mOccupants.Insert(faction, new array<SCR_ChimeraCharacter>());
 		
-		// find create team component
+		// Find components
 		m_createTeamComponent = SCR_CTI_CreateTeamComponent.Cast(FindComponent(SCR_CTI_CreateTeamComponent));
 		if (!m_createTeamComponent)
 		{
 			Debug.Error("SCR_CTI_ActivationArea requires SCR_CTI_CreateTeamComponent to function!");
+			return;
+		}
+
+		m_createMinesComponent = SCR_CTI_CreateMinesComponent.Cast(FindComponent(SCR_CTI_CreateMinesComponent));
+		if (!m_createMinesComponent)
+		{
+			Debug.Error("SCR_CTI_ActivationArea's SCR_CTI_CreateMinesComponent missing.");
 			return;
 		}
 	}
@@ -144,6 +152,7 @@ class SCR_CTI_ActivationArea : ScriptedGameTriggerEntity
 			m_town.setActiveTime(m_gameMode.GetElapsedTime());
 			m_town.setActive(true);
 			m_createTeamComponent.OnTriggerActivate();
+			m_createMinesComponent.OnTriggerActivate();
 			PrintFormat("CTI :: Town %1 is Active", m_town.getTownName());
 		}
 	}

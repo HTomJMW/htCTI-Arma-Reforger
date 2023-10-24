@@ -29,10 +29,11 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	protected override void OnSpawn(IEntity newEnt)
 	{
 		m_spawnedVehicle = Vehicle.Cast(newEnt);
-		
+
 		if (m_items) insertItem(m_spawnedVehicle);
 
-		GarbageManager garbagemanager = GetGame().GetGarbageManager();
+		ChimeraWorld world = newEnt.GetWorld();
+		GarbageSystem garbageSystem = world.GetGarbageSystem();
 
 		switch (m_rnPrefab)
 		{
@@ -41,8 +42,8 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("USSR", rplId);
 
-				garbagemanager.Insert(newEnt);
-				garbagemanager.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
+				garbageSystem.Insert(newEnt);
+				garbageSystem.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
 
 				IEntity child = newEnt.GetChildren();
 				while (child)
@@ -64,8 +65,8 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("US", rplId);
 
-				garbagemanager.Insert(newEnt);
-				garbagemanager.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
+				garbageSystem.Insert(newEnt);
+				garbageSystem.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
 
 				IEntity child = newEnt.GetChildren();
 				while (child)
@@ -84,14 +85,14 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 			}
 			default:
 			{
-				garbagemanager.Insert(newEnt, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
-				garbagemanager.Withdraw(newEnt); // First GetIn event will start GM countdown timer
+				garbageSystem.Insert(newEnt, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
+				garbageSystem.Withdraw(newEnt); // First GetIn event will start GM countdown timer
 				//PrintFormat("CTI :: Default vehicle: %1", m_rnPrefab);
 				break;
 			}
 		}
-		//PrintFormat("CTI :: Vehicle in garbage manager: %1 (%2)", garbagemanager.IsInserted(newEnt).ToString(), m_rnPrefab);
-		//PrintFormat("CTI :: Lifetime: %1 (%2)", garbagemanager.GetLifetime(newEnt), m_rnPrefab);
+		PrintFormat("CTI :: DEBUG :: Vehicle in garbage manager: %1 (%2)", garbageSystem.IsInserted(newEnt).ToString(), m_rnPrefab);
+		PrintFormat("CTI :: DEBUG :: Lifetime: %1 (%2)", garbageSystem.GetLifetime(newEnt), m_rnPrefab);
 
 		if (m_items) m_items.Clear();
 		m_items = null;
@@ -132,10 +133,12 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	protected void insertItem(Vehicle veh)
 	{
 		InventoryStorageManagerComponent ismc = InventoryStorageManagerComponent.Cast(veh.FindComponent(SCR_VehicleInventoryStorageManagerComponent));
-		
+		UniversalInventoryStorageComponent uisc = UniversalInventoryStorageComponent.Cast(veh.FindComponent(UniversalInventoryStorageComponent));
+
 		foreach (IEntity item : m_items)
 		{
-			ismc.TryInsertItem(item); // Maybe need spawn Backpack later than tools... 
+			//ismc.TryInsertItem(item); // Items may stacked
+			ismc.TryInsertItemInStorage(item, uisc);
 		}
 	}
 };

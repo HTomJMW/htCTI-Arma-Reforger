@@ -79,7 +79,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
-			Print("CTI :: Mission version: 0.6.3");
+			Print("CTI :: Mission version: 0.7.0");
 
 			if (RplSession.Mode() == RplMode.Dedicated)
 			{
@@ -346,9 +346,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	}*/
 
 	//------------------------------------------------------------------------------------------------
-	override void OnPlayerKilled(int playerId, IEntity player, IEntity killer)
+	override void OnPlayerKilled(int playerId, IEntity playerEntity, IEntity killerEntity, notnull Instigator killer)
 	{
-		super.OnPlayerKilled(playerId, player, killer);
+		super.OnPlayerKilled(playerId, playerEntity, killerEntity, killer);
 
 		int lastDeath;
 		playersDeathTimes.Find(playerId, lastDeath);
@@ -749,7 +749,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void OnPrioMapOpen(MapConfiguration config)
+	void OnPrioMapOpen(MapConfiguration config)
 	{
 		//if (!SCR_PlayerController.GetLocalControlledEntity()) return;
 
@@ -758,8 +758,9 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void OnPrioMapSelection(vector selectionPos)
+	void OnPrioMapSelection(vector selectionPos)
 	{
+		// TODO Check new selection pos thing!
 		SCR_MapEntity mapEntity = SCR_MapEntity.GetMapInstance();
 
 		float worldX;
@@ -783,7 +784,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	}
 
 	//------------------------------------------------------------------------------------------------
-	protected void OnPrioMapClose(MapConfiguration config)
+	void OnPrioMapClose(MapConfiguration config)
 	{
 		SCR_MapEntity.GetOnMapOpen().Remove(OnPrioMapOpen);
 		SCR_MapEntity.GetOnSelection().Remove(OnPrioMapSelection);

@@ -213,8 +213,9 @@ class SCR_CTI_GearMenu : ChimeraMenuBase
 		m_pc.GetControlledEntity().FindComponents(CharacterGrenadeSlotComponent, m_cgscArray);
 		
 		m_wRoot = GetRootWidget();
-		
-		m_preViewManager = GetGame().GetItemPreviewManager();
+
+		ChimeraWorld world = ChimeraWorld.CastFrom(m_pc.GetControlledEntity().GetWorld());
+		m_preViewManager = world.GetItemPreviewManager();
 		
 		// Handler
 		m_gearButtonHandler = new SCR_CTI_GearMenuButtonHandler();

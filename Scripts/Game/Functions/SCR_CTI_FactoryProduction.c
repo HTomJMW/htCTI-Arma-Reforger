@@ -25,7 +25,9 @@ class SCR_CTI_FactoryProduction
 		
 		if (entity)
 		{
-			PrintFormat("CTI :: Entity spawned: %1, Pos: %2 (GRID: %3)", entity, entity.GetOrigin(), SCR_MapEntity.GetGridPos(entity.GetOrigin()));
+			int gridX, gridZ;
+			SCR_MapEntity.GetGridPos(entity.GetOrigin(), gridX, gridZ);
+			PrintFormat("CTI :: Entity spawned: %1, Pos: %2 (GRID: %3)", entity, entity.GetOrigin(), gridX.ToString() + " " + gridZ.ToString());
 			
 			// TODO temporary -> 180deg turn
 			vector angles = entity.GetAngles();
@@ -78,7 +80,9 @@ class SCR_CTI_FactoryProduction
 				}
 			}
 
-			m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + unitData.getName() + "</color> has arrived from the <color rgba='255,210,115,255'>" + unitData.getFactory() + "</color> at grid <color rgba='255,210,115,255'>[" + SCR_MapEntity.GetGridPos(mat[3]) + "]</color>.", "Information", 15);
+			SCR_MapEntity.GetGridPos(mat[3], gridX, gridZ);
+			
+			m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + unitData.getName() + "</color> has arrived from the <color rgba='255,210,115,255'>" + unitData.getFactory() + "</color> at grid <color rgba='255,210,115,255'>[" + gridX.ToString() + " " + gridZ.ToString() + "]</color>.", "Information", 15);
 		}
 	}
 

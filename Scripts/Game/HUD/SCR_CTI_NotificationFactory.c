@@ -21,7 +21,9 @@ class SCR_CTI_NotificationFactory : SCR_NotificationDisplayData
 		position[1] = y;
 		position[2] = z;
 
-		string gridPos = SCR_MapEntity.GetGridPos(position, 2, 4, ",");
+		int gridX, gridZ;
+		SCR_MapEntity.GetGridPos(position, gridX, gridZ);
+		string gridPos = gridX.ToString() + " " + gridZ.ToString();
 
 		data.SetNotificationTextEntries(factoryName, gridPos);
 		return super.GetText(data);

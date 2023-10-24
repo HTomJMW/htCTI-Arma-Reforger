@@ -69,7 +69,10 @@ class SCR_CTI_BuildStructure
 			vector spPos = mat[3];
 			spPos[1] = spPos[1] + 0.2; // Elevate SP
 			spawn.SetOrigin(spPos);
-			spawn.setDisplayName(factoryData.getName() + " [" + SCR_MapEntity.GetGridPos(spPos) + "]");
+
+			int gridX, gridZ;
+			SCR_MapEntity.GetGridPos(spPos, gridX, gridZ);
+			spawn.setDisplayName(factoryData.getName() + " [" + gridX.ToString() + " " + gridZ.ToString() + "]");
 
 			// Notification
 			FactionManager fm = GetGame().GetFactionManager();

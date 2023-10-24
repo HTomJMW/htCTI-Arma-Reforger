@@ -29,8 +29,11 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 	override void OnMenuInit()
 	{
 		m_gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
-		m_timeAndWeatherManager = GetGame().GetTimeAndWeatherManager();
 		m_pc = GetGame().GetPlayerController();
+		
+		ChimeraWorld world = m_pc.GetWorld();
+		m_timeAndWeatherManager = world.GetTimeAndWeatherManager();
+		
 		m_playerId = m_pc.GetPlayerId();
 		m_pm = GetGame().GetPlayerManager();
 		m_gmc = SCR_GroupsManagerComponent.GetInstance();
@@ -203,7 +206,10 @@ class SCR_CTI_SatCamMenu : ChimeraMenuBase
 				if (min < 10) m = "0" + min.ToString(); else m = min.ToString();
 				if (sec < 10) s = "0" + sec.ToString(); else s = sec.ToString();
 				string time = h + ":" + m + ":" + s + "\n";
-				string position = "Grid position: [" + SCR_MapEntity.GetGridPos(m_manualCam.GetOrigin()) + "]\n";
+
+				int gridX, gridZ;
+				SCR_MapEntity.GetGridPos(m_manualCam.GetOrigin(), gridX, gridZ);
+				string position = "Grid position: [" + gridX.ToString() + " " + gridZ.ToString() + "]\n";
 				m_infoWindowText.SetText(info + weekday + date + time + position);
 			}
 			m_timeDelta = 0;
