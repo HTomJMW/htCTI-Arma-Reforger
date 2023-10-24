@@ -31,9 +31,11 @@ class SCR_CTI_VehicleSpawnPointHandlerComponent : ScriptComponent
 
 		if (ent.GetPrefabData().GetPrefabName() == SCR_CTI_Constants.USSR_MHQ || ent.GetPrefabData().GetPrefabName() == SCR_CTI_Constants.US_MHQ)
 		{
-			GarbageManager garbageManager =  GetGame().GetGarbageManager();
-			garbageManager.Insert(ent);
-			garbageManager.Withdraw(ent); // Maybe OnDestroyed have more instances, so possible need make delayed ask too
+			ChimeraWorld world = ent.GetWorld();
+            GarbageSystem garbageSystem = world.GetGarbageSystem();
+	
+			garbageSystem.Insert(ent);
+			garbageSystem.Withdraw(ent); // Maybe OnDestroyed have more instances, so possible need make delayed ask too
 			
 			SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 			FactionAffiliationComponent faffComp = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));

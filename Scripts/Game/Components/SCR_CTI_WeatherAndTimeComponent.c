@@ -49,7 +49,10 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 			}
 
 			Math.Randomize(-1);
-			m_manager.ForceWeatherTo(false, weatherStates.GetRandomElement().GetStateName());
+			string stateName = weatherStates.GetRandomElement().GetStateName();
+			m_manager.ForceWeatherTo(false, stateName);
+			
+			PrintFormat("CTI :: Weather: %1", stateName);
 		}
 	}
 
@@ -86,7 +89,8 @@ class SCR_CTI_WeatherAndTimeComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void SCR_CTI_WeatherAndTimeComponent(IEntityComponentSource src, IEntity ent, IEntity parent)
 	{
-		m_manager = GetGame().GetTimeAndWeatherManager();
+		ChimeraWorld world = GetOwner().GetWorld();
+		m_manager = world.GetTimeAndWeatherManager();
 		
 		m_timeDelta = 0;
 	}

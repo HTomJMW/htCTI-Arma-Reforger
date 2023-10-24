@@ -54,7 +54,7 @@ class SCR_CTI_UpdateWorkersComponent : ScriptComponent
 		{
 			SCR_AIGroup aiGroup = SCR_AIGroup.Cast(GetGame().SpawnEntityPrefab(Resource.Load("{000CD338713F2B5A}Prefabs/AI/Groups/Group_Base.et"), GetGame().GetWorld()));
 			aiGroup.SetFaction(GetGame().GetFactionManager().GetFactionByKey(factionkey));
-			aiGroup.AddAIEntityToGroup(worker, 0);
+			aiGroup.AddAIEntityToGroup(worker);
 			aiGroup.SetPrivate(true);
 			
 			RplComponent workerRplComp = RplComponent.Cast(worker.FindComponent(RplComponent));

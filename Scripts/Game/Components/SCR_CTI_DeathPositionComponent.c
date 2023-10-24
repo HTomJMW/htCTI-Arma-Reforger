@@ -39,7 +39,7 @@ class SCR_CTI_DeathPositionComponent : ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	protected void OnCharacterDestroyed()
+	protected void OnCharacterDestroyed(Instigator killer, IEntity killerEntity)
 	{
 		m_deathPosition = m_PlayerController.GetControlledEntity().GetOrigin();
 	}

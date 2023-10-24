@@ -94,7 +94,9 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 
 		m_gameMode.bumpMeServer();
 		
-		m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + "Rifleman" + "</color> has arrived at the <color rgba='255,210,115,255'>" + "Flag" + "</color> at grid <color rgba='255,210,115,255'>[" + SCR_MapEntity.GetGridPos(mat[3]) + "]</color>.", "Information", 15);
+		int gridX, gridZ;
+		SCR_MapEntity.GetGridPos(mat[3], gridX, gridZ);
+		m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + "Rifleman" + "</color> has arrived at the <color rgba='255,210,115,255'>" + "Flag" + "</color> at grid <color rgba='255,210,115,255'>[" + gridX.ToString() + " " + gridZ.ToString() + "]</color>.", "Information", 15);
 	}
 
 	//------------------------------------------------------------------------------------------------

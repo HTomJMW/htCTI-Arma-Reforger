@@ -67,14 +67,14 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		/*resname.Insert("{B26CC368BE2940F1}Prefabs/Structures/Airport/CTI_ControlTower_01.et");
+		resname.Insert("{B26CC368BE2940F1}Prefabs/Structures/Airport/CTI_ControlTower_01.et");
 		wipname.Insert("{008116AA975DA252}Prefabs/Structures/Airport/CTI_ControlTower_01_WIP.et");
 		name.Insert("Air Factory");
 		price.Insert(8000);
 		buildtime.Insert(10);
 		distance.Insert(20);
 		placement.Insert(180);
-		script.Insert("");*/
+		script.Insert("");
 
 		resname.Insert("{629CD40ABAEA6CF9}Prefabs/Structures/Infrastructure/Towers/TransmitterTower_01/CTI_TransmitterTower_01_medium.et");
 		wipname.Insert("{D693709149EC77D3}Prefabs/Structures/Infrastructure/Towers/TransmitterTower_01/CTI_TransmitterTower_01_medium_WIP.et");
@@ -103,14 +103,14 @@ class SCR_CTI_FactoriesUSSR
 		placement.Insert(180);
 		script.Insert("");
 		
-		/*resname.Insert("{0148FBB09395D786}Prefabs/Structures/Military/Houses/GuardHouse_02/CTI_GuardHouse_02.et");
+		resname.Insert("{0148FBB09395D786}Prefabs/Structures/Military/Houses/GuardHouse_02/CTI_GuardHouse_02.et");
 		wipname.Insert("{7685EDFEB663C136}Prefabs/Structures/Military/Houses/GuardHouse_02/CTI_GuardHouse_02_WIP.et");
 		name.Insert("Naval");
 		price.Insert(1000);
 		buildtime.Insert(10);
 		distance.Insert(15);
 		placement.Insert(0);
-		script.Insert("");*/
+		script.Insert("");
 	}
 
 	//------------------------------------------------------------------------------------------------

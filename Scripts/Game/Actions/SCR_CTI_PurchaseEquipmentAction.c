@@ -62,8 +62,9 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 
 		IEntity spawnedBox = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
 		if (!spawnedBox) return;
-		
-		GarbageManager garbagemanager = GetGame().GetGarbageManager();
+
+		ChimeraWorld world = GetOwner().GetWorld();
+		GarbageSystem garbagemanager = world.GetGarbageSystem();
 		garbagemanager.Insert(spawnedBox, SCR_CTI_Constants.ITEMCOLLECTIONTIME);
 		
 		setEquipment(userAffiliationComponent);
@@ -82,8 +83,10 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		}
 
 		m_gameMode.bumpMeServer();
-		
-		m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + "Ammo Crate" + "</color> has arrived at the <color rgba='255,210,115,255'>" + "Flag" + "</color> at grid <color rgba='255,210,115,255'>[" + SCR_MapEntity.GetGridPos(mat[3]) + "]</color>.", "Information", 15);
+
+		int gridX, gridZ;
+		SCR_MapEntity.GetGridPos(mat[3], gridX, gridZ);
+		m_gameMode.SendHint(playerId, "Your <color rgba='255,210,115,255'>" + "Ammo Crate" + "</color> has arrived at the <color rgba='255,210,115,255'>" + "Flag" + "</color> at grid <color rgba='255,210,115,255'>[" + gridX.ToString() + " " + gridZ.ToString() + "]</color>.", "Information", 15);
 	}
 
 	//------------------------------------------------------------------------------------------------
