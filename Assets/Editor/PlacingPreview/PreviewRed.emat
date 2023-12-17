@@ -1,0 +1,14 @@
+MatCommon {
+ Color 1 0.216 0.216 1
+ Emissive 1 0.216 0.216 0
+ EmissiveLV 2
+ Sort translucent
+ SortBias 5
+ CastShadow 0
+ ReceiveShadow 0
+ Specular 0.784 0.784 0.784 1
+ SpecularMul 0.2
+ AlphaMul 0.02
+ BlendMode AlphaBlend
+ DisableVertexColor 1
+}
