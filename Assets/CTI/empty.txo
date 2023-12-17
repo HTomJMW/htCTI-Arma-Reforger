@@ -1,6 +1,0 @@
-$object "" {
- #version 1.0
- #tag MergeMeshes "1"
- #tag Coords "XZY"
- #tag Scale "1.000000"
-}
