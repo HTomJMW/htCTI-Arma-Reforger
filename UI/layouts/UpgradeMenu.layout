@@ -1,0 +1,353 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  ImageWidgetClass "{5A8F1305463D2F4F}" {
+   Name "BackGround"
+   Slot FrameWidgetSlot "{5A3D637FFD52AA3B}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -450
+    OffsetLeft -450
+    PositionY -350
+    OffsetTop -350
+    SizeX 900
+    OffsetRight -450
+    SizeY 700
+    OffsetBottom -350
+   }
+   Opacity 0.8
+   Texture "{AE0DAFB0ED1F2B1C}UI/Textures/Menu/background.edds"
+   Image ""
+   Size 64 64
+  }
+  WindowWidgetClass "{5A8F1305463D2F49}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A3D2853D8391800}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX -400
+    OffsetLeft -400
+    PositionY -300
+    OffsetTop -300
+    SizeX 800
+    OffsetRight -400
+    SizeY 600
+    OffsetBottom -300
+   }
+   Clipping False
+   "no focus" 1
+   {
+    WindowWidgetClass "{5A8F1305463D2F48}" {
+     Name "WindowLeft"
+     Slot FrameWidgetSlot "{5A3D28535422FA6D}" {
+      PositionX 0
+      OffsetLeft 0
+      PositionY 0
+      OffsetTop 0
+      SizeX 400
+      OffsetRight -400
+      SizeY 600
+      OffsetBottom -600
+     }
+     {
+      RichTextWidgetClass "{5D391200D20114F4}" {
+       Name "CurrentUpgrade"
+       Slot FrameWidgetSlot "{5D391200D2011511}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 540
+        OffsetTop 540
+        SizeX 380
+        OffsetRight -390
+        SizeY 50
+        OffsetBottom -590
+       }
+       Clipping True
+       Text "Current Upgrade: No Running Upgrade!"
+       "Font Size" 20
+       "Min Font Size" 20
+       "Vertical Alignment" Center
+       Wrap 1
+      }
+      OverlayWidgetClass "{5A8F1305463D7A0A}" {
+       Name "ListBox"
+       Slot FrameWidgetSlot "{5A8341BB5AB21C2D}" {
+        Anchor 0 0 0 0
+        PositionX 10
+        OffsetLeft 10
+        PositionY 10
+        OffsetTop 10
+        SizeX 380
+        OffsetRight -390
+        SizeY 520
+        OffsetBottom -530
+       }
+       components {
+        SCR_ListBoxComponent "{566C9415BAA54E1B}" {
+         m_sElementLayout "{3121BDD71C35E46D}UI/layouts/ListBox/ListBoxElement_Text.layout"
+        }
+       }
+       {
+        ScrollLayoutWidgetClass "{5A8F1305463D7A0B}" {
+         Name "ScrollLayout0"
+         Slot OverlayWidgetSlot "{56691148E692437F}" {
+          HorizontalAlign 3
+          VerticalAlign 3
+         }
+         Color 0.761 0.386 0.08 1
+         {
+          VerticalLayoutWidgetClass "{5A8F1305463D7A04}" {
+           Name "List"
+           Slot AlignableSlot "{56691148E013D9A9}" {
+            HorizontalAlign 3
+            VerticalAlign 3
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+    WindowWidgetClass "{5A8F1305463D7A05}" {
+     Name "WindowRight"
+     Slot FrameWidgetSlot "{5A3D285353B4F95B}" {
+      Anchor 1 0 1 0
+      PositionX -400
+      OffsetLeft -400
+      PositionY 0
+      OffsetTop 0
+      SizeX 400
+      OffsetRight 0
+      SizeY 600
+      OffsetBottom -600
+     }
+     {
+      ButtonWidgetClass "{5A8F1305463D4FA9}" {
+       Name "CancelUpgrade"
+       Slot FrameWidgetSlot "{5A3D2851F4B5B86A}" {
+        PositionX 5
+        OffsetLeft 5
+        PositionY 510
+        OffsetTop 510
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom -550
+       }
+       "no focus" 1
+       {
+        RichTextWidgetClass "{5A8F1305463D4FAA}" {
+         Name "CancelUpgradeText"
+         Slot ButtonWidgetSlot "{5A57061E5F94FC1A}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Cancel Upgrade"
+        }
+       }
+      }
+      ButtonWidgetClass "{5A8F1305463D4FAB}" {
+       Name "StartUpgrade"
+       Slot FrameWidgetSlot "{5A3F4D65D75D94A6}" {
+        Anchor 0 1 0 1
+        PositionX 5
+        OffsetLeft 5
+        PositionY -45
+        OffsetTop -45
+        SizeX 390
+        OffsetRight -395
+        SizeY 40
+        OffsetBottom 5
+       }
+       {
+        RichTextWidgetClass "{5A8F1305463D4F94}" {
+         Name "StartUpgradeText"
+         Slot ButtonWidgetSlot "{5A57061E5B00E6BE}" {
+         }
+         Color 0.173 0.129 0 1
+         Text "Upgrade"
+        }
+       }
+      }
+      RichTextWidgetClass "{5A8F1301A59A3EC3}" {
+       Name "UpgradeLabel"
+       Slot FrameWidgetSlot "{5A8F1301A59A3EBA}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 20
+        OffsetTop 20
+        SizeX 380
+        OffsetRight -390
+        SizeY 40
+        OffsetBottom -60
+       }
+       Text "Upgrade"
+       "Font Size" 32
+       "Min Font Size" 32
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F1301A2550D02}" {
+       Name "UpgradeLevel"
+       Slot FrameWidgetSlot "{5A8F1301A2550EE8}" {
+        PositionX 30
+        OffsetLeft 30
+        PositionY 90
+        OffsetTop 90
+        SizeX 340
+        OffsetRight -370
+        OffsetBottom -120
+       }
+       Text "Upgrade Level:"
+       "Font Size" 20
+       "Min Font Size" 20
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F1301A1CAEBAF}" {
+       Name "UpgradeFunds"
+       Slot FrameWidgetSlot "{5A8F1301A1CAEBB5}" {
+        PositionX 30
+        OffsetLeft 30
+        PositionY 125
+        OffsetTop 125
+        SizeX 340
+        OffsetRight -370
+        OffsetBottom -155
+       }
+       Text "Needed Funds:"
+       "Font Size" 20
+       "Min Font Size" 20
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F1301A089B15C}" {
+       Name "UpgradeTime"
+       Slot FrameWidgetSlot "{5A8F1301A089B121}" {
+        PositionX 30
+        OffsetLeft 30
+        PositionY 160
+        OffsetTop 160
+        SizeX 340
+        OffsetRight -370
+        OffsetBottom -190
+       }
+       Text "Needed Time:"
+       "Font Size" 20
+       "Min Font Size" 20
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F1301E26EB764}" {
+       Name "UpgradeDependence"
+       Slot FrameWidgetSlot "{5A8F1301E26EB74D}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 250
+        OffsetTop 250
+        SizeX 380
+        OffsetRight -390
+        OffsetBottom -280
+       }
+       Text "Dependence:"
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F1301E13C2213}" {
+       Name "UpgradeDescription"
+       Slot FrameWidgetSlot "{5A8F1301E13C23F8}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 350
+        OffsetTop 350
+        SizeX 380
+        OffsetRight -390
+        OffsetBottom -380
+       }
+       Text "Description:"
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F130049E06D32}" {
+       Name "DependenceText"
+       Slot FrameWidgetSlot "{5A8F130049E06D16}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 285
+        OffsetTop 285
+        SizeX 380
+        OffsetRight -390
+        SizeY 60
+        OffsetBottom -345
+       }
+       Text ""
+       "Font Size" 20
+       "Min Font Size" 20
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+      RichTextWidgetClass "{5A8F13004650F4C7}" {
+       Name "DescriptionText"
+       Slot FrameWidgetSlot "{5A8F13004650F4AD}" {
+        PositionX 10
+        OffsetLeft 10
+        PositionY 385
+        OffsetTop 385
+        SizeX 380
+        OffsetRight -390
+        SizeY 60
+        OffsetBottom -445
+       }
+       Text ""
+       "Font Size" 20
+       "Min Font Size" 20
+       "Horizontal Alignment" Center
+       "Vertical Alignment" Center
+      }
+     }
+    }
+    ButtonWidgetClass "{5A8F1305463D4F92}" {
+     Name "Back"
+     Slot FrameWidgetSlot "{5A6D38DAC02C7D8B}" {
+      Anchor 1 0 1 0
+      PositionX -47.5
+      OffsetLeft -47.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight 2.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      TextWidgetClass "{5A8F1305463D4F93}" {
+       Name "BackText"
+       Slot ButtonWidgetSlot "{5A6D38DA34517D6E}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[<]"
+      }
+     }
+    }
+    ButtonWidgetClass "{5A8F1305463DB389}" {
+     Name "Exit"
+     Slot FrameWidgetSlot "{5A432A4F34902E6B}" {
+      Anchor 1 0 1 0
+      PositionX 2.5
+      OffsetLeft 2.5
+      PositionY -47.5
+      OffsetTop -47.5
+      SizeX 45
+      OffsetRight -47.5
+      SizeY 45
+      OffsetBottom 2.5
+     }
+     {
+      RichTextWidgetClass "{5A8F1305463DB386}" {
+       Name "ExitText"
+       Slot ButtonWidgetSlot "{5A57061E54D2921C}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "[X]"
+      }
+     }
+    }
+   }
+  }
+ }
+}

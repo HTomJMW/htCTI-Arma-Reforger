@@ -1,0 +1,87 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ "Ignore Cursor" 0
+ {
+  ImageWidgetClass "{5C7B1CE1B897B3AE}" {
+   Name "BackGround"
+   Slot FrameWidgetSlot "{5A3D637FFD52AA3B}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX 50
+    OffsetLeft 50
+    PositionY -200
+    OffsetTop -200
+    SizeX 300
+    OffsetRight -350
+    SizeY 95
+    OffsetBottom 105
+   }
+   Opacity 0.8
+   Texture "{AE0DAFB0ED1F2B1C}UI/Textures/Menu/background.edds"
+   Image ""
+   Size 64 64
+  }
+  WindowWidgetClass "{5C7B1CE1B897B6F6}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A3D2853D8391800}" {
+    Anchor 0.5 0.5 0.5 0.5
+    PositionX 50
+    OffsetLeft 50
+    PositionY -200
+    OffsetTop -200
+    SizeX 300
+    OffsetRight -350
+    SizeY 95
+    OffsetBottom 105
+   }
+   "no focus" 1
+   {
+    ButtonWidgetClass "{5C7B1CE1B897B6F0}" {
+     Name "ConfirmButton"
+     Slot FrameWidgetSlot "{5A3D2851FFB8520E}" {
+      PositionX 5
+      OffsetLeft 5
+      PositionY 5
+      OffsetTop 5
+      SizeX 290
+      OffsetRight -295
+      SizeY 40
+      OffsetBottom -45
+     }
+     "no focus" 1
+     {
+      RichTextWidgetClass "{5C7B1CE1B897B6F3}" {
+       Name "ConfirmText"
+       Slot ButtonWidgetSlot "{5A570611CC524AED}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "Confirm"
+      }
+     }
+    }
+    ButtonWidgetClass "{5C7B1CE1B897B6FD}" {
+     Name "CancelButton"
+     Slot FrameWidgetSlot "{5A3D2851FAB8DF12}" {
+      PositionX 5
+      OffsetLeft 5
+      PositionY 50
+      OffsetTop 50
+      SizeX 290
+      OffsetRight -295
+      SizeY 40
+      OffsetBottom -90
+     }
+     "no focus" 1
+     {
+      RichTextWidgetClass "{5C7B1CE1B8979D6A}" {
+       Name "CancelText"
+       Slot ButtonWidgetSlot "{5A57061E6A09F80B}" {
+       }
+       Color 0.173 0.129 0 1
+       Text "Cancel"
+      }
+     }
+    }
+   }
+  }
+ }
+}

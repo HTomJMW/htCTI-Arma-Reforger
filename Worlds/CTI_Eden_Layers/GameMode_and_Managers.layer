@@ -1,0 +1,4983 @@
+SCR_AIWorld : "{70CCCF16487C927F}Prefabs/AI/SCR_AIWorld_Eden.et" {
+ components {
+  NavmeshWorldComponent "{5584F30E67F617AD}" {
+   NavmeshSettings NavmeshWorld "{50FC63BEBE3973C5}" {
+    NavmeshFilesConfig BaseNavmeshFilesConfig "{5EAB31F5882B6C13}" {
+     NavmeshFile "{A07353FE17EB2C49}worlds/MP/Navmeshes/CTI_Campaign_Eden.nmn"
+    }
+   }
+  }
+  NavmeshWorldComponent "{5584F30EEFEE1223}" {
+   NavmeshSettings ChimeraNavmeshWorld "{50FC63BEBE3973C5}" {
+    NavmeshFilesConfig BaseNavmeshFilesConfig "{5F1B28B28449311A}" {
+    }
+   }
+  }
+ }
+}
+RadioManagerEntity {
+}
+SCR_CTI_GameMode SCR_CTI_GameMode1 {
+ components {
+  SCR_ArsenalManagerComponent "{5ABEACFA6416EBAE}" {
+  }
+  SCR_CTI_BaseComponent "{5AA31079657C4391}" {
+  }
+  SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
+  }
+  SCR_CTI_UpdateResourcesComponent "{5C4920D164E382C7}" {
+  }
+  SCR_CTI_UpdateVictoryComponent "{59C56020BFAD9417}" {
+  }
+  SCR_CTI_UpdateWorkersComponent "{5D491BCB8B2A53E7}" {
+  }
+  SCR_CTI_UpgradeComponent "{5A994C801F61E5A6}" {
+  }
+  SCR_CTI_WeatherAndTimeComponent "{59F94111F4BBAD91}" {
+  }
+  SCR_CallsignManagerComponent "{599D233D62F0CD34}" {
+  }
+  SCR_CommandingManagerComponent "{5DEEFCBB2D0D53D0}" {
+   m_sCommandsConfigPath "{54764D4E706F348C}Configs/Commanding/Commands.conf"
+  }
+  SCR_CompositionSlotManagerComponent "{599D233D506F9DF5}" {
+  }
+  SCR_DataCollectorComponent "{5DEEFCBB02148FAD}" {
+   m_aModules {
+    SCR_DataCollectorBasicActionsModule "{5DEEFCBB45C7EAFD}" {
+    }
+    SCR_DataCollectorDriverModule "{5DEEFCB8BEF9890C}" {
+    }
+    SCR_DataCollectorShootingModule "{5DEEFCB8B828C8B7}" {
+    }
+    SCR_DataCollectorHealingItemsModule "{5DEEFCB8B24BD586}" {
+    }
+    SCR_DataCollectorCrimesModule "{5F1B28BF6E774843}" {
+     m_aLightBanPunishments {
+      5 15
+     }
+     m_aHeavyBanPunishments {
+      120 480 1440
+     }
+    }
+    SCR_DataCollectorAchievementsModule "{5F1B28BEB5F83524}" {
+    }
+   }
+   m_bOptionalKicking 1
+   m_iOptionalKickingFriendlyPlayerKillPenalty 5
+  }
+  SCR_DebriefingScreenComponent "{5DEEFCB89F989F26}" {
+   m_sHeaderTitle "htCTI"
+   m_BaseLayout SCR_DebriefingScreenUnevenFourTiles "{5DEEFCB88372F4A0}" {
+    m_TopLeftTile SCR_DebriefingScreenBigImageContent "{5DEF0CE9F30C23EC}" {
+     m_sContentImage "{62897631F4A6C7F3}UI/Textures/MissionLoadingScreens/Reforger_ConflictArt_UI.edds"
+    }
+    m_TopRightTile SCR_DebriefingScreenFinishedObjectivesContent "{5DEF0CE9E8D10C0C}" {
+    }
+    m_BottomLeftTile SCR_DebriefingScreenSummaryContent "{5DEF0CE9E1C696C0}" {
+     m_sTitleText "- htCTI - "
+    }
+    m_BottomRightTile SCR_DebriefingScreenStatisticsContent "{5DEF0CE9DBA9C970}" {
+     m_aStatistics {
+      SCR_DebriefingScreenStatisticShotsFired "{5F1B28BDAB7D19A8}" {
+      }
+      SCR_DebriefingScreenStatisticKills "{5F1B28BDA9173ACB}" {
+      }
+      SCR_DebriefingScreenStatisticDeaths "{5F1B28BDA3111178}" {
+      }
+      SCR_DebriefingScreenStatisticDistanceWalked "{5F1B28BD9DABEDEC}" {
+      }
+      SCR_DebriefingScreenStatisticDistanceDriven "{5F1B28BD99D2AF54}" {
+      }
+     }
+    }
+   }
+  }
+  SCR_DestructionManagerComponent "{599D2332BE7B4618}" {
+  }
+  SCR_EntityCatalogManagerComponent "{5DEEFCB8D03517A2}" {
+   m_aEntityCatalogs {
+    SCR_EntityCatalog "{5DEEFCB8CA3B3A66}" {
+     m_eEntityCatalogType CHARACTER
+    }
+    SCR_EntityCatalog "{5DEEFCB8C102450F}" {
+     m_eEntityCatalogType VEHICLE
+    }
+    SCR_EntityCatalog "{5DEEFCB83C4DD7F1}" {
+     m_eEntityCatalogType ITEM
+    }
+    SCR_EntityCatalog "{5EA903932A583A01}" {
+     m_eEntityCatalogType SUPPLY_CONTAINER_ITEM
+    }
+   }
+  }
+  SCR_GameModeHealthSettings "{5DEEFCB829038791}" {
+   m_bPermitUnconsciousVON 1
+  }
+  SCR_GameOverScreenManagerComponent "{5D2333A2A387D4E3}" {
+   m_GameOverScreenConfig SCR_GameOverScreenConfig "{5D2333A2926A7F0E}" {
+    m_aGameOverScreens {
+     SCR_FactionGameOverScreenInfo "{5D250EFB768E27E7}" {
+      m_GameOverScreenId FACTION_VICTORY_SCORE
+      m_GameOverContentLayout "{E04021BC742BE432}UI/layouts/HUD/GameOver/EndScreen/EndScreenContent_Default.layout"
+      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5D250EFB51D12F6B}" {
+       m_sTitle "TEAM WON!"
+       m_sSubtitle "GAME OVER"
+      }
+      m_OptionalEditorParams SCR_BaseGameOverScreenInfoEditor "{5D250EFCB50F2DD8}" {
+       m_MirroredState FACTION_DEFEAT_SCORE
+      }
+     }
+     SCR_FactionGameOverScreenInfo "{5D250EFB6656CA5A}" {
+      m_GameOverScreenId FACTION_DEFEAT_SCORE
+      m_GameOverContentLayout "{E04021BC742BE432}UI/layouts/HUD/GameOver/EndScreen/EndScreenContent_Default.layout"
+      m_OptionalParams SCR_BaseGameOverScreenInfoOptional "{5D250EFB4F0BA802}" {
+       m_sTitle "TEAM WON!"
+       m_sSubtitle "GAME OVER"
+      }
+      m_OptionalEditorParams SCR_BaseGameOverScreenInfoEditor "{5D250EFCB8F7E945}" {
+       m_MirroredState FACTION_VICTORY_SCORE
+      }
+     }
+    }
+   }
+  }
+  SCR_GroupsManagerComponent "{599D2332AB75BC0B}" {
+   m_sDefaultGroupPrefab "{8B4D49A9F324E7D5}Prefabs/Groups/PlayableGroup.et"
+   m_iPlayableGroupFrequencyOffset 500
+  }
+  SCR_HintManagerComponent "{599D233299105F50}" {
+  }
+  SCR_MapConfigComponent "{5D5B284A9D986625}" {
+   m_sGadgetMapConfigPath "{4921DEF8E6362E7E}Configs/Map/MapFullscreenConflict.conf"
+   m_sSpawnMapConfigPath "{901F9ED2088BBCA3}Configs/Map/MapSpawnMenuConflict.conf"
+  }
+  SCR_MapMarkerManagerComponent "{5E5D5BC26D0D45B3}" {
+  }
+  SCR_NametagConfigComponent "{599D233287C00C43}" {
+   m_sConfigPath "{09F7AAA14A642683}Configs/NameTags/NametagFriendlies.conf"
+  }
+  SCR_NightModeGameModeComponent "{5DEEFCB86F5B9026}" {
+  }
+  SCR_NotificationSenderComponent "{599D2332FB47300E}" {
+   m_iKillFeedType FULL
+   m_iReceiveKillFeedType ALL
+   m_PlayerKickReasonsConfig SCR_ConfigurableDialogUiPresets "{5F1B28BCAE3F743E}" {
+    m_aPresets {
+     SCR_KickDialogUiPreset "{5F1B28BCA25FBC64}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "DEFAULT_ERROR"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28BCF2518442}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28BCC6A8025B}" {
+       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28BC1C77E35D}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28BC1B73FCDB}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BC4618C0B4}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28BB9CEEF082}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28BB86531217}" {
+       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28BBE4283E3A}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28BBE4CD4392}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BC4D18F18E}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION_SYSTEM_FAILURE"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28B93DC477F4}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28B92A116897}" {
+       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B9171BF2DB}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B9179257C1}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB2263E690}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION_DISCONNECTION"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Replication_Disconect"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28B94A071974}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28B8B61188CA}" {
+       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B8A8D270FD}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B8A8806C68}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB21565705}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION_CONNECTION_FAILURE"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Replication_ConnectionFail"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28B8DEDAC401}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28B8CDB69E87}" {
+       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B83C4A43E7}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B83DA00C45}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB2069337D}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION_TIMEOUT"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Replication_Timeout"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28B874585056}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28B866759F51}" {
+       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B8581210EE}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B858D02AA3}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB1F7B80E7}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION_FLOODED"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A7892C23D0}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A7EA04C63E}" {
+       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A7DC76E721}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A7DC418017}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB1F86B132}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION_STALLED"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A7124A21C1}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A704C98CF5}" {
+       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A77508461A}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A77594CE67}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB1EABDE05}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION_JIP_ERROR"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A58AEEB0F8}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A588E3C124}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A584D4B051}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5428967C9}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB1DB214F9}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "REPLICATION_CREATION_FAILURE"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A580EE6C1A}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A5FEEC5A21}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4B91F8E80}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4B9AA6447}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB1CB578FF}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "BATTLEYE_INIT"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5F88EEECC}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A5F6BFC741}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A3F1E3067}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A3F949AB6}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB1BE7745F}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "BATTLEYE_INIT_LOAD_ERROR"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_BattlEye_NotInstalled"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5F02D986D}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4AC9B90B2}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4A56B1962}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4A5F0B827}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB1A1C1AD7}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "BATTLEYE_INIT_UNSUPPORTED_VERSION"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_BattlEye_Unsupported"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5EEFFE475}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4A04552B3}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A49CB976FA}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A49B3CE588}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB194CBFFF}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "BATTLEYE"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_BattlEye_GenericIssue"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5EB6E6C66}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A494424694}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A48F022DA6}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A48F9082FE}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB1855D42D}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "BATTLEYE_BAD_SERVICE_VERSION"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_BattlEye_Unsupported"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5E408E945}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A48A6C4484}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A2EFA820C}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A2E9CC330}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB177A169D}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "DATA"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5E11F22C7}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A482EDA373}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A28264422}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A28C6D803}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB17977862}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "DATA_VERSION_MISMATCH"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Data_VersionMismatch"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A22276189}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A5DFB9C3A7}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5DC18776B}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD19A2A1E849}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB15F882FA}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "DATA_RDB_MISMATCH"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Data_RDBMismatch"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5D8FD6FF3}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4F3ED63C4}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4EDD6CE6C}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4ED37FE63}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB0E98FAA0}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "DATA_SCRIPT_MISMATCH"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Data_ScriptMismatch"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5D597E82B}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4E98B53B6}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A1158BDF3}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A12BF6C15}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB0D942D7A}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "DATA_WORLD_LOAD_ERROR"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Data_WorldLoad"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5D2198FFE}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4DE3F3943}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4D9CB5E85}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4D87BA79E}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB0C9EF08A}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLATFORM"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4D56C026D}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4D4A36A9F}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A0A5838B3}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A0A0FA2F0}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB0BCC8C9E}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLATFORM_NO_MP_PRIVILEGE"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Platform_NoPrivilege"
+      m_sTitle "#AR-#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4CB070E92}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4C93A53DE}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4C4F81672}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4C4A95F34}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB0AD4DECF}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Default"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A43FBED4C1}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A5C9D46E12}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A436B1E196}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A7F9ABA84}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB09069536}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_PM_Kicked"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A433CE150C}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A431C23F76}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A42713F510}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A42792E976}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB08390340}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER_KICK"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_PM_Kicked"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5C29B0DD6}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A421A0C5A6}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A41A969714}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A41841CE85}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB0756F96E}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER_KICK_VOTED"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_PM_Kicked"
+      m_sTitle "#AR-ServerBrowser_SessionError"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A416EEB21D}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A53E475E51}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A73E73F19}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A7387B7BD}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB078BE5CB}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER_FRIENDLY_FIRE"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Behavior_FriendlyFire"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A539ECFB8A}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A53741D63D}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A52A4BDD1C}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A6C357088}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB06AA22BE}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER_DISRUPTIVE_BEHAVIOUR"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Behavior_Trolling"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5280EDB9F}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A525F19A44}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A52268F19C}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A6489F8BB}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB0584A154}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER_KICKED_BY_GM"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Editor_KickedByGM"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1F233B83EF}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A51FAEEF72}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A5D857E5E}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A5CC645F1}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB04AF44E6}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER_BANNED_BY_GM"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-KickDialog_Editor_BannedByGM"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A518219732}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1CBD1F09CAFC40}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1F04F96F8B}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1F0493C479}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB03C194F6}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER_BAN"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-ServerBrowser_JoinErrorBanMsg"
+      m_sTitle "#AR-ServerBrowser_JoinErrorBanTittle"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A515DBDBC6}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A566AA45BD}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A55C02394D}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A48A3C649}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+     SCR_KickDialogUiPreset "{5F1B28BB02E35E8B}" {
+      m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
+      m_sTag "PLAYER_MANAGER_TEMP_BAN"
+      m_eVisualStyle WARNING
+      m_sTitleIconImageName "warning"
+      m_sMessage "#AR-ServerBrowser_JoinErrorBanMsg"
+      m_sTitle "#AR-ServerBrowser_JoinErrorBanTittle"
+      m_aButtons {
+       SCR_ConfigurableDialogUiButtonPreset "{5F1B28A512B2BF99}" {
+        m_sTag "confirm"
+        m_sActionName "DialogConfirm"
+        m_sLabel "#AR-Button_Confirm-UC"
+        m_eAlign RIGHT
+       }
+      }
+      m_bCanBeReconnected 0
+      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A51086CB49}" {
+       m_eVisualStyle WARNING
+       m_sTitleIconImageName "warning"
+       m_aButtons {
+        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5568A0C9E}" {
+         m_sTag "confirm"
+         m_sActionName "DialogConfirm"
+         m_sLabel "#AR-Button_Confirm-UC"
+         m_eAlign RIGHT
+        }
+        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A4DE2B451}" {
+         m_sTag "cancel"
+         m_sActionName "MenuBack"
+         m_sLabel "#AR-Workshop_ButtonCancel"
+         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  SCR_PlayerSpawnPointManagerComponent "{599D2332C84C980E}" {
+   m_SpawnPointPrefab "{F6CAD21EDD2D1964}Prefabs/MP/Spawning/PlayerSpawnPoint.et"
+   m_bEnablePlayerSpawnPoints 0
+   m_bDeployableSpawnPointsEnabled 0
+  }
+  SCR_PlayersRestrictionZoneManagerComponent "{599D23321AF91056}" {
+  }
+  SCR_PossessingManagerComponent "{599D2332151E01DC}" {
+  }
+  SCR_RadialMenuItemsComponent "{5DEEFCB9AFB76B8A}" {
+   m_MenuController SCR_RadialMenuController "{5DEEFCB9A7EF02B7}" {
+    m_RMControls SCR_RadialMenuControllerInputs "{5DEEFCB9A0BEFA82}" {
+     m_sControllerContext "WeaponSelectionContext"
+     m_sOpenAction "Inventory_WeaponSwitchingRadial"
+     m_bCloseOnPerform 1
+     m_bShowWhileUnconcious 0
+    }
+   }
+  }
+  SCR_ReconnectComponent "{5DEEFCB9EB3494D6}" {
+  }
+  SCR_RespawnBriefingComponent "{599D23320E4836BE}" {
+   m_Info SCR_UIInfo "{59F74446F6C7A139}" {
+    Name "CTI"
+    Description "CTI mission"
+   }
+   m_aGameModeHints {
+    SCR_UIInfo "{59F74446C0DEA484}" {
+     Name "Arma Reforger htCTI v0.7.9"
+     Description "by [H] Tom"
+     Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
+    }
+   }
+   m_aWinConditions {
+    SCR_BriefingVictoryCondition "{59F744460AF8FB60}" {
+     victoryCondition CUSTOM
+     name "Victory Conditions"
+     description "Capture and hold towns, destroy enemy Bases and MHQ."
+    }
+   }
+  }
+  SCR_RespawnSystemComponent "{5ABD5768B956B1B8}" {
+   components {
+    SCR_FreeSpawnHandlerComponent "{5DEEFCB927EB8286}" {
+    }
+    SCR_PossessSpawnHandlerComponent "{5DEEFCB91DEF8CA4}" {
+    }
+    SCR_SpawnPointSpawnHandlerComponent "{5DEEEE18B8A974E6}" {
+    }
+   }
+   m_SpawnLogic SCR_MenuSpawnLogic "{5DEEEE1B723D0FAB}" {
+   }
+   m_fDeployMenuOpenDelay 2
+  }
+  SCR_RespawnTimerComponent "{599D233269C13252}" {
+   m_fRespawnTime 15
+  }
+  SCR_SaveLoadComponent "{599D233263F4490B}" {
+   m_Struct SCR_MissionStruct "{5F1CBD1502A2AD41}" {
+   }
+   m_iAutosavePeriod 180
+  }
+  SCR_ScoringSystemComponent "{59DD0D587CD66AF0}" {
+   m_iObjectiveScoreMultiplier 3
+  }
+  SCR_SpawnProtectionComponent "{599D233253F1FA12}" {
+   m_fProtectionTime 0.5
+   m_bDisableOnAttack 0
+  }
+  SCR_SpawnerAIGroupManagerComponent "{5DEEFCB900C5F064}" {
+  }
+  SCR_SupportStationManagerComponent "{5EA90390FE6AE698}" {
+  }
+  SCR_TimeAndWeatherHandlerComponent "{5CB73490BB6A346C}" {
+   Enabled 0
+   m_bRandomStartingDaytime 1
+   m_fDayTimeAcceleration 4
+   m_fNightTimeAcceleration 12
+   m_bRandomStartingWeather 1
+   m_bRandomWeatherChanges 1
+   m_bAllowHeaderSettings 1
+  }
+  SCR_TimedSpawnPointComponent "{599D23324D9764F0}" {
+   m_fRespawnTime 15
+  }
+  SCR_VotingManagerComponent "{599D233243E01369}" {
+   m_aVotingTemplates {
+    SCR_VotingKick "{599D2333BAB9DC6C}" {
+     m_bIsValuePlayerID 1
+     m_fThreshold 0.3
+     m_iMinParticipation 0.3
+     m_Info SCR_VotingUIInfo "{599D2333B249E6B8}" {
+      Name "#AR-Voting_KICK_AddVoteName"
+      m_sStartVotingName "#AR-Voting_KICK_StartVotingName"
+      m_sCancelVotingName "#AR-Voting_KICK_CancelVotingName"
+      m_sAbstainVoteName "#AR-Voting_KICK_AbstainVoteName"
+      m_sStickyNotificationText "Vote Kick Player"
+      m_iStartNotificationId VOTING_KICK_START
+      m_iSucceededNotificationId VOTING_KICK_SUCCEED
+      m_iFailedNotificationId VOTING_KICK_FAIL
+     }
+     m_bFactionSpecific 1
+    }
+    SCR_VotingAutoKick "{5F1CBD0A28B13A32}" {
+     m_Type AUTO_KICK
+     m_bIsValuePlayerID 1
+     m_fThreshold 0.3
+     m_iMinParticipation 0.3
+     m_Info SCR_VotingUIInfo "{5F1CBD0A0467AC9E}" {
+      m_sStartVotingName "!PLAYER CAN NEVER START AUTO KICK!"
+      m_sCancelVotingName "#AR-Voting_KICK_CancelVotingName"
+      m_sAbstainVoteName "#AR-Voting_KICK_AbstainVoteName"
+      m_sStickyNotificationText "#AR-Notification_Sticky_VoteAutoKickPlayer"
+      m_iStartNotificationId VOTING_AUTO_KICK_START
+      m_iSucceededNotificationId VOTING_KICK_SUCCEED
+      m_iFailedNotificationId VOTING_KICK_FAIL
+      m_eVoteCastedLocalNotification VOTING_KICK_VOTE_CASTED
+      m_eVoteAbstainedLocalNotification VOTING_KICK_VOTE_ABSTAINED
+     }
+     m_bFactionSpecific 1
+    }
+    SCR_VotingAutoKick "{5F1CBD0A2679F299}" {
+     m_Type AUTO_LIGHTBAN
+     m_bIsValuePlayerID 1
+     m_fThreshold 0.3
+     m_iMinParticipation 0.3
+     m_Info SCR_VotingUIInfo "{5F1CBD0E75DC2977}" {
+      Name "#AR-Voting_BAN_AddVoteName"
+      m_sStartVotingName "!PLAYER CAN NEVER START AUTO LIGHT BAN!"
+      m_sCancelVotingName "#AR-Voting_BAN_CancelVotingName"
+      m_sAbstainVoteName "#AR-Voting_BAN_AbstainVoteName"
+      m_sStickyNotificationText "#AR-Notification_Sticky_VoteAutoLightBanPlayer"
+      m_iStartNotificationId VOTING_AUTO_BAN_LIGHT_START
+      m_iSucceededNotificationId VOTING_BAN_SUCCEED
+      m_iFailedNotificationId VOTING_BAN_FAIL
+      m_eVoteCastedLocalNotification VOTING_BAN_VOTE_CASTED
+      m_eVoteAbstainedLocalNotification VOTING_BAN_VOTE_ABSTAINED
+     }
+     m_bFactionSpecific 1
+    }
+    SCR_VotingAutoKick "{5F1CBD0A25033360}" {
+     m_Type AUTO_HEAVYBAN
+     m_bIsValuePlayerID 1
+     m_fThreshold 0.3
+     m_iMinParticipation 0.3
+     m_Info SCR_VotingUIInfo "{5F1CBD0FBCD0DE74}" {
+      Name "#AR-Voting_BAN_AddVoteName"
+      m_sStartVotingName "!PLAYER CAN NEVER START AUTO HEAVY BAN!"
+      m_sCancelVotingName "#AR-Voting_BAN_CancelVotingName"
+      m_sAbstainVoteName "#AR-Voting_BAN_AbstainVoteName"
+      m_sStickyNotificationText "#AR-Notification_Sticky_VoteAutoHeavyBanPlayer"
+      m_iStartNotificationId VOTING_AUTO_BAN_HEAVY_START
+      m_iSucceededNotificationId VOTING_BAN_SUCCEED
+      m_iFailedNotificationId VOTING_BAN_FAIL
+      m_eVoteCastedLocalNotification VOTING_BAN_VOTE_CASTED
+      m_eVoteAbstainedLocalNotification VOTING_BAN_VOTE_ABSTAINED
+     }
+     m_bFactionSpecific 1
+    }
+   }
+  }
+  SCR_WelcomeScreenComponent "{5DEEFCB95B382385}" {
+   m_sHeaderTitle "htCTI"
+   m_BaseLayout SCR_WelcomeScreenThreeHorizontalColumns "{5DEEFCB952C72209}" {
+    m_LeftColumn SCR_WelcomeScreenFactionContent "{5DEEFCBFA1684215}" {
+    }
+    m_MiddleColumn SCR_WelcomeScreenMissionObjectivesContent "{5DEEFCBF908888B9}" {
+    }
+    m_RightColumn SCR_WelcomeScreenIntroductionContent "{5DEEFCBF85285E02}" {
+     m_bIsInteractible 1
+    }
+   }
+  }
+  SCR_XPHandlerComponent "{5DEEFCBFEE051E76}" {
+   Enabled 0
+  }
+  SerializerInventoryStorageManagerComponent "{5B0348448C9E43FA}" {
+  }
+  RplComponent "{599D2333BE8DD86F}" {
+   Streamable Disabled
+  }
+ }
+ coords 0 0 0
+ Flags 0
+ GarbageSystemConfig "{5BB174944DD9BBFD}Configs/Core/CTI_GarbageSystem.conf"
+ m_eTestGameFlags 6
+ m_bAllowFactionChange 0
+ m_fAutoReloadTime 30
+ {
+  $grp SCR_CTI_VehicleSpawn {
+   SpawnVehicleSouth1 {
+    coords 10040.9 2.687 1586.133
+    angleY -160
+   }
+   SpawnVehicleSouth2 {
+    coords 10050.465 2.739 1582.721
+    angleY -160
+   }
+   SpawnVehicleSouth3 {
+    coords 10059.909 2.803 1579.401
+    angleY -160
+   }
+   SpawnVehicleNorth1 {
+    coords 4456.013 5.781 11218.104
+    angleY 180
+   }
+   SpawnVehicleNorth2 {
+    coords 4446.495 5.813 11217.188
+    angleY -180
+   }
+   SpawnVehicleNorth3 {
+    coords 4431.466 5.781 11225.717
+    angleY -180
+   }
+  }
+ }
+}
+SCR_FactionManager SCR_FactionManager1 {
+ components {
+  SCR_DelegateFactionManagerComponent "{599D233F8BBD4A63}" {
+   m_FactionDelegatePrefab "{94D481BAEC3B8573}PrefabsEditable/System/E_FactionDelegate.et"
+  }
+  RplComponent "{5DEF2B0A2D0F8E06}" {
+   Streamable Disabled
+  }
+ }
+ Flags 0
+ Factions {
+  SCR_Faction "{599D233BB262F71D}" {
+   FactionKey "FIA"
+   FactionColor 0 0.44 0.077 1
+   UIInfo SCR_FactionUIInfo "{599D233C8A95CA5B}" {
+    Name "FIA"
+    Icon "{FB266CDD4502D60B}UI/Textures/Editor/EditableEntities/Factions/EditableEntity_Faction_Fia.edds"
+    m_sNameUpper "FIA"
+   }
+   "Identity of soldiers" FactionIdentity "{599D233CD1B5350D}" {
+    VisualIdentityArray {
+     VisualIdentity "{599D2335C4AFD99D}" {
+      Head "{EAF055495BA85CA1}Prefabs/Characters/Heads/Head_White_02.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{599D2328725CA44C}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F17511F7268AD4B}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F728FBC17}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F714AC2E8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F7111F694}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F71F89676}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F71DABAAB}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F71A632AC}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F71819884}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F70747A83}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F17511F7050D43F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F705BA9B0}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F702023C1}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F702BD824}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F70F0C41F}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F17511F70D9A92E}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F17511F70A4A432}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F708DD3DD}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F6F34D0F7}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E50E37DC17}" {
+      Head "{0F6C19B0574DCBCA}Prefabs/Characters/Heads/Head_White_03.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F17511F6AD18C68}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F17511F6844CB82}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F682D6A78}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F680FCC78}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F68EB5687}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F68B6CD51}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F68B968E6}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F688632D2}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F6762113C}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F6754CE7D}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F17511F67318945}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F672606FF}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F6703B584}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F67F642A8}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F67D3C5AE}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F17511F67B907D0}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F17511F6785C885}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F66623FD9}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F6649628E}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F17511C5B1DCDF7}" {
+      Head "{32583C88222142FD}Prefabs/Characters/Heads/Head_White_04.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F17511F64119448}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F17511F63600514}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F634EEBC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F63165C11}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F63F30DFE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F63D93F8F}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F63A6BE15}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F63A97F7B}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F6270EA3E}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F627B9E75}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F17511F6242B7C9}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F623514BA}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F621CCC0A}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F62078DA8}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F62EF3B90}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F17511F62D1BECD}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F17511F62A4046F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F6281E141}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F61F2A3E6}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F17511C4E249F9E}" {
+      Head "{D7C470712EC4D596}Prefabs/Characters/Heads/Head_White_05.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F17511F5FFAC767}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F17511F5E3F9181}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5E00F80B}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F5EE9E07E}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5EBCD0D9}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F5E9BA5D6}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5D6392F5}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F5D4B6FAC}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5D13A221}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F5D065711}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F17511F5DEFF925}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5DDC21B7}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F5DA5C6E9}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5DA888FC}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F5C729E2D}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F17511F5C656597}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F17511F5C4FC339}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5C3280A9}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F5C04FBDF}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F17511C4ED1DA6D}" {
+      Head "{BB90449192005AB8}Prefabs/Characters/Heads/Head_White_06.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F17511F5A0276B4}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F17511F595C4B1B}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F59FEA5AC}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F59CD47D4}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F599017FE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F599A76E4}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F586CBCC4}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F5836A1DC}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F581975E4}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F580C146E}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F17511F58D7751D}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F58D9D69C}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F58AD7BF2}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5897FA45}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F576450E3}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F17511F576ED288}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F17511F575132C9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5727F0CC}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F572A9A29}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F17511C4E940429}" {
+      Head "{C1F80EE178D948D6}Prefabs/Characters/Heads/Head_White_08.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F17511F54005336}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F17511F536A8E29}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F5302C5F5}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F53D179FA}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F53A4A51E}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F538A2B82}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F527CCEED}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F52423168}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F52346FF7}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F521A276D}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F17511F520C8A29}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F52D2B810}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F52C53A41}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F512713B3}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F51F64481}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F17511F51DB054D}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F17511F51A86136}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F50142992}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F50B2D30B}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E50CDB75E4}" {
+      Head "{24644218743CDFBD}Prefabs/Characters/Heads/Head_White_09.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F17511F4D250327}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F17511F4C4C958B}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F4CFC44ED}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F4CC3CD6E}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F4C90CD3D}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F4B677000}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F4B69D9CE}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F4B398284}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F4B2D6D84}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F4BFDFCAB}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F17511F4BE092BD}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F4BEB0D00}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F4BA4317F}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F4A765FDC}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F4A463817}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F17511F4A48DB13}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F17511F49776526}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F494002E7}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F49CC371F}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E50B73137C}" {
+      Head "{143245D81F2BAB94}Prefabs/Characters/Heads/Head_White_10.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F17511F47F8F050}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F17511F463596E3}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F46A7F155}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F45738558}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F454C0F61}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F451DF54B}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F4500936B}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F45DC0E17}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F45C2C9C7}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F459D7B9B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F17511F4587FBB2}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F458A58A9}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F4445D80B}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F4417571F}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F44E0FD40}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F17511F44EB5DD5}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F17511F44A64E17}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F17511F43163807}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F17511F43E3CD03}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+    }
+    SoundIdentityArray {
+     SoundIdentity "{5E0D28E6A675AE6F}" {
+      VoiceID 1
+     }
+     SoundIdentity "{5F1751179B3AE2F4}" {
+      VoiceID 1
+      VoicePitch 0.5
+     }
+     SoundIdentity "{5F1751179BAAE637}" {
+      VoiceID 1
+      VoicePitch -0.5
+     }
+     SoundIdentity "{5F1751179A6A4FA1}" {
+      VoiceID 2
+     }
+     SoundIdentity "{5F1751179AC760D5}" {
+      VoiceID 2
+      VoicePitch 0.5
+     }
+     SoundIdentity "{5F175117985389A4}" {
+      VoiceID 2
+      VoicePitch -0.5
+     }
+    }
+    SocialIdentity SocialIdentity "{599D23286F203E3C}" {
+     NamesConfig {
+      "#AR-FirstName_CZ_Ales" "#AR-FirstName_CZ_Antonin" "#AR-FirstName_CZ_David" "#AR-FirstName_CZ_Jan" "#AR-FirstName_CZ_Janek" "#AR-FirstName_CZ_Jaroslav" "#AR-FirstName_CZ_Jiri" "#AR-FirstName_CZ_Josef" "#AR-FirstName_CZ_Karel" "#AR-FirstName_CZ_Lubos" "#AR-FirstName_CZ_Lukas" "#AR-FirstName_CZ_Marek" "#AR-FirstName_CZ_Martin" "#AR-FirstName_CZ_Michal" "#AR-FirstName_CZ_Milan" "#AR-FirstName_CZ_Miroslav" "#AR-FirstName_CZ_Ondrej" "#AR-FirstName_CZ_Pavel" "#AR-FirstName_CZ_Petr" "#AR-FirstName_CZ_Radek" "#AR-FirstName_CZ_Simon" "#AR-FirstName_CZ_Tomas" "#AR-FirstName_CZ_Vaclav"
+     }
+     SurnamesConfig {
+      "#AR-Surname_CZ_Bartos" "#AR-Surname_CZ_Benes" "#AR-Surname_CZ_Beranek" "#AR-Surname_CZ_Cermak" "#AR-Surname_CZ_Cerny" "#AR-Surname_CZ_Dvorak" "#AR-Surname_CZ_Dymorak" "#AR-Surname_CZ_Hajek" "#AR-Surname_CZ_Jelinek" "#AR-Surname_CZ_Kadlec" "#AR-Surname_CZ_Kolar" "#AR-Surname_CZ_Kral" "#AR-Surname_CZ_Matous" "#AR-Surname_CZ_Mensik" "#AR-Surname_CZ_Navratil" "#AR-Surname_CZ_Pokorny" "#AR-Surname_CZ_Ryman" "#AR-Surname_CZ_Sedlacek" "#AR-Surname_CZ_Soukup" "#AR-Surname_CZ_Vanek" "#AR-Surname_CZ_Vitek" "#AR-Surname_CZ_Zajic" "#AR-Surname_CZ_Zemanek"
+     }
+    }
+   }
+   m_iOrder 2000
+   m_OutlineFactionColor 0 0.082 0.024 1
+   m_bIsPlayable 0
+   m_sFactionFlag "{B784E694BA4A7D40}UI/Textures/Flags/Everon-flag-base-3it.edds"
+   m_FactionFlagMaterial "{B7A02313829700F9}Assets/Props/Fabric/Flags/Data/Flag_1_2_Green.emat"
+   m_FactionLabel FACTION_FIA
+   m_CallsignInfo SCR_FactionCallsignInfo "{599D23286B7BEA87}" {
+    m_sCallsignGroupFormat "%1"
+    m_sCallsignCharacterFormat "%1"
+    m_sCallsignCharacterWithRoleFormat "%1"
+    m_aCharacterRoleCallsigns {
+     SCR_PlayerLeaderRoleCallsign "{5F17511635F8EF25}" {
+      m_sRoleName "#AR-Role_TeamLeader"
+      m_eRoleAvailableForCharacterType PLAYER_ONLY
+     }
+    }
+   }
+   m_sFactionRadioEncryptionKey "beefGoulash"
+   m_iFactionRadioFrequency 52000
+   m_aEntityCatalogs {
+    SCR_EntityCatalogMultiList "{5F1751109DAC6B27}" {
+     m_eEntityCatalogType CHARACTER
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F175110EE160754}" {
+       m_sEntityPrefab "{FF43925D26526B95}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_AAT.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110ED87C6E4}" {
+       m_sEntityPrefab "{75FC25863194612A}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_AMG.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110EC87994C}" {
+       m_sEntityPrefab "{D25BC9815A9F9E8D}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_AT.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110EBAEC8C5}" {
+       m_sEntityPrefab "{58E47E5A4D599432}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_MG.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110EACE3A27}" {
+       m_sEntityPrefab "{FE65E8C60C751352}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_PL.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110E9B4DDFD}" {
+       m_sEntityPrefab "{84B40583F4D1B7A3}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Rifleman.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110E8C7A3F8}" {
+       m_sEntityPrefab "{23D81C023DBF85AC}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_RTO.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110E7C42113}" {
+       m_sEntityPrefab "{45A02CA25CBA9443}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Medic.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110E6D758DC}" {
+       m_sEntityPrefab "{BF1E43FF39AA526B}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Scout.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110E5F892C7}" {
+       m_sEntityPrefab "{CE33AB22F61F3365}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Sharpshooter.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110E3B9F793}" {
+       m_sEntityPrefab "{677B515F119222C2}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_SL.et"
+      }
+      SCR_EntityCatalogEntry "{5F175110E2AEBD71}" {
+       m_sEntityPrefab "{854C04F0EA2129CC}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Unarmed.et"
+      }
+     }
+    }
+    SCR_EntityCatalogMultiList "{5F175113B66D0A62}" {
+     m_eEntityCatalogType VEHICLE
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F176E28915517A5}" {
+       m_sEntityPrefab "{B47110AA1A806556}Prefabs/Vehicles/Wheeled/BTR70/BTR70_FIA.et"
+      }
+     }
+    }
+    SCR_EntityCatalogMultiList "{5F175113F3236BB3}" {
+     m_eEntityCatalogType GROUP
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F175113C37321B3}" {
+       m_sEntityPrefab "{CE41AF625D05D0F0}Prefabs/Groups/INDFOR/Group_FIA_RifleSquad.et"
+      }
+      SCR_EntityCatalogEntry "{5F175113C2327199}" {
+       m_sEntityPrefab "{5BEA04939D148B1D}Prefabs/Groups/INDFOR/Group_FIA_FireTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F175113C11CDD17}" {
+       m_sEntityPrefab "{22F33D3EC8F281AB}Prefabs/Groups/INDFOR/Group_FIA_MachineGunTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F175113C00CE18F}" {
+       m_sEntityPrefab "{2E9C920C3ACA2C6F}Prefabs/Groups/INDFOR/Group_FIA_ReconTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F1751133F2AD74B}" {
+       m_sEntityPrefab "{6307F42403E9B8A4}Prefabs/Groups/INDFOR/Group_FIA_SharpshooterTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F1751133E34928D}" {
+       m_sEntityPrefab "{2CC26054775FBA2C}Prefabs/Groups/INDFOR/Group_FIA_Team_AT.et"
+      }
+      SCR_EntityCatalogEntry "{5F1751133A9268B3}" {
+       m_sEntityPrefab "{581106FA58919E89}Prefabs/Groups/INDFOR/Group_FIA_MedicalSection.et"
+      }
+      SCR_EntityCatalogEntry "{5F175113399AEE13}" {
+       m_sEntityPrefab "{EE92725E9B949C3D}Prefabs/Groups/INDFOR/Group_FIA_PlatoonHQ.et"
+      }
+     }
+    }
+    SCR_EntityCatalog "{5F175113E92C93F1}" {
+     m_eEntityCatalogType WEAPONS_TRIPOD
+    }
+    SCR_EntityCatalogMultiList "{5F175113D9E36C6D}" {
+     m_eEntityCatalogType ITEM
+    }
+   }
+   m_sGroupFlagsImageSet "{301FC1A2A46D3E0D}UI/Textures/GroupManagement/FlagIcons/GroupFlagsIndfor.imageset"
+   m_aFlagNames {
+   }
+  }
+  SCR_Faction "{599D233B986EAF40}" {
+   FactionKey "USSR"
+   FactionColor 0.855 0.031 0.027 1
+   UIInfo SCR_FactionUIInfo "{599D233C74551FA2}" {
+    Name "USSR"
+    Icon "{40B12B0DF911B856}UI/Textures/Editor/EditableEntities/Factions/EditableEntity_Faction_USSR.edds"
+    m_sNameUpper "USSR"
+   }
+   "Identity of soldiers" FactionIdentity "{599D233C58D1B153}" {
+    VisualIdentityArray {
+     VisualIdentity "{599D2335615AB40F}" {
+      Head "{EAF055495BA85CA1}Prefabs/Characters/Heads/Head_White_02.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194918B8925812}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F194918B6FCD5BA}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5422DC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B51FDF19}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5F3F665}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5D6D2AD}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5C87559}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5A79A0D}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B598EC35}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4724698}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F194918B4698812}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4420B27}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B43B369C}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4FB830D}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4D25D06}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F194918B4B44B6B}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F194918B37C7CA9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B338F0EF}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B3E945B5}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F19491BD45E05CF}" {
+      Head "{0F6C19B0574DCBCA}Prefabs/Characters/Heads/Head_White_03.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194919E1B8EC28}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F194918B6FCD5BA}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5422DC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B51FDF19}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5F3F665}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5D6D2AD}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5C87559}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5A79A0D}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B598EC35}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4724698}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F194918B4698812}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4420B27}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B43B369C}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4FB830D}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4D25D06}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F194918B4B44B6B}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F194918B37C7CA9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B338F0EF}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B3E945B5}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E6ED5DF5C4}" {
+      Head "{32583C88222142FD}Prefabs/Characters/Heads/Head_White_04.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194919D749E9C5}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F194918B6FCD5BA}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5422DC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B51FDF19}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5F3F665}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5D6D2AD}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5C87559}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5A79A0D}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B598EC35}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4724698}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F194918B4698812}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4420B27}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B43B369C}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4FB830D}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4D25D06}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F194918B4B44B6B}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F194918B37C7CA9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B338F0EF}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B3E945B5}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F19491B2EEBD04A}" {
+      Head "{D7C470712EC4D596}Prefabs/Characters/Heads/Head_White_05.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194919D2798E52}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F194918B6FCD5BA}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5422DC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B51FDF19}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5F3F665}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5D6D2AD}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5C87559}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5A79A0D}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B598EC35}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4724698}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F194918B4698812}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4420B27}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B43B369C}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4FB830D}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4D25D06}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F194918B4B44B6B}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F194918B37C7CA9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B338F0EF}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B3E945B5}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E6ED0D2D9F}" {
+      Head "{BB90449192005AB8}Prefabs/Characters/Heads/Head_White_06.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194919CF5A7B6E}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F194918B6FCD5BA}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5422DC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B51FDF19}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5F3F665}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5D6D2AD}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5C87559}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5A79A0D}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B598EC35}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4724698}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F194918B4698812}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4420B27}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B43B369C}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4FB830D}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4D25D06}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F194918B4B44B6B}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F194918B37C7CA9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B338F0EF}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B3E945B5}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E6EDD457F7}" {
+      Head "{C1F80EE178D948D6}Prefabs/Characters/Heads/Head_White_08.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194919C968EDEB}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F194918B6FCD5BA}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5422DC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B51FDF19}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5F3F665}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5D6D2AD}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5C87559}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5A79A0D}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B598EC35}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4724698}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F194918B4698812}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4420B27}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B43B369C}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4FB830D}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4D25D06}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F194918B4B44B6B}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F194918B37C7CA9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B338F0EF}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B3E945B5}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F19491B0C3434BD}" {
+      Head "{24644218743CDFBD}Prefabs/Characters/Heads/Head_White_09.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194919C6DBE0E4}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F194918B6FCD5BA}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5422DC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B51FDF19}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5F3F665}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5D6D2AD}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5C87559}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5A79A0D}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B598EC35}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4724698}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F194918B4698812}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4420B27}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B43B369C}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4FB830D}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4D25D06}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F194918B4B44B6B}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F194918B37C7CA9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B338F0EF}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B3E945B5}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F19491B0CEA347C}" {
+      Head "{143245D81F2BAB94}Prefabs/Characters/Heads/Head_White_10.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194919C4B1E535}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F194918B6FCD5BA}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5422DC3}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B51FDF19}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5F3F665}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5D6D2AD}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B5C87559}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B5A79A0D}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B598EC35}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4724698}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F194918B4698812}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4420B27}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B43B369C}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B4FB830D}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B4D25D06}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F194918B4B44B6B}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F194918B37C7CA9}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F194918B338F0EF}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F194918B3E945B5}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+    }
+    SoundIdentityArray {
+     SoundIdentity "{599D23286116DCE9}" {
+      VoiceID 101
+     }
+     SoundIdentity "{5F19491E482EBC93}" {
+      VoiceID 101
+      VoicePitch 0.5
+     }
+     SoundIdentity "{5F19491E48EF1AD8}" {
+      VoiceID 101
+      VoicePitch -0.5
+     }
+     SoundIdentity "{5F19491E48B43076}" {
+      VoiceID 102
+     }
+     SoundIdentity "{5F19491E489F0D8E}" {
+      VoiceID 102
+      VoicePitch 0.5
+     }
+     SoundIdentity "{5F19491E4700891D}" {
+      VoiceID 102
+      VoicePitch -0.5
+     }
+    }
+    SocialIdentity SocialIdentity "{599D233C564EF30A}" {
+     NamesConfig {
+      "#AR-FirstName_RU_Alexander" "#AR-FirstName_RU_Alexey" "#AR-FirstName_RU_Andrei" "#AR-FirstName_RU_Arkady" "#AR-FirstName_RU_Artyom" "#AR-FirstName_RU_Boris" "#AR-FirstName_RU_Dmitry" "#AR-FirstName_RU_Evgeny" "#AR-FirstName_RU_Fyodor" "#AR-FirstName_RU_Grigory" "#AR-FirstName_RU_Iosif" "#AR-FirstName_RU_Ivan" "#AR-FirstName_RU_Lev" "#AR-FirstName_RU_Maxim" "#AR-FirstName_RU_Mikhail" "#AR-FirstName_RU_Oleg" "#AR-FirstName_RU_Rodion" "#AR-FirstName_RU_Roman" "#AR-FirstName_RU_Sergei" "#AR-FirstName_RU_Vasily" "#AR-FirstName_RU_Victor" "#AR-FirstName_RU_Vladimir" "#AR-FirstName_RU_Yury"
+     }
+     SurnamesConfig {
+      "#AR-Surname_RU_Abramov" "#AR-Surname_RU_Agafonov" "#AR-Surname_RU_Baranov" "#AR-Surname_RU_Fedorov" "#AR-Surname_RU_Golubev" "#AR-Surname_RU_Ivanov" "#AR-Surname_RU_Koganovich" "#AR-Surname_RU_Kuznetsov" "#AR-Surname_RU_Lebedev" "#AR-Surname_RU_Levin" "#AR-Surname_RU_Morozov" "#AR-Surname_RU_Nikitin" "#AR-Surname_RU_Orlov" "#AR-Surname_RU_Pasternak" "#AR-Surname_RU_Petrov" "#AR-Surname_RU_Popov" "#AR-Surname_RU_Semenov" "#AR-Surname_RU_Shevchenko" "#AR-Surname_RU_Smirnov" "#AR-Surname_RU_Sokolov" "#AR-Surname_RU_Turgenev" "#AR-Surname_RU_Volkov" "#AR-Surname_RU_Zaitsev"
+     }
+    }
+   }
+   m_iOrder 1000
+   m_OutlineFactionColor 0.169 0.008 0.008 1
+   m_sFactionFlag "{50824EB9F2C215AB}UI/Textures/Flags/USSR-flag-base-3it.edds"
+   m_FactionFlagMaterial "{D33A1334B4A3369D}Assets/Props/Fabric/Flags/Data/Flag_1_2_USSR.emat"
+   m_FactionLabel FACTION_USSR
+   m_CallsignInfo SCR_FactionCallsignInfo "{599D23285FA119FD}" {
+    m_bIsAssignedRandomly 0
+    m_aCompanyNames {
+     SCR_CallsignInfo "{5F036D5874C92E80}" {
+      m_sCallsign "Alpha"
+     }
+     SCR_CallsignInfo "{5F036D586E1A13E9}" {
+      m_sCallsign "Bravo"
+     }
+     SCR_CallsignInfo "{5F036D586ED72F1E}" {
+      m_sCallsign "Charlie"
+     }
+     SCR_CallsignInfo "{5F036D586ECA06AF}" {
+      m_sCallsign "Delta"
+     }
+     SCR_CallsignInfo "{5F036D586EACFF86}" {
+      m_sCallsign "Echo"
+     }
+     SCR_CallsignInfo "{5F036D586E80496E}" {
+      m_sCallsign "Foxtrot"
+     }
+     SCR_CallsignInfo "{5F036D586D78B8E2}" {
+      m_sCallsign "Golf"
+     }
+     SCR_CallsignInfo "{5F036D586D50F881}" {
+      m_sCallsign "Hotel"
+     }
+     SCR_CallsignInfo "{5F036D586D49E43C}" {
+      m_sCallsign "India"
+     }
+     SCR_CallsignInfo "{5F036D586D220610}" {
+      m_sCallsign "Juliet"
+     }
+     SCR_CallsignInfo "{5F036D586D1A7039}" {
+      m_sCallsign "Kilo"
+     }
+     SCR_CallsignInfo "{5F036D586DF2B561}" {
+      m_sCallsign "Lima"
+     }
+     SCR_CallsignInfo "{5F036D586DE9674D}" {
+      m_sCallsign "Mike"
+     }
+     SCR_CallsignInfo "{5F036D586DC1F4C4}" {
+      m_sCallsign "November"
+     }
+     SCR_CallsignInfo "{5F036D586DBB93EC}" {
+      m_sCallsign "Oscar"
+     }
+     SCR_CallsignInfo "{5F036D586D9C2676}" {
+      m_sCallsign "Papa"
+     }
+     SCR_CallsignInfo "{5F036D586C75867D}" {
+      m_sCallsign "Quebec"
+     }
+     SCR_CallsignInfo "{5F036D5868454BDA}" {
+      m_sCallsign "Romeo"
+     }
+     SCR_CallsignInfo "{5F036D586826C5C0}" {
+      m_sCallsign "Sierra"
+     }
+     SCR_CallsignInfo "{5F036D58680FDC12}" {
+      m_sCallsign "Tango"
+     }
+     SCR_CallsignInfo "{5F036D5868C59579}" {
+      m_sCallsign "Uniform"
+     }
+     SCR_CallsignInfo "{5F036D5868BDFD08}" {
+      m_sCallsign "Victor"
+     }
+     SCR_CallsignInfo "{5F036D58689642E6}" {
+      m_sCallsign "Whiskey"
+     }
+     SCR_CallsignInfo "{5F036D58688C4908}" {
+      m_sCallsign "Xray"
+     }
+     SCR_CallsignInfo "{5F036D586766ED3A}" {
+      m_sCallsign "Yankee"
+     }
+     SCR_CallsignInfo "{5F036D58673E0C36}" {
+      m_sCallsign "Zulu"
+     }
+    }
+    m_aPlatoonNames {
+     SCR_CallsignInfo "{5F1969D05D664021}" {
+      m_sCallsign "1"
+     }
+    }
+    m_aSquadNames {
+     SCR_CallsignInfo "{5F1969D05D8033EF}" {
+      m_sCallsign "1"
+     }
+    }
+    m_sCallsignGroupFormat "%1"
+    m_sCallsignCharacterFormat "%1"
+    m_sCallsignCharacterWithRoleFormat "%1"
+    m_aCharacterRoleCallsigns {
+     SCR_LeaderRoleCallsign "{5F19491CD5E0EC82}" {
+      m_sRoleName "#AR-Role_TeamLeader"
+      m_eRoleAvailableForCharacterType PLAYER_ONLY
+     }
+    }
+   }
+   m_aPredefinedGroups {
+    SCR_GroupPreset "{5E0D28E2AFF65372}" {
+     m_sGroupName "Alpha"
+     m_iGroupSize 8
+     m_iRadioFrequency 30000
+    }
+    SCR_GroupPreset "{5E0D28E2CDCE568A}" {
+     m_sGroupName "Bravo"
+     m_iGroupSize 8
+     m_iRadioFrequency 32000
+    }
+    SCR_GroupPreset "{5E0D28E2CDA22ECE}" {
+     m_sGroupName "Charlie"
+     m_iGroupSize 8
+     m_iRadioFrequency 34000
+    }
+    SCR_GroupPreset "{5E0D28E2CD9BE00E}" {
+     m_sGroupName "Delta"
+     m_iGroupSize 8
+     m_iRadioFrequency 36000
+    }
+    SCR_GroupPreset "{5E0D28E2CC7D1B00}" {
+     m_sGroupName "Echo"
+     m_iGroupSize 8
+     m_iRadioFrequency 38000
+    }
+    SCR_GroupPreset "{5E0D28E2CC502C0B}" {
+     m_sGroupName "Foxtrot"
+     m_iGroupSize 8
+     m_iRadioFrequency 40000
+    }
+    SCR_GroupPreset "{5E0D28E2CC48C51B}" {
+     m_sGroupName "Golf"
+     m_iGroupSize 8
+     m_iRadioFrequency 42000
+    }
+    SCR_GroupPreset "{5E0D28E2CC2398D9}" {
+     m_sGroupName "Hotel"
+     m_iGroupSize 8
+     m_iRadioFrequency 44000
+    }
+    SCR_GroupPreset "{5E0D28E2CC04084F}" {
+     m_sGroupName "India"
+     m_iGroupSize 8
+     m_iRadioFrequency 46000
+    }
+    SCR_GroupPreset "{5E0D28E2CCF34CD0}" {
+     m_sGroupName "Juliet"
+     m_iGroupSize 8
+     m_iRadioFrequency 48000
+    }
+    SCR_GroupPreset "{5E0D28E2CCE997B6}" {
+     m_sGroupName "Kilo"
+     m_iGroupSize 8
+     m_iRadioFrequency 50000
+    }
+    SCR_GroupPreset "{5E0D28E2CCC1B358}" {
+     m_sGroupName "Lima"
+     m_iGroupSize 8
+     m_iRadioFrequency 52000
+    }
+    SCR_GroupPreset "{5E0D28E2CCB98634}" {
+     m_sGroupName "Mike"
+     m_iGroupSize 8
+     m_iRadioFrequency 54000
+    }
+    SCR_GroupPreset "{5E0D28E2CC926ED2}" {
+     m_sGroupName "November"
+     m_iGroupSize 8
+     m_iRadioFrequency 56000
+    }
+    SCR_GroupPreset "{5E0D28E2CC8AB942}" {
+     m_sGroupName "Oscar"
+     m_iGroupSize 8
+     m_iRadioFrequency 58000
+    }
+    SCR_GroupPreset "{5E0D28E2CB6DB001}" {
+     m_sGroupName "Papa"
+     m_iGroupSize 8
+     m_iRadioFrequency 60000
+    }
+    SCR_GroupPreset "{5E0D28E2CB441178}" {
+     m_sGroupName "Quebec"
+     m_iGroupSize 8
+     m_iRadioFrequency 62000
+    }
+    SCR_GroupPreset "{5E0D28E2CB3D4FBE}" {
+     m_sGroupName "Romeo"
+     m_iGroupSize 8
+     m_iRadioFrequency 64000
+    }
+    SCR_GroupPreset "{5E0D28E2CB15CE02}" {
+     m_sGroupName "Sierra"
+     m_iGroupSize 8
+     m_iRadioFrequency 66000
+    }
+    SCR_GroupPreset "{5E0D28E2CB0DDA82}" {
+     m_sGroupName "Tango"
+     m_iGroupSize 8
+     m_iRadioFrequency 68000
+    }
+    SCR_GroupPreset "{5E0D28E2CBE07AFE}" {
+     m_sGroupName "Uniform"
+     m_iGroupSize 8
+     m_iRadioFrequency 70000
+    }
+    SCR_GroupPreset "{5E0D28E2CBDAC305}" {
+     m_sGroupName "Victor"
+     m_iGroupSize 8
+     m_iRadioFrequency 72000
+    }
+    SCR_GroupPreset "{5E0D28E2CBBC7964}" {
+     m_sGroupName "Whiskey"
+     m_iGroupSize 8
+     m_iRadioFrequency 74000
+    }
+    SCR_GroupPreset "{5E0D28E2CB972B82}" {
+     m_sGroupName "Xray"
+     m_iGroupSize 8
+     m_iRadioFrequency 76000
+    }
+    SCR_GroupPreset "{5E0D28E2CA5878F8}" {
+     m_sGroupName "Yankee"
+     m_iGroupSize 8
+     m_iRadioFrequency 78000
+    }
+    SCR_GroupPreset "{5E0D28E2CA3DC800}" {
+     m_sGroupName "Zulu"
+     m_iGroupSize 8
+     m_iRadioFrequency 80000
+    }
+   }
+   m_bCreateOnlyPredefinedGroups 1
+   m_sFactionRadioEncryptionKey "coldBorscht"
+   m_iFactionRadioFrequency 42000
+   m_aEntityCatalogs {
+    SCR_EntityCatalogMultiList "{5F19491C0329C86D}" {
+     m_eEntityCatalogType CHARACTER
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F19491C7C8CE21D}" {
+       m_sEntityPrefab "{631158F6898738A4}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AAT.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491C7423747D}" {
+       m_sEntityPrefab "{E9AEEF2D9E41321B}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AMG.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491C73D9EB27}" {
+       m_sEntityPrefab "{23ADBBC31B6A3DC6}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AR.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491C4BD01598}" {
+       m_sEntityPrefab "{1C78331E156A3D65}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_AT.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491C4489E5C9}" {
+       m_sEntityPrefab "{8E0FE664CE7D1CA9}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_GL.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DB7069975}" {
+       m_sEntityPrefab "{C8FABF6F093DA775}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_HeliCrew.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DB028F7F9}" {
+       m_sEntityPrefab "{A62FA97C4EC64F14}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_HeliPilot.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DA970C2C5}" {
+       m_sEntityPrefab "{AB9726163EC1BD81}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Medic.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DA49405F4}" {
+       m_sEntityPrefab "{96C784C502AC37DA}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_MG.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D9D231F71}" {
+       m_sEntityPrefab "{5117311FB822FD1F}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Officer.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D9C2F6F15}" {
+       m_sEntityPrefab "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D9B3C3C78}" {
+       m_sEntityPrefab "{612F43A4D5AE765F}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_RTO.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D8AE7D039}" {
+       m_sEntityPrefab "{976AC400219898FA}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Sharpshooter.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D84EF1949}" {
+       m_sEntityPrefab "{5436629450D8387A}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_SL.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DFD1FB20A}" {
+       m_sEntityPrefab "{333DA6244C7DA34C}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_SR.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DFA428DAC}" {
+       m_sEntityPrefab "{98EB9CDD85B8C92C}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Unarmed.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491635B26170}" {
+       m_sEntityPrefab "{3ECA3A935BC069B9}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_BaseLoadout.et"
+      }
+     }
+    }
+    SCR_EntityCatalogMultiList "{5F19491DDC3CE2C9}" {
+     m_eEntityCatalogType VEHICLE
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F19491DD324139B}" {
+       m_sEntityPrefab "{CF00CF725A31B872}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DD2FD7F08}" {
+       m_sEntityPrefab "{16A674FE31B0921D}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_uncovered.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DD1080860}" {
+       m_sEntityPrefab "{28E08EEDBDE7B89B}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_ambulance.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DD02D8ECF}" {
+       m_sEntityPrefab "{3336BE330C4F355C}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_ammo.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DCF3A7BD4}" {
+       m_sEntityPrefab "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DCE400D48}" {
+       m_sEntityPrefab "{80065564D96D231C}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_fuel.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DCE80A351}" {
+       m_sEntityPrefab "{A5647958579A414A}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_repair.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DCD971605}" {
+       m_sEntityPrefab "{B6BA0C8D6FF01C43}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491DCCCE0D52}" {
+       m_sEntityPrefab "{3B4A2C1ED5DBB0B8}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D7ADB8F72}" {
+       m_sEntityPrefab "{0700E1528AEAC774}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D79F72DED}" {
+       m_sEntityPrefab "{5FC9C5B1615C79FF}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT.et"
+      }
+     }
+    }
+    SCR_EntityCatalogMultiList "{5F19491D641B8C46}" {
+     m_eEntityCatalogType GROUP
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F19491D5B13F4EE}" {
+       m_sEntityPrefab "{8DE0C0830FE0C33D}Prefabs/Groups/OPFOR/Group_USSR_Base.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D5A9669AE}" {
+       m_sEntityPrefab "{30ED11AA4F0D41E5}Prefabs/Groups/OPFOR/Group_USSR_FireGroup.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D59CC1B8E}" {
+       m_sEntityPrefab "{657590C1EC9E27D3}Prefabs/Groups/OPFOR/Group_USSR_LightFireTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D58E2519F}" {
+       m_sEntityPrefab "{A2F75E45C66B1C0A}Prefabs/Groups/OPFOR/Group_USSR_MachineGunTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D572A1BFA}" {
+       m_sEntityPrefab "{1A5F0D93609DA5DA}Prefabs/Groups/OPFOR/Group_USSR_ManeuverGroup.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491D55C1DBBC}" {
+       m_sEntityPrefab "{D815658156080328}Prefabs/Groups/OPFOR/Group_USSR_MedicalSection.et"
+      }
+      SCR_EntityCatalogEntry "{5F194912A89B4379}" {
+       m_sEntityPrefab "{E552DABF3636C2AD}Prefabs/Groups/OPFOR/Group_USSR_RifleSquad.et"
+      }
+      SCR_EntityCatalogEntry "{5F194912A7CAF9BB}" {
+       m_sEntityPrefab "{CB58D90EA14430AD}Prefabs/Groups/OPFOR/Group_USSR_SentryTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F194912A6F6D18E}" {
+       m_sEntityPrefab "{96BAB56E6558788E}Prefabs/Groups/OPFOR/Group_USSR_Team_AT.et"
+      }
+      SCR_EntityCatalogEntry "{5F194912961CB740}" {
+       m_sEntityPrefab "{43C7A28EEB660FF8}Prefabs/Groups/OPFOR/Group_USSR_Team_GL.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491295254BEB}" {
+       m_sEntityPrefab "{1C0502B5729E7231}Prefabs/Groups/OPFOR/Group_USSR_Team_Suppress.et"
+      }
+     }
+    }
+    SCR_EntityCatalog "{5F19491284BD2949}" {
+     m_eEntityCatalogType WEAPONS_TRIPOD
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F19491280A0B260}" {
+       m_sEntityPrefab "{74D4D08878ACBD99}Prefabs/Weapons/Tripods/CTI_Tripod_6T5_PKM.et"
+      }
+     }
+    }
+    SCR_EntityCatalogMultiList "{5F194912F18DC45C}" {
+     m_eEntityCatalogType ITEM
+    }
+   }
+  }
+  SCR_Faction "{599D233B904CBDEF}" {
+   FactionKey "US"
+   FactionColor 0.016 0.553 0.906 1
+   UIInfo SCR_FactionUIInfo "{599D233D9C2D6E5D}" {
+    Name "US"
+    Icon "{EB7F65DBC9392557}UI/Textures/Editor/EditableEntities/Factions/EditableEntity_Faction_USA.edds"
+    m_sNameUpper "US"
+   }
+   "Identity of soldiers" FactionIdentity "{599D233DD3C6F9DF}" {
+    VisualIdentityArray {
+     VisualIdentity "{5F1949120F16CE98}" {
+      Head "{143245D81F2BAB94}Prefabs/Characters/Heads/Head_White_10.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F19491200D2444B}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F1949127FD01728}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E45DDF4}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E244BC8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E0CB4EE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EE0A7ED}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127ED93F47}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EB24166}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127EAA9E04}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E8C566B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F1949127D64193F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D53CA14}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D4BEB65}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D22AA5A}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D0553AF}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F1949127DFE0B85}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F1949127DD6968F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127DCECFEB}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127C50D908}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{599D233548C9B4B7}" {
+      Head "{24644218743CDFBD}Prefabs/Characters/Heads/Head_White_09.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194910315B74B7}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F1949127FD01728}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E45DDF4}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E244BC8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E0CB4EE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EE0A7ED}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127ED93F47}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EB24166}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127EAA9E04}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E8C566B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F1949127D64193F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D53CA14}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D4BEB65}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D22AA5A}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D0553AF}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F1949127DFE0B85}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F1949127DD6968F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127DCECFEB}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127C50D908}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E62D0EA443}" {
+      Head "{C1F80EE178D948D6}Prefabs/Characters/Heads/Head_White_08.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F1949102EEA45F3}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F1949127FD01728}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E45DDF4}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E244BC8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E0CB4EE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EE0A7ED}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127ED93F47}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EB24166}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127EAA9E04}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E8C566B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F1949127D64193F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D53CA14}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D4BEB65}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D22AA5A}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D0553AF}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F1949127DFE0B85}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F1949127DD6968F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127DCECFEB}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127C50D908}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E62DC88FC8}" {
+      Head "{BB90449192005AB8}Prefabs/Characters/Heads/Head_White_06.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F1949102DAFD91D}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F1949127FD01728}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E45DDF4}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E244BC8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E0CB4EE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EE0A7ED}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127ED93F47}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EB24166}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127EAA9E04}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E8C566B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F1949127D64193F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D53CA14}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D4BEB65}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D22AA5A}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D0553AF}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F1949127DFE0B85}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F1949127DD6968F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127DCECFEB}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127C50D908}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5E0D28E62D89D143}" {
+      Head "{D7C470712EC4D596}Prefabs/Characters/Heads/Head_White_05.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F1949102B196CA6}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F1949127FD01728}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E45DDF4}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E244BC8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E0CB4EE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EE0A7ED}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127ED93F47}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EB24166}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127EAA9E04}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E8C566B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F1949127D64193F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D53CA14}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D4BEB65}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D22AA5A}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D0553AF}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F1949127DFE0B85}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F1949127DD6968F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127DCECFEB}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127C50D908}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F19491271269435}" {
+      Head "{32583C88222142FD}Prefabs/Characters/Heads/Head_White_04.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F1949100B495B34}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F1949127FD01728}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E45DDF4}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E244BC8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E0CB4EE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EE0A7ED}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127ED93F47}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EB24166}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127EAA9E04}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E8C566B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F1949127D64193F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D53CA14}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D4BEB65}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D22AA5A}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D0553AF}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F1949127DFE0B85}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F1949127DD6968F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127DCECFEB}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127C50D908}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F19491271A25257}" {
+      Head "{0F6C19B0574DCBCA}Prefabs/Characters/Heads/Head_White_03.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F194910293FC530}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F1949127FD01728}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E45DDF4}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E244BC8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E0CB4EE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EE0A7ED}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127ED93F47}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EB24166}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127EAA9E04}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E8C566B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F1949127D64193F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D53CA14}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D4BEB65}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D22AA5A}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D0553AF}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F1949127DFE0B85}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F1949127DD6968F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127DCECFEB}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127C50D908}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+     VisualIdentity "{5F194912708245AF}" {
+      Head "{EAF055495BA85CA1}Prefabs/Characters/Heads/Head_White_02.et"
+      Body "{0023F898C0FF18AA}Prefabs/Characters/Basebody/CharacterBasebody.et"
+      BodyMeshesConfig MeshConfig "{5F19491027D5A209}" {
+       SubmeshesOfBody {
+        IdentityBodyMesh "{5F1949127FD01728}" {
+         PartType "Arm_L"
+         HealthyVersion "Basebody_Arm_L"
+         WoundVersion "Basebody_Arm_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E45DDF4}" {
+         PartType "Arm_R"
+         HealthyVersion "Basebody_Arm_R"
+         WoundVersion "Basebody_Arm_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E244BC8}" {
+         PartType "ArmUpper_L"
+         HealthyVersion "Basebody_ArmUpper_L"
+         WoundVersion "Basebody_ArmUpper_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127E0CB4EE}" {
+         PartType "ArmUpper_R"
+         HealthyVersion "Basebody_ArmUpper_R"
+         WoundVersion "Basebody_ArmUpper_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EE0A7ED}" {
+         PartType "Calf_L"
+         HealthyVersion "Basebody_Calf_L"
+         WoundVersion "Basebody_Calf_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127ED93F47}" {
+         PartType "Calf_R"
+         HealthyVersion "Basebody_Calf_R"
+         WoundVersion "Basebody_Calf_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127EB24166}" {
+         PartType "Foot_L"
+         HealthyVersion "Basebody_Foot_L"
+         WoundVersion "Basebody_Foot_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127EAA9E04}" {
+         PartType "Foot_R"
+         HealthyVersion "Basebody_Foot_R"
+         WoundVersion "Basebody_Foot_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127E8C566B}" {
+         PartType "Groin"
+         HealthyVersion "Basebody_Groin"
+         WoundVersion "Basebody_Groin_wound"
+        }
+        IdentityBodyMesh "{5F1949127D64193F}" {
+         PartType "Hand_L"
+         HealthyVersion "Basebody_Hand_L"
+         WoundVersion "Basebody_Hand_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D53CA14}" {
+         PartType "Hand_R"
+         HealthyVersion "Basebody_Hand_R"
+         WoundVersion "Basebody_Hand_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D4BEB65}" {
+         PartType "Leg_L"
+         HealthyVersion "Basebody_Leg_L"
+         WoundVersion "Basebody_Leg_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127D22AA5A}" {
+         PartType "Leg_R"
+         HealthyVersion "Basebody_Leg_R"
+         WoundVersion "Basebody_Leg_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127D0553AF}" {
+         PartType "Torso"
+         HealthyVersion "Basebody_Torso"
+         WoundVersion "Basebody_Torso_wound"
+        }
+        IdentityBodyMesh "{5F1949127DFE0B85}" {
+         PartType "Head"
+         HealthyVersion "Head"
+         WoundVersion "Head_wound"
+        }
+        IdentityBodyMesh "{5F1949127DD6968F}" {
+         PartType "CalfLower_L"
+         HealthyVersion "Basebody_CalfLower_L"
+         WoundVersion "Basebody_CalfLower_L_wound"
+        }
+        IdentityBodyMesh "{5F1949127DCECFEB}" {
+         PartType "CalfLower_R"
+         HealthyVersion "Basebody_CalfLower_R"
+         WoundVersion "Basebody_CalfLower_R_wound"
+        }
+        IdentityBodyMesh "{5F1949127C50D908}" {
+         PartType "Head_neck"
+         HealthyVersion "Head_neck"
+         WoundVersion "Head_wound_neck"
+        }
+       }
+      }
+     }
+    }
+    SoundIdentityArray {
+     SoundIdentity "{599D23284F6C68B2}" {
+      VoiceID 1
+     }
+     SoundIdentity "{5F19491078D58406}" {
+      VoiceID 1
+      VoicePitch 0.5
+     }
+     SoundIdentity "{5F194910777FD9CA}" {
+      VoiceID 1
+      VoicePitch -0.5
+     }
+     SoundIdentity "{5F194910775F3F0F}" {
+      VoiceID 2
+     }
+     SoundIdentity "{5F19491077FBB379}" {
+      VoiceID 2
+      VoicePitch 0.5
+     }
+     SoundIdentity "{5F19491077853ED6}" {
+      VoiceID 2
+      VoicePitch -0.5
+     }
+    }
+    SocialIdentity SocialIdentity "{599D233DD293D4E6}" {
+     NamesConfig {
+      "#AR-FirstName_EN_Adam" "#AR-FirstName_EN_Brian" "#AR-FirstName_EN_Charlie" "#AR-FirstName_EN_Christopher" "#AR-FirstName_EN_Daniel" "#AR-FirstName_EN_David" "#AR-FirstName_EN_Edward" "#AR-FirstName_EN_James" "#AR-FirstName_EN_Jerry" "#AR-FirstName_EN_John" "#AR-FirstName_EN_Joseph" "#AR-FirstName_EN_Luke" "#AR-FirstName_EN_Mark" "#AR-FirstName_EN_Michael" "#AR-FirstName_EN_Patrick" "#AR-FirstName_EN_Paul" "#AR-FirstName_EN_Peter" "#AR-FirstName_EN_Richard" "#AR-FirstName_EN_Scott" "#AR-FirstName_EN_Steven" "#AR-FirstName_EN_Ted" "#AR-FirstName_EN_Thomas" "#AR-FirstName_EN_William"
+     }
+     SurnamesConfig {
+      "#AR-Surname_EN_Anderson" "#AR-Surname_EN_Allen" "#AR-Surname_EN_Baker" "#AR-Surname_EN_Brown" "#AR-Surname_EN_Clark" "#AR-Surname_EN_Collins" "#AR-Surname_EN_Davis" "#AR-Surname_EN_Harris" "#AR-Surname_EN_Jackson" "#AR-Surname_EN_Jones" "#AR-Surname_EN_Johnson" "#AR-Surname_EN_King" "#AR-Surname_EN_Lee" "#AR-Surname_EN_Lewis" "#AR-Surname_EN_Martin" "#AR-Surname_EN_Miller" "#AR-Surname_EN_Reed" "#AR-Surname_EN_Ryan" "#AR-Surname_EN_Smith" "#AR-Surname_EN_Taylor" "#AR-Surname_EN_Turner" "#AR-Surname_EN_Williams" "#AR-Surname_EN_Wilson"
+     }
+    }
+   }
+   m_OutlineFactionColor 0.004 0.043 0.114 1
+   m_sFactionFlag "{46FB2FB2C2125A3C}UI/Textures/Flags/US-flag-base-3it.edds"
+   m_FactionFlagMaterial "{610803CC3F3D6649}Assets/Props/Fabric/Flags/Data/Flag_1_2_USA.emat"
+   m_FactionLabel FACTION_US
+   m_CallsignInfo SCR_FactionCallsignInfo "{599D23285B0ADCA1}" {
+    m_bIsAssignedRandomly 0
+    m_aCompanyNames {
+     SCR_CallsignInfo "{5F036D515E686056}" {
+      m_sCallsign "Alpha"
+     }
+     SCR_CallsignInfo "{5F036D515E019C0B}" {
+      m_sCallsign "Bravo"
+     }
+     SCR_CallsignInfo "{5F036D515EFBAAAD}" {
+      m_sCallsign "Charlie"
+     }
+     SCR_CallsignInfo "{5F036D515ED139F1}" {
+      m_sCallsign "Delta"
+     }
+     SCR_CallsignInfo "{5F036D515EC84807}" {
+      m_sCallsign "Echo"
+     }
+     SCR_CallsignInfo "{5F036D515EA7C58A}" {
+      m_sCallsign "Foxtrot"
+     }
+     SCR_CallsignInfo "{5F036D515E9D973D}" {
+      m_sCallsign "Golf"
+     }
+     SCR_CallsignInfo "{5F036D515D742ABB}" {
+      m_sCallsign "Hotel"
+     }
+     SCR_CallsignInfo "{5F036D515D6324E2}" {
+      m_sCallsign "India"
+     }
+     SCR_CallsignInfo "{5F036D515D5B0E1E}" {
+      m_sCallsign "Juliet"
+     }
+     SCR_CallsignInfo "{5F036D515D339462}" {
+      m_sCallsign "Kilo"
+     }
+     SCR_CallsignInfo "{5F036D515D14A0B0}" {
+      m_sCallsign "Lima"
+     }
+     SCR_CallsignInfo "{5F036D515D0C7618}" {
+      m_sCallsign "Mike"
+     }
+     SCR_CallsignInfo "{5F036D515DFB9B54}" {
+      m_sCallsign "November"
+     }
+     SCR_CallsignInfo "{5F036D515DDC7336}" {
+      m_sCallsign "Oscar"
+     }
+     SCR_CallsignInfo "{5F036D515DB54742}" {
+      m_sCallsign "Papa"
+     }
+     SCR_CallsignInfo "{5F036D515DADB5BB}" {
+      m_sCallsign "Quebec"
+     }
+     SCR_CallsignInfo "{5F036D515D87E602}" {
+      m_sCallsign "Romeo"
+     }
+     SCR_CallsignInfo "{5F036D515C515796}" {
+      m_sCallsign "Sierra"
+     }
+     SCR_CallsignInfo "{5F036D515C48F582}" {
+      m_sCallsign "Tango"
+     }
+     SCR_CallsignInfo "{5F036D515C21441F}" {
+      m_sCallsign "Uniform"
+     }
+     SCR_CallsignInfo "{5F036D515C067E3D}" {
+      m_sCallsign "Victor"
+     }
+     SCR_CallsignInfo "{5F036D515CEB0A06}" {
+      m_sCallsign "Whiskey"
+     }
+     SCR_CallsignInfo "{5F036D515CC12944}" {
+      m_sCallsign "Xray"
+     }
+     SCR_CallsignInfo "{5F036D515CBFEE92}" {
+      m_sCallsign "Yankee"
+     }
+     SCR_CallsignInfo "{5F036D515B50C1B9}" {
+      m_sCallsign "Zulu"
+     }
+    }
+    m_aPlatoonNames {
+     SCR_CallsignInfo "{5F1969D06E5CC9EF}" {
+      m_sCallsign "1"
+     }
+    }
+    m_aSquadNames {
+     SCR_CallsignInfo "{5F1969D06BF7C856}" {
+      m_sCallsign "1"
+     }
+    }
+    m_sCallsignGroupFormat "%1"
+    m_sCallsignCharacterFormat "%1"
+    m_sCallsignCharacterWithRoleFormat "%1"
+    m_aCharacterRoleCallsigns {
+     SCR_LeaderRoleCallsign "{5F194911032DF89F}" {
+      m_sRoleName "#AR-Callsign_US_SquadLeader"
+      m_eRoleAvailableForCharacterType PLAYER_ONLY
+     }
+    }
+   }
+   m_aPredefinedGroups {
+    SCR_GroupPreset "{5E0D28E2C0188AAA}" {
+     m_sGroupName "Alpha"
+     m_iGroupSize 8
+     m_iRadioFrequency 31000
+    }
+    SCR_GroupPreset "{5E0D28E2C0B3BB12}" {
+     m_sGroupName "Bravo"
+     m_iGroupSize 8
+     m_iRadioFrequency 33000
+    }
+    SCR_GroupPreset "{5E0D28E2C0ABFE3F}" {
+     m_sGroupName "Charlie"
+     m_iGroupSize 8
+     m_iRadioFrequency 35000
+    }
+    SCR_GroupPreset "{5E0D28E2C08C44AB}" {
+     m_sGroupName "Delta"
+     m_iGroupSize 8
+     m_iRadioFrequency 37000
+    }
+    SCR_GroupPreset "{5E0D28E23F6483E5}" {
+     m_sGroupName "Echo"
+     m_iGroupSize 8
+     m_iRadioFrequency 39000
+    }
+    SCR_GroupPreset "{5E0D28E23F5D3721}" {
+     m_sGroupName "Foxtrot"
+     m_iGroupSize 8
+     m_iRadioFrequency 41000
+    }
+    SCR_GroupPreset "{5E0D28E23F35A928}" {
+     m_sGroupName "Golf"
+     m_iGroupSize 8
+     m_iRadioFrequency 43000
+    }
+    SCR_GroupPreset "{5E0D28E23F23428C}" {
+     m_sGroupName "Hotel"
+     m_iGroupSize 8
+     m_iRadioFrequency 45000
+    }
+    SCR_GroupPreset "{5E0D28E23F1B62ED}" {
+     m_sGroupName "India"
+     m_iGroupSize 8
+     m_iRadioFrequency 47000
+    }
+    SCR_GroupPreset "{5E0D28E23FF1A576}" {
+     m_sGroupName "Juliet"
+     m_iGroupSize 8
+     m_iRadioFrequency 49000
+    }
+    SCR_GroupPreset "{5E0D28E23FEFBE5F}" {
+     m_sGroupName "Kilo"
+     m_iGroupSize 8
+     m_iRadioFrequency 51000
+    }
+    SCR_GroupPreset "{5E0D28E23FC738C9}" {
+     m_sGroupName "Lima"
+     m_iGroupSize 8
+     m_iRadioFrequency 53000
+    }
+    SCR_GroupPreset "{5E0D28E23FB85EF6}" {
+     m_sGroupName "Mike"
+     m_iGroupSize 8
+     m_iRadioFrequency 55000
+    }
+    SCR_GroupPreset "{5E0D28E23F952E10}" {
+     m_sGroupName "November"
+     m_iGroupSize 8
+     m_iRadioFrequency 57000
+    }
+    SCR_GroupPreset "{5E0D28E23F8E952B}" {
+     m_sGroupName "Oscar"
+     m_iGroupSize 8
+     m_iRadioFrequency 59000
+    }
+    SCR_GroupPreset "{5E0D28E23E662D53}" {
+     m_sGroupName "Papa"
+     m_iGroupSize 8
+     m_iRadioFrequency 61000
+    }
+    SCR_GroupPreset "{5E0D28E23E5EADA0}" {
+     m_sGroupName "Quebec"
+     m_iGroupSize 8
+     m_iRadioFrequency 63000
+    }
+    SCR_GroupPreset "{5E0D28E23E36FA4E}" {
+     m_sGroupName "Romeo"
+     m_iGroupSize 8
+     m_iRadioFrequency 65000
+    }
+    SCR_GroupPreset "{5E0D28E23E289CF8}" {
+     m_sGroupName "Sierra"
+     m_iGroupSize 8
+     m_iRadioFrequency 67000
+    }
+    SCR_GroupPreset "{5E0D28E23E00E7FF}" {
+     m_sGroupName "Tango"
+     m_iGroupSize 8
+     m_iRadioFrequency 69000
+    }
+    SCR_GroupPreset "{5E0D28E23EF9D827}" {
+     m_sGroupName "Uniform"
+     m_iGroupSize 8
+     m_iRadioFrequency 71000
+    }
+    SCR_GroupPreset "{5E0D28E23EDC747D}" {
+     m_sGroupName "Victor"
+     m_iGroupSize 8
+     m_iRadioFrequency 73000
+    }
+    SCR_GroupPreset "{5E0D28E23EB70740}" {
+     m_sGroupName "Whiskey"
+     m_iGroupSize 8
+     m_iRadioFrequency 75000
+    }
+    SCR_GroupPreset "{5E0D28E23EA91CE0}" {
+     m_sGroupName "Xray"
+     m_iGroupSize 8
+     m_iRadioFrequency 77000
+    }
+    SCR_GroupPreset "{5E0D28E23D6F25A1}" {
+     m_sGroupName "Yankee"
+     m_iGroupSize 8
+     m_iRadioFrequency 79000
+    }
+    SCR_GroupPreset "{5E0D28E23D4313B3}" {
+     m_sGroupName "Zulu"
+     m_iGroupSize 8
+     m_iRadioFrequency 81000
+    }
+   }
+   m_bCreateOnlyPredefinedGroups 1
+   m_sFactionRadioEncryptionKey "chickenNuggets"
+   m_iFactionRadioFrequency 48000
+   m_aEntityCatalogs {
+    SCR_EntityCatalogMultiList "{5F194916AFCB28BE}" {
+     m_eEntityCatalogType CHARACTER
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F194916A6F071F3}" {
+       m_sEntityPrefab "{6058AB54781A0C52}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AMG.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949169DA2D705}" {
+       m_sEntityPrefab "{5B1996C05B1E51A4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_AR.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491695F58822}" {
+       m_sEntityPrefab "{84029128FA6F6BB9}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_GL.et"
+      }
+      SCR_EntityCatalogEntry "{5F194916941F8104}" {
+       m_sEntityPrefab "{15CD521098748195}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_HeliCrew.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949169325D128}" {
+       m_sEntityPrefab "{42A502E3BB727CEB}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_HeliPilot.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949169234D689}" {
+       m_sEntityPrefab "{27BF1FF235DD6036}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_LAT.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491690D605C8}" {
+       m_sEntityPrefab "{C9E4FEAF5AAC8D8C}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Medic.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949168F0D5E5D}" {
+       m_sEntityPrefab "{1623EA3AEFACA0E4}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_MG.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949168E286221}" {
+       m_sEntityPrefab "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949168D5FD8DB}" {
+       m_sEntityPrefab "{3726077BE60962FF}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_RTO.et"
+      }
+      SCR_EntityCatalogEntry "{5F194916DF360278}" {
+       m_sEntityPrefab "{E45F1E163F5CA080}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_SL.et"
+      }
+      SCR_EntityCatalogEntry "{5F194916DEE3FD27}" {
+       m_sEntityPrefab "{0F6689B491641155}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Sniper.et"
+      }
+      SCR_EntityCatalogEntry "{5F194916DD02F531}" {
+       m_sEntityPrefab "{1CA3D30464EE4674}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Spotter.et"
+      }
+      SCR_EntityCatalogEntry "{5F194916CFA8BCDE}" {
+       m_sEntityPrefab "{E398E44759DA1A43}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_TL.et"
+      }
+      SCR_EntityCatalogEntry "{5F194916CEA75C14}" {
+       m_sEntityPrefab "{2F912ED6E399FF47}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Unarmed.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491624074E5F}" {
+       m_sEntityPrefab "{284E735C6C70DAD2}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_BaseLoadout.et"
+      }
+     }
+    }
+    SCR_EntityCatalogMultiList "{5F1949160BE1C0D2}" {
+     m_eEntityCatalogType VEHICLE
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F19491661E0187C}" {
+       m_sEntityPrefab "{24C2DDAB6129F316}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491658449707}" {
+       m_sEntityPrefab "{6F01946EE0B0A8B8}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949164E3D0C9E}" {
+       m_sEntityPrefab "{0406BEC84D81A89E}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491644B7F75E}" {
+       m_sEntityPrefab "{33DD0A925A38A2EA}Prefabs/Vehicles/Wheeled/M998/M1025.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917B876C9CC}" {
+       m_sEntityPrefab "{3EA6F47D95867115}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917AF30DF5B}" {
+       m_sEntityPrefab "{00C9BBE426F7D45A}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917A7E893AC}" {
+       m_sEntityPrefab "{AD1557D294604BF9}Prefabs/Vehicles/Wheeled/M998/M998_covered.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949179EBDC972}" {
+       m_sEntityPrefab "{92264FF932676C14}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917923E5577}" {
+       m_sEntityPrefab "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491791BB7977}" {
+       m_sEntityPrefab "{2116A4AEE7457A54}Prefabs/Vehicles/Wheeled/M923A1/M923A1_fuel.et"
+      }
+      SCR_EntityCatalogEntry "{5F19491790B42909}" {
+       m_sEntityPrefab "{A042ACE5C2B13207}Prefabs/Vehicles/Wheeled/M923A1/M923A1_repair.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917FB045BB0}" {
+       m_sEntityPrefab "{4E2F7BE504E64AD9}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917FA272F3F}" {
+       m_sEntityPrefab "{084A168713BD0D21}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917F944F4E5}" {
+       m_sEntityPrefab "{49842C04DB51263D}Prefabs/Vehicles/Helicopters/UH1H/UH1H.et"
+      }
+     }
+    }
+    SCR_EntityCatalogMultiList "{5F194916051BDABA}" {
+     m_eEntityCatalogType GROUP
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F194917DAED2A40}" {
+       m_sEntityPrefab "{84E5BBAB25EA23E5}Prefabs/Groups/BLUFOR/Group_US_FireTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917CF113E80}" {
+       m_sEntityPrefab "{FCF7F5DC4F83955C}Prefabs/Groups/BLUFOR/Group_US_LightFireTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917CA944C71}" {
+       m_sEntityPrefab "{958039B857396B7B}Prefabs/Groups/BLUFOR/Group_US_MachineGunTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917C9B8DA3F}" {
+       m_sEntityPrefab "{EF62027CC75A7459}Prefabs/Groups/BLUFOR/Group_US_MedicalSection.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917C8DA655B}" {
+       m_sEntityPrefab "{DDF3799FA1387848}Prefabs/Groups/BLUFOR/Group_US_RifleSquad.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917C7FF7DCC}" {
+       m_sEntityPrefab "{3BF36BDEEB33AEC9}Prefabs/Groups/BLUFOR/Group_US_SentryTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917C62D3C04}" {
+       m_sEntityPrefab "{D807C7047E818488}Prefabs/Groups/BLUFOR/Group_US_SniperTeam.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917C540940C}" {
+       m_sEntityPrefab "{DE747BC9217D383C}Prefabs/Groups/BLUFOR/Group_US_Team_GL.et"
+      }
+      SCR_EntityCatalogEntry "{5F194917201BF0A6}" {
+       m_sEntityPrefab "{FAEA8B9E1252F56E}Prefabs/Groups/BLUFOR/Group_US_Team_LAT.et"
+      }
+      SCR_EntityCatalogEntry "{5F1949171F3A55A6}" {
+       m_sEntityPrefab "{81B6DBF2B88545F5}Prefabs/Groups/BLUFOR/Group_US_Team_Suppress.et"
+      }
+     }
+    }
+    SCR_EntityCatalog "{5F19491600F53730}" {
+     m_eEntityCatalogType WEAPONS_TRIPOD
+     m_aEntityEntryList {
+      SCR_EntityCatalogEntry "{5F1949167268AFEC}" {
+       m_sEntityPrefab "{83A5D83A4BFC12FF}Prefabs/Weapons/Tripods/CTI_Tripod_M122_MG_M60.et"
+      }
+     }
+    }
+    SCR_EntityCatalogMultiList "{5F19491679DF4662}" {
+     m_eEntityCatalogType ITEM
+    }
+   }
+  }
+ }
+ m_bCanChangeFactionsPlayable 0
+}
+ScriptedChatEntity {
+ components {
+  RplComponent "{599D23397561CCC4}" {
+   Streamable Disabled
+  }
+ }
+ Channels {
+  BaseChatChannel "{599D23395B733D7D}" {
+   "Channel name" "Global"
+  }
+  FactionChatChannel "{599D23394B25125E}" {
+   "Channel name" "Faction"
+  }
+  GroupChatChannel "{599D233943CFB5C8}" {
+   "Channel name" "Group"
+  }
+  VehicleChatChannel "{599D233EB8D631EA}" {
+   "Channel name" "Vehicle"
+  }
+  LocalChatChannel "{599D233EAB832992}" {
+   "Channel name" "Local"
+  }
+ }
+ "Whisper channel" PrivateMessageChannel "{5DF1389C6F9A992F}" {
+  "Channel name" "Whisper"
+ }
+ "Default channel" "Faction"
+}
+TagManager {
+ coords 0 0 0
+}
+PerceptionManager PerceptionManager1 : "{028DAEAD63E056BE}Prefabs/World/Game/PerceptionManager.et" {
+ coords 0 0 0
+}
+BasePreloadManager BasePreloadManager1 {
+}
+HitRegistrationManager HitRegistrationManager1 {
+ components {
+  RplComponent "{5EA90390C42080C7}" {
+   Streamable Disabled
+  }
+ }
+}
+ItemPreviewManagerEntity ItemPreviewManagerEntity1 {
+ PreviewWorld "{4391FE7994EE6FE2}Prefabs/World/Game/InventoryPreviewWorld.et"
+ DefaultRenderAttributes PreviewRenderAttributes "{5EA903900232CEC4}" {
+ }
+}
+SCR_BaseTaskManager {
+ components {
+  SCR_TextsTaskManagerComponent "{5EA9039790F46D97}" {
+  }
+  SCR_UITaskManagerComponent "{5EA9039785D0D136}" {
+  }
+  RplComponent "{5EA90397FCA195BF}" {
+   Streamable Disabled
+  }
+ }
+}
+SCR_LoadoutManager {
+ components {
+  RplComponent "{5EA90397CDDC3903}" {
+   Streamable Disabled
+  }
+ }
+ Flags 0
+ m_aPlayerLoadouts {
+  SCR_FactionPlayerLoadout "{5EA903970C165242}" {
+   m_sLoadoutName "USSR Default Gear"
+   m_sLoadoutResource "{A67BF65F89A1905B}Prefabs/Characters/CTI/Final/CTI_USSR_Player.et"
+   m_sAffiliatedFaction "USSR"
+  }
+  SCR_FactionPlayerLoadout "{5EA903970A58F4D8}" {
+   m_sLoadoutName "USSR Last Saved Gear"
+   m_sLoadoutResource "{A67BF65F89A1905B}Prefabs/Characters/CTI/Final/CTI_USSR_Player.et"
+   m_sAffiliatedFaction "USSR"
+  }
+  SCR_FactionPlayerLoadout "{5EA9039709205E3C}" {
+   m_sLoadoutName "US Default Gear"
+   m_sLoadoutResource "{9CD96027671E949D}Prefabs/Characters/CTI/Final/CTI_US_Player.et"
+   m_sAffiliatedFaction "US"
+  }
+  SCR_FactionPlayerLoadout "{5EA90397084B3498}" {
+   m_sLoadoutName "US Last Saved Gear"
+   m_sLoadoutResource "{9CD96027671E949D}Prefabs/Characters/CTI/Final/CTI_US_Player.et"
+   m_sAffiliatedFaction "US"
+  }
+ }
+}
+SCR_MapLocator {
+ coords 9700.346 12.592 1546.381
+ m_WorldDirections SCR_MapLocationQuadHint "{5EA903963E62E5FF}" {
+  m_aQuadHints {
+   "#AR-MapLocationHint_EveronSouthWest" "#AR-MapLocationHint_EveronSouth" "#AR-MapLocationHint_EveronSouthEast" "#AR-MapLocationHint_EveronWest" "#AR-MapLocationHint_EveronCentral" "#AR-MapLocationHint_EveronEast" "#AR-MapLocationHint_EveronNorthWest" "#AR-MapLocationHint_EveronNorth" "#AR-MapLocationHint_EveronNorthEast"
+  }
+ }
+}

@@ -1,0 +1,90 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ {
+  WindowWidgetClass "{5A372D91FAAC8703}" {
+   Name "Window"
+   Slot FrameWidgetSlot "{5A372D91FAAC8722}" {
+    PositionX 30
+    OffsetLeft 30
+    PositionY 30
+    OffsetTop 30
+    SizeX 450
+    OffsetRight -480
+    SizeY 130
+    OffsetBottom -160
+   }
+   "Ignore Cursor" 1
+   Color 0.886 0.597 0.163 1
+   "no focus" 1
+   {
+    RichTextWidgetClass "{5A372D91E0108CAF}" {
+     Name "HudLine1"
+     Slot FrameWidgetSlot "{5A372D91E0108CC7}" {
+      PositionX 15
+      OffsetLeft 15
+      PositionY 5
+      OffsetTop 5
+      SizeX 420
+      OffsetRight -435
+      SizeY 30
+      OffsetBottom -35
+     }
+     Text "Radio/Funds/HP/Stamina"
+     "Font Size" 18
+     "Min Font Size" 18
+     "Vertical Alignment" Center
+    }
+    RichTextWidgetClass "{5A3B337E2E5EBFE0}" {
+     Name "HudLine2"
+     Slot FrameWidgetSlot "{5A3B337E2E5EBFF8}" {
+      PositionX 15
+      OffsetLeft 15
+      PositionY 35
+      OffsetTop 35
+      SizeX 420
+      OffsetRight -435
+      SizeY 30
+      OffsetBottom -65
+     }
+     Text "Commander/Bases"
+     "Font Size" 18
+     "Min Font Size" 18
+     "Vertical Alignment" Center
+    }
+    RichTextWidgetClass "{5A372D91D19A358B}" {
+     Name "HudLine3"
+     Slot FrameWidgetSlot "{5A372D91D19A35A9}" {
+      PositionX 15
+      OffsetLeft 15
+      PositionY 65
+      OffsetTop 65
+      SizeX 420
+      OffsetRight -435
+      SizeY 30
+      OffsetBottom -95
+     }
+     Text "Upgrade"
+     "Font Size" 18
+     "Min Font Size" 18
+     "Vertical Alignment" Center
+    }
+    RichTextWidgetClass "{5C8C891E4425F0A7}" {
+     Name "HudLine4"
+     Slot FrameWidgetSlot "{5C8C891E4425F0B2}" {
+      PositionX 15
+      OffsetLeft 15
+      PositionY 95
+      OffsetTop 95
+      SizeX 420
+      OffsetRight -435
+      OffsetBottom -125
+     }
+     Text "Priority"
+     "Font Size" 18
+     "Min Font Size" 18
+     "Vertical Alignment" Center
+    }
+   }
+  }
+ }
+}
