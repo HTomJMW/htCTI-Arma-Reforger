@@ -1,0 +1,40 @@
+SCR_PlayerController : "{6E2BB64764E3BE9B}Prefabs/Characters/Core/DefaultPlayerController.et" {
+ ID "1A9BA6BEFA06E3B1"
+ components {
+  SCR_CTI_DeathPositionComponent "{5E516D43289768AD}" {
+  }
+  SCR_CTI_MapMarkerHandlerComponent "{5DAD147FF0316373}" {
+  }
+  SCR_CTI_NetWorkComponent "{5AAD300C3C74846D}" {
+  }
+  SCR_CTI_PlacingDefenseComponent "{5C6CD48CA0150288}" {
+  }
+  SCR_CTI_PlacingStructureComponent "{5C736513B46C6B7B}" {
+  }
+  SCR_CampaignBuildingNetworkComponent "{5E04E7E5536A7204}" {
+   Enabled 0
+  }
+  SCR_HUDManagerComponent "{2FDC275D9EBCDB8B}" {
+   InfoDisplays {
+    SCR_CTI_InfoHud "{5AAD300C3468A1CF}" {
+     m_LayoutPath "{959E824DECAF27D7}UI/layouts/InfoHud.layout"
+    }
+    SCR_CTI_VehicleInfoHud "{5AAD300C2D0C7A5C}" {
+     m_LayoutPath "{FA2748932AA7B28A}UI/layouts/VehicleInfoHud.layout"
+    }
+    SCR_CTI_ConfirmMenu "{5C891A0006B9D5B5}" {
+     m_LayoutPath "{8C4B0F3E158814B4}UI/layouts/ConfirmMenu.layout"
+    }
+   }
+  }
+  SCR_PlayerXPHandlerComponent "{5CAAA3976C5BEC1B}" {
+   Enabled 0
+  }
+  SCR_SpawnerRequestComponent "{5DEF0CEBC75506D1}" {
+  }
+  SCR_TaskNetworkComponent "{55CEA00373C0B879}" {
+   Enabled 0
+  }
+ }
+ DefaultControlledEntity "{854C04F0EA2129CC}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Unarmed.et"
+}

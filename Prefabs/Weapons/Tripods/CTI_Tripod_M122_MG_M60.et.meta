@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{83A5D83A4BFC12FF}Prefabs/Weapons/Tripods/CTI_Tripod_M122_MG_M60.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

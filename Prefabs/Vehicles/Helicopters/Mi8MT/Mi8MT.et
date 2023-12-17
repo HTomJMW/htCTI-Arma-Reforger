@@ -1,0 +1,271 @@
+Vehicle : "{AFF6067A5CE8A852}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8_base.et" {
+ ID "57DA6675519A417B"
+ components {
+  SCR_BaseCompartmentManagerComponent "{20FB66C5DCB8DF72}" {
+   CompartmentSlots {
+    PilotCompartmentSlot PilotCompartment {
+     DoorInfoList {
+      CompartmentDoorInfo "{50B8D5DDA17EB35D}" {
+       EntryPositionInfo PointInfo "{50B8D5DD213DC00C}" {
+        PivotID "stepIn_pilot"
+        Offset 0 0 0
+        Angles 0 90 -4.796
+       }
+       ExitPositionInfo PointInfo "{5EAADECB382E56D9}" {
+        PivotID "pilotl_idle"
+        Offset 0.0073 0.1619 -0.0001
+        Angles -4.796 0 0
+       }
+       GetInTeleport 0
+       GetOutTeleport 0
+      }
+     }
+    }
+    PilotCompartmentSlot Passenger_m01Cargo {
+     GetOutAction SCR_GetOutAction "{509D56667AFC4BD5}" {
+      "Sort Priority" 1
+     }
+     DoorInfoList {
+      CompartmentDoorInfo "{50B8D5DDA17EB35D}" {
+       EntryPositionInfo PointInfo "{50B8D5DD213DC00C}" {
+        PivotID "stepIn_pilot"
+        Offset 0 0 0
+        Angles 0 90 -4.796
+       }
+       ExitPositionInfo PointInfo "{5EAADECB382E56E3}" {
+        PivotID "pilotl_idle"
+        Offset 0.0073 0.1619 -0.0001
+        Angles -4.796 0 0
+       }
+       GetInTeleport 0
+       SeatPositionAligning 0
+      }
+     }
+    }
+    CargoCompartmentSlot Passenger_m01 {
+     PassengerPositionInfo EntitySlotInfo "{699366C6D607AD06}" {
+      Offset 0 1.6 2.8
+      Angles -2.9742 0 0
+     }
+     SeatType 5
+     DoorInfoList {
+      CompartmentDoorInfo "{50B8D5DD7BC767A1}" {
+       ContextName "door_l01"
+       EntryPositionInfo PointInfo "{50B8D5DD78963937}" {
+        PivotID "stepIn_pilot"
+        Offset 0 0 0
+        Angles 0 90 -4.796
+       }
+       ExitPositionInfo PointInfo "{5A7CE769E7A9C4AA}" {
+        PivotID "pilotl_idle"
+        Offset 0.0073 0.1619 -0.0001
+        Angles -4.796 0 0
+       }
+       GetInTeleport 0
+       GetOutTeleport 0
+       SeatPositionAligning 0
+      }
+     }
+     UIInfo UIInfo "{50870A10CE897250}" {
+      Name "#AR-VehiclePosition_Navigator"
+     }
+     AccessibilitySettings CompartmentAccessibilityContext "{5A7CE769E7A9C4AF}" {
+      TraceOffset 0 0.2 0.75
+      TraceLength -0.8
+     }
+     ContextName "navigator"
+    }
+   }
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
+    Name "#AR-Vehicle_Mi8MT_Name"
+    m_Image "{4FDC9EAA538B6EF8}UI/Textures/EditorPreviews/Vehicles/Helicopters/Mi8MT/Mi8MT.edds"
+    m_aAuthoredLabels + {
+     37 210
+    }
+   }
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo door_rear {
+     PivotID "Scene_Root"
+     Prefab "{8952883E000BE636}Prefabs/Vehicles/Helicopters/Mi8MT/VehParts/Mi8MT_rear_door.et"
+    }
+    RegisteringComponentSlotInfo SeatsRear {
+     Prefab "{9503E8AF9FFBA67A}Prefabs/Vehicles/Helicopters/Mi8MT/VehParts/Seats/VehPart_MI8_seats_cargo.et"
+    }
+    RegisteringComponentSlotInfo SupplyStorage_01 {
+     Offset 0 1.0177 -2.6173
+     Angles 0 -92.4753 0
+     Prefab "{FE4A51A953C54DA0}Prefabs/Props/Military/SupplyBox/SupplyStack/SupplyStack_Large_01/SupplyStack_Large_01_Vehicle.et"
+     DisablePhysicsInteraction 1
+    }
+    RegisteringComponentSlotInfo SupplyStorage_02 {
+     Offset 0 1.0177 -1.3666
+     Angles 0 89.6916 0
+     Prefab "{FE4A51A953C54DA0}Prefabs/Props/Military/SupplyBox/SupplyStack/SupplyStack_Large_01/SupplyStack_Large_01_Vehicle.et"
+     DisablePhysicsInteraction 1
+    }
+    RegisteringComponentSlotInfo SupplyStorage_03 {
+     Offset 0 1.0177 -0.1088
+     Angles 0 93.1328 0
+     Prefab "{FE4A51A953C54DA0}Prefabs/Props/Military/SupplyBox/SupplyStack/SupplyStack_Large_01/SupplyStack_Large_01_Vehicle.et"
+     DisablePhysicsInteraction 1
+    }
+    RegisteringComponentSlotInfo SupplyStorage_04 {
+     Offset 0 1.0177 1.162
+     Angles 0 -92.9939 0
+     Prefab "{FE4A51A953C54DA0}Prefabs/Props/Military/SupplyBox/SupplyStack/SupplyStack_Large_01/SupplyStack_Large_01_Vehicle.et"
+     DisablePhysicsInteraction 1
+    }
+   }
+   SlotMappers {
+    CompartmentToSlotMapping Window_Glass_Right_1 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Right_2 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Right_3 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Right_4 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Right_5 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Left_1 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Left_2 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Left_3 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Left_4 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+    CompartmentToSlotMapping Window_Glass_Left_5 {
+     Compartments {
+      "Passenger_l02" "Passenger_l03" "Passenger_l04" "Passenger_l05" "Passenger_l06" "Passenger_l07" "Passenger_r01" "Passenger_r02" "Passenger_r03" "Passenger_r04" "Passenger_r05" "Passenger_r06" "Passenger_r07"
+     }
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5DE461D61EF2BB04}" {
+     Position PointInfo "{5EAADECB382E5721}" {
+      Offset 0.849 2.5844 3.3231
+     }
+    }
+    UserActionContext "{5EAD0EE43FDBDC9F}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5EAD0EE432A06B13}" {
+      PivotID "v_body"
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
+   }
+   additionalActions {
+    SCR_ResourceEntityRefundAction "{5D5EC6128E6342C0}" {
+     ParentContextList {
+      "heli_repair_point"
+     }
+    }
+    SCR_ResourceContainerVehicleLoadAction "{5DAD751A3D2FE182}" : "{A0E53319BFA4E848}Configs/Resources/Supplies/Actions/Supplies_Vehicle_Load.conf" {
+     ParentContextList {
+      "door_l01"
+     }
+    }
+    SCR_ResourceContainerVehicleUnloadAction "{5DAD751A3BF8492E}" : "{F10C4B3E2E87F15B}Configs/Resources/Supplies/Actions/Supplies_Vehicle_Unload.conf" {
+     ParentContextList {
+      "door_l01"
+     }
+    }
+    SCR_CTI_LockAndUnlockVehicleAction "{5EAD0EE426518792}" {
+     ParentContextList {
+      "door_m01_cockpit" "door_m01_cargo" "door_l01" "door_back_r" "door_back_l"
+     }
+    }
+    SCR_CTI_ExtinguishAction "{5EAD0EE4657B86B3}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
+    }
+    SCR_CTI_RepairAction "{5EAD0EE46342637C}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+   }
+  }
+  SCR_ResourceComponent "{5EAADECB382E5728}" {
+   m_aContainers {
+    SCR_ResourceContainer "{5EAADECB382E572A}" {
+     m_eResourceRights FACTION
+     m_eStorageType CARGO_VEHICLE
+    }
+   }
+   m_aEncapsulators {
+    SCR_ResourceEncapsulator "{5EAADECB382E5737}" {
+     m_sDebugName "Encapsulator - Mi-8"
+     m_eResourceRights ALL
+     m_ContainerQueue SCR_ResourceEncapsulatorContainerQueue "{5E42966B1329AD30}" : "{F214C17E1F29E70A}Configs/Resources/Supplies/ContainerQueues/Encapsulator/Queue_Encapsulator_Vehicle.conf" {
+     }
+     m_aActions {
+      SCR_ResourceEncapsulatorActionChangeDecay "{5EAADECB382E5731}" {
+      }
+      SCR_ResourceEncapsulatorActionChangeGain "{5EAADECB382E5733}" {
+      }
+      SCR_ResourceEncapsulatorActionChangeOnEmptyBehavior "{5EAADECB382E573E}" {
+       m_eOnEmptyBehavior HIDE
+      }
+      SCR_ResourceEncapsulatorActionChangeResourceValue "{5EAADECB382E5739}" {
+       m_fResourceValueCurrent 0
+      }
+     }
+    }
+   }
+   m_aConsumers {
+    SCR_ResourceConsumer "{5E42966B6957990A}" : "{CBFF9584EC5E51DD}Configs/Resources/Supplies/Consumers/Consumer_HelicopterLoad.conf" {
+    }
+    SCR_ResourceConsumer "{5E42966B69C41A91}" : "{332213624C5840B6}Configs/Resources/Supplies/Consumers/Consumer_HelicopterUnload.conf" {
+    }
+   }
+   m_aGenerators {
+    SCR_ResourceGenerator "{5E42966B6826B221}" : "{D0F12FFFB07D3955}Configs/Resources/Supplies/Generators/Generator_HelicopterLoad.conf" {
+    }
+    SCR_ResourceGenerator "{5E42966B68E9CC42}" : "{F02DC41374D82975}Configs/Resources/Supplies/Generators/Generator_HelicopterUnload.conf" {
+    }
+   }
+  }
+ }
+ coords 1235.887 50.969 1312.285
+}

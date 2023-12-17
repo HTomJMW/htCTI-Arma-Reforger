@@ -1,0 +1,64 @@
+Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
+ ID "5206D4E7C4A16F13"
+ components {
+  SCR_BaseLockComponent "{54D6FBC0EA806FE5}" {
+   Enabled 0
+  }
+  SCR_CTI_MHQLockComponent "{5AE568D7E21912C5}" {
+  }
+  SCR_CTI_VehicleCustomVariablesComponent "{5D20D99DAECBEAAB}" {
+   supportVehicleType MHQ
+  }
+  SCR_CTI_VehicleSpawnPointHandlerComponent "{5D215320EC3C673B}" {
+  }
+  SCR_MapDescriptorComponent "{5D2B29C363D0B141}" {
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo SpawnPoint {
+     Prefab "{4FEA25583D0975F7}Prefabs/MP/Spawning/SpawnPoint_USSR.et"
+    }
+    EntitySlotInfo MHQMarker {
+     Prefab "{B0E1C0F7839C3F24}Prefabs/Markers/CTI_MHQMarker.et"
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5AA931A023DA6CCF}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5AA931A0145721D0}" {
+      PivotID "v_body"
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
+   }
+   additionalActions {
+    SCR_CTI_TakeCommandAction "{5AA931A006FF18F4}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     VisibilityRange 5
+     Duration 2
+     m_sActionStateOn ""
+     m_sActionStateOff ""
+    }
+    SCR_CTI_RepairAction "{5E071905FF9E0F44}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 3
+    }
+    SCR_CTI_ExtinguishAction "{5E071905E4BAF591}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+   }
+  }
+ }
+}

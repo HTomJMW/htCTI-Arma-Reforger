@@ -1,0 +1,12 @@
+SCR_CTI_StructureMarker {
+ ID "5D2D4BCA0BFE207A"
+ components {
+  SCR_MapDescriptorComponent "{5D2D4BCA0BFE208E}" {
+  }
+  RplComponent "{5D2D4BCA0BFE2088}" {
+   Streamable Disabled
+  }
+  Hierarchy "{5D2D4BCA0BFE2082}" {
+  }
+ }
+}

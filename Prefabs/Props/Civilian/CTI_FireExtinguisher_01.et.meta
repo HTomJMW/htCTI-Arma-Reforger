@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{74766A7BE930FE07}Prefabs/Props/Civilian/CTI_FireExtinguisher_01.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

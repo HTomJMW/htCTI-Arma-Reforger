@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{084A168713BD0D21}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

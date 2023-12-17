@@ -1,0 +1,134 @@
+Turret : "{7C4D1A64D60F2C92}Prefabs/Weapons/Tripods/Tripod_6T5.et" {
+ ID "52D30EFBEBC74642"
+ components {
+  SCR_EditableVehicleComponent "{58FE9E4F05DC95A3}" {
+   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
+    Name "#AR-EditableEntity_Tripod_6T5_PKM"
+    Icon "{C9E7C9C9DE28F3B7}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Turret_MachineGun.edds"
+    m_Image "{EF2E9A7902B8945B}UI/Textures/EditorPreviews/Weapons/Tripods/Tripod_6T5_PKM.edds"
+    m_sFaction "USSR"
+    m_aAuthoredLabels + {
+     10 21 34
+    }
+    m_aAutoLabels {
+     121 55
+    }
+    m_aOccupantFillCompartmentTypes +{
+    }
+    m_aCrewEntityBudgetCost {
+     SCR_EntityBudgetValue "{5D9D26E9CF79DADF}" {
+      m_BudgetType AI
+      m_Value 1
+     }
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{58FE9EDB2128FCFC}" : "{6CADA7A88A6265FD}Prefabs/Editor/Components/PreviewEntityComponentClass.ct" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{5D9D26E9CF79DAEC}" {
+     m_iParentID -1
+     m_Mesh "{C45CC9C950115B07}Assets/Weapons/Tripods/6T5/Tripod_6T5.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D9D26E9CF79DAED}" {
+     m_iParentID 0
+     m_Mesh "{6225F32E5CAC127C}Assets/Weapons/MachineGuns/PKM/PKM_body.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "w_weapon_holder_tripod"
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  SCR_VehicleFactionAffiliationComponent "{59107AF83E654ABA}" {
+   "faction affiliation" "USSR"
+  }
+  TurretComponent "{1D3DA71B9107070D}" {
+   components {
+    SightsComponent "{5704FD9D7509AA3A}" {
+     SightsPosition PointInfo "{5D9D26E9CF79DAE4}" {
+      Offset 0 0.4234 -0.4548
+     }
+     SightsRanges {
+      SightRangeInfo "{5D9D26E9CF79DAE7}" {
+       WeaponPosition PointInfo "{5D9D26E9CF79DAF8}" {
+       }
+      }
+     }
+     SightsPointFront PointInfo "{5D9D26E9CF79DAFA}" {
+      PivotID "w_weapon_holder_tripod"
+      Offset 0 0.1589 0.7034
+     }
+     SightsPointRear PointInfo "{5D9D26E9CF79DAFB}" {
+      PivotID "w_weapon_holder_tripod"
+      Offset 0 0.1599 0.0422
+     }
+     ADSTime 0.8
+    }
+   }
+   AimingMaxSpeed 6 6
+   CameraAdsAttachment PointInfo "{5D9D26E9CF79DAFD}" {
+    PivotID "w_weapon_holder_tripod"
+    Offset 0 0.159 -0.1975
+   }
+  }
+  UniversalInventoryStorageComponent "{570EACF4F2F94F1B}" {
+   Attributes SCR_ItemAttributeCollection "{5D9D26E9CF79DAF0}" {
+    ItemDisplayName WeaponUIInfo "{5D9D26E9CF79DAF2}" {
+     Name "#AR-EditableEntity_Tripod_6T5_PKM"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{5D9D26E9CF79DAF4}" {
+    }
+    CustomAttributes {
+     PreviewRenderAttributes "{5D9D26E9CF79DAF5}" {
+      CameraPreset Right
+      CameraDistanceToItem 0.85
+      CameraOffset -0.15 0.1 0
+      FOV 40
+      PreviewPrefab "{723870DBB19D30B0}Prefabs/Weapons/Tripods/Tripod_6T5_PKM.et"
+     }
+    }
+    m_SlotType SLOT_WEAPONS_STORAGE
+    m_bDraggable 0
+   }
+   UseCapacityCoefficient 0
+   MaxCumulativeVolume 6000
+   MaxItemSize 15 15 15
+   InitialStorageSlots {
+    InventoryStorageSlot Magazine_1 {
+     Prefab "{E5E9C5897CF47F44}Prefabs/Weapons/Magazines/Box_762x54_PK_100rnd_4Ball_1Tracer.et"
+    }
+    InventoryStorageSlot Magazine_2 {
+     Prefab "{E5E9C5897CF47F44}Prefabs/Weapons/Magazines/Box_762x54_PK_100rnd_4Ball_1Tracer.et"
+    }
+    InventoryStorageSlot Magazine_3 {
+     Prefab "{E5E9C5897CF47F44}Prefabs/Weapons/Magazines/Box_762x54_PK_100rnd_4Ball_1Tracer.et"
+    }
+   }
+  }
+  WeaponSlotComponent "{51ACD09C6BFEEE6A}" {
+   WeaponType MachineGun
+   AttachType InventoryStorageSlot "{0AACE7470E421D82}" {
+    PivotID "w_weapon_holder_tripod"
+   }
+   WeaponTemplate "{E6F6F77302B66FD2}Prefabs/Weapons/MachineGuns/PKM/MG_PKM_mounted.et"
+  }
+  ActionsManagerComponent "{51ACD09C7181BA0B}" {
+   additionalActions {
+    SCR_CTI_RemoveDefenseAction "{5D9D26ED198E66AA}" {
+     ParentContextList {
+      "default"
+     }
+     Duration 10
+     "Sort Priority" 3
+    }
+   }
+  }
+ }
+}

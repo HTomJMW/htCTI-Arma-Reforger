@@ -1,0 +1,396 @@
+Vehicle : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_base.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  FuelManagerComponent "{5622A70CD78A9E2C}" {
+   FuelNodes {
+    SCR_FuelNode "{5622A70CD4036C5A}" {
+     FuelCapPosition EntitySlotInfo "{566ADD16103400B1}" {
+      Offset -0.94 0.9 0.06
+      Angles -45.898 90 0
+     }
+    }
+    SCR_FuelNode "{5628CA8A557A363F}" {
+     FuelCapPosition PointInfo "{5DF33B32B411CF87}" {
+      Offset 0.9888 0.9 0.06
+      Angles -45.898 -90 0
+     }
+    }
+   }
+  }
+  SCR_BaseCompartmentManagerComponent "{20FB66C5DCB8DF72}" {
+   CompartmentSlots {
+    CargoCompartmentSlot Patient_left : "{9BD4548866DA1807}Prefabs/Vehicles/Core/Configs/CargoCompartment_Base.conf" {
+     CompartmentAction SCR_GetInUserAction "{5086CC2FCCAA457D}" {
+      ParentContextList {
+       "door_handle"
+      }
+     }
+     GetOutAction SCR_GetOutAction "{509D56665A8C6923}" {
+      ParentContextList {
+       "door_r02_int"
+      }
+     }
+     SwitchSeatAction SCR_SwitchSeatAction "{509D56665850650D}" {
+      ParentContextList {
+       "passenger_r02"
+      }
+     }
+     AdditionalActions {
+      SCR_RemoveCasualtyUserAction "{5D528255CC646B68}" {
+       ParentContextList {
+        "door_handle" "passenger_r01"
+       }
+       "Sort Priority" 2
+      }
+     }
+     PassengerPositionInfo EntitySlotInfo "{699366C6D607AD06}" {
+      PivotID "passengerR_idle"
+      Angles 0 180 0
+     }
+     SeatType 2
+     DoorInfoList {
+      CompartmentDoorInfo "{50B8D5DD7BC767A1}" {
+       ContextName "door_r02"
+       AnimDoorIndex 2
+       EntryPositionInfo PointInfo "{50B8D5DD78963937}" {
+        PivotID "passengerL_getIn"
+       }
+       ExitPositionInfo PointInfo "{5DF33B32B411CF96}" {
+        PivotID "passengerR_idle"
+        Angles 0 180 0
+       }
+      }
+     }
+     UIInfo UIInfo "{50870A10CE897250}" {
+      Name "#AR-VehiclePosition_Patient"
+     }
+     AccessibilitySettings CompartmentAccessibilityContext "{5DF33B32B411CC68}" {
+      BBHalfExtents 0.35 0.6 0.005
+      TraceOffset 0.35 0.7 0.9
+     }
+     BaseCoverage 0.15
+     ContextName "patient_right"
+    }
+    CargoCompartmentSlot Patient_right : "{9BD4548866DA1807}Prefabs/Vehicles/Core/Configs/CargoCompartment_Base.conf" {
+     CompartmentAction SCR_GetInUserAction "{5086CC2FCCAA457D}" {
+      ParentContextList {
+       "door_handle"
+      }
+      "Sort Priority" 1
+     }
+     GetOutAction SCR_GetOutAction "{509D56665A8C6923}" {
+      ParentContextList {
+       "door_l02_int"
+      }
+     }
+     SwitchSeatAction SCR_SwitchSeatAction "{509D56665850650D}" {
+      ParentContextList {
+       "passenger_l02"
+      }
+     }
+     AdditionalActions {
+      SCR_RemoveCasualtyUserAction "{5D528255CC646B68}" {
+       ParentContextList {
+        "door_handle" "passenger_l02"
+       }
+      }
+     }
+     PassengerPositionInfo EntitySlotInfo "{699366C6D607AD06}" {
+      PivotID "passengerL_idle"
+      Angles 0 180 0
+     }
+     SeatType 3
+     DoorInfoList {
+      CompartmentDoorInfo "{50B8D5DD7BC767A1}" {
+       ContextName "door_r02"
+       AnimDoorIndex 3
+       EntryPositionInfo PointInfo "{50B8D5DD78963937}" {
+        PivotID "passengerL_getIn"
+       }
+       ExitPositionInfo PointInfo "{5DF33B32B411CC62}" {
+        PivotID "passengerL_idle"
+        Angles 0 180 0
+       }
+      }
+     }
+     UIInfo UIInfo "{50870A10CE897250}" {
+      Name "#AR-VehiclePosition_Patient"
+     }
+     AccessibilitySettings CompartmentAccessibilityContext "{5DF33B32B411CC60}" {
+      BBHalfExtents 0.35 0.6 0.005
+      TraceOffset -0.35 0.7 0.9
+     }
+     BaseCoverage 0.15
+     ContextName "patient_left"
+    }
+    SCR_DoctorCompartmentSlot Doctor : "{9BD4548866DA1807}Prefabs/Vehicles/Core/Configs/CargoCompartment_Base.conf" {
+     CompartmentAction SCR_GetInUserAction "{5086CC2FCCAA457D}" {
+      ParentContextList {
+       "door_handle"
+      }
+      "Sort Priority" 0
+     }
+     GetOutAction SCR_GetOutAction "{509D56665A8C6923}" {
+      ParentContextList {
+       "door_r02_int"
+      }
+     }
+     SwitchSeatAction SCR_SwitchSeatAction "{509D56665850650D}" {
+      ParentContextList {
+       "passenger_m02"
+      }
+     }
+     AdditionalActions {
+      SCR_RemoveCasualtyUserAction "{5D528255CC646B68}" {
+       ParentContextList {
+        "door_handle" "passenger_m02"
+       }
+      }
+     }
+     PassengerPositionInfo EntitySlotInfo "{699366C6D607AD06}" {
+      PivotID "passengerM_idle"
+      Angles 0 180 0
+     }
+     SeatType 4
+     DoorInfoList {
+      CompartmentDoorInfo "{50B8D5DD7BC767A1}" {
+       ContextName "door_r02"
+       AnimDoorIndex 2
+       EntryPositionInfo PointInfo "{50B8D5DD78963937}" {
+        PivotID "passengerL_getIn"
+       }
+       ExitPositionInfo PointInfo "{5DF33B32B411CC7B}" {
+        PivotID "passengerM_idle"
+        Angles 0 180 0
+       }
+      }
+     }
+     UIInfo UIInfo "{50870A10CE897250}" {
+      Name "#AR-VehiclePosition_Doctor"
+     }
+     AccessibilitySettings CompartmentAccessibilityContext "{5DF33B32B411CC7A}" {
+      BBHalfExtents 0.35 0.6 0.005
+      TraceOffset -0.35 0.7 0.9
+     }
+     BaseCoverage 0.15
+     ContextName "doctor"
+    }
+   }
+  }
+  SCR_CTI_VehicleCustomVariablesComponent "{5EAD09EEFBF68760}" {
+   supportVehicleType MEDICAL
+  }
+  SCR_CTI_VehicleSpawnPointHandlerComponent "{5EAD09EEF331D036}" {
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
+    Name "#AR-Vehicle_UAZ452A_Name"
+    Icon "{71DF78365A62B6DE}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Offroad_Medical.edds"
+    m_Image "{8D6FC6C985C45BBD}UI/Textures/EditorPreviews/Vehicles/Wheeled/UAZ452/UAZ452_ambulance.edds"
+    m_sFaction "USSR"
+    m_aAuthoredLabels + {
+     24
+    }
+    m_aAutoLabels +{
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{56FCFAC01DB4E24C}" : "{6CADA7A88A6265FD}Prefabs/Editor/Components/PreviewEntityComponentClass.ct" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{5DF33B32B411CC70}" {
+     m_iParentID -1
+     m_Mesh "{C984590B625B3528}Assets/Vehicles/Wheeled/UAZ452/UAZ452_base.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5DF33B32B411CC75}" {
+     m_iParentID 0
+     m_Mesh "{FD58A22B0D70B57F}Assets/Vehicles/Wheeled/UAZ469/Dst/UAZ469_base_glass_RR_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_r02"
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5DF33B32B411CC74}" {
+     m_iParentID 0
+     m_Mesh "{2E9DFAA57A9550B5}Assets/Vehicles/Wheeled/UAZ469/Dst/UAZ469_base_glass_RF_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_r01"
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5DF33B32B411CC4B}" {
+     m_iParentID 0
+     m_Mesh "{919608FA9926D41B}Assets/Vehicles/Wheeled/UAZ469/Dst/UAZ469_base_glass_LR_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_l02"
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5DF33B32B411CC49}" {
+     m_iParentID 0
+     m_Mesh "{42535074EEC331D1}Assets/Vehicles/Wheeled/UAZ469/Dst/UAZ469_base_glass_LF_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID "v_door_l01"
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5DF33B32B411CC48}" {
+     m_iParentID 0
+     m_Mesh "{24AED6083551AB0A}Assets/Vehicles/Wheeled/UAZ469/Dst/UAZ469_base_glass_Back.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5DF33B32B411CC4F}" {
+     m_iParentID 0
+     m_Mesh "{F0598B2986D522D8}Assets/Vehicles/Wheeled/UAZ469/Dst/UAZ469_base_glass_Front_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  SCR_UniversalInventoryStorageComponent "{5D7E924E84B181BC}" {
+   MaxCumulativeVolume 20000
+   MultiSlots {
+    MultiSlotConfiguration "{5D7EA3CA68FB9515}" {
+     NumSlots 12
+    }
+    MultiSlotConfiguration "{5DF33B32B411CC43}" {
+     SlotTemplate InventoryStorageSlot Tourniquet {
+      Prefab "{80E75A71C29190DB}Prefabs/Items/Medicine/Tourniquet_01/Tourniquet_USSR_01.et"
+     }
+     NumSlots 8
+    }
+    MultiSlotConfiguration "{5DF33B32B411CC40}" {
+     SlotTemplate InventoryStorageSlot Morphine {
+      Prefab "{0D9A5DCF89AE7AA9}Prefabs/Items/Medicine/MorphineInjection_01/MorphineInjection_01.et"
+     }
+     NumSlots 8
+    }
+    MultiSlotConfiguration "{5DF33B32B411CC47}" {
+     SlotTemplate InventoryStorageSlot Saline {
+      Prefab "{527D7C5D2E476BDC}Prefabs/Items/Medicine/SalineBag_01/SalineBag_USSR_01.et"
+     }
+     NumSlots 8
+    }
+   }
+   m_fMaxWeight 100
+  }
+  SCR_VehicleDamageManagerComponent "{141326E9FD94FE40}" {
+   m_fVehicleDestroyDamage 4493.57
+  }
+  SCR_VehicleFactionAffiliationComponent "{5882CBD9AC741CEC}" {
+   "faction affiliation" "USSR"
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo SpawnPoint {
+     Prefab "{4FEA25583D0975F7}Prefabs/MP/Spawning/SpawnPoint_USSR.et"
+    }
+   }
+   SlotMappers {
+    CompartmentToSlotMapping window_rl {
+     SlotName "window_rl"
+     Coverage 0.025
+     Compartments {
+      "Patient_left" "Patient_right" "Doctor"
+     }
+    }
+    CompartmentToSlotMapping window_rl1 {
+     SlotName "window_rl1"
+     Coverage 0.025
+     Compartments {
+      "Patient_left" "Patient_right" "Doctor"
+     }
+    }
+    CompartmentToSlotMapping window_rl2 {
+     SlotName "window_rl2"
+     Coverage 0.025
+     Compartments {
+      "Patient_left" "Patient_right" "Doctor"
+     }
+    }
+    CompartmentToSlotMapping window_rr {
+     SlotName "window_rr"
+     Coverage 0.025
+     Compartments {
+      "Patient_left" "Patient_right" "Doctor"
+     }
+    }
+    CompartmentToSlotMapping window_rr1 {
+     SlotName "window_rr1"
+     Coverage 0.025
+     Compartments {
+      "Patient_left" "Patient_right" "Doctor"
+     }
+    }
+    CompartmentToSlotMapping window_rr2 {
+     SlotName "window_rr2"
+     Coverage 0.025
+     Compartments {
+      "Patient_left" "Patient_right" "Doctor"
+     }
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5E0B03B572694138}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5E0B03B56B9F9BAB}" {
+      PivotID "v_body"
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
+   }
+   additionalActions {
+    SCR_CTI_LockAndUnlockVehicleAction "{5DF33B32F899FADF}" {
+     ParentContextList {
+      "door_l01" "door_r01" "door_l02" "door_r02" "door_side"
+     }
+    }
+    SCR_CTI_RepairAction "{5E0B03B560B46517}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 3
+    }
+    SCR_CTI_ExtinguishAction "{5E0B03B55E68FBD7}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
+    }
+    SCR_CTI_HealOnVehicleAction "{5E0B03B20E3C3379}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+   }
+  }
+  VehicleAnimationComponent "{50B803EAA459B0AF}" {
+   StartNode "VehicleMasterControl"
+   AlwaysActive 1
+   ResetOnDeactivation 0
+  }
+ }
+}

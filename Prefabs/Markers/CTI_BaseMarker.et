@@ -1,0 +1,12 @@
+SCR_CTI_BaseMarker {
+ ID "5ADB38168BE2ED60"
+ components {
+  SCR_MapDescriptorComponent "{5CAF1EBFF478246A}" {
+  }
+  RplComponent "{5ADB3816A9C73B12}" {
+   Streamable Disabled
+  }
+  Hierarchy "{5ADB3816AB0B63B7}" {
+  }
+ }
+}

@@ -1,0 +1,111 @@
+Vehicle : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
+ ID "44EC665ABD2FF04B"
+ components {
+  SCR_VehicleSoundComponent "{55C2E66AD4EF2CA6}" {
+   Filenames {
+    "{D89573B95647C34A}Sounds/Vehicles/Wheeled/M151A2/Vehicles_M151A2_Engine.acp" "{A117C96F2734B916}Sounds/Vehicles/Wheeled/M151A2/Vehicles_M151A2_Dampers.acp" "{653EACB16464519D}Sounds/Vehicles/Wheeled/M151A2/Vehicles_M151A2_Animations.acp" "{69E28569A5638E5A}Sounds/Vehicles/Wheeled/M151A2/Vehicles_M151A2_Horn.acp" "{BA8A5BD290F5FB34}Sounds/Vehicles/_SharedData/Destruction/Vehicles_Destruction.acp" "{D2DF25DD8B4A4B62}Sounds/Destruction/Multiphase/Destruction_Multiphase_Glass_Vehicle_Medium.acp" "{13397A21CE527E2C}Sounds/Vehicles/_SharedData/Rain/Vehicles_Rain_FabricRoof.acp" "{465B31754AAAE693}Sounds/Vehicles/_SharedData/Crashes/Cars/Vehicles_Crashes_Cars.acp" "{F1030E91E4B33E24}Sounds/Vehicles/_SharedData/WaterInteractions/Vehicles_WaterInteractions.acp"
+   }
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
+    Name "#AR-Vehicle_M151A2_Name"
+    Icon "{943873C801ED95B8}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Offroad.edds"
+    m_Image "{565989A21E6909FD}UI/Textures/EditorPreviews/Vehicles/Wheeled/M151A2/M151A2_transport.edds"
+    m_sFaction "US"
+    m_aAutoLabels +{
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{56FCFAC0179439A1}" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{5D90D2880EB81549}" {
+     m_iParentID -1
+     m_Mesh "{6E1168054FC83085}Assets/Vehicles/Wheeled/M151A2/m151a2_base.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D90D2880EB8154C}" {
+     m_iParentID 0
+     m_Mesh "{D59C3FB93D59ABA4}Assets/Vehicles/Wheeled/M151A2/m151a2_canvas.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D90D2880EB8154D}" {
+     m_iParentID 0
+     m_Mesh "{1B3B8BB5E22C3E27}Assets/Vehicles/Wheeled/M151A2/m151a2_bench.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+    SCR_BasePreviewEntry "{5D90D2880EB8154E}" {
+     m_iParentID 0
+     m_Mesh "{8E45B5DB298186A1}Assets/Vehicles/Wheeled/M151A2/Dst/M151a2_Glass_Front.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    RegisteringComponentSlotInfo Canvas {
+     Prefab "{4E5531CDAE20F9EF}Prefabs/Vehicles/Wheeled/M151A2/M151A2_canvas_roof.et"
+     RegisterDamage 1
+    }
+   }
+   SlotMappers {
+    CompartmentToSlotMapping Canvas {
+     SlotName "Canvas"
+     Coverage 0.12
+     Compartments {
+      "PilotCompartment" "Passenger_r01" "Passenger_l02" "Passenger_r02"
+     }
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{5E0B03B73F806CB7}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{5E0B03B7398B8527}" {
+      PivotID "v_body"
+      Offset 0 0.05 0
+     }
+     Radius 5
+    }
+   }
+   additionalActions {
+    SCR_CTI_LockAndUnlockVehicleAction "{5D90D28803E101AE}" {
+     ParentContextList {
+      "door_l01" "door_r01"
+     }
+    }
+    SCR_CTI_RepairAction "{5E0B03B72B764301}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
+    SCR_CTI_ExtinguishAction "{5E0B03B72741D81F}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 1
+    }
+   }
+  }
+ }
+}
