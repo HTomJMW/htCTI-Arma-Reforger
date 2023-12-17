@@ -1,0 +1,50 @@
+SCR_DestructibleEntity : "{43EB690D46E15669}Prefabs/Structures/Walls/Concrete/ConcreteWall_01/ConcreteWall_01_6m_B.et" {
+ ID "1133272B8B185691"
+ components {
+  MeshObject "{56DE7C8DCD0F4E0A}" {
+   Object "{DF2A041CCCA321A2}Assets/Structures/Walls/Concrete/ConcreteWall_01_6m_B.xob"
+   Materials {
+    MaterialAssignClass "{5D9D26E9B5953DDC}" {
+     SourceMaterial "ConcreteWall_01"
+     AssignedMaterial "{AFDB93B6E968BF6F}Assets/Structures/Walls/Concrete/Data/ConcreteWall_01_Camo.emat"
+    }
+    MaterialAssignClass "{5D9D26E9B5953DD1}" {
+     SourceMaterial "ConcreteWall_01_MLOD"
+     AssignedMaterial "{C23700B4A1263448}Assets/Structures/Walls/Concrete/Data/ConcreteWall_01_MLOD_camo.emat"
+    }
+   }
+  }
+  NavmeshCustomLinkComponent "{5088C72B466E73FA}" {
+  }
+  RigidBody "{56DE7C8DDE282E03}" {
+  }
+  ActionsManagerComponent "{5D9D26E6D69DAB37}" {
+   ActionContexts {
+    UserActionContext "{5D9D26E6D441CF51}" {
+     ContextName "CTI_Remove"
+     Position PointInfo "{5D9D26E6D0A806D1}" {
+      Offset 0.1027 1.4 0
+     }
+     Radius 0.5
+    }
+   }
+   additionalActions {
+    SCR_CTI_RemoveDefenseAction "{5D9D26E6C9AA44E8}" {
+     ParentContextList {
+      "CTI_Remove"
+     }
+     Duration 10
+     "Sort Priority" 3
+    }
+   }
+  }
+  RplComponent "{5D9D26E6DA1B22E5}" {
+  }
+ }
+ DamagePhases {
+  SCR_BaseDestructionPhase "{5D9D26E9B5953DD5}" {
+   Threshold 0.72
+   m_sPhaseModel "{98AA71FDFF86D949}Assets/Structures/Walls/Concrete/Dst/ConcreteWall_01/ConcreteWall_01_6m_B_dst_01.xob"
+  }
+ }
+}

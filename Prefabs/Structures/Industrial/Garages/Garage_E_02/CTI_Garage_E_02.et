@@ -1,0 +1,345 @@
+SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industrial/Garages/Garage_E_02/Garage_E_02_base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  FactionAffiliationComponent "{5CDF080E01A56CBB}" {
+  }
+  SCR_CTI_BuildQueueComponent "{5D94C90015C86B04}" {
+  }
+  SCR_CTI_BuildingCustomVariablesComponent "{5DB2CE111CEEB589}" {
+  }
+  SlotManagerComponent "{5D2E000BA828FDB6}" {
+   Slots {
+    EntitySlotInfo BuildingMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+   }
+  }
+ }
+ {
+  Building : "{14111FDDF1FC616E}Prefabs/Structures/BuildingParts/Windows/Win_Garage_E/win_garage_e_02_4400x1100_88_B_base.et" {
+   ID "5CDF080F6511144D"
+   components {
+    Hierarchy "{5CDF080F651074CA}" {
+     Enabled 1
+     PivotID "socket_win_4400x1100_88_001"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 0
+  }
+  $grp GenericEntity : "{18E3F1942F2C8509}Prefabs/Structures/BuildingParts/Entry/Entry_Slope_Platform_01.et" {
+   {
+    ID "5CDF080F65111449"
+    components {
+     Hierarchy "{5488F0388A297CDE}" {
+      Enabled 1
+      PivotID "socket_entry_wide_002"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080F651178E8"
+    components {
+     Hierarchy "{5488F0388A297CDE}" {
+      Enabled 1
+      PivotID "socket_entry_wide_001"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080F651178E9"
+    components {
+     Hierarchy "{5488F0388A297CDE}" {
+      Enabled 1
+      PivotID "socket_entry_wide_004"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080F6511B1CD"
+    components {
+     Hierarchy "{5488F0388A297CDE}" {
+      Enabled 1
+      PivotID "socket_entry_wide_003"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  $grp GenericEntity : "{65FBBAE477AD3969}Prefabs/Structures/BuildingParts/Doors/DoorSet_Garage_E_02_EXT.et" {
+   {
+    ID "5CDF080F6511B1D0"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_frame_gate_002"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+    {
+     GenericEntity {
+      ID "58689E1BBDDF09AD"
+      {
+       GenericEntity {
+        ID "58689E1B767FC979"
+        components {
+         ActionsManagerComponent "{F32B667C3C823800}" {
+          additionalActions {
+           SCR_CTI_TakeCommandBuildingAction "{5D9B31872732D835}" {
+            ParentContextList {
+             "SCR_DoorUserAction"
+            }
+            Duration 2
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+   {
+    ID "5CDF080F6511B1D5"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_frame_gate_004"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+    {
+     GenericEntity {
+      ID "58689E1BBDDF09AD"
+      {
+       GenericEntity {
+        ID "58689E1B767FC979"
+        components {
+         ActionsManagerComponent "{F32B667C3C823800}" {
+          additionalActions {
+           SCR_CTI_TakeCommandBuildingAction "{5D9B3187116DC984}" {
+            ParentContextList {
+             "SCR_DoorUserAction"
+            }
+            Duration 2
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  GenericEntity : "{7F1730DFAAEA1B8B}Prefabs/Structures/BuildingParts/Doors/DoorSet_Garage_E_02_EXT_03.et" {
+   ID "5CDF080F6511B1D6"
+   components {
+    Hierarchy "{612AE78C85563E26}" {
+     Enabled 1
+     PivotID "socket_door_frame_gate_003"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 0
+   {
+    GenericEntity {
+     ID "58689E1BBDDF09AD"
+     {
+      GenericEntity {
+       ID "58689E1B767FC979"
+       components {
+        ActionsManagerComponent "{F32B667C3C823800}" {
+         additionalActions {
+          SCR_CTI_TakeCommandBuildingAction "{5D9B318705CA01FB}" {
+           ParentContextList {
+            "SCR_DoorUserAction"
+           }
+           Duration 2
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  GenericEntity : "{8BDEAB5E86E4F021}Prefabs/Structures/Industrial/Garages/Garage_E_02/Garage_E_02_furniture_01.et" {
+   ID "5CDF080F6511B1D8"
+   coords 0 0 0
+  }
+  GenericEntity : "{9A8B7C26A60F8CE0}Prefabs/Structures/BuildingParts/Doors/DoorSet_Garage_E_02_EXT_02.et" {
+   ID "5CDF080F6511B1E7"
+   components {
+    Hierarchy "{612AE78C85563E26}" {
+     Enabled 1
+     PivotID "socket_door_frame_gate_001"
+     AutoTransform 1
+    }
+   }
+   coords 0 0 0
+   {
+    GenericEntity {
+     ID "58689E1BBDDF09AD"
+     {
+      GenericEntity {
+       ID "58689E1B767FC979"
+       components {
+        ActionsManagerComponent "{F32B667C3C823800}" {
+         additionalActions {
+          SCR_CTI_TakeCommandBuildingAction "{5D9B3187528403B3}" {
+           ParentContextList {
+            "SCR_DoorUserAction"
+           }
+           Duration 2
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  $grp GenericEntity : "{CC6B92AEE60F0AAC}Prefabs/Structures/BuildingParts/Doors/DoorSet_Village_E_01_R_EXT_COV_B_brown.et" {
+   {
+    ID "5CDF080F651198F7"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_frame_ext_002"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+    {
+     GenericEntity {
+      ID "5564931ADBF597B6"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3187D6C29546}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+   {
+    ID "5CDF080F6511B1EB"
+    components {
+     Hierarchy "{612AE78C85563E26}" {
+      Enabled 1
+      PivotID "socket_door_frame_ext_001"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+    {
+     GenericEntity {
+      ID "5564931ADBF597B6"
+      components {
+       ActionsManagerComponent "{F32B667C3C823800}" {
+        additionalActions {
+         SCR_CTI_TakeCommandBuildingAction "{5D9B3187C88BB3CB}" {
+          ParentContextList {
+           "SCR_DoorUserAction"
+          }
+          Duration 2
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  $grp Building : "{E68D2802A8DB8DB2}Prefabs/Structures/BuildingParts/Windows/Win_Garage_E/win_garage_e_02_1300x1400_444_B.et" {
+   {
+    ID "5CDF080F651198F1"
+    components {
+     Hierarchy "{5CDF080F6510742B}" {
+      Enabled 1
+      PivotID "socket_win_1400x1300_002"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080F651198F2"
+    components {
+     Hierarchy "{5CDF080F65107429}" {
+      Enabled 1
+      PivotID "socket_win_1400x1300_001"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  $grp GenericEntity : "{FA188839C5E6DAD3}Prefabs/Structures/BuildingParts/Entry/Entry_Direct_01_narrow.et" {
+   {
+    ID "5CDF080F651198EC"
+    components {
+     Hierarchy "{5488F0388A297CDE}" {
+      Enabled 1
+      PivotID "socket_entry_narrow_001"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080F6511D28D"
+    components {
+     Hierarchy "{5488F0388A297CDE}" {
+      Enabled 1
+      PivotID "socket_entry_narrow_002"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+  $grp Building : "{FA6DE318CF32058F}Prefabs/Structures/BuildingParts/Windows/Win_Garage_E/win_garage_e_02_4400x1100_0_B_base.et" {
+   {
+    ID "5CDF080F651074C3"
+    components {
+     Hierarchy "{5CDF080F65107416}" {
+      Enabled 1
+      PivotID "socket_win_4400x1100_0_002"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+   {
+    ID "5CDF080F6511D28C"
+    components {
+     Hierarchy "{5CDF080F65107410}" {
+      Enabled 1
+      PivotID "socket_win_4400x1100_0_001"
+      AutoTransform 1
+     }
+    }
+    coords 0 0 0
+   }
+  }
+ }
+}

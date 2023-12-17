@@ -1,0 +1,649 @@
+SCR_DestructibleBuildingEntity {
+ ID "5D792C84EAA9971A"
+ components {
+  FactionAffiliationComponent "{5D792C8467F889DD}" {
+  }
+  MeshObject "{5D792C847619B3AA}" {
+   Object "{0C626B5272C69A11}Assets/CTI/empty.xob"
+  }
+  Hierarchy "{5D792C847D5C04E8}" {
+  }
+  RigidBody "{5D792C8471385024}" {
+   ModelGeometry 1
+   Static 1
+  }
+  SCR_CTI_StructureCompletionComponent "{5D792C846BDD5F55}" {
+  }
+  SlotManagerComponent "{5D792C84784C615A}" {
+   Slots {
+    EntitySlotInfo CTI_StructureMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+    EntitySlotInfo CTI_WorkerWaypoint {
+     Prefab "{22A875E30470BD4F}Prefabs/AI/Waypoints/AIWaypoint_Patrol.et"
+    }
+   }
+  }
+  RplComponent "{5D792C847C800675}" {
+  }
+ }
+ {
+  GenericEntity : "{01969A28078FCA69}Prefabs/Compositions/Misc/SubCompositions/BarrelClutter_02.et" {
+   ID "5D7701BDA29F9D0C"
+   coords 26.31 0 15.317
+   {
+    GenericEntity {
+     ID "552A7733B8B30470"
+     components {
+      RplComponent "{5624A88DC2D9928D}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "552A7733B8B30471"
+     components {
+      RplComponent "{5624A88DC2D9928D}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "552A7733B8B30474"
+     components {
+      RplComponent "{5624A88DC2D9928D}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "5712BD04A4D9CDAD"
+     components {
+      RplComponent "{5624A88DC2D9928D}" {
+       Enabled 1
+      }
+     }
+     {
+      GenericEntity {
+       ID "55DECB3EB6F939C5"
+       components {
+        RplComponent "{5624A88DC2D9928D}" {
+         Enabled 1
+        }
+       }
+      }
+      GenericEntity {
+       ID "55DECB3EB6F939C7"
+       components {
+        RplComponent "{5624A88DC2D9928D}" {
+         Enabled 1
+        }
+       }
+      }
+      GenericEntity {
+       ID "55DECB3EB6F939D8"
+       components {
+        RplComponent "{5624A88DC2D9928D}" {
+         Enabled 1
+        }
+       }
+      }
+      GenericEntity {
+       ID "55DECB3EB6F939D9"
+       components {
+        RplComponent "{5624A88DC2D9928D}" {
+         Enabled 1
+        }
+       }
+      }
+      GenericEntity {
+       ID "55DECB3EB6F939DB"
+       components {
+        RplComponent "{5624A88DC2D9928D}" {
+         Enabled 1
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  GenericEntity : "{1112756E8A13445B}Prefabs/Props/Industrial/Pallets/Pallet_01_Pile.et" {
+   ID "5D7701BC7D69E28F"
+   components {
+    Hierarchy "{5D795CF3991DA662}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords -14.202 0 -3.486
+   angleY 75
+  }
+  GenericEntity : "{19A3C48FC2665A3F}Prefabs/Props/Construction/GravelPile_01/GravelPile_01_large.et" {
+   ID "5D7701BC370A7641"
+   components {
+    Hierarchy "{5D795CF3973F29BA}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords -11.764 0 10.462
+   scale 0.987
+  }
+  GenericEntity : "{22E2462FA3AE0849}Prefabs/Props/Construction/ConcretePipe/ConcretePipe_01_Long_Pile.et" {
+   ID "5D7701BC2461302E"
+   components {
+    Hierarchy "{5D795CF3968CCAB5}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords -15.519 0 -5.843
+   scale 0.5
+  }
+  GenericEntity : "{4A34979DC19CA9ED}Prefabs/Props/Construction/ConcreteMixer_01.et" {
+   ID "5D7701BABD8A8C45"
+   components {
+    Hierarchy "{5D795CF394A5C700}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords 21.668 0 4.414
+  }
+  GenericEntity : "{67B5336A6D63CCA4}Prefabs/Props/Construction/PlankPile/PlankPile_01_Medium.et" {
+   ID "5D7701BC6ECF6A7A"
+   components {
+    Hierarchy "{5D795CF391AB287C}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords -5.871 0 -4.156
+  }
+  $grp GenericEntity : "{6DD0648BB7A52420}Prefabs/Props/Civilian/Wheelbarrow_01.et" {
+   {
+    ID "5D7701BD541BBAE4"
+    components {
+     Hierarchy "{5D795CF38FA470AB}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 26.095 0 13.176
+   }
+   {
+    ID "5D7701BD55692A4B"
+    components {
+     Hierarchy "{5D795CF38DF68ED8}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 24.667 0 12.937
+    angleY 5
+   }
+  }
+  GenericEntity : "{754BF6213A318556}Prefabs/Props/Industrial/ConcretePanel_01_D.et" {
+   ID "5D7701BADB0EDB4D"
+   components {
+    Hierarchy "{5D795CF38B6B3F72}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords 2.459 0 6.57
+  }
+  $grp GenericEntity : "{795552B887CD50E7}Prefabs/Props/Industrial/ConcretePanel_01_stack.et" {
+   {
+    ID "5D7701BDD230FEC1"
+    components {
+     Hierarchy "{5D795CF38AB30231}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 2.772 0 -6.31
+   }
+   {
+    ID "5D7701BDD32E65E3"
+    components {
+     Hierarchy "{5D795CF388E16433}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 7.375 0 -1.552
+   }
+   {
+    ID "5D7701BDD4406252"
+    components {
+     Hierarchy "{5D795CF386368B1B}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 2.983 0 -3.988
+    angleY 180
+   }
+   {
+    ID "5D7701BDD568C7A1"
+    components {
+     Hierarchy "{5D795CF38437C6E5}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 7.532 0 -4.022
+   }
+   {
+    ID "5D7701BDD7F4F4FA"
+    components {
+     Hierarchy "{5D795CF382755999}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 7.573 0 -6.405
+    angleY 180
+   }
+  }
+  $grp GenericEntity : "{7D52C517720EF2F5}Prefabs/Props/Industrial/BarrelMetal_01_blue.et" {
+   {
+    ID "5D7701BD9F9AD3BB"
+    components {
+     Hierarchy "{5D795CF381B24829}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 27.132 0 14.396
+    angleY 30
+   }
+   {
+    ID "5D7701BDA3CA37EC"
+    components {
+     Hierarchy "{5D795CF3FF3E8C0B}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 27.511 0 15.304
+   }
+   {
+    ID "5D7701BDA4FA1532"
+    components {
+     Hierarchy "{5D795CF3FD61F3D3}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 25.096 0 14.987
+    angleY 80
+   }
+   {
+    ID "5D7701BDA6963F3E"
+    components {
+     Hierarchy "{5D795CF3FC917C1C}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 25.15 0 15.93
+    angleY 20
+   }
+  }
+  GenericEntity : "{7E3F6F5A6BAEC717}Prefabs/Props/Industrial/CargoContainers/CargoContainer_01/CargoContainer_01_20ft_olive.et" {
+   ID "5D7701BDB57C1000"
+   components {
+    Hierarchy "{5D795CF3FAE715A0}" {
+    }
+    RplComponent "{5DB28200E7EFA059}" {
+    }
+   }
+   coords 0.123 0 13.956
+   angleY 90
+  }
+  $grp StaticModelEntity : "{80DF3BD810D032AF}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01.et" {
+   {
+    ID "5D7701BF42C59F16"
+    components {
+     Hierarchy "{5D795CF3F8CAA550}" {
+     }
+    }
+    coords -14 0 5
+    {
+     GenericEntity {
+      ID "555A8BAA49E0B691"
+      components {
+       RplComponent "{58FC7CAC2034C3E2}" {
+        Enabled 1
+       }
+      }
+     }
+     GenericEntity {
+      ID "555A8BAA49E0B752"
+      components {
+       RplComponent "{58FC7CAC2034C3E2}" {
+        Enabled 1
+       }
+      }
+     }
+     GenericEntity {
+      ID "555A8BAA49E0B760"
+      components {
+       RplComponent "{58FC7CAC2034C3E2}" {
+        Enabled 1
+       }
+      }
+     }
+     GenericEntity {
+      ID "555A8BAA49E0B771"
+      components {
+       RplComponent "{58FC7CAC2034C3E2}" {
+        Enabled 1
+       }
+      }
+     }
+    }
+   }
+   {
+    ID "5D7701BF4429BDAB"
+    components {
+     Hierarchy "{5D795CF3F6F09C85}" {
+     }
+    }
+    coords 20 0 5
+    {
+     GenericEntity {
+      ID "555A8BAA49E0B691"
+      components {
+       RplComponent "{58FC7CAC2034C3E2}" {
+        Enabled 1
+       }
+      }
+     }
+     GenericEntity {
+      ID "555A8BAA49E0B752"
+      components {
+       RplComponent "{58FC7CAC2034C3E2}" {
+        Enabled 1
+       }
+      }
+     }
+     GenericEntity {
+      ID "555A8BAA49E0B760"
+      components {
+       RplComponent "{58FC7CAC2034C3E2}" {
+        Enabled 1
+       }
+      }
+     }
+     GenericEntity {
+      ID "555A8BAA49E0B771"
+      components {
+       RplComponent "{58FC7CAC2034C3E2}" {
+        Enabled 1
+       }
+      }
+     }
+    }
+   }
+  }
+  $grp GenericEntity : "{90C62D3DBDEB0758}Prefabs/Props/Military/Camps/ConstructionMaterialPacked_Base.et" {
+   {
+    ID "5D7701BBABF1C658"
+    components {
+     Hierarchy "{5D795CF3F4D521FB}" {
+     }
+     RplComponent "{5DB28200D4D3199E}" {
+     }
+    }
+    coords 14.455 0 6.653
+    angleY -180
+   }
+   {
+    ID "5D7701BBB09A343F"
+    components {
+     Hierarchy "{5D795CF3F2E4CC28}" {
+     }
+     RplComponent "{5DB28200D169E926}" {
+     }
+    }
+    coords 14.487 0 5.065
+    angleY -180
+   }
+  }
+  GenericEntity : "{ADE39FE043B89B0A}Prefabs/Props/Industrial/ConcretePanel_01_B.et" {
+   ID "5D7701BADDB24393"
+   components {
+    Hierarchy "{5D795CF3F02CF0D9}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords 2.292 0 4.32
+  }
+  $grp SCR_DestructibleEntity : "{B0B51F4725BDE9A2}Prefabs/Structures/Walls/Concrete/ConcreteWall_01/ConcreteWall_01_Pole.et" {
+   {
+    ID "5D7701BAD644A58D"
+    components {
+     Hierarchy "{5D795CF3EE647A2D}" {
+     }
+     RplComponent "{5DB28200CC797038}" {
+     }
+    }
+    coords 1.788 -1 0
+   }
+   {
+    ID "5D7701BAD8D78937"
+    components {
+     Hierarchy "{5D795CF3EDAB9F24}" {
+     }
+     RplComponent "{5DB28200CA72DA46}" {
+     }
+    }
+    coords 2 -1 -0.5
+   }
+   {
+    ID "5D7701BAD964C134"
+    components {
+     Hierarchy "{5D795CF3EBA00749}" {
+     }
+     RplComponent "{5DB28200C992ADC3}" {
+     }
+    }
+    coords 2 -1 0.5
+   }
+   {
+    ID "5D7701BF80D9718A"
+    components {
+     Hierarchy "{5D795CF3E904B46B}" {
+     }
+     RplComponent "{5DB28200C7920FE2}" {
+     }
+    }
+    coords 28.222 -1 16.261
+   }
+   {
+    ID "5D7701BFFC62E900"
+    components {
+     Hierarchy "{5D795CF3E7507C37}" {
+     }
+     RplComponent "{5DB28200C4758281}" {
+     }
+    }
+    coords 4.32 -1 16.201
+   }
+   {
+    ID "5D7701BFFD51AE56"
+    components {
+     Hierarchy "{5D795CF3E6A382A9}" {
+     }
+     RplComponent "{5DB28200C397DAAB}" {
+     }
+    }
+    coords -19.845 -1 16.381
+   }
+   {
+    ID "5D7701BFFEF561D5"
+    components {
+     Hierarchy "{5D795CF3E4FB8F81}" {
+     }
+     RplComponent "{5DB28200C1D9636C}" {
+     }
+    }
+    coords -20.223 -1 -8.606
+   }
+   {
+    ID "5D7701BFFF21B816"
+    components {
+     Hierarchy "{5D795CF3E23C476F}" {
+     }
+     RplComponent "{5DB282003F12D18D}" {
+     }
+    }
+    coords 28.686 -1 -8.533
+   }
+   {
+    ID "5D7701BFFF88732D"
+    components {
+     Hierarchy "{5D795CF3E180A633}" {
+     }
+     RplComponent "{5DB282003C239C60}" {
+     }
+    }
+    coords 4.191 -1 -7.917
+   }
+  }
+  $grp GenericEntity : "{B808D460E33CDFAF}Prefabs/Props/Construction/BrickPile/BrickPile_01_Medium.et" {
+   {
+    ID "5D7701BD0AFC04CC"
+    components {
+     Hierarchy "{5D795CF3DE11FE4D}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 23.101 0 12.903
+   }
+   {
+    ID "5D7701BD0B0BEB6B"
+    components {
+     Hierarchy "{5D795CF3DCFDC614}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 22.057 0 12.942
+    angleY -180
+   }
+  }
+  $grp GenericEntity : "{C089F66C325FC87C}Prefabs/Props/Construction/BrickPile/BrickPile_01_Large.et" {
+   {
+    ID "5D7701BD0C58EAC2"
+    components {
+     Hierarchy "{5D795CF3DA10DC69}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 22.198 0 14.293
+   }
+   {
+    ID "5D7701BD0EA8FFC0"
+    components {
+     Hierarchy "{5D795CF3D82F0D39}" {
+     }
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+    }
+    coords 23.212 0 14.311
+    angleY 180
+   }
+  }
+  GenericEntity : "{C1B7AB00FF7C1424}Prefabs/Props/Industrial/ConcretePanel_01_A.et" {
+   ID "5D7701BADE521F9C"
+   components {
+    Hierarchy "{5D795CF3D64A6014}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords 2.645 0 8.91
+  }
+  SCR_DestructibleBuildingEntity : "{C4EAB3F9F0AB37B2}Prefabs/Structures/Infrastructure/Power/Utility/ElectricCabinet_01/ElectricCabinet_01_double.et" {
+   ID "5D7701BAA30C97AA"
+   coords 18.43 0 4.783
+   angleY -90
+  }
+  GenericEntity : "{C51A49ACBB2EF063}Prefabs/Props/Construction/ContainerMetal_01/ContainerMetal_01_blue.et" {
+   ID "5D7701BC49363024"
+   components {
+    Hierarchy "{5D795CF3D38BAC1D}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords 8.282 0 14.382
+   angleY 5
+  }
+  GenericEntity : "{CB033C658E372CED}Prefabs/Props/Construction/PlankPile/PlankPile_01_Large.et" {
+   ID "5D7701BC708D99D5"
+   components {
+    Hierarchy "{5D795CF3D05739BF}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords -8.145 0 -4.016
+  }
+  GenericEntity : "{DEB57429CD49782D}Prefabs/Props/Construction/GravelPile_01/SandPile_01.et" {
+   ID "5D7701BCC0FB57E3"
+   components {
+    Hierarchy "{5D795CF3CF966A3F}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords 20.063 0 -1.053
+  }
+  GenericEntity : "{E4DA6CFFCE8E5940}Prefabs/Props/Construction/ContainerMetal_01/ContainerMetal_01_green.et" {
+   ID "5D7701BC4B4C95F5"
+   components {
+    Hierarchy "{5D795CF3CDC97463}" {
+    }
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+   }
+   coords 10.893 0 14.289
+  }
+ }
+}

@@ -1,0 +1,96 @@
+SCR_DestructibleBuildingEntity : "{1E7AC996BD3B73A7}Prefabs/Structures/Military/Houses/GarageMilitary_E_01/GarageMilitary_E_01_base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  FactionAffiliationComponent "{5CDF080DADBF5C85}" {
+  }
+  SCR_CTI_BuildQueueComponent "{5D94C900798D9BB7}" {
+  }
+  SCR_CTI_BuildingCustomVariablesComponent "{5DB2CE1102506493}" {
+  }
+  SlotManagerComponent "{5D2E000B143C9DF5}" {
+   Slots {
+    EntitySlotInfo BuildingMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+   }
+  }
+  ActionsManagerComponent "{5D9B318554660DC9}" {
+   ActionContexts {
+    UserActionContext "{5D9B318553E671DF}" {
+     ContextName "TakeCommContext1"
+     Position PointInfo "{5D9B3182B2DCCE3A}" {
+      Offset 4.3 1.5 12
+     }
+     Radius 0.7
+    }
+    UserActionContext "{5D9B3182D081E4C0}" {
+     ContextName "TakeCommContext2"
+     Position PointInfo "{5D9B3182363EBEC6}" {
+      Offset 13.9 1.5 12
+     }
+     Radius 0.7
+    }
+    UserActionContext "{5D9B3182C1CF4DEC}" {
+     ContextName "TakeCommContext3"
+     Position PointInfo "{5D9B3183B34EB7BE}" {
+      Offset 23.5 1.5 12
+     }
+     Radius 0.7
+    }
+    UserActionContext "{5D9B31823FC1E3A1}" {
+     ContextName "TakeCommContext4"
+     Position PointInfo "{5D9B318226026C74}" {
+      Offset -5.3 1.5 12
+     }
+     Radius 0.7
+    }
+    UserActionContext "{5D9B31823FA648F1}" {
+     ContextName "TakeCommContext5"
+     Position PointInfo "{5D9B31821FC41290}" {
+      Offset -14.9 1.5 12
+     }
+     Radius 0.7
+    }
+   }
+   additionalActions {
+    SCR_CTI_TakeCommandBuildingAction "{5D9B3182B9B1614A}" {
+     ParentContextList {
+      "TakeCommContext1"
+     }
+     Duration 2
+    }
+    SCR_CTI_TakeCommandBuildingAction "{5D9B318216926976}" {
+     ParentContextList {
+      "TakeCommContext2"
+     }
+     Duration 2
+    }
+    SCR_CTI_TakeCommandBuildingAction "{5D9B3182130D0B73}" {
+     ParentContextList {
+      "TakeCommContext3"
+     }
+     Duration 2
+    }
+    SCR_CTI_TakeCommandBuildingAction "{5D9B3182119095B1}" {
+     ParentContextList {
+      "TakeCommContext4"
+     }
+     Duration 2
+    }
+    SCR_CTI_TakeCommandBuildingAction "{5D9B31820FB8D1B2}" {
+     ParentContextList {
+      "TakeCommContext5"
+     }
+     Duration 2
+    }
+   }
+  }
+ }
+ coords 0 0 3.78
+ {
+  GenericEntity : "{35B69BCB36CEB771}Prefabs/Structures/Military/Houses/GarageMilitary_E_01/GarageMilitary_E_01_furniture_02.et" {
+   ID "5CDF080ECDE40253"
+   coords 0 0 0
+  }
+ }
+}

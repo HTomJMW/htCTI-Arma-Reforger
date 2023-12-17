@@ -1,0 +1,312 @@
+SCR_DestructibleBuildingEntity {
+ ID "5D792B54EB0488B7"
+ components {
+  FactionAffiliationComponent "{5D792B54D01D297F}" {
+  }
+  MeshObject "{5D792B54D962FB91}" {
+   Object "{0C626B5272C69A11}Assets/CTI/empty.xob"
+  }
+  RigidBody "{5D792B54DC61628E}" {
+   ModelGeometry 1
+   Static 1
+  }
+  SCR_CTI_StructureCompletionComponent "{5D792B54C033DC5B}" {
+  }
+  SlotManagerComponent "{5D792B54D422D441}" {
+   Slots {
+    EntitySlotInfo CTI_StructureMarker {
+     Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
+    }
+    EntitySlotInfo CTI_WorkerWaypoint {
+     Prefab "{22A875E30470BD4F}Prefabs/AI/Waypoints/AIWaypoint_Patrol.et"
+    }
+   }
+  }
+  RplComponent "{5D792B54E3FD67B4}" {
+  }
+  Hierarchy "{5D792B54E06890BA}" {
+  }
+ }
+ {
+  GenericEntity : "{4A34979DC19CA9ED}Prefabs/Props/Construction/ConcreteMixer_01.et" {
+   ID "5D76C49DB9A62DE6"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+    Hierarchy "{5D793072D1D15165}" {
+    }
+   }
+   coords 0 0 -6.83
+   angleY 180
+  }
+  GenericEntity : "{67B5336A6D63CCA4}Prefabs/Props/Construction/PlankPile/PlankPile_01_Medium.et" {
+   ID "5D76C482384432F7"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+    Hierarchy "{5D793072CCF1ECC6}" {
+    }
+   }
+   coords -5.939 0 -4.278
+  }
+  GenericEntity : "{6DD0648BB7A52420}Prefabs/Props/Civilian/Wheelbarrow_01.et" {
+   ID "5D76C49DF90C1B9F"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+    Hierarchy "{5D793072C89D6DE4}" {
+    }
+   }
+   coords -1.607 0 4.891
+   angleY -15
+  }
+  StaticModelEntity : "{80DF3BD810D032AF}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01.et" {
+   ID "5D76C48360A19B72"
+   components {
+    ActionsManagerComponent "{591A8592E6D58CC1}" {
+     ActionContexts {
+      UserActionContext "{5EF9591C94F853E1}" {
+       ContextName "CTI_BuildPos"
+       Position PointInfo "{5EF9591C82AD3AAE}" {
+        PivotID "Scene_Root"
+        Offset 0 0.5 0
+       }
+       Radius 5
+      }
+     }
+     additionalActions {
+      SCR_LadderUserAction "{5916A63CE01A4A0F}" {
+      }
+      SCR_CTI_BuildStructureAction "{5EF9591C3A57C4CE}" {
+       ParentContextList {
+        "CTI_BuildPos"
+       }
+       "Sort Priority" 1
+       m_fLoopActionHoldDuration 3
+      }
+     }
+    }
+    Hierarchy "{5D793072C2255919}" {
+    }
+   }
+   coords 0 0 0
+   {
+    GenericEntity {
+     ID "555A8BAA49E0B691"
+     components {
+      RplComponent "{58FC7CAC2034C3E2}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "555A8BAA49E0B752"
+     components {
+      RplComponent "{58FC7CAC2034C3E2}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "555A8BAA49E0B760"
+     components {
+      RplComponent "{58FC7CAC2034C3E2}" {
+       Enabled 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "555A8BAA49E0B771"
+     components {
+      RplComponent "{58FC7CAC2034C3E2}" {
+       Enabled 1
+      }
+     }
+    }
+   }
+  }
+  StaticModelEntity : "{82B378151A9AEF2F}Prefabs/Structures/Military/Fortifications/DirtPile_01/DirtPile_01_large.et" {
+   ID "5D76C482393495B0"
+   components {
+    RplComponent "{5DB28201D61F0606}" {
+    }
+    Hierarchy "{5D7930723987C646}" {
+    }
+   }
+   coords -5.666 1 0
+  }
+  GenericEntity : "{937999008F178E82}Prefabs/Props/Military/Sandbags/Sandbag_01_short_high_burlap.et" {
+   ID "5D76C49CA638DC97"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+    Hierarchy "{5D7930723520A977}" {
+    }
+   }
+   coords 4.563 0 -5.42
+   angleY -30
+  }
+  $grp SCR_DestructibleEntity : "{B0B51F4725BDE9A2}Prefabs/Structures/Walls/Concrete/ConcreteWall_01/ConcreteWall_01_Pole.et" {
+   {
+    ID "5D76C48233EEE069"
+    components {
+     RplComponent "{5DB28201D2D136D9}" {
+     }
+     Hierarchy "{5D79307232CAD082}" {
+     }
+    }
+    coords 1.969 -1 7.416
+   }
+   {
+    ID "5D76C48234E05276"
+    components {
+     RplComponent "{5DB28201D0BC1C72}" {
+     }
+     Hierarchy "{5D7930722F83D3BF}" {
+     }
+    }
+    coords -2.58 -1 7.405
+   }
+   {
+    ID "5D76C48235FB34CE"
+    components {
+     RplComponent "{5DB28201CE80BCEB}" {
+     }
+     Hierarchy "{5D7930722B7AF4DA}" {
+     }
+    }
+    coords -7.812 -1 4.462
+   }
+   {
+    ID "5D76C48236FBAF84"
+    components {
+     RplComponent "{5DB28201CB5C6456}" {
+     }
+     Hierarchy "{5D7930722860F5D1}" {
+     }
+    }
+    coords -7.839 -1 -7.336
+   }
+   {
+    ID "5D76C48237C01D96"
+    components {
+     RplComponent "{5DB28201CAB44B0A}" {
+     }
+     Hierarchy "{5D793072255461C9}" {
+     }
+    }
+    coords 7.143 -1 -7.365
+   }
+   {
+    ID "5D76C482389849F9"
+    components {
+     RplComponent "{5DB28201C814BE28}" {
+     }
+     Hierarchy "{5D793072238B72C6}" {
+     }
+    }
+    coords 7.256 -1 4.42
+   }
+  }
+  $grp GenericEntity : "{B808D460E33CDFAF}Prefabs/Props/Construction/BrickPile/BrickPile_01_Medium.et" {
+   {
+    ID "5D76C4823D752B0A"
+    components {
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+     Hierarchy "{5D79307220BE5AF1}" {
+     }
+    }
+    coords 4.578 0 0
+    angleY 180
+   }
+   {
+    ID "5D76C4823D975D12"
+    components {
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+     Hierarchy "{5D7930721DFF763D}" {
+     }
+    }
+    coords 3.611 0 0
+   }
+   {
+    ID "5D76C4823FA63994"
+    components {
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+     Hierarchy "{5D7930721A576997}" {
+     }
+    }
+    coords 5.512 0 0
+   }
+  }
+  $grp GenericEntity : "{C089F66C325FC87C}Prefabs/Props/Construction/BrickPile/BrickPile_01_Large.et" {
+   {
+    ID "5D76C4823A1CEFF4"
+    components {
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+     Hierarchy "{5D79307218BE4214}" {
+     }
+    }
+    coords 2.811 0 -2.2
+    angleY -90
+   }
+   {
+    ID "5D76C4823BF36BF3"
+    components {
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+     Hierarchy "{5D7930721515349A}" {
+     }
+    }
+    coords 4.047 0 -2.234
+    angleY 90
+   }
+   {
+    ID "5D76C4823CD74EBA"
+    components {
+     RplComponent "{5624A88DC2D9928D}" {
+      Enabled 1
+     }
+     Hierarchy "{5D7930721398C9D7}" {
+     }
+    }
+    coords 5.145 0 -2.046
+   }
+  }
+  GenericEntity : "{C51A49ACBB2EF063}Prefabs/Props/Construction/ContainerMetal_01/ContainerMetal_01_blue.et" {
+   ID "5D76C4837742E62B"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+    Hierarchy "{5D79307210A402CB}" {
+    }
+   }
+   coords 0.935 0 5.596
+  }
+  GenericEntity : "{D93A7286584E122C}Prefabs/Props/Construction/GravelPile_01/GravelPile_01_base.et" {
+   ID "5D76C49D9E3735D3"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     Enabled 1
+    }
+    Hierarchy "{5D7930720D4B97B0}" {
+    }
+   }
+   coords -1.206 0 -4.247
+   scale 0.917
+  }
+ }
+}

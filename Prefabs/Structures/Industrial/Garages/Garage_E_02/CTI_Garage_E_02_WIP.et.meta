@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{02402124C6749AE3}Prefabs/Structures/Industrial/Garages/Garage_E_02/CTI_Garage_E_02_WIP_2.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

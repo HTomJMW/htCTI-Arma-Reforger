@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{9B8809719E076CBD}Prefabs/Structures/Walls/Concrete/ConcreteWall_01/CTI_ConcreteWall_01_camo_6m_B.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}
