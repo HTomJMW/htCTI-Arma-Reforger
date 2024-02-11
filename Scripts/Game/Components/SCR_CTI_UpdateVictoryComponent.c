@@ -57,13 +57,13 @@ class SCR_CTI_UpdateVictoryComponent : ScriptComponent
 
 			// Temporary GM FIX for MHQ Lifetime problem (GETIN event enables GM)
 			ChimeraWorld world = m_ussrMHQ.GetWorld();
-			GarbageSystem garbageSystem = world.GetGarbageSystem();
+			GarbageManager garbagemanager = world.GetGarbageManager();
 			
-			garbageSystem.Withdraw(m_ussrMHQ);
-			garbageSystem.Withdraw(m_usMHQ);
+			garbagemanager.Withdraw(m_ussrMHQ);
+			garbagemanager.Withdraw(m_usMHQ);
 			
-			//PrintFormat("CTI :: DEBUG :: USSR mhq lifetime: %1s", garbageSystem.GetRemainingLifetime(m_ussrMHQ));
-			//PrintFormat("CTI :: DEBUG :: US mhq lifetime: %1s", garbageSystem.GetRemainingLifetime(m_usMHQ));
+			//PrintFormat("CTI :: DEBUG :: USSR mhq lifetime: %1s", garbagemanager.GetRemainingLifetime(m_ussrMHQ));
+			//PrintFormat("CTI :: DEBUG :: US mhq lifetime: %1s", garbagemanager.GetRemainingLifetime(m_usMHQ));
 		}
 	}
 

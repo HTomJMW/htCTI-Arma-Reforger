@@ -51,17 +51,19 @@ class SCR_CTI_UpdateRepairTruckComponent : ScriptComponent
 
 							if (scc.getCompletionValue() < 100)
 							{
-								scc.setCompletionValue(scc.getCompletionValue() + 10);
+								scc.setCompletionValue(scc.getCompletionValue() + 15);
 								m_gameMode.bumpMeServer();
 
 								if (scc.getCompletionValue() >= 100)
 								{
-									finishBuilding("USSR", wipStruct, id);
+									SCR_CTI_FinishWipStructure finisher = new SCR_CTI_FinishWipStructure();
+									finisher.finishWipStructure(wipStruct);
 								} else {
 									PrintFormat("Completion value: %1", scc.getCompletionValue());
 								}
 							} else {
-								finishBuilding("USSR", wipStruct, id);
+								SCR_CTI_FinishWipStructure finisher = new SCR_CTI_FinishWipStructure();
+								finisher.finishWipStructure(wipStruct);
 							}
 						}
 					}	
@@ -86,17 +88,19 @@ class SCR_CTI_UpdateRepairTruckComponent : ScriptComponent
 
 							if (scc.getCompletionValue() < 100)
 							{
-								scc.setCompletionValue(scc.getCompletionValue() + 10);
+								scc.setCompletionValue(scc.getCompletionValue() + 15);
 								m_gameMode.bumpMeServer();
 
 								if (scc.getCompletionValue() >= 100)
 								{
-									finishBuilding("US", wipStruct, id);
+									SCR_CTI_FinishWipStructure finisher = new SCR_CTI_FinishWipStructure();
+									finisher.finishWipStructure(wipStruct);
 								} else {
 									PrintFormat("Completion value: %1", scc.getCompletionValue());
 								}
 							} else {
-								finishBuilding("US", wipStruct, id);
+								SCR_CTI_FinishWipStructure finisher = new SCR_CTI_FinishWipStructure();
+								finisher.finishWipStructure(wipStruct);
 							}
 						}
 					}
@@ -106,42 +110,7 @@ class SCR_CTI_UpdateRepairTruckComponent : ScriptComponent
 			}
 		}
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void finishBuilding(FactionKey factionkey, IEntity wipStruct, RplId id)
-	{
-		vector mat[4];
-		wipStruct.GetTransform(mat);
 
-		int index = -1;
-		SCR_CTI_FactoryData factoryData;
-		switch (factionkey)
-		{
-			case "USSR":
-			{
-				index = m_gameMode.FactoriesUSSR.findIndexFromResourcename(wipStruct.GetPrefabData().GetPrefabName());
-				factoryData = m_gameMode.FactoriesUSSR.g_USSR_Factories[index];
-				
-				break;
-			}
-			case "US":
-			{
-				index = m_gameMode.FactoriesUS.findIndexFromResourcename(wipStruct.GetPrefabData().GetPrefabName());
-				factoryData = m_gameMode.FactoriesUS.g_US_Factories[index];
-
-				break;
-			}	
-		}
-							
-		SCR_EntityHelper.DeleteEntityAndChildren(wipStruct);
-		m_baseComp.removeWIPStructureRplId(factionkey, id);
-
-		SCR_CTI_BuildStructure buildstructure = new SCR_CTI_BuildStructure();
-		buildstructure.build(factionkey, factoryData.getResName(), mat);
-
-		Print("CTI :: Construction Complete!");
-	}
-	
 	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{

@@ -1,14 +1,11 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "Heal on Vehicle - User Action")]
-class SCR_CTI_HealOnVehicleAction : SCR_VehicleActionBase
+class SCR_CTI_HealOnVehicleAction : SCR_ScriptedUserAction
 {
-	protected CarControllerComponent_SA m_pCarController;
-	protected RplComponent m_rplComponent;
+	protected IEntity m_User;
 
 	//------------------------------------------------------------------------------------------------
-	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
+	protected override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
-		m_pCarController = CarControllerComponent_SA.Cast(pOwnerEntity.FindComponent(CarControllerComponent_SA));
-		m_rplComponent = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -24,46 +21,37 @@ class SCR_CTI_HealOnVehicleAction : SCR_VehicleActionBase
 	}
 
 	//------------------------------------------------------------------------------------------------
-	// Only on Server
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity)
 	{
-		if (m_rplComponent && m_rplComponent.IsProxy()) return;
-
 		SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(pUserEntity.FindComponent(SCR_CharacterDamageManagerComponent));
 		if (cdmc && !cdmc.IsDestroyed()) cdmc.FullHeal();
+		
+		CancelPlayerAnimation(m_User);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnActionStart(IEntity pUserEntity)
 	{
-		/*IEntity veh = m_pCarController.GetOwner();
-		InventoryStorageManagerComponent ismc = InventoryStorageManagerComponent.Cast(veh.FindComponent(InventoryStorageManagerComponent));
-		bool hasBandage = false;
-		SCR_PrefabNamePredicate predicate = new SCR_PrefabNamePredicate();
-		array<IEntity> bandages = {};
-		predicate.prefabName = SCR_CTI_Constants.USSR_BANDAGE;
-		if (ismc) ismc.FindItems(bandages, predicate, EStoragePurpose.PURPOSE_ANY);
-		Print(bandages);
+		super.OnActionStart(pUserEntity);
 
 		ChimeraCharacter character = ChimeraCharacter.Cast(pUserEntity);
-		if (!character)
-			return;
+		if (!character) return;
 
 		CharacterControllerComponent charController = character.GetCharacterController();
 		if (charController)
 		{
-			charController.TryUseBandage(bandages[0], 3, 16, true);
+			IEntity bandage = spawnAndTakeBandage();
+			charController.SetStanceChange(ECharacterStanceChange.STANCECHANGE_TOCROUCH);
+			if (bandage) charController.TryUseBandage(bandage, 3, 4.0, true);
+		}
 
-			//CharacterAnimationComponent pAnimationComponent = charController.GetAnimationComponent();
-			//int itemActionId = pAnimationComponent.BindCommand("CMD_HealSelf");
-			//charController.TryUseItemOverrideParams(bandages[0], false, false, itemActionId, 1, 0, int.MAX, 0, 0, false, null);
-		}*/
+		super.OnActionStart(pUserEntity);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnActionCanceled(IEntity pOwnerEntity, IEntity pUserEntity)
 	{
-		/*ChimeraCharacter character = ChimeraCharacter.Cast(pUserEntity);
+		ChimeraCharacter character = ChimeraCharacter.Cast(pUserEntity);
 		if (!character)
 			return;
 
@@ -74,13 +62,13 @@ class SCR_CTI_HealOnVehicleAction : SCR_VehicleActionBase
 			CharacterCommandHandlerComponent cmdHandler = CharacterCommandHandlerComponent.Cast(pAnimationComponent.GetCommandHandler());
 			if (cmdHandler)
 				cmdHandler.FinishItemUse();
-		}*/
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	override void OnConfirmed(IEntity pUserEntity)
 	{
-		/*ChimeraCharacter character = ChimeraCharacter.Cast(pUserEntity);
+		ChimeraCharacter character = ChimeraCharacter.Cast(pUserEntity);
 		if (!character)
 			return;
 
@@ -90,19 +78,16 @@ class SCR_CTI_HealOnVehicleAction : SCR_VehicleActionBase
 			CharacterAnimationComponent pAnimationComponent = charController.GetAnimationComponent();
 			CharacterCommandHandlerComponent cmdHandler = CharacterCommandHandlerComponent.Cast(pAnimationComponent.GetCommandHandler());
 			cmdHandler.FinishItemUse();
-		}*/
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{
-		IEntity veh = m_pCarController.GetOwner();
-		VehicleWheeledSimulation_SA simulation = VehicleWheeledSimulation_SA.Cast(veh.FindComponent(VehicleWheeledSimulation_SA));
+		m_User = user;
 
 		SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(user.FindComponent(SCR_CharacterDamageManagerComponent));
-
 		if (cdmc.GetHealth() > cdmc.GetMaxHealth() * 0.8 && !cdmc.IsDamagedOverTime(EDamageType.BLEEDING)) return false;
-		if (Math.AbsFloat(simulation.GetSpeedKmh()) > 5) return false; // check vehicle speed
 
 		return true;
 	}
@@ -113,5 +98,42 @@ class SCR_CTI_HealOnVehicleAction : SCR_VehicleActionBase
 		outName = "[Hold] Heal";
 
 		return true;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void CancelPlayerAnimation(IEntity pUserEntity)
+	{
+		if (!pUserEntity) return;
+		
+		ChimeraCharacter character = ChimeraCharacter.Cast(pUserEntity);
+		if (!character) return;
+
+		CharacterControllerComponent charController = character.GetCharacterController();
+		if (!charController) return;
+
+		CharacterAnimationComponent pAnimationComponent = charController.GetAnimationComponent();
+		if (!pAnimationComponent) return;
+
+		CharacterCommandHandlerComponent handlerComponent = pAnimationComponent.GetCommandHandler();
+		if (!handlerComponent) return;
+
+		handlerComponent.FinishItemUse();
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected IEntity spawnAndTakeBandage()
+	{
+		IEntity bandage = GetGame().SpawnEntityPrefabLocal(Resource.Load("{CDCC313B2FB76FE7}Prefabs/Items/Medicine/Gauze_01.et"), GetGame().GetWorld(), null);
+
+		CharacterControllerComponent ccc =  CharacterControllerComponent.Cast(m_User.FindComponent(CharacterControllerComponent));
+		ccc.TakeGadgetInLeftHand(bandage, EGadgetType.CONSUMABLE);
+		
+		return bandage;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	void ~SCR_CTI_HealOnVehicleAction()
+	{
+		CancelPlayerAnimation(m_User);
 	}
 };

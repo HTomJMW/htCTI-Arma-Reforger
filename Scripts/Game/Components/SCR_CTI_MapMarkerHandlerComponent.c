@@ -113,6 +113,20 @@ class SCR_CTI_MapMarkerHandlerComponent : ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	protected void OnPlayerMapClose(MapConfiguration config)
 	{
+		// Clear spawn point markers
+		bool isDeployMap = (config.MapEntityMode == EMapEntityMode.SPAWNSCREEN);
+		if (!isDeployMap) return;
+		
+		if (!m_playerController.GetControlledEntity()) return;
+		
+		FactionAffiliationComponent faffComp = FactionAffiliationComponent.Cast(m_playerController.GetControlledEntity().FindComponent(FactionAffiliationComponent));
+		if (!faffComp) return;
+
+		array<SCR_SpawnPoint> spawnPoints = SCR_SpawnPoint.GetSpawnPoints();
+		foreach (SCR_SpawnPoint sp : spawnPoints)
+		{
+			sp.ShowSpawnPointDescriptors(false, faffComp.GetAffiliatedFaction());
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------

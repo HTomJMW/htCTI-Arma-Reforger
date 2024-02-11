@@ -30,6 +30,9 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 
 		if (Math.AbsFloat(simulation.GetSpeedKmh()) < 5)
 		{
+			CarControllerComponent_SA carController = CarControllerComponent_SA.Cast(vehicle.FindComponent(CarControllerComponent_SA));
+			if (carController) carController.SetPersistentHandBrake(true);
+			
 			Physics physics = vehicle.GetPhysics();
 			physics.SetVelocity("0 4 0");
 

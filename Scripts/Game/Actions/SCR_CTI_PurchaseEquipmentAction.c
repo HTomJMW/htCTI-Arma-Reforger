@@ -64,9 +64,9 @@ class SCR_CTI_PurchaseEquipmentAction : ScriptedUserAction
 		if (!spawnedBox) return;
 
 		ChimeraWorld world = GetOwner().GetWorld();
-		GarbageSystem garbagemanager = world.GetGarbageSystem();
+		GarbageManager garbagemanager = world.GetGarbageManager();
 		garbagemanager.Insert(spawnedBox, SCR_CTI_Constants.ITEMCOLLECTIONTIME);
-		
+
 		setEquipment(userAffiliationComponent);
 		insertItems(spawnedBox);
 		

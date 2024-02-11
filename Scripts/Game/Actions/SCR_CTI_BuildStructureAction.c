@@ -4,33 +4,38 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 	protected IEntity m_User;
 	protected SCR_GadgetManagerComponent m_GadgetManager;
 	protected IEntity m_wipStructure;
+	protected SCR_CTI_StructureCompletionComponent m_scc;
 	
 	//------------------------------------------------------------------------------------------------
 	protected override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
 		m_gameMode = SCR_CTI_GameMode.GetInstance();
 		m_wipStructure = SCR_EntityHelper.GetMainParent(pOwnerEntity, true);
+		m_scc = SCR_CTI_StructureCompletionComponent.Cast(m_wipStructure.FindComponent(SCR_CTI_StructureCompletionComponent));
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity)
 	{
-		SCR_CTI_StructureCompletionComponent scc = SCR_CTI_StructureCompletionComponent.Cast(m_wipStructure.FindComponent(SCR_CTI_StructureCompletionComponent));
-		if (scc.getCompletionValue() < 100)
+		if (m_scc.getCompletionValue() < 100)
 		{
-			scc.setCompletionValue(scc.getCompletionValue() + 5);
+			m_scc.setCompletionValue(m_scc.getCompletionValue() + 5);
 			m_gameMode.bumpMeServer();
 
-			PrintFormat("CTI :: Building %1", scc.getCompletionValue());
+			PrintFormat("CTI :: Building %1", m_scc.getCompletionValue());
 		} else {
-			//TODO FINISH
-			Print("CTI :: Construction complete!");
+			SCR_CTI_FinishWipStructure finisher = new SCR_CTI_FinishWipStructure();
+			finisher.finishWipStructure(m_wipStructure);
+
+			CancelPlayerAnimation(m_User);
 		}
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void OnActionStart(IEntity pUserEntity)
 	{
+		super.OnActionStart(pUserEntity);
+
 		ChimeraCharacter character = ChimeraCharacter.Cast(pUserEntity);
 		if (!character) return;
 
@@ -41,6 +46,8 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 			int itemActionId = pAnimationComponent.BindCommand("CMD_Item_Action");
 			charController.TryUseItemOverrideParams(GetBuildingTool(pUserEntity), false, true, itemActionId, 1, 0, int.MAX, 0, 0, false, null);
 		}
+
+		super.OnActionStart(pUserEntity);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -97,15 +104,18 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 		if (!gadgetComponent) return false;
 
 		IEntity tool = GetBuildingTool(user);
-		if (!tool && (tool.GetPrefabData().GetPrefabName() != SCR_CTI_Constants.USSR_SHOVEL || tool.GetPrefabData().GetPrefabName() != SCR_CTI_Constants.US_SHOVEL))
+		if (!tool)
 		{
 			SetCannotPerformReason("Building Tool is not in hand!");
 			return false;
+		} else {
+			if (tool.GetPrefabData().GetPrefabName() == SCR_CTI_Constants.USSR_SHOVEL || tool.GetPrefabData().GetPrefabName() == SCR_CTI_Constants.US_SHOVEL) return true;
 		}
 
-		return true;
+		SetCannotPerformReason("Building Tool is not in hand!");
+		return false;
 	}
-	
+
 	//------------------------------------------------------------------------------------------------
 	protected void CancelPlayerAnimation(IEntity pUserEntity)
 	{
@@ -129,7 +139,8 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
-		outName = "[Hold] Build";
+		string completitionValue = m_scc.getCompletionValue().ToString();	
+		outName = "[Hold] Build " + completitionValue + "% [+5%]";
 
 		return true;
 	}

@@ -5,13 +5,34 @@ class SCR_CTI_SupportVehiclesComponentClass : ScriptComponentClass
 
 class SCR_CTI_SupportVehiclesComponent : ScriptComponent
 {
-	ref array<IEntity> supportVehicles = {};
+	ref array<IEntity> supportVehicles = {}; // TODO check null removes
 
 	//------------------------------------------------------------------------------------------------
-	IEntity getSupportVehiclesByType()
+	array<IEntity> getSupportVehiclesByType(CTI_SupportVehicleTypes type)
 	{
-		IEntity x = null;
-		return x; // TODO
+		array<IEntity> vehicles = {};
+
+		foreach (IEntity vehicle : supportVehicles)
+		{
+			if (!vehicle) continue;
+			
+			SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(vehicle.FindComponent(SCR_VehicleDamageManagerComponent));
+			if (vdmc.IsDestroyed()) continue;
+
+			SCR_CTI_VehicleCustomVariablesComponent vcvc = SCR_CTI_VehicleCustomVariablesComponent.Cast(vehicle.FindComponent(SCR_CTI_VehicleCustomVariablesComponent));
+			if (vcvc)
+			{
+				if (vcvc.getSupportVehicleType() == type) {vehicles.Insert(vehicle)};
+			}
+		}
+
+		return vehicles;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void addSupportVehicle(IEntity vehicle)
+	{
+		supportVehicles.Insert(vehicle);
 	}
 
 	//------------------------------------------------------------------------------------------------

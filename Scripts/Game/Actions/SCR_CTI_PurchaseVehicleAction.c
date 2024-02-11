@@ -62,7 +62,7 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		if (!spawnedVehicle) return;
 
 		ChimeraWorld world = GetOwner().GetWorld();
-		GarbageSystem garbagemanager = world.GetGarbageSystem();
+		GarbageManager garbagemanager = world.GetGarbageManager();
 		garbagemanager.Insert(spawnedVehicle, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
 		
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);

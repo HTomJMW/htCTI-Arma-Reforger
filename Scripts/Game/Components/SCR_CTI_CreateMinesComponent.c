@@ -40,7 +40,7 @@ class SCR_CTI_CreateMinesComponent : ScriptComponent
 		
 		GetGame().GetWorld().QueryEntitiesBySphere(center, radius, GetRoadEntity, FilterEntities, EQueryEntitiesFlags.STATIC);
 		
-		array<int> possibleQuantity = {0, 0, 0, 2, 4, 5};
+		array<int> possibleQuantity = {0, 0, 0, 0, 2, 4, 5};
 		int quantity = possibleQuantity.GetRandomElement();
 		
 		PrintFormat("CTI :: Mines number: %1", quantity);
