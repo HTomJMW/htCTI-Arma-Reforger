@@ -1,0 +1,55 @@
+GenericEntity : "{0E564BA0ADE3B864}Prefabs/Props/Military/Arsenal/AmmoBoxes/AmmoBoxArsenal_Equipment_Base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  UniversalInventoryStorageComponent "{58A17A341AB8F069}" {
+   Enabled 0
+  }
+  SCR_InventoryStorageManagerComponent "{58A0B19B1E191CC1}" {
+  }
+  ActionsManagerComponent "{5476B36C403D4CC0}" {
+   ActionContexts {
+    UserActionContext "{5F311C2879CC6D30}" {
+     ContextName "CTI_Disable"
+     Position PointInfo "{5F311C28735B36CE}" {
+      Offset 0 -100 0
+     }
+     Radius 0
+     Omnidirectional 0
+     VisibilityAngle 0
+    }
+   }
+   additionalActions {
+    SCR_SaveArsenalLoadout "{5B12C7AE552AEDD7}" {
+     ParentContextList {
+      "CTI_Disable"
+     }
+    }
+    SCR_ResupplySelfSupportStationAction "{5E22CEC8C1A31898}" {
+     ParentContextList {
+      "CTI_Disable"
+     }
+    }
+    SCR_ResupplySelfSupportStationAction "{5E22CEC8CFA5B4C6}" {
+     ParentContextList {
+      "CTI_Disable"
+     }
+    }
+    SCR_ResupplySelfSupportStationAction "{5E22CEC8CDB30E57}" {
+     ParentContextList {
+      "CTI_Disable"
+     }
+    }
+    SCR_ResupplySelfSupportStationAction "{5E22CEC8CCE09EE6}" {
+     ParentContextList {
+      "CTI_Disable"
+     }
+    }
+    SCR_ResupplySelfSupportStationAction "{5E22CEC8CB2D73BE}" {
+     ParentContextList {
+      "CTI_Disable"
+     }
+    }
+   }
+  }
+ }
+}

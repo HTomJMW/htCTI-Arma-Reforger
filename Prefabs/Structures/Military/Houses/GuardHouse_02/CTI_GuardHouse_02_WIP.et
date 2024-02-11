@@ -6,8 +6,6 @@ SCR_DestructibleBuildingEntity {
   MeshObject "{5D792C841C497272}" {
    Object "{0C626B5272C69A11}Assets/CTI/empty.xob"
   }
-  Hierarchy "{5D792C8414D72677}" {
-  }
   RigidBody "{5D792C841FBCA140}" {
    ModelGeometry 1
    Static 1
@@ -26,15 +24,38 @@ SCR_DestructibleBuildingEntity {
   }
   RplComponent "{5D792C8417EBA62F}" {
   }
+  Hierarchy "{5D792C8414D72677}" {
+  }
  }
  {
   GenericEntity : "{086E85DB687EA38F}Prefabs/Props/Construction/GravelPile_01/GravelPile_01_medium.et" {
    ID "5D7701B3D0B13E01"
    components {
-    Hierarchy "{5D795CF33C3C7410}" {
+    ActionsManagerComponent "{5F252EC13BBDFC52}" {
+     ActionContexts {
+      UserActionContext "{5F252EC13AD85860}" {
+       ContextName "CTI_Build"
+       Position PointInfo "{5F252EC135F9BD95}" {
+        Offset 0 1.2 0
+       }
+       Radius 10
+      }
+     }
+     additionalActions {
+      SCR_CTI_BuildStructureAction "{5F252EC12F989697}" {
+       ParentContextList {
+        "CTI_Build"
+       }
+       Duration -1
+       PerformPerFrame 1
+       m_fLoopActionHoldDuration 1
+      }
+     }
     }
     RplComponent "{5624A88DC2D9928D}" {
      Enabled 1
+    }
+    Hierarchy "{5D795CF33C3C7410}" {
     }
    }
    coords -1.378 0 0.259
@@ -43,9 +64,9 @@ SCR_DestructibleBuildingEntity {
   SCR_PowerPole : "{0F4569CE231DF603}Prefabs/Structures/Infrastructure/Power/Powerlines/LightningRod_01/LightningRod_01.et" {
    ID "5D7701B315E40853"
    components {
-    Hierarchy "{5D795CF33A0A6E92}" {
-    }
     RplComponent "{5DB282019061D877}" {
+    }
+    Hierarchy "{5D795CF33A0A6E92}" {
     }
    }
    coords -2.992 -1 -2.499
@@ -53,9 +74,9 @@ SCR_DestructibleBuildingEntity {
   GenericEntity : "{47F8D83F71EB2B74}Prefabs/Structures/Infrastructure/Lamps/LampStreet_E_02/LampStreet_E_02_addon.et" {
    ID "5D7701B3793FC04E"
    components {
-    Hierarchy "{5D795CF3381A3BDB}" {
-    }
     RplComponent "{5DB282018DF71F24}" {
+    }
+    Hierarchy "{5D795CF3381A3BDB}" {
     }
    }
    coords -2.925 10.489 -2.452
@@ -64,10 +85,10 @@ SCR_DestructibleBuildingEntity {
   GenericEntity : "{4A34979DC19CA9ED}Prefabs/Props/Construction/ConcreteMixer_01.et" {
    ID "5D7701B3C2579C0B"
    components {
-    Hierarchy "{5D795CF336B676C8}" {
-    }
     RplComponent "{5624A88DC2D9928D}" {
      Enabled 1
+    }
+    Hierarchy "{5D795CF336B676C8}" {
     }
    }
    coords 0.821 0 6.405
@@ -75,10 +96,10 @@ SCR_DestructibleBuildingEntity {
   GenericEntity : "{5E249786B7A6896D}Prefabs/Props/Construction/ConcretePipe/ConcretePipe_01_Large.et" {
    ID "5D7701B3FF769A45"
    components {
-    Hierarchy "{5D795CF334CCD92C}" {
-    }
     RplComponent "{5624A88DC2D9928D}" {
      Enabled 1
+    }
+    Hierarchy "{5D795CF334CCD92C}" {
     }
    }
    coords 4.777 0 2.218
@@ -87,10 +108,10 @@ SCR_DestructibleBuildingEntity {
   GenericEntity : "{6DD0648BB7A52420}Prefabs/Props/Civilian/Wheelbarrow_01.et" {
    ID "5D7701B33697FFDA"
    components {
-    Hierarchy "{5D795CF332A02DF5}" {
-    }
     RplComponent "{5624A88DC2D9928D}" {
      Enabled 1
+    }
+    Hierarchy "{5D795CF332A02DF5}" {
     }
    }
    coords 1.972 0 5.57
@@ -99,10 +120,10 @@ SCR_DestructibleBuildingEntity {
   GenericEntity : "{795552B887CD50E7}Prefabs/Props/Industrial/ConcretePanel_01_stack.et" {
    ID "5D7701B38E83DEC9"
    components {
-    Hierarchy "{5D795CF3300B6B9C}" {
-    }
     RplComponent "{5624A88DC2D9928D}" {
      Enabled 1
+    }
+    Hierarchy "{5D795CF3300B6B9C}" {
     }
    }
    coords -0.346 0 -4.739
@@ -111,9 +132,9 @@ SCR_DestructibleBuildingEntity {
    {
     ID "5D7701B20F152548"
     components {
-     Hierarchy "{5D795CF32E5A5CDA}" {
-     }
      RplComponent "{5DB28201FC80CB85}" {
+     }
+     Hierarchy "{5D795CF32E5A5CDA}" {
      }
     }
     coords -6.433 -1 -2.25
@@ -121,9 +142,9 @@ SCR_DestructibleBuildingEntity {
    {
     ID "5D7701B210D9545D"
     components {
-     Hierarchy "{5D795CF32D84C2E1}" {
-     }
      RplComponent "{5DB28201F9702A73}" {
+     }
+     Hierarchy "{5D795CF32D84C2E1}" {
      }
     }
     coords -2.619 -1 -5.571
@@ -131,9 +152,9 @@ SCR_DestructibleBuildingEntity {
    {
     ID "5D7701B21136B251"
     components {
-     Hierarchy "{5D795CF32BA60636}" {
-     }
      RplComponent "{5DB28201F8C28526}" {
+     }
+     Hierarchy "{5D795CF32BA60636}" {
      }
     }
     coords 5.619 -1 3.723
@@ -141,9 +162,9 @@ SCR_DestructibleBuildingEntity {
    {
     ID "5D7701B21181C16C"
     components {
-     Hierarchy "{5D795CF329D6EF0C}" {
-     }
      RplComponent "{5DB28201F605C815}" {
+     }
+     Hierarchy "{5D795CF329D6EF0C}" {
      }
     }
     coords 5.644 -1 -6.195
@@ -151,9 +172,9 @@ SCR_DestructibleBuildingEntity {
    {
     ID "5D7701B212CA693B"
     components {
-     Hierarchy "{5D795CF327131930}" {
-     }
      RplComponent "{5DB28201F45B35FD}" {
+     }
+     Hierarchy "{5D795CF327131930}" {
      }
     }
     coords 1.832 -1 7.069
@@ -161,9 +182,9 @@ SCR_DestructibleBuildingEntity {
    {
     ID "5D7701B213A14291"
     components {
-     Hierarchy "{5D795CF3255B311B}" {
-     }
      RplComponent "{5DB28201F385B5BB}" {
+     }
+     Hierarchy "{5D795CF3255B311B}" {
      }
     }
     coords -6.446 -1 5.7
@@ -172,10 +193,10 @@ SCR_DestructibleBuildingEntity {
   GenericEntity : "{B808D460E33CDFAF}Prefabs/Props/Construction/BrickPile/BrickPile_01_Medium.et" {
    ID "5D7701B3E913A64E"
    components {
-    Hierarchy "{5D795CF324A97CCD}" {
-    }
     RplComponent "{5624A88DC2D9928D}" {
      Enabled 1
+    }
+    Hierarchy "{5D795CF324A97CCD}" {
     }
    }
    coords -4.147 0 4.415
@@ -183,10 +204,10 @@ SCR_DestructibleBuildingEntity {
   GenericEntity : "{C089F66C325FC87C}Prefabs/Props/Construction/BrickPile/BrickPile_01_Large.et" {
    ID "5D7701B3EAFCEF74"
    components {
-    Hierarchy "{5D795CF322DE5937}" {
-    }
     RplComponent "{5624A88DC2D9928D}" {
      Enabled 1
+    }
+    Hierarchy "{5D795CF322DE5937}" {
     }
    }
    coords -5.201 0 4.671

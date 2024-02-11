@@ -69,12 +69,11 @@ SCR_DestructibleBuildingEntity {
     ActionsManagerComponent "{591A8592E6D58CC1}" {
      ActionContexts {
       UserActionContext "{5EF9591C94F853E1}" {
-       ContextName "CTI_BuildPos"
+       ContextName "CTI_Build"
        Position PointInfo "{5EF9591C82AD3AAE}" {
-        PivotID "Scene_Root"
-        Offset 0 0.5 0
+        Offset 0 1.2 0
        }
-       Radius 5
+       Radius 10
       }
      }
      additionalActions {
@@ -82,10 +81,11 @@ SCR_DestructibleBuildingEntity {
       }
       SCR_CTI_BuildStructureAction "{5EF9591C3A57C4CE}" {
        ParentContextList {
-        "CTI_BuildPos"
+        "CTI_Build"
        }
-       "Sort Priority" 1
-       m_fLoopActionHoldDuration 3
+       Duration -1
+       PerformPerFrame 1
+       m_fLoopActionHoldDuration 1
       }
      }
     }

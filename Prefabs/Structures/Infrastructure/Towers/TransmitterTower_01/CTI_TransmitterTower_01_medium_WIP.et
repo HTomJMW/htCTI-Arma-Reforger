@@ -72,6 +72,27 @@ SCR_DestructibleBuildingEntity {
    {
     ID "5D76C486E290F51E"
     components {
+     ActionsManagerComponent "{5F2321038D5C5F9F}" {
+      ActionContexts {
+       UserActionContext "{5F2321038C14D627}" {
+        ContextName "CTI_Build"
+        Position PointInfo "{5F23210382CDE766}" {
+         Offset 0 1.2 0
+        }
+        Radius 10
+       }
+      }
+      additionalActions {
+       SCR_CTI_BuildStructureAction "{5F232103F073C782}" {
+        ParentContextList {
+         "CTI_Build"
+        }
+        Duration -1
+        PerformPerFrame 1
+        m_fLoopActionHoldDuration 1
+       }
+      }
+     }
      RplComponent "{5DB2820002A283D2}" {
      }
      Hierarchy "{5D795CF07A4C448A}" {

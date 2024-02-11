@@ -103,6 +103,27 @@ SCR_DestructibleBuildingEntity {
   StaticModelEntity : "{80DF3BD810D032AF}Prefabs/Structures/Industrial/Towers/LightTower_01/LightTower_01.et" {
    ID "5D7701BE986C4FFB"
    components {
+    ActionsManagerComponent "{591A8592E6D58CC1}" {
+     ActionContexts {
+      UserActionContext "{5F252EC05E34BDBE}" {
+       ContextName "CTI_Build"
+       Position PointInfo "{5F252EC05975CA1C}" {
+        Offset 0 1.2 0
+       }
+       Radius 10
+      }
+     }
+     additionalActions {
+      SCR_CTI_BuildStructureAction "{5F252EC0504C040E}" {
+       ParentContextList {
+        "CTI_Build"
+       }
+       Duration -1
+       PerformPerFrame 1
+       m_fLoopActionHoldDuration 1
+      }
+     }
+    }
     Hierarchy "{5D795CF0A2744B4E}" {
     }
    }

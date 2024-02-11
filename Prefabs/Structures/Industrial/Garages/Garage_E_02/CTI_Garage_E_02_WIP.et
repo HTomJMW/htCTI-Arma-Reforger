@@ -122,6 +122,27 @@ SCR_DestructibleBuildingEntity {
   GenericEntity : "{19A3C48FC2665A3F}Prefabs/Props/Construction/GravelPile_01/GravelPile_01_large.et" {
    ID "5D7701B4CCFEF8D1"
    components {
+    ActionsManagerComponent "{5F252EC0009B8324}" {
+     ActionContexts {
+      UserActionContext "{5F252EC07E3F96DE}" {
+       ContextName "CTI_Build"
+       Position PointInfo "{5F252EC07855F046}" {
+        Offset 0 1.2 0
+       }
+       Radius 10
+      }
+     }
+     additionalActions {
+      SCR_CTI_BuildStructureAction "{5F252EC072B94E2C}" {
+       ParentContextList {
+        "CTI_Build"
+       }
+       Duration -1
+       PerformPerFrame 1
+       m_fLoopActionHoldDuration 1
+      }
+     }
+    }
     RplComponent "{5624A88DC2D9928D}" {
      Enabled 1
     }
