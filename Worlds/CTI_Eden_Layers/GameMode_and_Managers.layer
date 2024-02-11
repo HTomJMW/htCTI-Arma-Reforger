@@ -25,6 +25,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
   }
+  SCR_CTI_SupportVehiclesComponent "{5F22D705D1E3BD7D}" {
+  }
   SCR_CTI_UpdateResourcesComponent "{5C4920D164E382C7}" {
   }
   SCR_CTI_UpdateVictoryComponent "{59C56020BFAD9417}" {
@@ -1310,7 +1312,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger htCTI v0.7.9"
+     Name "Arma Reforger htCTI v0.7.18"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -1466,35 +1468,34 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
  }
  coords 0 0 0
  Flags 0
- GarbageSystemConfig "{5BB174944DD9BBFD}Configs/Core/CTI_GarbageSystem.conf"
  m_eTestGameFlags 6
  m_bAllowFactionChange 0
  m_fAutoReloadTime 30
  {
   $grp SCR_CTI_VehicleSpawn {
    SpawnVehicleSouth1 {
-    coords 10040.9 2.687 1586.133
+    coords 10040.9 3.187 1586.133
     angleY -160
    }
    SpawnVehicleSouth2 {
-    coords 10050.465 2.739 1582.721
+    coords 10050.465 3.239 1582.721
     angleY -160
    }
    SpawnVehicleSouth3 {
-    coords 10059.909 2.803 1579.401
+    coords 10059.909 3.303 1579.401
     angleY -160
    }
    SpawnVehicleNorth1 {
-    coords 4456.013 5.781 11218.104
-    angleY 180
+    coords 4456.013 6.281 11218.104
+    angleY -180
    }
    SpawnVehicleNorth2 {
-    coords 4446.495 5.813 11217.188
-    angleY -180
+    coords 4446.495 6.312 11217.188
+    angleY 180
    }
    SpawnVehicleNorth3 {
-    coords 4431.466 5.781 11225.717
-    angleY -180
+    coords 4431.466 6.281 11225.717
+    angleY 180
    }
   }
  }
@@ -4932,16 +4933,10 @@ ItemPreviewManagerEntity ItemPreviewManagerEntity1 {
  DefaultRenderAttributes PreviewRenderAttributes "{5EA903900232CEC4}" {
  }
 }
-SCR_BaseTaskManager {
- components {
-  SCR_TextsTaskManagerComponent "{5EA9039790F46D97}" {
-  }
-  SCR_UITaskManagerComponent "{5EA9039785D0D136}" {
-  }
-  RplComponent "{5EA90397FCA195BF}" {
-   Streamable Disabled
-  }
- }
+SCR_GarbageManager {
+ CharacterLifetime 180
+ VehicleLifetime 1200
+ ItemLifetime 180
 }
 SCR_LoadoutManager {
  components {
