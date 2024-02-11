@@ -1188,7 +1188,7 @@ Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
      ParentContextList {
       "CTI_Default"
      }
-     Duration 5
+     Duration 4
      "Sort Priority" 2
     }
    }

@@ -116,15 +116,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
    CruiseVehicleSpeedKmh 60
    ReverseVehicleSpeedKmh -10
   }
-  BaseFlattenGrassComponent "{55FCDD8048D3AE17}" {
-   ParametersCollection {
-    FlattenGrassParametersObject "{55FCDD804A371EA5}" {
-     SideX 4.5
-     SideZ 2.7
-     Offset 0
-    }
-   }
-  }
   BaseLightManagerComponent "{51E210F17D2534F7}" {
    LightSlots {
     SCR_LightSlot "{51E210F3B1CB7E19}" : "{89853FD0B72E39A1}Prefabs/Vehicles/Core/Lights/Light_Head.conf" {
@@ -745,6 +736,15 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      DragCoefficient 0.65
     }
     Pacejka Pacejka "{54D53AEC4F7B50FD}" : "{33DE4AB48FB38296}Prefabs/Vehicles/Wheeled/M151A2/PacejkaTire_M151A2.conf" {
+    }
+   }
+  }
+  BaseFlattenGrassComponent "{55FCDD8048D3AE17}" {
+   ParametersCollection {
+    FlattenGrassParametersObject "{55FCDD804A371EA5}" {
+     SideX 4.5
+     SideZ 2.7
+     Offset 0
     }
    }
   }

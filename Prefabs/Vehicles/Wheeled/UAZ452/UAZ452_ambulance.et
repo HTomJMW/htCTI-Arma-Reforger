@@ -382,7 +382,7 @@ Vehicle : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_base.et" {
      ParentContextList {
       "CTI_Default"
      }
-     Duration 5
+     Duration 4
      "Sort Priority" 2
     }
    }
