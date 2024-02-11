@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{9E86B3D0DCD235E9}Language/CTI_localization.en_us.conf"
+ Configurations {
+  StringTableResourceClass PC {
+  }
+  StringTableResourceClass XBOX_ONE : PC {
+  }
+  StringTableResourceClass XBOX_SERIES : PC {
+  }
+  StringTableResourceClass PS4 : PC {
+  }
+  StringTableResourceClass HEADLESS : PC {
+  }
+ }
+}
