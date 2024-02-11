@@ -15,7 +15,7 @@ FrameWidgetClass {
     OffsetBottom -220
     Alignment 0 0
    }
-   Color 1 1 1 0.196
+   Color 1 1 1 0.392
    Text "^"
    "Font Size" 100
    "Min Font Size" 100
@@ -35,8 +35,8 @@ FrameWidgetClass {
     SizeY 50
     OffsetBottom -25
    }
-   Color 1 1 1 0.196
-   Text "----  +  ----"
+   Color 1 1 1 0.392
+   Text "- - - + - - -"
    "Font Size" 30
    "Min Font Size" 30
    "Horizontal Alignment" Center
@@ -55,7 +55,7 @@ FrameWidgetClass {
     SizeY 50
     OffsetBottom -100
    }
-   Color 1 1 1 0.196
+   Color 1 1 1 0.392
    Text "[ North ]"
    "Font Size" 30
    "Min Font Size" 30
@@ -75,7 +75,7 @@ FrameWidgetClass {
     SizeY 50
     OffsetBottom -250
    }
-   Color 1 1 1 0.196
+   Color 1 1 1 0.392
    Text "[ South ]"
    "Font Size" 30
    "Min Font Size" 30
@@ -95,7 +95,7 @@ FrameWidgetClass {
     SizeY 50
     OffsetBottom -175
    }
-   Color 1 1 1 0.196
+   Color 1 1 1 0.392
    Text "[ East ]"
    "Font Size" 30
    "Min Font Size" 30
@@ -115,7 +115,7 @@ FrameWidgetClass {
     SizeY 50
     OffsetBottom -175
    }
-   Color 1 1 1 0.196
+   Color 1 1 1 0.392
    Text "[ West ]"
    "Font Size" 30
    "Min Font Size" 30
