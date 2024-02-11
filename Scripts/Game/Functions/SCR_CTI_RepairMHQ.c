@@ -45,10 +45,10 @@ class SCR_CTI_RepairMHQ
 			}
 
 			ChimeraWorld world = spawnedEntity.GetWorld();
-            GarbageSystem garbageSystem = world.GetGarbageSystem();
+			GarbageManager garbagemanager = world.GetGarbageManager();
 
-			garbageSystem.Insert(spawnedEntity);
-			garbageSystem.Withdraw(spawnedEntity);
+			garbagemanager.Insert(spawnedEntity);
+			garbagemanager.Withdraw(spawnedEntity);
 
 			RplId rplId = Replication.FindId(spawnedEntity);
 			SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();

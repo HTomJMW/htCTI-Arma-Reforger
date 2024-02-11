@@ -15,7 +15,7 @@ class SCR_CTI_GetClosestEntity
 				dist = distance;
 			}
 		}
-		
+
 		return closest;
 	}
 

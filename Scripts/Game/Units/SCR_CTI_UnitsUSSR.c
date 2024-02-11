@@ -222,7 +222,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Ammo Depot");
 		script.Insert("");
 
-		resname.Insert("{80065564D96D231C}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_fuel.et");
+		resname.Insert("{67E7F860803010AF}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_tanker.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);

@@ -86,7 +86,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
-			Print("CTI :: Mission version: 0.7.9");
+			Print("CTI :: Mission version: 0.7.18");
 
 			if (RplSession.Mode() == RplMode.Dedicated)
 			{
@@ -406,10 +406,34 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	void setCommanderId(FactionKey factionkey, int playerId)
 	{
+		RplIdentity commIdentity = GetGame().GetPlayerManager().GetPlayerController(playerId).GetRplIdentity();
+
 		switch (factionkey)
 		{
-			case "USSR": ussrCommanderId = playerId; break;
-			case "US": usCommanderId = playerId; break;
+			case "USSR":
+			{
+				ussrCommanderId = playerId;
+
+				foreach (RplId workerRplId : UpdateWorkersComponent.m_ussrWorkerRplIds)
+				{
+					RplComponent workerRplComp = RplComponent.Cast(Replication.FindItem(workerRplId));
+					workerRplComp.EnableStreamingForConnection(commIdentity, true);
+				}
+
+				break;
+			}
+			case "US":
+			{
+				usCommanderId = playerId;
+				
+				foreach (RplId workerRplId : UpdateWorkersComponent.m_usWorkerRplIds)
+				{
+					RplComponent workerRplComp = RplComponent.Cast(Replication.FindItem(workerRplId));
+					workerRplComp.EnableStreamingForConnection(commIdentity, true);
+				}
+				
+				break;
+			}
 		}
 
 		Replication.BumpMe();
@@ -420,10 +444,39 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	void clearCommanderId(FactionKey factionkey)
 	{
+		int cid = getCommanderId(factionkey);
+		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(cid);
+		RplIdentity commIdentity = RplIdentity.Invalid();
+		if (pc) commIdentity = pc.GetRplIdentity();
+		
 		switch (factionkey)
 		{
-			case "USSR": ussrCommanderId = -2; break;
-			case "US": usCommanderId = -2; break;
+			case "USSR":
+			{
+				ussrCommanderId = -2;
+
+				if (!commIdentity.IsValid()) break;
+				foreach (RplId workerRplId : UpdateWorkersComponent.m_ussrWorkerRplIds)
+				{
+					RplComponent workerRplComp = RplComponent.Cast(Replication.FindItem(workerRplId));
+					workerRplComp.EnableStreamingForConnection(commIdentity, false);
+				}
+				
+				break;
+			}
+			case "US":
+			{
+				usCommanderId = -2;
+
+				if (!commIdentity.IsValid()) break;
+				foreach (RplId workerRplId : UpdateWorkersComponent.m_usWorkerRplIds)
+				{
+					RplComponent workerRplComp = RplComponent.Cast(Replication.FindItem(workerRplId));
+					workerRplComp.EnableStreamingForConnection(commIdentity, false);
+				}
+				
+				break;
+			}
 		}
 
 		Replication.BumpMe();

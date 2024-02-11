@@ -31,12 +31,18 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 	{
 		m_spawnedVehicle = Vehicle.Cast(newEnt);
 
+		CarControllerComponent_SA carController = CarControllerComponent_SA.Cast(m_spawnedVehicle.FindComponent(CarControllerComponent_SA));
+		if (carController) carController.SetPersistentHandBrake(true);
+		
+		Physics physicsComponent = m_spawnedVehicle.GetPhysics();
+		if (physicsComponent) physicsComponent.SetVelocity("0 -1 0");
+
 		if (m_items) insertItem(m_spawnedVehicle);
 		
 		removeSupplyBoxes(m_spawnedVehicle);
 
 		ChimeraWorld world = newEnt.GetWorld();
-		GarbageSystem garbageSystem = world.GetGarbageSystem();
+		GarbageManager garbagemanager = world.GetGarbageManager();
 
 		switch (m_rnPrefab)
 		{
@@ -45,8 +51,8 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("USSR", rplId);
 
-				garbageSystem.Insert(newEnt);
-				garbageSystem.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
+				garbagemanager.Insert(newEnt);
+				garbagemanager.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
 
 				IEntity child = newEnt.GetChildren();
 				while (child)
@@ -68,8 +74,8 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 				RplId rplId = Replication.FindId(newEnt);
 				m_gameMode.setMHQrplId("US", rplId);
 
-				garbageSystem.Insert(newEnt);
-				garbageSystem.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
+				garbagemanager.Insert(newEnt);
+				garbagemanager.Withdraw(newEnt); // UpdateVictory Component handles MHQ lifetime
 
 				IEntity child = newEnt.GetChildren();
 				while (child)
@@ -88,14 +94,14 @@ class SCR_CTI_VehicleSpawn : SCR_BasePrefabSpawner
 			}
 			default:
 			{
-				garbageSystem.Insert(newEnt, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
-				garbageSystem.Withdraw(newEnt); // First GetIn event will start GM countdown timer
+				garbagemanager.Insert(newEnt, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
+				garbagemanager.Withdraw(newEnt); // First GetIn event will start GM countdown timer
 				//PrintFormat("CTI :: Default vehicle: %1", m_rnPrefab);
 				break;
 			}
 		}
-		//PrintFormat("CTI :: DEBUG :: Vehicle in garbage manager: %1 (%2)", garbageSystem.IsInserted(newEnt).ToString(), m_rnPrefab);
-		//PrintFormat("CTI :: DEBUG :: Lifetime: %1 (%2)", garbageSystem.GetLifetime(newEnt), m_rnPrefab);
+		//PrintFormat("CTI :: DEBUG :: Vehicle in garbage manager: %1 (%2)", garbagemanager.IsInserted(newEnt).ToString(), m_rnPrefab);
+		//PrintFormat("CTI :: DEBUG :: Lifetime: %1 (%2)", garbagemanager.GetLifetime(newEnt), m_rnPrefab);
 
 		if (m_items) m_items.Clear();
 		m_items = null;

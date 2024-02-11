@@ -26,10 +26,13 @@ class SCR_CTI_PlayerMarker : BaseGameEntity
 		if (m_pc) clientData = m_gameMode.getClientData(m_pc.GetPlayerId());
 		if (clientData && clientData.getFactionIndex() != 0 && m_factionIndex > 0 && m_pc)
 		{
-			m_player = SCR_ChimeraCharacter.Cast(this.GetParent()); // Get on client too
-			int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(m_player);
+			m_player = SCR_ChimeraCharacter.Cast(this.GetParent()); // Get m_player on client too
+
+			RplComponent rplComp = RplComponent.Cast(m_player.FindComponent(RplComponent));
+			int playerId = GetGame().GetPlayerManager().GetPlayerIdFromEntityRplId(rplComp.Id());
+
 			m_name = GetGame().GetPlayerManager().GetPlayerName(playerId);
-			if (!m_name) m_name = "Player";
+			if (!m_name) m_name = "You";
 	
 			switch(m_factionIndex)
 			{
@@ -51,8 +54,8 @@ class SCR_CTI_PlayerMarker : BaseGameEntity
 		m_mapItem.SetVisible(true);
 		m_mapItem.SetFactionIndex(m_factionIndex);
 		m_mapItem.SetDisplayName(m_name);
-		m_mapItem.SetBaseType(EMapDescriptorType.MDT_NAME_GENERIC);
-		m_mapItem.SetImageDef("Unit");
+		m_mapItem.SetBaseType(EMapDescriptorType.MDT_ICON);
+		m_mapItem.SetImageDef("USSR_Base_Small_Respawn_Bg");
 		m_mapItem.SetPriority(3);
 		
 		MapDescriptorProps props = m_mapItem.GetProps();

@@ -8,7 +8,7 @@ class SCR_CTI_FactoryProduction
 		SCR_CTI_PurchaseInfoCoder infoCoder = new SCR_CTI_PurchaseInfoCoder();
 		bool driver, gunner, commander, crew, locked;
 		infoCoder.deCode(driver, gunner, commander, crew, locked, purchaseInfo);
-		PrintFormat("%1, %2, %3, %4, %5", driver.ToString(), gunner.ToString(), commander.ToString(), crew.ToString(), locked.ToString());
+		PrintFormat("CTI :: Spawn params: Dr: %1, Gu: %2, Co: %3, Cr: %4, Lo: %5", driver.ToString(), gunner.ToString(), commander.ToString(), crew.ToString(), locked.ToString());
 
 		RplComponent factRplComp = RplComponent.Cast(Replication.FindItem(factRplId));
 		IEntity factory = factRplComp.GetEntity(); // TODO Is alive?
@@ -19,6 +19,7 @@ class SCR_CTI_FactoryProduction
 
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
+		mat[3][2] = mat[3][2] + 0.5; // Spawn height correction if need
 		params.Transform = mat;
 
 		entity = GetGame().SpawnEntityPrefab(resource, GetGame().GetWorld(), params);
@@ -62,8 +63,31 @@ class SCR_CTI_FactoryProduction
 				}
 			}
 			
+			SCR_CTI_SupportVehiclesComponent svc = SCR_CTI_SupportVehiclesComponent.Cast(m_gameMode.FindComponent(SCR_CTI_SupportVehiclesComponent));
+			if (svc)
+			{
+				SCR_CTI_VehicleCustomVariablesComponent vcvc = SCR_CTI_VehicleCustomVariablesComponent.Cast(entity.FindComponent(SCR_CTI_VehicleCustomVariablesComponent));
+				if (vcvc)
+				{
+					CTI_SupportVehicleTypes type = vcvc.getSupportVehicleType();
+					if (type == CTI_SupportVehicleTypes.AMMO || type == CTI_SupportVehicleTypes.FUEL || type == CTI_SupportVehicleTypes.REPAIR || type == CTI_SupportVehicleTypes.MEDICAL)
+					{
+						svc.addSupportVehicle(entity);
+					}
+				}
+			};
+			
 			Vehicle vehicle = Vehicle.Cast(entity);
-			if (vehicle) removeSupplyBoxes(vehicle);
+			if (vehicle)
+			{
+				CarControllerComponent_SA carController = CarControllerComponent_SA.Cast(vehicle.FindComponent(CarControllerComponent_SA));
+				if (carController) carController.SetPersistentHandBrake(true);
+		
+				Physics physicsComponent = vehicle.GetPhysics();
+				if (physicsComponent) physicsComponent.SetVelocity("0 -1 0");
+				
+				removeSupplyBoxes(vehicle);
+			}
 
 			SCR_CTI_UnitData unitData;
 			int index = -1;

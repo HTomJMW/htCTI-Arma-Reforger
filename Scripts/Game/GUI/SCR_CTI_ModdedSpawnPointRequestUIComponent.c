@@ -20,6 +20,26 @@ modded class SCR_SpawnPointRequestUIComponent : SCR_DeployRequestUIBaseComponent
 
 		foreach (SCR_SpawnPoint info : infos)
 		{
+			info.ShowSpawnPointDescriptors(true, faction);
+
+			auto mapDescriptor = SCR_MapDescriptorComponent.Cast(info.FindComponent(SCR_MapDescriptorComponent));
+			if (mapDescriptor)
+			{
+				 MapItem mapItem = mapDescriptor.Item();
+
+				mapItem.SetBaseType(EMapDescriptorType.MDT_ICON);
+				mapItem.SetImageDef("USSR_Base_Small_Select");
+
+				MapDescriptorProps props = mapItem.GetProps();
+					props.SetDetail(96);
+					props.SetIconSize(32, 0.25, 0.25);
+					props.SetFrontColor(Color.Yellow);
+					props.SetIconVisible(true);
+					props.Activate(true);
+
+				mapItem.SetProps(props);
+			}
+
 			AddSpawnPoint(info);
 		}
 	}
