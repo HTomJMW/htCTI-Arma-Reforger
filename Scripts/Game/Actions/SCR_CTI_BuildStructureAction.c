@@ -139,9 +139,12 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{
-		string completitionValue = m_scc.getCompletionValue().ToString();	
-		outName = "[Hold] Build " + completitionValue + "% [+5%]";
+		IEntity wipStructure = SCR_EntityHelper.GetMainParent(GetOwner(), true);
+		SCR_CTI_StructureCompletionComponent scc = SCR_CTI_StructureCompletionComponent.Cast(wipStructure.FindComponent(SCR_CTI_StructureCompletionComponent));
+		string completitionValue = scc.getCompletionValue().ToString();
 
+		outName = "[Hold] Build " + completitionValue + "% [+5%]";
+		
 		return true;
 	}
 
