@@ -3,7 +3,7 @@ SCR_ChimeraCharacter : "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR
  components {
   SCR_CommunicationSoundComponent "{54FD05D0C92D071F}" {
    Filenames + {
-    "{FC7A7A9F92D1E225}Sounds/RadioProtocol/RadioProtocol_Campaign_SL_RU.acp" "{7413663A6477A6AE}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_1_RU.acp" "{C6C424D13BD59536}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_2_RU.acp" "{A8891A880EB47BBE}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_3_RU.acp" "{E19A40EC2D7BC495}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_4_RU.acp" "{8FD77EB5181A2A1D}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_5_RU.acp"
+    "{FC7A7A9F92D1E225}Sounds/RadioProtocol/RadioProtocol_Campaign_SL_RU.acp" "{7413663A6477A6AE}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_1_RU.acp" "{C6C424D13BD59536}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_2_RU.acp" "{A8891A880EB47BBE}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_3_RU.acp" "{E19A40EC2D7BC495}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_4_RU.acp" "{8FD77EB5181A2A1D}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_5_RU.acp" "{F74F3305B3A080B9}Sounds/RadioProtocol/RadioProtocol_Campaign_SL_US.acp" "{B3121241CD2D1794}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_1_US.acp" "{769D43ACF046BF37}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_2_US.acp" "{01972B2404E45047}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_3_US.acp" "{D88FC72ACD99E54C}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_4_US.acp" "{B6C2F973F8F80BC4}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_5_US.acp"
    }
   }
   SCR_CharacterInventoryStorageComponent "{520EA1D2DB118DAC}" {
@@ -11,7 +11,7 @@ SCR_ChimeraCharacter : "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR
     SCR_EquipmentStorageComponent "{56B49DA9722B635D}" {
      InitialStorageSlots {
       SCR_EquipmentStorageSlot BinocularSlot {
-       Prefab "{F2539FA5706E51E4}Prefabs/Items/Equipment/Binoculars/Binoculars_B12/Binoculars_B12.et"
+       Prefab "{243948B23D90BECB}Prefabs/Items/Equipment/Binoculars/Binoculars_B8/Binoculars_B8.et"
       }
      }
     }
@@ -20,41 +20,46 @@ SCR_ChimeraCharacter : "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR
   FactionAffiliationComponent "{520EC9618276DF23}" {
    "faction affiliation" "USSR"
   }
-  SCR_CTI_RadioConnectionComponent "{5CF31A78BC2DD129}" {
+  SCR_BaseHUDComponent "{520EA1D2DB118134}" {
+   InfoDisplays {
+    SCR_CTI_InfoHud "{609D479A8C7E745F}" {
+     m_LayoutPath "{959E824DECAF27D7}UI/layouts/InfoHud.layout"
+    }
+    SCR_CTI_VehicleInfoHud "{609D479A8924EF7A}" {
+     m_LayoutPath "{FA2748932AA7B28A}UI/layouts/VehicleInfoHud.layout"
+    }
+    SCR_CTI_ConfirmMenu "{609D479A87EA9609}" {
+     m_LayoutPath "{8C4B0F3E158814B4}UI/layouts/ConfirmMenu.layout"
+    }
+   }
   }
-  SCR_CampaignBuildingComponent "{5CF319E99165E318}" {
+  SCR_CTI_RadioConnectionComponent "{609D4B858A35A0C1}" {
+  }
+  SCR_CTI_RadioConnectionComponent "{609D4BEFA6271AA8}" {
+  }
+  SCR_CampaignBuildingComponent "{609D44259AB8BBCE}" {
    Enabled 0
   }
   SCR_CharacterRankComponent "{528E6D4286AA2D8F}" {
    m_iRank CAPTAIN
   }
-  SCR_MapDescriptorComponent "{5CF319E99165E327}" {
+  SCR_MapDescriptorComponent "{609D44259AB8BBCA}" {
    Enabled 0
    DisplayName ""
    VisibleOnMap 0
    MainType Unit
    UnitType Infantry
   }
-  SlotManagerComponent "{5D2D62AF7F302290}" {
+  SlotManagerComponent "{609D44B09AF6D480}" {
    Slots {
     EntitySlotInfo CTI_PlayerMarker {
      Prefab "{BCCE785A6FFC300B}Prefabs/Markers/CTI_PlayerMarker.et"
     }
    }
   }
-  SCR_ResourceComponent "{5EAB0CF61ED8D936}" {
+  SCR_ResourceComponent "{609D44259AB8BBD3}" {
    m_aConsumers {
-    SCR_ResourceConsumer "{5EAB0CF61B64F199}" {
-     m_sDebugName "Self - Consumer"
-     m_eResourceRights SELF
-     m_eGeneratorIdentifier SELF
-     m_ContainerQueue SCR_ResourceConsumerContainerQueue "{5EAB0CF67CC7D360}" {
-      m_StoragePolicies {
-       SCR_ResourceConsumerStoragePolicy "{5EAB0CF67A4C1F45}" {
-        m_eStorageType CARGO_CHARACTER
-       }
-      }
-     }
+    SCR_ResourceConsumer "{5E64858555320952}" : "{E77EA96D4FC48177}Configs/Resources/Supplies/Consumers/Generic/Consumer_Self.conf" {
     }
    }
   }

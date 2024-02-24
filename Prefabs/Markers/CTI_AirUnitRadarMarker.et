@@ -1,0 +1,13 @@
+SCR_CTI_AirUnitRadarMarker {
+ ID "6096D6DE3C4B3573"
+ components {
+  SCR_MapDescriptorComponent "{6096D6DE3C4B3584}" {
+   ShowTerrainElevation 1
+  }
+  RplComponent "{6096D6DE3C4B358C}" {
+   Streamable Disabled
+  }
+  Hierarchy "{6096D6DE3C4B3588}" {
+  }
+ }
+}

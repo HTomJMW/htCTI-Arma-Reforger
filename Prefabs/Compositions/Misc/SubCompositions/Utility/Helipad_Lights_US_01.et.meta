@@ -1,0 +1,15 @@
+MetaFileClass {
+ Name "{2A24B40D6887140B}Prefabs/Compositions/Misc/SubCompositions/Utility/Helipad_Lights_US_01.et"
+ Configurations {
+  EntityTemplateResourceClass PC {
+  }
+  EntityTemplateResourceClass XBOX_ONE : PC {
+  }
+  EntityTemplateResourceClass XBOX_SERIES : PC {
+  }
+  EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass HEADLESS : PC {
+  }
+ }
+}

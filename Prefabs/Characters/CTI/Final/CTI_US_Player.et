@@ -3,7 +3,7 @@ SCR_ChimeraCharacter : "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_
  components {
   SCR_CommunicationSoundComponent "{54FD05D0C92D071F}" {
    Filenames + {
-    "{F74F3305B3A080B9}Sounds/RadioProtocol/RadioProtocol_Campaign_SL_US.acp" "{B3121241CD2D1794}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_1_US.acp" "{769D43ACF046BF37}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_2_US.acp" "{01972B2404E45047}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_3_US.acp" "{D88FC72ACD99E54C}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_4_US.acp" "{B6C2F973F8F80BC4}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_5_US.acp" "{91D53896F5AD5DB4}Sounds/RadioProtocol/RadioProtocol_CombatPatrol_US.acp"
+    "{F74F3305B3A080B9}Sounds/RadioProtocol/RadioProtocol_Campaign_SL_US.acp" "{B3121241CD2D1794}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_1_US.acp" "{769D43ACF046BF37}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_2_US.acp" "{01972B2404E45047}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_3_US.acp" "{D88FC72ACD99E54C}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_4_US.acp" "{B6C2F973F8F80BC4}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_5_US.acp" "{91D53896F5AD5DB4}Sounds/RadioProtocol/RadioProtocol_CombatPatrol_US.acp" "{FC7A7A9F92D1E225}Sounds/RadioProtocol/RadioProtocol_Campaign_SL_RU.acp" "{7413663A6477A6AE}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_1_RU.acp" "{C6C424D13BD59536}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_2_RU.acp" "{A8891A880EB47BBE}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_3_RU.acp" "{E19A40EC2D7BC495}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_4_RU.acp" "{8FD77EB5181A2A1D}Sounds/RadioProtocol/RadioProtocol_Campaign_HQ_5_RU.acp"
    }
   }
   SCR_CharacterInventoryStorageComponent "{520EA1D2DB118DAC}" {
@@ -20,40 +20,43 @@ SCR_ChimeraCharacter : "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_
   FactionAffiliationComponent "{520EC961FB0A2E90}" {
    "faction affiliation" "US"
   }
-  SCR_CTI_RadioConnectionComponent "{5CF31A78AB419959}" {
+  SCR_BaseHUDComponent "{520EA1D2DB118134}" {
+   InfoDisplays {
+    SCR_CTI_InfoHud "{609D479B610C1A10}" {
+     m_LayoutPath "{959E824DECAF27D7}UI/layouts/InfoHud.layout"
+    }
+    SCR_CTI_VehicleInfoHud "{609D479B534535B4}" {
+     m_LayoutPath "{FA2748932AA7B28A}UI/layouts/VehicleInfoHud.layout"
+    }
+    SCR_CTI_ConfirmMenu "{609D479B504368E4}" {
+     m_LayoutPath "{8C4B0F3E158814B4}UI/layouts/ConfirmMenu.layout"
+    }
+   }
   }
-  SCR_CampaignBuildingComponent "{5CF319E9A3D62F28}" {
+  SCR_CTI_RadioConnectionComponent "{609D4BEFAEFA9B41}" {
+  }
+  SCR_CampaignBuildingComponent "{609D44258A38932B}" {
    Enabled 0
   }
   SCR_CharacterRankComponent "{528E6D4286AA2D8F}" {
    m_iRank CAPTAIN
   }
-  SCR_MapDescriptorComponent "{5CF319E9A3D62F36}" {
+  SCR_MapDescriptorComponent "{609D44258A389331}" {
    Enabled 0
    VisibleOnMap 0
    MainType Unit
    UnitType Infantry
   }
-  SlotManagerComponent "{5D2D62AF1ADF2C80}" {
+  SlotManagerComponent "{609D44B11623BB65}" {
    Slots {
     EntitySlotInfo CTI_PlayerMarker {
      Prefab "{BCCE785A6FFC300B}Prefabs/Markers/CTI_PlayerMarker.et"
     }
    }
   }
-  SCR_ResourceComponent "{5EAB0CF6DAEE72C0}" {
+  SCR_ResourceComponent "{609D44258A38933E}" {
    m_aConsumers {
-    SCR_ResourceConsumer "{5EAB0CF6D7DC2DF3}" {
-     m_sDebugName "Self - Consumer"
-     m_eResourceRights SELF
-     m_eGeneratorIdentifier SELF
-     m_ContainerQueue SCR_ResourceConsumerContainerQueue "{5EAB0CF6C5659F4F}" {
-      m_StoragePolicies {
-       SCR_ResourceConsumerStoragePolicy "{5EAB0CF63D024EF1}" {
-        m_eStorageType CARGO_CHARACTER
-       }
-      }
-     }
+    SCR_ResourceConsumer "{5E6485852E650CC4}" : "{E77EA96D4FC48177}Configs/Resources/Supplies/Consumers/Generic/Consumer_Self.conf" {
     }
    }
   }

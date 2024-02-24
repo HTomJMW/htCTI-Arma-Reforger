@@ -4,6 +4,8 @@ GenericEntity : "{3BA9D94C4EE9B33B}Prefabs/Compositions/Slotted/CompositionBase.
   SCR_SlotCompositionComponent "{52CAE30B655050CF}" {
    m_bOrientChildrenToTerrain 0
   }
+  Hierarchy "{609AD969A796C9B1}" {
+  }
  }
  coords 63.661 0 65.438
  {

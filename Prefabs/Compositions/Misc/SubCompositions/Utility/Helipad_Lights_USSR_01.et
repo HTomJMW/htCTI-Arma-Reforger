@@ -1,0 +1,125 @@
+StaticModelEntity : "{8CDB9C117669AF4A}Prefabs/Structures/Military/Camps/HelipadImprovised_01/HelipadImprovised_USSR_01.et" {
+ ID "56ACD1C4DB91DB10"
+ components {
+  SCR_HorizontalAlignComponent "{609A7960CB0CC4C1}" {
+  }
+  SCR_SlotCompositionComponent "{609A7960CB0CC4C4}" {
+   m_bOrientChildrenToTerrain 0
+  }
+  ActionsManagerComponent "{609AD962BF7A969F}" {
+   ActionContexts {
+    UserActionContext "{609AD962BF9D8639}" {
+     ContextName "CTI_Default"
+     Position PointInfo "{609AD962B7F3740A}" {
+      Offset 0 0.5 0
+     }
+     Radius 5
+    }
+   }
+   additionalActions {
+    SCR_CTI_RemoveDefenseAction "{609AD962A7CB05D3}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 10
+    }
+   }
+  }
+  Hierarchy "{609A7960CB0CC4C6}" {
+   Enabled 1
+  }
+ }
+ coords 91.94 0.001 31.519
+ {
+  $grp GenericEntity : "{0FE25F81E87E8131}Prefabs/Props/Airport/RunwayLightPortable_01/RunwayLightPortable_01_red.et" {
+   {
+    ID "609A7960CB0CC4D1"
+    components {
+     Hierarchy "{609A7960CB0CC4B1}" {
+      Enabled 1
+     }
+    }
+    coords -7.824 0.343 0.326
+    angleY 2.319
+   }
+   {
+    ID "609A7960CB0CC4D2"
+    components {
+     Hierarchy "{609A7960CB0CC4B9}" {
+      Enabled 1
+     }
+    }
+    coords 7.883 0.343 -7.399
+    angleY 4.083
+   }
+   {
+    ID "609A7960CB0CC4D3"
+    components {
+     Hierarchy "{609A7960CB0CC4B4}" {
+      Enabled 1
+     }
+    }
+    coords -7.675 0.343 8.054
+    angleY 175.955
+   }
+   {
+    ID "609A7960CB0CC4D4"
+    components {
+     Hierarchy "{609A7960CB0CC4BF}" {
+      Enabled 1
+     }
+    }
+    coords -0.061 0.343 -7.435
+    angleY 91.326
+   }
+   {
+    ID "609A7960CB0CC4D5"
+    components {
+     Hierarchy "{609A7960CB0CC4BA}" {
+      Enabled 1
+     }
+    }
+    coords -0.061 0.343 8.079
+    angleY 80.221
+   }
+   {
+    ID "609A7960CB0CC4D7"
+    components {
+     Hierarchy "{609A7960CB0CC4A1}" {
+      Enabled 1
+     }
+    }
+    coords 7.852 0.343 0.326
+    angleY 0.23
+   }
+   {
+    ID "609A7960CB0CC4EB"
+    components {
+     Hierarchy "{609A7960CB0CC4CB}" {
+      Enabled 1
+     }
+    }
+    coords -7.896 0.343 -7.435
+    angleY -173.197
+   }
+   {
+    ID "609A7960CB0CC4EE"
+    components {
+     Hierarchy "{609A7960CB0CC4CF}" {
+      Enabled 1
+     }
+    }
+    coords 7.774 0.343 8.054
+    angleY 179.964
+   }
+  }
+  GenericEntity : "{604E7BB9A76B7ED9}Prefabs/Systems/Compositions/EntitySpawnerSlot/EntitySpawnerSlot_Vehicle_Large.et" {
+   ID "609A7960CB0CC4DB"
+   components {
+    Hierarchy "{609A7960CB0CC4A2}" {
+    }
+   }
+   coords 0 0.85 0.25
+  }
+ }
+}
