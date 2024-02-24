@@ -312,7 +312,7 @@ class SCR_CTI_PurchaseMenuButtonHandler : ScriptedWidgetEventHandler
 					}
 				}
 
-				float dist = factData.getDistance();
+				float dist = factData.getDistance() + 8; // temporary +8m for heli spawns
 				float placement = factData.getPlacement();
 				vector dir = facts[combofacitem].GetTransformAxis(2);
 
