@@ -119,6 +119,10 @@ Vehicle : "{AFF6067A5CE8A852}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8_base.et" {
      Prefab "{FE4A51A953C54DA0}Prefabs/Props/Military/SupplyBox/SupplyStack/SupplyStack_Large_01/SupplyStack_Large_01_Vehicle.et"
      DisablePhysicsInteraction 1
     }
+    EntitySlotInfo CTI_AirMarker {
+     PivotID "v_body"
+     Prefab "{925960F754329A24}Prefabs/Markers/CTI_AirUnitRadarMarker.et"
+    }
    }
    SlotMappers {
     CompartmentToSlotMapping Window_Glass_Right_1 {

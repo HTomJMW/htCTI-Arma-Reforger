@@ -108,6 +108,10 @@ Vehicle : "{D03C0F6044DB5208}Prefabs/Vehicles/Helicopters/UH1H/UH1H_base.et" {
      Prefab "{8C29E423099B0C5A}Prefabs/Props/Military/SupplyBox/SupplyPortableContainers/SupplyPortableContainer_01/SupplyPortableContainers_01_medium_Vehicle.et"
      DisablePhysicsInteraction 1
     }
+    EntitySlotInfo CTI_AirMarker {
+     PivotID "v_body"
+     Prefab "{925960F754329A24}Prefabs/Markers/CTI_AirUnitRadarMarker.et"
+    }
    }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
