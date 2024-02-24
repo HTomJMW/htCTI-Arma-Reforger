@@ -86,7 +86,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
-			Print("CTI :: Mission version: 0.7.18");
+			Print("CTI :: Mission version: 0.7.20");
 
 			if (RplSession.Mode() == RplMode.Dedicated)
 			{
@@ -157,35 +157,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		RplId rplid = rplComp.Id();
 		SCR_CTI_NetWorkComponent netComp = SCR_CTI_NetWorkComponent.Cast(pc.FindComponent(SCR_CTI_NetWorkComponent));
 		if (netComp) netComp.savePlayerLoadout(pc.GetPlayerId(), rplid);
-
-		// Set saved loadout for use at next respawn
-		SCR_PlayerLoadoutComponent loadoutComp = SCR_PlayerLoadoutComponent.Cast(pc.FindComponent(SCR_PlayerLoadoutComponent));
-		SCR_LoadoutManager loadoutManager = GetGame().GetLoadoutManager();
-
-		SCR_CTI_ClientData clientData = getClientData(pc.GetPlayerId());
-		if (clientData)
-		{
-			int factionIndex = clientData.getFactionIndex();
-			FactionKey factionkey = GetGame().GetFactionManager().GetFactionByIndex(factionIndex).GetFactionKey();
-			string loadoutName;
-			switch (factionkey)
-			{
-				case "USSR": loadoutName = "USSR Last Saved Gear"; break;
-				case "US": loadoutName = "US Last Saved Gear"; break;
-			}
-			SCR_BasePlayerLoadout savedLoadout = loadoutManager.GetLoadoutByName(loadoutName);
-			loadoutComp.RequestLoadout(savedLoadout);
-		} else {
-			FactionAffiliationComponent faffcomp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-			string loadoutName;
-			switch (faffcomp.GetAffiliatedFaction().GetFactionKey())
-			{
-				case "USSR": loadoutName = "USSR Default Gear"; break;
-				case "US": loadoutName = "US Default Gear"; break;
-			}
-			SCR_BasePlayerLoadout defaultLoadout = loadoutManager.GetLoadoutByName(loadoutName);
-			loadoutComp.RequestLoadout(defaultLoadout);
-		}
 	}
 
 	//------------------------------------------------------------------------------------------------

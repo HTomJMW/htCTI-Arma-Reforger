@@ -1,7 +1,7 @@
 [EntityEditorProps(category: "GameScripted/CTI", description: "Extinguish Vehicle - User Action")]
 class SCR_CTI_ExtinguishAction : SCR_VehicleActionBase
 {
-	protected CarControllerComponent_SA m_pCarController;
+	protected IEntity m_vehicle;
 	protected FactionAffiliationComponent m_vehAffiliationComp;
 	protected RplComponent m_rplComponent;
 
@@ -11,7 +11,7 @@ class SCR_CTI_ExtinguishAction : SCR_VehicleActionBase
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
-		m_pCarController = CarControllerComponent_SA.Cast(pOwnerEntity.FindComponent(CarControllerComponent_SA));
+		m_vehicle = pOwnerEntity;
 		m_vehAffiliationComp = FactionAffiliationComponent.Cast(pOwnerEntity.FindComponent(FactionAffiliationComponent));
 		m_rplComponent = RplComponent.Cast(pOwnerEntity.FindComponent(RplComponent));
 	}
@@ -40,8 +40,8 @@ class SCR_CTI_ExtinguishAction : SCR_VehicleActionBase
 	{
 		if (m_rplComponent && m_rplComponent.IsProxy()) return;
 
-		SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(pOwnerEntity.FindComponent(SCR_DamageManagerComponent));
-		
+		SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(pOwnerEntity.FindComponent(SCR_VehicleDamageManagerComponent));
+
 		array<HitZone> outHitZones = {};
 		vdmc.GetAllHitZones(outHitZones);
 		
@@ -63,9 +63,9 @@ class SCR_CTI_ExtinguishAction : SCR_VehicleActionBase
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(user);
 		PlayerController pc = GetGame().GetPlayerManager().GetPlayerController(playerId);
 		FactionAffiliationComponent affComp = FactionAffiliationComponent.Cast(pc.GetControlledEntity().FindComponent(FactionAffiliationComponent));
-		IEntity veh = m_pCarController.GetOwner();
-		VehicleWheeledSimulation_SA simulation = VehicleWheeledSimulation_SA.Cast(veh.FindComponent(VehicleWheeledSimulation_SA));
-		SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(veh.FindComponent(SCR_VehicleDamageManagerComponent));
+		VehicleWheeledSimulation_SA wheeledSimulation = VehicleWheeledSimulation_SA.Cast(m_vehicle.FindComponent(VehicleWheeledSimulation_SA));
+		VehicleHelicopterSimulation heliSimulation = VehicleHelicopterSimulation.Cast(m_vehicle.FindComponent(VehicleHelicopterSimulation));
+		SCR_VehicleDamageManagerComponent vdmc = SCR_VehicleDamageManagerComponent.Cast(m_vehicle.FindComponent(SCR_VehicleDamageManagerComponent));
 		
 		hasExtinguisher = false;
 		SCR_PrefabNamePredicate predicate = new SCR_PrefabNamePredicate();
@@ -89,7 +89,8 @@ class SCR_CTI_ExtinguishAction : SCR_VehicleActionBase
 			}
 		}
 
-		if (Math.AbsFloat(simulation.GetSpeedKmh()) > 5) return false; // check vehicle speed
+		if (wheeledSimulation && Math.AbsFloat(wheeledSimulation.GetSpeedKmh()) > 5) return false; // check vehicle speed
+		if (heliSimulation && heliSimulation.GetAltitudeAGL() > 4) return false;
 		if (!isFlaming) return false;
 
 		return true;

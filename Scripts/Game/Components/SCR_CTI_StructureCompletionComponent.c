@@ -5,8 +5,8 @@ class SCR_CTI_StructureCompletionComponentClass : ScriptComponentClass
 
 class SCR_CTI_StructureCompletionComponent : ScriptComponent
 {
-	[Attribute(defvalue: "10", desc: "Completion value:", params: "10 100 5"), RplProp()]
-	protected int completion;
+	[RplProp()]
+	protected int completion = 10;
 
 	//------------------------------------------------------------------------------------------------
 	int getCompletionValue()

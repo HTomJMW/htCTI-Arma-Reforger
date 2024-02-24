@@ -80,7 +80,7 @@ class SCR_CTI_PlacingStructureComponent : ScriptComponent
 			Math3D.MatrixIdentity3(m_paramOBB.Mat);
 			m_paramOBB.Flags = TraceFlags.ENTS;
 			m_paramOBB.Exclude = m_structure;
-			m_paramOBB.LayerMask = EPhysicsLayerPresets.Projectile;
+			m_paramOBB.LayerMask = EPhysicsLayerPresets.Building;
 			m_paramOBB.Mins = m_boundmins;
 			m_paramOBB.Maxs = m_boundmaxs;
 

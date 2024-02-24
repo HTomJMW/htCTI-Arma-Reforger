@@ -37,6 +37,7 @@ class SCR_CTI_Constants
 	static const float REFUELMULTIPLIER = 0.40;
 	static const int DEFAULTRADIOBAGRANGE = 1000;
 	static const int DEFAULTRADIORANGE = 500;
+	static const int AIRRADARDETECTIONHEIGHT = 40;
 
 	// Colors
 	static const ref Color CTI_ORANGE = new Color(1.000000, 0.456336, 0.000000, 1.000000);

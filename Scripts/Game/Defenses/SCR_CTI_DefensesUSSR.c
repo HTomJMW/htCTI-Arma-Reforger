@@ -150,6 +150,14 @@ class SCR_CTI_DefensesUSSR
 		distance.Insert(4);
 		placement.Insert(0);
 		script.Insert("");
+
+		resname.Insert("{CFFE45B757300F47}Prefabs/Compositions/Misc/SubCompositions/Utility/Helipad_Lights_USSR_01.et");
+		name.Insert("HeliPad");
+		price.Insert(500);
+		category.Insert("");
+		distance.Insert(12);
+		placement.Insert(0);
+		script.Insert("");
 	}
 
 	//------------------------------------------------------------------------------------------------

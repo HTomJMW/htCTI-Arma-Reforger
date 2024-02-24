@@ -171,6 +171,10 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 					gameMode.bumpMeServer();
 				}
 			}
+
+			// Navmesh regenerate
+			SCR_AIWorld aiWorld = SCR_AIWorld.Cast(GetGame().GetAIWorld());
+			aiWorld.RequestNavmeshRebuildEntity(defense);
 		}
 	}
 

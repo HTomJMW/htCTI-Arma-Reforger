@@ -200,7 +200,7 @@ class SCR_CTI_BaseComponent : ScriptComponent
 	{
 		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
 		IEntity object = rplComp.GetEntity();
-		
+
 		SCR_AIWorld aiWorld = SCR_AIWorld.Cast(GetGame().GetAIWorld());
 		if (aiWorld)
 		{

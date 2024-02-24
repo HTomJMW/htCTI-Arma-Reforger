@@ -5,6 +5,8 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 	protected SCR_GadgetManagerComponent m_GadgetManager;
 	protected IEntity m_wipStructure;
 	protected SCR_CTI_StructureCompletionComponent m_scc;
+	protected FactionAffiliationComponent m_wipFaffComp;
+	protected RplComponent m_wipRplComp;
 	
 	//------------------------------------------------------------------------------------------------
 	protected override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
@@ -12,11 +14,15 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 		m_gameMode = SCR_CTI_GameMode.GetInstance();
 		m_wipStructure = SCR_EntityHelper.GetMainParent(pOwnerEntity, true);
 		m_scc = SCR_CTI_StructureCompletionComponent.Cast(m_wipStructure.FindComponent(SCR_CTI_StructureCompletionComponent));
+		m_wipFaffComp = FactionAffiliationComponent.Cast(m_wipStructure.FindComponent(FactionAffiliationComponent));
+		m_wipRplComp = RplComponent.Cast(m_wipStructure.FindComponent(RplComponent));
 	}
 
 	//------------------------------------------------------------------------------------------------
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity)
 	{
+		if (m_wipRplComp && m_wipRplComp.IsProxy()) return;
+		
 		if (m_scc.getCompletionValue() < 100)
 		{
 			m_scc.setCompletionValue(m_scc.getCompletionValue() + 5);
@@ -142,9 +148,9 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 		IEntity wipStructure = SCR_EntityHelper.GetMainParent(GetOwner(), true);
 		SCR_CTI_StructureCompletionComponent scc = SCR_CTI_StructureCompletionComponent.Cast(wipStructure.FindComponent(SCR_CTI_StructureCompletionComponent));
 		string completitionValue = scc.getCompletionValue().ToString();
-
+		// TODO FIX on CLIENT
 		outName = "[Hold] Build " + completitionValue + "% [+5%]";
-		
+
 		return true;
 	}
 

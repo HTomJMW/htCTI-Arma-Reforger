@@ -79,11 +79,11 @@ class SCR_CTI_PlacingDefenseComponent : ScriptComponent
 			m_defense.GetPreviewBounds(m_boundmins, m_boundmaxs);
 			m_radius = (vector.DistanceXZ(m_boundmins, m_boundmaxs)) * 0.5;
 			m_maxDifference = m_radius * 0.075;
-			
+
 			Math3D.MatrixIdentity3(m_paramOBB.Mat);
 			m_paramOBB.Flags = TraceFlags.ENTS;
 			m_paramOBB.Exclude = m_defense;
-			m_paramOBB.LayerMask = EPhysicsLayerPresets.Projectile;
+			m_paramOBB.LayerMask = EPhysicsLayerPresets.Building;
 			m_paramOBB.Mins = m_boundmins;
 			m_paramOBB.Maxs = m_boundmaxs;
 	

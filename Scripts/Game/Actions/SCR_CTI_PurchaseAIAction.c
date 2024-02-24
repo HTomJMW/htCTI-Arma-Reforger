@@ -23,7 +23,7 @@ class SCR_CTI_PurchaseAIAction : ScriptedUserAction
 		
 		SCR_GroupsManagerComponent gmc = SCR_GroupsManagerComponent.GetInstance();
 		SCR_AIGroup playersGroup = gmc.GetPlayerGroup(playerId);
-		
+
 		if (playersGroup.GetAgentsCount() >= SCR_CTI_Constants.PLAYERGROUPSIZE)
 		{
 			m_gameMode.SendHint(playerId, "Your Group is full!", "Information", 15);

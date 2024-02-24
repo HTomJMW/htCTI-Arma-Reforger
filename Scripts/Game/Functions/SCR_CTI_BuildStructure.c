@@ -60,16 +60,13 @@ class SCR_CTI_BuildStructure
 			RplId rplid = rplComp.Id();
 			m_baseComp.addStuctureRplId(factionkey, rplid);
 
-			// create spawn point
-			ResourceName resname = "{E7F4D5562F48DDE4}Prefabs/MP/Spawning/SpawnPoint_Base.et";
-			Resource res = Resource.Load(resname);
-			IEntity sp = GetGame().SpawnEntityPrefab(res, GetGame().GetWorld(), params);
+			// set spawn point for faction
+			SlotManagerComponent smc = SlotManagerComponent.Cast(structure.FindComponent(SlotManagerComponent));
+			EntitySlotInfo esi = smc.GetSlotByName("SpawnPoint");
+			IEntity sp = esi.GetAttachedEntity();
+			vector spPos = sp.GetOrigin();
 			SCR_SpawnPoint spawn = SCR_SpawnPoint.Cast(sp);
 			spawn.SetFactionKey(factionkey);
-			vector spPos = mat[3];
-			spPos[1] = spPos[1] + 0.2; // Elevate SP
-			spawn.SetOrigin(spPos);
-
 			int gridX, gridZ;
 			SCR_MapEntity.GetGridPos(spPos, gridX, gridZ);
 			spawn.setDisplayName(factoryData.getName() + " [" + gridX.ToString() + ", " + gridZ.ToString() + "]");
