@@ -1312,7 +1312,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger htCTI v0.7.18"
+     Name "Arma Reforger htCTI v0.7.20"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -4938,31 +4938,21 @@ SCR_GarbageManager {
  VehicleLifetime 1200
  ItemLifetime 180
 }
-SCR_LoadoutManager {
+SCR_LoadoutManager SCR_LoadoutManager_1 {
  components {
-  RplComponent "{5EA90397CDDC3903}" {
+  RplComponent "{609D122B421A6699}" {
    Streamable Disabled
   }
  }
  Flags 0
  m_aPlayerLoadouts {
-  SCR_FactionPlayerLoadout "{5EA903970C165242}" {
-   m_sLoadoutName "USSR Default Gear"
+  SCR_PlayerArsenalLoadout "{609D17E38BA59CD8}" {
+   m_sLoadoutName "USSR Gear"
    m_sLoadoutResource "{A67BF65F89A1905B}Prefabs/Characters/CTI/Final/CTI_USSR_Player.et"
    m_sAffiliatedFaction "USSR"
   }
-  SCR_FactionPlayerLoadout "{5EA903970A58F4D8}" {
-   m_sLoadoutName "USSR Last Saved Gear"
-   m_sLoadoutResource "{A67BF65F89A1905B}Prefabs/Characters/CTI/Final/CTI_USSR_Player.et"
-   m_sAffiliatedFaction "USSR"
-  }
-  SCR_FactionPlayerLoadout "{5EA9039709205E3C}" {
-   m_sLoadoutName "US Default Gear"
-   m_sLoadoutResource "{9CD96027671E949D}Prefabs/Characters/CTI/Final/CTI_US_Player.et"
-   m_sAffiliatedFaction "US"
-  }
-  SCR_FactionPlayerLoadout "{5EA90397084B3498}" {
-   m_sLoadoutName "US Last Saved Gear"
+  SCR_PlayerArsenalLoadout "{609D17E386C78689}" {
+   m_sLoadoutName "US Gear"
    m_sLoadoutResource "{9CD96027671E949D}Prefabs/Characters/CTI/Final/CTI_US_Player.et"
    m_sAffiliatedFaction "US"
   }

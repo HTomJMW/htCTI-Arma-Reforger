@@ -8,6 +8,8 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6CB14C518A0}" {
+   }
    SCR_CTI_TownMapDescriptorComponent "{59F0D7C923BBA717}" {
    }
    SCR_CTI_TownPatrolComponent "{5A554AEFB997ADDE}" {
@@ -122,6 +124,8 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C828D7240C}" {
+   }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB7ACA7E4A}" {
    }
    SCR_CTI_TownPatrolComponent "{5A61122823E51E91}" {
@@ -232,6 +236,8 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C824EF6A91}" {
+   }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB753F7A9A}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112281FDFC704}" {
@@ -341,6 +347,8 @@ $grp SCR_CTI_Town {
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
     Static 1
+   }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C82111FA2D}" {
    }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB6D8D9DF6}" {
    }
@@ -453,6 +461,8 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C81C73977E}" {
+   }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB6872DDBD}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112281771A235}" {
@@ -564,6 +574,8 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C81A9C1DAD}" {
+   }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB656A2451}" {
    }
    SCR_CTI_TownPatrolComponent "{5A61122813D013B1}" {
@@ -673,6 +685,8 @@ $grp SCR_CTI_Town {
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
     Static 1
+   }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C817D98CBA}" {
    }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB62FC9DFF}" {
    }
@@ -784,6 +798,8 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C814CF987B}" {
+   }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB5F359BFD}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112280CDF05B6}" {
@@ -893,6 +909,8 @@ $grp SCR_CTI_Town {
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
     Static 1
+   }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C80F99166A}" {
    }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB5DADDCD2}" {
    }
@@ -1005,6 +1023,8 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C82FABD03E}" {
+   }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB057BA792}" {
    }
    SCR_CTI_TownPatrolComponent "{5A6112282944B176}" {
@@ -1115,6 +1135,8 @@ $grp SCR_CTI_Town {
     ModelGeometry 1
     Static 1
    }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C82B1A4DFF}" {
+   }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB4219D1BD}" {
    }
    SCR_CTI_TownPatrolComponent "{5A611228262AF0E4}" {
@@ -1224,6 +1246,8 @@ $grp SCR_CTI_Town {
    RigidBody "{599D1844E99D5AC0}" {
     ModelGeometry 1
     Static 1
+   }
+   SCR_CTI_FlagMapDescriptorComponent "{6096D6C833262E2A}" {
    }
    SCR_CTI_TownMapDescriptorComponent "{59F137AB0EF5D596}" {
    }
