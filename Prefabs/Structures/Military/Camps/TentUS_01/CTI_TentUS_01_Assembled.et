@@ -28,38 +28,56 @@ StaticModelEntity : "{5864442875E45538}Prefabs/Structures/Military/Camps/TentUS_
   }
  }
  {
-  StaticModelEntity {
-   ID "5570DCD884983797"
+  $grp StaticModelEntity {
    {
-    StaticModelEntity : "{1D0170B58B108CC9}Prefabs/Structures/Military/Camps/TentUS_01/TentUS_01_Floor01.et" {
-     ID "5D9D26E872C1B480"
-     coords 0 0 -0.023
+    ID "5570DCD884983797"
+    components {
+     Hierarchy "{609AD976A9904DAC}" {
+     }
+    }
+    {
+     StaticModelEntity : "{1D0170B58B108CC9}Prefabs/Structures/Military/Camps/TentUS_01/Parts/TentUS_01_Floor01.et" {
+      ID "5D9D26E872C1B480"
+      coords 0 0 -0.023
+     }
     }
    }
-  }
-  StaticModelEntity {
-   ID "5570DCD884983799"
    {
-    StaticModelEntity : "{1D0170B58B108CC9}Prefabs/Structures/Military/Camps/TentUS_01/TentUS_01_Floor01.et" {
-     ID "5D9D26E872C1B481"
-     coords 0 0 -0.023
-     angleY 180
+    ID "5570DCD884983799"
+    components {
+     Hierarchy "{609AD976A5BC6104}" {
+     }
+    }
+    {
+     StaticModelEntity : "{1D0170B58B108CC9}Prefabs/Structures/Military/Camps/TentUS_01/Parts/TentUS_01_Floor01.et" {
+      ID "5D9D26E872C1B481"
+      coords 0 0 -0.023
+      angleY 180
+     }
     }
    }
-  }
-  StaticModelEntity {
-   ID "5570DCD884987B62"
    {
-    StaticModelEntity : "{1D0170B58B108CC9}Prefabs/Structures/Military/Camps/TentUS_01/TentUS_01_Floor01.et" {
-     ID "5D9D26E872C1B482"
+    ID "5570DCD884987B62"
+    components {
+     Hierarchy "{609AD976A29E1E10}" {
+     }
+    }
+    {
+     StaticModelEntity : "{1D0170B58B108CC9}Prefabs/Structures/Military/Camps/TentUS_01/Parts/TentUS_01_Floor01.et" {
+      ID "5D9D26E872C1B482"
+     }
     }
    }
-  }
-  StaticModelEntity {
-   ID "5570DCD8849BB795"
    {
-    StaticModelEntity : "{7155445537D403E7}Prefabs/Structures/Military/Camps/TentUS_01/TentUS_01_Floor02.et" {
-     ID "5D9D26E872C1B483"
+    ID "5570DCD8849BB795"
+    components {
+     Hierarchy "{609AD9769F110B9D}" {
+     }
+    }
+    {
+     StaticModelEntity : "{7155445537D403E7}Prefabs/Structures/Military/Camps/TentUS_01/Parts/TentUS_01_Floor02.et" {
+      ID "5D9D26E872C1B483"
+     }
     }
    }
   }

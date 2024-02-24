@@ -12,6 +12,8 @@ StaticModelEntity : "{A64C66196086B206}Prefabs/Structures/Industrial/Towers/Ligh
     }
    }
   }
+  Hierarchy "{609AD9696AA474D3}" {
+  }
  }
  {
   $grp GenericEntity : "{E7FD0B8019E96F73}Prefabs/Structures/BuildingParts/Lights/LampTower_01.et" {

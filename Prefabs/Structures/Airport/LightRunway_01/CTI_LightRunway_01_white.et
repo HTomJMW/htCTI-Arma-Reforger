@@ -45,14 +45,12 @@ StaticModelEntity : "{ADF2602E1AAA8591}Prefabs/Structures/Airport/LightRunway_01
     }
    }
   }
+  Hierarchy "{609AD9698C226F3C}" {
+  }
  }
  {
   GenericEntity {
    ID "5A046B03610CC35C"
-   components {
-    LightSourceVisualizationObject "{5A02839A0D5BE210}" {
-    }
-   }
   }
  }
 }

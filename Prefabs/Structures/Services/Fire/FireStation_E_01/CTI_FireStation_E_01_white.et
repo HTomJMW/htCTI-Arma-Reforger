@@ -24,6 +24,10 @@ SCR_DestructibleBuildingEntity : "{8FE02C29CCA9942D}Prefabs/Structures/Services/
     EntitySlotInfo BuildingMarker {
      Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
     }
+    EntitySlotInfo SpawnPoint {
+     Offset 0 0.5 0
+     Prefab "{E7F4D5562F48DDE4}Prefabs/MP/Spawning/SpawnPoint_Base.et"
+    }
    }
   }
  }

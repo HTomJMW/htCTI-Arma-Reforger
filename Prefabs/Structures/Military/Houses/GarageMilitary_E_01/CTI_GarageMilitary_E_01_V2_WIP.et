@@ -30,6 +30,10 @@ SCR_DestructibleBuildingEntity {
  {
   GenericEntity : "{01969A28078FCA69}Prefabs/Compositions/Misc/SubCompositions/BarrelClutter_02.et" {
    ID "5D7701BDA29F9D0C"
+   components {
+    Hierarchy "{609AD976F4C7A38E}" {
+    }
+   }
    coords 26.31 0 15.317
    {
     GenericEntity {

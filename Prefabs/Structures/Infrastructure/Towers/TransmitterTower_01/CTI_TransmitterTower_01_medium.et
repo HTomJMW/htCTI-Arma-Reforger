@@ -13,6 +13,10 @@ StaticModelEntity : "{01E409EF2B75692E}Prefabs/Structures/Infrastructure/Towers/
     EntitySlotInfo BuildingMarker {
      Prefab "{4450D128C26CE0F6}Prefabs/Markers/CTI_StructureMarker.et"
     }
+    EntitySlotInfo SpawnPoint {
+     Offset -1 0.5 0
+     Prefab "{E7F4D5562F48DDE4}Prefabs/MP/Spawning/SpawnPoint_Base.et"
+    }
    }
   }
   ActionsManagerComponent "{591AD559E46E5F5F}" {
