@@ -14,6 +14,7 @@ SCR_AIWorld : "{70CCCF16487C927F}Prefabs/AI/SCR_AIWorld_Eden.et" {
    }
   }
  }
+ LimitOfSpawnedAIAgents 1500
 }
 RadioManagerEntity {
 }
@@ -24,6 +25,8 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_CTI_BaseComponent "{5AA31079657C4391}" {
   }
   SCR_CTI_RandomStartComponent "{59AB3248681F8E27}" {
+  }
+  SCR_CTI_ServiceComponent "{60D931FD8DDAACAB}" {
   }
   SCR_CTI_SupportVehiclesComponent "{5F22D705D1E3BD7D}" {
   }
@@ -151,8 +154,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_HintManagerComponent "{599D233299105F50}" {
   }
   SCR_MapConfigComponent "{5D5B284A9D986625}" {
-   m_sGadgetMapConfigPath "{4921DEF8E6362E7E}Configs/Map/MapFullscreenConflict.conf"
-   m_sSpawnMapConfigPath "{901F9ED2088BBCA3}Configs/Map/MapSpawnMenuConflict.conf"
   }
   SCR_MapMarkerManagerComponent "{5E5D5BC26D0D45B3}" {
   }
@@ -182,25 +183,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28BCC6A8025B}" {
-       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28BC1C77E35D}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28BC1B73FCDB}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BC4618C0B4}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -218,25 +200,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28BB86531217}" {
-       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28BBE4283E3A}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28BBE4CD4392}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BC4D18F18E}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -251,25 +214,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_sActionName "DialogConfirm"
         m_sLabel "#AR-Button_Confirm-UC"
         m_eAlign RIGHT
-       }
-      }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28B92A116897}" {
-       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B9171BF2DB}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B9179257C1}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
        }
       }
      }
@@ -288,25 +232,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_eAlign RIGHT
        }
       }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28B8B61188CA}" {
-       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B8A8D270FD}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B8A8806C68}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB21565705}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -321,25 +246,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_sActionName "DialogConfirm"
         m_sLabel "#AR-Button_Confirm-UC"
         m_eAlign RIGHT
-       }
-      }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28B8CDB69E87}" {
-       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B83C4A43E7}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B83DA00C45}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
        }
       }
      }
@@ -358,25 +264,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_eAlign RIGHT
        }
       }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28B866759F51}" {
-       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B8581210EE}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28B858D02AA3}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB1F7B80E7}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -391,25 +278,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_sActionName "DialogConfirm"
         m_sLabel "#AR-Button_Confirm-UC"
         m_eAlign RIGHT
-       }
-      }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A7EA04C63E}" {
-       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A7DC76E721}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A7DC418017}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
        }
       }
      }
@@ -428,25 +296,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_eAlign RIGHT
        }
       }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A704C98CF5}" {
-       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A77508461A}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A77594CE67}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB1EABDE05}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -463,24 +312,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_eAlign RIGHT
        }
       }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A588E3C124}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A584D4B051}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5428967C9}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB1DB214F9}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -495,24 +326,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_sActionName "DialogConfirm"
         m_sLabel "#AR-Button_Confirm-UC"
         m_eAlign RIGHT
-       }
-      }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A5FEEC5A21}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4B91F8E80}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4B9AA6447}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
        }
       }
      }
@@ -532,24 +345,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A5F6BFC741}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A3F1E3067}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A3F949AB6}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB1BE7745F}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -567,24 +362,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4AC9B90B2}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4A56B1962}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4A5F0B827}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB1A1C1AD7}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -602,24 +379,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4A04552B3}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A49CB976FA}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A49B3CE588}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB194CBFFF}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -637,24 +396,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A494424694}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A48F022DA6}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A48F9082FE}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB1855D42D}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -672,24 +413,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A48A6C4484}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A2EFA820C}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A2E9CC330}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB177A169D}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -707,24 +430,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A482EDA373}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A28264422}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A28C6D803}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB17977862}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -742,24 +447,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A5DFB9C3A7}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5DC18776B}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD19A2A1E849}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB15F882FA}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -777,24 +464,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4F3ED63C4}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4EDD6CE6C}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4ED37FE63}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB0E98FAA0}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -812,24 +481,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4E98B53B6}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A1158BDF3}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A12BF6C15}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB0D942D7A}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -844,24 +495,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
         m_sActionName "DialogConfirm"
         m_sLabel "#AR-Button_Confirm-UC"
         m_eAlign RIGHT
-       }
-      }
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4DE3F3943}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4D9CB5E85}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4D87BA79E}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
        }
       }
      }
@@ -881,24 +514,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4D4A36A9F}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A0A5838B3}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A0A0FA2F0}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB0BCC8C9E}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -916,24 +531,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A4C93A53DE}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4C4F81672}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A4C4A95F34}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB0AD4DECF}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -951,24 +548,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A5C9D46E12}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A436B1E196}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A7F9ABA84}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB09069536}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -986,24 +565,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A431C23F76}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A42713F510}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A42792E976}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB08390340}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -1021,24 +582,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A421A0C5A6}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A41A969714}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A41841CE85}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB0756F96E}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -1056,24 +599,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A53E475E51}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A73E73F19}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A7387B7BD}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB078BE5CB}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -1090,24 +615,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A53741D63D}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A52A4BDD1C}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A6C357088}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB06AA22BE}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -1124,24 +631,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A525F19A44}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A52268F19C}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A6489F8BB}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB0584A154}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -1158,24 +647,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A51FAEEF72}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A5D857E5E}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A5CC645F1}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB04AF44E6}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -1192,24 +663,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1CBD1F09CAFC40}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1F04F96F8B}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1F0493C479}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB03C194F6}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -1227,24 +680,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A566AA45BD}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A55C02394D}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A48A3C649}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
      SCR_KickDialogUiPreset "{5F1B28BB02E35E8B}" {
       m_sLayout "{0AD1F1993FE94C28}UI/layouts/Menus/Dialogs/KickDialog.layout"
@@ -1262,24 +697,6 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
        }
       }
       m_bCanBeReconnected 0
-      m_ReconnectPreset SCR_ConfigurableDialogUiPreset "{5F1B28A51086CB49}" {
-       m_eVisualStyle WARNING
-       m_sTitleIconImageName "warning"
-       m_aButtons {
-        SCR_ConfigurableDialogUiButtonPreset "{5F1B28A5568A0C9E}" {
-         m_sTag "confirm"
-         m_sActionName "DialogConfirm"
-         m_sLabel "#AR-Button_Confirm-UC"
-         m_eAlign RIGHT
-        }
-        SCR_ConfigurableDialogUiButtonPreset "{5F1CBD1A4DE2B451}" {
-         m_sTag "cancel"
-         m_sActionName "MenuBack"
-         m_sLabel "#AR-Workshop_ButtonCancel"
-         m_sSoundClicked "SOUND_FE_BUTTON_CANCEL"
-        }
-       }
-      }
      }
     }
    }
@@ -1312,7 +729,7 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
    }
    m_aGameModeHints {
     SCR_UIInfo "{59F74446C0DEA484}" {
-     Name "Arma Reforger htCTI v0.7.20"
+     Name "Arma Reforger htCTI v0.7.50"
      Description "by [H] Tom"
      Icon "{324E923535DCACF8}UI/Textures/DeployMenu/Briefing/conflict_HintBanner_1_UI.edds"
     }
@@ -1344,13 +761,13 @@ SCR_CTI_GameMode SCR_CTI_GameMode1 {
   SCR_SaveLoadComponent "{599D233263F4490B}" {
    m_Struct SCR_MissionStruct "{5F1CBD1502A2AD41}" {
    }
-   m_iAutosavePeriod 180
+   m_iAutosavePeriod 240
   }
   SCR_ScoringSystemComponent "{59DD0D587CD66AF0}" {
    m_iObjectiveScoreMultiplier 3
   }
   SCR_SpawnProtectionComponent "{599D233253F1FA12}" {
-   m_fProtectionTime 0.5
+   m_fProtectionTime 1
    m_bDisableOnAttack 0
   }
   SCR_SpawnerAIGroupManagerComponent "{5DEEFCB900C5F064}" {
@@ -2402,11 +1819,6 @@ SCR_FactionManager SCR_FactionManager1 {
     }
     SCR_EntityCatalogMultiList "{5F175113B66D0A62}" {
      m_eEntityCatalogType VEHICLE
-     m_aEntityEntryList {
-      SCR_EntityCatalogEntry "{5F176E28915517A5}" {
-       m_sEntityPrefab "{B47110AA1A806556}Prefabs/Vehicles/Wheeled/BTR70/BTR70_FIA.et"
-      }
-     }
     }
     SCR_EntityCatalogMultiList "{5F175113F3236BB3}" {
      m_eEntityCatalogType GROUP
@@ -3577,41 +2989,6 @@ SCR_FactionManager SCR_FactionManager1 {
     }
     SCR_EntityCatalogMultiList "{5F19491DDC3CE2C9}" {
      m_eEntityCatalogType VEHICLE
-     m_aEntityEntryList {
-      SCR_EntityCatalogEntry "{5F19491DD324139B}" {
-       m_sEntityPrefab "{CF00CF725A31B872}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491DD2FD7F08}" {
-       m_sEntityPrefab "{16A674FE31B0921D}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_uncovered.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491DD1080860}" {
-       m_sEntityPrefab "{28E08EEDBDE7B89B}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_ambulance.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491DD02D8ECF}" {
-       m_sEntityPrefab "{3336BE330C4F355C}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_ammo.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491DCF3A7BD4}" {
-       m_sEntityPrefab "{1BABF6B33DA0AEB6}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_command.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491DCE400D48}" {
-       m_sEntityPrefab "{80065564D96D231C}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_fuel.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491DCE80A351}" {
-       m_sEntityPrefab "{A5647958579A414A}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_repair.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491DCD971605}" {
-       m_sEntityPrefab "{B6BA0C8D6FF01C43}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491DCCCE0D52}" {
-       m_sEntityPrefab "{3B4A2C1ED5DBB0B8}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491D7ADB8F72}" {
-       m_sEntityPrefab "{0700E1528AEAC774}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491D79F72DED}" {
-       m_sEntityPrefab "{5FC9C5B1615C79FF}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT.et"
-      }
-     }
     }
     SCR_EntityCatalogMultiList "{5F19491D641B8C46}" {
      m_eEntityCatalogType GROUP
@@ -4789,50 +4166,6 @@ SCR_FactionManager SCR_FactionManager1 {
     }
     SCR_EntityCatalogMultiList "{5F1949160BE1C0D2}" {
      m_eEntityCatalogType VEHICLE
-     m_aEntityEntryList {
-      SCR_EntityCatalogEntry "{5F19491661E0187C}" {
-       m_sEntityPrefab "{24C2DDAB6129F316}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491658449707}" {
-       m_sEntityPrefab "{6F01946EE0B0A8B8}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et"
-      }
-      SCR_EntityCatalogEntry "{5F1949164E3D0C9E}" {
-       m_sEntityPrefab "{0406BEC84D81A89E}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491644B7F75E}" {
-       m_sEntityPrefab "{33DD0A925A38A2EA}Prefabs/Vehicles/Wheeled/M998/M1025.et"
-      }
-      SCR_EntityCatalogEntry "{5F194917B876C9CC}" {
-       m_sEntityPrefab "{3EA6F47D95867115}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et"
-      }
-      SCR_EntityCatalogEntry "{5F194917AF30DF5B}" {
-       m_sEntityPrefab "{00C9BBE426F7D45A}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance.et"
-      }
-      SCR_EntityCatalogEntry "{5F194917A7E893AC}" {
-       m_sEntityPrefab "{AD1557D294604BF9}Prefabs/Vehicles/Wheeled/M998/M998_covered.et"
-      }
-      SCR_EntityCatalogEntry "{5F1949179EBDC972}" {
-       m_sEntityPrefab "{92264FF932676C14}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo.et"
-      }
-      SCR_EntityCatalogEntry "{5F194917923E5577}" {
-       m_sEntityPrefab "{36BDCC88B17B3BFA}Prefabs/Vehicles/Wheeled/M923A1/M923A1_command.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491791BB7977}" {
-       m_sEntityPrefab "{2116A4AEE7457A54}Prefabs/Vehicles/Wheeled/M923A1/M923A1_fuel.et"
-      }
-      SCR_EntityCatalogEntry "{5F19491790B42909}" {
-       m_sEntityPrefab "{A042ACE5C2B13207}Prefabs/Vehicles/Wheeled/M923A1/M923A1_repair.et"
-      }
-      SCR_EntityCatalogEntry "{5F194917FB045BB0}" {
-       m_sEntityPrefab "{4E2F7BE504E64AD9}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et"
-      }
-      SCR_EntityCatalogEntry "{5F194917FA272F3F}" {
-       m_sEntityPrefab "{084A168713BD0D21}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et"
-      }
-      SCR_EntityCatalogEntry "{5F194917F944F4E5}" {
-       m_sEntityPrefab "{49842C04DB51263D}Prefabs/Vehicles/Helicopters/UH1H/UH1H.et"
-      }
-     }
     }
     SCR_EntityCatalogMultiList "{5F194916051BDABA}" {
      m_eEntityCatalogType GROUP
@@ -4913,9 +4246,6 @@ ScriptedChatEntity {
  }
  "Default channel" "Faction"
 }
-TagManager {
- coords 0 0 0
-}
 PerceptionManager PerceptionManager1 : "{028DAEAD63E056BE}Prefabs/World/Game/PerceptionManager.et" {
  coords 0 0 0
 }
@@ -4923,35 +4253,30 @@ BasePreloadManager BasePreloadManager1 {
 }
 HitRegistrationManager HitRegistrationManager1 {
  components {
-  RplComponent "{5EA90390C42080C7}" {
+  RplComponent "{60B0DC2545716CB7}" {
    Streamable Disabled
   }
  }
 }
 ItemPreviewManagerEntity ItemPreviewManagerEntity1 {
  PreviewWorld "{4391FE7994EE6FE2}Prefabs/World/Game/InventoryPreviewWorld.et"
- DefaultRenderAttributes PreviewRenderAttributes "{5EA903900232CEC4}" {
+ DefaultRenderAttributes PreviewRenderAttributes "{60B0DC22F9619537}" {
  }
 }
-SCR_GarbageManager {
- CharacterLifetime 180
- VehicleLifetime 1200
- ItemLifetime 180
-}
-SCR_LoadoutManager SCR_LoadoutManager_1 {
+SCR_LoadoutManager {
  components {
-  RplComponent "{609D122B421A6699}" {
+  RplComponent "{60B0E85EFFDBEEB2}" {
    Streamable Disabled
   }
  }
  Flags 0
  m_aPlayerLoadouts {
-  SCR_PlayerArsenalLoadout "{609D17E38BA59CD8}" {
+  SCR_PlayerArsenalLoadout "{60B0E85F55985DF8}" {
    m_sLoadoutName "USSR Gear"
    m_sLoadoutResource "{A67BF65F89A1905B}Prefabs/Characters/CTI/Final/CTI_USSR_Player.et"
    m_sAffiliatedFaction "USSR"
   }
-  SCR_PlayerArsenalLoadout "{609D17E386C78689}" {
+  SCR_PlayerArsenalLoadout "{60B0E85F5290A4C8}" {
    m_sLoadoutName "US Gear"
    m_sLoadoutResource "{9CD96027671E949D}Prefabs/Characters/CTI/Final/CTI_US_Player.et"
    m_sAffiliatedFaction "US"
@@ -4959,8 +4284,7 @@ SCR_LoadoutManager SCR_LoadoutManager_1 {
  }
 }
 SCR_MapLocator {
- coords 9700.346 12.592 1546.381
- m_WorldDirections SCR_MapLocationQuadHint "{5EA903963E62E5FF}" {
+ m_WorldDirections SCR_MapLocationQuadHint "{60B0DC23306AB41C}" {
   m_aQuadHints {
    "#AR-MapLocationHint_EveronSouthWest" "#AR-MapLocationHint_EveronSouth" "#AR-MapLocationHint_EveronSouthEast" "#AR-MapLocationHint_EveronWest" "#AR-MapLocationHint_EveronCentral" "#AR-MapLocationHint_EveronEast" "#AR-MapLocationHint_EveronNorthWest" "#AR-MapLocationHint_EveronNorth" "#AR-MapLocationHint_EveronNorthEast"
   }
