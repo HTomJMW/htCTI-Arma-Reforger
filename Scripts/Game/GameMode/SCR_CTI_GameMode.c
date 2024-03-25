@@ -3,12 +3,15 @@ class SCR_CTI_GameModeClass : SCR_BaseGameModeClass
 {
 };
 
-// CTI mission faction keys, indexes:
+// CTI mission for Arma Reforger
+// Faction keys, indexes:
 // FIA: 0
 // US: 1
 // USSR: 2
 class SCR_CTI_GameMode : SCR_BaseGameMode
 {
+	protected bool worldPostProcessDone = false;
+
 	ref array<SCR_CTI_Town> CTI_Towns = {};
 
 	protected SCR_CTI_WeatherAndTimeComponent WeatherAndTimeComponent;
@@ -76,6 +79,16 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	{
 		return SCR_CTI_GameMode.Cast(GetGame().GetGameMode());
 	}
+
+	//------------------------------------------------------------------------------------------------
+	override void OnWorldPostProcess(World world)
+	{
+		super.OnWorldPostProcess(world);
+
+		if (m_RplComponent.IsProxy()) return;
+
+		worldPostProcessDone = true;
+	}
 	
 	//------------------------------------------------------------------------------------------------
 	protected override void OnGameStart()
@@ -86,7 +99,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 		{
 			StartGameMode();
 			PrintFormat("CTI :: GameMode running: %1", IsRunning().ToString());
-			Print("CTI :: Mission version: 0.7.20");
+			Print("CTI :: Mission version: 0.7.50");
 
 			if (RplSession.Mode() == RplMode.Dedicated)
 			{
@@ -127,7 +140,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 			WeatherAndTimeComponent.randomStartTime();
 			WeatherAndTimeComponent.randomWeather();
-			RandomStartComponent.randomStart();
+			test();
 		} else {
 			// Client
 			WeatherAndTimeComponent.Deactivate(this);
@@ -136,6 +149,17 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			UpdateWorkersComponent.Deactivate(this);
 
 			loadUserSettings();
+		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void test()
+	{
+		if (worldPostProcessDone)
+		{
+			RandomStartComponent.randomStart();
+		} else {
+			GetGame().GetCallqueue().CallLater(test, 1000, false);
 		}
 	}
 
@@ -315,7 +339,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	//------------------------------------------------------------------------------------------------
 	protected void missionHintsCallLater(int playerId)
 	{
-		SendHint(playerId, "htCTI Eden\nDefault menu key: Numpad 0", "Mission", 30);
+		SendHint(playerId, "htCTI Eden\nDefault menu key: Numpad 0 / D-Pad down (Hold)", "Mission", 30);
 		SendPopUpNotif(playerId, "<h1 align='left' scale='2'>                                   Arma Reforger CTI</h1>", 15, "", -1);
 	}
 
@@ -357,6 +381,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 			SCR_CTI_Town town = SCR_CTI_Town.Cast(GetGame().GetWorld().FindEntityByName(CTI_TownList[i]));
 			CTI_Towns.Insert(town);
 		}
+
 		PrintFormat("CTI :: Number of Towns: %1", CTI_Towns.Count());
 	}
 
@@ -402,7 +427,7 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 					RplComponent workerRplComp = RplComponent.Cast(Replication.FindItem(workerRplId));
 					workerRplComp.EnableStreamingForConnection(commIdentity, true);
 				}
-				
+
 				break;
 			}
 		}
@@ -565,125 +590,6 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 	}
 
 	//------------------------------------------------------------------------------------------------
-	void delayedRepair(int playerId, RplId rplid)
-	{
-		// TODO check rep near
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
-		IEntity ent = rplComp.GetEntity();
-		if (!ent) return;
-
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
-		SCR_CTI_VehicleCustomVariablesComponent vcvc = SCR_CTI_VehicleCustomVariablesComponent.Cast(ent.FindComponent(SCR_CTI_VehicleCustomVariablesComponent));
-
-		if (vcvc && vcvc.getSupportVehicleType() == CTI_SupportVehicleTypes.MHQ && vehicleDamageManager.IsDestroyed())
-		{
-			FactionAffiliationComponent faffComp = FactionAffiliationComponent.Cast(ent.FindComponent(FactionAffiliationComponent));
-			SCR_CTI_RepairMHQ.repairMHQ(faffComp.GetDefaultAffiliatedFaction().GetFactionKey());
-			return;
-		}
-
-		if (!vehicleDamageManager.IsDestroyed()) vehicleDamageManager.FullHeal();
-
-		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();
-		gameMode.SendHint(playerId, "<color rgba='255,210,115,255'>Vehicle</color> repaired!", "Information", 5);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void delayedRearm(int playerId, RplId rplid)
-	{
-		// TODO check ammo near
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
-		IEntity ent = rplComp.GetEntity();
-		if (!ent) return;
-
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
-		if (!vehicleDamageManager.IsDestroyed())
-		{
-			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(ent.FindComponent(SCR_BaseCompartmentManagerComponent));
-
-			array<BaseCompartmentSlot> outCompartments = {};
-			bcmc.GetCompartments(outCompartments);
-
-			foreach (BaseCompartmentSlot slot : outCompartments)
-			{
-				if (slot.Type() == TurretCompartmentSlot)
-				{
-					TurretControllerComponent tcc = TurretControllerComponent.Cast(slot.GetController());
-					BaseWeaponManagerComponent bwmc = tcc.GetWeaponManager();
-
-					array<IEntity> outWeapons = {};
-					bwmc.GetWeaponsList(outWeapons);
-
-					if (outWeapons.IsEmpty()) return;
-
-					foreach (IEntity weapon : outWeapons)
-					{
-						WeaponComponent wc = WeaponComponent.Cast(weapon.FindComponent(WeaponComponent));
-						BaseMagazineComponent bmc = wc.GetCurrentMagazine();
-
-						bmc.SetAmmoCount(bmc.GetMaxAmmoCount());
-					}
-				}
-			}
-		}
-
-		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();
-		gameMode.SendHint(playerId, "<color rgba='255,210,115,255'>Vehicle</color> rearmed!", "Information", 5);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void delayedRefuel(int playerId, RplId rplid)
-	{
-		// TODO check fuel near
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
-		IEntity ent = rplComp.GetEntity();
-		if (!ent) return;
-
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
-		if (!vehicleDamageManager.IsDestroyed())
-		{
-			FuelManagerComponent fuelManagerComp = FuelManagerComponent.Cast(ent.FindComponent(FuelManagerComponent));
-			array<BaseFuelNode> outNodes = {};
-			fuelManagerComp.GetFuelNodesList(outNodes);
-
-			foreach (BaseFuelNode node : outNodes)
-			{
-				node.SetFuel(node.GetMaxFuel());
-			}
-		}
-
-		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();
-		gameMode.SendHint(playerId, "<color rgba='255,210,115,255'>Vehicle</color> refuelled!", "Information", 5);
-	}
-
-	//------------------------------------------------------------------------------------------------
-	void delayedHeal(int playerId, RplId rplid)
-	{
-		// TODO rep near
-		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
-		IEntity ent = rplComp.GetEntity();
-		if (!ent) return;
-
-		SCR_VehicleDamageManagerComponent vehicleDamageManager = SCR_VehicleDamageManagerComponent.Cast(ent.FindComponent(SCR_VehicleDamageManagerComponent));
-		if (!vehicleDamageManager.IsDestroyed())
-		{
-			SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(ent.FindComponent(SCR_BaseCompartmentManagerComponent));
-			array<IEntity> occupants = {};
-			bcmc.GetOccupants(occupants);
-
-			foreach (IEntity crew : occupants)
-			{
-				if (!crew) break;
-				SCR_CharacterDamageManagerComponent cdmc = SCR_CharacterDamageManagerComponent.Cast(crew.FindComponent(SCR_CharacterDamageManagerComponent));
-				if (!cdmc.IsDestroyed()) cdmc.FullHeal();
-			}
-		}
-
-		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();
-		gameMode.SendHint(playerId, "<color rgba='255,210,115,255'>Vehicle crew</color> healed!", "Information", 5);
-	}
-
-	//------------------------------------------------------------------------------------------------
 	void sendFactionNotifPAndF(FactionKey factionkey, ENotification notification, int param1)
 	{
 		array<int> outPlayers = {};
@@ -789,12 +695,13 @@ class SCR_CTI_GameMode : SCR_BaseGameMode
 
 		SCR_MapEntity mapEntity = SCR_MapEntity.GetMapInstance();
 		mapEntity.ZoomOut();
+
+		SCR_HintManagerComponent.ShowCustomHint("Choose Priority Town!", "Information", 5);
 	}
 
 	//------------------------------------------------------------------------------------------------
 	void OnPrioMapSelection(vector selectionPos)
 	{
-		// TODO Check new selection pos thing!
 		SCR_MapEntity mapEntity = SCR_MapEntity.GetMapInstance();
 
 		float worldX;

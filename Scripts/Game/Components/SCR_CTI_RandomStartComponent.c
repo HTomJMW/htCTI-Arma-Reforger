@@ -98,52 +98,52 @@ class SCR_CTI_RandomStartComponent : ScriptComponent
 		if (m_ussrAtNorth)
 		{
 			// UAZ + equipment
-			svNorth1.setPrefab(SCR_CTI_Constants.USSR_UAZ);
 			svNorth1.addItemsPrefab(itemMapUaz);
+			svNorth1.spawnPrefab(SCR_CTI_Constants.USSR_UAZ);
 			
 			// Ural truck + equipment
-			svNorth2.setPrefab("{3B4A2C1ED5DBB0B8}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
 			svNorth2.addItemsPrefab(itemMapUral);
+			svNorth2.spawnPrefab(SCR_CTI_Constants.USSR_TRUCK);
 			
 			// USSR MHQ + equipment
-			svNorth3.setPrefab(SCR_CTI_Constants.USSR_MHQ);
 			svNorth3.addItemsPrefab(intemMapUralMHQ);
+			svNorth3.spawnPrefab(SCR_CTI_Constants.USSR_MHQ);
 			
 			// Jeep + equipment
-			svSouth1.setPrefab(SCR_CTI_Constants.US_JEEP);
 			svSouth1.addItemsPrefab(itemMapM151);
+			svSouth1.spawnPrefab(SCR_CTI_Constants.US_JEEP);
 			
 			// M923A1 truck + equipment
-			svSouth2.setPrefab("{084A168713BD0D21}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
 			svSouth2.addItemsPrefab(itemMapM923);
+			svSouth2.spawnPrefab(SCR_CTI_Constants.US_TRUCK);
 			
 			// US MHQ + equipment
-			svSouth3.setPrefab(SCR_CTI_Constants.US_MHQ);
 			svSouth3.addItemsPrefab(intemMapM923MHQ);
+			svSouth3.spawnPrefab(SCR_CTI_Constants.US_MHQ);
 		} else {
 			// Jeep + equipment
-			svNorth1.setPrefab(SCR_CTI_Constants.US_JEEP);
 			svNorth1.addItemsPrefab(itemMapM151);
+			svNorth1.spawnPrefab(SCR_CTI_Constants.US_JEEP);
 
 			// M923A1 truck + equipment
-			svNorth2.setPrefab("{084A168713BD0D21}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et");
 			svNorth2.addItemsPrefab(itemMapM923);
+			svNorth2.spawnPrefab(SCR_CTI_Constants.US_TRUCK);
 			
 			// US MHQ + equipment
-			svNorth3.setPrefab(SCR_CTI_Constants.US_MHQ);
 			svNorth3.addItemsPrefab(intemMapM923MHQ);
+			svNorth3.spawnPrefab(SCR_CTI_Constants.US_MHQ);
 			
 			// UAZ + equipment
-			svSouth1.setPrefab(SCR_CTI_Constants.USSR_UAZ);
 			svSouth1.addItemsPrefab(itemMapUaz);
+			svSouth1.spawnPrefab(SCR_CTI_Constants.USSR_UAZ);
 			
 			// Ural truck + equipment
-			svSouth2.setPrefab("{3B4A2C1ED5DBB0B8}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
 			svSouth2.addItemsPrefab(itemMapUral);
+			svSouth2.spawnPrefab(SCR_CTI_Constants.USSR_TRUCK);
 			
 			// USSR MHQ + equipment
-			svSouth3.setPrefab(SCR_CTI_Constants.USSR_MHQ);
 			svSouth3.addItemsPrefab(intemMapUralMHQ);
+			svSouth3.spawnPrefab(SCR_CTI_Constants.USSR_MHQ);
 		}
 	}
 

@@ -189,7 +189,15 @@ class SCR_CTI_UpdateWorkersComponent : ScriptComponent
 
 			CharacterAnimationComponent pAnimationComponent = charController.GetAnimationComponent();
 			int itemActionId = pAnimationComponent.BindCommand("CMD_Item_Action");
-			charController.TryUseItemOverrideParams(GetBuildingToolFromHand(worker), false, true, itemActionId, 1, 0, int.MAX, 0, 0, false, null);
+			
+			ItemUseParameters params = new ItemUseParameters();
+			params.SetEntity(GetBuildingToolFromHand(worker));
+			params.SetAllowMovementDuringAction(false);
+			params.SetKeepInHandAfterSuccess(true);
+			params.SetCommandID(itemActionId);
+			params.SetCommandIntArg(1);
+			
+			charController.TryUseItemOverrideParams(params);
 		}
 	}
 

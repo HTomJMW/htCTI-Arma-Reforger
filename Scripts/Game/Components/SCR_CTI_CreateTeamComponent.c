@@ -137,19 +137,38 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 			return false;
 		}
 		
+		SCR_VehicleFactionAffiliationComponent vfac = SCR_VehicleFactionAffiliationComponent.Cast(spawnedEntity.FindComponent(SCR_VehicleFactionAffiliationComponent));
+		ResourceName resName;
+		
+		switch (vfac.GetDefaultAffiliatedFaction().GetFactionKey())
+		{
+			case "FIA": resName = SCR_CTI_Constants.FIA_SOLDIER; break;
+			case "USSR": resName = SCR_CTI_Constants.USSR_SOLDIER; break;
+			case "US": resName = SCR_CTI_Constants.US_SOLDIER; break;
+		}
+		
 		SCR_BaseCompartmentManagerComponent bcmc = SCR_BaseCompartmentManagerComponent.Cast(spawnedEntity.FindComponent(SCR_BaseCompartmentManagerComponent));
 		array<ECompartmentType> compartmentTypes = {ECompartmentType.Pilot, ECompartmentType.Turret};
-		bcmc.SpawnDefaultOccupants(compartmentTypes);
+		//bcmc.SpawnDefaultOccupants(compartmentTypes); // TODO FIX SIDE problem
+
+		// Temporary fix maybe need merge later
+		array<BaseCompartmentSlot> outCompartments = {};
+		bcmc.GetCompartments(outCompartments);
 		
-		array<IEntity> occupants = {};
+		AIGroup vehGroup;
+		foreach (BaseCompartmentSlot slot : outCompartments)
+		{
+			if (compartmentTypes.Contains(slot.GetType())) slot.SpawnCharacterInCompartment(resName, vehGroup);
+		}
+
+		/*array<IEntity> occupants = {};
 		bcmc.GetOccupants(occupants);
-		
-		SCR_AIGroup vehGroup;
+
 		foreach (IEntity crew : occupants)
 		{
 			AIAgent agent = AIAgent.Cast(crew);
 			if (agent) vehGroup.AddAgent(agent);
-		}
+		}*/
 
 		//m_town.m_groups.Insert(vehGroup);
 
@@ -181,7 +200,7 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 	}
 
 	//------------------------------------------------------------------------------------------------
-	// server only
+	// Server only
 	void OnTriggerActivate()
 	{
 		if (m_RplComponent.IsProxy()) return;
@@ -199,9 +218,31 @@ class SCR_CTI_CreateTeamComponent : ScriptComponent
 			case "FIA":
 			{
 				DoSpawn(SCR_CTI_Constants.FIA_FireTeam);
-				if (m_town.getTownValue() > 250) DoSpawn(SCR_CTI_Constants.FIA_ATTeam);
-				if (m_town.getTownValue() > 300) DoSpawn(SCR_CTI_Constants.FIA_SniperTeam);
-				if (m_town.getTownValue() > 300) SpawnVehicle(SCR_CTI_Constants.FIA_BTR70);
+
+				// First match will break, bigger value need upper
+				switch (true)
+				{
+					case (m_town.getTownValue() > 300):
+					{
+						DoSpawn(SCR_CTI_Constants.FIA_ATTeam);
+						DoSpawn(SCR_CTI_Constants.FIA_SniperTeam);
+						SpawnVehicle(SCR_CTI_Constants.FIA_BTR70);
+						break;
+					}
+					case (m_town.getTownValue() > 250):
+					{
+						DoSpawn(SCR_CTI_Constants.FIA_ATTeam);
+						SpawnVehicle(SCR_CTI_Constants.FIA_UAZ_PKM);
+						break;
+					}
+					case (m_town.getTownValue() > 200):
+					{
+						DoSpawn(SCR_CTI_Constants.FIA_ATTeam);
+						SpawnVehicle(SCR_CTI_Constants.FIA_UAZ_UK_59);
+						break;
+					}
+				}
+
 				switch (rnd)
 				{
 					case 0: DoSpawn(SCR_CTI_Constants.FIA_MGTeam); break;

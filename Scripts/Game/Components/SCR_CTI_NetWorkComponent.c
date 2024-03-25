@@ -268,7 +268,7 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 		RplComponent rplComp = RplComponent.Cast(Replication.FindItem(rplid));
 		IEntity ent = rplComp.GetEntity();
 
-		arsenalManager.SetPlayerArsenalLoadout(playerId, GameEntity.Cast(ent), null);
+		arsenalManager.SetPlayerArsenalLoadout(playerId, GameEntity.Cast(ent), null, SCR_EArsenalSupplyCostType.DEFAULT);
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -282,7 +282,8 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	protected void RpcAsk_RepairVehicleServer(int playerId, RplId rplid, int delay)
 	{
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();
-		GetGame().GetCallqueue().CallLater(gameMode.delayedRepair, delay * 1000, false, playerId, rplid);
+		SCR_CTI_ServiceComponent sc = SCR_CTI_ServiceComponent.Cast(gameMode.FindComponent(SCR_CTI_ServiceComponent));
+		GetGame().GetCallqueue().CallLater(sc.delayedRepair, delay * 1000, false, playerId, rplid);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -296,7 +297,8 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	protected void RpcAsk_RearmVehicleServer(int playerId, RplId rplid, int delay)
 	{
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();
-		GetGame().GetCallqueue().CallLater(gameMode.delayedRearm, delay * 1000, false, playerId, rplid);
+		SCR_CTI_ServiceComponent sc = SCR_CTI_ServiceComponent.Cast(gameMode.FindComponent(SCR_CTI_ServiceComponent));
+		GetGame().GetCallqueue().CallLater(sc.delayedRearm, delay * 1000, false, playerId, rplid);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -310,7 +312,8 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	protected void RpcAsk_RefuelVehicleServer(int playerId, RplId rplid, int delay)
 	{
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();
-		GetGame().GetCallqueue().CallLater(gameMode.delayedRefuel, delay * 1000, false, playerId, rplid);
+		SCR_CTI_ServiceComponent sc = SCR_CTI_ServiceComponent.Cast(gameMode.FindComponent(SCR_CTI_ServiceComponent));
+		GetGame().GetCallqueue().CallLater(sc.delayedRefuel, delay * 1000, false, playerId, rplid);
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -324,7 +327,8 @@ class SCR_CTI_NetWorkComponent : ScriptComponent
 	protected void RpcAsk_HealVehicleCrewServer(int playerId, RplId rplid, int delay)
 	{
 		SCR_CTI_GameMode gameMode = SCR_CTI_GameMode.GetInstance();
-		GetGame().GetCallqueue().CallLater(gameMode.delayedHeal, delay * 1000, false, playerId, rplid);
+		SCR_CTI_ServiceComponent sc = SCR_CTI_ServiceComponent.Cast(gameMode.FindComponent(SCR_CTI_ServiceComponent));
+		GetGame().GetCallqueue().CallLater(sc.delayedHeal, delay * 1000, false, playerId, rplid);
 	}
 
 	//------------------------------------------------------------------------------------------------

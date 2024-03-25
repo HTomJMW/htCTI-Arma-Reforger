@@ -50,7 +50,15 @@ class SCR_CTI_BuildStructureAction : SCR_ScriptedUserAction
 		{
 			CharacterAnimationComponent pAnimationComponent = charController.GetAnimationComponent();
 			int itemActionId = pAnimationComponent.BindCommand("CMD_Item_Action");
-			charController.TryUseItemOverrideParams(GetBuildingTool(pUserEntity), false, true, itemActionId, 1, 0, int.MAX, 0, 0, false, null);
+			
+			ItemUseParameters params = new ItemUseParameters();
+			params.SetEntity(GetBuildingTool(pUserEntity));
+			params.SetAllowMovementDuringAction(false);
+			params.SetKeepInHandAfterSuccess(true);
+			params.SetCommandID(itemActionId);
+			params.SetCommandIntArg(1);
+			
+			charController.TryUseItemOverrideParams(params);
 		}
 
 		super.OnActionStart(pUserEntity);

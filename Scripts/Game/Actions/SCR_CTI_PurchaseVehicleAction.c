@@ -19,31 +19,10 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 	{
 		if (m_rplComponent && m_rplComponent.IsProxy()) return;
 
-		Resource resource;
-		int unitIndex;
-		SCR_CTI_UnitData unitData;
-		int price;
-		
-		FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
-		switch (userAffiliationComponent.GetAffiliatedFaction().GetFactionKey())
-		{
-			case "USSR":
-			{
-				resource = Resource.Load(SCR_CTI_Constants.USSR_UAZ);
-				unitIndex = m_gameMode.UnitsUSSR.findIndexFromResourcename(SCR_CTI_Constants.USSR_UAZ);
-				unitData = m_gameMode.UnitsUSSR.g_USSR_Units[unitIndex];
-				price = unitData.getPrice();
-				break;
-			}
-			case "US":
-			{
-				resource = Resource.Load(SCR_CTI_Constants.US_JEEP);
-				unitIndex = m_gameMode.UnitsUS.findIndexFromResourcename(SCR_CTI_Constants.US_JEEP);
-				unitData = m_gameMode.UnitsUS.g_US_Units[unitIndex];
-				price = unitData.getPrice();
-				break;
-			}
-		}
+		Resource resource = Resource.Load(SCR_CTI_Constants.FIA_UAZ);
+		int unitIndex = m_gameMode.UnitsFIA.findIndexFromResourcename(SCR_CTI_Constants.FIA_UAZ);
+		SCR_CTI_UnitData unitData = m_gameMode.UnitsFIA.g_FIA_Units[unitIndex];;
+		int price = unitData.getPrice();
 
 		EntitySpawnParams params = new EntitySpawnParams();
 		params.TransformMode = ETransformMode.WORLD;
@@ -62,9 +41,9 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		if (!spawnedVehicle) return;
 
 		ChimeraWorld world = GetOwner().GetWorld();
-		GarbageManager garbagemanager = world.GetGarbageManager();
-		garbagemanager.Insert(spawnedVehicle, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
-		
+		GarbageSystem garbageSystem = world.GetGarbageSystem();
+		garbageSystem.Insert(spawnedVehicle, SCR_CTI_Constants.VEHICLECOLLECTIONTIME);
+
 		int playerId = GetGame().GetPlayerManager().GetPlayerIdFromControlledEntity(pUserEntity);
 
 		SCR_VehicleSpawnProtectionComponent vspc = SCR_VehicleSpawnProtectionComponent.Cast(spawnedVehicle.FindComponent(SCR_VehicleSpawnProtectionComponent));
@@ -73,6 +52,8 @@ class SCR_CTI_PurchaseVehicleAction : ScriptedUserAction
 		SCR_CTI_ClientData clientData = m_gameMode.getClientData(playerId);
 		if (clientData)
 		{
+			FactionAffiliationComponent userAffiliationComponent = FactionAffiliationComponent.Cast(pUserEntity.FindComponent(FactionAffiliationComponent));
+
 			if (clientData.isCommander())
 			{
 				m_gameMode.changeCommanderFunds(userAffiliationComponent.GetAffiliatedFaction().GetFactionKey(), -price);

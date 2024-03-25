@@ -51,8 +51,11 @@ class SCR_CTI_Constants
 	static const ResourceName US_BOX = "{0FC1D6E9B592F75D}Prefabs/Props/Military/Arsenal/AmmoBoxes/US/AmmoBoxArsenal_Equipment_US.et";
 	static const ResourceName USSR_SOLDIER = "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR_Army/Character_USSR_Rifleman.et";
 	static const ResourceName US_SOLDIER = "{26A9756790131354}Prefabs/Characters/Factions/BLUFOR/US_Army/Character_US_Rifleman.et";
-	static const ResourceName USSR_UAZ = "{CF00CF725A31B872}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et";
-	static const ResourceName US_JEEP = "{0406BEC84D81A89E}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et";
+	static const ResourceName FIA_SOLDIER = "{84B40583F4D1B7A3}Prefabs/Characters/Factions/INDFOR/FIA/Character_FIA_Rifleman.et";
+	static const ResourceName USSR_UAZ = "{259EE7B78C51B624}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et";
+	static const ResourceName US_JEEP = "{47D94E1193A88497}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et";
+	static const ResourceName USSR_TRUCK = "{D9B91FAB817A6033}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et";
+	static const ResourceName US_TRUCK = "{81FDAD5EB644CC3D}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport_covered.et";
 	
 	// Radios
 	static const ResourceName USSR_RADIO1 = "{E1A5D4B878AA8980}Prefabs/Items/Equipment/Radios/Radio_R148.et"; // start equipment
@@ -101,6 +104,9 @@ class SCR_CTI_Constants
 	static const ResourceName FIA_SniperTeam = "{6307F42403E9B8A4}Prefabs/Groups/INDFOR/Group_FIA_SharpshooterTeam.et";
 	static const ResourceName FIA_ATTeam = "{2CC26054775FBA2C}Prefabs/Groups/INDFOR/Group_FIA_Team_AT.et";
 
+	static const ResourceName FIA_UAZ = "{F7E9AA0C813EABDA}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_FIA.et";
+	static const ResourceName FIA_UAZ_PKM = "{22B327C6752EC4D4}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_PKM_FIA.et";
+	static const ResourceName FIA_UAZ_UK_59 = "{E72D78E7F45532EC}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_UK59_FIA.et";
 	static const ResourceName FIA_BTR70 = "{B47110AA1A806556}Prefabs/Vehicles/Wheeled/BTR70/BTR70_FIA.et";
 
 	static const ResourceName USSR_FireGroup = "{30ED11AA4F0D41E5}Prefabs/Groups/OPFOR/Group_USSR_FireGroup.et";

@@ -125,9 +125,9 @@ class SCR_CTI_FactoryProduction
 				{
 					foreach(SCR_ResourceContainer rc : containers)
 					{
-			            // Force change value event
-			            rc.SetResourceValueEx(100);
-			            rc.SetResourceValueEx(0);
+			            // Force change value event (TODO need test after updates, maybe not need)
+						rc.SetResourceValue(100, false);
+						rc.SetResourceValue(0, false);
 			        }
 				}
 		    }
