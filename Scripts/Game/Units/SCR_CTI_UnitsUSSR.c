@@ -159,7 +159,7 @@ class SCR_CTI_UnitsUSSR
 		script.Insert("");
 
 		// Vehicles
-		resname.Insert("{16A674FE31B0921D}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_uncovered.et");
+		resname.Insert("{16A674FE31B0921C}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_uncovered.et");
 		picture.Insert("");
 		name.Insert("UAZ-469 Off-road - Open Top"); // missing open top name
 		price.Insert(700);
@@ -168,7 +168,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{CF00CF725A31B872}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469.et");
+		resname.Insert(SCR_CTI_Constants.USSR_UAZ);
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(750);
@@ -176,8 +176,17 @@ class SCR_CTI_UnitsUSSR
 		uplevel.Insert(0);
 		factory.Insert("Light Factory");
 		script.Insert("");
-		
-		resname.Insert("{28E08EEDBDE7B89B}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_ambulance.et");
+
+		resname.Insert("{0B4DEA8078B78A9B}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_PKM.et");
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(900);
+		buildtime.Insert(30);
+		uplevel.Insert(1);
+		factory.Insert("Light Factory");
+		script.Insert("");
+
+		resname.Insert("{43C4AF1EEBD001CE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_ambulance.et");
 		picture.Insert("");
 		name.Insert("UAZ-452A Ambulance [Mobile Respawn]");
 		price.Insert(2000);
@@ -186,7 +195,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{B6BA0C8D6FF01C43}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et");
+		resname.Insert("{16C1F16C9B053801}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1200);
@@ -195,7 +204,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{3B4A2C1ED5DBB0B8}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_transport_covered.et");
+		resname.Insert(SCR_CTI_Constants.USSR_TRUCK);
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1300);
@@ -204,7 +213,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{A5647958579A414A}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_repair.et");
+		resname.Insert("{A5647958579A4149}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_repair.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -213,7 +222,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Repair Depot");
 		script.Insert("");
 
-		resname.Insert("{3336BE330C4F355C}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_ammo.et");
+		resname.Insert("{3336BE330C4F355B}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_ammo.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -222,7 +231,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("Ammo Depot");
 		script.Insert("");
 
-		resname.Insert("{67E7F860803010AF}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_tanker.et");
+		resname.Insert("{4C81D7ED8F8C0D87}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320_tanker.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -240,7 +249,7 @@ class SCR_CTI_UnitsUSSR
 		factory.Insert("");
 		script.Insert("");
 
-		resname.Insert("{0700E1528AEAC774}Prefabs/Vehicles/Wheeled/BTR70/BTR70.et");
+		resname.Insert(SCR_CTI_Constants.USSR_BTR70);
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(2500);
@@ -250,7 +259,7 @@ class SCR_CTI_UnitsUSSR
 		script.Insert("");
 		
 		// Air
-		resname.Insert("{5FC9C5B1615C79FF}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT.et");
+		resname.Insert("{DF5CCB7C0FF049F4}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(8000);

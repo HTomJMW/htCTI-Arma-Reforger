@@ -168,7 +168,7 @@ class SCR_CTI_UnitsUS
 		script.Insert("");
 
 		// Vehicles
-		resname.Insert("{24C2DDAB6129F316}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et");
+		resname.Insert("{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(700);
@@ -177,7 +177,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{0406BEC84D81A89E}Prefabs/Vehicles/Wheeled/M151A2/M151A2_transport.et");
+		resname.Insert(SCR_CTI_Constants.US_JEEP);
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(750);
@@ -186,7 +186,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{6F01946EE0B0A8B8}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et");
+		resname.Insert("{F6B23D17D5067C11}Prefabs/Vehicles/Wheeled/M151A2/M151A2_M2HB.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(900);
@@ -195,7 +195,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{00C9BBE426F7D45A}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance.et");
+		resname.Insert("{00C9BBE426F7D459}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance.et");
 		picture.Insert("");
 		name.Insert("M997 Ambulance [Mobile Respawn]");
 		price.Insert(2000);
@@ -204,7 +204,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{4E2F7BE504E64AD9}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et");
+		resname.Insert("{F1FBD0972FA5FE09}Prefabs/Vehicles/Wheeled/M923A1/M923A1_transport.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1200);
@@ -222,7 +222,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{A042ACE5C2B13207}Prefabs/Vehicles/Wheeled/M923A1/M923A1_repair.et");
+		resname.Insert("{A042ACE5C2B13206}Prefabs/Vehicles/Wheeled/M923A1/M923A1_repair.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -231,7 +231,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Repair Depot");
 		script.Insert("");
 
-		resname.Insert("{92264FF932676C14}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo.et");
+		resname.Insert("{92264FF932676C13}Prefabs/Vehicles/Wheeled/M923A1/M923A1_ammo.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -240,7 +240,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Ammo Depot");
 		script.Insert("");
 
-		resname.Insert("{2116A4AEE7457A54}Prefabs/Vehicles/Wheeled/M923A1/M923A1_fuel.et");
+		resname.Insert("{2BE1F8B9299B67C1}Prefabs/Vehicles/Wheeled/M923A1/M923A1_tanker.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -258,7 +258,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("");
 		script.Insert("");
 
-		resname.Insert("{AD1557D294604BF9}Prefabs/Vehicles/Wheeled/M998/M998_covered.et");
+		resname.Insert("{B55C6990A6A9411B}Prefabs/Vehicles/Wheeled/M998/M998_covered.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1000);
@@ -267,7 +267,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{33DD0A925A38A2EA}Prefabs/Vehicles/Wheeled/M998/M1025.et");
+		resname.Insert("{4A71F755A4513227}Prefabs/Vehicles/Wheeled/M998/M1025.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1000);
@@ -276,7 +276,7 @@ class SCR_CTI_UnitsUS
 		factory.Insert("Light Factory");
 		script.Insert("");
 
-		resname.Insert("{3EA6F47D95867115}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et");
+		resname.Insert(SCR_CTI_Constants.US_M1025_M2);
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(1500);
@@ -286,7 +286,7 @@ class SCR_CTI_UnitsUS
 		script.Insert("");
 		
 		// Air
-		resname.Insert("{49842C04DB51263D}Prefabs/Vehicles/Helicopters/UH1H/UH1H.et");
+		resname.Insert("{70BAEEFC2D3FEE64}Prefabs/Vehicles/Helicopters/UH1H/UH1H.et");
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(8000);

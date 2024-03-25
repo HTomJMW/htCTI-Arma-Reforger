@@ -301,7 +301,7 @@ class SCR_CTI_Town : BaseGameEntity
 	{
 		bool priority = (m_gameMode.getPriority("USSR") == m_townName || m_gameMode.getPriority("US") == m_townName);
 
-		if (m_isActive && !priority && m_gameMode.GetElapsedTime() - m_activeTime >= SCR_CTI_Constants.INACTIVATIONTIME)
+		if (m_isActive && !priority && (m_gameMode.GetElapsedTime() - m_activeTime) >= SCR_CTI_Constants.INACTIVATIONTIME)
 		{
 			switch (m_factionKey)
 			{

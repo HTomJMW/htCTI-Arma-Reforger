@@ -148,8 +148,36 @@ class SCR_CTI_UnitsFIA
 		uplevel.Insert(0);
 		factory.Insert("");
 		script.Insert("");
+
+		// Vehicles
+		resname.Insert(SCR_CTI_Constants.FIA_UAZ);
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(750);
+		buildtime.Insert(20);
+		uplevel.Insert(0);
+		factory.Insert("");
+		script.Insert("");
 		
-		resname.Insert("{B47110AA1A806556}Prefabs/Vehicles/Wheeled/BTR70/BTR70_FIA.et");
+		resname.Insert(SCR_CTI_Constants.FIA_UAZ_UK_59);
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(900);
+		buildtime.Insert(30);
+		uplevel.Insert(0);
+		factory.Insert("");
+		script.Insert("");
+		
+		resname.Insert(SCR_CTI_Constants.FIA_UAZ_PKM);
+		picture.Insert("");
+		name.Insert("");
+		price.Insert(900);
+		buildtime.Insert(30);
+		uplevel.Insert(0);
+		factory.Insert("");
+		script.Insert("");
+
+		resname.Insert(SCR_CTI_Constants.FIA_BTR70);
 		picture.Insert("");
 		name.Insert("");
 		price.Insert(2500);

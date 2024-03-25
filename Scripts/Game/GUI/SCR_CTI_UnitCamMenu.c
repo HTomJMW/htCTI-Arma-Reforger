@@ -7,6 +7,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 	protected SCR_GroupsManagerComponent m_gmc;
 	protected FactionAffiliationComponent m_faffComp;
 	protected CameraManager m_camMan;
+	protected IEntity m_player;
 	protected CameraBase m_playerCam;
 	protected SCR_ManualCamera m_manualCam = null;
 	
@@ -92,7 +93,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		m_listboxTeamsComp = SCR_ListBoxComponent.Cast(m_listboxTeams.FindHandler(SCR_ListBoxComponent));
 		m_listboxTeamMembersComp = SCR_ListBoxComponent.Cast(m_listboxTeamMembers.FindHandler(SCR_ListBoxComponent));
 		
-		IEntity player = m_pc.GetControlledEntity();
+		m_player = m_pc.GetControlledEntity();
 		//m_playerCam = m_camMan.CurrentCamera();
 		m_playerCam = m_pc.GetPlayerCamera();
 	
@@ -117,16 +118,18 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		vector transform[4];
 		m_playerCam.GetTransform(transform);
 		EntitySpawnParams spawnParams = new EntitySpawnParams();
-		//vector dir = m_playerCam.GetWorldTransformAxis(2);
-		//transform[3] = transform[3] + (dir * -1.3);
-		//transform[3][1] = transform[3][1] + 2.2;
+		vector dir = m_playerCam.GetWorldTransformAxis(2);
+		transform[3] = transform[3] + (dir * -1.3);
+		transform[3][1] = transform[3][1] + 1.6;
 		spawnParams.Transform = transform;
-	
+
 		m_manualCam = SCR_ManualCamera.Cast(GetGame().SpawnEntityPrefabLocal(Resource.Load("{D6DE32D1C0FCC1C7}Prefabs/Editor/Camera/ManualCameraBase.et"), GetGame().GetWorld(), spawnParams));
 		if (m_manualCam)
 		{
-			m_camMan.SetCamera(m_manualCam);
+			m_camMan.SetCamera(m_manualCam);	
 		}
+
+		setExternal();
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -182,7 +185,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 	{		
 		GetGame().GetInputManager().AddActionListener("MenuBack", EActionTrigger.DOWN, back);
 
-		setInternal();
+		setExternal();
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -191,6 +194,10 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 		GetGame().GetInputManager().RemoveActionListener("MenuBack", EActionTrigger.DOWN, back);
 		
 		m_camMan.SetCamera(m_playerCam);
+
+		SCR_CharacterCameraHandlerComponent cchc = SCR_CharacterCameraHandlerComponent.Cast(m_player.FindComponent(SCR_CharacterCameraHandlerComponent));
+		cchc.SetThirdPerson(false);
+
 		SCR_EntityHelper.DeleteEntityAndChildren(m_manualCam);
 	}
 
@@ -236,7 +243,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 						case (isExternal()):
 						{
 							transform[3] = transform[3] + (dir * -1.3);
-							transform[3][1] = transform[3][1] + 2.2;
+							transform[3][1] = transform[3][1] + 1.6;
 							break;
 						}
 					}
@@ -267,7 +274,7 @@ class SCR_CTI_UnitCamMenu : ChimeraMenuBase
 						case (isExternal()):
 						{
 							transform[3] = transform[3] + (dir * -1.3);
-							transform[3][1] = transform[3][1] + 2.2;
+							transform[3][1] = transform[3][1] + 1.6;
 							break;
 						}
 					}
