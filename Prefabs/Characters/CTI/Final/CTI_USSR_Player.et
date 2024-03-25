@@ -50,16 +50,16 @@ SCR_ChimeraCharacter : "{DCB41B3746FDD1BE}Prefabs/Characters/Factions/OPFOR/USSR
    MainType Unit
    UnitType Infantry
   }
+  SCR_ResourceComponent "{609D44259AB8BBD3}" {
+   m_aConsumers {
+    SCR_ResourceConsumer "{5E64858555320952}" : "{E77EA96D4FC48177}Configs/Resources/Supplies/Consumers/Generic/Consumer_Self.conf" {
+    }
+   }
+  }
   SlotManagerComponent "{609D44B09AF6D480}" {
    Slots {
     EntitySlotInfo CTI_PlayerMarker {
      Prefab "{BCCE785A6FFC300B}Prefabs/Markers/CTI_PlayerMarker.et"
-    }
-   }
-  }
-  SCR_ResourceComponent "{609D44259AB8BBD3}" {
-   m_aConsumers {
-    SCR_ResourceConsumer "{5E64858555320952}" : "{E77EA96D4FC48177}Configs/Resources/Supplies/Consumers/Generic/Consumer_Self.conf" {
     }
    }
   }
