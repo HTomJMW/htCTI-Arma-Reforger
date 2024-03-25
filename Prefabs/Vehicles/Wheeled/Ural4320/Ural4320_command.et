@@ -29,7 +29,6 @@ Vehicle : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
      ContextName "CTI_Default"
      Position PointInfo "{5AA931A0145721D0}" {
       PivotID "v_body"
-      Offset 0 0.05 0
      }
      Radius 5
     }

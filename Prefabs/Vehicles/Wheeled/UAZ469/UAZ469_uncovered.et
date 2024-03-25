@@ -1,184 +1,30 @@
 Vehicle : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_base.et" {
  ID "BBCBA43A9778AE21"
  components {
-  SCR_BaseCompartmentManagerComponent "{20FB66C5DCB8DF72}" {
-   CompartmentSlots {
-    PilotCompartmentSlot PilotCompartment {
-     BaseCoverage 0
-    }
-    CargoCompartmentSlot Passenger_r01 {
-     BaseCoverage 0
-    }
-    CargoCompartmentSlot Passenger_l02 {
-     BaseCoverage 0
-    }
-    CargoCompartmentSlot Passenger_r02 {
-     BaseCoverage 0
-    }
-    CargoCompartmentSlot Passenger_m02 {
-     BaseCoverage 0
-    }
-   }
-  }
-  SCR_PreviewEntityComponent "{56FCFAC0221A2846}" {
-   m_aEntries {
-    SCR_BasePreviewEntry "{5D90D2899B89C649}" {
-     m_iParentID -1
-     m_Mesh "{B80903BACFCDCCB6}Assets/Vehicles/Wheeled/UAZ469/UAZ469_base.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 -1 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C64B}" {
-     m_iParentID 0
-     m_Mesh "{33D5687713BC5740}Assets/Vehicles/Wheeled/UAZ469/VehParts/Wheels/UAZ469_wheel.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_wheel_L01"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C64C}" {
-     m_iParentID 0
-     m_Mesh "{33D5687713BC5740}Assets/Vehicles/Wheeled/UAZ469/VehParts/Wheels/UAZ469_wheel.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_wheel_R01"
-     m_vPosition 0 0 0
-     m_vAngles 0 180 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C64D}" {
-     m_iParentID 0
-     m_Mesh "{33D5687713BC5740}Assets/Vehicles/Wheeled/UAZ469/VehParts/Wheels/UAZ469_wheel.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_wheel_R02"
-     m_vPosition 0 0 0
-     m_vAngles 0 180 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C64F}" {
-     m_iParentID 0
-     m_Mesh "{33D5687713BC5740}Assets/Vehicles/Wheeled/UAZ469/VehParts/Wheels/UAZ469_wheel.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_wheel_L02"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C650}" {
-     m_iParentID 0
-     m_Mesh "{F0598B2986D522D8}Assets/Vehicles/Wheeled/UAZ469/Dst/UAZ469_base_glass_Front_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C651}" {
-     m_iParentID 0
-     m_Mesh "{694732B09B321348}Assets/Vehicles/Wheeled/UAZ469/Dst/UAZ469_base_glass_Front_02.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C652}" {
-     m_iParentID 0
-     m_Mesh "{33D5687713BC5740}Assets/Vehicles/Wheeled/UAZ469/VehParts/Wheels/UAZ469_wheel.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_spare_tire_01"
-     m_vPosition 0 0 0
-     m_vAngles 0 -90 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C653}" {
-     m_iParentID 0
-     m_Mesh "{01F26BA319A34882}Assets/Vehicles/Wheeled/UAZ469/VehParts/Doors/UAZ469_door_L01_1.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C654}" {
-     m_iParentID 0
-     m_Mesh "{6D3CC1728DF529E6}Assets/Vehicles/Wheeled/UAZ469/VehParts/Doors/UAZ469_door_R01_1.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B89C655}" {
-     m_iParentID 0
-     m_Mesh "{0B573BEEAFB3BB05}Assets/Vehicles/Wheeled/UAZ469/VehParts/Doors/UAZ469_door_L02_1.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D2899B899157}" {
-     m_iParentID 0
-     m_Mesh "{6799913F3BE5DA61}Assets/Vehicles/Wheeled/UAZ469/VehParts/Doors/UAZ469_door_R02_1.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-   }
-  }
-  SCR_VehicleDamageManagerComponent "{141326E9FD94FE40}" {
-   m_fVehicleDestroyDamage 8582.14
-  }
-  SlotManagerComponent "{55BCE45E438E4CFF}" {
-   Slots {
-    RegisteringComponentSlotInfo Frame {
-     Prefab ""
-    }
-    RegisteringComponentSlotInfo Door_L01 {
-     Prefab "{AB2E315D4519F8DE}Prefabs/Vehicles/Wheeled/UAZ469/VehParts/Doors/UAZ469_door_L01_bottom.et"
-    }
-    RegisteringComponentSlotInfo Door_R01 {
-     Prefab "{AA8102F7B249EBCE}Prefabs/Vehicles/Wheeled/UAZ469/VehParts/Doors/UAZ469_door_R01_bottom.et"
-    }
-    RegisteringComponentSlotInfo Door_L02 {
-     Prefab "{810A16FEB3F79EF1}Prefabs/Vehicles/Wheeled/UAZ469/VehParts/Doors/UAZ469_door_L02_bottom.et"
-    }
-    RegisteringComponentSlotInfo Door_R02 {
-     Prefab "{80A5255444A78DE1}Prefabs/Vehicles/Wheeled/UAZ469/VehParts/Doors/UAZ469_door_R02_bottom.et"
-    }
-   }
-  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{5E0B03B498AAEB57}" {
+    UserActionContext "{60E914D5A5D55A28}" {
      ContextName "CTI_Default"
-     Position PointInfo "{5E0B03B49260014D}" {
+     Position PointInfo "{60E914D59E0BF960}" {
       PivotID "v_body"
-      Offset 0 0.05 0
      }
      Radius 5
     }
    }
    additionalActions {
-    SCR_CTI_LockAndUnlockVehicleAction "{5D90D289EA184FEF}" {
+    SCR_CTI_LockAndUnlockVehicleAction "{60E914D598D6C08D}" {
      ParentContextList {
       "door_l01" "door_r01" "door_l02" "door_r02"
      }
     }
-    SCR_CTI_ExtinguishAction "{5E0B03B48B983921}" {
+    SCR_CTI_ExtinguishAction "{60E914D596CA4913}" {
      ParentContextList {
       "CTI_Default"
      }
      Duration 5
      "Sort Priority" 1
     }
-    SCR_CTI_RepairAction "{5E0B03B48911CC12}" {
+    SCR_CTI_RepairAction "{60E914D594F75E8D}" {
      ParentContextList {
       "CTI_Default"
      }

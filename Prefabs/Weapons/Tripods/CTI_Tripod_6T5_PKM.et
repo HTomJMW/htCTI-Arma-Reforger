@@ -49,35 +49,6 @@ Turret : "{7C4D1A64D60F2C92}Prefabs/Weapons/Tripods/Tripod_6T5.et" {
   SCR_VehicleFactionAffiliationComponent "{59107AF83E654ABA}" {
    "faction affiliation" "USSR"
   }
-  TurretComponent "{1D3DA71B9107070D}" {
-   components {
-    SightsComponent "{5704FD9D7509AA3A}" {
-     SightsPosition PointInfo "{5D9D26E9CF79DAE4}" {
-      Offset 0 0.4234 -0.4548
-     }
-     SightsRanges {
-      SightRangeInfo "{5D9D26E9CF79DAE7}" {
-       WeaponPosition PointInfo "{5D9D26E9CF79DAF8}" {
-       }
-      }
-     }
-     SightsPointFront PointInfo "{5D9D26E9CF79DAFA}" {
-      PivotID "w_weapon_holder_tripod"
-      Offset 0 0.1589 0.7034
-     }
-     SightsPointRear PointInfo "{5D9D26E9CF79DAFB}" {
-      PivotID "w_weapon_holder_tripod"
-      Offset 0 0.1599 0.0422
-     }
-     ADSTime 0.8
-    }
-   }
-   AimingMaxSpeed 6 6
-   CameraAdsAttachment PointInfo "{5D9D26E9CF79DAFD}" {
-    PivotID "w_weapon_holder_tripod"
-    Offset 0 0.159 -0.1975
-   }
-  }
   UniversalInventoryStorageComponent "{570EACF4F2F94F1B}" {
    Attributes SCR_ItemAttributeCollection "{5D9D26E9CF79DAF0}" {
     ItemDisplayName WeaponUIInfo "{5D9D26E9CF79DAF2}" {
@@ -110,6 +81,35 @@ Turret : "{7C4D1A64D60F2C92}Prefabs/Weapons/Tripods/Tripod_6T5.et" {
     InventoryStorageSlot Magazine_3 {
      Prefab "{E5E9C5897CF47F44}Prefabs/Weapons/Magazines/Box_762x54_PK_100rnd_4Ball_1Tracer.et"
     }
+   }
+  }
+  TurretComponent "{1D3DA71B9107070D}" {
+   components {
+    SightsComponent "{5704FD9D7509AA3A}" {
+     SightsPosition PointInfo "{5D9D26E9CF79DAE4}" {
+      Offset 0 0.4234 -0.4548
+     }
+     SightsRanges {
+      SightRangeInfo "{5D9D26E9CF79DAE7}" {
+       WeaponPosition PointInfo "{5D9D26E9CF79DAF8}" {
+       }
+      }
+     }
+     SightsPointFront PointInfo "{5D9D26E9CF79DAFA}" {
+      PivotID "w_weapon_holder_tripod"
+      Offset 0 0.1589 0.7034
+     }
+     SightsPointRear PointInfo "{5D9D26E9CF79DAFB}" {
+      PivotID "w_weapon_holder_tripod"
+      Offset 0 0.1599 0.0422
+     }
+     ADSTime 0.8
+    }
+   }
+   AimingMaxSpeed 6 6
+   CameraAdsAttachment PointInfo "{5D9D26E9CF79DAFD}" {
+    PivotID "w_weapon_holder_tripod"
+    Offset 0 0.159 -0.1975
    }
   }
   WeaponSlotComponent "{51ACD09C6BFEEE6A}" {

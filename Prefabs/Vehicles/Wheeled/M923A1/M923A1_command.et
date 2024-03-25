@@ -19,6 +19,7 @@ Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
      Prefab "{5A2220DD0C16958B}Prefabs/MP/Spawning/SpawnPoint_US.et"
     }
     EntitySlotInfo MHQMarker {
+     PivotID "v_body"
      Prefab "{B0E1C0F7839C3F24}Prefabs/Markers/CTI_MHQMarker.et"
     }
    }
@@ -29,7 +30,6 @@ Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
      ContextName "CTI_Default"
      Position PointInfo "{5AA931A09582FA26}" {
       PivotID "v_body"
-      Offset 0 0.05 0
      }
      Radius 5
     }
@@ -41,6 +41,7 @@ Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
      }
      VisibilityRange 5
      Duration 2
+     "Sort Priority" 1
      m_sActionStateOn ""
      m_sActionStateOff ""
     }

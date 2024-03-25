@@ -1,183 +1,37 @@
 Vehicle : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
  ID "BBCBA43A9778AE21"
  components {
-  RigidBody "{51DAA09FECF52BBF}" {
-   Mass 10502
-   CenterOfMass 0 0.15 -0.7
-  }
-  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
-   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
-    Name "#AR-Vehicle_M923A1_Transport_Name"
-    Icon "{9EBE212C91B36BBE}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Truck.edds"
-    m_Image "{B8CFF80F79640C1E}UI/Textures/EditorPreviews/Vehicles/Wheeled/M923A1/M923A1_transport.edds"
-    m_sFaction "US"
-    m_aAuthoredLabels + {
-     37
-    }
-    m_aAutoLabels +{
-    }
-    m_bEditorPlaceAsOneGroup 0
-    m_aOccupantFillCompartmentTypes +{
-    }
-    m_aPassengerEntityBudgetCost {
-     SCR_EntityBudgetValue "{5A5EA70BBF190672}" {
-      m_BudgetType AI
-      m_Value 10
-     }
-    }
-   }
-  }
-  SCR_PreviewEntityComponent "{56FCFAC01565651D}" {
-   m_bRuntime 0
-   m_aEntries {
-    SCR_BasePreviewEntry "{5D90D294814AA647}" {
-     m_iParentID -1
-     m_Mesh "{DF7CF60669EFC7E5}Assets/Vehicles/Wheeled/M923A1/M923A1_BASE.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 -1 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D294814AA658}" {
-     m_iParentID 0
-     m_Mesh "{3EDD13326D1756CA}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Right.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_door_r01"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D294814AA654}" {
-     m_iParentID 0
-     m_Mesh "{815BAF9547C41A48}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Left.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_door_l01"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D294814AA657}" {
-     m_iParentID 0
-     m_Mesh "{CF5DA3DD8C0F1630}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Back_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D294814AA656}" {
-     m_iParentID 0
-     m_Mesh "{56431A4491E827A0}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Back_02.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D294814AA651}" {
-     m_iParentID 0
-     m_Mesh "{2084927666A41EA9}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Front_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D294814AA650}" {
-     m_iParentID 0
-     m_Mesh "{B99A2BEF7B432F39}Assets/Vehicles/Wheeled/M923A1/Dst/M923A1_glass_Front_02.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D294814AA653}" {
-     m_iParentID 0
-     m_Mesh "{48C4BA0B4E41763D}Assets/Vehicles/Wheeled/M923A1/M923A1_Cargo.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-   }
-  }
-  SCR_UniversalInventoryStorageComponent "{5916C580F1DA28BB}" {
-   MaxCumulativeVolume 1000000
-   MaxItemSize 40 40 40
-   m_fMaxWeight 4000
-  }
-  VehiclePerceivableComponent "{566CD04B8A6107DD}" {
-   "Additional aim points" {
-    AimPoint "{5A44DB098ADDB55E}" : "{94ED6806120FB600}Prefabs/Vehicles/Core/Configs/AimPoints/AimPoint_Hull_Truck.conf" {
-     AimPointPosition PointInfo "{5A44DB148C16BF03}" {
-      Offset 0 2 -2
-     }
-    }
-   }
-  }
-  SlotManagerComponent "{55BCE45E438E4CFF}" {
-   Slots {
-    RegisteringComponentSlotInfo Cargo {
-     Prefab "{5A7E3ECE4599214B}Prefabs/Vehicles/Wheeled/M923A1/M923A1_cargo.et"
-     RegisterActions 1
-     RegisterDamage 1
-     RegisterControllers 1
-     RegisterCompartments 1
-     RegisterLights 1
-    }
-   }
-  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{5D90D294814AA1B8}" {
-     ContextName "cargo"
-     Position PointInfo "{5D90D294814AA1BA}" {
-      Offset 0 1.4 -4.5
-     }
-    }
-    UserActionContext "{5E0B03B60AD24502}" {
+    UserActionContext "{60E914DF59B7E8E5}" {
      ContextName "CTI_Default"
-     Position PointInfo "{5E0B03B603F6A1A0}" {
+     Position PointInfo "{60E914DF53EBC03D}" {
       PivotID "v_body"
-      Offset 0 0.05 0
      }
      Radius 5
     }
    }
    additionalActions {
-    SCR_OpenVehicleStorageAction "{5D90D294814AA1B4}" {
-     ParentContextList {
-      "cargo"
-     }
-     UIInfo UIInfo "{5D90D294814AA1B1}" {
-      Name "#AR-Inventory_OpenTrunk"
-     }
-     m_bShowInside 0
-    }
-    SCR_CTI_LockAndUnlockVehicleAction "{5D90D294E1465408}" {
+    SCR_CTI_LockAndUnlockVehicleAction "{60E914DF4B8F1B33}" {
      ParentContextList {
       "door_r01" "door_l01"
      }
     }
-    SCR_CTI_RepairAction "{5E0B03B67ABF9A3A}" {
-     ParentContextList {
-      "CTI_Default"
-     }
-     Duration 5
-     "Sort Priority" 2
-    }
-    SCR_CTI_ExtinguishAction "{5E0B03B678265E6E}" {
+    SCR_CTI_ExtinguishAction "{60E914DF48FF9D67}" {
      ParentContextList {
       "CTI_Default"
      }
      Duration 5
      "Sort Priority" 1
     }
+    SCR_CTI_RepairAction "{60E914DF45D7A427}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
    }
   }
  }
- m_eVehicleType SUPPLY_TRUCK
 }

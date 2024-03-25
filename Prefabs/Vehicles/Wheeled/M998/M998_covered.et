@@ -1,341 +1,36 @@
 Vehicle : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
  ID "BBCBA43A9778AE21"
  components {
-  BaseLightManagerComponent "{51E210F17D2534F7}" {
-   EmissiveSurfaceSlots {
-    EmissiveLightSurfaceSlot LBreaklight {
-     ConfigurationsOverride {
-      SurfaceLightConfigItem "{592A6961521CB4A4}" {
-       EmissiveMultiplier 4
-       EmissiveColorTint 1 0.366 0.004 1
-      }
-     }
-    }
-    EmissiveLightSurfaceSlot RBreaklight {
-     ConfigurationsOverride {
-      SurfaceLightConfigItem "{592A6961599655AD}" {
-       EmissiveMultiplier 4
-       EmissiveColorTint 1 0.366 0.004 1
-      }
-     }
-    }
-   }
-  }
-  RigidBody "{51DAA09FECF52BBF}" {
-   Mass 2541
-  }
-  SCR_BaseCompartmentManagerComponent "{20FB66C5DCB8DF72}" {
-   CompartmentSlots {
-    PilotCompartmentSlot PilotCompartment {
-     DoorInfoList {
-      CompartmentDoorInfo "{50B8D5DDA17EB35D}" {
-       EntryPositionInfo PointInfo "{50B8D5DD213DC00C}" {
-        Offset 0.0795 0.004 -0.0103
-       }
-      }
-     }
-     AccessibilitySettings CompartmentAccessibilityContext "{5957025967E8FD9A}" : "{0193B03AE7883EFA}Prefabs/Vehicles/Wheeled/M998/CompartmentAccess_M998.conf" {
-     }
-     BaseCoverage 0.3
-    }
-    CargoCompartmentSlot Passenger_r01 {
-     DoorInfoList {
-      CompartmentDoorInfo "{50B8D5DD7BC767A1}" {
-       EntryPositionInfo PointInfo "{50B8D5DD78963937}" {
-        Offset 0.0598 0.004 0.0899
-       }
-      }
-     }
-     AccessibilitySettings CompartmentAccessibilityContext "{5956FD2244C4087B}" : "{0193B03AE7883EFA}Prefabs/Vehicles/Wheeled/M998/CompartmentAccess_M998.conf" {
-      TraceOffset 0.1 0.7 1.15
-     }
-     BaseCoverage 0.3
-    }
-    CargoCompartmentSlot Passenger_l02 {
-     DoorInfoList {
-      CompartmentDoorInfo "{50B8D5DD7BC767A1}" {
-       EntryPositionInfo PointInfo "{50B8D5DD78963937}" {
-        Offset 0.1478 0 0.1238
-       }
-      }
-     }
-     AccessibilitySettings CompartmentAccessibilityContext "{5956FD2244C4087B}" : "{0193B03AE7883EFA}Prefabs/Vehicles/Wheeled/M998/CompartmentAccess_M998.conf" {
-      TraceOffset 0 0.7 0.85
-     }
-     BaseCoverage 0.3
-    }
-    CargoCompartmentSlot Passenger_r02 {
-     DoorInfoList {
-      CompartmentDoorInfo "{50B8D5DD7BC767A1}" {
-       EntryPositionInfo PointInfo "{50B8D5DD78963937}" {
-        Offset -0.1514 0.004 -0.003
-       }
-      }
-     }
-     AccessibilitySettings CompartmentAccessibilityContext "{5956FD2244C4087B}" : "{0193B03AE7883EFA}Prefabs/Vehicles/Wheeled/M998/CompartmentAccess_M998.conf" {
-      TraceOffset 0.1 0.7 1.2
-     }
-     BaseCoverage 0.3
-    }
-   }
-  }
-  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
-   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
-    Name "#AR-Vehicle_M998_Name"
-    Icon "{943873C801ED95B8}UI/Textures/Editor/EditableEntities/Vehicles/EditableEntity_Vehicle_Offroad.edds"
-    m_Image "{7BBF485F37CB723C}UI/Textures/EditorPreviews/Vehicles/Wheeled/M998/M998_covered.edds"
-    m_sFaction "US"
-    m_aAuthoredLabels +{
-    }
-    m_aAutoLabels +{
-    }
-   }
-  }
-  SCR_PreviewEntityComponent "{56FCFAC01E7A7A02}" {
-   m_bRuntime 0
-   m_aEntries {
-    SCR_BasePreviewEntry "{5D90D295EC6E0CA6}" {
-     m_iParentID -1
-     m_Mesh "{5BB72C16BA48410B}Assets/Vehicles/Wheeled/M998/M998_Base.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 -1 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CA0}" {
-     m_iParentID 0
-     m_Mesh "{F8A844665D091489}Assets/Vehicles/Wheeled/M998/VehParts/Wheels/M998_Wheel_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_wheel_L01"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CA3}" {
-     m_iParentID 0
-     m_Mesh "{F8A844665D091489}Assets/Vehicles/Wheeled/M998/VehParts/Wheels/M998_Wheel_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_wheel_L02"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CA2}" {
-     m_iParentID 0
-     m_Mesh "{F8A844665D091489}Assets/Vehicles/Wheeled/M998/VehParts/Wheels/M998_Wheel_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_wheel_R01"
-     m_vPosition 0 0 0
-     m_vAngles 0 180 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CBD}" {
-     m_iParentID 0
-     m_Mesh "{F8A844665D091489}Assets/Vehicles/Wheeled/M998/VehParts/Wheels/M998_Wheel_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_wheel_R02"
-     m_vPosition 0 0 0
-     m_vAngles 0 180 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CBC}" {
-     m_iParentID 0
-     m_Mesh "{26A44B851F3A5A30}Assets/Vehicles/Wheeled/M998/Dst/M998_Glass_Front_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CBF}" {
-     m_iParentID 0
-     m_Mesh "{BFBAF21C02DD6BA0}Assets/Vehicles/Wheeled/M998/Dst/M998_Glass_Front_02.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CBE}" {
-     m_iParentID 0
-     m_Mesh "{32CBC2013CBFAB0B}Assets/Vehicles/Wheeled/M998/VehParts/M998_Seats_rear.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CB9}" {
-     m_iParentID 0
-     m_Mesh "{D7F1793A6A64207A}Assets/Vehicles/Wheeled/M998/VehParts/M998_Antenna_rear.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E0CB8}" {
-     m_iParentID 0
-     m_Mesh "{34F0840870FF9EE6}Assets/Vehicles/Wheeled/M998/VehParts/M998_Tailgate.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E2929}" {
-     m_iParentID 0
-     m_Mesh "{303912C99A67539D}Assets/Vehicles/Wheeled/M998/VehParts/M998_Mirrors_01.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "Scene_Root"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E292B}" {
-     m_iParentID 0
-     m_Mesh "{25322322B04B94B3}Assets/Vehicles/Wheeled/M998/VehParts/M998_Canvas_short.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E2924}" {
-     m_iParentID 11
-     m_Mesh "{04E2C67DFFED5D71}Assets/Vehicles/Wheeled/M998/Dst/M998_Canvas_long_glass_LF.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_door_L01"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E2925}" {
-     m_iParentID 11
-     m_Mesh "{64BF49433ADE9648}Assets/Vehicles/Wheeled/M998/Dst/M998_Canvas_long_glass_LR.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_door_L02"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E2926}" {
-     m_iParentID 11
-     m_Mesh "{CB921D302F4E5C31}Assets/Vehicles/Wheeled/M998/Dst/M998_Canvas_long_glass_RF.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_door_R01"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E2927}" {
-     m_iParentID 11
-     m_Mesh "{ABCF920EEA7D9708}Assets/Vehicles/Wheeled/M998/Dst/M998_Canvas_long_glass_RR.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID "v_door_R02"
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-    SCR_BasePreviewEntry "{5D90D295EC6E2920}" {
-     m_iParentID 0
-     m_Mesh "{E3C54966F779B3D1}Assets/Vehicles/Wheeled/M998/VehParts/M998_Rollbar.xob"
-     m_Flags 0
-     m_Shape MESH
-     m_iPivotID ""
-     m_vPosition 0 0 0
-     m_vAngles 0 0 0
-    }
-   }
-  }
-  SCR_VehicleDamageManagerComponent "{141326E9FD94FE40}" {
-   m_fVehicleDestroyDamage 12910.7
-  }
-  SlotManagerComponent "{55BCE45E438E4CFF}" {
-   Slots {
-    RegisteringComponentSlotInfo Rollbar {
-     Enabled 0
-    }
-    RegisteringComponentSlotInfo Canvas {
-     Prefab "{1885F9EC22AACDB1}Prefabs/Vehicles/Wheeled/M998/VehParts/M998_canvas_short.et"
-     InheritParentSkeleton 1
-     RegisterDamage 1
-    }
-   }
-   SlotMappers {
-    CompartmentToSlotMapping Canvas {
-     SlotName "Canvas"
-     Compartments {
-      "PilotCompartment" "Passenger_r01" "Passenger_l02" "Passenger_r02"
-     }
-    }
-    CompartmentToSlotMapping Window_front {
-     Compartments {
-      "PilotCompartment" "Passenger_r01" "Passenger_l02" "Passenger_r02"
-     }
-    }
-   }
-  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{51B0DCCEEE98E970}" {
-     Position PointInfo "{51B0DCCEEE98D918}" {
-      Offset 0 0.05 0.3333
-     }
-    }
-    UserActionContext "{51B0DCCEEE985B10}" {
-     Position PointInfo "{51B0DCCEEE980C6F}" {
-      Offset 0 0.05 0.3108
-     }
-    }
-    UserActionContext "{51B0DCCEEE9F88AD}" {
-     Position PointInfo "{51B0DCCEEE9F7D7F}" {
-      Offset 0 0.05 0.3333
-     }
-    }
-    UserActionContext "{51B0DCCEEE9EF8F1}" {
-     Position PointInfo "{51B0DCCEEE9EAD7D}" {
-      Offset 0 0.05 0.3108
-     }
-    }
-    UserActionContext "{5E0B03B52C6B2F49}" {
+    UserActionContext "{60E914D119481285}" {
      ContextName "CTI_Default"
-     Position PointInfo "{5E0B03B5271485D5}" {
+     Position PointInfo "{60E914D1125B7BE4}" {
       PivotID "v_body"
-      Offset 0 0.05 0
      }
      Radius 5
     }
    }
    additionalActions {
-    SCR_CTI_LockAndUnlockVehicleAction "{5D90D295DBE2138B}" {
+    SCR_CTI_LockAndUnlockVehicleAction "{60E914D10C0E2E63}" {
      ParentContextList {
       "door_l01" "door_l02" "door_r01" "door_r02"
      }
     }
-    SCR_CTI_RepairAction "{5E0B03B520C45CFC}" {
-     ParentContextList {
-      "CTI_Default"
-     }
-     Duration 5
-     "Sort Priority" 2
-    }
-    SCR_CTI_ExtinguishAction "{5E0B03B51FAF40B6}" {
+    SCR_CTI_ExtinguishAction "{60E914D10AE43C3B}" {
      ParentContextList {
       "CTI_Default"
      }
      Duration 5
      "Sort Priority" 1
     }
-   }
-  }
-  VehicleAnimationComponent "{50B803EAA459B0AF}" {
-   AnimGraph "{34B00B7A24FD0A5C}Assets/Vehicles/Wheeled/M998/workspaces/M998_door_canvas.agr"
-   AnimInstance "{427862959FDFF353}Assets/Vehicles/Wheeled/M998/workspaces/M998_door_canvas_vehicle.asi"
-   AnimInjection AnimationAttachmentInfo "{50B803EA8AD25BC8}" {
-    AnimGraph "{34B00B7A24FD0A5C}Assets/Vehicles/Wheeled/M998/workspaces/M998_door_canvas.agr"
-    AnimInstance "{1DBDE1CDE4FDD27B}Assets/Vehicles/Wheeled/M998/workspaces/M998_door_canvas_player.asi"
+    SCR_CTI_RepairAction "{60E914D108DFB880}" {
+     ParentContextList {
+      "CTI_Default"
+     }
+     Duration 5
+     "Sort Priority" 2
+    }
    }
   }
  }

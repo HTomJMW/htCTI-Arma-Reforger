@@ -1,5 +1,5 @@
 MetaFileClass {
- Name "{24C2DDAB6129F316}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et"
+ Name "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et"
  Configurations {
   EntityTemplateResourceClass PC {
   }
@@ -8,6 +8,8 @@ MetaFileClass {
   EntityTemplateResourceClass XBOX_SERIES : PC {
   }
   EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass PS5 : PC {
   }
   EntityTemplateResourceClass HEADLESS : PC {
   }

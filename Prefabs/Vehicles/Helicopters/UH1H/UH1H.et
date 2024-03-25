@@ -1,113 +1,8 @@
 Vehicle : "{D03C0F6044DB5208}Prefabs/Vehicles/Helicopters/UH1H/UH1H_base.et" {
- ID "57DA6675519A417B"
+ ID "5DB688595BAB2FD7"
  components {
-  RigidBody "{51DAA09FECF52BBF}" {
-   Active Active
-  }
-  SCR_BaseEffectManagerComponent "{5D4ADA33D7B11909}" {
-   m_aEffectModules {
-    SCR_EffectModule "{5D4ADA33D4E92022}" {
-     m_effectPosition PointInfo "{5D4ADA33DBAC468C}" {
-     }
-    }
-   }
-  }
-  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
-   m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
-    m_aAuthoredLabels + {
-     37 210
-    }
-   }
-  }
-  VehicleHelicopterSimulation "{51FAEE57F7DA270E}" {
-   Animation VehicleAnimation "{5D9CEE8599E9D9BA}" {
-    VehicleParts {
-     VehiclePartAnimation "{5D9ECEDEFBCD0229}" {
-     }
-     VehiclePartAnimation "{5D9ECEDEFBA14196}" {
-     }
-     VehiclePartAnimation "{5D9ECEDEFB060725}" {
-     }
-    }
-   }
-   Simulation Helicopter "{51FAED9EF37A2D29}" {
-    Engine HelicopterEngine "{51FAED9EF37A2D2B}" {
-    }
-    Hull HelicopterHull "{51FAED9EF37A2D2D}" {
-    }
-   }
-  }
   SlotManagerComponent "{55BCE45E438E4CFF}" {
    Slots {
-    RegisteringComponentSlotInfo Seat_Gunners {
-     Prefab "{67030528FA4FA725}Prefabs/Vehicles/Helicopters/UH1H/VehParts/Seats/VehPart_UH1H_seats_gunners.et"
-    }
-    RegisteringComponentSlotInfo Seat_Cargo {
-     Prefab "{205599C7074F1E02}Prefabs/Vehicles/Helicopters/UH1H/VehParts/Seats/VehPart_UH1H_seats_cargo.et"
-    }
-    RegisteringComponentSlotInfo USArmyDecal {
-     Prefab "{B7AFBF0A9469B3B6}Prefabs/Vehicles/Helicopters/UH1H/VehParts/UH1H_USArmyDecal.et"
-    }
-    RegisteringComponentSlotInfo SupplyStorage_01 {
-     Offset -0.0172 0.8811 0.8311
-     Angles 0 -81.1793 0
-     Prefab "{11E588E215EBCF23}Prefabs/Props/Military/SupplyBox/SupplyCrate/SupplyCrate_01/SupplyCrate_01_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_02 {
-     Offset -0.0093 1.2175 0.6027
-     Angles 0 2.9662 0
-     Prefab "{11E588E215EBCF23}Prefabs/Props/Military/SupplyBox/SupplyCrate/SupplyCrate_01/SupplyCrate_01_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_03 {
-     Offset -0.0093 1.5447 0.6027
-     Angles 0 -0.6477 0
-     Prefab "{11E588E215EBCF23}Prefabs/Props/Military/SupplyBox/SupplyCrate/SupplyCrate_01/SupplyCrate_01_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_04 {
-     Offset 0.0027 1.6152 0.8932
-     Angles 0 -89.7725 80.73119
-     Prefab "{11E588E215EBCF23}Prefabs/Props/Military/SupplyBox/SupplyCrate/SupplyCrate_01/SupplyCrate_01_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_05 {
-     Offset -0.0093 1.8659 0.5705
-     Angles 0 -177.63971 0
-     Prefab "{11E588E215EBCF23}Prefabs/Props/Military/SupplyBox/SupplyCrate/SupplyCrate_01/SupplyCrate_01_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_06 {
-     Offset 0.143 1.2793 1.5404
-     Angles 0.4964 -2.5777 -79.10619
-     Prefab "{11E588E215EBCF23}Prefabs/Props/Military/SupplyBox/SupplyCrate/SupplyCrate_01/SupplyCrate_01_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_07 {
-     Offset -0.0071 1.7224 1.4708
-     Angles -0.179 2.0705 4.9388
-     Prefab "{2E10FD09B66A44FF}Prefabs/Props/Military/SupplyBox/SupplyPortableContainers/SupplyPortableContainer_01/SupplyPortableContainers_01_large_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_08 {
-     Offset -0.0071 2.0505 1.017
-     Angles 0 90 5.9924
-     Prefab "{2E10FD09B66A44FF}Prefabs/Props/Military/SupplyBox/SupplyPortableContainers/SupplyPortableContainer_01/SupplyPortableContainers_01_large_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_09 {
-     Offset -0.0071 1.7224 1.1986
-     Angles -83.0994 0 0
-     Prefab "{8C29E423099B0C5A}Prefabs/Props/Military/SupplyBox/SupplyPortableContainers/SupplyPortableContainer_01/SupplyPortableContainers_01_medium_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
-    RegisteringComponentSlotInfo SupplyStorage_10 {
-     Offset -0.0071 1.9173 1.1986
-     Angles -62.399 0 0
-     Prefab "{8C29E423099B0C5A}Prefabs/Props/Military/SupplyBox/SupplyPortableContainers/SupplyPortableContainer_01/SupplyPortableContainers_01_medium_Vehicle.et"
-     DisablePhysicsInteraction 1
-    }
     EntitySlotInfo CTI_AirMarker {
      PivotID "v_body"
      Prefab "{925960F754329A24}Prefabs/Markers/CTI_AirUnitRadarMarker.et"
@@ -116,109 +11,33 @@ Vehicle : "{D03C0F6044DB5208}Prefabs/Vehicles/Helicopters/UH1H/UH1H_base.et" {
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{5EAD0EE4415C0EB6}" {
+    UserActionContext "{60E914DBBC6AC58A}" {
      ContextName "CTI_Default"
-     Position PointInfo "{5EAD0EE7BC88F0F0}" {
+     Position PointInfo "{60E914DBAB229548}" {
       PivotID "v_body"
-      Offset 0 0.05 0
      }
      Radius 5
     }
    }
    additionalActions {
-    SCR_ResourceEntityRefundAction "{5D5EC6128E6342C0}" : "{5AFBAF53711899E9}Configs/Resources/Supplies/Actions/Supplies_Entity_Refund.conf" {
-     ParentContextList {
-      "heli_repair_point"
-     }
-    }
-    SCR_ResourceContainerVehicleLoadAction "{5DAD751A3D2FE182}" : "{A0E53319BFA4E848}Configs/Resources/Supplies/Actions/Supplies_Vehicle_Load.conf" {
-     ParentContextList {
-      "door_l03"
-     }
-    }
-    SCR_ResourceContainerVehicleUnloadAction "{5DAD751A3BF8492E}" : "{F10C4B3E2E87F15B}Configs/Resources/Supplies/Actions/Supplies_Vehicle_Unload.conf" {
-     ParentContextList {
-      "door_l03"
-     }
-    }
-    SCR_ResourceContainerVehicleLoadAction "{5E42966A989974E7}" : "{A0E53319BFA4E848}Configs/Resources/Supplies/Actions/Supplies_Vehicle_Load.conf" {
-     ParentContextList {
-      "door_r03"
-     }
-     UIInfo UIInfo "{5EAADECB9B0570A5}" {
-      Name "#AR-Supplies_Vehicle_Load"
-      Description "#AR-Supplies_Vehicle_Load_Long"
-     }
-     Duration 1
-    }
-    SCR_ResourceContainerVehicleUnloadAction "{5E42966A9D4BFB90}" : "{F10C4B3E2E87F15B}Configs/Resources/Supplies/Actions/Supplies_Vehicle_Unload.conf" {
-     ParentContextList {
-      "door_r03"
-     }
-     UIInfo UIInfo "{5EAADECB9B0570A3}" {
-      Name "#AR-Supplies_Vehicle_Unload"
-      Description "#AR-Supplies_Vehicle_Unload_Long"
-     }
-     Duration 1
-    }
-    SCR_CTI_LockAndUnlockVehicleAction "{5EAD0EE7ABF3B1FF}" {
+    SCR_CTI_LockAndUnlockVehicleAction "{60E914DB9EE74FF5}" {
      ParentContextList {
       "door_l01" "door_l03" "door_r01" "door_r03"
      }
     }
-    SCR_CTI_RepairAction "{5EAD0EE7A8CC2E39}" {
-     ParentContextList {
-      "CTI_Default"
-     }
-     Duration 5
-     "Sort Priority" 2
-    }
-    SCR_CTI_ExtinguishAction "{5EAD0EE7A6FA5310}" {
+    SCR_CTI_ExtinguishAction "{60E914DBE40E5DD8}" {
      ParentContextList {
       "CTI_Default"
      }
      Duration 5
      "Sort Priority" 1
     }
-   }
-  }
-  SCR_ResourceComponent "{5EAADECB9B0570AC}" {
-   m_aContainers {
-    SCR_ResourceContainer "{5EAADECB9B0570A9}" {
-     m_eResourceRights FACTION
-     m_eStorageType CARGO_VEHICLE
-    }
-   }
-   m_aEncapsulators {
-    SCR_ResourceEncapsulator "{5EAADECB9B0570A8}" {
-     m_sDebugName "Encapsulator - UH-1H"
-     m_eResourceRights ALL
-     m_ContainerQueue SCR_ResourceEncapsulatorContainerQueue "{5E42966E59638D3A}" : "{F214C17E1F29E70A}Configs/Resources/Supplies/ContainerQueues/Encapsulator/Queue_Encapsulator_Vehicle.conf" {
+    SCR_CTI_RepairAction "{60E914DBE0FD4181}" {
+     ParentContextList {
+      "CTI_Default"
      }
-     m_aActions {
-      SCR_ResourceEncapsulatorActionChangeDecay "{5EAADECB9B0570B5}" {
-      }
-      SCR_ResourceEncapsulatorActionChangeGain "{5EAADECB9B0570B4}" {
-      }
-      SCR_ResourceEncapsulatorActionChangeOnEmptyBehavior "{5EAADECB9B0570B7}" {
-       m_eOnEmptyBehavior HIDE
-      }
-      SCR_ResourceEncapsulatorActionChangeResourceValue "{5EAADECB9B0570B6}" {
-       m_fResourceValueCurrent 0
-      }
-     }
-    }
-   }
-   m_aConsumers {
-    SCR_ResourceConsumer "{5E42966EB4B6C40C}" : "{CBFF9584EC5E51DD}Configs/Resources/Supplies/Consumers/Consumer_HelicopterLoad.conf" {
-    }
-    SCR_ResourceConsumer "{5E42966EB7ABFDFF}" : "{332213624C5840B6}Configs/Resources/Supplies/Consumers/Consumer_HelicopterUnload.conf" {
-    }
-   }
-   m_aGenerators {
-    SCR_ResourceGenerator "{5E42966EB87D0B2E}" : "{D0F12FFFB07D3955}Configs/Resources/Supplies/Generators/Generator_HelicopterLoad.conf" {
-    }
-    SCR_ResourceGenerator "{5E42966EB8A02BC1}" : "{F02DC41374D82975}Configs/Resources/Supplies/Generators/Generator_HelicopterUnload.conf" {
+     Duration 5
+     "Sort Priority" 2
     }
    }
   }

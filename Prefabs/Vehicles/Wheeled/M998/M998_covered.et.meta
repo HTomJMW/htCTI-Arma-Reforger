@@ -1,5 +1,5 @@
 MetaFileClass {
- Name "{AD1557D294604BF9}Prefabs/Vehicles/Wheeled/M998/M998_covered.et"
+ Name "{B55C6990A6A9411B}Prefabs/Vehicles/Wheeled/M998/M998_covered.et"
  Configurations {
   EntityTemplateResourceClass PC {
   }
@@ -8,6 +8,8 @@ MetaFileClass {
   EntityTemplateResourceClass XBOX_SERIES : PC {
   }
   EntityTemplateResourceClass PS4 : PC {
+  }
+  EntityTemplateResourceClass PS5 : PC {
   }
   EntityTemplateResourceClass HEADLESS : PC {
   }

@@ -69,6 +69,40 @@ Turret : "{74202E9B1CDFCD13}Prefabs/Weapons/Tripods/Tripod_M122.et" {
     }
    }
   }
+  UniversalInventoryStorageComponent "{570EACF4F2F94F1B}" {
+   Attributes SCR_ItemAttributeCollection "{5D9D26E8F8EECDE8}" {
+    ItemDisplayName WeaponUIInfo "{5D9D26E8F8EECDEA}" {
+     Name "#AR-EditableEntity_Tripod_M122_MG_M60_Name"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{5D9D26E8F8EECDEC}" {
+    }
+    CustomAttributes {
+     PreviewRenderAttributes "{5D9D26E8F8EECDEE}" {
+      CameraPreset Right
+      CameraDistanceToItem 0.85
+      CameraOffset 0.2 0.1 0
+      FOV 40
+      PreviewPrefab "{887DB60486A18575}Prefabs/Weapons/Tripods/Tripod_M122_MG_M60.et"
+     }
+    }
+    m_SlotType SLOT_WEAPONS_STORAGE
+    m_bDraggable 0
+   }
+   UseCapacityCoefficient 0
+   MaxCumulativeVolume 3000
+   MaxItemSize 15 15 15
+   InitialStorageSlots {
+    InventoryStorageSlot Magazine_1 {
+     Prefab "{4D2C1E8F3A81F894}Prefabs/Weapons/Magazines/Box_762x51_M60_100rnd_4Ball_1Tracer.et"
+    }
+    InventoryStorageSlot Magazine_2 {
+     Prefab "{4D2C1E8F3A81F894}Prefabs/Weapons/Magazines/Box_762x51_M60_100rnd_4Ball_1Tracer.et"
+    }
+    InventoryStorageSlot Magazine_3 {
+     Prefab "{4D2C1E8F3A81F894}Prefabs/Weapons/Magazines/Box_762x51_M60_100rnd_4Ball_1Tracer.et"
+    }
+   }
+  }
   TurretComponent "{5D9D26E8F8EE11E7}" {
    components {
     SightsComponent "{5D9D26E8F8EE11E0}" {
@@ -183,40 +217,6 @@ Turret : "{74202E9B1CDFCD13}Prefabs/Weapons/Tripods/Tripod_M122.et" {
    TurretSpeed 100 120
    TurretAcceleration 300 300
    TurretDeceleration 572.958 572.958
-  }
-  UniversalInventoryStorageComponent "{570EACF4F2F94F1B}" {
-   Attributes SCR_ItemAttributeCollection "{5D9D26E8F8EECDE8}" {
-    ItemDisplayName WeaponUIInfo "{5D9D26E8F8EECDEA}" {
-     Name "#AR-EditableEntity_Tripod_M122_MG_M60_Name"
-    }
-    ItemPhysAttributes ItemPhysicalAttributes "{5D9D26E8F8EECDEC}" {
-    }
-    CustomAttributes {
-     PreviewRenderAttributes "{5D9D26E8F8EECDEE}" {
-      CameraPreset Right
-      CameraDistanceToItem 0.85
-      CameraOffset 0.2 0.1 0
-      FOV 40
-      PreviewPrefab "{887DB60486A18575}Prefabs/Weapons/Tripods/Tripod_M122_MG_M60.et"
-     }
-    }
-    m_SlotType SLOT_WEAPONS_STORAGE
-    m_bDraggable 0
-   }
-   UseCapacityCoefficient 0
-   MaxCumulativeVolume 3000
-   MaxItemSize 15 15 15
-   InitialStorageSlots {
-    InventoryStorageSlot Magazine_1 {
-     Prefab "{4D2C1E8F3A81F894}Prefabs/Weapons/Magazines/Box_762x51_M60_100rnd_4Ball_1Tracer.et"
-    }
-    InventoryStorageSlot Magazine_2 {
-     Prefab "{4D2C1E8F3A81F894}Prefabs/Weapons/Magazines/Box_762x51_M60_100rnd_4Ball_1Tracer.et"
-    }
-    InventoryStorageSlot Magazine_3 {
-     Prefab "{4D2C1E8F3A81F894}Prefabs/Weapons/Magazines/Box_762x51_M60_100rnd_4Ball_1Tracer.et"
-    }
-   }
   }
   WeaponSlotComponent "{51ACD09C6BFEEE6A}" {
    WeaponType MachineGun
