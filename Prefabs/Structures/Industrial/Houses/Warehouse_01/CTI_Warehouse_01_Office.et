@@ -18,6 +18,9 @@ SCR_DestructibleBuildingEntity : "{E35EA41864A3B0ED}Prefabs/Structures/Industria
     }
    }
   }
+  RplComponent "{50A4E7C9B5728062}" {
+   Enabled 1
+  }
  }
  coords -24.095 -17.191 79.787
  SlotBoneMappings {

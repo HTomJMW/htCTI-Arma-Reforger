@@ -18,6 +18,9 @@ SCR_DestructibleBuildingEntity : "{906CB40C3D7DBA68}Prefabs/Structures/Military/
     }
    }
   }
+  RplComponent "{50A4E7C9B5728062}" {
+   Enabled 1
+  }
  }
  {
   $grp GenericEntity : "{1118EFBC004E9999}Prefabs/Structures/BuildingParts/Doors/Door_Services_E_A_EXT_RIGHT_ST_B_brown.et" {

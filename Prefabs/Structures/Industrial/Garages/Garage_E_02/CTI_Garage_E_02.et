@@ -18,6 +18,9 @@ SCR_DestructibleBuildingEntity : "{9D656741EA2AABC5}Prefabs/Structures/Industria
     }
    }
   }
+  RplComponent "{50A4E7C9B5728062}" {
+   Enabled 1
+  }
  }
  {
   Building : "{14111FDDF1FC616E}Prefabs/Structures/BuildingParts/Windows/Win_Garage_E/win_garage_e_02_4400x1100_88_B_base.et" {

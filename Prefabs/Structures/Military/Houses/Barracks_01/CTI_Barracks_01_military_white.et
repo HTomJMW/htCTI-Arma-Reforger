@@ -18,6 +18,9 @@ SCR_DestructibleBuildingEntity : "{5F97E54397247954}Prefabs/Structures/Military/
     }
    }
   }
+  RplComponent "{50A4E7C9B5728062}" {
+   Enabled 1
+  }
  }
  coords 1243.149 0.011 2892.502
  SlotBoneMappings {
